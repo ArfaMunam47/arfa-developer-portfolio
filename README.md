@@ -118,10 +118,4 @@ This repository is provided as-is for portfolio demonstration purposes. If you w
 
 ---
 
-## Contact
 
-Arfa Munam — Email: arfamunam01@gmail.com
-
-LinkedIn: https://www.linkedin.com/in/arfa-munam-a823573a1
-
-Thanks for reviewing the project. If you want any edits to this `README.md` (tone, length, or additional sections such as changelog or credits), tell me exactly what to include and I'll update it.
