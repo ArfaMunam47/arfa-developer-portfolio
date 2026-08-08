@@ -76,7 +76,10 @@ document.querySelectorAll('[data-count]').forEach(c => cObs.observe(c));
 // BACK TO TOP + active nav link
 const bt = document.getElementById('backTop');
 window.addEventListener('scroll', () => {
-  bt.classList.toggle('visible', window.scrollY > 400);
+  // Show the back-to-top button only when the user is at (or very near) the bottom of the page
+  const nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 120);
+  bt.classList.toggle('visible', nearBottom);
+
   const ids = ['hero', 'about', 'skills', 'services', 'projects', 'experience', 'achievements', 'contact'];
   let cur = '';
   ids.forEach(id => { const s = document.getElementById(id); if (s && window.scrollY >= s.offsetTop - 200) cur = id; });
