@@ -1,0 +1,14 @@
+{
+  "name": "arfa-developer-portfolio",
+  "version": "1.0.0",
+  "description": "Frontend Developer, Prompt Engineer & AI Enthusiast portfolio showcasing projects, skills, and experience.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Build complete'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
