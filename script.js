@@ -14,19 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Vibrant High-Visibility Project Showcase Exhibition
   setupProjectsShowcase();
 
-  // 4. Certificate Lightbox Modal
+  // 4. Who I Am 3D Interactive Parallax & Spatial Universe
+  setupWhoIAmParallax();
+
+  // 5. Certificate Lightbox Modal (Disabled per user requirement)
   setupCertificateModal();
 
-  // 5. Animated Number Counters
+  // 6. Animated Number Counters
   setupStatsCounter();
 
-  // 6. Scroll Reveal Observer
+  // 7. Scroll Reveal Observer
   setupScrollReveal();
 
-  // 7. Contact Form Handler
+  // 8. Contact Form Handler
   setupContactForm();
 
-  // 8. Back to Top Button
+  // 9. Back to Top Button (Strictly footer/bottom only)
   setupBackToTop();
 
   // 9. Premium Micro-Interactions (Cursor, Magnetic buttons, FounderOS tabs & 3D tilt, Exploring radar)
@@ -40,17 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // 11. Hero Live HUD Clock & Dynamic 3-Headings Rotator
   setupHeroLiveClockAndHeadings();
 
-  // 12. Interactive Skills Matrix & Sandboxes
-  setupSkillsInteractiveMatrix();
+  // 12. Interactive Compact Skill Ecosystem & Constellation
+  setupSkillEcosystem();
 
   // 13. Certificate Picture Slots (Upload, Drag-and-Drop & LocalStorage persistence)
   setupCertificatePhotoUploads();
 
-  // 14. Tactile Jelly Physics Engine & Squish Playground
-  setupJellyTactileInteractions();
+  // 14. Tactile Elastic Spring Buttons & 3D Hero Parallax (Refined, Non-Childish)
+  setupTactileButtonInteractions();
+  setupHero3DPortraitParallax();
 
   // 15. Let's Talk Section (Topic pills, Copy Email, Form feedback)
   setupLetsTalkSection();
+
+  // 16. Hero Portrait & Contact 3D Image Insert/Uploads
+  setupHeroPhotoUpload();
+  setupContact3DUpload();
+
+  // 17. Full Page Project Immersive Experience Modal
+  setupProjectFullPageExperience();
+
+  // 18. Refined About Me Perspective Tabs, Copy Bio & Focus Skills
+  setupAboutMeRefinement();
+
+  // 19. Skills Compiler Loading Simulation & Category Filters
+  setupSkillsCompiler();
+
+  // 20. Cinematic Exploring Frontier Labs & Telemetry Terminal
+  setupCinematicFrontierLabs();
 });
 
 /**
@@ -170,81 +190,123 @@ function setupProjectFilters() {
 
 /**
  * Certificate Lightbox Modal:
- * Opens high-resolution view of certificate with metadata, issuer, and date.
+ * Completely disabled per user requirement ("i dont want any option like view full certificate").
  */
 function setupCertificateModal() {
-  const certCards = document.querySelectorAll('.certificate-card');
   const modal = document.getElementById('cert-modal');
-  const modalBox = modal ? modal.querySelector('.modal-content-area') : null;
-  const closeBtn = document.getElementById('close-modal-btn');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
 
-  if (!modal || !modalBox || !closeBtn) return;
+/**
+ * Interactive 3D Parallax & Mouse Response for Who I Am Creative Universe & Roadmap
+ * Smoothly shifts 3D orbs, rings, stars, and glowing blobs with cursor movement.
+ * Also handles interactive roadmap node focus, pillar interactions, and path lighting.
+ */
+function setupWhoIAmParallax() {
+  const section = document.getElementById('about');
+  if (!section) return;
 
-  certCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const title = card.getAttribute('data-cert-title') || 'Certificate of Completion';
-      const issuer = card.getAttribute('data-cert-issuer') || 'Accredited Organization';
-      const date = card.getAttribute('data-cert-date') || '2024';
-      const desc = card.getAttribute('data-cert-desc') || '';
-      const imgSrc = card.getAttribute('data-cert-img') || '';
+  const parallaxItems = section.querySelectorAll('[data-parallax]');
+  const glowBlobs = section.querySelectorAll('.who-glow-blob[data-speed]');
+  const curvedLine = document.getElementById('roadmap-curved-line');
+  const devNodes = section.querySelectorAll('.dev-path-node');
+  const pillarTiles = section.querySelectorAll('.pillar-tile-obj');
 
-      let previewHtml = '';
-      if (imgSrc && imgSrc.trim() !== '') {
-        previewHtml = `
-          <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; max-height: 380px; display: flex; align-items: center; justify-content: center; background: #0D3834;">
-            <img src="${imgSrc}" alt="${title}" style="max-height: 380px; width: auto; object-fit: contain;">
-          </div>
-        `;
-      } else {
-        previewHtml = `
-          <div style="background: linear-gradient(135deg, #FFFDF9 0%, #F5ECE0 100%); border: 2px dashed #E5D6C5; border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 1.5rem;">
-            <div style="width: 56px; height: 56px; border-radius: 50%; background: #FA5538; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 1rem auto; box-shadow: 0 4px 14px rgba(250,85,56,0.3);">🏆</div>
-            <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.35rem; color: #18181B;">Certificate Preview Placeholder</h4>
-            <p style="font-size: 0.88rem; color: #71717A; max-width: 440px; margin: 0 auto;">Arfa can upload the official screenshot or scan to <code>portfolio-data.js</code> or the project directory to replace this placeholder automatically.</p>
-          </div>
-        `;
+  // 1. Interactive Node & Pillar Tactile Feedback + Path Lighting
+  const nodeColors = {
+    'frontend': '#FA5538',
+    'backend': '#06B6D4',
+    'ai': '#8B5CF6'
+  };
+
+  devNodes.forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      const nodeKey = node.getAttribute('data-node');
+      const accent = nodeColors[nodeKey] || '#FA5538';
+      if (curvedLine) {
+        curvedLine.style.stroke = accent;
+        curvedLine.style.strokeWidth = '5px';
+        curvedLine.style.filter = `drop-shadow(0 0 10px ${accent})`;
       }
+      playTactileClick(640, 'sine');
+    });
 
-      modalBox.innerHTML = `
-        ${previewHtml}
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-          <span style="font-size: 0.8rem; font-weight: 800; color: #FA5538; text-transform: uppercase; letter-spacing: 0.05em;">Verified Credential</span>
-          <span style="font-size: 0.85rem; font-weight: 700; color: #71717A;">Issued: ${date}</span>
-        </div>
-        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 800; color: #18181B; margin-bottom: 0.4rem; line-height: 1.25;">${title}</h3>
-        <p style="font-size: 0.95rem; font-weight: 700; color: #0D3834; margin-bottom: 1rem;">Issuing Body: ${issuer}</p>
-        <p style="font-size: 0.95rem; color: #3F3F46; line-height: 1.7; margin-bottom: 1.8rem;">${desc}</p>
-        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
-          <button id="modal-done-btn" style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; background: #0D3834; padding: 0.6rem 1.4rem; border-radius: 9999px; cursor: pointer;">Close Preview</button>
-        </div>
-      `;
-
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-
-      const doneBtn = document.getElementById('modal-done-btn');
-      if (doneBtn) {
-        doneBtn.addEventListener('click', closeModal);
+    node.addEventListener('mouseleave', () => {
+      if (curvedLine) {
+        curvedLine.style.stroke = 'url(#roadmapPathGrad)';
+        curvedLine.style.strokeWidth = '3.5px';
+        curvedLine.style.filter = 'none';
       }
     });
   });
 
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  closeBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+  pillarTiles.forEach(tile => {
+    tile.addEventListener('mouseenter', () => {
+      playTactileClick(720, 'sine');
+    });
   });
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
+  // 2. Parallax mouse tracking
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let isHovering = false;
+  let animationFrameId = null;
+
+  section.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    // Normalized coordinates (-1 to 1) relative to section center
+    targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    if (!isHovering) {
+      isHovering = true;
+      startLoop();
     }
+  }, { passive: true });
+
+  section.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
   });
+
+  function startLoop() {
+    function tick() {
+      // Smooth linear interpolation (lerp)
+      mouseX += (targetX - mouseX) * 0.08;
+      mouseY += (targetY - mouseY) * 0.08;
+
+      parallaxItems.forEach(el => {
+        const factor = parseFloat(el.getAttribute('data-parallax')) || 15;
+        const moveX = mouseX * factor;
+        const moveY = mouseY * factor;
+        el.style.transform = `translate3d(${moveX.toFixed(2)}px, ${moveY.toFixed(2)}px, 0)`;
+      });
+
+      glowBlobs.forEach(blob => {
+        const speed = parseFloat(blob.getAttribute('data-speed')) || 0.04;
+        const moveX = mouseX * speed * 250;
+        const moveY = mouseY * speed * 250;
+        blob.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0)`;
+      });
+
+      if (Math.abs(targetX - mouseX) > 0.001 || Math.abs(targetY - mouseY) > 0.001 || isHovering) {
+        animationFrameId = requestAnimationFrame(tick);
+      } else {
+        isHovering = false;
+        animationFrameId = null;
+      }
+    }
+
+    if (!animationFrameId) {
+      animationFrameId = requestAnimationFrame(tick);
+    }
+  }
 }
 
 /**
@@ -380,13 +442,17 @@ function setupContactForm() {
 
 /**
  * Smooth Back to Top Button
+ * Strictly restricted to only appear at the very bottom / footer of the portfolio
+ * Will NEVER appear on Who I Am / About section or upper parts
  */
 function setupBackToTop() {
   const btn = document.getElementById('back-to-top');
   if (!btn) return;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
+    const scrollDistFromBottom = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+    // Only visible when user reaches the very bottom near the footer/contact section
+    if (scrollDistFromBottom < 650 && window.scrollY > 2600) {
       btn.classList.add('visible');
     } else {
       btn.classList.remove('visible');
@@ -517,32 +583,80 @@ function setupExploringRadar() {
   const tabs = document.querySelectorAll('.explore-tab-pill');
   const textElem = document.getElementById('exploring-text');
 
-  if (!tabs.length || !textElem) return;
+  if (tabs.length && textElem) {
+    const explorationData = {
+      'ai-automation': "Architecting intelligent prompt workflows and LLM agent pipelines using Claude and ChatGPT — turning multi-hour manual engineering tasks into high-velocity, production-grade output.",
+      'full-stack': "Integrating frontend interfaces with backend engines, Supabase PostgreSQL databases, authentication flows, and edge APIs to build full-scale web applications.",
+      'modern-web': "Crafting responsive, performant user interfaces with clean semantic HTML, modular CSS architectures, fluid animations, and strict WCAG accessibility standards.",
+      'digital-products': "Studying product mechanics, founder workflows, rapid iteration cycles, and user feedback loops to build tools that solve genuine problems."
+    };
 
-  const explorationData = {
-    'ai-automation': "Architecting intelligent prompt workflows and LLM agent pipelines using Claude and ChatGPT — turning multi-hour manual engineering tasks into high-velocity, production-grade output.",
-    'full-stack': "Integrating frontend interfaces with backend engines, Supabase PostgreSQL databases, authentication flows, and edge APIs to build full-scale web applications.",
-    'modern-web': "Crafting responsive, performant user interfaces with clean semantic HTML, modular CSS architectures, fluid animations, and strict WCAG accessibility standards.",
-    'digital-products': "Studying product mechanics, founder workflows, rapid iteration cycles, and user feedback loops to build tools that solve genuine problems."
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const topic = tab.getAttribute('data-explore');
+        if (!topic || !explorationData[topic]) return;
+
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        textElem.style.opacity = '0';
+        textElem.style.transform = 'translateY(6px)';
+
+        setTimeout(() => {
+          textElem.textContent = explorationData[topic];
+          textElem.style.opacity = '1';
+          textElem.style.transform = 'translateY(0)';
+        }, 150);
+      });
+    });
+  }
+
+  // Standalone Exploring Labs Inspection Trigger
+  const inspectBtns = document.querySelectorAll('.btn-lab-inspect');
+  const termDynamicMsg = document.getElementById('term-dynamic-message');
+
+  const labTelemetryLogs = {
+    'ai-agents': [
+      '<div class="term-line"><span class="term-dim">[09:42:01]</span> <span class="term-accent">INIT:</span> Initializing Multi-Agent Orchestration Bus...</div>',
+      '<div class="term-line"><span class="term-dim">[09:42:02]</span> <span class="term-info">PLAN:</span> Planner agent decomposed user query into 3 parallel sub-tasks</div>',
+      '<div class="term-line"><span class="term-dim">[09:42:03]</span> <span class="term-purple">EXEC:</span> Sub-agent "Researcher" returned verified citations (100% precision)</div>',
+      '<div class="term-line"><span class="term-dim">[09:42:04]</span> <span class="term-success">SUCCESS:</span> Synthesized response delivered in 410ms with zero hallucination.</div>'
+    ],
+    'fullstack-edge': [
+      '<div class="term-line"><span class="term-dim">[11:15:10]</span> <span class="term-accent">PING:</span> Connecting to Edge PostgreSQL node (iad-iad1)...</div>',
+      '<div class="term-line"><span class="term-dim">[11:15:11]</span> <span class="term-info">RLS:</span> Evaluating Row-Level Security policy for auth.uid() -> PERMIT</div>',
+      '<div class="term-line"><span class="term-dim">[11:15:11]</span> <span class="term-purple">CACHE:</span> Stale-while-revalidate hit at edge CDN (TTL: 3600s)</div>',
+      '<div class="term-line"><span class="term-dim">[11:15:12]</span> <span class="term-success">SUCCESS:</span> Response dispatched with 12ms latency.</div>'
+    ],
+    'fluid-canvas': [
+      '<div class="term-line"><span class="term-dim">[14:02:44]</span> <span class="term-accent">GPU:</span> Requesting WebGL2 / WebGPU compute device context...</div>',
+      '<div class="term-line"><span class="term-dim">[14:02:45]</span> <span class="term-info">SIM:</span> 24,000 particle spring-lattice simulation loaded to VRAM</div>',
+      '<div class="term-line"><span class="term-dim">[14:02:45]</span> <span class="term-purple">RAF:</span> Compositor frame rate: steady 60.0 FPS under 8x MSAA</div>',
+      '<div class="term-line"><span class="term-dim">[14:02:46]</span> <span class="term-success">SUCCESS:</span> Fluid surface rendering with zero memory leaks.</div>'
+    ],
+    'autonomous-systems': [
+      '<div class="term-line"><span class="term-dim">[16:30:20]</span> <span class="term-accent">CRON:</span> n8n Workflow #704 triggered by inbound webhook</div>',
+      '<div class="term-line"><span class="term-dim">[16:30:21]</span> <span class="term-info">PIPE:</span> Sanitizing payload -> running sentiment vector classification</div>',
+      '<div class="term-line"><span class="term-dim">[16:30:22]</span> <span class="term-purple">SYNC:</span> Dispatching database update & Slack team notification</div>',
+      '<div class="term-line"><span class="term-dim">[16:30:22]</span> <span class="term-success">SUCCESS:</span> Pipeline executed cleanly in 142ms. Zero manual steps.</div>'
+    ]
   };
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const topic = tab.getAttribute('data-explore');
-      if (!topic || !explorationData[topic]) return;
+  inspectBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetLab = btn.getAttribute('data-target-lab');
+      playTactileClick(720, 'sine');
+      setTimeout(() => playTactileClick(940, 'triangle'), 100);
 
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      // Subtle fade morph
-      textElem.style.opacity = '0';
-      textElem.style.transform = 'translateY(6px)';
-
-      setTimeout(() => {
-        textElem.textContent = explorationData[topic];
-        textElem.style.opacity = '1';
-        textElem.style.transform = 'translateY(0)';
-      }, 150);
+      if (termDynamicMsg && labTelemetryLogs[targetLab]) {
+        termDynamicMsg.innerHTML = '<div class="term-line"><span class="term-info">CONNECTING TO LAB TELEMETRY [' + targetLab.toUpperCase() + ']...</span></div>';
+        const logs = labTelemetryLogs[targetLab];
+        logs.forEach((logLine, idx) => {
+          setTimeout(() => {
+            termDynamicMsg.innerHTML += logLine;
+          }, (idx + 1) * 160);
+        });
+      }
     });
   });
 }
@@ -556,7 +670,7 @@ function setupExploringRadar() {
 function setupProjectsShowcase() {
   // 1. Category Filter Pills
   const filterBtns = document.querySelectorAll('#projects-filter-bar .project-filter-pill');
-  const projectCards = document.querySelectorAll('.project-showcase-card');
+  const projectCards = document.querySelectorAll('.project-stack-card, .project-showcase-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -569,14 +683,12 @@ function setupProjectsShowcase() {
       projectCards.forEach(card => {
         const category = card.getAttribute('data-category');
         if (filter === 'all' || category === filter) {
-          card.style.display = 'block';
+          card.style.display = '';
           setTimeout(() => {
             card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
           }, 50);
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'translateY(16px)';
           setTimeout(() => {
             card.style.display = 'none';
           }, 250);
@@ -585,162 +697,190 @@ function setupProjectsShowcase() {
     });
   });
 
-  // 2. FounderOS Tab Switcher
-  const founderTabs = document.querySelectorAll('#founderos-tabs .stage-tab-btn');
-  const founderScreens = {
-    'dashboard': document.getElementById('screen-dashboard'),
-    'analytics': document.getElementById('screen-analytics'),
-    'components': document.getElementById('screen-components')
-  };
+  // 1b. Interactive Layered Stack Engine
+  const stackCards = Array.from(document.querySelectorAll('.project-stack-card'));
+  const deckPills = document.querySelectorAll('#deck-nav-pills .deck-nav-pill');
+  const deckStatusLabel = document.getElementById('deck-status-label');
+  const stackTabHeaders = document.querySelectorAll('.project-stack-tab-header');
+  const btnStackPrev = document.getElementById('btn-stack-prev');
+  const btnStackNext = document.getElementById('btn-stack-next');
+  const stackContainer = document.getElementById('projects-stack-container');
 
-  founderTabs.forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const targetView = tab.getAttribute('data-tab');
+  const projectDeckTitles = [
+    'PROJECT 01 / 04: STUDYPILOT-AI',
+    'PROJECT 02 / 04: VELORA STORE',
+    'PROJECT 03 / 04: KUMO RAMEN',
+    'PROJECT 04 / 04: PASTELFORM'
+  ];
 
-      founderTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      playTactileClick(660, 'sine');
+  let currentStackIndex = 0;
 
-      Object.entries(founderScreens).forEach(([key, screenEl]) => {
-        if (screenEl) {
-          if (key === targetView) {
-            screenEl.classList.add('active');
-          } else {
-            screenEl.classList.remove('active');
-          }
-        }
-      });
-    });
-  });
-
-  // 3. FoodieHub Interactive Dish Stepper & Cart Total Calculation
-  let foodieQty = 1;
-  const baseUnitPrice = 18.50;
-  const qtyDisplay = document.getElementById('foodie-qty-display');
-  const btnTotalDisplay = document.getElementById('foodie-btn-total');
-  const cartTotalDisplay = document.getElementById('foodie-cart-total');
-  const cartSummaryDisplay = document.getElementById('foodie-cart-summary');
-  const btnMinus = document.getElementById('btn-foodie-minus');
-  const btnPlus = document.getElementById('btn-foodie-plus');
-  const btnAddToCart = document.getElementById('btn-foodie-add');
-
-  function updateFoodieCalculations() {
-    const total = (foodieQty * baseUnitPrice).toFixed(2);
-    if (qtyDisplay) qtyDisplay.textContent = foodieQty;
-    if (btnTotalDisplay) btnTotalDisplay.textContent = `$${total}`;
-    if (cartTotalDisplay) cartTotalDisplay.textContent = `$${total}`;
-    if (cartSummaryDisplay) {
-      cartSummaryDisplay.innerHTML = `${foodieQty} Item${foodieQty > 1 ? 's' : ''} in Bag • <strong id="foodie-cart-total">$${total}</strong>`;
+  function setStackHeight() {
+    if (window.innerWidth > 768 && stackContainer && stackCards.length) {
+      const activeCard = stackCards[currentStackIndex] || stackCards[0];
+      const cardHeight = activeCard.offsetHeight || 580;
+      stackContainer.style.minHeight = `${cardHeight + 90}px`;
+    } else if (stackContainer) {
+      stackContainer.style.minHeight = '';
     }
   }
 
-  if (btnMinus) {
-    btnMinus.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (foodieQty > 1) {
-        foodieQty--;
-        playTactileClick(520, 'sine');
-        updateFoodieCalculations();
+  function applyStackPresentation(targetIndex, shouldScroll = false) {
+    if (targetIndex < 0) targetIndex = 0;
+    if (targetIndex >= stackCards.length) targetIndex = stackCards.length - 1;
+
+    currentStackIndex = targetIndex;
+
+    const isDesktop = window.innerWidth > 768;
+
+    stackCards.forEach((card, idx) => {
+      // Remove all stack positioning classes
+      card.classList.remove('stack-pos-0', 'stack-pos-1', 'stack-pos-2', 'stack-pos-3', 'stack-pos-prev', 'stack-open');
+
+      const cue = card.querySelector('.tab-status-cue');
+
+      if (!isDesktop) {
+        // Clean mobile vertical stacked view
+        card.style.transform = '';
+        card.style.opacity = '1';
+        card.style.zIndex = '';
+        if (cue) cue.textContent = idx === targetIndex ? '● Active Focus' : '✦ Tap to View Details';
+        return;
+      }
+
+      if (idx === targetIndex) {
+        // Active Front Card (Dominant)
+        card.classList.add('stack-pos-0', 'stack-open');
+        if (cue) cue.textContent = `● Active Focus (${idx + 1}/04)`;
+      } else if (idx > targetIndex) {
+        // Stacked Behind
+        const offset = idx - targetIndex;
+        if (offset === 1) {
+          card.classList.add('stack-pos-1');
+          if (cue) cue.textContent = '✦ Click to Stack & Focus (Next)';
+        } else if (offset === 2) {
+          card.classList.add('stack-pos-2');
+          if (cue) cue.textContent = '✦ Click to Bring Forward';
+        } else {
+          card.classList.add('stack-pos-3');
+          if (cue) cue.textContent = '✦ Click to Bring Forward';
+        }
+      } else {
+        // Already passed: glides upward and tucked
+        card.classList.add('stack-pos-prev');
+        if (cue) cue.textContent = '✦ Previous Project (Click to Return)';
       }
     });
-  }
 
-  if (btnPlus) {
-    btnPlus.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (foodieQty < 12) {
-        foodieQty++;
-        playTactileClick(740, 'sine');
-        updateFoodieCalculations();
-      }
+    // Update navigator pills
+    deckPills.forEach((pill, idx) => {
+      pill.classList.toggle('active', idx === targetIndex);
     });
+
+    // Update status counter text
+    if (deckStatusLabel && projectDeckTitles[targetIndex]) {
+      deckStatusLabel.textContent = projectDeckTitles[targetIndex];
+    }
+
+    // Update Prev/Next button disabled appearance
+    if (btnStackPrev) {
+      btnStackPrev.style.opacity = targetIndex === 0 ? '0.45' : '1';
+      btnStackPrev.style.cursor = targetIndex === 0 ? 'default' : 'pointer';
+    }
+    if (btnStackNext) {
+      const isLast = targetIndex === stackCards.length - 1;
+      btnStackNext.innerHTML = isLast ? '<span>↺ Back to 01</span>' : '<span>Next Project →</span>';
+    }
+
+    // Adjust container height
+    setStackHeight();
+
+    if (shouldScroll && stackContainer) {
+      const headerOffset = 120;
+      const containerPos = stackContainer.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: containerPos, behavior: 'smooth' });
+    }
   }
 
-  if (btnAddToCart) {
-    btnAddToCart.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playTactileClick(880, 'triangle');
-      btnAddToCart.classList.add('jelly-squish');
-      const prevHtml = btnAddToCart.innerHTML;
-      btnAddToCart.innerHTML = `<span>✓ Added ${foodieQty} to Cart!</span>`;
-      btnAddToCart.style.backgroundColor = '#10B981';
-
-      setTimeout(() => {
-        btnAddToCart.innerHTML = prevHtml;
-        btnAddToCart.style.backgroundColor = '';
-        btnAddToCart.classList.remove('jelly-squish');
-        updateFoodieCalculations();
-      }, 1600);
-    });
-  }
-
-  const foodieCatPills = document.querySelectorAll('.foodie-cat-pill');
-  foodieCatPills.forEach(pill => {
+  // Handle click on top deck navigator pills
+  deckPills.forEach((pill, idx) => {
     pill.addEventListener('click', (e) => {
       e.stopPropagation();
-      foodieCatPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      playTactileClick(600, 'sine');
+      playTactileClick(780, 'triangle');
+      applyStackPresentation(idx, true);
     });
   });
 
-  // 4. PromptCraft AI Quick Prompt Pills & Dynamic Streaming Output
-  const promptQuickChips = document.querySelectorAll('.prompt-quick-chip');
-  const promptTypedText = document.getElementById('ai-active-prompt-text');
-  const aiOutputDesc = document.getElementById('ai-output-desc');
-  const btnRegenSim = document.getElementById('btn-regen-sim');
-
-  const promptDatabase = {
-    'attention': {
-      prompt: "Synthesize: Self-Attention mechanism in Scaled Dot-Product computation",
-      desc: "1. <strong>Query & Key Matching:</strong> Computes compatibility scores across all tokens concurrently.<br>2. <strong>Scaling Factor (√dₖ):</strong> Prevents vanishing gradients in large dimensional spaces.<br>3. <strong>Weighted Value Projection:</strong> Yields context-aware representation vectors."
-    },
-    'flashcards': {
-      prompt: "Generate: Spaced Repetition Flashcards for Operating Systems & Deadlocks",
-      desc: "1. <strong>Mutual Exclusion:</strong> At least one resource held in non-shareable mode.<br>2. <strong>Hold & Wait:</strong> Process holding resources while waiting for additional allocations.<br>3. <strong>No Preemption:</strong> Resources can only be released voluntarily."
-    },
-    'graph': {
-      prompt: "Synthesize: Knowledge Graph relationship between CSS Spec & Rendering Engine",
-      desc: "1. <strong>Parse HTML/CSS:</strong> Generates DOM & CSSOM trees.<br>2. <strong>Render Tree Construction:</strong> Discards hidden nodes and builds render objects.<br>3. <strong>Layout & Paint:</strong> Computes geometry box coordinates and rasterizes pixels."
-    }
-  };
-
-  promptQuickChips.forEach(chip => {
-    chip.addEventListener('click', (e) => {
+  // Handle click on Prev button
+  if (btnStackPrev) {
+    btnStackPrev.addEventListener('click', (e) => {
       e.stopPropagation();
-      promptQuickChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      playTactileClick(720, 'sine');
+      if (currentStackIndex > 0) {
+        playTactileClick(650, 'sine');
+        applyStackPresentation(currentStackIndex - 1, true);
+      }
+    });
+  }
 
-      const id = chip.getAttribute('data-prompt-id');
-      const item = promptDatabase[id];
-      if (item && promptTypedText && aiOutputDesc) {
-        promptTypedText.textContent = item.prompt;
-        aiOutputDesc.style.opacity = '0.2';
-        setTimeout(() => {
-          aiOutputDesc.innerHTML = item.desc;
-          aiOutputDesc.style.opacity = '1';
-        }, 160);
+  // Handle click on Next button
+  if (btnStackNext) {
+    btnStackNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(850, 'triangle');
+      if (currentStackIndex < stackCards.length - 1) {
+        applyStackPresentation(currentStackIndex + 1, true);
+      } else {
+        applyStackPresentation(0, true);
+      }
+    });
+  }
+
+  // Clicking on any stacked card tab header or clicking on a background card brings it forward
+  stackCards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      // If clicking interactive controls inside, let them execute
+      if (e.target.closest('a, button, input, select, textarea, .stage-tab-btn, .mini-toggle-btn')) {
+        return;
+      }
+      if (idx !== currentStackIndex) {
+        playTactileClick(780 + (idx * 40), 'triangle');
+        applyStackPresentation(idx, true);
       }
     });
   });
 
-  if (btnRegenSim && aiOutputDesc) {
-    btnRegenSim.addEventListener('click', (e) => {
+  stackTabHeaders.forEach((header, idx) => {
+    header.addEventListener('click', (e) => {
       e.stopPropagation();
       playTactileClick(820, 'triangle');
-      btnRegenSim.textContent = 'Generating... ⚡';
-      aiOutputDesc.style.opacity = '0.3';
-
-      setTimeout(() => {
-        btnRegenSim.textContent = 'Regenerate ↻';
-        aiOutputDesc.style.opacity = '1';
-      }, 450);
+      applyStackPresentation(idx, false);
     });
-  }
+  });
 
-  // 5. Gentle 3D Tilt Feedback on Interactive Stage Cards
+  // Window resize handler for responsive stacking
+  window.addEventListener('resize', () => {
+    setStackHeight();
+    applyStackPresentation(currentStackIndex, false);
+  }, { passive: true });
+
+  // Initialize stack to Project 01
+  setTimeout(() => {
+    applyStackPresentation(0, false);
+  }, 100);
+
+  // 2. Project 1: StudyPilot-AI Flashcard & Concept Simulator
+  setupStudyPilotSimulator();
+
+  // 3. Project 2: Velora E-Commerce Cart & Currency Stepper
+  setupVeloraSimulator();
+
+  // 4. Project 3: Kumo Ramen Custom Ramen Builder
+  setupKumoSimulator();
+
+  // 5. Project 4: PastelForm Dynamic Multi-Step Engine
+  setupPastelFormSimulator();
+
+  // 6. Gentle 3D Tilt Feedback on Interactive Stage Cards
   const stageCards = document.querySelectorAll('.interactive-stage-card');
   const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
@@ -767,6 +907,380 @@ function setupProjectsShowcase() {
       });
     });
   }
+}
+
+/**
+ * StudyPilot-AI Interactive Simulator (Spaced Repetition Flashcards & Concepts)
+ */
+function setupStudyPilotSimulator() {
+  const flashcardConcepts = [
+    {
+      topic: "OPERATING SYSTEMS // DEADLOCKS",
+      question: "What are the 4 Coffman conditions required for a system deadlock to occur?",
+      answer: "1. Mutual Exclusion<br>2. Hold & Wait<br>3. No Preemption<br>4. Circular Wait",
+      interval: "Interval: +4 Days",
+      streak: "Recall Streak: 4"
+    },
+    {
+      topic: "LLM REASONING // VECTOR EMBEDDINGS",
+      question: "Why does Cosine Similarity outperform Euclidean distance for semantic text embeddings?",
+      answer: "Cosine similarity measures vector directional angle rather than document length magnitude, normalizing token frequency variations.",
+      interval: "Interval: +7 Days",
+      streak: "Recall Streak: 6"
+    },
+    {
+      topic: "COMPUTER ARCHITECTURE // MEMORY PAGING",
+      question: "What is the purpose of the Translation Lookaside Buffer (TLB)?",
+      answer: "Hardware cache that stores recent virtual-to-physical page mappings to avoid multi-level page table memory lookups.",
+      interval: "Interval: +3 Days",
+      streak: "Recall Streak: 3"
+    },
+    {
+      topic: "DATA STRUCTURES // SELF-BALANCING TREES",
+      question: "How does an AVL Tree guarantee O(log N) worst-case search and insertion times?",
+      answer: "By enforcing a strict balance factor (height difference of at most 1 between subtrees) and performing single/double rotations on violation.",
+      interval: "Interval: +12 Days",
+      streak: "Recall Streak: 8"
+    }
+  ];
+
+  let conceptIdx = 0;
+  let isAnswerVisible = false;
+
+  const qText = document.getElementById('study-q-text');
+  const aText = document.getElementById('study-a-text');
+  const metaInterval = document.getElementById('study-meta-interval');
+  const metaStreak = document.getElementById('study-meta-streak');
+  const topicTag = document.querySelector('#stage-studypilot .topic-tag');
+  const btnFlip = document.getElementById('btn-flip-card');
+  const btnNext = document.getElementById('btn-next-card');
+
+  function updateCardUI() {
+    const c = flashcardConcepts[conceptIdx];
+    if (qText) qText.innerHTML = c.question;
+    if (aText) aText.innerHTML = c.answer;
+    if (metaInterval) metaInterval.textContent = c.interval;
+    if (metaStreak) metaStreak.textContent = c.streak;
+    if (topicTag) topicTag.textContent = c.topic;
+
+    isAnswerVisible = false;
+    if (aText) aText.style.display = 'none';
+    if (btnFlip) btnFlip.textContent = 'Reveal Answer ↺';
+  }
+
+  if (btnFlip) {
+    btnFlip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(700, 'sine');
+      isAnswerVisible = !isAnswerVisible;
+      if (aText) {
+        aText.style.display = isAnswerVisible ? 'block' : 'none';
+      }
+      btnFlip.textContent = isAnswerVisible ? 'Hide Answer' : 'Reveal Answer ↺';
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(840, 'triangle');
+      conceptIdx = (conceptIdx + 1) % flashcardConcepts.length;
+      updateCardUI();
+    });
+  }
+
+  // StudyPilot Tabs
+  const studyTabs = document.querySelectorAll('#studypilot-tabs .stage-tab-btn');
+  studyTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      studyTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      playTactileClick(640, 'sine');
+    });
+  });
+}
+
+/**
+ * Velora Store Interactive Simulator (Quantity Stepper & Instant Cart Calculations)
+ */
+function setupVeloraSimulator() {
+  let qty = 1;
+  const unitPrice = 185;
+  const shipping = 15;
+
+  const qtyEl = document.getElementById('velora-qty-display');
+  const subtotalEl = document.getElementById('velora-subtotal-display');
+  const totalEl = document.getElementById('velora-total-display');
+  const btnMinus = document.getElementById('btn-velora-minus');
+  const btnPlus = document.getElementById('btn-velora-plus');
+  const btnCheckout = document.getElementById('btn-velora-checkout');
+
+  function updateTotals() {
+    const subtotal = qty * unitPrice;
+    const total = subtotal + shipping;
+    if (qtyEl) qtyEl.textContent = qty;
+    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+  }
+
+  if (btnMinus) {
+    btnMinus.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (qty > 1) {
+        qty--;
+        playTactileClick(520, 'sine');
+        updateTotals();
+      }
+    });
+  }
+
+  if (btnPlus) {
+    btnPlus.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (qty < 10) {
+        qty++;
+        playTactileClick(720, 'sine');
+        updateTotals();
+      }
+    });
+  }
+
+  if (btnCheckout) {
+    btnCheckout.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(900, 'triangle');
+      const originalText = btnCheckout.textContent;
+      btnCheckout.textContent = 'Processing...';
+      btnCheckout.style.background = '#10B981';
+      btnCheckout.style.color = '#FFFFFF';
+
+      setTimeout(() => {
+        btnCheckout.textContent = '✓ Order Confirmed!';
+        showPortfolioToast(`Velora Order Placed: $${(qty * unitPrice + shipping).toFixed(2)}`);
+        setTimeout(() => {
+          btnCheckout.textContent = originalText;
+          btnCheckout.style.background = '';
+          btnCheckout.style.color = '';
+        }, 2200);
+      }, 600);
+    });
+  }
+
+  // Velora Tabs
+  const veloraTabs = document.querySelectorAll('#velora-tabs .stage-tab-btn');
+  veloraTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      veloraTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      playTactileClick(640, 'sine');
+    });
+  });
+}
+
+/**
+ * Kumo Ramen Interactive Customizer (Broth, Noodle Firmness & Price Recalculation)
+ */
+function setupKumoSimulator() {
+  const brothPills = document.querySelectorAll('#kumo-broth-row .kumo-pill');
+  const noodlePills = document.querySelectorAll('#kumo-noodle-row .kumo-pill');
+  const priceDisplay = document.getElementById('kumo-total-price');
+  const btnOrder = document.getElementById('btn-kumo-order');
+
+  let basePrice = 17.50;
+  let brothExtra = 0;
+
+  brothPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      brothPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      playTactileClick(680, 'sine');
+
+      const broth = pill.getAttribute('data-broth');
+      if (broth === 'black-garlic') brothExtra = 2.00;
+      else if (broth === 'spicy-miso') brothExtra = 1.50;
+      else if (broth === 'yuzu') brothExtra = 1.00;
+      else brothExtra = 0;
+
+      if (priceDisplay) {
+        priceDisplay.textContent = `$${(basePrice + brothExtra).toFixed(2)}`;
+      }
+    });
+  });
+
+  noodlePills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      noodlePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      playTactileClick(680, 'sine');
+    });
+  });
+
+  if (btnOrder) {
+    btnOrder.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(920, 'triangle');
+      const orig = btnOrder.textContent;
+      btnOrder.textContent = 'Sending to Chef...';
+      btnOrder.style.background = '#10B981';
+
+      setTimeout(() => {
+        btnOrder.textContent = '✓ Bowl is Simmering!';
+        showPortfolioToast(`Kumo Ramen Ticket Sent: $${(basePrice + brothExtra).toFixed(2)}`);
+        setTimeout(() => {
+          btnOrder.textContent = orig;
+          btnOrder.style.background = '';
+        }, 2000);
+      }, 500);
+    });
+  }
+
+  // Kumo Tabs
+  const kumoTabs = document.querySelectorAll('#kumo-tabs .stage-tab-btn');
+  kumoTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      kumoTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      playTactileClick(640, 'sine');
+    });
+  });
+}
+
+/**
+ * PastelForm Multi-Step Flow Simulator
+ */
+function setupPastelFormSimulator() {
+  const steps = [
+    {
+      num: "Step 1 of 3",
+      title: "What is your primary architectural goal?",
+      sub: "Choose your primary deployment strategy for 2026",
+      choices: [
+        { id: "ai", title: "Autonomous AI Workflows", desc: "Agentic tool calling & multi-turn LLM inference" },
+        { id: "fullstack", title: "Full-Stack Web Systems", desc: "SSR, edge database synchronization & micro-frontends" },
+        { id: "mobile", title: "Cross-Platform Ecosystem", desc: "Native responsiveness with fluid offline persistence" },
+        { id: "scale", title: "Enterprise High Concurrency", desc: "Microservices, distributed caching & vector embeddings" }
+      ]
+    },
+    {
+      num: "Step 2 of 3",
+      title: "Select your database & synchronization layer",
+      sub: "Configuring real-time state listeners and auth rules",
+      choices: [
+        { id: "supabase", title: "Supabase Realtime PostgreSQL", desc: "Row-level security, edge functions & vector search" },
+        { id: "firebase", title: "Google Cloud Firestore", desc: "Offline indexing & instantaneous serverless rules" },
+        { id: "redis", title: "Redis Upstash Edge Cache", desc: "Sub-millisecond pub/sub sessions & rate limiters" },
+        { id: "neo4j", title: "Graph Database Engine", desc: "Connected knowledge graphs & ontologies" }
+      ]
+    },
+    {
+      num: "Step 3 of 3",
+      title: "Confirm pipeline requirements",
+      sub: "Instant schema generation with zero layout shift",
+      choices: [
+        { id: "ci", title: "Automated GitHub Actions CI/CD", desc: "Zero-friction linting, testing & deployment pipelines" },
+        { id: "security", title: "Enterprise RBAC & Zero-Trust", desc: "Strict cryptographic sessions & role auditing" },
+        { id: "analytics", title: "Real-time Telemetry & Metrics", desc: "Core Web Vitals monitoring and error observability" },
+        { id: "complete", title: "Ready to Deploy Schema", desc: "Export clean JSON-Schema and TypeScript interfaces" }
+      ]
+    }
+  ];
+
+  let currentStepIdx = 0;
+  let selectedChoice = "ai";
+
+  const numEl = document.getElementById('pastel-step-num');
+  const titleEl = document.getElementById('pastel-question-title');
+  const subEl = document.getElementById('pastel-question-sub');
+  const choicesGrid = document.getElementById('pastel-choices-grid');
+  const btnPrev = document.getElementById('btn-pastel-prev');
+  const btnNext = document.getElementById('btn-pastel-next');
+  const progressFill = document.getElementById('pastel-progress-fill');
+
+  function renderStep() {
+    const s = steps[currentStepIdx];
+    if (numEl) numEl.textContent = s.num;
+    if (titleEl) titleEl.textContent = s.title;
+    if (subEl) subEl.textContent = s.sub;
+    if (progressFill) {
+      const pct = Math.round(((currentStepIdx + 1) / steps.length) * 100);
+      progressFill.style.width = `${pct}%`;
+    }
+
+    if (choicesGrid) {
+      choicesGrid.innerHTML = s.choices.map((c, i) => `
+        <button type="button" class="pastel-choice-btn ${i === 0 ? 'selected' : ''}" data-choice="${c.id}">
+          <span class="choice-title">${c.title}</span>
+          <span class="choice-desc">${c.desc}</span>
+        </button>
+      `).join('');
+
+      // Wire choice clicks
+      choicesGrid.querySelectorAll('.pastel-choice-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          choicesGrid.querySelectorAll('.pastel-choice-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedChoice = btn.getAttribute('data-choice');
+          playTactileClick(740, 'sine');
+        });
+      });
+    }
+
+    if (btnPrev) {
+      btnPrev.disabled = currentStepIdx === 0;
+      btnPrev.style.opacity = currentStepIdx === 0 ? '0.4' : '1';
+    }
+
+    if (btnNext) {
+      btnNext.textContent = currentStepIdx === steps.length - 1 ? 'Finish Form ✓' : 'Next Step →';
+    }
+  }
+
+  if (btnPrev) {
+    btnPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentStepIdx > 0) {
+        currentStepIdx--;
+        playTactileClick(600, 'sine');
+        renderStep();
+      }
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentStepIdx < steps.length - 1) {
+        currentStepIdx++;
+        playTactileClick(800, 'sine');
+        renderStep();
+      } else {
+        playTactileClick(940, 'triangle');
+        btnNext.textContent = '✓ Submitted!';
+        showPortfolioToast('PastelForm Flow Completed!');
+        setTimeout(() => {
+          currentStepIdx = 0;
+          renderStep();
+        }, 2000);
+      }
+    });
+  }
+
+  // PastelForm Tabs
+  const pastelTabs = document.querySelectorAll('#pastel-tabs .stage-tab-btn');
+  pastelTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pastelTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      playTactileClick(640, 'sine');
+    });
+  });
 }
 
 /**
@@ -952,91 +1466,66 @@ function setupHeroLiveClockAndHeadings() {
 
 /**
  * =========================================================================
- * 12. INTERACTIVE SKILLS MATRIX & SANDBOXES
+ * 12. COMPACT SKILL ECOSYSTEM & INTERACTIVE CONSTELLATION
+ * Replaces old percentage bars and giant docks with a tactile visual constellation.
  * =========================================================================
  */
-function setupSkillsInteractiveMatrix() {
-  // 1. Skill Category Filter Tabs
-  const filterBtns = document.querySelectorAll('.skill-filter-btn');
-  const skillCards = document.querySelectorAll('.skill-tactile-card');
+function setupSkillEcosystem() {
+  const filterBtns = document.querySelectorAll('.eco-filter-btn');
+  const pods = document.querySelectorAll('.eco-pod');
+  const chips = document.querySelectorAll('.eco-chip');
+  const detailCopy = document.getElementById('eco-detail-copy');
 
+  if (!filterBtns.length && !chips.length) return;
+
+  // Filter functionality
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      playTactileClick(650, 'sine');
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const targetCategory = btn.getAttribute('data-category');
+      const filter = btn.getAttribute('data-eco-filter') || 'all';
+      playTactileClick(650, 'sine');
 
-      skillCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (targetCategory === 'all' || cardCategory === targetCategory) {
-          card.style.display = 'flex';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(12px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 40);
+      pods.forEach(pod => {
+        const cat = pod.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          pod.classList.remove('filtered-out');
         } else {
-          card.style.display = 'none';
+          pod.classList.add('filtered-out');
         }
       });
     });
   });
 
-  // 2. Interactive Sandbox Drawer Toggles
-  const triggers = document.querySelectorAll('.skill-test-trigger');
-  triggers.forEach(trig => {
-    trig.addEventListener('click', () => {
-      playTactileClick(700, 'triangle');
-      const skillName = trig.getAttribute('data-skill');
-      const sandbox = document.getElementById(`sandbox-${skillName}`);
-      if (sandbox) {
-        const isOpen = sandbox.classList.contains('open');
-        sandbox.classList.toggle('open');
-        const arrow = trig.querySelector('.arrow');
-        if (arrow) {
-          arrow.textContent = isOpen ? '↓' : '↑';
-        }
+  // Interactive Chip Details and Audio Feedback
+  chips.forEach(chip => {
+    const title = chip.getAttribute('data-skill-title') || chip.querySelector('strong')?.textContent || 'Skill';
+    const tooltip = chip.getAttribute('data-tooltip') || 'Core competence in production environments.';
+
+    function highlightChip() {
+      chips.forEach(c => c.classList.remove('chip-active'));
+      chip.classList.add('chip-active');
+
+      if (detailCopy) {
+        detailCopy.style.opacity = '0';
+        setTimeout(() => {
+          detailCopy.innerHTML = `<strong>${title}</strong>: ${tooltip} <span style="color: #0D3834; font-weight: 600; margin-left: 0.4rem;">• Applied across 30+ GitHub repositories</span>`;
+          detailCopy.style.opacity = '1';
+        }, 80);
       }
+    }
+
+    chip.addEventListener('mouseenter', () => {
+      highlightChip();
+      playTactileClick(780, 'sine');
+    });
+
+    chip.addEventListener('click', () => {
+      highlightChip();
+      playTactileClick(860, 'triangle');
     });
   });
-
-  // 3. React Interactive Counter Sandbox
-  const btnDecrement = document.getElementById('react-decrement-btn');
-  const btnIncrement = document.getElementById('react-increment-btn');
-  const displayCount = document.getElementById('react-count-num');
-  let currentCount = 0;
-
-  if (btnDecrement && btnIncrement && displayCount) {
-    btnDecrement.addEventListener('click', () => {
-      currentCount--;
-      displayCount.textContent = currentCount;
-      playTactileClick(480, 'sine');
-    });
-
-    btnIncrement.addEventListener('click', () => {
-      currentCount++;
-      displayCount.textContent = currentCount;
-      playTactileClick(750, 'sine');
-    });
-  }
-
-  // 4. JavaScript Live Event Console Sandbox
-  const pingBtn = document.getElementById('js-ping-btn');
-  const consoleOut = document.getElementById('js-console-out');
-
-  if (pingBtn && consoleOut) {
-    let pingCount = 0;
-    pingBtn.addEventListener('click', (e) => {
-      pingCount++;
-      playTactileClick(800, 'sine');
-      const timeStr = new Date().toLocaleTimeString();
-      consoleOut.textContent = `[${timeStr}] Event #${pingCount} dispatched! (X: ${Math.round(e.clientX)}, Y: ${Math.round(e.clientY)})`;
-    });
-  }
 }
 
 /**
@@ -1060,94 +1549,133 @@ function setupCertificatePhotoUploads() {
 
 /**
  * =========================================================================
- * 14. TACTILE JELLY PHYSICS ENGINE & SQUISH PLAYGROUND
- * Interactive squash-and-stretch tactile effects across cards, buttons, and avatar
+ * 14. TACTILE ELASTIC SPRING BUTTONS & 3D HERO PARALLAX
+ * Clean, sophisticated button micro-interactions & port-2.png 3D parallax
  * =========================================================================
  */
-function setupJellyTactileInteractions() {
-  const jellyBtn = document.getElementById('btn-squish-jelly');
-  const jellyAvatar = document.getElementById('jelly-avatar');
-  const squishCountBadge = document.getElementById('squish-count');
+function setupTactileButtonInteractions() {
+  const tactileButtons = document.querySelectorAll('.tactile-btn, .btn-hero-primary, .btn-hero-outline, .btn-panel-primary, .btn-panel-secondary');
+  
+  tactileButtons.forEach(btn => {
+    // Add down / active state class
+    btn.addEventListener('pointerdown', () => {
+      btn.classList.add('tactile-pressed');
+      playTactileClick(560, 'sine');
+    });
 
-  let squishCount = 0;
-
-  if (jellyBtn && jellyAvatar) {
-    jellyBtn.addEventListener('click', () => {
-      squishCount++;
-      if (squishCountBadge) {
-        squishCountBadge.textContent = `${squishCount} ${squishCount === 1 ? 'squish' : 'squishes'}`;
+    const release = () => {
+      if (btn.classList.contains('tactile-pressed')) {
+        btn.classList.remove('tactile-pressed');
+        playTactileClick(740, 'triangle');
       }
+    };
 
-      // Play rich tactile sound
-      playTactileClick(420, 'sine');
-      setTimeout(() => playTactileClick(680, 'triangle'), 80);
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointerleave', release);
+    btn.addEventListener('pointercancel', release);
+  });
+}
 
-      // Trigger jelly wobble & squish animations
-      jellyAvatar.classList.remove('jelly-squish');
-      jellyBtn.classList.remove('jelly-squish');
-      void jellyAvatar.offsetWidth; // Reflow to restart animation
-      void jellyBtn.offsetWidth;
-      jellyAvatar.classList.add('jelly-squish');
-      jellyBtn.classList.add('jelly-squish');
+/**
+ * 3D Parallax Tilt on the Creative Editorial Portrait Showcase
+ * Applies realistic multi-plane 3D depth and subtle parallax response to cursor motion
+ * (Gentle, non-aggressive motion, zero spin, premium editorial feel)
+ */
+function setupHero3DPortraitParallax() {
+  const visualZone = document.getElementById('hero-portrait-stage') || document.querySelector('.hero-visual-column');
+  const stage = visualZone ? (visualZone.querySelector('.hero-creative-visual-stage') || visualZone.querySelector('.creative-portrait-stage-wrapper') || visualZone.querySelector('.editorial-portrait-stage-wrapper') || visualZone.querySelector('.editorial-3d-stage-wrapper')) : null;
+  const portrait = visualZone ? (visualZone.querySelector('.hero-portrait-cutout-img') || visualZone.querySelector('.editorial-character-img')) : null;
+  const kickerBadge = visualZone ? visualZone.querySelector('.hero-creative-kicker-pill') : null;
+  const coralDisc = visualZone ? (visualZone.querySelector('.hero-disc-coral') || visualZone.querySelector('.cutout-coral-disc') || visualZone.querySelector('.stage-coral-circle')) : null;
+  const cyanDisc = visualZone ? visualZone.querySelector('.hero-disc-cyan') : null;
+  const cyanRing = visualZone ? (visualZone.querySelector('.hero-shape-ring-cyan') || visualZone.querySelector('.shape-teal-ring')) : null;
+  const coralOrb = visualZone ? (visualZone.querySelector('.hero-shape-orb-coral') || visualZone.querySelector('.shape-coral-orb')) : null;
+  const mintPill = visualZone ? visualZone.querySelector('.hero-shape-pill-mint') : null;
+  const starburst = visualZone ? (visualZone.querySelector('.hero-shape-torus-gold') || visualZone.querySelector('.cutout-star-accent') || visualZone.querySelector('.stage-arch-star')) : null;
 
-      setTimeout(() => {
-        jellyAvatar.classList.remove('jelly-squish');
-        jellyBtn.classList.remove('jelly-squish');
-      }, 600);
-    });
+  if (!visualZone || !stage) return;
 
-    // Also squish directly when clicking on the jelly avatar pudding
-    jellyAvatar.addEventListener('click', () => {
-      jellyBtn.click();
-    });
+  let bounds = visualZone.getBoundingClientRect();
+  let rafId = null;
+  let targetRotX = 0;
+  let targetRotY = 0;
+  let currentRotX = 0;
+  let currentRotY = 0;
+
+  function updateBounds() {
+    bounds = visualZone.getBoundingClientRect();
   }
 
-  // Add click-squish tactile response to all elements marked with .jelly-effect
-  const jellyElements = document.querySelectorAll('.jelly-effect');
-  jellyElements.forEach(el => {
-    el.addEventListener('click', () => {
-      el.classList.add('jelly-squish');
-      setTimeout(() => {
-        el.classList.remove('jelly-squish');
-      }, 500);
-    });
+  window.addEventListener('resize', updateBounds);
+  window.addEventListener('scroll', updateBounds, { passive: true });
+
+  visualZone.addEventListener('pointermove', (e) => {
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+    const centerX = bounds.width / 2;
+    const centerY = bounds.height / 2;
+
+    // Subtle, elegant editorial tilt (max 4 degrees)
+    targetRotY = ((x - centerX) / centerX) * 4.0;
+    targetRotX = -((y - centerY) / centerY) * 4.0;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
+    }
   });
 
-  // Pre-footer Gummy Jelly Buttons & Mascot
-  const prefooterMascot = document.getElementById('prefooter-jelly-mascot');
-  const prefooterCounter = document.getElementById('prefooter-squish-num');
-  const gummyButtons = document.querySelectorAll('.gummy-jelly-btn');
-  let prefooterSquishCount = 0;
-
-  function handlePrefooterSquish(freq = 520, label = 'Squish!') {
-    prefooterSquishCount++;
-    if (prefooterCounter) {
-      prefooterCounter.textContent = prefooterSquishCount;
+  visualZone.addEventListener('pointerleave', () => {
+    targetRotX = 0;
+    targetRotY = 0;
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
     }
-    playTactileClick(freq, 'triangle');
-    setTimeout(() => playTactileClick(freq * 1.25, 'sine'), 70);
-
-    if (prefooterMascot) {
-      prefooterMascot.classList.remove('jelly-squish');
-      void prefooterMascot.offsetWidth;
-      prefooterMascot.classList.add('jelly-squish');
-      setTimeout(() => prefooterMascot.classList.remove('jelly-squish'), 600);
-    }
-  }
-
-  if (prefooterMascot) {
-    prefooterMascot.addEventListener('click', () => {
-      handlePrefooterSquish(600, '🍮 Pudding!');
-    });
-  }
-
-  gummyButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const note = parseInt(btn.getAttribute('data-note') || '520', 10);
-      const label = btn.getAttribute('data-label') || 'Gummy';
-      handlePrefooterSquish(note, label);
-    });
   });
+
+  function renderParallax() {
+    currentRotX += (targetRotX - currentRotX) * 0.1;
+    currentRotY += (targetRotY - currentRotY) * 0.1;
+
+    stage.style.transform = `perspective(1100px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+
+    if (coralDisc) {
+      coralDisc.style.transform = `translateX(${(-currentRotY * 0.6).toFixed(1)}px) translateY(${(currentRotX * 0.6).toFixed(1)}px)`;
+    }
+
+    if (cyanDisc) {
+      cyanDisc.style.transform = `translateX(${(currentRotY * 0.5).toFixed(1)}px) translateY(${(-currentRotX * 0.5).toFixed(1)}px)`;
+    }
+
+    if (portrait) {
+      portrait.style.transform = `scale(1.015) translateX(${(currentRotY * 0.7).toFixed(1)}px) translateY(${(-currentRotX * 0.7).toFixed(1)}px)`;
+    }
+
+    if (cyanRing) {
+      cyanRing.style.transform = `translateX(${(currentRotY * 1.1).toFixed(1)}px) translateY(${(-currentRotX * 1.1).toFixed(1)}px)`;
+    }
+
+    if (coralOrb) {
+      coralOrb.style.transform = `translateX(${(-currentRotY * 0.9).toFixed(1)}px) translateY(${(currentRotX * 0.9).toFixed(1)}px)`;
+    }
+
+    if (mintPill) {
+      mintPill.style.transform = `translateX(${(-currentRotY * 1.2).toFixed(1)}px) translateY(${(currentRotX * 1.2).toFixed(1)}px)`;
+    }
+
+    if (kickerBadge) {
+      kickerBadge.style.transform = `translateX(${(-currentRotY * 0.4).toFixed(1)}px) translateY(${(currentRotX * 0.4).toFixed(1)}px)`;
+    }
+
+    if (starburst) {
+      starburst.style.transform = `translateX(${(currentRotY * 0.8).toFixed(1)}px) translateY(${(currentRotX * 0.8).toFixed(1)}px)`;
+    }
+
+    if (Math.abs(targetRotX - currentRotX) > 0.01 || Math.abs(targetRotY - currentRotY) > 0.01) {
+      rafId = requestAnimationFrame(renderParallax);
+    } else {
+      rafId = null;
+    }
+  }
 }
 
 /**
@@ -1207,5 +1735,886 @@ function setupLetsTalkSection() {
     });
   }
 }
+
+/**
+ * =========================================================================
+ * 16. HERO PORTRAIT PHOTO INSERT & DRAG-AND-DROP SYSTEM
+ * Lets Arfa click "Insert Photo" or drag-and-drop any personal image.
+ * Image is displayed immediately, synced to About section, and saved in localStorage.
+ * =========================================================================
+ */
+function setupHeroPhotoUpload() {
+  const heroImg = document.getElementById('profile-placeholder-img');
+  if (heroImg) {
+    // Set user's designated photo me.png
+    heroImg.src = 'me.png';
+    heroImg.onerror = function() {
+      this.onerror = function() {
+        this.onerror = null;
+        this.src = 'profile-photo.png';
+      };
+      this.src = 'me.png.png';
+    };
+  }
+}
+
+/**
+ * =========================================================================
+ * 17. CONTACT SECTION 3D IMAGE INSERT & DRAG-AND-DROP
+ * Lets Arfa insert her custom 3D image into the Let's Talk section.
+ * Includes LocalStorage persistence, reset option, and interactive 3D perspective tilt.
+ * =========================================================================
+ */
+function setupContact3DUpload() {
+  const fileInput = document.getElementById('contact-3d-file-input');
+  const insertBtn = document.getElementById('btn-insert-contact-3d');
+  if (!fileInput || !insertBtn) return;
+  const btnLabel = document.getElementById('contact-3d-btn-label');
+  const resetBtn = document.getElementById('btn-reset-contact-3d');
+  const dropOverlay = document.getElementById('contact-3d-drop-overlay');
+  const viewport = document.getElementById('contact-3d-stage-viewport');
+  const placeholder = document.getElementById('contact-3d-placeholder');
+  const charImg = document.getElementById('contact-3d-character-img');
+
+  const STORAGE_KEY = 'portfolio_custom_contact_3d_char';
+
+  function displayCustom3DImage(dataUrl) {
+    if (!charImg) return;
+    charImg.src = dataUrl;
+    charImg.classList.remove('hidden');
+    if (placeholder) placeholder.style.display = 'none';
+    if (resetBtn) resetBtn.classList.remove('hidden');
+    if (btnLabel) btnLabel.textContent = 'Change 3D Character';
+  }
+
+  function restoreDefault3DStage() {
+    if (charImg) {
+      charImg.src = '';
+      charImg.classList.add('hidden');
+    }
+    if (placeholder) placeholder.style.display = 'flex';
+    if (resetBtn) resetBtn.classList.add('hidden');
+    if (btnLabel) btnLabel.textContent = 'Insert 3D Character';
+  }
+
+  // 1. Restore saved transparent 3D asset if previously uploaded
+  try {
+    const savedAsset = localStorage.getItem(STORAGE_KEY);
+    if (savedAsset) {
+      displayCustom3DImage(savedAsset);
+    }
+  } catch (e) {
+    console.warn('LocalStorage unavailable for 3D character:', e);
+  }
+
+  // 2. Trigger native file picker
+  if (insertBtn && fileInput) {
+    insertBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(700, 'sine');
+      fileInput.click();
+    });
+  }
+
+  // 3. Process 3D Image upload
+  function applyContact3DImage(file) {
+    if (!file || !file.type.startsWith('image/')) {
+      showPortfolioToast('Please select a valid image file (PNG, JPG, WebP, SVG).');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target.result;
+      displayCustom3DImage(dataUrl);
+
+      try {
+        localStorage.setItem(STORAGE_KEY, dataUrl);
+      } catch (err) {
+        console.warn('3D Asset too large for LocalStorage, displayed in session memory.');
+      }
+
+      playTactileClick(880, 'triangle');
+      showPortfolioToast('3D anime character stage updated! ✨');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (file) applyContact3DImage(file);
+      fileInput.value = '';
+    });
+  }
+
+  // 4. Reset 3D Asset
+  if (resetBtn) {
+    resetBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(540, 'sine');
+
+      restoreDefault3DStage();
+
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (err) {}
+
+      showPortfolioToast('Holographic stage reset to default.');
+    });
+  }
+
+  // 5. Drag & Drop on Contact 3D Card / Viewport
+  const stageTarget = viewport || document.getElementById('contact-3d-visual-stage');
+  if (stageTarget && dropOverlay) {
+    ['dragenter', 'dragover'].forEach(evtName => {
+      stageTarget.addEventListener(evtName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'dragend'].forEach(evtName => {
+      stageTarget.addEventListener(evtName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay.classList.remove('dragover');
+      });
+    });
+
+    stageTarget.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropOverlay.classList.remove('dragover');
+
+      const file = e.dataTransfer?.files?.[0];
+      if (file) applyContact3DImage(file);
+    });
+  }
+
+  // 6. Interactive 3D Perspective Tilt on Mouse Movement
+  if (viewport) {
+    viewport.addEventListener('mousemove', (e) => {
+      const rect = viewport.getBoundingClientRect();
+      const x = e.clientX - rect.left - (rect.width / 2);
+      const y = e.clientY - rect.top - (rect.height / 2);
+
+      const rotX = (y / (rect.height / 2)) * -14;
+      const rotY = (x / (rect.width / 2)) * 14;
+
+      if (charImg && !charImg.classList.contains('hidden')) {
+        charImg.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(20px) scale3d(1.05, 1.05, 1.05)`;
+      } else if (placeholder) {
+        placeholder.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(10px)`;
+      }
+    });
+
+    viewport.addEventListener('mouseleave', () => {
+      if (charImg) charImg.style.transform = '';
+      if (placeholder) placeholder.style.transform = '';
+    });
+  }
+}
+
+/**
+ * =========================================================================
+ * 18. FULL PAGE PROJECT IMMERSIVE EXPERIENCE MODAL
+ * Brings projects to full page with deep architectural writeups,
+ * live simulators, keyboard navigation (Escape, Left/Right arrows),
+ * and quick tabs across all 4 production projects.
+ * =========================================================================
+ */
+function setupProjectFullPageExperience() {
+  const modal = document.getElementById('project-fullpage-modal');
+  const backdrop = document.getElementById('fullpage-backdrop');
+  const closeBtn = document.getElementById('btn-close-fullpage');
+  const titleEl = document.getElementById('fullpage-project-title');
+  const badgeEl = document.getElementById('fullpage-project-badge');
+  const counterEl = document.getElementById('fullpage-counter');
+  const taglineEl = document.getElementById('fullpage-tagline');
+  const descEl = document.getElementById('fullpage-description');
+  const problemEl = document.getElementById('fullpage-problem-text');
+  const solutionEl = document.getElementById('fullpage-solution-text');
+  const techChipsEl = document.getElementById('fullpage-tech-chips');
+  const metricsGridEl = document.getElementById('fullpage-metrics-grid');
+  const liveLink = document.getElementById('fullpage-live-link');
+  const ghLink = document.getElementById('fullpage-gh-link');
+  const stageWrapper = document.getElementById('fullpage-stage-wrapper');
+  const tabBtns = document.querySelectorAll('#fullpage-nav-tabs .fullpage-tab-btn');
+  const btnPrev = document.getElementById('fullpage-btn-prev');
+  const btnNext = document.getElementById('fullpage-btn-next');
+
+  if (!modal) return;
+
+  const projectCatalog = {
+    'studypilot': {
+      index: 0,
+      title: "StudyPilot-AI",
+      badge: "✦ AI PRODUCT SUITE",
+      counter: "PROJECT 01 / 04",
+      tagline: "Autonomous Spaced Repetition & AI Study Operating System",
+      desc: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex engineering syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
+      problem: "Students face intense cognitive overload when synthesizing multi-hundred page technical lecture slides and syllabus notes into actionable, structured review cycles before critical examinations.",
+      solution: "Engineered a multi-tier prompt extraction pipeline that parses hierarchical concept dependency trees, applies Leitner spaced repetition intervals, and dynamically compiles diagnostic flashcard drills.",
+      tech: ["Claude 3.7 AI", "React", "Tailwind CSS", "FastAPI", "Spaced Repetition", "Vector Search"],
+      metrics: [
+        { val: "94.2%", lbl: "Mastery Retention Rate", color: "#2DD4BF" },
+        { val: "< 450ms", lbl: "Inference Latency", color: "#F59E0B" },
+        { val: "14-Day", lbl: "Curated Sprint", color: "#A78BFA" }
+      ],
+      liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      ghUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      stageSourceId: "stage-studypilot"
+    },
+    'velora': {
+      index: 1,
+      title: "Velora Luxury Store",
+      badge: "✦ HIGH-CONVERSION COMMERCE",
+      counter: "PROJECT 02 / 04",
+      tagline: "Sub-Second Micro-Interactions & Accessible Luxury E-Commerce",
+      desc: "A bespoke e-commerce boutique platform built with tactile client-side micro-interactions, real-time cart subtotal calculations, fluid currency conversions, and WCAG AA accessibility compliance across all screen sizes.",
+      problem: "Legacy online retail checkouts frequently suffer from cumbersome multi-page reload funnels, sluggish cart calculations, and poor mobile touch target ergonomics that degrade user trust.",
+      solution: "Engineered client-side reactive state machines for immediate subtotal recalculation, optimistic UI updating, and haptic audio synthesis for instantaneous cart confirmation.",
+      tech: ["JavaScript (ES6+)", "HTML5 Semantics", "CSS Grid & Flexbox", "Web Audio API", "WCAG AA", "Micro-Interactions"],
+      metrics: [
+        { val: "99.8%", lbl: "Checkout Reliability", color: "#F59E0B" },
+        { val: "100/100", lbl: "Lighthouse Performance", color: "#2DD4BF" },
+        { val: "0ms", lbl: "Layout Shift (CLS)", color: "#A78BFA" }
+      ],
+      liveUrl: "https://velora-luxury-store.vercel.app",
+      ghUrl: "https://github.com/ArfaMunam47/velora-luxury-store",
+      stageSourceId: "stage-velora"
+    },
+    'kumo': {
+      index: 2,
+      title: "Kumo Ramen Artisanal",
+      badge: "✦ INTERACTIVE CULINARY UI",
+      counter: "PROJECT 03 / 04",
+      tagline: "Artisanal Ramen Builder & Real-Time Broth Customizer",
+      desc: "An immersive, editorial restaurant digital experience allowing patrons to construct personalized ramen bowls in real-time, dynamically toggling slow-simmered broths, noodle firmness levels, and savory toppings with live pricing feedback.",
+      problem: "Standard restaurant menus present static PDF lists that fail to communicate dish customization depth, rich culinary heritage, or allergen transparency.",
+      solution: "Designed an interactive stage customizer where selecting ingredients dynamically updates nutritional summaries, flavor intensity indicators, and kitchen ticket dispatch state.",
+      tech: ["Tailwind CSS", "Semantic HTML5", "JavaScript Engine", "Audio Synthesis", "Interactive SVG", "Responsive Design"],
+      metrics: [
+        { val: "38%", lbl: "Average Order Uplift", color: "#FA5538" },
+        { val: "60 FPS", lbl: "Fluid Animation Speed", color: "#2DD4BF" },
+        { val: "4.9 ★", lbl: "Patron Experience Score", color: "#F59E0B" }
+      ],
+      liveUrl: "https://kumo-ramen.vercel.app",
+      ghUrl: "https://github.com/ArfaMunam47/kumo-ramen-artisanal",
+      stageSourceId: "stage-kumo"
+    },
+    'pastelform': {
+      index: 3,
+      title: "PastelForm Engine",
+      badge: "✦ DYNAMIC FORM ARCHITECTURE",
+      counter: "PROJECT 04 / 04",
+      tagline: "Accessible Multi-Step Form Builder with Schema Validation",
+      desc: "A soft-hued, high-ergonomics multi-step questionnaire and schema survey engine engineered with zero layout shift, tactile choice buttons, animated step progress meters, and immediate payload serialization.",
+      problem: "Multi-page survey forms generate high user fatigue and abandonment when questions feel disconnected and validation errors are confusingly presented.",
+      solution: "Created a focused step-flow wizard with keyboard-first navigation, progressive state persistence, clear visual hierarchy, and instant schema compilation.",
+      tech: ["TypeScript", "Dynamic Form Engine", "CSS Variables", "Schema Validation", "Keyboard Navigation", "A11y ARIA"],
+      metrics: [
+        { val: "68%", lbl: "Form Completion Rate", color: "#A78BFA" },
+        { val: "0 CLS", lbl: "Zero Cumulative Shift", color: "#2DD4BF" },
+        { val: "100%", lbl: "Accessible ARIA Compliance", color: "#F59E0B" }
+      ],
+      liveUrl: "https://pastelform.vercel.app",
+      ghUrl: "https://github.com/ArfaMunam47/pastelform-engine",
+      stageSourceId: "stage-pastelform"
+    }
+  };
+
+  const projectKeys = ['studypilot', 'velora', 'kumo', 'pastelform'];
+  let currentProjectKey = 'studypilot';
+
+  function renderFullPageProject(key) {
+    const data = projectCatalog[key];
+    if (!data) return;
+
+    currentProjectKey = key;
+
+    // Update Header
+    if (titleEl) titleEl.textContent = data.title;
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (counterEl) counterEl.textContent = data.counter;
+    if (taglineEl) taglineEl.textContent = data.tagline;
+    if (descEl) descEl.textContent = data.desc;
+    if (problemEl) problemEl.textContent = data.problem;
+    if (solutionEl) solutionEl.textContent = data.solution;
+    if (liveLink) liveLink.href = data.liveUrl;
+    if (ghLink) ghLink.href = data.ghUrl;
+
+    // Update active tab button
+    tabBtns.forEach(btn => {
+      if (btn.getAttribute('data-project') === key) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Tech chips
+    if (techChipsEl) {
+      techChipsEl.innerHTML = data.tech.map(t => `<span class="fullpage-tech-pill">${t}</span>`).join('');
+    }
+
+    // Metrics
+    if (metricsGridEl) {
+      metricsGridEl.innerHTML = data.metrics.map(m => `
+        <div class="fullpage-metric-card">
+          <span class="metric-val" style="color: ${m.color};">${m.val}</span>
+          <span class="metric-lbl">${m.lbl}</span>
+        </div>
+      `).join('');
+    }
+
+    // Replicate interactive stage into the full-page stage wrapper
+    if (stageWrapper) {
+      const originalStage = document.getElementById(data.stageSourceId);
+      if (originalStage) {
+        stageWrapper.innerHTML = '';
+        const stageClone = originalStage.cloneNode(true);
+        stageClone.id = `fullpage-clone-${data.stageSourceId}`;
+        
+        // Remove nested fullscreen buttons from the clone inside modal
+        const cloneFullscreenToggle = stageClone.querySelector('.stage-fullscreen-toggle');
+        if (cloneFullscreenToggle) cloneFullscreenToggle.remove();
+
+        stageWrapper.appendChild(stageClone);
+
+        // Wire interactions for this cloned stage
+        wireClonedStageInteractions(key, stageClone);
+      }
+    }
+  }
+
+  function wireClonedStageInteractions(key, cloneEl) {
+    if (key === 'studypilot') {
+      const qText = cloneEl.querySelector('#study-q-text');
+      const aText = cloneEl.querySelector('#study-a-text');
+      const btnFlip = cloneEl.querySelector('#btn-flip-card');
+      const btnNext = cloneEl.querySelector('#btn-next-card');
+
+      const concepts = [
+        { q: "What are the 4 Coffman conditions required for deadlock?", a: "1. Mutual Exclusion<br>2. Hold & Wait<br>3. No Preemption<br>4. Circular Wait" },
+        { q: "Why does Cosine Similarity outperform Euclidean distance for embeddings?", a: "Cosine similarity measures vector angle rather than magnitude, normalizing token length." },
+        { q: "What is the purpose of the Translation Lookaside Buffer (TLB)?", a: "Hardware cache that stores recent virtual-to-physical page mappings to speed up lookups." }
+      ];
+      let idx = 0;
+      let revealed = false;
+
+      if (btnFlip) {
+        btnFlip.addEventListener('click', () => {
+          revealed = !revealed;
+          if (aText) aText.style.display = revealed ? 'block' : 'none';
+          btnFlip.textContent = revealed ? 'Hide Answer' : 'Reveal Answer ↺';
+          playTactileClick(700, 'sine');
+        });
+      }
+      if (btnNext) {
+        btnNext.addEventListener('click', () => {
+          idx = (idx + 1) % concepts.length;
+          revealed = false;
+          if (qText) qText.innerHTML = concepts[idx].q;
+          if (aText) {
+            aText.innerHTML = concepts[idx].a;
+            aText.style.display = 'none';
+          }
+          if (btnFlip) btnFlip.textContent = 'Reveal Answer ↺';
+          playTactileClick(820, 'triangle');
+        });
+      }
+    } else if (key === 'velora') {
+      let qty = 1;
+      const price = 185;
+      const qtyEl = cloneEl.querySelector('#velora-qty-display');
+      const subtotalEl = cloneEl.querySelector('#velora-subtotal-display');
+      const totalEl = cloneEl.querySelector('#velora-total-display');
+      const btnMinus = cloneEl.querySelector('#btn-velora-minus');
+      const btnPlus = cloneEl.querySelector('#btn-velora-plus');
+      const btnCheckout = cloneEl.querySelector('#btn-velora-checkout');
+
+      function update() {
+        if (qtyEl) qtyEl.textContent = qty;
+        if (subtotalEl) subtotalEl.textContent = `$${(qty * price).toFixed(2)}`;
+        if (totalEl) totalEl.textContent = `$${(qty * price + 15).toFixed(2)}`;
+      }
+
+      if (btnMinus) btnMinus.addEventListener('click', () => { if (qty > 1) { qty--; update(); playTactileClick(540, 'sine'); } });
+      if (btnPlus) btnPlus.addEventListener('click', () => { if (qty < 10) { qty++; update(); playTactileClick(740, 'sine'); } });
+      if (btnCheckout) {
+        btnCheckout.addEventListener('click', () => {
+          btnCheckout.textContent = '✓ Order Confirmed!';
+          btnCheckout.style.background = '#10B981';
+          playTactileClick(900, 'triangle');
+          setTimeout(() => {
+            btnCheckout.textContent = 'Complete Order →';
+            btnCheckout.style.background = '';
+          }, 2000);
+        });
+      }
+    } else if (key === 'kumo') {
+      const brothPills = cloneEl.querySelectorAll('.kumo-pill');
+      const priceEl = cloneEl.querySelector('#kumo-total-price');
+      const orderBtn = cloneEl.querySelector('#btn-kumo-order');
+
+      brothPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          brothPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          playTactileClick(680, 'sine');
+          if (priceEl) priceEl.textContent = '$19.50';
+        });
+      });
+
+      if (orderBtn) {
+        orderBtn.addEventListener('click', () => {
+          orderBtn.textContent = '✓ Simmering in Kitchen!';
+          orderBtn.style.background = '#10B981';
+          playTactileClick(920, 'triangle');
+          setTimeout(() => {
+            orderBtn.textContent = 'Place Order →';
+            orderBtn.style.background = '';
+          }, 2000);
+        });
+      }
+    }
+  }
+
+  function openModal(key = 'studypilot') {
+    renderFullPageProject(key);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    playTactileClick(740, 'triangle');
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    playTactileClick(540, 'sine');
+  }
+
+  // Wire all fullpage trigger buttons on the page
+  const triggerBtns = document.querySelectorAll('.btn-panel-fullpage, .stage-fullscreen-toggle');
+  triggerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const proj = btn.getAttribute('data-project') || 'studypilot';
+      openModal(proj);
+    });
+  });
+
+  // Close triggers
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  // Tab quick switcher buttons
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const proj = btn.getAttribute('data-project');
+      if (proj) {
+        playTactileClick(660, 'sine');
+        renderFullPageProject(proj);
+      }
+    });
+  });
+
+  // Next / Previous navigation
+  function navigateProject(direction = 1) {
+    const currentIndex = projectCatalog[currentProjectKey]?.index || 0;
+    const nextIndex = (currentIndex + direction + projectKeys.length) % projectKeys.length;
+    playTactileClick(720, 'sine');
+    renderFullPageProject(projectKeys[nextIndex]);
+  }
+
+  if (btnPrev) btnPrev.addEventListener('click', () => navigateProject(-1));
+  if (btnNext) btnNext.addEventListener('click', () => navigateProject(1));
+
+  // Keyboard navigation: Escape closes modal, Left/Right arrows switch projects
+  window.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeModal();
+    } else if (e.key === 'ArrowLeft') {
+      navigateProject(-1);
+    } else if (e.key === 'ArrowRight') {
+      navigateProject(1);
+    }
+  });
+}
+
+/**
+ * =========================================================================
+ * 19. REFINED ABOUT ME PERSPECTIVE TABS, BIO COPY & FOCUS SKILLS
+ * Provides interactive narrative switching (Story, AI, Architecture, Collaboration),
+ * one-click executive bio copying, and active focus skill explorer.
+ * =========================================================================
+ */
+function setupAboutMeRefinement() {
+  // 1. Perspective Switcher Tabs
+  const tabs = document.querySelectorAll('#about-perspective-tabs .about-story-tab');
+  const container = document.getElementById('about-story-text-container');
+  const quoteText = document.getElementById('about-quote-text');
+
+  const perspectives = {
+    'philosophy': {
+      p1: "I am a Computer Science student, frontend developer, and prompt engineer who believes the highest form of engineering elegance lives where rigorous computer science fundamentals intersect with generative intelligence.",
+      p2: "Rather than treating AI as an automated shortcut, I utilize modern LLMs as a precision force multiplier—chaining deterministic prompts, structured schema validations, and rapid iterations to build human-first web applications.",
+      quote: "“I don't just learn syntax; I build working products to understand how systems come alive in the hands of real users.”"
+    },
+    'ai': {
+      p1: "My prompt engineering methodology is grounded in deterministic reasoning chains, strict JSON schema output formatting, and context-window optimization across Claude 3.7, Gemini 2.5, and OpenAI systems.",
+      p2: "From architecting automated Leitner spaced-repetition loops in StudyPilot-AI to constructing zero-hallucination document synthesis workflows, I engineer prompt architectures with the same discipline applied to backend microservices.",
+      quote: "“Prompt engineering isn't guessing words—it's establishing deterministic reasoning constraints and testable mental models.”"
+    },
+    'architecture': {
+      p1: "Every interface I author adheres to strict semantic HTML5 hierarchies, zero cumulative layout shift (CLS), tactile 60 FPS CSS micro-interactions, and comprehensive WCAG AA accessibility compliance.",
+      p2: "I design resilient client-side state machines, sub-millisecond cart calculations, and responsive mobile-first grid systems that load instantaneously without heavy dependencies or layout jank.",
+      quote: "“True craftsmanship lies in the details users never see: pristine semantics, sub-millisecond responsiveness, and resilient state machines.”"
+    },
+    'collaboration': {
+      p1: "I excel in agile cross-functional environments, translating Figma component systems into production TypeScript code with clear Git commit histories and comprehensive README documentation.",
+      p2: "Whether pair programming on complex state management or structuring autonomous N8N workflow automations, I bring disciplined communication, curiosity, and rapid execution to every sprint.",
+      quote: "“Great software is born at the intersection of clear human communication, structured iteration, and ruthless simplicity.”"
+    }
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      playTactileClick(680, 'sine');
+
+      const key = tab.getAttribute('data-perspective');
+      const data = perspectives[key];
+      if (data && container) {
+        container.style.opacity = '0.2';
+        container.style.transform = 'translateY(4px)';
+
+        setTimeout(() => {
+          const pEls = container.querySelectorAll('.about-story-p');
+          if (pEls[0]) pEls[0].textContent = data.p1;
+          if (pEls[1]) pEls[1].textContent = data.p2;
+          if (quoteText) quoteText.textContent = data.quote;
+
+          container.style.opacity = '1';
+          container.style.transform = 'translateY(0)';
+        }, 120);
+      }
+    });
+  });
+
+  // 2. One-Click Copy Bio Button
+  const copyBioBtn = document.getElementById('btn-copy-bio');
+  if (copyBioBtn) {
+    const executiveBio = `Arfa Munam — Computer Science Student, Frontend Developer & Prompt Engineer.\nSpecializing in high-performance web systems, accessible micro-interactions, and deterministic LLM reasoning chains.\nGitHub: https://github.com/ArfaMunam47 • Email: arfamunam01@gmail.com`;
+
+    copyBioBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(executiveBio);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = executiveBio;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+
+        playTactileClick(880, 'triangle');
+        const origText = copyBioBtn.innerHTML;
+        copyBioBtn.innerHTML = `<span>Copied! ✓</span>`;
+        copyBioBtn.style.background = '#10B981';
+        copyBioBtn.style.color = '#FFFFFF';
+
+        showPortfolioToast('Executive bio copied to clipboard! ✓');
+
+        setTimeout(() => {
+          copyBioBtn.innerHTML = origText;
+          copyBioBtn.style.background = '';
+          copyBioBtn.style.color = '';
+        }, 2200);
+      } catch (err) {
+        showPortfolioToast('Bio ready: arfamunam01@gmail.com');
+      }
+    });
+  }
+
+  // 3. Focus Skill Interactive Chips & Capability Drawer
+  const skillChips = document.querySelectorAll('#focus-skills-cloud .focus-skill-chip');
+  const skillTitleEl = document.getElementById('skill-detail-title');
+  const skillDescEl = document.getElementById('skill-detail-desc');
+
+  const skillCapabilities = {
+    'nextjs': {
+      title: "Next.js 15 App Router & Server Components",
+      desc: "Architecting lightning-fast server components, dynamic routing, streaming SSR, and SEO-optimized web applications with modern Next.js conventions."
+    },
+    'prompt': {
+      title: "Deterministic Prompt Engineering",
+      desc: "Designing few-shot prompt templates, chain-of-thought scaffolds, and structured JSON-schema outputs that prevent hallucinations across LLM inference APIs."
+    },
+    'llm': {
+      title: "LLM Reasoning Chains & Agentic Loops",
+      desc: "Structuring multi-turn reasoning pipelines, tool-calling interfaces, and vector embedding semantic search workflows for production AI applications."
+    },
+    'tailwind': {
+      title: "Tailwind CSS & Scalable Design Tokens",
+      desc: "Crafting fluid responsive layouts, strict mathematical spacing scales, dark/light token palettes, and sub-second rendering performance."
+    },
+    'supabase': {
+      title: "Supabase Realtime & Row-Level Security",
+      desc: "Building persistent PostgreSQL schemas, real-time subscription listeners, row-level access control policies, and serverless edge functions."
+    },
+    'n8n': {
+      title: "Autonomous N8N Workflow Automations",
+      desc: "Constructing event-driven webhook workflows, automated content syndication pipelines, and scheduled sync agents with zero server overhead."
+    },
+    'webaudio': {
+      title: "Web Audio API & Tactile Feedback",
+      desc: "Synthesizing custom oscillator tones, haptic feedback clicks, and interactive sound design without relying on bulky external MP3 sound assets."
+    },
+    'typescript': {
+      title: "TypeScript Enterprise Systems",
+      desc: "Enforcing strict compile-time type safety, discriminated unions, generic utilities, and predictable runtime contract validation."
+    }
+  };
+
+  skillChips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      skillChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      playTactileClick(740, 'sine');
+
+      const skillKey = chip.getAttribute('data-skill');
+      const data = skillCapabilities[skillKey];
+      if (data && skillTitleEl && skillDescEl) {
+        skillTitleEl.textContent = data.title;
+        skillDescEl.style.opacity = '0.2';
+        setTimeout(() => {
+          skillDescEl.textContent = data.desc;
+          skillDescEl.style.opacity = '1';
+        }, 100);
+      }
+    });
+  });
+}
+
+/**
+ * =========================================================================
+ * 20. PORTFOLIO TOAST NOTIFICATION HELPER
+ * =========================================================================
+ */
+function showPortfolioToast(message) {
+  let toast = document.getElementById('portfolio-toast-banner');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'portfolio-toast-banner';
+    toast.className = 'portfolio-toast-banner';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span class="toast-dot"></span><span>${message}</span>`;
+  toast.classList.add('active');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => {
+    toast.classList.remove('active');
+  }, 2800);
+}
+
+/**
+ * =========================================================================
+ * 21. SKILLS COMPILER LOADING SIMULATION & CATEGORY FILTERS
+ * Creative percentage-based loading bar architecture with live re-compilation
+ * =========================================================================
+ */
+function setupSkillsCompiler() {
+  const filterPills = document.querySelectorAll('#skills-compiler-filters .compiler-filter-pill');
+  const skillCards = document.querySelectorAll('#skills-compiler-grid .skill-load-card');
+  const recompileBtn = document.getElementById('btn-recompile-skills');
+  const statusIndicator = document.getElementById('compiler-status-indicator');
+  const statusText = document.getElementById('compiler-status-text');
+
+  // 1. Category Filter Switching
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const filter = pill.getAttribute('data-compiler-filter');
+      playTactileClick(620, 'sine');
+
+      skillCards.forEach(card => {
+        const cat = card.getAttribute('data-skill-cat');
+        if (filter === 'all' || cat === filter) {
+          card.style.display = 'flex';
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 30);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => { card.style.display = 'none'; }, 200);
+        }
+      });
+    });
+  });
+
+  // 2. Interactive Skills Re-Compilation Simulation
+  if (recompileBtn) {
+    recompileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playTactileClick(760, 'triangle');
+
+      if (statusIndicator) {
+        statusIndicator.style.background = '#F59E0B';
+        statusIndicator.style.boxShadow = '0 0 10px #F59E0B';
+      }
+      if (statusText) {
+        statusText.textContent = 'STATUS: RE-COMPILING SKILLS (94.2% BENCHMARK)...';
+      }
+
+      // Reset bars & numbers to 0
+      skillCards.forEach(card => {
+        const fill = card.querySelector('.skill-loading-fill');
+        const num = card.querySelector('.skill-percent-number');
+        if (fill) fill.style.width = '0%';
+        if (num) num.textContent = '0%';
+      });
+
+      // Animate them back progressively
+      skillCards.forEach((card, idx) => {
+        const targetPercent = parseInt(card.getAttribute('data-skill-percent') || '90', 10);
+        const fill = card.querySelector('.skill-loading-fill');
+        const num = card.querySelector('.skill-percent-number');
+
+        setTimeout(() => {
+          if (fill) fill.style.width = `${targetPercent}%`;
+
+          // Number counter animation
+          let current = 0;
+          const stepTime = Math.max(10, Math.floor(700 / targetPercent));
+          const timer = setInterval(() => {
+            current += 2;
+            if (current >= targetPercent) {
+              current = targetPercent;
+              clearInterval(timer);
+            }
+            if (num) num.textContent = `${current}%`;
+          }, stepTime);
+        }, idx * 60);
+      });
+
+      // Completion feedback after all cards finish
+      setTimeout(() => {
+        if (statusIndicator) {
+          statusIndicator.style.background = '#34D399';
+          statusIndicator.style.boxShadow = '0 0 10px #34D399';
+        }
+        if (statusText) {
+          statusText.textContent = 'STATUS: COMPILED & OPTIMIZED (12/12 PRODUCTION READY) ✓';
+        }
+        playTactileClick(960, 'triangle');
+        showPortfolioToast('✦ Skills Compiler: 12 Modules verified at 94.2% benchmark!');
+      }, skillCards.length * 60 + 750);
+    });
+  }
+}
+
+/**
+ * =========================================================================
+ * 22. CINEMATIC EXPLORING FRONTIER LABS & TELEMETRY TERMINAL
+ * Interactive pods that dispatch real-time telemetry into the radar screen
+ * =========================================================================
+ */
+function setupCinematicFrontierLabs() {
+  const triggerBtns = document.querySelectorAll('.btn-cinematic-trigger');
+  const termScreen = document.getElementById('cinematic-terminal-screen');
+  const termTitle = document.getElementById('cinematic-terminal-title');
+
+  const labTelemetryPackets = {
+    'ai-agents': {
+      title: 'radar-node: ~/frontier-labs/multi-agent-orchestrator',
+      lines: [
+        { time: '14:20:01.104', tag: 'tag-green', prefix: '[DISPATCH]', msg: 'Spawning Autonomous Agent Cluster: Planner, ResearchBot, Evaluator' },
+        { time: '14:20:01.320', tag: 'tag-blue', prefix: '[REASONING]', msg: 'Claude 3.7 COT: Decomposing input prompt into 4 deterministic sub-goals' },
+        { time: '14:20:01.558', tag: 'tag-purple', prefix: '[VALIDATE]', msg: 'Pydantic JSON schema evaluation passed with 100% token consistency' },
+        { time: '14:20:01.812', tag: 'tag-amber', prefix: '[METRICS]', msg: 'Sub-450ms turnaround achieved. Hallucination rate: 0.00% verified.' }
+      ]
+    },
+    'fullstack-edge': {
+      title: 'radar-node: ~/frontier-labs/edge-data-architectures',
+      lines: [
+        { time: '16:04:12.022', tag: 'tag-green', prefix: '[CONNECT]', msg: 'Edge proxy established with Supabase Cloud DB node (us-east-1)' },
+        { time: '16:04:12.180', tag: 'tag-blue', prefix: '[SECURITY]', msg: 'PostgreSQL Row-Level Security policy verified for anonymous & auth roles' },
+        { time: '16:04:12.390', tag: 'tag-purple', prefix: '[STREAM]', msg: 'WebSocket channel active. Zero-jank real-time mutations subscribed' },
+        { time: '16:04:12.600', tag: 'tag-amber', prefix: '[METRICS]', msg: 'Round-trip TTFB latency clocked at 14ms across 12 distributed regions.' }
+      ]
+    },
+    'fluid-canvas': {
+      title: 'radar-node: ~/frontier-labs/fluid-canvas-interactions',
+      lines: [
+        { time: '18:11:45.301', tag: 'tag-green', prefix: '[WEBGL2]', msg: 'Requesting hardware acceleration pipeline on local display compositor' },
+        { time: '18:11:45.450', tag: 'tag-blue', prefix: '[PHYSICS]', msg: 'Simulating 24,000 spring particle nodes with Verlet numerical integration' },
+        { time: '18:11:45.690', tag: 'tag-purple', prefix: '[RAF]', msg: 'Steady 60.0 FPS rendering performance verified. Zero dropped frames.' },
+        { time: '18:11:45.920', tag: 'tag-amber', prefix: '[ACCESSIBILITY]', msg: 'Respects prefers-reduced-motion media query automatically.' }
+      ]
+    },
+    'autonomous-systems': {
+      title: 'radar-node: ~/frontier-labs/autonomous-workflows',
+      lines: [
+        { time: '20:30:10.012', tag: 'tag-green', prefix: '[WEBHOOK]', msg: 'Inbound payload intercepted: multi-source GitHub release trigger' },
+        { time: '20:30:10.220', tag: 'tag-blue', prefix: '[PIPELINE]', msg: 'n8n Workflow executing 6 nodes: sanitize -> summarize -> verify -> post' },
+        { time: '20:30:10.450', tag: 'tag-purple', prefix: '[DISTRIBUTE]', msg: 'Automated release notes distributed to production changelog in 180ms' },
+        { time: '20:30:10.710', tag: 'tag-amber', prefix: '[TELEMETRY]', msg: 'Zero manual human touchpoints required. 100% pipeline reliability.' }
+      ]
+    }
+  };
+
+  triggerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const labKey = btn.getAttribute('data-lab-target');
+      const packet = labTelemetryPackets[labKey];
+      if (!packet || !termScreen) return;
+
+      playTactileClick(820, 'sine');
+      setTimeout(() => playTactileClick(1020, 'triangle'), 80);
+
+      if (termTitle) termTitle.textContent = packet.title;
+
+      termScreen.innerHTML = `<div class="c-line"><span class="c-time">[SYS]</span> <span class="tag-blue">CONNECTING TO ${labKey.toUpperCase()}...</span></div>`;
+
+      packet.lines.forEach((line, idx) => {
+        setTimeout(() => {
+          const lineEl = document.createElement('div');
+          lineEl.className = 'c-line';
+          lineEl.innerHTML = `<span class="c-time">[${line.time}]</span> <span class="${line.tag}">${line.prefix}</span> <span>${line.msg}</span>`;
+          termScreen.appendChild(lineEl);
+          termScreen.scrollTop = termScreen.scrollHeight;
+        }, (idx + 1) * 160);
+      });
+
+      setTimeout(() => {
+        const promptLine = document.createElement('div');
+        promptLine.className = 'c-line-prompt';
+        promptLine.innerHTML = `<span>arfa@telemetry-radar:~$</span> <span class="c-prompt-cursor">█</span>`;
+        termScreen.appendChild(promptLine);
+        termScreen.scrollTop = termScreen.scrollHeight;
+      }, (packet.lines.length + 1) * 160);
+
+      showPortfolioToast(`✦ Connected to Lab: ${labKey.toUpperCase()}`);
+    });
+  });
+}
+
 
 
