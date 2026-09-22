@@ -24,19 +24,26 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="favicon-192.png">
 
-  <!-- Google Fonts: Syne (Premium Creative Display) + Playfair Display + Plus Jakarta Sans + Caveat -->
+  <!-- Google Fonts: Syne & Unbounded (High-Impact Editorial Display) + Bricolage Grotesque + Cinzel + Calistoga + Fraunces + Playfair Display + Plus Jakarta Sans + Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Calistoga&family=Caveat:wght@600;700&family=Cinzel:wght@600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,700..900&family=Lilita+One&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=Titan+One&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Bespoke Precision Cursor (Desktop only, hidden on touch & reduced motion) -->
+  <!-- Bespoke Fluid Glow Precision Cursor (Desktop only, hidden on touch & reduced motion) -->
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true">
+    <div class="cursor-orbit-ring" aria-hidden="true">
+      <span class="cursor-satellite-dot dot-1"></span>
+      <span class="cursor-satellite-dot dot-2"></span>
+      <span class="cursor-satellite-dot dot-3"></span>
+    </div>
+  </div>
+  <div class="cursor-flare" id="cursor-flare" aria-hidden="true"></div>
 
   <!-- =======================================================================
        FLOATING NAVIGATION BAR (Minimal, Elegant, Non-Dominating)
@@ -44,7 +51,9 @@
   <div class="nav-wrapper" id="nav-wrapper">
     <nav class="floating-nav" id="floating-nav" aria-label="Main Navigation">
       <a href="#hero" class="nav-brand" id="brand-link">
-        <div class="brand-badge" id="brand-badge">AM</div>
+        <div class="brand-badge" id="brand-badge" aria-label="Arfa Munam Monogram">
+          <span class="monogram-text">AM</span>
+        </div>
         <span class="brand-name">ARFA MUNAM</span>
       </a>
 
@@ -122,21 +131,25 @@
             </h1>
           </div>
 
-          <!-- Professional Identities (Clearly visible, prominent and readable) -->
+          <!-- Professional Identities (Individual tactile 3D role pills with soft lighting depth) -->
           <div class="hero-identities-bar" id="hero-roles-bar">
             <div class="identities-pill-container">
-              <span class="identity-lead-item">
-                <svg class="globe-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <div class="hero-role-pill role-pill-frontend">
+                <svg class="globe-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10"/>
                   <line x1="2" y1="12" x2="22" y2="12"/>
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                 </svg>
-                <strong class="identity-bold">FRONTEND DEVELOPER</strong>
-              </span>
-              <span class="identity-bullet">•</span>
-              <span class="identity-sub-item"><strong>PROMPT ENGINEER</strong></span>
-              <span class="identity-bullet">•</span>
-              <span class="identity-sub-item"><strong>AI ENTHUSIAST</strong></span>
+                <strong class="role-pill-text">FRONT-END DEVELOPER</strong>
+              </div>
+              <div class="hero-role-pill role-pill-prompt">
+                <span class="role-sparkle-dot" aria-hidden="true">✦</span>
+                <strong class="role-pill-text">PROMPT ENGINEER</strong>
+              </div>
+              <div class="hero-role-pill role-pill-ai">
+                <span class="role-pulse-dot" aria-hidden="true"></span>
+                <strong class="role-pill-text">AI ENTHUSIAST</strong>
+              </div>
             </div>
           </div>
 
@@ -293,7 +306,6 @@
       <div class="spatial-3d-orb spatial-orb-mint" data-parallax="-18" title="Continuous Growth"></div>
       <div class="spatial-3d-ring spatial-ring-cyan" data-parallax="-28"></div>
       <div class="spatial-3d-ring spatial-ring-coral" data-parallax="20"></div>
-      <div class="spatial-sparkle-star spatial-star-gold" data-parallax="15">✦</div>
       <div class="spatial-sparkle-star spatial-star-amber" data-parallax="-20">★</div>
       <div class="spatial-sparkle-star spatial-star-cyan" data-parallax="24">✦</div>
     </div>
@@ -306,7 +318,8 @@
           
           <!-- 1. Section Label -->
           <div class="who-kicker-wrap reveal reveal-step-1">
-            <div class="who-kicker-badge">
+            <div class="who-kicker-badge" id="who-kicker-badge">
+              <span class="who-kicker-num">02</span>
               <span class="who-kicker-spark">✦</span>
               <span class="who-kicker-text">WHO I AM</span>
             </div>
@@ -337,14 +350,14 @@
             </div>
           </div>
 
-          <!-- 4. Three Personal Pillars (Compact Floating Objects / Editorial Tiles) -->
+          <!-- 4. Three Personal Pillars (Colorful Floating Editorial Tiles inspired by reference 22.png) -->
           <div class="who-pillars-group reveal reveal-step-4" id="who-pillars-container">
             
-            <!-- Pillar 01: I CODE (Coral / Orange) -->
+            <!-- Pillar 01: I CODE (Warm Peach/Coral Gradient) -->
             <div class="pillar-tile-obj pillar-coral" data-pillar="code">
               <div class="pillar-tile-glow"></div>
               <div class="pillar-icon-badge">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="16 18 22 12 16 6"></polyline>
                   <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
@@ -357,13 +370,26 @@
                 </div>
                 <p class="pillar-desc">Writing clean, responsive front-end experiences.</p>
               </div>
+              <div class="pillar-3d-graphic graphic-code" aria-hidden="true">
+                <div class="mini-window-3d">
+                  <div class="mini-window-top">
+                    <span class="w-dot w-dot-red"></span>
+                    <span class="w-dot w-dot-yellow"></span>
+                    <span class="w-dot w-dot-green"></span>
+                  </div>
+                  <div class="mini-window-body">
+                    <span class="code-bracket">&lt;/&gt;</span>
+                  </div>
+                  <div class="mini-orb-coral"></div>
+                </div>
+              </div>
             </div>
 
-            <!-- Pillar 02: I DESIGN (Cyan / Blue) -->
+            <!-- Pillar 02: I DESIGN (Fresh Mint/Aqua Gradient) -->
             <div class="pillar-tile-obj pillar-cyan" data-pillar="design">
               <div class="pillar-tile-glow"></div>
               <div class="pillar-icon-badge">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
                   <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
                   <path d="M2 2l7.586 7.586"></path>
@@ -378,13 +404,30 @@
                 </div>
                 <p class="pillar-desc">Creating interfaces that feel modern, intuitive, and alive.</p>
               </div>
+              <div class="pillar-3d-graphic graphic-design" aria-hidden="true">
+                <div class="mini-canvas-3d">
+                  <div class="mini-canvas-top">
+                    <span class="w-dot"></span>
+                    <span class="w-dot"></span>
+                  </div>
+                  <div class="mini-canvas-content">
+                    <div class="mini-pic-badge">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                      </svg>
+                    </div>
+                    <span class="mini-aa-tag">Aa</span>
+                  </div>
+                  <div class="mini-orb-cyan"></div>
+                </div>
+              </div>
             </div>
 
-            <!-- Pillar 03: I EXPLORE (Purple / Mint) -->
+            <!-- Pillar 03: I EXPLORE (Soft Lavender/Purple Gradient) -->
             <div class="pillar-tile-obj pillar-purple" data-pillar="explore">
               <div class="pillar-tile-glow"></div>
               <div class="pillar-icon-badge">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
               </div>
@@ -396,13 +439,23 @@
                 </div>
                 <p class="pillar-desc">Experimenting with AI tools, prompt engineering, and automation.</p>
               </div>
+              <div class="pillar-3d-graphic graphic-explore" aria-hidden="true">
+                <div class="mini-ai-chip-3d">
+                  <div class="mini-chip-core">
+                    <span class="chip-ai-label">AI</span>
+                  </div>
+                  <div class="mini-chip-ring"></div>
+                  <div class="mini-orb-purple"></div>
+                  <span class="mini-chip-star">✦</span>
+                </div>
+              </div>
             </div>
 
           </div>
 
         </div>
 
-        <!-- RIGHT COLUMN (~55%): Futuristic Flowing Development Path & 3 Dynamic Nodes -->
+        <!-- RIGHT COLUMN (~55%): Flowing Neon Energy Tube & 3 Bold Glowing Nodes -->
         <div class="who-story-right-col reveal reveal-step-5" id="who-roadmap-stage">
           <div class="roadmap-canvas-stage">
             
@@ -412,28 +465,36 @@
               <span class="roadmap-kicker-label">DEVELOPMENT DIRECTION &amp; HORIZONS</span>
             </div>
 
-            <!-- Organic Flowing SVG Curved Path with Animated Energy Pulse -->
+            <!-- Organic Flowing Neon Winding Tube Path -->
             <div class="roadmap-svg-wrapper" aria-hidden="true">
               <svg class="roadmap-path-svg" viewBox="0 0 540 640" fill="none">
                 <defs>
-                  <!-- Gradient for the main organic path line -->
                   <linearGradient id="roadmapPathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FA5538" stop-opacity="0.9" />
-                    <stop offset="48%" stop-color="#06B6D4" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.9" />
+                    <stop offset="0%" stop-color="#FF6F48" />
+                    <stop offset="48%" stop-color="#06B6D4" />
+                    <stop offset="100%" stop-color="#8B5CF6" />
                   </linearGradient>
+                  <filter id="neonGlowEffect" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="8" result="blur1" />
+                    <feGaussianBlur stdDeviation="18" result="blur2" />
+                    <feMerge>
+                      <feMergeNode in="blur2" />
+                      <feMergeNode in="blur1" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
                 </defs>
-                <!-- Background Ambient Glow Path -->
-                <path class="roadmap-path-ambient" d="M 90,80 C 270,120 420,180 370,290 C 320,390 140,410 190,510 C 220,560 340,590 440,600" />
-                <!-- Primary Crisp Organic Energy Path -->
+                <!-- Outer Neon Radiant Aura -->
+                <path class="roadmap-path-ambient" d="M 90,80 C 270,120 420,180 370,290 C 320,390 140,410 190,510 C 220,560 340,590 440,600" filter="url(#neonGlowEffect)" />
+                <!-- Primary Solid Glowing Neon Tube -->
                 <path class="roadmap-path-primary" id="roadmap-curved-line" d="M 90,80 C 270,120 420,180 370,290 C 320,390 140,410 190,510 C 220,560 340,590 440,600" />
               </svg>
             </div>
 
-            <!-- Three Large Interactive Development Nodes (Placed Organically along the path) -->
+            <!-- Three Large Bold Glowing Development Nodes (Vibrant colors from 22.png) -->
             <div class="roadmap-nodes-container">
               
-              <!-- NODE 01: FRONT-END DEVELOPMENT (Active & Building) -->
+              <!-- NODE 01: FRONT-END DEVELOPMENT (Vibrant Sunset Orange/Coral Glow) -->
               <div class="dev-path-node node-frontend reveal reveal-step-6" data-node="frontend">
                 <div class="node-halo-aura"></div>
                 <div class="node-orbit-ring ring-coral"></div>
@@ -441,20 +502,29 @@
                   <span class="node-num-tag">01</span>
                   <span class="node-status-indicator active-pulse"></span>
                 </div>
-                <div class="node-content-glass">
-                  <div class="node-status-pill status-active">
-                    <span class="status-dot dot-coral"></span>
-                    <span>ACTIVE FOCUS</span>
+                <div class="node-content-glass node-card-orange">
+                  <div class="node-card-body">
+                    <div class="node-status-pill status-white-frosted">
+                      <span class="status-dot dot-orange"></span>
+                      <span>ACTIVE FOCUS</span>
+                    </div>
+                    <h3 class="node-title">
+                      <span class="node-title-main">FRONT-END</span>
+                      <span class="node-title-sub">DEVELOPMENT</span>
+                    </h3>
+                    <p class="node-desc">Building beautiful, responsive interfaces.</p>
                   </div>
-                  <h3 class="node-title">
-                    <span class="node-title-main">FRONT-END</span>
-                    <span class="node-title-sub">DEVELOPMENT</span>
-                  </h3>
-                  <p class="node-desc">Building beautiful, responsive interfaces.</p>
+                  <div class="node-3d-asset asset-code" aria-hidden="true">
+                    <div class="asset-card-3d">
+                      <div class="asset-dots"><span></span><span></span><span></span></div>
+                      <div class="asset-code-text">&lt;/&gt;</div>
+                    </div>
+                    <span class="asset-star-gold">✦</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- NODE 02: BACK-END DEVELOPMENT (Currently Learning) -->
+              <!-- NODE 02: BACK-END DEVELOPMENT (Vibrant Oceanic Cyan/Teal Glow) -->
               <div class="dev-path-node node-backend reveal reveal-step-7" data-node="backend">
                 <div class="node-halo-aura"></div>
                 <div class="node-orbit-ring ring-cyan"></div>
@@ -462,20 +532,28 @@
                   <span class="node-num-tag">02</span>
                   <span class="node-status-indicator learning-pulse"></span>
                 </div>
-                <div class="node-content-glass">
-                  <div class="node-status-pill status-learning">
-                    <span class="status-dot dot-cyan"></span>
-                    <span>CURRENTLY LEARNING</span>
+                <div class="node-content-glass node-card-cyan">
+                  <div class="node-card-body">
+                    <div class="node-status-pill status-white-frosted">
+                      <span class="status-dot dot-cyan"></span>
+                      <span>CURRENTLY LEARNING</span>
+                    </div>
+                    <h3 class="node-title">
+                      <span class="node-title-main">BACK-END</span>
+                      <span class="node-title-sub">DEVELOPMENT</span>
+                    </h3>
+                    <p class="node-desc">Currently learning server-side concepts, APIs, and databases.</p>
                   </div>
-                  <h3 class="node-title">
-                    <span class="node-title-main">BACK-END</span>
-                    <span class="node-title-sub">DEVELOPMENT</span>
-                  </h3>
-                  <p class="node-desc">Currently learning server-side concepts, APIs, and databases.</p>
+                  <div class="node-3d-asset asset-db" aria-hidden="true">
+                    <div class="db-cylinder-stack">
+                      <div class="db-disc db-disc-top"><span class="db-light"></span></div>
+                      <div class="db-disc db-disc-bottom"><span class="db-light"></span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- NODE 03: AI & AUTOMATION (Exploring) -->
+              <!-- NODE 03: AI & AUTOMATION (Vibrant Royal Purple/Violet Glow) -->
               <div class="dev-path-node node-ai reveal reveal-step-8" data-node="ai">
                 <div class="node-halo-aura"></div>
                 <div class="node-orbit-ring ring-purple"></div>
@@ -483,25 +561,34 @@
                   <span class="node-num-tag">03</span>
                   <span class="node-status-indicator exploring-pulse"></span>
                 </div>
-                <div class="node-content-glass">
-                  <div class="node-status-pill status-exploring">
-                    <span class="status-dot dot-purple"></span>
-                    <span>EXPLORING</span>
+                <div class="node-content-glass node-card-purple">
+                  <div class="node-card-body">
+                    <div class="node-status-pill status-white-frosted">
+                      <span class="status-dot dot-purple"></span>
+                      <span>EXPLORING</span>
+                    </div>
+                    <h3 class="node-title">
+                      <span class="node-title-main">AI &amp; AUTOMATION</span>
+                    </h3>
+                    <p class="node-desc">Exploring AI workflows, prompt engineering, and automation.</p>
                   </div>
-                  <h3 class="node-title">
-                    <span class="node-title-main">AI &amp; AUTOMATION</span>
-                  </h3>
-                  <p class="node-desc">Exploring AI workflows, prompt engineering, and automation.</p>
+                  <div class="node-3d-asset asset-robot" aria-hidden="true">
+                    <div class="robot-head-3d">
+                      <div class="robot-ears"></div>
+                      <div class="robot-visor"><span class="visor-eye"></span><span class="visor-eye"></span></div>
+                    </div>
+                    <div class="robot-speech-bubble"><span></span><span></span><span></span></div>
+                  </div>
                 </div>
               </div>
 
             </div>
 
-            <!-- Floating 3D Micro Objects around the Roadmap Canvas -->
+            <!-- Floating 3D Spatial Objects matching 22.png -->
             <div class="roadmap-ambient-shapes" aria-hidden="true">
               <div class="rm-shape rm-sphere-coral" data-parallax="18"></div>
-              <div class="rm-shape rm-ring-cyan" data-parallax="-24"></div>
-              <div class="rm-shape rm-sphere-mint" data-parallax="14"></div>
+              <div class="rm-shape rm-sphere-cyan" data-parallax="-20"></div>
+              <div class="rm-shape rm-torus-purple" data-parallax="24"></div>
               <div class="rm-shape rm-sparkle-gold" data-parallax="-16">✦</div>
             </div>
 
@@ -512,1285 +599,890 @@
     </div>
   </section>
 
-  <!-- =======================================================================
-       PROJECT SHOWCASE — VIBRANT, HIGH-VISIBILITY PRODUCT EXHIBITION
+    <!-- =======================================================================
+       THINGS I'VE BUILT — 3D FEATURED WORK UNIVERSE
+       Cinematic 2026 creative developer showcase with center active piece,
+       orbiting digital panels, SVG orbital paths, and smooth interactive switching.
        ======================================================================= -->
-  <section id="projects" class="projects-clean-section">
-    <div class="container">
-      <!-- Exhibition Intro Header Ribbon -->
-      <div class="section-header-center reveal">
-        <div class="section-label-wrap">
+  <section id="projects" class="project-universe-section" aria-label="Things I've Built — Featured Work Universe">
+    <!-- Atmospheric Multi-Color Canvas Glows & 3D Geometric Floating Objects -->
+    <div class="universe-atmosphere" aria-hidden="true">
+      <div class="univ-glow glow-center-coral"></div>
+      <div class="univ-glow glow-left-cyan"></div>
+      <div class="univ-glow glow-right-purple"></div>
+      <div class="univ-glow glow-bottom-mint"></div>
+
+      <!-- 3D Decorative Floating Geometric Assets (from reference image) -->
+      <!-- Top-Left: Tilted Peach 3D Cube -->
+      <div class="geom-cube-3d geom-cube-peach-tl">
+        <div class="cube-face face-top"></div>
+        <div class="cube-face face-front"></div>
+        <div class="cube-face face-right"></div>
+      </div>
+
+      <!-- Top-Right: Iridescent Metallic Torus Ring -->
+      <div class="geom-torus-3d geom-torus-tr">
+        <svg class="torus-svg" viewBox="0 0 100 100" fill="none">
+          <defs>
+            <linearGradient id="torusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#EC4899" />
+              <stop offset="35%" stop-color="#8B5CF6" />
+              <stop offset="70%" stop-color="#06B6D4" />
+              <stop offset="100%" stop-color="#3B82F6" />
+            </linearGradient>
+            <radialGradient id="torusShine" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+              <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="50" cy="50" r="34" stroke="url(#torusGrad)" stroke-width="14" stroke-linecap="round" />
+          <circle cx="50" cy="50" r="34" stroke="url(#torusShine)" stroke-width="14" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- Bottom-Left: 3D Peach Cube & Glossy Golden Sphere -->
+      <div class="geom-cube-3d geom-cube-bl">
+        <div class="cube-face face-top"></div>
+        <div class="cube-face face-front"></div>
+        <div class="cube-face face-right"></div>
+      </div>
+      <div class="geom-sphere-3d geom-sphere-gold-bl"></div>
+
+      <!-- Bottom-Right: Glossy Cyan/Blue Sphere -->
+      <div class="geom-sphere-3d geom-sphere-cyan-br"></div>
+
+      <!-- Micro Sparkles & Stars -->
+      <div class="univ-sparkle s-1">✦</div>
+      <div class="univ-sparkle s-2">★</div>
+      <div class="univ-sparkle s-3">✦</div>
+      <div class="univ-sparkle s-4">★</div>
+    </div>
+
+    <div class="container universe-container">
+      <!-- Section Identity Header -->
+      <div class="universe-header reveal">
+        <div class="section-label-wrap universe-badge-pill">
           <span class="sparkle-icon">✦</span>
-          <span>CURATED WORK & DIGITAL EXPERIENCES</span>
+          <span>FEATURED WORK</span>
         </div>
-        <h2 class="section-title">The Project Showcase</h2>
-        <p class="section-subtitle">
-          Explore interactive products crafted with clean responsive layouts, modern JavaScript, and intelligent AI prompt engineering. Click any project in the quick navigator or scroll down to explore each build.
+        <h2 class="universe-main-title">Things I've <span class="title-highlight-coral">Built</span></h2>
+        <p class="universe-subtitle">
+          Real projects. Real impact. <span class="subtitle-highlight-coral">Continued evolution.</span>
         </p>
-
-        <!-- Category Filter Pills for Effortless Browsing -->
-        <div class="projects-filter-bar reveal" id="projects-filter-bar">
-          <button type="button" class="project-filter-pill active" data-filter="all">
-            <span>✦ All Projects (4)</span>
-          </button>
-          <button type="button" class="project-filter-pill" data-filter="ai-study">
-            <span>🤖 StudyPilot-AI</span>
-          </button>
-          <button type="button" class="project-filter-pill" data-filter="e-commerce">
-            <span>🛍️ Velora Store</span>
-          </button>
-          <button type="button" class="project-filter-pill" data-filter="culinary">
-            <span>🍜 Kumo Ramen</span>
-          </button>
-          <button type="button" class="project-filter-pill" data-filter="creative-ui">
-            <span>🎨 PastelForm</span>
-          </button>
-        </div>
       </div>
 
-      <!-- Interactive Project Layered Stack Navigator -->
-      <div class="projects-deck-navigator reveal" id="projects-deck-nav">
-        <div class="deck-nav-counter">
-          <span class="deck-pulse-indicator"></span>
-          <span class="deck-counter-text" id="deck-status-label">PROJECT 01 / 04: STUDYPILOT-AI</span>
-        </div>
+      <!-- Main 3D Universe Showcase Stage -->
+      <div class="universe-stage" id="universe-stage" data-active="0">
         
-        <div class="deck-nav-pills" id="deck-nav-pills">
-          <button type="button" class="deck-nav-pill active tactile-btn" data-card-target="project-card-1" data-idx="0">
-            <span class="pill-idx">01</span>
-            <span class="pill-name">StudyPilot-AI</span>
-          </button>
-          <button type="button" class="deck-nav-pill tactile-btn" data-card-target="project-card-2" data-idx="1">
-            <span class="pill-idx">02</span>
-            <span class="pill-name">Velora Store</span>
-          </button>
-          <button type="button" class="deck-nav-pill tactile-btn" data-card-target="project-card-3" data-idx="2">
-            <span class="pill-idx">03</span>
-            <span class="pill-name">Kumo Ramen</span>
-          </button>
-          <button type="button" class="deck-nav-pill tactile-btn" data-card-target="project-card-4" data-idx="3">
-            <span class="pill-idx">04</span>
-            <span class="pill-name">PastelForm</span>
-          </button>
+        <!-- SVG Orbital Visual System (Connecting Curved Paths & Traveling Nodes) -->
+        <div class="universe-svg-backdrop" aria-hidden="true">
+          <svg class="universe-svg-canvas" viewBox="0 0 1200 700" fill="none">
+            <defs>
+              <linearGradient id="orbitGradCoralCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF5A36" stop-opacity="0.45" />
+                <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.45" />
+              </linearGradient>
+              <linearGradient id="orbitGradCyanMint" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.45" />
+                <stop offset="50%" stop-color="#10B981" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.45" />
+              </linearGradient>
+              <filter id="univNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Subtle Orbital Ellipses -->
+            <ellipse class="univ-orbit-ellipse ellipse-outer" cx="600" cy="350" rx="540" ry="290" />
+            <ellipse class="univ-orbit-ellipse ellipse-mid" cx="600" cy="350" rx="390" ry="210" />
+            <ellipse class="univ-orbit-ellipse ellipse-inner" cx="600" cy="350" rx="250" ry="135" />
+
+            <!-- Connecting Curved Orbital Flow Paths -->
+            <path class="univ-orbit-curve curve-left" d="M 600,350 C 440,300 270,260 140,240" stroke="url(#orbitGradCoralCyan)" />
+            <path class="univ-orbit-curve curve-right" d="M 600,350 C 760,280 930,240 1060,220" stroke="url(#orbitGradCyanMint)" />
+            <path class="univ-orbit-curve curve-bottom-right" d="M 600,350 C 750,440 900,530 1020,560" stroke="url(#orbitGradCoralCyan)" />
+
+            <!-- Traveling Energy Nodes -->
+            <circle class="univ-traveling-node" r="3.5" fill="#FF5A36" filter="url(#univNodeGlow)">
+              <animateMotion dur="7s" repeatCount="indefinite" path="M 600,350 C 440,300 270,260 140,240 C 270,260 440,300 600,350" />
+            </circle>
+            <circle class="univ-traveling-node" r="3.5" fill="#06B6D4" filter="url(#univNodeGlow)">
+              <animateMotion dur="8s" repeatCount="indefinite" path="M 600,350 C 760,280 930,240 1060,220 C 930,240 760,280 600,350" />
+            </circle>
+            <circle class="univ-traveling-node" r="3.5" fill="#8B5CF6" filter="url(#univNodeGlow)">
+              <animateMotion dur="9s" repeatCount="indefinite" path="M 600,350 C 750,440 900,530 1020,560 C 900,530 750,440 600,350" />
+            </circle>
+          </svg>
         </div>
 
-        <div class="deck-nav-arrows">
-          <button type="button" class="deck-arrow-btn tactile-btn" id="btn-stack-prev" aria-label="Previous stacked project" title="Previous Project">
-            <span>←</span>
-          </button>
-          <button type="button" class="deck-arrow-btn tactile-btn btn-next-highlight" id="btn-stack-next" aria-label="Next stacked project" title="Next Project">
-            <span>Next Project →</span>
-          </button>
+        <!-- Dynamic Universe Composition Layout -->
+        <div class="universe-composition-grid">
+
+          <!-- Orbiting Secondary Project: LEFT POSITION (02 Velora Store) -->
+          <div class="orbit-panel-anchor orbit-pos-left" id="orbit-slot-left">
+            <div class="orbit-project-card tactile-btn" data-project-index="1" title="Click to focus Velora Store into Center">
+              <div class="orbit-card-inner">
+                <div class="orbit-card-header">
+                  <span class="orbit-badge-pill pill-blue">02</span>
+                  <div class="orbit-title-group">
+                    <span class="orbit-card-title">Velora Store</span>
+                    <span class="orbit-card-sub">E-commerce Platform</span>
+                  </div>
+                </div>
+                <!-- Mini visual preview window: Real Store UI -->
+                <div class="orbit-mini-preview preview-velora">
+                  <div class="mini-store-hero">
+                    <div class="mini-store-badge">🎧 Summer Sale -40%</div>
+                    <div class="mini-store-heading">Find What You Love. Smart. Fast. Reliable.</div>
+                    <button type="button" class="mini-store-btn">Shop Now →</button>
+                  </div>
+                  <div class="mini-store-grid">
+                    <div class="mini-prod-card">
+                      <div class="mini-prod-img prod-headphones"></div>
+                      <span class="mini-prod-name">Headphones</span>
+                      <span class="mini-prod-price">$59.99</span>
+                    </div>
+                    <div class="mini-prod-card">
+                      <div class="mini-prod-img prod-watch"></div>
+                      <span class="mini-prod-name">Smart Watch</span>
+                      <span class="mini-prod-price">$96.99</span>
+                    </div>
+                    <div class="mini-prod-card">
+                      <div class="mini-prod-img prod-backpack"></div>
+                      <span class="mini-prod-name">Backpack</span>
+                      <span class="mini-prod-price">$48.99</span>
+                    </div>
+                    <div class="mini-prod-card">
+                      <div class="mini-prod-img prod-keyboard"></div>
+                      <span class="mini-prod-name">Keyboard</span>
+                      <span class="mini-prod-price">$78.99</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="orbit-card-footer">
+                  <span class="orbit-focus-hint">✦ Click to Center</span>
+                  <span class="orbit-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- THE CENTERPIECE: Active Project Featured Presentation (Wide Tablet Screen on 3D Pedestal) -->
+          <div class="universe-centerpiece-anchor" id="universe-centerpiece">
+            
+            <!-- Top Header Above Device (From reference image) -->
+            <div class="centerpiece-top-header">
+              <span class="centerpiece-num-pill" id="cp-num-badge">01</span>
+              <h3 class="centerpiece-main-title" id="cp-title">StudyPilot-AI</h3>
+              <p class="centerpiece-sub-heading" id="cp-cat-text">AI Academic Copilot &amp; Study Workspace ✦</p>
+            </div>
+
+            <!-- 3D Tablet Frame & Screen Viewport -->
+            <div class="tablet-3d-wrapper">
+              
+              <!-- Ambient Glow Aura behind Tablet -->
+              <div class="centerpiece-glow-aura" id="centerpiece-glow"></div>
+
+              <!-- Main Tablet Physical Bezel -->
+              <div class="tablet-3d-frame" id="centerpiece-active-card">
+                
+                <!-- Dynamic Screen Viewport -->
+                <div class="tablet-screen-viewport" id="cp-window-body">
+                  
+                  <!-- StudyPilot Tablet UI (Initial Active UI) -->
+                  <div class="studypilot-tablet-ui">
+                    <!-- Top Navigation Bar -->
+                    <div class="sp-app-header">
+                      <div class="sp-brand">
+                        <span class="sp-logo-spark">✦</span>
+                        <span class="sp-brand-name">StudyPilot-AI</span>
+                      </div>
+                      <div class="sp-search-bar">
+                        <span class="sp-search-icon">🔍</span>
+                        <span class="sp-search-text">Search study sets, topics, roadmaps...</span>
+                      </div>
+                      <div class="sp-user-pill">
+                        <span class="sp-user-avatar">A</span>
+                        <span class="sp-user-name">Arfa M.</span>
+                      </div>
+                    </div>
+
+                    <!-- App Interior Grid: Left Sidebar + Main Content -->
+                    <div class="sp-app-grid">
+                      <!-- Left Navigation Sidebar -->
+                      <div class="sp-sidebar">
+                        <div class="sp-nav-item active">
+                          <span class="sp-nav-icon">📊</span>
+                          <span>Dashboard</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">🎴</span>
+                          <span>Flashcards</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">📅</span>
+                          <span>Study Planner</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">📝</span>
+                          <span>Quizzes</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">📈</span>
+                          <span>Progress</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">📑</span>
+                          <span>Notes</span>
+                        </div>
+                        <div class="sp-nav-item">
+                          <span class="sp-nav-icon">⚙️</span>
+                          <span>Settings</span>
+                        </div>
+                      </div>
+
+                      <!-- Main Dashboard Canvas -->
+                      <div class="sp-main-view">
+                        <!-- Welcome Banner -->
+                        <div class="sp-welcome-row">
+                          <h4 class="sp-welcome-heading">Welcome back, Arfa! 👋</h4>
+                          <p class="sp-welcome-sub">Ready to continue your learning journey?</p>
+                        </div>
+
+                        <!-- 3 Metric Cards Row -->
+                        <div class="sp-metrics-row">
+                          <!-- Metric 1: Today's Goal -->
+                          <div class="sp-metric-card">
+                            <span class="sp-card-label">Today's Goal</span>
+                            <div class="sp-card-val-row">
+                              <span class="sp-card-val">32 <span class="sp-val-sub">/ 50</span></span>
+                              <span class="sp-card-unit">cards</span>
+                            </div>
+                            <div class="sp-progress-track">
+                              <div class="sp-progress-fill coral-grad" style="width: 64%;"></div>
+                            </div>
+                          </div>
+
+                          <!-- Metric 2: Streak -->
+                          <div class="sp-metric-card">
+                            <span class="sp-card-label">Streak</span>
+                            <div class="sp-card-val-row">
+                              <span class="sp-card-val">12</span>
+                              <span class="sp-card-unit">days</span>
+                              <span class="sp-flame-icon">🔥</span>
+                            </div>
+                            <span class="sp-streak-note">Keep the momentum going!</span>
+                          </div>
+
+                          <!-- Metric 3: Progress Overview with Donut Chart -->
+                          <div class="sp-metric-card sp-donut-card">
+                            <div class="sp-donut-left">
+                              <span class="sp-card-label">Progress Overview</span>
+                              <span class="sp-donut-trend">↑ 12% from last week</span>
+                            </div>
+                            <div class="sp-donut-wrap">
+                              <svg class="sp-donut-svg" viewBox="0 0 36 36">
+                                <path class="donut-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="donut-stroke" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                              </svg>
+                              <div class="sp-donut-center">
+                                <span class="sp-donut-pct">78%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Lower Row: Recent Activity + Subjects -->
+                        <div class="sp-lower-row">
+                          <!-- Recent Activity -->
+                          <div class="sp-sub-card">
+                            <span class="sp-sub-card-title">Recent Activity</span>
+                            <div class="sp-activity-list">
+                              <div class="sp-activity-item">
+                                <div class="sp-act-dot dot-coral"></div>
+                                <div class="sp-act-info">
+                                  <span class="sp-act-name">Operating Systems</span>
+                                  <span class="sp-act-meta">24 cards reviewed</span>
+                                </div>
+                                <span class="sp-act-time">2h ago &gt;</span>
+                              </div>
+                              <div class="sp-activity-item">
+                                <div class="sp-act-dot dot-purple"></div>
+                                <div class="sp-act-info">
+                                  <span class="sp-act-name">Database Concepts</span>
+                                  <span class="sp-act-meta">16 cards reviewed</span>
+                                </div>
+                                <span class="sp-act-time">4h ago &gt;</span>
+                              </div>
+                              <div class="sp-activity-item">
+                                <div class="sp-act-dot dot-cyan"></div>
+                                <div class="sp-act-info">
+                                  <span class="sp-act-name">Algorithm Design</span>
+                                  <span class="sp-act-meta">18 cards reviewed</span>
+                                </div>
+                                <span class="sp-act-time">1d ago &gt;</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Subjects -->
+                          <div class="sp-sub-card">
+                            <span class="sp-sub-card-title">Subjects</span>
+                            <div class="sp-subjects-list">
+                              <div class="sp-subject-item">
+                                <div class="sp-subj-header">
+                                  <span>Operating Systems</span>
+                                  <span>78%</span>
+                                </div>
+                                <div class="sp-progress-track">
+                                  <div class="sp-progress-fill coral-grad" style="width: 78%;"></div>
+                                </div>
+                              </div>
+                              <div class="sp-subject-item">
+                                <div class="sp-subj-header">
+                                  <span>Database Concepts</span>
+                                  <span>62%</span>
+                                </div>
+                                <div class="sp-progress-track">
+                                  <div class="sp-progress-fill purple-grad" style="width: 62%;"></div>
+                                </div>
+                              </div>
+                              <div class="sp-subject-item">
+                                <div class="sp-subj-header">
+                                  <span>Algorithm Design</span>
+                                  <span>50%</span>
+                                </div>
+                                <div class="sp-progress-track">
+                                  <div class="sp-progress-fill cyan-grad" style="width: 50%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- 3D Pedestal Platform Underneath Tablet -->
+              <div class="tablet-3d-pedestal">
+                <div class="pedestal-disc-glow"></div>
+                <div class="pedestal-disc-base"></div>
+              </div>
+
+              <!-- Direct CTA Action Buttons (From reference image) -->
+              <div class="centerpiece-device-actions">
+                <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-device-live tactile-btn" id="cp-btn-live">
+                  <span id="cp-btn-live-text">View Live Demo</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-device-gh tactile-btn" id="cp-btn-gh">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>View on GitHub</span>
+                </a>
+              </div>
+
+              <!-- Semantic metadata support (for script compatibility) -->
+              <div class="sr-only" aria-hidden="true">
+                <span id="cp-tagline">Intelligent academic workspace with adaptive flashcards, study planning, AI-assisted learning workflows, and progress tracking.</span>
+                <span id="cp-tech-stack">HTML, CSS, JavaScript, AI</span>
+                <span id="cp-hl-1">Spaced Repetition Flashcards</span>
+                <span id="cp-hl-2">AI-Powered Exam Roadmaps</span>
+                <span id="cp-address-url">studypilot-ai.app/workspace</span>
+                <span id="cp-window-badge">AI ACTIVE</span>
+                <span id="universe-counter-label">PROJECT 01 / 04: STUDYPILOT-AI</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Orbiting Secondary Project: TOP-RIGHT POSITION (03 Kumo Ramen) -->
+          <div class="orbit-panel-anchor orbit-pos-top-right" id="orbit-slot-top-right">
+            <div class="orbit-project-card tactile-btn" data-project-index="2" title="Click to focus Kumo Ramen into Center">
+              <div class="orbit-card-inner">
+                <div class="orbit-card-header">
+                  <span class="orbit-badge-pill pill-purple">03</span>
+                  <div class="orbit-title-group">
+                    <span class="orbit-card-title">Kumo Ramen</span>
+                    <span class="orbit-card-sub">Food Discovery App</span>
+                  </div>
+                </div>
+                <!-- Mini preview: Dark Ramen Discovery Interface -->
+                <div class="orbit-mini-preview preview-kumo">
+                  <div class="mini-ramen-header">
+                    <span class="ramen-brand">雲 Kumo Ramen</span>
+                    <span class="ramen-open-badge">Open Now</span>
+                  </div>
+                  <div class="mini-ramen-body">
+                    <div class="mini-ramen-intro">
+                      <span class="ramen-headline">Discover the Perfect Ramen</span>
+                      <span class="ramen-sub">Handcrafted broths &amp; fresh noodles</span>
+                      <button type="button" class="mini-ramen-btn">Explore Menu</button>
+                    </div>
+                    <div class="mini-ramen-visual">
+                      <div class="ramen-steaming-bowl">
+                        <span class="ramen-steam">♨</span>
+                        <span class="ramen-emoji">🍜</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mini-ramen-tags">
+                    <span class="r-tag">Tonkotsu</span>
+                    <span class="r-tag">Spicy Miso</span>
+                    <span class="r-tag">Truffle</span>
+                  </div>
+                </div>
+                <div class="orbit-card-footer">
+                  <span class="orbit-focus-hint">✦ Click to Center</span>
+                  <span class="orbit-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Orbiting Secondary Project: BOTTOM-RIGHT POSITION (04 PastelForm) -->
+          <div class="orbit-panel-anchor orbit-pos-bottom-right" id="orbit-slot-bottom-right">
+            <div class="orbit-project-card tactile-btn" data-project-index="3" title="Click to focus PastelForm into Center">
+              <div class="orbit-card-inner">
+                <div class="orbit-card-header">
+                  <span class="orbit-badge-pill pill-mint">04</span>
+                  <div class="orbit-title-group">
+                    <span class="orbit-card-title">PastelForm</span>
+                    <span class="orbit-card-sub">Smart Form Builder</span>
+                  </div>
+                </div>
+                <!-- Mini preview: Pastel Form Studio -->
+                <div class="orbit-mini-preview preview-pastel">
+                  <div class="mini-form-top">
+                    <span class="form-brand">PastelForm</span>
+                    <span class="form-tab-pill">Builder</span>
+                    <span class="form-publish-chip">Publish</span>
+                  </div>
+                  <div class="mini-form-grid">
+                    <div class="mini-form-palette">
+                      <span class="palette-item">Email</span>
+                      <span class="palette-item">Phone</span>
+                      <span class="palette-item">Select</span>
+                    </div>
+                    <div class="mini-form-canvas">
+                      <div class="canvas-field">
+                        <span class="field-label">Full Name</span>
+                        <div class="field-box"></div>
+                      </div>
+                      <div class="canvas-field">
+                        <span class="field-label">Work Email</span>
+                        <div class="field-box"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="orbit-card-footer">
+                  <span class="orbit-focus-hint">✦ Click to Center</span>
+                  <span class="orbit-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
 
-      <div class="projects-stack-wrapper" id="projects-stack-container">
-
-        <!-- ===================================================================
-             CARD 01: STUDYPILOT-AI
-             =================================================================== -->
-        <article class="project-stack-card card-studypilot reveal" id="project-card-1" data-category="ai-study" style="--stack-idx: 0;">
-          <!-- Visible Stacking Tab Bar When Stacking -->
-          <div class="project-stack-tab-header" data-card-target="project-card-1" title="Click to bring StudyPilot-AI to top of stack">
-            <div class="tab-header-left">
-              <span class="tab-badge-idx">01</span>
-              <span class="tab-badge-title">StudyPilot-AI</span>
-              <span class="tab-badge-tag tag-ai">AI Academic Copilot</span>
-            </div>
-            <div class="tab-header-right">
-              <span class="tab-status-cue">✦ Click to Expand &amp; Focus</span>
-              <span class="tab-indicator-dot"></span>
-            </div>
-          </div>
-          <div class="project-card-inner">
-            <!-- Left: Metadata, Description & Action Buttons -->
-            <div class="project-card-info">
-              <div class="project-card-badges">
-                <span class="project-num-badge">PROJECT 01 / 04</span>
-                <span class="project-cat-badge badge-studypilot">✦ AI ACADEMIC COPILOT</span>
+        <!-- Floating Tech Stack Badge Panel (Bottom-Left from Reference Image) -->
+        <div class="universe-tech-stack-card" aria-label="Featured Technologies">
+          <div class="tech-stack-card-inner">
+            <span class="tech-stack-title">Tech Stack</span>
+            <div class="tech-stack-icons-row">
+              <div class="tech-icon-item" title="Next.js">
+                <div class="tech-icon-circle bg-black text-white font-bold">N</div>
+                <span class="tech-icon-label">Next.js</span>
               </div>
-
-              <h3 class="project-card-title">StudyPilot-AI</h3>
-              <p class="project-card-tagline">Intelligent Academic Workspace with Adaptive Flashcards & Study Planner</p>
-
-              <p class="project-card-desc">
-                An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.
-              </p>
-
-              <div class="project-tech-chips">
-                <span class="tech-chip">Claude 3.7 AI</span>
-                <span class="tech-chip">React</span>
-                <span class="tech-chip">Tailwind CSS</span>
-                <span class="tech-chip">FastAPI</span>
-                <span class="tech-chip">Spaced Repetition</span>
-                <span class="tech-chip">Vector Search</span>
+              <div class="tech-icon-item" title="TypeScript">
+                <div class="tech-icon-circle bg-blue-600 text-white font-bold">TS</div>
+                <span class="tech-icon-label">TypeScript</span>
               </div>
-
-              <div class="project-actions-row">
-                <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-panel-primary magnetic-btn tactile-btn" id="btn-studypilot-live">
-                  <span>Explore StudyPilot</span>
-                  <span class="arrow">↗</span>
-                </a>
-                <button type="button" class="btn-panel-fullpage magnetic-btn tactile-btn" data-project="studypilot" id="btn-studypilot-fullpage" title="Open StudyPilot in full page immersive view">
-                  <span>Full Page View</span>
-                  <span class="expand-icon">⛶</span>
-                </button>
-                <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-panel-secondary magnetic-btn tactile-btn" id="btn-studypilot-gh">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  <span>GitHub Repository</span>
-                </a>
+              <div class="tech-icon-item" title="Tailwind CSS">
+                <div class="tech-icon-circle bg-teal-500 text-white font-bold">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>
+                </div>
+                <span class="tech-icon-label">Tailwind</span>
               </div>
-            </div>
-
-            <!-- Right: Interactive Product Showcase Stage -->
-            <div class="project-card-preview" id="preview-stage-studypilot">
-              <div class="interactive-stage-card" id="studypilot-tilt-card">
-                <!-- Window Chrome -->
-                <div class="stage-window-bar">
-                  <div class="window-buttons">
-                    <span class="win-btn win-red"></span>
-                    <span class="win-btn win-yellow"></span>
-                    <span class="win-btn win-green"></span>
-                  </div>
-                  <div class="window-address-pill">studypilot-ai.app/workspace</div>
-                  <div class="window-actions-group">
-                    <button type="button" class="stage-fullscreen-toggle tactile-btn" data-project="studypilot" title="Expand StudyPilot to Full Page">
-                      <span>Full Page</span>
-                      <span class="fs-icon">⛶</span>
-                    </button>
-                    <div class="window-status-pill">
-                      <span class="live-dot-pulse"></span>
-                      <span>AI COPILOT ACTIVE</span>
-                    </div>
-                  </div>
+              <div class="tech-icon-item" title="PostgreSQL">
+                <div class="tech-icon-circle bg-indigo-700 text-white font-bold">
+                  <span style="font-size: 0.72rem;">🐘</span>
                 </div>
-
-                <!-- Interactive Tab Switcher -->
-                <div class="stage-view-tabs" id="studypilot-tabs">
-                  <button class="stage-tab-btn active" data-tab="flashcards">Flashcard Deck</button>
-                  <button class="stage-tab-btn" data-tab="roadmap">Study Roadmap</button>
-                  <button class="stage-tab-btn" data-tab="prompt">Prompt Schema</button>
+                <span class="tech-icon-label">Postgres</span>
+              </div>
+              <div class="tech-icon-item" title="OpenAI">
+                <div class="tech-icon-circle bg-emerald-600 text-white font-bold">
+                  <span style="font-size: 0.72rem;">✦</span>
                 </div>
-
-                <!-- View 1: Flashcard Deck Simulator -->
-                <div class="stage-view-screen active" id="screen-study-flashcards">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(45, 212, 191, 0.2); color: #2DD4BF;">🧠</div>
-                    <div>
-                      <div class="screen-sub-tag">SPACED REPETITION LAB</div>
-                      <h4 class="screen-title-text">Operating Systems: Deadlock Prevention</h4>
-                    </div>
-                  </div>
-
-                  <div class="study-card-simulation" id="study-interactive-card">
-                    <div class="study-card-prompt-label">AI Generated Concept #14:</div>
-                    <div class="study-card-question" id="study-q-text">
-                      What are the 4 Coffman conditions required for a system deadlock?
-                    </div>
-                    <div class="study-card-answer" id="study-a-text" style="display: none;">
-                      1. Mutual Exclusion • 2. Hold and Wait • 3. No Preemption • 4. Circular Wait condition.
-                    </div>
-                    <div class="study-card-controls">
-                      <button class="btn-study-flip tactile-btn" id="btn-flip-card">Reveal Answer ↺</button>
-                      <button class="btn-study-next tactile-btn" id="btn-next-card">Next Concept ⚡</button>
-                    </div>
-                  </div>
-
-                  <div class="screen-stats-grid" style="margin-top: 1rem;">
-                    <div class="screen-stat-card">
-                      <span class="stat-number-display" style="color: #2DD4BF;">94.2%</span>
-                      <span class="stat-label-text">Mastery Retention</span>
-                    </div>
-                    <div class="screen-stat-card">
-                      <span class="stat-number-display" style="color: #38BDF8;">42/45</span>
-                      <span class="stat-label-text">Cards Reviewed</span>
-                    </div>
-                    <div class="screen-stat-card">
-                      <span class="stat-number-display" style="color: #F59E0B;">Level 4</span>
-                      <span class="stat-label-text">Leitner Box</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 2: Study Roadmap -->
-                <div class="stage-view-screen" id="screen-study-roadmap">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(139, 92, 246, 0.2); color: #A78BFA;">📅</div>
-                    <div>
-                      <div class="screen-sub-tag">SEMESTER REVISION BLUEPRINT</div>
-                      <h4 class="screen-title-text">AI Curated 14-Day Sprint</h4>
-                    </div>
-                  </div>
-                  <div class="roadmap-steps-list">
-                    <div class="roadmap-step-item done">
-                      <span class="step-check">✓</span>
-                      <div>
-                        <div class="step-title">Day 1-4: CPU Scheduling & Threads</div>
-                        <div class="step-sub">34 Flashcards mastered • Quiz score 98%</div>
-                      </div>
-                    </div>
-                    <div class="roadmap-step-item active">
-                      <span class="step-check">⚡</span>
-                      <div>
-                        <div class="step-title">Day 5-8: Synchronization & Deadlocks</div>
-                        <div class="step-sub">In progress • 18 concepts remaining</div>
-                      </div>
-                    </div>
-                    <div class="roadmap-step-item">
-                      <span class="step-check">○</span>
-                      <div>
-                        <div class="step-title">Day 9-14: Virtual Memory & Page Replacement</div>
-                        <div class="step-sub">Scheduled for revision sprint</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 3: Prompt Schema -->
-                <div class="stage-view-screen" id="screen-study-prompt">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(245, 158, 11, 0.2); color: #F59E0B;">⚡</div>
-                    <div>
-                      <div class="screen-sub-tag">PROMPT ARCHITECTURE</div>
-                      <h4 class="screen-title-text">Chain-of-Thought Lecture Parser</h4>
-                    </div>
-                  </div>
-                  <div class="prompt-schema-code-box">
-                    <span class="code-comment">// System Prompt Meta-Constraint:</span><br>
-                    <span class="code-keyword">const</span> <span class="code-var">studyParserPrompt</span> = {<br>
-                    &nbsp;&nbsp;role: <span class="code-str">"Principal Academic Tutor"</span>,<br>
-                    &nbsp;&nbsp;reasoning: <span class="code-str">"Chain-of-Thought (decompose syllabus into bite-sized concepts)"</span>,<br>
-                    &nbsp;&nbsp;outputFormat: <span class="code-str">"JSON Array of Flashcards & Mastery Checks"</span><br>
-                    };
-                  </div>
-                </div>
-
-                <div class="stage-hover-hint">
-                  <span>✦ Interactive Prompts & Spaced Repetition</span>
-                </div>
+                <span class="tech-icon-label">OpenAI</span>
               </div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- ===================================================================
-             CARD 02: VELORA STORE
-             =================================================================== -->
-        <article class="project-stack-card card-velora reveal" id="project-card-2" data-category="e-commerce" style="--stack-idx: 1;">
-          <!-- Visible Stacking Tab Bar When Stacking -->
-          <div class="project-stack-tab-header" data-card-target="project-card-2" title="Click to bring Velora Store to top of stack">
-            <div class="tab-header-left">
-              <span class="tab-badge-idx">02</span>
-              <span class="tab-badge-title">Velora Store</span>
-              <span class="tab-badge-tag tag-velora">E-Commerce &amp; Lifestyle</span>
-            </div>
-            <div class="tab-header-right">
-              <span class="tab-status-cue">✦ Click to Expand &amp; Focus</span>
-              <span class="tab-indicator-dot"></span>
-            </div>
+        <!-- Bottom Center Connected Navigation Track (Connected Line with 01 02 03 04 & Scroll Hint) -->
+        <div class="universe-bottom-nav-wrap">
+          <div class="universe-track-nav" id="universe-pills-list">
+            <button type="button" class="univ-track-node univ-nav-pill active tactile-btn" data-idx="0" aria-label="Project 01">
+              <span class="node-num">01</span>
+            </button>
+            <span class="track-connector-line"></span>
+            <button type="button" class="univ-track-node univ-nav-pill tactile-btn" data-idx="1" aria-label="Project 02">
+              <span class="node-num">02</span>
+            </button>
+            <span class="track-connector-line"></span>
+            <button type="button" class="univ-track-node univ-nav-pill tactile-btn" data-idx="2" aria-label="Project 03">
+              <span class="node-num">03</span>
+            </button>
+            <span class="track-connector-line"></span>
+            <button type="button" class="univ-track-node univ-nav-pill tactile-btn" data-idx="3" aria-label="Project 04">
+              <span class="node-num">04</span>
+            </button>
           </div>
-          <div class="project-card-inner">
-            <!-- Left: Metadata, Description & Action Buttons -->
-            <div class="project-card-info">
-              <div class="project-card-badges">
-                <span class="project-num-badge">PROJECT 02 / 04</span>
-                <span class="project-cat-badge badge-velora">✦ E-COMMERCE & LIFESTYLE</span>
-              </div>
 
-              <h3 class="project-card-title">Velora Store</h3>
-              <p class="project-card-tagline">Minimalist High-Conversion Fashion & Lifestyle Storefront</p>
-
-              <p class="project-card-desc">
-                A chic modern e-commerce storefront designed with editorial typography, ultra-responsive grid layouts, instant category faceted filtering, slide-out micro-cart drawer, and dynamic voucher calculations for a frictionless retail journey.
-              </p>
-
-              <div class="project-tech-chips">
-                <span class="tech-chip">JavaScript ES6+</span>
-                <span class="tech-chip">React</span>
-                <span class="tech-chip">Tailwind CSS</span>
-                <span class="tech-chip">Stripe Checkout</span>
-                <span class="tech-chip">State Engine</span>
-                <span class="tech-chip">Micro-Interactions</span>
-              </div>
-
-              <div class="project-actions-row">
-                <a href="https://github.com/ArfaMunam47/Velora-Store" target="_blank" rel="noopener noreferrer" class="btn-panel-primary magnetic-btn tactile-btn" id="btn-velora-live">
-                  <span>Explore Velora Store</span>
-                  <span class="arrow">↗</span>
-                </a>
-                <button type="button" class="btn-panel-fullpage magnetic-btn tactile-btn" data-project="velora" id="btn-velora-fullpage" title="Open Velora Store in full page immersive view">
-                  <span>Full Page View</span>
-                  <span class="expand-icon">⛶</span>
-                </button>
-                <a href="https://github.com/ArfaMunam47/Velora-Store" target="_blank" rel="noopener noreferrer" class="btn-panel-secondary magnetic-btn tactile-btn" id="btn-velora-gh">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  <span>GitHub Repository</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Interactive Product Showcase Stage -->
-            <div class="project-card-preview" id="preview-stage-velora">
-              <div class="interactive-stage-card" id="velora-tilt-card">
-                <!-- Window Chrome -->
-                <div class="stage-window-bar">
-                  <div class="window-buttons">
-                    <span class="win-btn win-red"></span>
-                    <span class="win-btn win-yellow"></span>
-                    <span class="win-btn win-green"></span>
-                  </div>
-                  <div class="window-address-pill">velora-store.com/shop</div>
-                  <div class="window-actions-group">
-                    <button type="button" class="stage-fullscreen-toggle tactile-btn" data-project="velora" title="Expand Velora Store to Full Page">
-                      <span>Full Page</span>
-                      <span class="fs-icon">⛶</span>
-                    </button>
-                    <div class="window-status-pill">
-                      <span class="live-dot-pulse" style="background: #FA5538;"></span>
-                      <span>CURATED DROP 2026</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Interactive Tab Switcher -->
-                <div class="stage-view-tabs" id="velora-tabs">
-                  <button class="stage-tab-btn active" data-tab="cart">Cart Drawer</button>
-                  <button class="stage-tab-btn" data-tab="catalog">Lookbook</button>
-                  <button class="stage-tab-btn" data-tab="checkout">Instant Pay</button>
-                </div>
-
-                <!-- View 1: Cart Drawer Simulator -->
-                <div class="stage-view-screen active" id="screen-velora-cart">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(250, 85, 56, 0.15); color: #FA5538;">🛍️</div>
-                    <div>
-                      <div class="screen-sub-tag">SHOPPING BAG SIMULATION</div>
-                      <h4 class="screen-title-text">Velora Curated Capsule</h4>
-                    </div>
-                  </div>
-
-                  <div class="velora-cart-item-row">
-                    <div class="velora-item-thumb">🧥</div>
-                    <div class="velora-item-details">
-                      <div class="velora-item-name">Oversized Cashmere Coat</div>
-                      <div class="velora-item-variant">Oatmeal / Medium • $185.00</div>
-                    </div>
-                    <div class="velora-qty-stepper">
-                      <button class="velora-btn-step tactile-btn" id="btn-velora-minus">−</button>
-                      <span class="velora-qty-val" id="velora-qty-val">1</span>
-                      <button class="velora-btn-step tactile-btn" id="btn-velora-plus">+</button>
-                    </div>
-                  </div>
-
-                  <div class="velora-cart-summary-box">
-                    <div class="summary-subrow">
-                      <span>Subtotal:</span>
-                      <strong id="velora-subtotal-text">$185.00</strong>
-                    </div>
-                    <div class="summary-subrow">
-                      <span>Express Shipping:</span>
-                      <span style="color: #10B981; font-weight: 700;">FREE</span>
-                    </div>
-                    <div class="summary-divider"></div>
-                    <div class="summary-total-row">
-                      <span>Total:</span>
-                      <span class="total-big-price" id="velora-total-text">$185.00</span>
-                    </div>
-                    <button class="btn-velora-checkout tactile-btn" id="btn-velora-checkout">
-                      <span>Proceed to Checkout</span>
-                      <span class="arrow">→</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- View 2: Lookbook Catalog -->
-                <div class="stage-view-screen" id="screen-velora-catalog">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(250, 85, 56, 0.15); color: #FA5538;">✨</div>
-                    <div>
-                      <div class="screen-sub-tag">SEASONAL EDITORIAL</div>
-                      <h4 class="screen-title-text">Spring Minimalist Collection</h4>
-                    </div>
-                  </div>
-                  <div class="velora-catalog-grid">
-                    <div class="catalog-mini-card">
-                      <div class="catalog-thumb">👜</div>
-                      <div class="catalog-title">Structured Leather Tote</div>
-                      <div class="catalog-price">$120.00</div>
-                    </div>
-                    <div class="catalog-mini-card">
-                      <div class="catalog-thumb">🕶️</div>
-                      <div class="catalog-title">Tortoise Acetate Frames</div>
-                      <div class="catalog-price">$75.00</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 3: Instant Pay -->
-                <div class="stage-view-screen" id="screen-velora-checkout">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">💳</div>
-                    <div>
-                      <div class="screen-sub-tag">STRIPE INTEGRATION</div>
-                      <h4 class="screen-title-text">Secure 1-Click Payment</h4>
-                    </div>
-                  </div>
-                  <div class="payment-security-badge">
-                    <span>🔒 256-bit Encrypted SSL Checkout</span>
-                  </div>
-                  <div class="payment-mock-form">
-                    <div class="mock-input">Card: •••• •••• •••• 4242</div>
-                    <div class="mock-input">Apple Pay / Google Pay / Cards</div>
-                  </div>
-                </div>
-
-                <div class="stage-hover-hint">
-                  <span>✦ Interactive Drawer & Cart Calculations</span>
-                </div>
-              </div>
-            </div>
+          <div class="universe-scroll-hint">
+            <span class="mouse-scroll-icon">
+              <span class="mouse-wheel-dot"></span>
+            </span>
+            <span class="scroll-hint-text">Scroll to explore more projects</span>
           </div>
-        </article>
 
-        <!-- ===================================================================
-             CARD 03: KUMO RAMEN SHOWCASE
-             =================================================================== -->
-        <article class="project-stack-card card-kumo reveal" id="project-card-3" data-category="culinary" style="--stack-idx: 2;">
-          <!-- Visible Stacking Tab Bar When Stacking -->
-          <div class="project-stack-tab-header" data-card-target="project-card-3" title="Click to bring Kumo Ramen to top of stack">
-            <div class="tab-header-left">
-              <span class="tab-badge-idx">03</span>
-              <span class="tab-badge-title">Kumo Ramen</span>
-              <span class="tab-badge-tag tag-kumo">Artisan Culinary &amp; Motion</span>
-            </div>
-            <div class="tab-header-right">
-              <span class="tab-status-cue">✦ Click to Expand &amp; Focus</span>
-              <span class="tab-indicator-dot"></span>
-            </div>
+          <div class="sr-only">
+            <button type="button" id="btn-univ-prev">Prev</button>
+            <button type="button" id="btn-univ-next">Next</button>
           </div>
-          <div class="project-card-inner">
-            <!-- Left: Metadata, Description & Action Buttons -->
-            <div class="project-card-info">
-              <div class="project-card-badges">
-                <span class="project-num-badge">PROJECT 03 / 04</span>
-                <span class="project-cat-badge badge-kumo">✦ ARTISAN RESTAURANT & INTERACTIVE UI</span>
-              </div>
-
-              <h3 class="project-card-title">Kumo Ramen Showcase</h3>
-              <p class="project-card-tagline">Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion</p>
-
-              <p class="project-card-desc">
-                An evocative culinary showcase for an artisan Tokyo ramen bar. Features an interactive bowl builder (broth richness, noodle firmness, chashu pork, ajitsuke tamago), ambient kitchen soundscapes, reservation table picker, and sensory editorial dark aesthetics.
-              </p>
-
-              <div class="project-tech-chips">
-                <span class="tech-chip">JavaScript ES6+</span>
-                <span class="tech-chip">CSS3 Motion</span>
-                <span class="tech-chip">Interactive State</span>
-                <span class="tech-chip">Order Calculator</span>
-                <span class="tech-chip">Audio Ambiance</span>
-                <span class="tech-chip">Micro-Interactions</span>
-              </div>
-
-              <div class="project-actions-row">
-                <a href="https://github.com/ArfaMunam47/kumo-ramen-showcase" target="_blank" rel="noopener noreferrer" class="btn-panel-primary magnetic-btn tactile-btn" id="btn-kumo-live">
-                  <span>Explore Kumo Ramen</span>
-                  <span class="arrow">↗</span>
-                </a>
-                <button type="button" class="btn-panel-fullpage magnetic-btn tactile-btn" data-project="kumo" id="btn-kumo-fullpage" title="Open Kumo Ramen in full page immersive view">
-                  <span>Full Page View</span>
-                  <span class="expand-icon">⛶</span>
-                </button>
-                <a href="https://github.com/ArfaMunam47/kumo-ramen-showcase" target="_blank" rel="noopener noreferrer" class="btn-panel-secondary magnetic-btn tactile-btn" id="btn-kumo-gh">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  <span>GitHub Repository</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Interactive Product Showcase Stage -->
-            <div class="project-card-preview" id="preview-stage-kumo">
-              <div class="interactive-stage-card card-theme-kumo" id="kumo-tilt-card">
-                <!-- Window Chrome -->
-                <div class="stage-window-bar">
-                  <div class="window-buttons">
-                    <span class="win-btn win-red"></span>
-                    <span class="win-btn win-yellow"></span>
-                    <span class="win-btn win-green"></span>
-                  </div>
-                  <div class="window-address-pill">kumoramen.jp/craft-bar</div>
-                  <div class="window-actions-group">
-                    <button type="button" class="stage-fullscreen-toggle tactile-btn" data-project="kumo" title="Expand Kumo Ramen to Full Page">
-                      <span>Full Page</span>
-                      <span class="fs-icon">⛶</span>
-                    </button>
-                    <div class="window-status-pill">
-                      <span class="live-dot-pulse" style="background: #F59E0B;"></span>
-                      <span>12 SEATS OPEN • 18H BROTH</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Tab Switcher -->
-                <div class="stage-view-tabs" id="kumo-tabs">
-                  <button class="stage-tab-btn active" data-tab="builder">Bowl Customizer</button>
-                  <button class="stage-tab-btn" data-tab="broth">Secret Broth</button>
-                  <button class="stage-tab-btn" data-tab="reserve">Book Counter</button>
-                </div>
-
-                <!-- View 1: Interactive Bowl Customizer -->
-                <div class="stage-view-screen active" id="screen-kumo-builder">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(245, 158, 11, 0.18); color: #F59E0B;">🍜</div>
-                    <div>
-                      <div class="screen-sub-tag">ARTISAN RAMEN LAB</div>
-                      <h4 class="screen-title-text">Craft Your Custom Ramen Bowl</h4>
-                    </div>
-                  </div>
-
-                  <div class="kumo-customizer-box">
-                    <!-- Broth Selector -->
-                    <div class="kumo-option-group">
-                      <div class="kumo-option-title">Select Broth Base:</div>
-                      <div class="kumo-pills-row" id="kumo-broth-row">
-                        <button class="kumo-pill active tactile-btn" data-broth="tonkotsu" data-price="16.50">Tonkotsu ($16.50)</button>
-                        <button class="kumo-pill tactile-btn" data-broth="black-garlic" data-price="17.50">Black Garlic ($17.50)</button>
-                        <button class="kumo-pill tactile-btn" data-broth="spicy-miso" data-price="17.00">Spicy Miso ($17.00)</button>
-                      </div>
-                    </div>
-
-                    <!-- Noodle Firmness -->
-                    <div class="kumo-option-group">
-                      <div class="kumo-option-title">Noodle Firmness:</div>
-                      <div class="kumo-pills-row" id="kumo-noodle-row">
-                        <button class="kumo-pill tactile-btn" data-firmness="soft">Soft (Yawa)</button>
-                        <button class="kumo-pill active tactile-btn" data-firmness="medium">Standard</button>
-                        <button class="kumo-pill tactile-btn" data-firmness="firm">Firm (Katame)</button>
-                      </div>
-                    </div>
-
-                    <!-- Extra Toppings -->
-                    <div class="kumo-option-group">
-                      <div class="kumo-option-title">Signature Toppings:</div>
-                      <div class="kumo-pills-row" id="kumo-toppings-row">
-                        <button class="kumo-toggle-pill active tactile-btn" data-top="chashu" data-add="3.00">🥩 Chashu (+$3)</button>
-                        <button class="kumo-toggle-pill active tactile-btn" data-top="egg" data-add="2.00">🥚 Ajitama (+$2)</button>
-                        <button class="kumo-toggle-pill tactile-btn" data-top="nori" data-add="1.00">🍃 Nori (+$1)</button>
-                      </div>
-                    </div>
-
-                    <div class="kumo-order-footer">
-                      <div class="kumo-price-block">
-                        <span class="kumo-price-label">Bowl Total:</span>
-                        <strong class="kumo-total-price" id="kumo-total-price">$21.50</strong>
-                      </div>
-                      <button class="btn-kumo-order tactile-btn" id="btn-kumo-order">
-                        <span>Place Artisan Order 🍜</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 2: Broth Lab -->
-                <div class="stage-view-screen" id="screen-kumo-broth">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(239, 68, 68, 0.18); color: #EF4444;">🔥</div>
-                    <div>
-                      <div class="screen-sub-tag">18-HOUR SIMMER TELEMETRY</div>
-                      <h4 class="screen-title-text">Rich Collagen Extraction</h4>
-                    </div>
-                  </div>
-                  <div class="kumo-broth-stats">
-                    <div class="broth-stat-card">
-                      <span class="broth-stat-val">18h</span>
-                      <span class="broth-stat-lbl">Simmer Time</span>
-                    </div>
-                    <div class="broth-stat-card">
-                      <span class="broth-stat-val">99.8%</span>
-                      <span class="broth-stat-lbl">Umami Density</span>
-                    </div>
-                    <div class="broth-stat-card">
-                      <span class="broth-stat-val">Kagoshima</span>
-                      <span class="broth-stat-lbl">Kurobuta Origin</span>
-                    </div>
-                  </div>
-                  <div class="broth-desc-box">
-                    Simmered gently in cast iron vessels using spring water, grilled pork marrow bones, and kombu from Hokkaido.
-                  </div>
-                </div>
-
-                <!-- View 3: Counter Reservation -->
-                <div class="stage-view-screen" id="screen-kumo-reserve">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(16, 185, 129, 0.18); color: #10B981;">🥢</div>
-                    <div>
-                      <div class="screen-sub-tag">CHEF'S OMAKASE COUNTER</div>
-                      <h4 class="screen-title-text">Reserve Your Seat</h4>
-                    </div>
-                  </div>
-                  <div class="kumo-seats-grid">
-                    <span class="seat-badge taken">Seat 01 (Booked)</span>
-                    <span class="seat-badge taken">Seat 02 (Booked)</span>
-                    <span class="seat-badge free">Seat 03 (Available)</span>
-                    <span class="seat-badge free">Seat 04 (Available)</span>
-                  </div>
-                  <div class="kumo-reserve-btn-wrap">
-                    <button class="btn-kumo-reserve-confirm tactile-btn">Select Seat 03 (Tonight 7:30 PM)</button>
-                  </div>
-                </div>
-
-                <div class="stage-hover-hint">
-                  <span>✦ Interactive Broth Customizer & Real-time Bill</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ===================================================================
-             CARD 04: PASTELFORM
-             =================================================================== -->
-        <article class="project-stack-card card-pastelform reveal" id="project-card-4" data-category="creative-ui" style="--stack-idx: 3;">
-          <!-- Visible Stacking Tab Bar When Stacking -->
-          <div class="project-stack-tab-header" data-card-target="project-card-4" title="Click to bring PastelForm to top of stack">
-            <div class="tab-header-left">
-              <span class="tab-badge-idx">04</span>
-              <span class="tab-badge-title">PastelForm</span>
-              <span class="tab-badge-tag tag-pastel">Aesthetic Form Engine</span>
-            </div>
-            <div class="tab-header-right">
-              <span class="tab-status-cue">✦ Click to Expand &amp; Focus</span>
-              <span class="tab-indicator-dot"></span>
-            </div>
-          </div>
-          <div class="project-card-inner">
-            <!-- Left: Metadata, Description & Action Buttons -->
-            <div class="project-card-info">
-              <div class="project-card-badges">
-                <span class="project-num-badge">PROJECT 04 / 04</span>
-                <span class="project-cat-badge badge-pastelform">✦ AESTHETIC FORM ENGINE & UI</span>
-              </div>
-
-              <h3 class="project-card-title">PastelForm</h3>
-              <p class="project-card-tagline">Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes</p>
-
-              <p class="project-card-desc">
-                A fluid, human-centered form and questionnaire experience crafted with soothing pastel palettes, micro-interactions, real-time validation, dynamic branch logic, and instant feedback loops that make data collection an absolute joy.
-              </p>
-
-              <div class="project-tech-chips">
-                <span class="tech-chip">React</span>
-                <span class="tech-chip">Tailwind CSS</span>
-                <span class="tech-chip">Framer Motion</span>
-                <span class="tech-chip">Accessible Forms</span>
-                <span class="tech-chip">State Engine</span>
-                <span class="tech-chip">LocalStorage</span>
-              </div>
-
-              <div class="project-actions-row">
-                <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="btn-panel-primary magnetic-btn tactile-btn" id="btn-pastelform-live">
-                  <span>Explore PastelForm</span>
-                  <span class="arrow">↗</span>
-                </a>
-                <button type="button" class="btn-panel-fullpage magnetic-btn tactile-btn" data-project="pastelform" id="btn-pastelform-fullpage" title="Open PastelForm in full page immersive view">
-                  <span>Full Page View</span>
-                  <span class="expand-icon">⛶</span>
-                </button>
-                <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="btn-panel-secondary magnetic-btn tactile-btn" id="btn-pastelform-gh">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  <span>GitHub Repository</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Interactive Product Showcase Stage -->
-            <div class="project-card-preview" id="preview-stage-pastelform">
-              <div class="interactive-stage-card card-theme-pastel" id="pastelform-tilt-card">
-                <!-- Window Chrome -->
-                <div class="stage-window-bar">
-                  <div class="window-buttons">
-                    <span class="win-btn win-red"></span>
-                    <span class="win-btn win-yellow"></span>
-                    <span class="win-btn win-green"></span>
-                  </div>
-                  <div class="window-address-pill">pastelform.design/survey</div>
-                  <div class="window-actions-group">
-                    <button type="button" class="stage-fullscreen-toggle tactile-btn" data-project="pastelform" title="Expand PastelForm to Full Page">
-                      <span>Full Page</span>
-                      <span class="fs-icon">⛶</span>
-                    </button>
-                    <div class="window-status-pill" style="background: rgba(236, 72, 153, 0.15); color: #DB2777; border-color: rgba(236, 72, 153, 0.3);">
-                      <span>🌸 THEME: SAKURA & MATCHA</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Tab Switcher -->
-                <div class="stage-view-tabs" id="pastelform-tabs">
-                  <button class="stage-tab-btn active" data-tab="stepflow">Step Flow</button>
-                  <button class="stage-tab-btn" data-tab="themes">Pastel Themes</button>
-                  <button class="stage-tab-btn" data-tab="schema">Live Schema</button>
-                </div>
-
-                <!-- View 1: Multi-Step Interactive Form Simulator -->
-                <div class="stage-view-screen active" id="screen-pastel-stepflow">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(236, 72, 153, 0.15); color: #DB2777;">✨</div>
-                    <div>
-                      <div class="screen-sub-tag">HUMAN-CENTERED FORM ENGINE</div>
-                      <h4 class="screen-title-text" id="pastel-step-heading">Step 2 of 3 • Aesthetic Preference</h4>
-                    </div>
-                  </div>
-
-                  <div class="pastel-flow-wrapper">
-                    <!-- Progress Rail -->
-                    <div class="pastel-progress-bar-wrap">
-                      <div class="pastel-progress-fill" id="pastel-progress-fill" style="width: 66%;"></div>
-                    </div>
-
-                    <div class="pastel-step-body">
-                      <div class="pastel-question-text" id="pastel-q-text">
-                        How would you describe your dream web interface?
-                      </div>
-
-                      <div class="pastel-choices-grid" id="pastel-choices-grid">
-                        <button class="pastel-choice-btn active tactile-btn" data-val="Luminous & Clean">
-                          <span>✨ Luminous & Clean</span>
-                        </button>
-                        <button class="pastel-choice-btn tactile-btn" data-val="Tactile & Playful">
-                          <span>🍮 Tactile & Playful</span>
-                        </button>
-                        <button class="pastel-choice-btn tactile-btn" data-val="Ultra-Minimal">
-                          <span>🌿 Ultra-Minimal</span>
-                        </button>
-                        <button class="pastel-choice-btn tactile-btn" data-val="Editorial Bold">
-                          <span>⚡ Editorial Bold</span>
-                        </button>
-                      </div>
-
-                      <div class="pastel-selected-feedback" id="pastel-feedback-text">
-                        <span>Selected: <strong>Luminous & Clean</strong></span>
-                      </div>
-
-                      <div class="pastel-nav-actions">
-                        <button class="btn-pastel-back tactile-btn" id="btn-pastel-prev">← Previous</button>
-                        <button class="btn-pastel-next tactile-btn" id="btn-pastel-next">Complete Step →</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 2: Pastel Theme Switcher -->
-                <div class="stage-view-screen" id="screen-pastel-themes">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">🎨</div>
-                    <div>
-                      <div class="screen-sub-tag">COLOR SCIENCE</div>
-                      <h4 class="screen-title-text">Select Calibrated Pastel Palette</h4>
-                    </div>
-                  </div>
-                  <div class="pastel-swatch-list">
-                    <div class="swatch-item active" data-swatch="sakura">
-                      <div class="swatch-circles">
-                        <span style="background: #FCE7F3;"></span>
-                        <span style="background: #F472B6;"></span>
-                        <span style="background: #831843;"></span>
-                      </div>
-                      <span class="swatch-name">Sakura Blossom</span>
-                    </div>
-                    <div class="swatch-item" data-swatch="matcha">
-                      <div class="swatch-circles">
-                        <span style="background: #DCFCE7;"></span>
-                        <span style="background: #4ADE80;"></span>
-                        <span style="background: #14532D;"></span>
-                      </div>
-                      <span class="swatch-name">Matcha Meadow</span>
-                    </div>
-                    <div class="swatch-item" data-swatch="lavender">
-                      <div class="swatch-circles">
-                        <span style="background: #EDE9FE;"></span>
-                        <span style="background: #A78BFA;"></span>
-                        <span style="background: #4C1D95;"></span>
-                      </div>
-                      <span class="swatch-name">Lavender Mist</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- View 3: Live JSON Schema -->
-                <div class="stage-view-screen" id="screen-pastel-schema">
-                  <div class="screen-brand-bar">
-                    <div class="screen-avatar-box" style="background: rgba(99, 102, 241, 0.15); color: #6366F1;">📦</div>
-                    <div>
-                      <div class="screen-sub-tag">CLEAN DATA CONTRACT</div>
-                      <h4 class="screen-title-text">Real-time Form State Export</h4>
-                    </div>
-                  </div>
-                  <div class="pastel-json-code">
-                    <span class="code-comment">// Verified payload:</span><br>
-                    {<br>
-                    &nbsp;&nbsp;<span class="code-keyword">"aesthetic"</span>: <span class="code-str" id="pastel-json-val">"Luminous & Clean"</span>,<br>
-                    &nbsp;&nbsp;<span class="code-keyword">"completion"</span>: <span class="code-str">"66%"</span>,<br>
-                    &nbsp;&nbsp;<span class="code-keyword">"validated"</span>: <span class="code-var">true</span><br>
-                    }
-                  </div>
-                </div>
-
-                <div class="stage-hover-hint">
-                  <span>✦ Multi-Step Interactive Progress & Soft Palettes</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
+        </div>
 
       </div>
 
-      <!-- Bottom Exhibition Outro Banner -->
-      <div class="projects-outro-wrap reveal">
-        <div class="text-center">
-          <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="btn-hero-outline magnetic-btn" id="view-all-gh-btn" style="padding: 0.95rem 2.4rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>Explore All 10+ Repositories on GitHub</span>
-            <span class="arrow">↗</span>
-          </a>
-        </div>
+      <!-- Bottom View All Repositories Link -->
+      <div class="universe-bottom-cta">
+        <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="universe-gh-btn tactile-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>Explore All 10+ Repositories on GitHub</span>
+          <span class="arrow">↗</span>
+        </a>
       </div>
+
     </div>
   </section>
 
   <!-- =======================================================================
-       SKILLS & CAPABILITIES — PERCENTAGE-BASED COMPILATION ENGINE & LOADING FORM
+       SKILLS & TECHNOLOGIES — 2026 COLORFUL CLAYMORPHISM EXPERIENCE
+       Organized into 3 Dimensional Tactile Islands:
+       01 AI PROMPT ENGINEERING • 02 FRONTEND DEVELOPMENT • 03 CURRENTLY EXPLORING
        ======================================================================= -->
-  <section id="skills" class="skills-compiler-section">
-    <div class="container">
-      <div class="section-header-center reveal">
-        <div class="section-label-wrap">
-          <span class="sparkle-icon">✦</span>
-          <span>COMPILER BENCHMARKS &amp; PROFICIENCY INDICES</span>
-        </div>
-        <h2 class="section-title">The Skill Loading Engine</h2>
-        <p class="section-subtitle">
-          Real-time competency metrics compiled from 30+ production repositories, Google AI certifications, and modern frontend architectures.
-        </p>
+  <section id="skills" class="skills-claymorphism-universe" aria-label="Skills and Creative Technologies">
+    <!-- Anchor for #exploring navigation compatibility -->
+    <div id="exploring" style="position: absolute; top: -70px; left: 0; pointer-events: none;" aria-hidden="true"></div>
 
-        <!-- Compiler Control Bar: Category Filters + Live Re-Compile Button -->
-        <div class="skills-compiler-controls reveal">
-          <div class="compiler-filter-pills" id="skills-filter-pills">
-            <button type="button" class="compiler-filter-pill active tactile-btn" data-skill-filter="all">
-              <span>✦ All Skills (12)</span>
-            </button>
-            <button type="button" class="compiler-filter-pill tactile-btn" data-skill-filter="frontend">
-              <span>💻 Frontend Core</span>
-            </button>
-            <button type="button" class="compiler-filter-pill tactile-btn" data-skill-filter="ai">
-              <span>🤖 AI &amp; Prompting</span>
-            </button>
-            <button type="button" class="compiler-filter-pill tactile-btn" data-skill-filter="design">
-              <span>📐 UI &amp; Systems</span>
-            </button>
-          </div>
-
-          <div class="compiler-action-wrap">
-            <button type="button" class="btn-compiler-recompile tactile-btn" id="btn-recompile-skills" title="Run diagnostic compile test and animate progress bars">
-              <span class="recompile-icon">⚡</span>
-              <span class="recompile-label">Re-Compile Diagnostics</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Skills Percentage Loading Matrix Grid -->
-      <div class="skills-loading-grid reveal" id="skills-loading-container">
-        
-        <!-- Skill 01 -->
-        <div class="skill-load-card theme-coral" data-category="frontend" data-percent="98">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">HTML5 Semantic Architecture</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-html5">98%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-coral" style="width: 98%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [DOM PARSED • WCAG 2.1 AA]</span>
-            <span class="skill-detail-hint">Accessible Landmarks</span>
-          </div>
-          <p class="skill-desc-text">Engineering zero-layout-shift semantic trees, screen-reader friendly heading hierarchies, and rigorous SEO meta structures.</p>
-        </div>
-
-        <!-- Skill 02 -->
-        <div class="skill-load-card theme-teal" data-category="frontend" data-percent="96">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">CSS3 &amp; Fluid Design Tokens</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-css3">96%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-teal" style="width: 96%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [TOKENS SYNTHESIZED]</span>
-            <span class="skill-detail-hint">Modern CSS Grid</span>
-          </div>
-          <p class="skill-desc-text">Custom properties, mathematical typography scales using clamp(), CSS Grid layouts, and responsive flex architectures.</p>
-        </div>
-
-        <!-- Skill 03 -->
-        <div class="skill-load-card theme-amber" data-category="frontend" data-percent="94">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">Modern JavaScript (ES6+)</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-js">94%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-amber" style="width: 94%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [EVENT LOOP ACTIVE]</span>
-            <span class="skill-detail-hint">Async/Await &amp; APIs</span>
-          </div>
-          <p class="skill-desc-text">Modular architecture, DOM event delegation, Web Audio API synthesis, MutationObservers, and clean async data fetching.</p>
-        </div>
-
-        <!-- Skill 04 -->
-        <div class="skill-load-card theme-cyan" data-category="frontend" data-percent="92">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">React.js &amp; Reactive State</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-react">92%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-cyan" style="width: 92%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [VDOM MOUNTED]</span>
-            <span class="skill-detail-hint">Custom Hooks</span>
-          </div>
-          <p class="skill-desc-text">Atomic component modularity, custom state hooks, controlled inputs, synthetic event handlers, and optimized render cycles.</p>
-        </div>
-
-        <!-- Skill 05 -->
-        <div class="skill-load-card theme-purple" data-category="ai" data-percent="97">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">AI Core</span>
-              <h4 class="skill-name">Prompt Architecture &amp; CoT</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-prompt">97%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-purple" style="width: 97%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [REASONING LOOP TUNED]</span>
-            <span class="skill-detail-hint">Few-Shot &amp; JSON Schemas</span>
-          </div>
-          <p class="skill-desc-text">Structured Chain-of-Thought reasoning, few-shot conditioning, strict JSON schema output constraints, and multi-turn role steering.</p>
-        </div>
-
-        <!-- Skill 06 -->
-        <div class="skill-load-card theme-blue" data-category="ai" data-percent="95">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">AI Core</span>
-              <h4 class="skill-name">Google AI &amp; Frontier Models</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-googleai">95%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-blue" style="width: 95%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [3 GOOGLE CERTS ISSUED]</span>
-            <span class="skill-detail-hint">Gemini &amp; Claude 3.7</span>
-          </div>
-          <p class="skill-desc-text">Multimodal reasoning, safety guardrails, prompt evaluation metrics, and integrating LLM APIs into production applications.</p>
-        </div>
-
-        <!-- Skill 07 -->
-        <div class="skill-load-card theme-sky" data-category="frontend" data-percent="96">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">Tailwind CSS Utility Engine</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-tailwind">96%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-sky" style="width: 96%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [JIT COMPILED]</span>
-            <span class="skill-detail-hint">Rapid Prototyping</span>
-          </div>
-          <p class="skill-desc-text">High-velocity UI implementation with responsive variants, custom token configuration, arbitrary value hooks, and clean aesthetics.</p>
-        </div>
-
-        <!-- Skill 08 -->
-        <div class="skill-load-card theme-pink" data-category="ai" data-percent="96">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">AI Core</span>
-              <h4 class="skill-name">AI-Assisted Fast Prototyping</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-fastproto">96%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-pink" style="width: 96%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [5X VELOCITY SHIPPED]</span>
-            <span class="skill-detail-hint">Bolt AI &amp; Generative UI</span>
-          </div>
-          <p class="skill-desc-text">Turning raw specs into deployable full-page prototypes with high fidelity, comprehensive interactive states, and polished styling.</p>
-        </div>
-
-        <!-- Skill 09 -->
-        <div class="skill-load-card theme-lime" data-category="design" data-percent="91">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Design</span>
-              <h4 class="skill-name">GSAP &amp; Micro-Motion Physics</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-motion">91%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-lime" style="width: 91%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [60FPS HARDWARE-ACCEL]</span>
-            <span class="skill-detail-hint">Elastic Easing &amp; Physics</span>
-          </div>
-          <p class="skill-desc-text">Interactive magnetic buttons, dynamic tilt cards, scroll-triggered reveal timelines, and micro-haptic visual feedback.</p>
-        </div>
-
-        <!-- Skill 10 -->
-        <div class="skill-load-card theme-emerald" data-category="design" data-percent="99">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Design</span>
-              <h4 class="skill-name">WCAG AA Contrast &amp; A11y</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-a11y">99%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-emerald" style="width: 99%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [4.5:1+ CONTRAST PASS]</span>
-            <span class="skill-detail-hint">Screen Reader Semantics</span>
-          </div>
-          <p class="skill-desc-text">Strict color contrast checks, visible focus indicators, accessible ARIA roles, skip navigation links, and full keyboard navigability.</p>
-        </div>
-
-        <!-- Skill 11 -->
-        <div class="skill-load-card theme-indigo" data-category="design" data-percent="98">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Design</span>
-              <h4 class="skill-name">Responsive Multi-Device Layouts</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-responsive">98%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-indigo" style="width: 98%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [320PX TO 4K CALIBRATED]</span>
-            <span class="skill-detail-hint">Touch Targets &gt;= 44px</span>
-          </div>
-          <p class="skill-desc-text">Fluid viewports with no horizontal scroll, adaptive grid column reflow, ergonomic mobile navigation drawers, and desktop bento layouts.</p>
-        </div>
-
-        <!-- Skill 12 -->
-        <div class="skill-load-card theme-forest" data-category="frontend" data-percent="95">
-          <div class="skill-card-top">
-            <div class="skill-ident">
-              <span class="skill-cat-pill">Frontend</span>
-              <h4 class="skill-name">Git &amp; Version Control Discipline</h4>
-            </div>
-            <div class="skill-metric-badge">
-              <span class="skill-percent-number" id="percent-git">95%</span>
-            </div>
-          </div>
-          <div class="skill-loading-bar-wrap">
-            <div class="skill-loading-fill fill-forest" style="width: 95%;">
-              <span class="loading-glow-head"></span>
-            </div>
-          </div>
-          <div class="skill-card-foot">
-            <span class="skill-status-tag"><span class="status-dot"></span> [30+ REPOSITORIES LIVE]</span>
-            <span class="skill-detail-hint">Atomic Commits &amp; Releases</span>
-          </div>
-          <p class="skill-desc-text">Semantic branch workflows, descriptive atomic commits, comprehensive README documentation, and open-source shipping on GitHub.</p>
-        </div>
-
-      </div>
-
-      <!-- Clean Skills Summary Note -->
-      <div class="skills-clean-footer-note reveal">
-        <span class="skills-footer-sparkle">✦</span>
-        <span>Every skill is applied with semantic precision, modular discipline, and real-world attention to detail.</span>
-      </div>
+    <!-- Ambient 3D Clay Background Elements (Soft Floating Spheres & Rings) -->
+    <div class="skills-clay-decor-canvas" aria-hidden="true">
+      <div class="clay-ambient-orb orb-coral"></div>
+      <div class="clay-ambient-orb orb-cyan"></div>
+      <div class="clay-ambient-orb orb-lavender"></div>
+      <div class="clay-floating-geom geom-torus-gold">✦</div>
+      <div class="clay-floating-geom geom-star-coral">★</div>
+      <div class="clay-floating-geom geom-ring-teal"></div>
+      <div class="clay-floating-geom geom-sphere-mint"></div>
     </div>
-  </section>
 
-  <!-- =======================================================================
-       CURRENTLY LEARNING SECTION (Clean, Creative, Truthful 2-Card Symmetrical Grid)
-       ======================================================================= -->
-  <section id="exploring" class="currently-learning-section">
-    <div class="container learning-container">
+    <div class="container skills-clay-container">
       
-      <!-- Section Header -->
-      <div class="section-header-center reveal">
+      <!-- Section Header: Clean, High-Contrast & Compact -->
+      <div class="skills-clay-header reveal">
         <div class="section-label-wrap">
           <span class="sparkle-icon">✦</span>
-          <span>HORIZONS &amp; ACTIVE FOCUS</span>
+          <span>EXPERTISE &amp; STACK</span>
         </div>
-        <h2 class="section-title">Currently Learning</h2>
+        <h2 class="section-title">Things I Know</h2>
         <p class="section-subtitle">
-          Expanding my skills beyond front-end development.
+          Frontend development, AI &amp; prompt engineering, and modern web architectures crafted for real-world impact.
         </p>
+
+        <!-- Central Tactile Clay Pill Badge -->
+        <div class="skills-central-clay-core" aria-label="Skills Overview">
+          <span class="core-sparkle">✦</span>
+          <span class="core-title">FRONTEND &amp; AI STACK • PROMPT ENGINEERING</span>
+          <span class="core-pill-badge">3 DOMAINS</span>
+        </div>
       </div>
 
-      <!-- Symmetrical 2-Card Creative Grid (Equal Width, Equal Height) -->
-      <div class="learning-cards-grid reveal">
+      <!-- 3 Dimensional Clay Islands Grid -->
+      <div class="clay-islands-showcase reveal" id="clay-skills-showcase">
         
-        <!-- CARD 01: BACK-END DEVELOPMENT -->
-        <div class="learning-compact-card card-backend">
-          <!-- Subtle 3D Ambient Backdrop Glow -->
-          <div class="card-ambient-mesh mesh-coral" aria-hidden="true"></div>
-
-          <!-- Top Meta Row: Category Label + Subtle Learning Indicator -->
-          <div class="learning-card-top-row">
-            <span class="learning-category-tag">SERVER-SIDE ARCHITECTURE</span>
-            <span class="learning-status-indicator indicator-active">
-              <span class="status-pulse-dot dot-amber"></span>
-              <span>Currently learning</span>
-            </span>
-          </div>
-
-          <!-- 3D-Inspired Minimal Geometric Visual -->
-          <div class="learning-card-visual-wrapper">
-            <div class="minimal-3d-scene scene-backend">
-              <div class="isometric-3d-block block-top">
-                <span class="iso-glyph">⚡</span>
+        <!-- ==========================================================
+             ISLAND 01: AI PROMPT ENGINEERING (Warm Peach / Coral Clay)
+             ========================================================== -->
+        <div class="clay-skill-card clay-island-ai" data-category="ai">
+          <div class="clay-island-inner">
+            <!-- Island Header -->
+            <div class="clay-island-header">
+              <div class="clay-badge-row">
+                <span class="clay-number-badge badge-coral">01</span>
+                <span class="clay-status-pill pill-coral">
+                  <span class="clay-beacon beacon-coral"></span>
+                  <span>Established Skill</span>
+                </span>
               </div>
-              <div class="isometric-3d-block block-middle"></div>
-              <div class="isometric-3d-block block-base"></div>
-              <div class="isometric-shadow-disc"></div>
+              <h3 class="clay-island-title">AI PROMPT ENGINEERING</h3>
+              <p class="clay-island-tagline">Prompt architecture &amp; intelligent workflow acceleration.</p>
             </div>
-          </div>
 
-          <!-- Card Content -->
-          <div class="learning-card-content">
-            <h3 class="learning-card-title">BACK-END DEVELOPMENT</h3>
-            <p class="learning-card-description">
-              Currently learning back-end concepts, APIs, databases, server-side development, and how modern web applications work beyond the front end.
-            </p>
-          </div>
+            <!-- Clay Skill Chips Cluster -->
+            <div class="clay-chips-cluster">
+              
+              <div class="clay-tech-chip chip-coral" data-skill="prompt-eng" title="Prompt Engineering">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">✦</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Prompt Engineering</span>
+                    <span class="chip-sub">Context &amp; Few-Shot</span>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Subtle Knowledge Focus Pills -->
-          <div class="learning-focus-chips">
-            <span class="focus-chip">REST APIs</span>
-            <span class="focus-chip">Databases &amp; SQL</span>
-            <span class="focus-chip">Server-Side Logic</span>
+              <div class="clay-tech-chip chip-peach" data-skill="prompt-design" title="Prompt Design">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">◈</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Prompt Design</span>
+                    <span class="chip-sub">Persona &amp; Framing</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-coral" data-skill="ai-workflows" title="AI Workflows">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⚡</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">AI Workflows</span>
+                    <span class="chip-sub">Chained Reasoning</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-peach" data-skill="ai-dev" title="AI-Assisted Development">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">💻</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">AI-Assisted Development</span>
+                    <span class="chip-sub">Iterative Coding</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-coral" data-skill="ai-tools" title="AI Tools">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⚙</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">AI Tools</span>
+                    <span class="chip-sub">LLM Studio &amp; APIs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-peach" data-skill="automation" title="Workflow Automation">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⟳</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Workflow Automation</span>
+                    <span class="chip-sub">Productivity Loops</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
 
-        <!-- CARD 02: AI & AUTOMATION -->
-        <div class="learning-compact-card card-ai">
-          <!-- Subtle 3D Ambient Backdrop Glow -->
-          <div class="card-ambient-mesh mesh-teal" aria-hidden="true"></div>
-
-          <!-- Top Meta Row: Category Label + Subtle Exploring Indicator -->
-          <div class="learning-card-top-row">
-            <span class="learning-category-tag">INTELLIGENT WORKFLOWS</span>
-            <span class="learning-status-indicator indicator-exploring">
-              <span class="status-pulse-dot dot-teal"></span>
-              <span>Exploring</span>
-            </span>
-          </div>
-
-          <!-- 3D-Inspired Minimal Geometric Visual -->
-          <div class="learning-card-visual-wrapper">
-            <div class="minimal-3d-scene scene-ai">
-              <div class="orbital-3d-core">
-                <span class="orbital-spark-glyph">✦</span>
+        <!-- ==========================================================
+             ISLAND 02: FRONTEND DEVELOPMENT (Vibrant Cyan / Mint Clay)
+             ========================================================== -->
+        <div class="clay-skill-card clay-island-fe" data-category="frontend">
+          <div class="clay-island-inner">
+            <!-- Island Header -->
+            <div class="clay-island-header">
+              <div class="clay-badge-row">
+                <span class="clay-number-badge badge-cyan">02</span>
+                <span class="clay-status-pill pill-cyan">
+                  <span class="clay-beacon beacon-cyan"></span>
+                  <span>Core Foundation</span>
+                </span>
               </div>
-              <div class="orbital-3d-ring ring-primary"></div>
-              <div class="orbital-3d-ring ring-secondary"></div>
-              <div class="isometric-shadow-disc"></div>
+              <h3 class="clay-island-title">FRONTEND DEVELOPMENT</h3>
+              <p class="clay-island-tagline">Responsive, animated &amp; accessible web interfaces.</p>
+            </div>
+
+            <!-- Clay Skill Chips Cluster -->
+            <div class="clay-chips-cluster cluster-fe">
+              
+              <div class="clay-tech-chip chip-cyan" data-skill="html5" title="HTML5 Semantic Markup">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 5.5l1.6 13.5L12 22l8.4-3L22 5.5 12 2zm6.2 5.5l-.3 3.5H9.5l.2 2h7.8l-.6 6-4.9 1.4-4.9-1.4-.3-3.5h2.5l.1 1.5 2.6.7 2.6-.7.3-3H7.2l-.6-6.5h11.6z"/>
+                    </svg>
+                  </span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">HTML5</span>
+                    <span class="chip-sub">Semantic &amp; A11y</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-teal" data-skill="css3" title="CSS3 Modern Layouts">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 5.5l1.6 13.5L12 22l8.4-3L22 5.5 12 2zm6.2 5.5l-.8 8.5-5.4 1.5-5.4-1.5-.4-4h2.5l.2 2 3.1.8 3.1-.8.4-4.5H7.2l-.3-3.5h11.3z"/>
+                    </svg>
+                  </span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">CSS3</span>
+                    <span class="chip-sub">Grid &amp; Flexbox</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-amber" data-skill="javascript" title="JavaScript ES6+">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph chip-badge-text">JS</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">JavaScript</span>
+                    <span class="chip-sub">ES6+ &amp; DOM Logic</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-purple" data-skill="bootstrap" title="Bootstrap Framework">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph chip-badge-text">B</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Bootstrap</span>
+                    <span class="chip-sub">Responsive Utility</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-cyan" data-skill="responsive" title="Responsive Web Design">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">📱</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Responsive Design</span>
+                    <span class="chip-sub">Fluid Mobile-First</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-mint" data-skill="ui-dev" title="UI Development">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">🎨</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">UI Development</span>
+                    <span class="chip-sub">Modern Interfaces</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-teal" data-skill="git-github" title="Git & GitHub">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>
+                    </svg>
+                  </span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Git &amp; GitHub</span>
+                    <span class="chip-sub">Version Control</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
+        </div>
 
-          <!-- Card Content -->
-          <div class="learning-card-content">
-            <h3 class="learning-card-title">AI &amp; AUTOMATION</h3>
-            <p class="learning-card-description">
-              Exploring AI-powered workflows, automation, prompt-based systems, and practical ways to integrate AI into web experiences.
-            </p>
-          </div>
+        <!-- ==========================================================
+             ISLAND 03: CURRENTLY EXPLORING (Lavender / Violet Clay)
+             ========================================================== -->
+        <div class="clay-skill-card clay-island-explore" data-category="explore">
+          <div class="clay-island-inner">
+            <!-- Island Header -->
+            <div class="clay-island-header">
+              <div class="clay-badge-row">
+                <span class="clay-number-badge badge-lavender">03</span>
+                <span class="clay-status-pill pill-lavender">
+                  <span class="clay-beacon beacon-lavender"></span>
+                  <span>Currently Learning</span>
+                </span>
+              </div>
+              <h3 class="clay-island-title">CURRENTLY EXPLORING</h3>
+              <p class="clay-island-tagline">Expanding beyond front-end — active study &amp; experiments.</p>
+            </div>
 
-          <!-- Subtle Knowledge Focus Pills -->
-          <div class="learning-focus-chips">
-            <span class="focus-chip">Prompt Engineering</span>
-            <span class="focus-chip">Workflow Automation</span>
-            <span class="focus-chip">AI Integration</span>
+            <!-- Clay Skill Chips Cluster -->
+            <div class="clay-chips-cluster">
+              
+              <div class="clay-tech-chip chip-lavender" data-skill="backend" title="Backend Development (In Progress)">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⬢</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Backend Development</span>
+                    <span class="chip-sub">Server Runtimes</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-violet" data-skill="apis" title="APIs (In Progress)">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⇄</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">APIs</span>
+                    <span class="chip-sub">REST &amp; Web Services</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-lavender" data-skill="databases" title="Databases (In Progress)">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">⛁</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">Databases</span>
+                    <span class="chip-sub">Data Persistence</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clay-tech-chip chip-violet" data-skill="ai-automation" title="AI Automation (In Progress)">
+                <div class="chip-clay-body">
+                  <span class="chip-glyph">🤖</span>
+                  <div class="chip-text-wrap">
+                    <span class="chip-title">AI Automation</span>
+                    <span class="chip-sub">Autonomous Flow</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Honest Learning Disclaimer Pill -->
+            <div class="clay-explore-note-pill">
+              <span class="explore-note-dot"></span>
+              <span>Actively studying &amp; experimenting in public.</span>
+            </div>
           </div>
         </div>
 
@@ -1889,61 +1581,288 @@
         </p>
       </div>
 
-      <div class="certifications-gallery">
-        <!-- Certificate 1: Google AI Professional -->
-        <div class="certificate-card cert-card-clean reveal" id="cert-card-1">
-          <div class="cert-picture-frame" id="cert-slot-1">
-            <span class="cert-badge-floating">
-              <span class="cert-badge-dot"></span>
-              <span>VERIFIED GOOGLE</span>
-            </span>
-            <img src="1--.jpg" 
-                 alt="Google AI Professional Certificate — Arfa Munam" 
-                 class="cert-display-photo" 
-                 id="cert-photo-1"
-                 onerror="this.onerror=null; this.src='1.jpg';">
+      <!-- CREATIVE HORIZONTAL CERTIFICATE EXHIBITION -->
+      <div class="cert-showcase-wrapper reveal">
+        
+        <!-- Top Control Bar & Quick Tab Switcher -->
+        <div class="cert-carousel-toolbar">
+          <div class="cert-category-tabs" role="tablist" aria-label="Certificate Selection">
+            <button class="cert-tab-btn active" id="cert-tab-0" role="tab" aria-selected="true" aria-controls="cert-slide-0" data-index="0">
+              <span class="cert-tab-num">01</span>
+              <span class="cert-tab-name">AI Professional</span>
+            </button>
+            <button class="cert-tab-btn" id="cert-tab-1" role="tab" aria-selected="false" aria-controls="cert-slide-1" data-index="1">
+              <span class="cert-tab-num">02</span>
+              <span class="cert-tab-name">AI Essentials</span>
+            </button>
+            <button class="cert-tab-btn" id="cert-tab-2" role="tab" aria-selected="false" aria-controls="cert-slide-2" data-index="2">
+              <span class="cert-tab-num">03</span>
+              <span class="cert-tab-name">Prompting Essentials</span>
+            </button>
           </div>
-          <div class="cert-card-body-simple">
-            <h3 class="cert-title">Google AI Professional Certificate</h3>
-            <p class="cert-issuer">Google / Grow with Google • 2024</p>
+
+          <!-- Carousel Controls -->
+          <div class="cert-nav-controls">
+            <span class="cert-step-counter" id="cert-step-indicator" aria-live="polite">
+              <span class="cert-step-current" id="cert-curr-num">01</span>
+              <span class="cert-step-slash">/</span>
+              <span class="cert-step-total">03</span>
+            </span>
+            <div class="cert-nav-btn-group">
+              <button class="cert-arrow-btn cert-prev-btn" id="cert-prev-btn" aria-label="Previous Certificate" title="Previous certificate">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <button class="cert-arrow-btn cert-next-btn" id="cert-next-btn" aria-label="Next Certificate" title="Next certificate">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Certificate 2: Google AI Essentials -->
-        <div class="certificate-card cert-card-clean reveal" id="cert-card-2">
-          <div class="cert-picture-frame" id="cert-slot-2">
-            <span class="cert-badge-floating">
-              <span class="cert-badge-dot"></span>
-              <span>VERIFIED GOOGLE</span>
-            </span>
-            <img src="2--.jpg" 
-                 alt="Google AI Essentials Specialization — Arfa Munam" 
-                 class="cert-display-photo" 
-                 id="cert-photo-2"
-                 onerror="this.onerror=null; this.src='2.jpg';">
-          </div>
-          <div class="cert-card-body-simple">
-            <h3 class="cert-title">Google AI Essentials Specialization</h3>
-            <p class="cert-issuer">Google / Coursera • 2024</p>
+        <!-- Horizontal Gallery Slides Container -->
+        <div class="cert-carousel-stage" id="cert-carousel-stage">
+          <div class="cert-track" id="cert-track">
+
+            <!-- SLIDE 01: Google AI Professional Certificate -->
+            <article class="cert-slide-card active-slide" id="cert-slide-0" role="tabpanel" aria-labelledby="cert-tab-0" data-index="0">
+              <div class="cert-slide-grid">
+                <!-- Certificate Image Frame (Zero Black Borders, Clean Frosted Glow) -->
+                <div class="cert-visual-column">
+                  <div class="cert-frame-clean" id="cert-frame-1">
+                    <img src="1--.jpg" 
+                         alt="Google AI Professional Certificate — Arfa Munam" 
+                         class="cert-slide-img" 
+                         id="cert-photo-1"
+                         onerror="this.onerror=null; this.src='1.jpg';">
+                    <button class="cert-inspect-trigger" data-target="1--.jpg" data-alt="Google AI Professional Certificate" aria-label="Enlarge certificate photo">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      <span>Full Resolution</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Credential Dossier Details -->
+                <div class="cert-dossier-column">
+                  <div class="cert-dossier-header">
+                    <div class="cert-status-pill pill-coral">
+                      <span class="cert-dot-coral"></span>
+                      <span>GOOGLE PROFESSIONAL CERTIFICATION</span>
+                    </div>
+                    <span class="cert-year-tag">2024</span>
+                  </div>
+
+                  <h3 class="cert-dossier-title">Google AI Professional Certificate</h3>
+                  <div class="cert-dossier-issuer">
+                    <span class="issuer-name">Google &amp; Grow with Google</span>
+                    <span class="issuer-sep">•</span>
+                    <span class="issuer-level">Advanced Specialization</span>
+                  </div>
+
+                  <p class="cert-dossier-desc">
+                    Comprehensive Google professional credential verifying advanced mastery in generative artificial intelligence architectures, machine learning foundation models, and production-level prompt engineering workflows.
+                  </p>
+
+                  <div class="cert-competencies-wrap">
+                    <span class="competencies-label">Key Competencies:</span>
+                    <div class="competency-chips">
+                      <span class="cert-chip">Generative AI Systems</span>
+                      <span class="cert-chip">Foundation Models</span>
+                      <span class="cert-chip">Vertex AI Studio</span>
+                      <span class="cert-chip">System Architectures</span>
+                      <span class="cert-chip">Responsible AI Governance</span>
+                    </div>
+                  </div>
+
+                  <div class="cert-action-row">
+                    <button class="cert-action-inspect cert-inspect-trigger" data-target="1--.jpg" data-alt="Google AI Professional Certificate">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      <span>Inspect Credential</span>
+                    </button>
+                    <button class="cert-action-next" data-goto="1">
+                      <span>Next: AI Essentials</span>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 02: Google AI Essentials Specialization -->
+            <article class="cert-slide-card" id="cert-slide-1" role="tabpanel" aria-labelledby="cert-tab-1" data-index="1">
+              <div class="cert-slide-grid">
+                <!-- Certificate Image Frame (Zero Black Borders, Clean Frosted Glow) -->
+                <div class="cert-visual-column">
+                  <div class="cert-frame-clean" id="cert-frame-2">
+                    <img src="2--.jpg" 
+                         alt="Google AI Essentials Specialization — Arfa Munam" 
+                         class="cert-slide-img" 
+                         id="cert-photo-2"
+                         onerror="this.onerror=null; this.src='2.jpg';">
+                    <button class="cert-inspect-trigger" data-target="2--.jpg" data-alt="Google AI Essentials Specialization" aria-label="Enlarge certificate photo">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      <span>Full Resolution</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Credential Dossier Details -->
+                <div class="cert-dossier-column">
+                  <div class="cert-dossier-header">
+                    <div class="cert-status-pill pill-cyan">
+                      <span class="cert-dot-cyan"></span>
+                      <span>GOOGLE SPECIALIZATION</span>
+                    </div>
+                    <span class="cert-year-tag">2024</span>
+                  </div>
+
+                  <h3 class="cert-dossier-title">Google AI Essentials Specialization</h3>
+                  <div class="cert-dossier-issuer">
+                    <span class="issuer-name">Google / Coursera</span>
+                    <span class="issuer-sep">•</span>
+                    <span class="issuer-level">Applied AI Foundations</span>
+                  </div>
+
+                  <p class="cert-dossier-desc">
+                    Official credential focusing on cross-disciplinary AI integration, conversational workflows, automating digital routines, and leveraging modern AI toolsets with ethical guidelines and risk mitigation.
+                  </p>
+
+                  <div class="cert-competencies-wrap">
+                    <span class="competencies-label">Key Competencies:</span>
+                    <div class="competency-chips">
+                      <span class="cert-chip">Cross-Functional AI</span>
+                      <span class="cert-chip">Workflow Automation</span>
+                      <span class="cert-chip">Productivity Optimization</span>
+                      <span class="cert-chip">Prompt Techniques</span>
+                      <span class="cert-chip">Ethical AI Integration</span>
+                    </div>
+                  </div>
+
+                  <div class="cert-action-row">
+                    <button class="cert-action-inspect cert-inspect-trigger" data-target="2--.jpg" data-alt="Google AI Essentials Specialization">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      <span>Inspect Credential</span>
+                    </button>
+                    <button class="cert-action-next" data-goto="2">
+                      <span>Next: Prompting Essentials</span>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- SLIDE 03: Google Prompting Essentials Specialization -->
+            <article class="cert-slide-card" id="cert-slide-2" role="tabpanel" aria-labelledby="cert-tab-2" data-index="2">
+              <div class="cert-slide-grid">
+                <!-- Certificate Image Frame (Zero Black Borders, Clean Frosted Glow) -->
+                <div class="cert-visual-column">
+                  <div class="cert-frame-clean" id="cert-frame-3">
+                    <img src="3--.jpg" 
+                         alt="Google Prompting Essentials Specialization — Arfa Munam" 
+                         class="cert-slide-img" 
+                         id="cert-photo-3"
+                         onerror="this.onerror=null; this.src='3.jpg';">
+                    <button class="cert-inspect-trigger" data-target="3--.jpg" data-alt="Google Prompting Essentials Specialization" aria-label="Enlarge certificate photo">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      <span>Full Resolution</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Credential Dossier Details -->
+                <div class="cert-dossier-column">
+                  <div class="cert-dossier-header">
+                    <div class="cert-status-pill pill-purple">
+                      <span class="cert-dot-purple"></span>
+                      <span>GOOGLE ADVANCED PROMPTING</span>
+                    </div>
+                    <span class="cert-year-tag">2025</span>
+                  </div>
+
+                  <h3 class="cert-dossier-title">Google Prompting Essentials Specialization</h3>
+                  <div class="cert-dossier-issuer">
+                    <span class="issuer-name">Google / Coursera</span>
+                    <span class="issuer-sep">•</span>
+                    <span class="issuer-level">Expert Prompt Engineering</span>
+                  </div>
+
+                  <p class="cert-dossier-desc">
+                    Specialized training in architecting high-precision prompt pipelines, structured system instructions, multi-turn context retention, few-shot conditioning, and eliminating LLM hallucinations.
+                  </p>
+
+                  <div class="cert-competencies-wrap">
+                    <span class="competencies-label">Key Competencies:</span>
+                    <div class="competency-chips">
+                      <span class="cert-chip">Few-Shot Prompting</span>
+                      <span class="cert-chip">Multi-Turn Chains</span>
+                      <span class="cert-chip">System Context Framing</span>
+                      <span class="cert-chip">Deliberate Reasoning</span>
+                      <span class="cert-chip">Output Parsing &amp; Schemas</span>
+                    </div>
+                  </div>
+
+                  <div class="cert-action-row">
+                    <button class="cert-action-inspect cert-inspect-trigger" data-target="3--.jpg" data-alt="Google Prompting Essentials Specialization">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      <span>Inspect Credential</span>
+                    </button>
+                    <button class="cert-action-next" data-goto="0">
+                      <span>Back to First Credential</span>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
           </div>
         </div>
 
-        <!-- Certificate 3: Google Prompting Essentials -->
-        <div class="certificate-card cert-card-clean reveal" id="cert-card-3">
-          <div class="cert-picture-frame" id="cert-slot-3">
-            <span class="cert-badge-floating">
-              <span class="cert-badge-dot"></span>
-              <span>VERIFIED GOOGLE</span>
-            </span>
-            <img src="3--.jpg" 
-                 alt="Google Prompting Essentials Specialization — Arfa Munam" 
-                 class="cert-display-photo" 
-                 id="cert-photo-3"
-                 onerror="this.onerror=null; this.src='3.jpg';">
-          </div>
-          <div class="cert-card-body-simple">
-            <h3 class="cert-title">Google Prompting Essentials Specialization</h3>
-            <p class="cert-issuer">Google / Coursera • 2025</p>
+        <!-- Bottom Dot & Bar Indicators -->
+        <div class="cert-bottom-indicators" role="tablist" aria-label="Slide dots">
+          <button class="cert-indicator-dot active" data-index="0" aria-label="Go to certificate 1"></button>
+          <button class="cert-indicator-dot" data-index="1" aria-label="Go to certificate 2"></button>
+          <button class="cert-indicator-dot" data-index="2" aria-label="Go to certificate 3"></button>
+        </div>
+
+      </div>
+
+      <!-- Zero-Black-Border Lightbox Modal for High-Res Viewing -->
+      <div class="cert-lightbox-backdrop" id="cert-lightbox" aria-hidden="true" role="dialog" aria-label="Certificate Full Preview">
+        <div class="cert-lightbox-modal">
+          <button class="cert-lightbox-close" id="cert-lightbox-close" aria-label="Close certificate preview">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <div class="cert-lightbox-content">
+            <img src="1--.jpg" alt="Certificate Preview" class="cert-lightbox-img" id="cert-lightbox-img">
+            <div class="cert-lightbox-caption" id="cert-lightbox-caption">Google AI Professional Certificate</div>
           </div>
         </div>
       </div>
@@ -2350,138 +2269,437 @@
   </section>
 
   <!-- =======================================================================
-       CREATIVE ARCHITECTURAL SITE FOOTER
+       FUTURISTIC 3D COLORFUL CREATIVE DEVELOPER FOOTER (2026 Signature Experience)
        ======================================================================= -->
-  <footer class="creative-site-footer">
-    <!-- Running Editorial Ticker Banner -->
-    <div class="footer-running-marquee" aria-hidden="true">
-      <div class="footer-marquee-track">
-        <span>✦ ARFA MUNAM</span>
-        <span>•</span>
-        <span>FRONTEND CRAFTSMANSHIP</span>
-        <span>•</span>
-        <span>ACCESSIBLE DESIGN</span>
-        <span>•</span>
-        <span>GOOGLE CERTIFIED AI &amp; PROMPTING</span>
-        <span>•</span>
-        <span>CLEAN CODE ARCHITECTURE</span>
-        <span>•</span>
-        <span>CONTINUOUS LEARNING</span>
-        <span>•</span>
-        <span>✦ ARFA MUNAM</span>
-        <span>•</span>
-        <span>FRONTEND CRAFTSMANSHIP</span>
-        <span>•</span>
-        <span>ACCESSIBLE DESIGN</span>
-        <span>•</span>
-        <span>GOOGLE CERTIFIED AI &amp; PROMPTING</span>
-        <span>•</span>
-        <span>CLEAN CODE ARCHITECTURE</span>
-        <span>•</span>
-        <span>CONTINUOUS LEARNING</span>
-        <span>•</span>
-      </div>
+  <footer class="creative-site-footer" id="portfolio-footer">
+    
+    <!-- Top Fluid 3D Luminous Wave Ribbon Transition -->
+    <div class="footer-wave-container" aria-hidden="true">
+      <svg class="footer-3d-ribbon-svg" viewBox="0 0 1440 160" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="waveGlowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.9"/>
+            <stop offset="35%" stop-color="#8B5CF6" stop-opacity="0.95"/>
+            <stop offset="70%" stop-color="#EC4899" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#FA5538" stop-opacity="0.9"/>
+          </linearGradient>
+          <linearGradient id="waveGlowGrad2" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#FA5538" stop-opacity="0.55"/>
+            <stop offset="40%" stop-color="#EC4899" stop-opacity="0.65"/>
+            <stop offset="75%" stop-color="#8B5CF6" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.5"/>
+          </linearGradient>
+          <linearGradient id="waveAtmosphereFill" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(253, 248, 243, 0)"/>
+            <stop offset="40%" stop-color="rgba(247, 240, 233, 0.4)"/>
+            <stop offset="100%" stop-color="rgba(244, 236, 227, 0.9)"/>
+          </linearGradient>
+          <filter id="ribbonGlowFilter" x="-10%" y="-20%" width="120%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Background soft atmospheric blend wave -->
+        <path class="wave-layer-back" d="M0,75 C240,120 440,30 720,85 C980,135 1220,40 1440,80 L1440,160 L0,160 Z" fill="url(#waveAtmosphereFill)"/>
+        <path class="wave-ribbon-secondary" d="M0,70 C240,115 440,25 720,80 C980,130 1220,35 1440,75" fill="none" stroke="url(#waveGlowGrad2)" stroke-width="3" opacity="0.65" stroke-dasharray="8 6"/>
+        <!-- Main primary glowing wave ribbon with 3D depth -->
+        <path class="wave-layer-front" d="M0,45 C280,105 520,15 800,65 C1080,115 1280,35 1440,55 L1440,160 L0,160 Z" fill="url(#waveAtmosphereFill)"/>
+        <path class="wave-ribbon-primary" d="M0,45 C280,105 520,15 800,65 C1080,115 1280,35 1440,55" fill="none" stroke="url(#waveGlowGrad1)" stroke-width="4" filter="url(#ribbonGlowFilter)"/>
+      </svg>
     </div>
 
-    <div class="container">
-      <!-- Grand Editorial Masthead -->
-      <div class="footer-masthead-row">
-        <div class="footer-masthead-title">ARFA MUNAM</div>
-        <div class="footer-masthead-tagline">
-          Building responsive, human-centered interfaces with modern web standards and generative AI workflows.
-        </div>
+    <!-- Floating 3D Dimensional Decorative Atmosphere -->
+    <div class="footer-3d-scene" aria-hidden="true">
+      <!-- Glossy purple torus ring (top-left) -->
+      <div class="f3d-item f3d-torus-purple" title="3D Torus">
+        <div class="f3d-torus-inner"></div>
       </div>
+      <!-- Glowing cyan translucent sphere (top-right) -->
+      <div class="f3d-item f3d-sphere-cyan"></div>
+      <!-- Soft pink luminous orb (bottom-left) -->
+      <div class="f3d-item f3d-sphere-pink"></div>
+      <!-- Floating isometric 3D coral cube (bottom-right) -->
+      <div class="f3d-item f3d-cube-coral">
+        <div class="cube-face cube-top"></div>
+        <div class="cube-face cube-left"></div>
+        <div class="cube-face cube-right"></div>
+      </div>
+      <!-- Colorful 3D floating mini crystal/pyramid -->
+      <div class="f3d-item f3d-crystal-mint"></div>
+      <!-- Tiny sparkling celestial nodes -->
+      <span class="f3d-star star-1">✦</span>
+      <span class="f3d-star star-2">★</span>
+      <span class="f3d-star star-3">✦</span>
+      <span class="f3d-star star-4">★</span>
+      <!-- Gentle ambient light beam glows in portfolio palette -->
+      <div class="footer-ambient-glow glow-cyan"></div>
+      <div class="footer-ambient-glow glow-violet"></div>
+      <div class="footer-ambient-glow glow-coral"></div>
+      <div class="footer-ambient-glow glow-mint"></div>
+    </div>
 
-      <!-- 3-Column Creative Layout -->
-      <div class="footer-columns-grid">
-        <!-- Col 1: Identity & Philosophy -->
-        <div class="footer-col footer-col-identity">
-          <div class="footer-brand-lockup">
-            <div class="brand-badge footer-badge">AM</div>
-            <div>
-              <h4 class="footer-name">Arfa Munam</h4>
-              <p class="footer-subtext">Computer Science Student &amp; Developer</p>
+    <div class="footer-outer-wrapper">
+      
+      <!-- Central Large Premium Rounded Glass Container -->
+      <div class="footer-glass-monolith">
+        
+        <!-- Main Top Content Grid (4 Structured Modules) -->
+        <div class="footer-main-grid">
+          
+          <!-- Module 1: Left Brand Area -->
+          <div class="footer-brand-module">
+            <h2 class="footer-hero-brand-name">
+              <span class="brand-line-1">ARFA</span>
+              <span class="brand-line-2">MUNAM</span>
+            </h2>
+
+            <div class="footer-role-triad">
+              <span class="role-pill pill-front">Frontend Developer</span>
+              <span class="role-bullet">•</span>
+              <span class="role-pill pill-prompt">Prompt Engineer</span>
+              <span class="role-bullet">•</span>
+              <span class="role-pill pill-ai">AI Enthusiast</span>
+            </div>
+
+            <p class="footer-personal-statement">
+              Building bold interfaces.<br>
+              Crafting intelligent experiences.<br>
+              Exploring the future of AI and web.
+            </p>
+
+            <div class="brand-luminous-line"></div>
+          </div>
+
+          <!-- Module 2: Navigation Column with Individual Colored Glowing Icons -->
+          <div class="footer-nav-column">
+            <div class="footer-column-header">
+              <h3 class="footer-column-title">NAVIGATION</h3>
+              <div class="col-accent-line line-cyan"></div>
+            </div>
+
+            <ul class="footer-hyper-nav">
+              <li>
+                <a href="#hero" class="f-nav-link tactile-btn" data-nav="home">
+                  <span class="f-nav-icon-wrap icon-nav-coral">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                      <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">Home</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="#about" class="f-nav-link tactile-btn" data-nav="about">
+                  <span class="f-nav-icon-wrap icon-nav-purple">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="7" r="4"/>
+                      <path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">About</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="#skills" class="f-nav-link tactile-btn" data-nav="skills">
+                  <span class="f-nav-icon-wrap icon-nav-cyan">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">Skills</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="#projects" class="f-nav-link tactile-btn" data-nav="projects">
+                  <span class="f-nav-icon-wrap icon-nav-orange">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"/>
+                      <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">Projects</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="#certifications" class="f-nav-link tactile-btn" data-nav="certificates">
+                  <span class="f-nav-icon-wrap icon-nav-green">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="8" r="6"/>
+                      <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">Certificates</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="#contact" class="f-nav-link tactile-btn" data-nav="contact">
+                  <span class="f-nav-icon-wrap icon-nav-pink">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </span>
+                  <span class="f-nav-label">Contact</span>
+                  <span class="f-nav-arrow">→</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Divider -->
+          <div class="footer-vertical-whisper-divider" aria-hidden="true"></div>
+
+          <!-- Module 3: Quick Links (ONLY Real Verified Options: GitHub, LinkedIn, Email, Resume) -->
+          <div class="footer-quick-links-column">
+            <div class="footer-column-header">
+              <h3 class="footer-column-title">QUICK LINKS</h3>
+              <div class="col-accent-line line-violet"></div>
+            </div>
+
+            <div class="footer-quick-tiles-grid">
+              <!-- 1. GitHub Tile -->
+              <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="quick-link-tile tile-github tactile-btn" aria-label="GitHub Profile">
+                <div class="tile-icon-box box-github">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                  </svg>
+                </div>
+                <div class="tile-text-meta">
+                  <span class="tile-title">GitHub</span>
+                  <span class="tile-sub">@ArfaMunam47</span>
+                </div>
+                <span class="tile-arrow">↗</span>
+              </a>
+
+              <!-- 2. LinkedIn Tile -->
+              <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="quick-link-tile tile-linkedin tactile-btn" aria-label="LinkedIn Profile">
+                <div class="tile-icon-box box-linkedin">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                </div>
+                <div class="tile-text-meta">
+                  <span class="tile-title">LinkedIn</span>
+                  <span class="tile-sub">Professional Network</span>
+                </div>
+                <span class="tile-arrow">↗</span>
+              </a>
+
+              <!-- 3. Email Tile -->
+              <a href="mailto:arfamunam01@gmail.com" class="quick-link-tile tile-email tactile-btn" aria-label="Email Me Directly">
+                <div class="tile-icon-box box-email">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div class="tile-text-meta">
+                  <span class="tile-title">Gmail / Email</span>
+                  <span class="tile-sub">arfamunam01@gmail.com</span>
+                </div>
+                <span class="tile-arrow">↗</span>
+              </a>
+
+              <!-- 4. Resume / CV Tile -->
+              <a href="Arfa-Munam-Resume.pdf" class="quick-link-tile tile-resume js-resume-link tactile-btn" download="Arfa-Munam-Resume.pdf" aria-label="Download Resume / CV">
+                <div class="tile-icon-box box-resume">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                    <polyline points="9 15 12 18 15 15"/>
+                  </svg>
+                </div>
+                <div class="tile-text-meta">
+                  <span class="tile-title">Resume / CV</span>
+                  <span class="tile-sub">Official PDF Profile</span>
+                </div>
+                <span class="tile-badge-pill">PDF</span>
+              </a>
             </div>
           </div>
-          <p class="footer-philosophy-text">
-            Dedicated to thoughtful frontend engineering, disciplined UI performance, and expanding capabilities into backend systems and prompt architectures.
-          </p>
-          <div class="footer-live-status">
-            <span class="status-pulse-dot"></span>
-            <span>Available for Select Projects &amp; Roles</span>
+
+          <!-- Module 4: Featured Floating 3D Contact / Stay In Touch Card -->
+          <div class="footer-contact-module">
+            <div class="floating-glass-touch-card">
+              <div class="card-glass-glow-rim"></div>
+              
+              <!-- 3D Creative Floating Message / Plane Visual Element -->
+              <div class="touch-card-3d-visual" aria-hidden="true">
+                <div class="floating-3d-plane-platform">
+                  <div class="plane-orbital-ring"></div>
+                  <div class="floating-paper-plane">
+                    <svg viewBox="0 0 48 48" width="38" height="38" fill="none">
+                      <defs>
+                        <linearGradient id="planeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#38BDF8"/>
+                          <stop offset="50%" stop-color="#A78BFA"/>
+                          <stop offset="100%" stop-color="#EC4899"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M42 6L6 22l14 4 4 16 7-9 11-27z" fill="url(#planeGrad)"/>
+                      <path d="M20 26l7-9-7 3v6z" fill="rgba(255,255,255,0.4)"/>
+                    </svg>
+                  </div>
+                  <div class="plane-particle p1"></div>
+                  <div class="plane-particle p2"></div>
+                  <div class="plane-particle p3"></div>
+                </div>
+              </div>
+
+              <div class="touch-card-header">
+                <h4 class="touch-card-heading">LET'S STAY IN TOUCH</h4>
+                <p class="touch-card-sub">Get notified about new projects and exciting creative updates.</p>
+              </div>
+
+              <!-- Premium Email Input with Colorful 3D Circular Send Button -->
+              <form class="glass-email-subscribe-form" id="footer-newsletter-form" onsubmit="event.preventDefault(); window.handleFooterSubscribe();">
+                <div class="glass-input-wrapper">
+                  <span class="input-glow-icon">✉</span>
+                  <input type="email" id="footer-subscribe-email" class="glass-text-input" placeholder="Enter your email" required autocomplete="email" aria-label="Enter your email address">
+                  <button type="submit" class="glass-send-btn tactile-btn" id="footer-subscribe-btn" aria-label="Subscribe / Send Email">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </button>
+                </div>
+                <div id="footer-subscribe-feedback" class="footer-feedback-line" role="status" aria-live="polite"></div>
+              </form>
+
+              <!-- Colorful 3D Glass Social Buttons (Strictly Verified Options Only) -->
+              <div class="touch-card-connect-section">
+                <span class="connect-label">CONNECT DIRECTLY</span>
+                <div class="floating-glass-social-row">
+                  <!-- GitHub: Purple/Indigo glow -->
+                  <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="glass-social-orb orb-github tactile-btn" aria-label="GitHub Profile" title="GitHub • @ArfaMunam47">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                  </a>
+                  <!-- LinkedIn: Cyan/Blue glow -->
+                  <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="glass-social-orb orb-linkedin tactile-btn" aria-label="LinkedIn Profile" title="LinkedIn • Arfa Munam">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                      <rect x="2" y="9" width="4" height="12"/>
+                      <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                  </a>
+                  <!-- Email: Coral/Pink glow -->
+                  <a href="mailto:arfamunam01@gmail.com" class="glass-social-orb orb-email tactile-btn" aria-label="Email Me Directly" title="Email • arfamunam01@gmail.com">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </a>
+                  <!-- Resume: Green/Orange glow -->
+                  <a href="Arfa-Munam-Resume.pdf" class="glass-social-orb orb-resume js-resume-link tactile-btn" download="Arfa-Munam-Resume.pdf" aria-label="Download Resume" title="Resume / CV">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="12" y1="18" x2="12" y2="12"/>
+                      <polyline points="9 15 12 18 15 15"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+            </div>
           </div>
+
         </div>
 
-        <!-- Col 2: Navigation Index -->
-        <div class="footer-col footer-col-nav">
-          <h4 class="footer-col-heading">Navigation Index</h4>
-          <ul class="footer-nav-links">
-            <li><a href="#hero" class="footer-nav-link"><span>01. Home &amp; Introduction</span> <span class="nav-arr">↑</span></a></li>
-            <li><a href="#about" class="footer-nav-link"><span>02. Philosophy &amp; Skills</span> <span class="nav-arr">→</span></a></li>
-            <li><a href="#projects" class="footer-nav-link"><span>03. Featured Projects</span> <span class="nav-arr">→</span></a></li>
-            <li><a href="#exploring" class="footer-nav-link"><span>04. Learning Horizons</span> <span class="nav-arr">→</span></a></li>
-            <li><a href="#certifications" class="footer-nav-link"><span>05. Google Certifications</span> <span class="nav-arr">→</span></a></li>
-            <li><a href="#contact" class="footer-nav-link"><span>06. Get in Touch</span> <span class="nav-arr">→</span></a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Digital Presence & Direct Channels -->
-        <div class="footer-col footer-col-channels">
-          <h4 class="footer-col-heading">Connect &amp; Channels</h4>
-          <div class="footer-channels-list">
-            <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="footer-channel-card tactile-btn">
-              <span class="channel-icon">🐙</span>
-              <div class="channel-info">
-                <span class="channel-name">GitHub</span>
-                <span class="channel-detail">@ArfaMunam47 • Open Source Work</span>
-              </div>
-              <span class="channel-arrow">↗</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="footer-channel-card tactile-btn">
-              <span class="channel-icon">💼</span>
-              <div class="channel-info">
-                <span class="channel-name">LinkedIn</span>
-                <span class="channel-detail">Professional Network &amp; Updates</span>
-              </div>
-              <span class="channel-arrow">↗</span>
-            </a>
-
-            <a href="mailto:arfamunam01@gmail.com" class="footer-channel-card tactile-btn">
-              <span class="channel-icon">✉️</span>
-              <div class="channel-info">
-                <span class="channel-name">Email</span>
-                <span class="channel-detail">arfamunam01@gmail.com</span>
-              </div>
-              <span class="channel-arrow">↗</span>
-            </a>
-
-            <a href="Arfa-Munam-Resume.pdf" class="footer-channel-card tactile-btn js-resume-link" download="Arfa-Munam-Resume.pdf">
-              <span class="channel-icon">📄</span>
-              <div class="channel-info">
-                <span class="channel-name">Curriculum Vitae</span>
-                <span class="channel-detail">PDF Download • Verified Details</span>
-              </div>
-              <span class="channel-arrow">↓</span>
-            </a>
+        <!-- Creative Personality Band (Compact Glass Capsules) -->
+        <div class="footer-personality-console-strip">
+          
+          <!-- Item 1: Fast Learner -->
+          <div class="console-feature-cell capsule-amber">
+            <div class="console-icon-halo halo-amber">
+              <span class="halo-symbol">⚡</span>
+            </div>
+            <div class="console-text-wrap">
+              <h5 class="console-item-title">FAST LEARNER</h5>
+              <p class="console-item-desc">Rapid adaptation to new stacks</p>
+            </div>
           </div>
+
+          <div class="console-cell-divider" aria-hidden="true"></div>
+
+          <!-- Item 2: Clean Code -->
+          <div class="console-feature-cell capsule-cyan">
+            <div class="console-icon-halo halo-cyan">
+              <span class="halo-symbol">&lt;/&gt;</span>
+            </div>
+            <div class="console-text-wrap">
+              <h5 class="console-item-title">CLEAN CODE</h5>
+              <p class="console-item-desc">Structured, readable architecture</p>
+            </div>
+          </div>
+
+          <div class="console-cell-divider" aria-hidden="true"></div>
+
+          <!-- Item 3: Detail Oriented -->
+          <div class="console-feature-cell capsule-purple">
+            <div class="console-icon-halo halo-purple">
+              <span class="halo-symbol">✦</span>
+            </div>
+            <div class="console-text-wrap">
+              <h5 class="console-item-title">DETAIL ORIENTED</h5>
+              <p class="console-item-desc">Precision polish &amp; optical craft</p>
+            </div>
+          </div>
+
+          <div class="console-cell-divider" aria-hidden="true"></div>
+
+          <!-- Item 4: Open to Collaborate -->
+          <div class="console-feature-cell capsule-coral">
+            <div class="console-icon-halo halo-coral">
+              <span class="halo-symbol">♥</span>
+            </div>
+            <div class="console-text-wrap">
+              <h5 class="console-item-title">OPEN TO COLLABORATE</h5>
+              <p class="console-item-desc">Excited for bold new ventures</p>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Refined Bottom Copyright Area with AM Monogram & Orbital Ring -->
+        <div class="footer-refined-bottom-bar">
+          
+          <div class="bottom-bar-left">
+            <span class="copyright-symbol">©</span>
+            <span class="copyright-text">2026 Arfa Munam. All rights reserved.</span>
+          </div>
+
+          <!-- Center AM Monogram Circular Decorative Element with Orbital Ring -->
+          <div class="bottom-bar-center-node" title="Arfa Munam • 2026 Monogram">
+            <div class="center-orbital-ring-outer"></div>
+            <div class="center-orbital-ring-inner"></div>
+            <div class="center-orbital-satellite"></div>
+            <div class="center-core-sphere">
+              <span class="core-glyph">AM</span>
+            </div>
+          </div>
+
+          <div class="bottom-bar-right">
+            <span class="crafted-phrase">Designed &amp; Built with <span class="heart-pulse">❤️</span> and <span class="coffee-cup">☕</span></span>
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Bottom Sub-Bar -->
-      <div class="footer-bottom-bar">
-        <div class="footer-bottom-left">
-          <span>© <span id="footer-year">2026</span> Arfa Munam. All rights reserved.</span>
-          <span class="footer-dot-divider">•</span>
-          <span>Crafted with semantic HTML5, modern CSS &amp; vanilla JavaScript.</span>
-        </div>
-        <div class="footer-bottom-right">
-          <a href="#hero" class="footer-back-top tactile-btn" aria-label="Back to top of page">
-            <span>Back to Top</span>
-            <span>↑</span>
-          </a>
-        </div>
-      </div>
     </div>
   </footer>
 

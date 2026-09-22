@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 12. Interactive Compact Skill Ecosystem & Constellation
   setupSkillEcosystem();
 
-  // 13. Certificate Picture Slots (Upload, Drag-and-Drop & LocalStorage persistence)
+  // 13. Certificate Picture Slots & Horizontal Exhibition Gallery
   setupCertificatePhotoUploads();
+  setupCertificatesGallery();
 
   // 14. Tactile Elastic Spring Buttons & 3D Hero Parallax (Refined, Non-Childish)
   setupTactileButtonInteractions();
@@ -71,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 20. Cinematic Exploring Frontier Labs & Telemetry Terminal
   setupCinematicFrontierLabs();
+
+  // 21. Futuristic 2026 3D Dark Glass Footer Interactions
+  setupFuturisticFooter();
 });
 
 /**
@@ -474,11 +478,13 @@ function setupBackToTop() {
  */
 
 /**
- * Bespoke Precision Cursor (Desktop only, hidden on touch or reduced motion)
+ * Bespoke Precision Cursor — 2026 Fluid Luminous Orbital Edition
+ * Coordinates precision dot, responsive magnetic follower, and ambient trailing flare.
  */
 function setupBespokeCursor() {
   const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-follower');
+  const flare = document.getElementById('cursor-flare');
 
   // Guard against touch devices and users preferring reduced motion
   if (!dot || !ring) return;
@@ -488,6 +494,7 @@ function setupBespokeCursor() {
   if (isTouchDevice || prefersReducedMotion || window.innerWidth < 992) {
     dot.style.display = 'none';
     ring.style.display = 'none';
+    if (flare) flare.style.display = 'none';
     return;
   }
 
@@ -495,6 +502,8 @@ function setupBespokeCursor() {
   let mouseY = window.innerHeight / 2;
   let ringX = mouseX;
   let ringY = mouseY;
+  let flareX = mouseX;
+  let flareY = mouseY;
   let isVisible = false;
 
   window.addEventListener('mousemove', (e) => {
@@ -505,6 +514,7 @@ function setupBespokeCursor() {
       isVisible = true;
       dot.style.opacity = '1';
       ring.style.opacity = '1';
+      if (flare) flare.style.opacity = '1';
     }
 
     // Direct translate for precision dot
@@ -515,32 +525,54 @@ function setupBespokeCursor() {
     isVisible = false;
     dot.style.opacity = '0';
     ring.style.opacity = '0';
+    if (flare) flare.style.opacity = '0';
   });
 
   window.addEventListener('mouseenter', () => {
     isVisible = true;
     dot.style.opacity = '1';
     ring.style.opacity = '1';
+    if (flare) flare.style.opacity = '1';
   });
 
-  // Smooth trailing physics for ring
-  function renderRing() {
+  // Smooth trailing physics for ring and ambient light flare
+  function renderCursorPhysics() {
     ringX += (mouseX - ringX) * 0.18;
     ringY += (mouseY - ringY) * 0.18;
     ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-    requestAnimationFrame(renderRing);
-  }
-  requestAnimationFrame(renderRing);
 
-  // Hover target enhancement
-  const interactiveTargets = document.querySelectorAll('a, button, .project-card, .certificate-card, .metric-card-pill, .service-box, .mockup-tab-pill, .explore-tab-pill');
+    if (flare) {
+      flareX += (mouseX - flareX) * 0.08;
+      flareY += (mouseY - flareY) * 0.08;
+      flare.style.transform = `translate3d(${flareX}px, ${flareY}px, 0)`;
+    }
+
+    requestAnimationFrame(renderCursorPhysics);
+  }
+  requestAnimationFrame(renderCursorPhysics);
+
+  // Tactile press response
+  window.addEventListener('mousedown', () => {
+    ring.classList.add('cursor-press');
+    dot.classList.add('cursor-press');
+  });
+
+  window.addEventListener('mouseup', () => {
+    ring.classList.remove('cursor-press');
+    dot.classList.remove('cursor-press');
+  });
+
+  // Hover target enhancement with fluid scale and tactile trigger
+  const interactiveTargets = document.querySelectorAll('a, button, input, textarea, .project-card, .certificate-card, .metric-card-pill, .service-box, .mockup-tab-pill, .explore-tab-pill, .f-nav-link, .glass-social-orb, .console-feature-cell, .bottom-bar-center-node, .f3d-item, .hero-role-pill, .dev-path-node');
 
   interactiveTargets.forEach(el => {
     el.addEventListener('mouseenter', () => {
       ring.classList.add('cursor-hover');
+      dot.classList.add('cursor-hover');
     });
     el.addEventListener('mouseleave', () => {
       ring.classList.remove('cursor-hover');
+      dot.classList.remove('cursor-hover');
     });
   });
 }
@@ -667,247 +699,568 @@ function setupExploringRadar() {
  * Handles Category Filtering, Micro-Interactive Demos & Tactile Controls
  * =========================================================================
  */
+/**
+ * =========================================================================
+ * THINGS I'VE BUILT — 3D FEATURED WORK UNIVERSE ENGINE
+ * Centerpiece active project with orbiting floating digital panels,
+ * orbital energy paths, spring-like transitions & scroll interactions
+ * =========================================================================
+ */
 function setupProjectsShowcase() {
-  // 1. Category Filter Pills
-  const filterBtns = document.querySelectorAll('#projects-filter-bar .project-filter-pill');
-  const projectCards = document.querySelectorAll('.project-stack-card, .project-showcase-card');
+  const universeStage = document.getElementById('universe-stage');
+  if (!universeStage) return;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const cpNumBadge = document.getElementById('cp-num-badge');
+  const cpCatText = document.getElementById('cp-cat-text');
+  const cpTitle = document.getElementById('cp-title');
+  const cpTagline = document.getElementById('cp-tagline');
+  const cpTechStack = document.getElementById('cp-tech-stack');
+  const cpHl1 = document.getElementById('cp-hl-1');
+  const cpHl2 = document.getElementById('cp-hl-2');
+  const cpBtnLive = document.getElementById('cp-btn-live');
+  const cpBtnGh = document.getElementById('cp-btn-gh');
+  const cpAddressUrl = document.getElementById('cp-address-url');
+  const cpWindowBadge = document.getElementById('cp-window-badge');
+  const cpWindowBody = document.getElementById('cp-window-body');
+  const cpGlow = document.getElementById('centerpiece-glow');
+  const counterLabel = document.getElementById('universe-counter-label');
+  const navPills = document.querySelectorAll('#universe-pills-list .univ-nav-pill');
+  const btnPrev = document.getElementById('btn-univ-prev');
+  const btnNext = document.getElementById('btn-univ-next');
+  const centerpieceCard = document.getElementById('centerpiece-active-card');
 
-      const filter = btn.getAttribute('data-filter');
-      playTactileClick(640, 'sine');
+  const slotLeft = document.getElementById('orbit-slot-left');
+  const slotTopRight = document.getElementById('orbit-slot-top-right');
+  const slotBottomRight = document.getElementById('orbit-slot-bottom-right');
 
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.style.display = '';
-          setTimeout(() => {
-            card.style.opacity = '1';
-          }, 50);
-        } else {
-          card.style.opacity = '0';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 250);
-        }
-      });
-    });
-  });
-
-  // 1b. Interactive Layered Stack Engine
-  const stackCards = Array.from(document.querySelectorAll('.project-stack-card'));
-  const deckPills = document.querySelectorAll('#deck-nav-pills .deck-nav-pill');
-  const deckStatusLabel = document.getElementById('deck-status-label');
-  const stackTabHeaders = document.querySelectorAll('.project-stack-tab-header');
-  const btnStackPrev = document.getElementById('btn-stack-prev');
-  const btnStackNext = document.getElementById('btn-stack-next');
-  const stackContainer = document.getElementById('projects-stack-container');
-
-  const projectDeckTitles = [
-    'PROJECT 01 / 04: STUDYPILOT-AI',
-    'PROJECT 02 / 04: VELORA STORE',
-    'PROJECT 03 / 04: KUMO RAMEN',
-    'PROJECT 04 / 04: PASTELFORM'
+  // The 4 Projects Data
+  const projects = [
+    {
+      idx: 0,
+      num: '01',
+      title: 'StudyPilot-AI',
+      category: 'AI ACADEMIC COPILOT',
+      tagline: 'An intelligent academic workspace with adaptive flashcards, study planning, AI-assisted learning workflows, and progress tracking.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'AI'],
+      hl1: 'Spaced Repetition Flashcards & Concepts',
+      hl2: 'AI-Generated Exam Synthesis Roadmaps',
+      liveUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
+      ghUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
+      address: 'studypilot-ai.app/workspace',
+      badge: 'AI ACTIVE',
+      accentColor: '#FF5A36',
+      glow: 'radial-gradient(circle at center, rgba(255, 90, 54, 0.18) 0%, rgba(139, 92, 246, 0.1) 45%, transparent 70%)',
+      orbitPreviewClass: 'preview-studypilot',
+      renderMiniContent: () => `
+        <div class="mini-hero-item">
+          <div class="mini-product-img" style="background: linear-gradient(135deg, #FF5A36 0%, #F59E0B 100%);"></div>
+          <div class="mini-product-lines">
+            <span class="line-bold"></span>
+            <span class="line-thin" style="background: #FA5538;"></span>
+          </div>
+        </div>
+      `,
+      renderCenterpieceUI: () => `
+        <div class="mock-product-layout layout-studypilot">
+          <div class="mock-sidebar">
+            <div class="mock-brand-badge">
+              <span class="brand-spark">✦</span>
+              <span>StudyPilot</span>
+            </div>
+            <div class="mock-nav-items">
+              <div class="mock-nav-item active"><span>📊</span> Dashboard</div>
+              <div class="mock-nav-item"><span>🎴</span> Flashcards</div>
+              <div class="mock-nav-item"><span>🗺️</span> Study Plan</div>
+              <div class="mock-nav-item"><span>📈</span> Analytics</div>
+            </div>
+            <div class="mock-ai-copilot-status">
+              <span class="copilot-dot"></span>
+              <span>AI Active</span>
+            </div>
+          </div>
+          <div class="mock-main-content">
+            <div class="mock-stats-row">
+              <div class="mock-stat-tile">
+                <span class="mock-stat-label">Retention Rate</span>
+                <span class="mock-stat-val text-coral">94.8%</span>
+              </div>
+              <div class="mock-stat-tile">
+                <span class="mock-stat-label">Cards Mastered</span>
+                <span class="mock-stat-val text-cyan">148 / 160</span>
+              </div>
+              <div class="mock-stat-tile">
+                <span class="mock-stat-label">Study Streak</span>
+                <span class="mock-stat-val text-purple">12 Days</span>
+              </div>
+            </div>
+            <div class="mock-flashcard-stage">
+              <div class="flashcard-pill-tag">TOPIC: NEURAL ARCHITECTURES</div>
+              <div class="flashcard-question">
+                "How does attention masking prevent lookahead leakage in decoder self-attention?"
+              </div>
+              <div class="flashcard-actions">
+                <span class="fc-chip chip-hint">💡 AI Concept Hint</span>
+                <span class="fc-chip chip-flip">↻ Tap to Reveal</span>
+              </div>
+            </div>
+            <div class="mock-ai-toast">
+              <div class="mock-ai-header">
+                <span class="ai-spark">✨</span>
+                <span>Claude 3.7 Copilot Synthesizer</span>
+              </div>
+              <p class="mock-ai-p">
+                "Generated 8 spaced-repetition prompts for Chapter 4. Next optimal review scheduled for 18:00 today."
+              </p>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    {
+      idx: 1,
+      num: '02',
+      title: 'Velora Store',
+      category: 'E-COMMERCE & LUXURY CATALOG',
+      tagline: 'Modern luxury storefront featuring fluid cart interactions, real-time inventory filtering, dynamic currency conversions, and high-conversion checkout flows.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Tailwind'],
+      hl1: 'Fluid Micro-Interactions & Real-Time Cart',
+      hl2: 'Multi-Currency Conversion & Live Filters',
+      liveUrl: 'https://github.com/ArfaMunam47/Velora-Store',
+      ghUrl: 'https://github.com/ArfaMunam47/Velora-Store',
+      address: 'velora-luxury.store/catalog',
+      badge: 'CART: $420',
+      accentColor: '#06B6D4',
+      glow: 'radial-gradient(circle at center, rgba(6, 182, 212, 0.18) 0%, rgba(59, 130, 246, 0.1) 45%, transparent 70%)',
+      orbitPreviewClass: 'preview-velora',
+      renderMiniContent: () => `
+        <div class="mini-hero-item">
+          <div class="mini-product-img"></div>
+          <div class="mini-product-lines">
+            <span class="line-bold"></span>
+            <span class="line-thin"></span>
+          </div>
+        </div>
+      `,
+      renderCenterpieceUI: () => `
+        <div class="mock-product-layout layout-velora">
+          <div class="mock-sidebar">
+            <div class="mock-brand-badge">
+              <span class="brand-spark" style="color: #06B6D4;">◆</span>
+              <span>Velora Atelier</span>
+            </div>
+            <div class="mock-nav-items">
+              <div class="mock-nav-item active" style="background: #E6FAF8; color: #0F766E;"><span>⌚</span> Chronographs</div>
+              <div class="mock-nav-item"><span>👜</span> Leather Goods</div>
+              <div class="mock-nav-item"><span>👓</span> Eyewear</div>
+              <div class="mock-nav-item"><span>🛍️</span> Cart (2)</div>
+            </div>
+            <div class="mock-ai-copilot-status" style="color: #0F766E;">
+              <span class="copilot-dot" style="background: #0F766E;"></span>
+              <span>Express Delivery</span>
+            </div>
+          </div>
+          <div class="mock-main-content">
+            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(6, 182, 212, 0.2); box-shadow: 0 4px 14px rgba(6, 182, 212, 0.06); display: flex; gap: 1rem; align-items: center;">
+              <div style="width: 76px; height: 76px; border-radius: 12px; background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #FFFFFF; box-shadow: 0 6px 16px rgba(6, 182, 212, 0.25);">
+                ⌚
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #101C35;">Velora Chrono Noir</span>
+                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #0891B2;">$240.00</span>
+                </div>
+                <span style="font-family: var(--font-sans); font-size: 0.74rem; color: #5A475C;">Sapphire Crystal Glass • Automatic Movement • Water Resistant 5ATM</span>
+                <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.35rem;">
+                  <span style="font-size: 0.7rem; font-weight: 700; color: #0D9488; background: #E6FAF8; padding: 0.2rem 0.6rem; border-radius: 9999px;">✓ Only 4 Left In Stock</span>
+                  <span style="font-size: 0.7rem; font-weight: 800; color: #FFFFFF; background: #0891B2; padding: 0.22rem 0.75rem; border-radius: 9999px; cursor: pointer;">Add to Bag</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Chrono Silver</span>
+                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$210.00</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Monaco Gold</span>
+                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$285.00</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Minimalist Slate</span>
+                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$195.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    {
+      idx: 2,
+      num: '03',
+      title: 'Kumo Ramen',
+      category: 'EXPERIENTIAL DINING APP',
+      tagline: 'An interactive digital dining & reservation experience with 3D ingredient visualizers, table bookings, and authentic Japanese craft aesthetics.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Motion'],
+      hl1: 'Interactive 18h Tonkotsu Broth Visualizer',
+      hl2: 'Instant Table Reservation & Order Studio',
+      liveUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
+      ghUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
+      address: 'kumoramen.kyoto/experience',
+      badge: 'OPEN: 12-11PM',
+      accentColor: '#F59E0B',
+      glow: 'radial-gradient(circle at center, rgba(245, 158, 11, 0.18) 0%, rgba(239, 68, 68, 0.1) 45%, transparent 70%)',
+      orbitPreviewClass: 'preview-kumo',
+      renderMiniContent: () => `
+        <div class="mini-ramen-dish">
+          <div class="mini-bowl-circle"></div>
+          <div class="mini-ramen-meta">
+            <span class="line-bold"></span>
+            <span class="line-amber"></span>
+          </div>
+        </div>
+      `,
+      renderCenterpieceUI: () => `
+        <div class="mock-product-layout layout-kumo">
+          <div class="mock-sidebar">
+            <div class="mock-brand-badge">
+              <span class="brand-spark" style="color: #F59E0B;">🍜</span>
+              <span>雲 Kumo Ramen</span>
+            </div>
+            <div class="mock-nav-items">
+              <div class="mock-nav-item active" style="background: #FEF3C7; color: #92400E;"><span>🍲</span> Signature Bowls</div>
+              <div class="mock-nav-item"><span>🏮</span> Table Booking</div>
+              <div class="mock-nav-item"><span>🥢</span> Broth Craft</div>
+              <div class="mock-nav-item"><span>📍</span> Locations</div>
+            </div>
+            <div class="mock-ai-copilot-status" style="color: #92400E;">
+              <span class="copilot-dot" style="background: #F59E0B;"></span>
+              <span>Tables Available</span>
+            </div>
+          </div>
+          <div class="mock-main-content">
+            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(245, 158, 11, 0.2); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.06); display: flex; gap: 1rem; align-items: center;">
+              <div style="width: 76px; height: 76px; border-radius: 50%; background: radial-gradient(circle, #F59E0B 0%, #B45309 100%); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: #FFFFFF; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25); border: 3px solid #FFFBEB;">
+                🍜
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #101C35;">Tonkotsu Black Garlic</span>
+                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #D97706;">$18.50</span>
+                </div>
+                <span style="font-family: var(--font-sans); font-size: 0.74rem; color: #5A475C;">18h Simmered Broth • Chashu Pork • Ajitsuke Tamago • Mayu Oil</span>
+                <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.35rem;">
+                  <span style="font-size: 0.7rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 0.2rem 0.6rem; border-radius: 9999px;">Spice: Mild ★★☆☆</span>
+                  <span style="font-size: 0.7rem; font-weight: 800; color: #FFFFFF; background: #D97706; padding: 0.22rem 0.75rem; border-radius: 9999px; cursor: pointer;">Book Table</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Spicy Miso</span>
+                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$17.00</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Truffle Shoyu</span>
+                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$19.50</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Yuzu Shio</span>
+                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$16.50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    {
+      idx: 3,
+      num: '04',
+      title: 'PastelForm',
+      category: 'CREATIVE DESIGN TOOL',
+      tagline: 'A minimalist aesthetic vector canvas and form builder for creating high-contrast pastel graphics, accessible components, and instant export suites.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'SVG Canvas'],
+      hl1: 'Dynamic Pastel Vector Canvas & Form Blocks',
+      hl2: 'Instant SVG, React JSX & Token Exports',
+      liveUrl: 'https://github.com/ArfaMunam47/PastelForm',
+      ghUrl: 'https://github.com/ArfaMunam47/PastelForm',
+      address: 'pastelform.design/canvas',
+      badge: 'SAVED TO CLOUD',
+      accentColor: '#8B5CF6',
+      glow: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.18) 0%, rgba(236, 72, 153, 0.1) 45%, transparent 70%)',
+      orbitPreviewClass: 'preview-pastel',
+      renderMiniContent: () => `
+        <div class="mini-canvas-grid">
+          <div class="mini-shape s-pink"></div>
+          <div class="mini-shape s-mint"></div>
+          <div class="mini-shape s-purple"></div>
+        </div>
+      `,
+      renderCenterpieceUI: () => `
+        <div class="mock-product-layout layout-pastel">
+          <div class="mock-sidebar">
+            <div class="mock-brand-badge">
+              <span class="brand-spark" style="color: #8B5CF6;">✦</span>
+              <span>PastelForm</span>
+            </div>
+            <div class="mock-nav-items">
+              <div class="mock-nav-item active" style="background: #F3E8FF; color: #6B21A8;"><span>🎨</span> Artboards</div>
+              <div class="mock-nav-item"><span>📐</span> Shapes</div>
+              <div class="mock-nav-item"><span>🔤</span> Typography</div>
+              <div class="mock-nav-item"><span>📦</span> Export (SVG)</div>
+            </div>
+            <div class="mock-ai-copilot-status" style="color: #6B21A8;">
+              <span class="copilot-dot" style="background: #8B5CF6;"></span>
+              <span>WCAG AAA 7.8:1</span>
+            </div>
+          </div>
+          <div class="mock-main-content">
+            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 14px rgba(139, 92, 246, 0.06); display: flex; flex-direction: column; gap: 0.6rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: var(--font-hero); font-size: 0.95rem; font-weight: 800; color: #101C35;">Active Pastel Artboard</span>
+                <span style="font-family: var(--font-catchy); font-size: 0.7rem; font-weight: 800; color: #6D28D9; background: #F5EEFD; padding: 0.2rem 0.6rem; border-radius: 9999px;">Auto-Layout 8px</span>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center; background: #FAF5FF; padding: 0.75rem; border-radius: 10px;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #F472B6; box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);"></div>
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #34D399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);"></div>
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #A78BFA; box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);"></div>
+                <div style="margin-left: auto; display: flex; flex-direction: column; gap: 0.3rem;">
+                  <span style="font-size: 0.7rem; font-weight: 700; color: #6D28D9;">Palette: Dream Pop</span>
+                  <span style="font-size: 0.65rem; color: #5A475C;">Contrast Ratio: Passed</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Export SVG</span>
+                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Vector Clean</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">React JSX</span>
+                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Component</span>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
+                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">CSS Variables</span>
+                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Design Tokens</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    }
   ];
 
-  let currentStackIndex = 0;
+  let currentIdx = 0;
 
-  function setStackHeight() {
-    if (window.innerWidth > 768 && stackContainer && stackCards.length) {
-      const activeCard = stackCards[currentStackIndex] || stackCards[0];
-      const cardHeight = activeCard.offsetHeight || 580;
-      stackContainer.style.minHeight = `${cardHeight + 90}px`;
-    } else if (stackContainer) {
-      stackContainer.style.minHeight = '';
+  // Render a secondary project card inside an orbit slot
+  function renderOrbitCard(proj) {
+    return `
+      <div class="orbit-project-card tactile-btn" data-project-index="${proj.idx}" title="Click to focus ${proj.title} into Center">
+        <div class="orbit-card-inner">
+          <div class="orbit-card-header">
+            <span class="orbit-num">${proj.num}</span>
+            <span class="orbit-cat">${proj.category.split(' ')[0]}</span>
+          </div>
+          <div class="orbit-card-title">${proj.title}</div>
+          <div class="orbit-mini-preview ${proj.orbitPreviewClass}">
+            <div class="mini-browser-bar">
+              <span class="mini-dot"></span>
+              <span class="mini-dot"></span>
+              <span class="mini-dot"></span>
+              <span class="mini-url">${proj.address}</span>
+            </div>
+            <div class="mini-screen-content">
+              ${proj.renderMiniContent()}
+            </div>
+          </div>
+          <div class="orbit-card-footer">
+            <span class="orbit-focus-hint">✦ Click to Center</span>
+            <span class="orbit-arrow">↗</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Switch to project index
+  function switchProject(targetIdx, playSound = true) {
+    if (targetIdx < 0) targetIdx = 0;
+    if (targetIdx >= projects.length) targetIdx = projects.length - 1;
+    currentIdx = targetIdx;
+
+    if (playSound && typeof playTactileClick === 'function') {
+      playTactileClick(760, 'sine');
+      setTimeout(() => playTactileClick(940, 'triangle'), 60);
+    }
+
+    const activeProject = projects[targetIdx];
+    const otherProjects = projects.filter(p => p.idx !== targetIdx);
+
+    // Update Universe stage data attribute
+    universeStage.setAttribute('data-active', targetIdx);
+
+    // Centerpiece updates
+    if (cpNumBadge) cpNumBadge.textContent = activeProject.num;
+    if (cpCatText) cpCatText.textContent = activeProject.category;
+    if (cpTitle) cpTitle.textContent = activeProject.title;
+    if (cpTagline) cpTagline.textContent = activeProject.tagline;
+
+    if (cpTechStack) {
+      cpTechStack.innerHTML = activeProject.tech
+        .map(t => `<span class="cp-tech-pill">${t}</span>`)
+        .join('');
+    }
+
+    if (cpHl1) cpHl1.textContent = activeProject.hl1;
+    if (cpHl2) cpHl2.textContent = activeProject.hl2;
+
+    if (cpBtnLive) cpBtnLive.href = activeProject.liveUrl;
+    if (cpBtnGh) cpBtnGh.href = activeProject.ghUrl;
+    if (cpAddressUrl) cpAddressUrl.textContent = activeProject.address;
+    if (cpWindowBadge) cpWindowBadge.textContent = activeProject.badge;
+
+    if (cpGlow) {
+      cpGlow.style.background = activeProject.glow;
+    }
+
+    // Dynamic UI preview body transition
+    if (cpWindowBody) {
+      cpWindowBody.style.opacity = '0';
+      cpWindowBody.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        cpWindowBody.innerHTML = activeProject.renderCenterpieceUI();
+        cpWindowBody.style.opacity = '1';
+        cpWindowBody.style.transform = 'scale(1)';
+        cpWindowBody.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+      }, 150);
+    }
+
+    // Update Orbit Slots (Left, Top-Right, Bottom-Right)
+    if (slotLeft && otherProjects[0]) {
+      slotLeft.innerHTML = renderOrbitCard(otherProjects[0]);
+    }
+    if (slotTopRight && otherProjects[1]) {
+      slotTopRight.innerHTML = renderOrbitCard(otherProjects[1]);
+    }
+    if (slotBottomRight && otherProjects[2]) {
+      slotBottomRight.innerHTML = renderOrbitCard(otherProjects[2]);
+    }
+
+    // Reattach click listeners to new orbiting cards
+    attachOrbitListeners();
+
+    // Update Nav Pills
+    navPills.forEach((pill, idx) => {
+      pill.classList.toggle('active', idx === targetIdx);
+    });
+
+    // Update Counter Label
+    if (counterLabel) {
+      counterLabel.textContent = `PROJECT ${activeProject.num} / 04: ${activeProject.title.toUpperCase()}`;
+    }
+
+    // Update Next/Prev arrow states
+    if (btnPrev) {
+      btnPrev.style.opacity = targetIdx === 0 ? '0.5' : '1';
+    }
+    if (btnNext) {
+      const isLast = targetIdx === projects.length - 1;
+      btnNext.innerHTML = isLast ? '<span>↺ Back to 01</span>' : '<span>Next Project →</span>';
     }
   }
 
-  function applyStackPresentation(targetIndex, shouldScroll = false) {
-    if (targetIndex < 0) targetIndex = 0;
-    if (targetIndex >= stackCards.length) targetIndex = stackCards.length - 1;
-
-    currentStackIndex = targetIndex;
-
-    const isDesktop = window.innerWidth > 768;
-
-    stackCards.forEach((card, idx) => {
-      // Remove all stack positioning classes
-      card.classList.remove('stack-pos-0', 'stack-pos-1', 'stack-pos-2', 'stack-pos-3', 'stack-pos-prev', 'stack-open');
-
-      const cue = card.querySelector('.tab-status-cue');
-
-      if (!isDesktop) {
-        // Clean mobile vertical stacked view
-        card.style.transform = '';
-        card.style.opacity = '1';
-        card.style.zIndex = '';
-        if (cue) cue.textContent = idx === targetIndex ? '● Active Focus' : '✦ Tap to View Details';
-        return;
-      }
-
-      if (idx === targetIndex) {
-        // Active Front Card (Dominant)
-        card.classList.add('stack-pos-0', 'stack-open');
-        if (cue) cue.textContent = `● Active Focus (${idx + 1}/04)`;
-      } else if (idx > targetIndex) {
-        // Stacked Behind
-        const offset = idx - targetIndex;
-        if (offset === 1) {
-          card.classList.add('stack-pos-1');
-          if (cue) cue.textContent = '✦ Click to Stack & Focus (Next)';
-        } else if (offset === 2) {
-          card.classList.add('stack-pos-2');
-          if (cue) cue.textContent = '✦ Click to Bring Forward';
-        } else {
-          card.classList.add('stack-pos-3');
-          if (cue) cue.textContent = '✦ Click to Bring Forward';
+  // Attach click listeners to orbiting cards
+  function attachOrbitListeners() {
+    const orbitCards = document.querySelectorAll('.orbit-project-card');
+    orbitCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pIdx = parseInt(card.getAttribute('data-project-index'), 10);
+        if (!isNaN(pIdx) && pIdx !== currentIdx) {
+          switchProject(pIdx, true);
         }
-      } else {
-        // Already passed: glides upward and tucked
-        card.classList.add('stack-pos-prev');
-        if (cue) cue.textContent = '✦ Previous Project (Click to Return)';
-      }
+      });
     });
-
-    // Update navigator pills
-    deckPills.forEach((pill, idx) => {
-      pill.classList.toggle('active', idx === targetIndex);
-    });
-
-    // Update status counter text
-    if (deckStatusLabel && projectDeckTitles[targetIndex]) {
-      deckStatusLabel.textContent = projectDeckTitles[targetIndex];
-    }
-
-    // Update Prev/Next button disabled appearance
-    if (btnStackPrev) {
-      btnStackPrev.style.opacity = targetIndex === 0 ? '0.45' : '1';
-      btnStackPrev.style.cursor = targetIndex === 0 ? 'default' : 'pointer';
-    }
-    if (btnStackNext) {
-      const isLast = targetIndex === stackCards.length - 1;
-      btnStackNext.innerHTML = isLast ? '<span>↺ Back to 01</span>' : '<span>Next Project →</span>';
-    }
-
-    // Adjust container height
-    setStackHeight();
-
-    if (shouldScroll && stackContainer) {
-      const headerOffset = 120;
-      const containerPos = stackContainer.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-      window.scrollTo({ top: containerPos, behavior: 'smooth' });
-    }
   }
 
-  // Handle click on top deck navigator pills
-  deckPills.forEach((pill, idx) => {
+  // Nav pills listeners
+  navPills.forEach((pill, idx) => {
     pill.addEventListener('click', (e) => {
       e.stopPropagation();
-      playTactileClick(780, 'triangle');
-      applyStackPresentation(idx, true);
+      switchProject(idx, true);
     });
   });
 
-  // Handle click on Prev button
-  if (btnStackPrev) {
-    btnStackPrev.addEventListener('click', (e) => {
+  // Previous button
+  if (btnPrev) {
+    btnPrev.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (currentStackIndex > 0) {
-        playTactileClick(650, 'sine');
-        applyStackPresentation(currentStackIndex - 1, true);
+      if (currentIdx > 0) {
+        switchProject(currentIdx - 1, true);
       }
     });
   }
 
-  // Handle click on Next button
-  if (btnStackNext) {
-    btnStackNext.addEventListener('click', (e) => {
+  // Next button
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
       e.stopPropagation();
-      playTactileClick(850, 'triangle');
-      if (currentStackIndex < stackCards.length - 1) {
-        applyStackPresentation(currentStackIndex + 1, true);
+      if (currentIdx < projects.length - 1) {
+        switchProject(currentIdx + 1, true);
       } else {
-        applyStackPresentation(0, true);
+        switchProject(0, true);
       }
     });
   }
 
-  // Clicking on any stacked card tab header or clicking on a background card brings it forward
-  stackCards.forEach((card, idx) => {
-    card.addEventListener('click', (e) => {
-      // If clicking interactive controls inside, let them execute
-      if (e.target.closest('a, button, input, select, textarea, .stage-tab-btn, .mini-toggle-btn')) {
-        return;
-      }
-      if (idx !== currentStackIndex) {
-        playTactileClick(780 + (idx * 40), 'triangle');
-        applyStackPresentation(idx, true);
-      }
-    });
-  });
+  // Initial setup for orbit cards
+  attachOrbitListeners();
 
-  stackTabHeaders.forEach((header, idx) => {
-    header.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playTactileClick(820, 'triangle');
-      applyStackPresentation(idx, false);
-    });
-  });
+  // Controlled Scroll Interaction
+  // When scrolling past thresholds in the Projects universe, advance project smoothly
+  let scrollThresholdPassed = 0;
+  let lastScrollTime = 0;
 
-  // Window resize handler for responsive stacking
-  window.addEventListener('resize', () => {
-    setStackHeight();
-    applyStackPresentation(currentStackIndex, false);
+  window.addEventListener('scroll', () => {
+    const rect = universeStage.getBoundingClientRect();
+    const windowH = window.innerHeight;
+
+    // Check if the universe section is well within view
+    if (rect.top <= windowH * 0.4 && rect.bottom >= windowH * 0.4) {
+      const now = Date.now();
+      if (now - lastScrollTime > 600) {
+        // Calculate progress inside section
+        const totalHeight = rect.height;
+        const progress = Math.min(Math.max((windowH * 0.4 - rect.top) / totalHeight, 0), 1);
+        const targetStep = Math.min(Math.floor(progress * 4), 3);
+
+        if (targetStep !== currentIdx && targetStep >= 0 && targetStep < projects.length) {
+          lastScrollTime = now;
+          switchProject(targetStep, false);
+        }
+      }
+    }
   }, { passive: true });
 
-  // Initialize stack to Project 01
-  setTimeout(() => {
-    applyStackPresentation(0, false);
-  }, 100);
+  // 3D Perspective Tilt on Centerpiece Mouse Move
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch && centerpieceCard) {
+    centerpieceCard.addEventListener('mousemove', (e) => {
+      const rect = centerpieceCard.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-  // 2. Project 1: StudyPilot-AI Flashcard & Concept Simulator
-  setupStudyPilotSimulator();
+      const tiltX = (y * -6).toFixed(2);
+      const tiltY = (x * 6).toFixed(2);
 
-  // 3. Project 2: Velora E-Commerce Cart & Currency Stepper
-  setupVeloraSimulator();
+      centerpieceCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+    });
 
-  // 4. Project 3: Kumo Ramen Custom Ramen Builder
-  setupKumoSimulator();
-
-  // 5. Project 4: PastelForm Dynamic Multi-Step Engine
-  setupPastelFormSimulator();
-
-  // 6. Gentle 3D Tilt Feedback on Interactive Stage Cards
-  const stageCards = document.querySelectorAll('.interactive-stage-card');
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-
-  if (!isTouchDevice && window.innerWidth >= 992) {
-    stageCards.forEach(card => {
-      const container = card.closest('.project-card-preview') || card;
-
-      container.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const deltaX = (e.clientX - centerX) / (rect.width / 2);
-        const deltaY = (e.clientY - centerY) / (rect.height / 2);
-
-        const rotateX = (deltaY * -3.5).toFixed(2);
-        const rotateY = (deltaX * 3.5).toFixed(2);
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      container.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      });
+    centerpieceCard.addEventListener('mouseleave', () => {
+      centerpieceCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
     });
   }
 }
+
 
 /**
  * StudyPilot-AI Interactive Simulator (Spaced Repetition Flashcards & Concepts)
@@ -1545,6 +1898,212 @@ function setupCertificatePhotoUploads() {
       };
     }
   });
+}
+
+/**
+ * =========================================================================
+ * CREATIVE HORIZONTAL CERTIFICATES GALLERY (One by one exhibition)
+ * =========================================================================
+ */
+function setupCertificatesGallery() {
+  const track = document.getElementById('cert-track');
+  const slides = document.querySelectorAll('.cert-slide-card');
+  const tabBtns = document.querySelectorAll('.cert-tab-btn');
+  const dots = document.querySelectorAll('.cert-indicator-dot');
+  const prevBtn = document.getElementById('cert-prev-btn');
+  const nextBtn = document.getElementById('cert-next-btn');
+  const currNumEl = document.getElementById('cert-curr-num');
+  const stage = document.getElementById('cert-carousel-stage');
+
+  if (!track || slides.length === 0) return;
+
+  let currentIndex = 0;
+  const total = slides.length;
+
+  function goToSlide(index, playSound = true) {
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    currentIndex = index;
+
+    // Slide track horizontally
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Toggle active classes on slides
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        slide.classList.add('active-slide');
+      } else {
+        slide.classList.remove('active-slide');
+      }
+    });
+
+    // Update tab buttons
+    tabBtns.forEach((tab, i) => {
+      const isActive = i === currentIndex;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    // Update bottom dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+
+    // Update counter
+    if (currNumEl) {
+      currNumEl.textContent = String(currentIndex + 1).padStart(2, '0');
+    }
+
+    if (playSound && typeof playTactileClick === 'function') {
+      playTactileClick(620 + currentIndex * 60, 'sine');
+    }
+  }
+
+  // Next & Prev arrows
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+    });
+  }
+
+  // Tab Buttons click
+  tabBtns.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      goToSlide(idx);
+    });
+  });
+
+  // Dots click
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      goToSlide(idx);
+    });
+  });
+
+  // Slide internal "Next" button click
+  const nextActions = document.querySelectorAll('.cert-action-next');
+  nextActions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetIndex = parseInt(btn.getAttribute('data-goto'), 10);
+      if (!isNaN(targetIndex)) {
+        goToSlide(targetIndex);
+      }
+    });
+  });
+
+  // Touch Swipe Support on Stage
+  if (stage) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    stage.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) {
+          // Swipe left -> next slide
+          goToSlide(currentIndex + 1);
+        } else {
+          // Swipe right -> prev slide
+          goToSlide(currentIndex - 1);
+        }
+      }
+    }
+  }
+
+  // Keyboard navigation when Certifications section is focused/in viewport
+  document.addEventListener('keydown', (e) => {
+    const certSection = document.getElementById('certifications');
+    if (!certSection) return;
+
+    const rect = certSection.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
+
+    // If modal is open, don't trigger slider with arrow keys
+    const modal = document.getElementById('cert-lightbox');
+    if (modal && modal.classList.contains('lightbox-open')) return;
+
+    if (isInView) {
+      if (e.key === 'ArrowRight') {
+        goToSlide(currentIndex + 1);
+      } else if (e.key === 'ArrowLeft') {
+        goToSlide(currentIndex - 1);
+      }
+    }
+  });
+
+  // Lightbox Modal Handling (Zero black borders)
+  const lightbox = document.getElementById('cert-lightbox');
+  const lightboxImg = document.getElementById('cert-lightbox-img');
+  const lightboxCaption = document.getElementById('cert-lightbox-caption');
+  const lightboxClose = document.getElementById('cert-lightbox-close');
+
+  const triggers = document.querySelectorAll('.cert-inspect-trigger');
+  triggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetSrc = btn.getAttribute('data-target');
+      const targetAlt = btn.getAttribute('data-alt') || 'Certificate Preview';
+
+      if (lightbox && lightboxImg) {
+        lightboxImg.src = targetSrc;
+        lightboxImg.alt = targetAlt;
+        if (lightboxCaption) {
+          lightboxCaption.textContent = targetAlt;
+        }
+        lightbox.classList.add('lightbox-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        if (typeof playTactileClick === 'function') {
+          playTactileClick(780, 'sine');
+        }
+      }
+    });
+  });
+
+  function closeLightbox() {
+    if (lightbox) {
+      lightbox.classList.remove('lightbox-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(480, 'triangle');
+      }
+    }
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+
+  // Initial call to calibrate slide
+  goToSlide(0, false);
 }
 
 /**
@@ -2433,100 +2992,30 @@ function showPortfolioToast(message) {
 
 /**
  * =========================================================================
- * 21. SKILLS COMPILER LOADING SIMULATION & CATEGORY FILTERS
- * Creative percentage-based loading bar architecture with live re-compilation
+ * 21. PREMIUM CLAYMORPHIC SKILLS INTERACTIONS
+ * Tactile micro-interactions for 3D clay skill cards and tech chips
  * =========================================================================
  */
 function setupSkillsCompiler() {
-  const filterPills = document.querySelectorAll('#skills-compiler-filters .compiler-filter-pill');
-  const skillCards = document.querySelectorAll('#skills-compiler-grid .skill-load-card');
-  const recompileBtn = document.getElementById('btn-recompile-skills');
-  const statusIndicator = document.getElementById('compiler-status-indicator');
-  const statusText = document.getElementById('compiler-status-text');
+  const clayCards = document.querySelectorAll('.clay-skill-card');
+  if (!clayCards.length) return;
 
-  // 1. Category Filter Switching
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
-      e.stopPropagation();
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+  clayCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(540, 'sine');
+      }
+    });
 
-      const filter = pill.getAttribute('data-compiler-filter');
-      playTactileClick(620, 'sine');
-
-      skillCards.forEach(card => {
-        const cat = card.getAttribute('data-skill-cat');
-        if (filter === 'all' || cat === filter) {
-          card.style.display = 'flex';
-          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 30);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => { card.style.display = 'none'; }, 200);
+    const chips = card.querySelectorAll('.clay-tech-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('mouseenter', () => {
+        if (typeof playTactileClick === 'function') {
+          playTactileClick(720, 'triangle');
         }
       });
     });
   });
-
-  // 2. Interactive Skills Re-Compilation Simulation
-  if (recompileBtn) {
-    recompileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playTactileClick(760, 'triangle');
-
-      if (statusIndicator) {
-        statusIndicator.style.background = '#F59E0B';
-        statusIndicator.style.boxShadow = '0 0 10px #F59E0B';
-      }
-      if (statusText) {
-        statusText.textContent = 'STATUS: RE-COMPILING SKILLS (94.2% BENCHMARK)...';
-      }
-
-      // Reset bars & numbers to 0
-      skillCards.forEach(card => {
-        const fill = card.querySelector('.skill-loading-fill');
-        const num = card.querySelector('.skill-percent-number');
-        if (fill) fill.style.width = '0%';
-        if (num) num.textContent = '0%';
-      });
-
-      // Animate them back progressively
-      skillCards.forEach((card, idx) => {
-        const targetPercent = parseInt(card.getAttribute('data-skill-percent') || '90', 10);
-        const fill = card.querySelector('.skill-loading-fill');
-        const num = card.querySelector('.skill-percent-number');
-
-        setTimeout(() => {
-          if (fill) fill.style.width = `${targetPercent}%`;
-
-          // Number counter animation
-          let current = 0;
-          const stepTime = Math.max(10, Math.floor(700 / targetPercent));
-          const timer = setInterval(() => {
-            current += 2;
-            if (current >= targetPercent) {
-              current = targetPercent;
-              clearInterval(timer);
-            }
-            if (num) num.textContent = `${current}%`;
-          }, stepTime);
-        }, idx * 60);
-      });
-
-      // Completion feedback after all cards finish
-      setTimeout(() => {
-        if (statusIndicator) {
-          statusIndicator.style.background = '#34D399';
-          statusIndicator.style.boxShadow = '0 0 10px #34D399';
-        }
-        if (statusText) {
-          statusText.textContent = 'STATUS: COMPILED & OPTIMIZED (12/12 PRODUCTION READY) ✓';
-        }
-        playTactileClick(960, 'triangle');
-        showPortfolioToast('✦ Skills Compiler: 12 Modules verified at 94.2% benchmark!');
-      }, skillCards.length * 60 + 750);
-    });
-  }
 }
 
 /**
@@ -2615,6 +3104,119 @@ function setupCinematicFrontierLabs() {
     });
   });
 }
+
+/**
+ * =========================================================================
+ * 21. FUTURISTIC 2026 3D DARK GLASS FOOTER INTERACTIONS
+ * Handles email newsletter dispatch, 3D mouse parallax on floating objects,
+ * interactive 3D central core trigger, and tactile sound feedback.
+ * =========================================================================
+ */
+function setupFuturisticFooter() {
+  const footer = document.getElementById('portfolio-footer');
+  if (!footer) return;
+
+  // 1. Email Subscribe / Stay in touch handler
+  window.handleFooterSubscribe = function() {
+    const input = document.getElementById('footer-subscribe-email');
+    const feedback = document.getElementById('footer-subscribe-feedback');
+    const btn = document.getElementById('footer-subscribe-btn');
+    if (!input || !feedback) return;
+
+    const emailVal = input.value.trim();
+    if (!emailVal || !emailVal.includes('@')) {
+      feedback.textContent = 'Please provide a valid email address.';
+      feedback.className = 'footer-feedback-line error';
+      playTactileClick(420, 'sawtooth');
+      return;
+    }
+
+    // Success simulation
+    if (btn) {
+      btn.style.transform = 'scale(0.85)';
+      btn.style.background = '#10B981';
+      setTimeout(() => {
+        btn.style.transform = '';
+        btn.style.background = '';
+      }, 1500);
+    }
+
+    feedback.textContent = '✦ Thank you! You are now subscribed to direct updates.';
+    feedback.className = 'footer-feedback-line success';
+    input.value = '';
+    playTactileClick(880, 'sine');
+    setTimeout(() => playTactileClick(1120, 'triangle'), 120);
+    showPortfolioToast('✦ Direct Beacon: Subscribed successfully!');
+
+    setTimeout(() => {
+      feedback.style.display = 'none';
+      feedback.textContent = '';
+      feedback.className = 'footer-feedback-line';
+    }, 5000);
+  };
+
+  // 2. Interactive 3D Parallax on Floating Footer Geometries
+  const isTouch = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
+  if (!isTouch && window.innerWidth >= 992) {
+    const torus = footer.querySelector('.f3d-torus-purple');
+    const sphereCyan = footer.querySelector('.f3d-sphere-cyan');
+    const spherePink = footer.querySelector('.f3d-sphere-pink');
+    const cubeCoral = footer.querySelector('.f3d-cube-coral');
+    const crystalMint = footer.querySelector('.f3d-crystal-mint');
+
+    footer.addEventListener('mousemove', (e) => {
+      const rect = footer.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+      if (torus) {
+        torus.style.transform = `perspective(600px) rotateX(${45 + relY * 25}deg) rotateY(${-25 + relX * 30}deg) translate3d(${relX * 22}px, ${relY * 18}px, 0)`;
+      }
+      if (sphereCyan) {
+        sphereCyan.style.transform = `translate3d(${relX * -30}px, ${relY * -25}px, 0) scale(${1 + Math.abs(relX) * 0.1})`;
+      }
+      if (spherePink) {
+        spherePink.style.transform = `translate3d(${relX * 24}px, ${relY * -18}px, 0)`;
+      }
+      if (cubeCoral) {
+        cubeCoral.style.transform = `perspective(700px) rotateX(${60 + relY * 20}deg) rotateZ(${-45 + relX * 25}deg) translate3d(${relX * -20}px, ${relY * 20}px, 0)`;
+      }
+      if (crystalMint) {
+        crystalMint.style.transform = `rotate(${45 + relX * 35}deg) translate3d(${relX * 18}px, ${relY * 16}px, 0)`;
+      }
+    });
+
+    footer.addEventListener('mouseleave', () => {
+      if (torus) torus.style.transform = '';
+      if (sphereCyan) sphereCyan.style.transform = '';
+      if (spherePink) spherePink.style.transform = '';
+      if (cubeCoral) cubeCoral.style.transform = '';
+      if (crystalMint) crystalMint.style.transform = '';
+    });
+  }
+
+  // 3. Central 3D Circular Core Node Click interaction
+  const centerNode = footer.querySelector('.bottom-bar-center-node');
+  if (centerNode) {
+    centerNode.addEventListener('click', () => {
+      playTactileClick(940, 'triangle');
+      showPortfolioToast('✦ Arfa Munam • 2026 Core Active');
+      centerNode.style.transform = 'scale(1.3) rotate(360deg)';
+      setTimeout(() => {
+        centerNode.style.transform = '';
+      }, 700);
+    });
+  }
+
+  // 4. Subtle Tactile Audio on Footer Links, Quick Tiles, Social Orbs & Console Cells
+  const footerInteractive = footer.querySelectorAll('.f-nav-link, .quick-link-tile, .glass-social-orb, .console-feature-cell');
+  footerInteractive.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      playTactileClick(760, 'sine');
+    });
+  });
+}
+
 
 
 
