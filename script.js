@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 21. Futuristic 2026 3D Dark Glass Footer Interactions
   setupFuturisticFooter();
+
+  // 22. Currently Learning 3D Interactive Ecosystem
+  setupLearningEcosystem();
 });
 
 /**
@@ -563,18 +566,23 @@ function setupBespokeCursor() {
   });
 
   // Hover target enhancement with fluid scale and tactile trigger
-  const interactiveTargets = document.querySelectorAll('a, button, input, textarea, .project-card, .certificate-card, .metric-card-pill, .service-box, .mockup-tab-pill, .explore-tab-pill, .f-nav-link, .glass-social-orb, .console-feature-cell, .bottom-bar-center-node, .f3d-item, .hero-role-pill, .dev-path-node');
+  const interactiveSelector = 'a, button, input, textarea, [role="button"], .clay-tile, .pipeline-node, .prompt-skill-pill, .skill-platform, .project-card, .certificate-card, .metric-card-pill, .service-box, .mockup-tab-pill, .explore-tab-pill, .f-nav-link, .glass-social-orb, .console-feature-cell, .bottom-bar-center-node, .f3d-item, .hero-role-pill, .dev-path-node, .sc-secondary-card, .sc-indicator-step, .sc-tech-chip';
 
-  interactiveTargets.forEach(el => {
-    el.addEventListener('mouseenter', () => {
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
+    if (target) {
       ring.classList.add('cursor-hover');
       dot.classList.add('cursor-hover');
-    });
-    el.addEventListener('mouseleave', () => {
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
+    if (target) {
       ring.classList.remove('cursor-hover');
       dot.classList.remove('cursor-hover');
-    });
-  });
+    }
+  }, { passive: true });
 }
 
 /**
@@ -701,66 +709,59 @@ function setupExploringRadar() {
  */
 /**
  * =========================================================================
- * THINGS I'VE BUILT — 3D FEATURED WORK UNIVERSE ENGINE
- * Centerpiece active project with orbiting floating digital panels,
- * orbital energy paths, spring-like transitions & scroll interactions
+ * 2026 3D INTERACTIVE PROJECT GALLERY SHOWCASE ENGINE
+ * One Dominant Hero Project • Three Dimensional Secondary Previews
+ * Hover-to-Activate Experience • Warm Ivory Background • Full Viewport Width
+ * 01 StudyPilot-AI • 02 Velora Store • 03 Kumo Ramen • 04 PastelForm
  * =========================================================================
  */
 function setupProjectsShowcase() {
-  const universeStage = document.getElementById('universe-stage');
-  if (!universeStage) return;
+  const section = document.getElementById('projects');
+  if (!section) return;
 
-  const cpNumBadge = document.getElementById('cp-num-badge');
-  const cpCatText = document.getElementById('cp-cat-text');
-  const cpTitle = document.getElementById('cp-title');
-  const cpTagline = document.getElementById('cp-tagline');
-  const cpTechStack = document.getElementById('cp-tech-stack');
-  const cpHl1 = document.getElementById('cp-hl-1');
-  const cpHl2 = document.getElementById('cp-hl-2');
-  const cpBtnLive = document.getElementById('cp-btn-live');
-  const cpBtnGh = document.getElementById('cp-btn-gh');
-  const cpAddressUrl = document.getElementById('cp-address-url');
-  const cpWindowBadge = document.getElementById('cp-window-badge');
-  const cpWindowBody = document.getElementById('cp-window-body');
-  const cpGlow = document.getElementById('centerpiece-glow');
-  const counterLabel = document.getElementById('universe-counter-label');
-  const navPills = document.querySelectorAll('#universe-pills-list .univ-nav-pill');
-  const btnPrev = document.getElementById('btn-univ-prev');
-  const btnNext = document.getElementById('btn-univ-next');
-  const centerpieceCard = document.getElementById('centerpiece-active-card');
+  const heroNumEl = document.getElementById('sc-hero-num');
+  const heroCatEl = document.getElementById('sc-hero-category');
+  const heroStatusLabel = document.getElementById('sc-hero-status-label');
+  const heroTitleEl = document.getElementById('sc-hero-title');
+  const heroDescEl = document.getElementById('sc-hero-desc');
+  const heroTechRow = document.getElementById('sc-hero-tech-row');
+  const heroLiveBtn = document.getElementById('sc-hero-live-btn');
+  const heroGhBtn = document.getElementById('sc-hero-github-btn');
+  const heroUrlEl = document.getElementById('sc-hero-url');
+  const heroTagEl = document.getElementById('sc-hero-tag');
+  const heroHalo = document.getElementById('sc-board-halo');
+  const heroFrame = document.getElementById('sc-board-frame');
+  const heroViewport = document.getElementById('sc-hero-viewport');
+  const secondaryList = document.getElementById('sc-secondary-list');
+  const indicatorSteps = document.querySelectorAll('#sc-indicator-bar .sc-indicator-step');
 
-  const slotLeft = document.getElementById('orbit-slot-left');
-  const slotTopRight = document.getElementById('orbit-slot-top-right');
-  const slotBottomRight = document.getElementById('orbit-slot-bottom-right');
-
-  // The 4 Projects Data
+  // Exact 4 Projects Data with verified metadata and rich interactive mock UIs
   const projects = [
     {
       idx: 0,
       num: '01',
       title: 'StudyPilot-AI',
-      category: 'AI ACADEMIC COPILOT',
-      tagline: 'An intelligent academic workspace with adaptive flashcards, study planning, AI-assisted learning workflows, and progress tracking.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'AI'],
-      hl1: 'Spaced Repetition Flashcards & Concepts',
-      hl2: 'AI-Generated Exam Synthesis Roadmaps',
+      category: 'AI Academic Copilot / Study Workspace',
+      desc: 'An intelligent academic workspace designed around learning, study planning, and AI-assisted productivity.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'AI', 'Prompt Engineering', 'GSAP'],
       liveUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
       ghUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
       address: 'studypilot-ai.app/workspace',
-      badge: 'AI ACTIVE',
-      accentColor: '#FF5A36',
-      glow: 'radial-gradient(circle at center, rgba(255, 90, 54, 0.18) 0%, rgba(139, 92, 246, 0.1) 45%, transparent 70%)',
-      orbitPreviewClass: 'preview-studypilot',
-      renderMiniContent: () => `
-        <div class="mini-hero-item">
-          <div class="mini-product-img" style="background: linear-gradient(135deg, #FF5A36 0%, #F59E0B 100%);"></div>
-          <div class="mini-product-lines">
-            <span class="line-bold"></span>
-            <span class="line-thin" style="background: #FA5538;"></span>
+      badge: '✦ AI ACTIVE',
+      accentColor: '#FA5538',
+      glow: 'radial-gradient(circle at center, rgba(250, 85, 56, 0.22) 0%, rgba(255, 138, 101, 0.08) 50%, transparent 70%)',
+      renderMiniPreview: () => `
+        <div class="mini-studypilot">
+          <div class="mini-sp-top">
+            <span class="mini-sp-brand">✦ StudyPilot</span>
+            <span class="mini-sp-badge">AI Active</span>
+          </div>
+          <div class="mini-sp-card">
+            "Decoder self-attention masking prevents lookahead..."
           </div>
         </div>
       `,
-      renderCenterpieceUI: () => `
+      renderHeroUI: () => `
         <div class="mock-product-layout layout-studypilot">
           <div class="mock-sidebar">
             <div class="mock-brand-badge">
@@ -800,16 +801,16 @@ function setupProjectsShowcase() {
               </div>
               <div class="flashcard-actions">
                 <span class="fc-chip chip-hint">💡 AI Concept Hint</span>
-                <span class="fc-chip chip-flip">↻ Tap to Reveal</span>
+                <span class="fc-chip chip-flip">↻ Tap to Reveal Answer</span>
               </div>
             </div>
             <div class="mock-ai-toast">
               <div class="mock-ai-header">
                 <span class="ai-spark">✨</span>
-                <span>Claude 3.7 Copilot Synthesizer</span>
+                <span>Gemini 2.5 Flash Synthesizer</span>
               </div>
               <p class="mock-ai-p">
-                "Generated 8 spaced-repetition prompts for Chapter 4. Next optimal review scheduled for 18:00 today."
+                "Synthesized 8 targeted practice prompts from Chapter 4. Next optimal recall review scheduled for 18:00 today."
               </p>
             </div>
           </div>
@@ -820,28 +821,25 @@ function setupProjectsShowcase() {
       idx: 1,
       num: '02',
       title: 'Velora Store',
-      category: 'E-COMMERCE & LUXURY CATALOG',
-      tagline: 'Modern luxury storefront featuring fluid cart interactions, real-time inventory filtering, dynamic currency conversions, and high-conversion checkout flows.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Tailwind'],
-      hl1: 'Fluid Micro-Interactions & Real-Time Cart',
-      hl2: 'Multi-Currency Conversion & Live Filters',
+      category: 'E-commerce / Luxury Catalog',
+      desc: 'A premium e-commerce experience focused on elegant product presentation, interactive UI, and modern shopping interactions.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'GSAP'],
       liveUrl: 'https://github.com/ArfaMunam47/Velora-Store',
       ghUrl: 'https://github.com/ArfaMunam47/Velora-Store',
       address: 'velora-luxury.store/catalog',
-      badge: 'CART: $420',
-      accentColor: '#06B6D4',
-      glow: 'radial-gradient(circle at center, rgba(6, 182, 212, 0.18) 0%, rgba(59, 130, 246, 0.1) 45%, transparent 70%)',
-      orbitPreviewClass: 'preview-velora',
-      renderMiniContent: () => `
-        <div class="mini-hero-item">
-          <div class="mini-product-img"></div>
-          <div class="mini-product-lines">
-            <span class="line-bold"></span>
-            <span class="line-thin"></span>
+      badge: '✦ CART: $420',
+      accentColor: '#0891B2',
+      glow: 'radial-gradient(circle at center, rgba(6, 182, 212, 0.22) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%)',
+      renderMiniPreview: () => `
+        <div class="mini-velora">
+          <div class="mini-velora-thumb">⌚</div>
+          <div class="mini-velora-info">
+            <span class="mini-velora-title">Velora Chrono Noir</span>
+            <span class="mini-velora-price">$240.00 · In Stock</span>
           </div>
         </div>
       `,
-      renderCenterpieceUI: () => `
+      renderHeroUI: () => `
         <div class="mock-product-layout layout-velora">
           <div class="mock-sidebar">
             <div class="mock-brand-badge">
@@ -871,7 +869,7 @@ function setupProjectsShowcase() {
                 </div>
                 <span style="font-family: var(--font-sans); font-size: 0.74rem; color: #5A475C;">Sapphire Crystal Glass • Automatic Movement • Water Resistant 5ATM</span>
                 <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.35rem;">
-                  <span style="font-size: 0.7rem; font-weight: 700; color: #0D9488; background: #E6FAF8; padding: 0.2rem 0.6rem; border-radius: 9999px;">✓ Only 4 Left In Stock</span>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: #0D9488; background: #E6FAF8; padding: 0.2rem 0.6rem; border-radius: 9999px;">✓ Only 3 Left In Stock</span>
                   <span style="font-size: 0.7rem; font-weight: 800; color: #FFFFFF; background: #0891B2; padding: 0.22rem 0.75rem; border-radius: 9999px; cursor: pointer;">Add to Bag</span>
                 </div>
               </div>
@@ -898,28 +896,25 @@ function setupProjectsShowcase() {
       idx: 2,
       num: '03',
       title: 'Kumo Ramen',
-      category: 'EXPERIENTIAL DINING APP',
-      tagline: 'An interactive digital dining & reservation experience with 3D ingredient visualizers, table bookings, and authentic Japanese craft aesthetics.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Motion'],
-      hl1: 'Interactive 18h Tonkotsu Broth Visualizer',
-      hl2: 'Instant Table Reservation & Order Studio',
+      category: 'Food Discovery Experience',
+      desc: 'A creative food discovery interface featuring immersive product presentation, 3D-inspired visuals, and interactive menu exploration.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'GSAP', '3D UI'],
       liveUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
       ghUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
       address: 'kumoramen.kyoto/experience',
-      badge: 'OPEN: 12-11PM',
-      accentColor: '#F59E0B',
-      glow: 'radial-gradient(circle at center, rgba(245, 158, 11, 0.18) 0%, rgba(239, 68, 68, 0.1) 45%, transparent 70%)',
-      orbitPreviewClass: 'preview-kumo',
-      renderMiniContent: () => `
-        <div class="mini-ramen-dish">
-          <div class="mini-bowl-circle"></div>
-          <div class="mini-ramen-meta">
-            <span class="line-bold"></span>
-            <span class="line-amber"></span>
+      badge: '✦ OPEN: 12-11PM',
+      accentColor: '#D97706',
+      glow: 'radial-gradient(circle at center, rgba(245, 158, 11, 0.22) 0%, rgba(239, 68, 68, 0.08) 50%, transparent 70%)',
+      renderMiniPreview: () => `
+        <div class="mini-kumo">
+          <div class="mini-kumo-bowl">🍜</div>
+          <div class="mini-kumo-info">
+            <span class="mini-kumo-title">Tonkotsu Black Garlic</span>
+            <span class="mini-kumo-broth">18h Simmered Broth</span>
           </div>
         </div>
       `,
-      renderCenterpieceUI: () => `
+      renderHeroUI: () => `
         <div class="mock-product-layout layout-kumo">
           <div class="mock-sidebar">
             <div class="mock-brand-badge">
@@ -976,26 +971,31 @@ function setupProjectsShowcase() {
       idx: 3,
       num: '04',
       title: 'PastelForm',
-      category: 'CREATIVE DESIGN TOOL',
-      tagline: 'A minimalist aesthetic vector canvas and form builder for creating high-contrast pastel graphics, accessible components, and instant export suites.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'SVG Canvas'],
-      hl1: 'Dynamic Pastel Vector Canvas & Form Blocks',
-      hl2: 'Instant SVG, React JSX & Token Exports',
+      category: 'Smart Form Builder',
+      desc: 'A modern form-building interface focused on visual simplicity, flexible components, and an interactive creation experience.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'UI/UX'],
       liveUrl: 'https://github.com/ArfaMunam47/PastelForm',
       ghUrl: 'https://github.com/ArfaMunam47/PastelForm',
       address: 'pastelform.design/canvas',
-      badge: 'SAVED TO CLOUD',
-      accentColor: '#8B5CF6',
-      glow: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.18) 0%, rgba(236, 72, 153, 0.1) 45%, transparent 70%)',
-      orbitPreviewClass: 'preview-pastel',
-      renderMiniContent: () => `
-        <div class="mini-canvas-grid">
-          <div class="mini-shape s-pink"></div>
-          <div class="mini-shape s-mint"></div>
-          <div class="mini-shape s-purple"></div>
+      badge: '✦ WCAG AAA',
+      accentColor: '#7C3AED',
+      glow: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.22) 0%, rgba(236, 72, 153, 0.08) 50%, transparent 70%)',
+      renderMiniPreview: () => `
+        <div class="mini-pastel">
+          <div class="mini-pastel-top">
+            <span class="mini-pastel-brand">✦ PastelForm</span>
+            <div class="mini-pastel-swatches">
+              <span class="mini-pastel-swatch swatch-coral"></span>
+              <span class="mini-pastel-swatch swatch-mint"></span>
+              <span class="mini-pastel-swatch swatch-violet"></span>
+            </div>
+          </div>
+          <div class="mini-sp-card" style="color: #6B21A8; border-color: rgba(139, 92, 246, 0.2);">
+            Input: [Full Name] + Toggle [Active]
+          </div>
         </div>
       `,
-      renderCenterpieceUI: () => `
+      renderHeroUI: () => `
         <div class="mock-product-layout layout-pastel">
           <div class="mock-sidebar">
             <div class="mock-brand-badge">
@@ -1020,10 +1020,10 @@ function setupProjectsShowcase() {
                 <span style="font-family: var(--font-catchy); font-size: 0.7rem; font-weight: 800; color: #6D28D9; background: #F5EEFD; padding: 0.2rem 0.6rem; border-radius: 9999px;">Auto-Layout 8px</span>
               </div>
               <div style="display: flex; gap: 0.75rem; align-items: center; background: #FAF5FF; padding: 0.75rem; border-radius: 10px;">
-                <div style="width: 48px; height: 48px; border-radius: 12px; background: #F472B6; box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);"></div>
-                <div style="width: 48px; height: 48px; border-radius: 12px; background: #34D399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);"></div>
-                <div style="width: 48px; height: 48px; border-radius: 12px; background: #A78BFA; box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);"></div>
-                <div style="margin-left: auto; display: flex; flex-direction: column; gap: 0.3rem;">
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: #F472B6; box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);"></div>
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: #34D399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);"></div>
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: #A78BFA; box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);"></div>
+                <div style="margin-left: auto; display: flex; flex-direction: column; gap: 0.25rem;">
                   <span style="font-size: 0.7rem; font-weight: 700; color: #6D28D9;">Palette: Dream Pop</span>
                   <span style="font-size: 0.65rem; color: #5A475C;">Contrast Ratio: Passed</span>
                 </div>
@@ -1050,215 +1050,215 @@ function setupProjectsShowcase() {
   ];
 
   let currentIdx = 0;
+  let hoverTimer = null;
 
-  // Render a secondary project card inside an orbit slot
-  function renderOrbitCard(proj) {
-    return `
-      <div class="orbit-project-card tactile-btn" data-project-index="${proj.idx}" title="Click to focus ${proj.title} into Center">
-        <div class="orbit-card-inner">
-          <div class="orbit-card-header">
-            <span class="orbit-num">${proj.num}</span>
-            <span class="orbit-cat">${proj.category.split(' ')[0]}</span>
-          </div>
-          <div class="orbit-card-title">${proj.title}</div>
-          <div class="orbit-mini-preview ${proj.orbitPreviewClass}">
-            <div class="mini-browser-bar">
-              <span class="mini-dot"></span>
-              <span class="mini-dot"></span>
-              <span class="mini-dot"></span>
-              <span class="mini-url">${proj.address}</span>
+  // Render the THREE inactive project previews in the secondary column
+  function renderSecondaryPreviews(activeIdx) {
+    if (!secondaryList) return;
+
+    const inactiveProjects = projects.filter(p => p.idx !== activeIdx);
+
+    secondaryList.innerHTML = inactiveProjects.map(p => `
+      <div class="sc-secondary-card" data-project-idx="${p.idx}" role="button" tabindex="0" aria-label="Expand ${p.title}">
+        <div class="sc-mini-frame">
+          <div class="sc-mini-chrome">
+            <div class="sc-mini-dots" aria-hidden="true">
+              <span class="sc-mini-dot"></span>
+              <span class="sc-mini-dot"></span>
+              <span class="sc-mini-dot"></span>
             </div>
-            <div class="mini-screen-content">
-              ${proj.renderMiniContent()}
-            </div>
+            <span class="sc-mini-url">${p.address}</span>
           </div>
-          <div class="orbit-card-footer">
-            <span class="orbit-focus-hint">✦ Click to Center</span>
-            <span class="orbit-arrow">↗</span>
+          <div class="sc-mini-viewport">
+            ${p.renderMiniPreview()}
           </div>
         </div>
+        <div class="sc-card-meta">
+          <div class="sc-card-meta-left">
+            <div class="sc-card-num-row">
+              <span class="sc-card-num">${p.num}</span>
+              <h4 class="sc-card-title">${p.title}</h4>
+            </div>
+            <span class="sc-card-category">${p.category}</span>
+          </div>
+          <div class="sc-card-action-icon" aria-hidden="true">↗</div>
+        </div>
       </div>
-    `;
-  }
+    `).join('');
 
-  // Switch to project index
-  function switchProject(targetIdx, playSound = true) {
-    if (targetIdx < 0) targetIdx = 0;
-    if (targetIdx >= projects.length) targetIdx = projects.length - 1;
-    currentIdx = targetIdx;
+    // Attach Hover (mouseenter) and Click listeners to all secondary cards
+    const cards = secondaryList.querySelectorAll('.sc-secondary-card');
+    cards.forEach(card => {
+      const targetIdx = parseInt(card.getAttribute('data-project-idx'), 10);
 
-    if (playSound && typeof playTactileClick === 'function') {
-      playTactileClick(760, 'sine');
-      setTimeout(() => playTactileClick(940, 'triangle'), 60);
-    }
+      // Smooth hover activation with tiny debounce (60ms) to feel instant yet avoid accidental flickers
+      card.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(() => {
+          if (currentIdx !== targetIdx) {
+            switchProject(targetIdx, true);
+          }
+        }, 60);
+      });
 
-    const activeProject = projects[targetIdx];
-    const otherProjects = projects.filter(p => p.idx !== targetIdx);
+      card.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
+      });
 
-    // Update Universe stage data attribute
-    universeStage.setAttribute('data-active', targetIdx);
-
-    // Centerpiece updates
-    if (cpNumBadge) cpNumBadge.textContent = activeProject.num;
-    if (cpCatText) cpCatText.textContent = activeProject.category;
-    if (cpTitle) cpTitle.textContent = activeProject.title;
-    if (cpTagline) cpTagline.textContent = activeProject.tagline;
-
-    if (cpTechStack) {
-      cpTechStack.innerHTML = activeProject.tech
-        .map(t => `<span class="cp-tech-pill">${t}</span>`)
-        .join('');
-    }
-
-    if (cpHl1) cpHl1.textContent = activeProject.hl1;
-    if (cpHl2) cpHl2.textContent = activeProject.hl2;
-
-    if (cpBtnLive) cpBtnLive.href = activeProject.liveUrl;
-    if (cpBtnGh) cpBtnGh.href = activeProject.ghUrl;
-    if (cpAddressUrl) cpAddressUrl.textContent = activeProject.address;
-    if (cpWindowBadge) cpWindowBadge.textContent = activeProject.badge;
-
-    if (cpGlow) {
-      cpGlow.style.background = activeProject.glow;
-    }
-
-    // Dynamic UI preview body transition
-    if (cpWindowBody) {
-      cpWindowBody.style.opacity = '0';
-      cpWindowBody.style.transform = 'scale(0.97)';
-      setTimeout(() => {
-        cpWindowBody.innerHTML = activeProject.renderCenterpieceUI();
-        cpWindowBody.style.opacity = '1';
-        cpWindowBody.style.transform = 'scale(1)';
-        cpWindowBody.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-      }, 150);
-    }
-
-    // Update Orbit Slots (Left, Top-Right, Bottom-Right)
-    if (slotLeft && otherProjects[0]) {
-      slotLeft.innerHTML = renderOrbitCard(otherProjects[0]);
-    }
-    if (slotTopRight && otherProjects[1]) {
-      slotTopRight.innerHTML = renderOrbitCard(otherProjects[1]);
-    }
-    if (slotBottomRight && otherProjects[2]) {
-      slotBottomRight.innerHTML = renderOrbitCard(otherProjects[2]);
-    }
-
-    // Reattach click listeners to new orbiting cards
-    attachOrbitListeners();
-
-    // Update Nav Pills
-    navPills.forEach((pill, idx) => {
-      pill.classList.toggle('active', idx === targetIdx);
-    });
-
-    // Update Counter Label
-    if (counterLabel) {
-      counterLabel.textContent = `PROJECT ${activeProject.num} / 04: ${activeProject.title.toUpperCase()}`;
-    }
-
-    // Update Next/Prev arrow states
-    if (btnPrev) {
-      btnPrev.style.opacity = targetIdx === 0 ? '0.5' : '1';
-    }
-    if (btnNext) {
-      const isLast = targetIdx === projects.length - 1;
-      btnNext.innerHTML = isLast ? '<span>↺ Back to 01</span>' : '<span>Next Project →</span>';
-    }
-  }
-
-  // Attach click listeners to orbiting cards
-  function attachOrbitListeners() {
-    const orbitCards = document.querySelectorAll('.orbit-project-card');
-    orbitCards.forEach(card => {
+      // Click also supported
       card.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const pIdx = parseInt(card.getAttribute('data-project-index'), 10);
-        if (!isNaN(pIdx) && pIdx !== currentIdx) {
-          switchProject(pIdx, true);
+        e.preventDefault();
+        clearTimeout(hoverTimer);
+        if (currentIdx !== targetIdx) {
+          switchProject(targetIdx, true);
+        }
+      });
+
+      // Keyboard accessible
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          switchProject(targetIdx, true);
         }
       });
     });
   }
 
-  // Nav pills listeners
-  navPills.forEach((pill, idx) => {
-    pill.addEventListener('click', (e) => {
-      e.stopPropagation();
-      switchProject(idx, true);
+  // Smooth physical transition to target project
+  function switchProject(targetIdx, playSound = true) {
+    if (targetIdx < 0 || targetIdx >= projects.length) return;
+    currentIdx = targetIdx;
+
+    if (playSound && typeof playTactileClick === 'function') {
+      playTactileClick(760, 'sine');
+    }
+
+    const p = projects[targetIdx];
+
+    // Update Hero Metadata smoothly
+    if (heroNumEl) {
+      heroNumEl.textContent = `PROJECT ${p.num}`;
+      heroNumEl.style.color = p.accentColor;
+    }
+    if (heroCatEl) heroCatEl.textContent = p.category;
+    if (heroStatusLabel) heroStatusLabel.textContent = 'LIVE SYSTEM';
+
+    // Smooth title transition
+    if (heroTitleEl) {
+      heroTitleEl.style.opacity = '0.3';
+      heroTitleEl.style.transform = 'translateY(4px)';
+      setTimeout(() => {
+        heroTitleEl.textContent = p.title;
+        heroTitleEl.style.opacity = '1';
+        heroTitleEl.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    if (heroDescEl) heroDescEl.textContent = p.desc;
+
+    // Update Tech Chips
+    if (heroTechRow) {
+      heroTechRow.innerHTML = p.tech.map(t => `<span class="sc-tech-chip">${t}</span>`).join('');
+    }
+
+    // Update Action Buttons Links
+    if (heroLiveBtn) heroLiveBtn.href = p.liveUrl;
+    if (heroGhBtn) heroGhBtn.href = p.ghUrl;
+
+    // Update Chrome info
+    if (heroUrlEl) heroUrlEl.textContent = p.address;
+    if (heroTagEl) {
+      heroTagEl.innerHTML = `<span>${p.badge}</span>`;
+    }
+
+    // Update Ambient Halo
+    if (heroHalo) {
+      heroHalo.style.background = p.glow;
+    }
+
+    // Viewport smooth 3D crossfade & spring scale
+    if (heroViewport) {
+      heroViewport.style.opacity = '0';
+      heroViewport.style.transform = 'scale(0.97) translateY(6px)';
+      setTimeout(() => {
+        heroViewport.innerHTML = p.renderHeroUI();
+        heroViewport.style.opacity = '1';
+        heroViewport.style.transform = 'scale(1) translateY(0)';
+      }, 120);
+    }
+
+    // Update Project Switch Indicator Buttons
+    indicatorSteps.forEach(btn => {
+      const idx = parseInt(btn.getAttribute('data-project-idx'), 10);
+      btn.classList.toggle('active', idx === targetIdx);
+    });
+
+    // Re-render the 3 secondary previews
+    renderSecondaryPreviews(targetIdx);
+  }
+
+  // Indicator Bar buttons hover & click interactions
+  indicatorSteps.forEach(btn => {
+    const idx = parseInt(btn.getAttribute('data-project-idx'), 10);
+
+    btn.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => {
+        if (currentIdx !== idx) {
+          switchProject(idx, true);
+        }
+      }, 80);
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+    });
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearTimeout(hoverTimer);
+      if (currentIdx !== idx) {
+        switchProject(idx, true);
+      }
     });
   });
 
-  // Previous button
-  if (btnPrev) {
-    btnPrev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentIdx > 0) {
-        switchProject(currentIdx - 1, true);
-      }
-    });
-  }
-
-  // Next button
-  if (btnNext) {
-    btnNext.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentIdx < projects.length - 1) {
-        switchProject(currentIdx + 1, true);
-      } else {
-        switchProject(0, true);
-      }
-    });
-  }
-
-  // Initial setup for orbit cards
-  attachOrbitListeners();
-
-  // Controlled Scroll Interaction
-  // When scrolling past thresholds in the Projects universe, advance project smoothly
-  let scrollThresholdPassed = 0;
-  let lastScrollTime = 0;
-
-  window.addEventListener('scroll', () => {
-    const rect = universeStage.getBoundingClientRect();
-    const windowH = window.innerHeight;
-
-    // Check if the universe section is well within view
-    if (rect.top <= windowH * 0.4 && rect.bottom >= windowH * 0.4) {
-      const now = Date.now();
-      if (now - lastScrollTime > 600) {
-        // Calculate progress inside section
-        const totalHeight = rect.height;
-        const progress = Math.min(Math.max((windowH * 0.4 - rect.top) / totalHeight, 0), 1);
-        const targetStep = Math.min(Math.floor(progress * 4), 3);
-
-        if (targetStep !== currentIdx && targetStep >= 0 && targetStep < projects.length) {
-          lastScrollTime = now;
-          switchProject(targetStep, false);
-        }
-      }
-    }
-  }, { passive: true });
-
-  // 3D Perspective Tilt on Centerpiece Mouse Move
+  // Cursor-based 3D Perspective Tilt on Desktop (Subtle 3-5 degrees)
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouch && centerpieceCard) {
-    centerpieceCard.addEventListener('mousemove', (e) => {
-      const rect = centerpieceCard.getBoundingClientRect();
+  if (!isTouch && heroFrame) {
+    heroFrame.addEventListener('mousemove', (e) => {
+      const rect = heroFrame.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-      const tiltX = (y * -6).toFixed(2);
-      const tiltY = (x * 6).toFixed(2);
+      const tiltX = (y * -4).toFixed(2);
+      const tiltY = (x * 4).toFixed(2);
 
-      centerpieceCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+      heroFrame.style.transform = `perspective(1200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-3px)`;
     });
 
-    centerpieceCard.addEventListener('mouseleave', () => {
-      centerpieceCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    heroFrame.addEventListener('mouseleave', () => {
+      heroFrame.style.transform = 'perspective(1200px) rotateX(1.5deg) rotateY(-1deg) translateY(0)';
     });
   }
+
+  // Keyboard navigation when section is in view
+  window.addEventListener('keydown', (e) => {
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3;
+    if (!inView) return;
+
+    if (e.key === 'ArrowRight') {
+      if (currentIdx < projects.length - 1) switchProject(currentIdx + 1, true);
+      else switchProject(0, true);
+    } else if (e.key === 'ArrowLeft') {
+      if (currentIdx > 0) switchProject(currentIdx - 1, true);
+      else switchProject(projects.length - 1, true);
+    }
+  });
+
+  // Initial load: 01 StudyPilot-AI is the Hero, other 3 are secondary previews
+  switchProject(0, false);
 }
 
 
@@ -2992,30 +2992,81 @@ function showPortfolioToast(message) {
 
 /**
  * =========================================================================
- * 21. PREMIUM CLAYMORPHIC SKILLS INTERACTIONS
- * Tactile micro-interactions for 3D clay skill cards and tech chips
+ * 21. PREMIUM 3D CLAYMORPHIC SKILLS INTERACTIONS
+ * Tactile micro-interactions, subtle 3D platform tilt & pipeline stepping
  * =========================================================================
  */
 function setupSkillsCompiler() {
-  const clayCards = document.querySelectorAll('.clay-skill-card');
-  if (!clayCards.length) return;
+  const platforms = document.querySelectorAll('.skill-platform');
+  const tiles = document.querySelectorAll('.clay-tile');
+  const pipelineNodes = document.querySelectorAll('.pipeline-node');
 
-  clayCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
+  // Subtle 3D tilt response on hover over platforms
+  platforms.forEach(platform => {
+    platform.addEventListener('mousemove', (e) => {
+      const rect = platform.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = (y / (rect.height / 2)) * -4;
+      const rotY = (x / (rect.width / 2)) * 4;
+      platform.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+    });
+
+    platform.addEventListener('mouseleave', () => {
+      platform.style.transform = '';
+    });
+  });
+
+  // Tactile sound and press feel on Clay Tech Tiles
+  tiles.forEach(tile => {
+    tile.addEventListener('mouseenter', () => {
       if (typeof playTactileClick === 'function') {
-        playTactileClick(540, 'sine');
+        playTactileClick(680, 'triangle');
       }
     });
 
-    const chips = card.querySelectorAll('.clay-tech-chip');
-    chips.forEach(chip => {
-      chip.addEventListener('mouseenter', () => {
+    tile.addEventListener('click', () => {
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(840, 'sine');
+      }
+      const name = tile.querySelector('.tile-name')?.textContent || 'Skill';
+      if (typeof showSystemToast === 'function') {
+        showSystemToast(`✦ Selected: ${name}`);
+      }
+    });
+
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        tile.click();
+      }
+    });
+  });
+
+  // Interactive Pipeline Nodes in Station 03
+  if (pipelineNodes.length) {
+    pipelineNodes.forEach(node => {
+      node.addEventListener('click', () => {
+        pipelineNodes.forEach(n => n.classList.remove('active'));
+        node.classList.add('active');
         if (typeof playTactileClick === 'function') {
-          playTactileClick(720, 'triangle');
+          playTactileClick(760, 'sine');
+        }
+        const title = node.querySelector('.node-title')?.textContent || '';
+        const sub = node.querySelector('.node-sub')?.textContent || '';
+        if (typeof showSystemToast === 'function') {
+          showSystemToast(`Pipeline Step: ${title} — ${sub}`);
+        }
+      });
+
+      node.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          node.click();
         }
       });
     });
-  });
+  }
 }
 
 /**
@@ -3216,6 +3267,89 @@ function setupFuturisticFooter() {
     });
   });
 }
+
+/**
+ * =========================================================================
+ * 22. CURRENTLY LEARNING — 3D INTERACTIVE VISUAL LEARNING ECOSYSTEM
+ * Connects floating technology pills, central 3D clay hub, and SVG paths
+ * with dynamic glow effects and tactile feedback.
+ * =========================================================================
+ */
+function setupLearningEcosystem() {
+  const section = document.getElementById('exploring');
+  if (!section) return;
+
+  const chips = section.querySelectorAll('.eco-floating-chip');
+  const backendZone = section.querySelector('#zone-backend');
+  const aiZone = section.querySelector('#zone-ai');
+  const centerOrb = section.querySelector('#eco-central-orb');
+
+  chips.forEach(chip => {
+    chip.addEventListener('mouseenter', () => {
+      const isBackend = chip.closest('#zone-backend') !== null;
+      if (isBackend) {
+        section.classList.add('highlight-backend');
+        if (backendZone) {
+          backendZone.querySelectorAll('.eco-floating-chip').forEach(sibling => {
+            if (sibling !== chip) sibling.style.opacity = '0.65';
+          });
+        }
+      } else {
+        section.classList.add('highlight-ai');
+        if (aiZone) {
+          aiZone.querySelectorAll('.eco-floating-chip').forEach(sibling => {
+            if (sibling !== chip) sibling.style.opacity = '0.65';
+          });
+        }
+      }
+      playTactileClick(840, 'sine');
+    });
+
+    chip.addEventListener('mouseleave', () => {
+      section.classList.remove('highlight-backend', 'highlight-ai');
+      chips.forEach(c => {
+        c.style.opacity = '';
+      });
+    });
+  });
+
+  // Tactile click on central orb
+  if (centerOrb) {
+    centerOrb.addEventListener('click', () => {
+      playTactileClick(980, 'triangle');
+      showPortfolioToast('✦ Current Focus: Expanding Beyond Front-End');
+      const core = centerOrb.querySelector('.hub-clay-core-body');
+      if (core) {
+        core.style.transform = 'scale(1.08)';
+        setTimeout(() => {
+          core.style.transform = '';
+        }, 360);
+      }
+    });
+
+    // Subtle 3D mouse parallax on center orb for fine pointer devices
+    const isTouch = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
+    if (!isTouch) {
+      centerOrb.addEventListener('mousemove', (e) => {
+        const rect = centerOrb.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width - 0.5;
+        const relY = (e.clientY - rect.top) / rect.height - 0.5;
+        const core = centerOrb.querySelector('.hub-clay-core-body');
+        if (core) {
+          core.style.transform = `perspective(500px) rotateX(${-relY * 16}deg) rotateY(${relX * 16}deg) scale(1.02)`;
+        }
+      });
+
+      centerOrb.addEventListener('mouseleave', () => {
+        const core = centerOrb.querySelector('.hub-clay-core-body');
+        if (core) {
+          core.style.transform = '';
+        }
+      });
+    }
+  }
+}
+
 
 
 
