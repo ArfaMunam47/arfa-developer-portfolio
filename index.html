@@ -585,648 +585,914 @@
   </section>
 
     <!-- =======================================================================
-       PROJECT SHOWCASE — 2026 3D INTERACTIVE GALLERY EXHIBITION
-       One Dominant Hero Project • Three Dimensional Secondary Previews
-       Hover-to-Activate Experience • Warm Ivory Background • Full Viewport Width
+       PROJECT SHOWCASE — 2026 PREMIUM CINEMATIC HORIZONTAL GALLERY
+       Inspired directly by attached reference composition (portfoliooo.png)
+       Center Active Card (Scale 1.0) • 3D Flanking Preview Cards
+       Illuminated Gradient Border • Minimal Capsule Nav • 4 Craft Badges
        01 StudyPilot-AI • 02 Velora Store • 03 Kumo Ramen • 04 PastelForm
        ======================================================================= -->
-  <section id="projects" class="showcase-gallery-section" aria-label="Selected Projects Exhibition">
-    <!-- Atmospheric Ambient Lighting & Subtle 3D Depth Geometries -->
-    <div class="showcase-atmosphere" aria-hidden="true">
-      <div class="sc-glow sc-glow-coral" id="sc-ambient-coral"></div>
-      <div class="sc-glow sc-glow-cyan" id="sc-ambient-cyan"></div>
-      <div class="sc-glow sc-glow-lavender" id="sc-ambient-lavender"></div>
-      <div class="sc-glow sc-glow-peach" id="sc-ambient-peach"></div>
-      
-      <!-- Subtle Floating Background 3D Geometries -->
-      <div class="sc-geom-ring geom-ring-1"></div>
-      <div class="sc-geom-ring geom-ring-2"></div>
-      <div class="sc-geom-sphere geom-sphere-coral"></div>
-      <div class="sc-geom-sphere geom-sphere-cyan"></div>
-      <div class="sc-geom-star geom-star-1">✦</div>
-      <div class="sc-geom-star geom-star-2">✦</div>
+  <section id="projects" class="cinematic-gallery-section" aria-label="Selected Projects Exhibition">
+    <!-- Atmospheric Ambient Lighting & Subtle 3D Elements (Soft, Warm, Light, Airy) -->
+    <div class="gallery-atmosphere" aria-hidden="true">
+      <div class="ambient-glow glow-sun-orb"></div>
+      <div class="ambient-glow glow-prism-cyan"></div>
+      <div class="ambient-glow glow-floor-lavender"></div>
+      <div class="ambient-glow glow-ambient-peach"></div>
+
+      <!-- Subtle 3D Atmospheric Assets Inspired by Reference -->
+      <div class="scene-sun-disc" aria-hidden="true">
+        <div class="sun-slat"></div>
+        <div class="sun-slat"></div>
+        <div class="sun-slat"></div>
+      </div>
+      <div class="scene-glass-prism" aria-hidden="true">
+        <div class="prism-cube">
+          <div class="prism-face face-front"></div>
+          <div class="prism-face face-back"></div>
+          <div class="prism-face face-right"></div>
+          <div class="prism-face face-left"></div>
+          <div class="prism-face face-top"></div>
+          <div class="prism-face face-bottom"></div>
+        </div>
+      </div>
+      <div class="scene-ribbon-path ribbon-coral" aria-hidden="true"></div>
+      <div class="scene-ribbon-path ribbon-lavender" aria-hidden="true"></div>
+      <div class="scene-terrazzo-arch" aria-hidden="true"></div>
+      <div class="scene-plant-accent" aria-hidden="true"></div>
     </div>
 
-    <div class="showcase-container">
+    <div class="gallery-container">
       
-      <!-- Top Section Header -->
-      <div class="showcase-header">
-        <div class="showcase-eyebrow-pill">
-          <span>✦ SELECTED WORKS</span>
+      <!-- Top Editorial Section Header -->
+      <div class="gallery-header">
+        <div class="gallery-eyebrow-pill">
+          <span class="eyebrow-spark">✦</span>
+          <span>SELECTED WORK</span>
         </div>
-        <h2 class="showcase-main-heading">Featured <span class="heading-accent">Projects</span></h2>
-        <p class="showcase-subheading">Hover any secondary project to smoothly bring it into dimensional focus.</p>
+        <h2 class="gallery-main-heading">
+          Work, in <span class="gallery-heading-gradient">Motion.</span>
+        </h2>
+        <p class="gallery-subheading">
+          Selected digital experiences built with code, creativity, and curiosity.
+        </p>
       </div>
 
-      <!-- Elegant Project Navigation Switch Indicator (01 — 02 — 03 — 04) -->
-      <nav class="sc-indicator-bar" id="sc-indicator-bar" aria-label="Project Quick Selector">
-        <button type="button" class="sc-indicator-step active" data-project-idx="0" aria-label="View Project 01 StudyPilot-AI">
-          <span class="step-dot" aria-hidden="true"></span>
-          <span class="step-num">01</span>
-          <span>StudyPilot-AI</span>
+      <!-- 3D Cinematic Gallery Stage (Horizontal Carousel Track) -->
+      <div class="gallery-stage-viewport" id="gallery-stage-viewport">
+        <!-- Floating Navigation Arrow: Previous -->
+        <button type="button" class="gallery-arrow-btn arrow-prev" id="gallery-prev-btn" aria-label="Previous project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
         </button>
-        <button type="button" class="sc-indicator-step" data-project-idx="1" aria-label="View Project 02 Velora Store">
-          <span class="step-dot" aria-hidden="true"></span>
-          <span class="step-num">02</span>
-          <span>Velora Store</span>
-        </button>
-        <button type="button" class="sc-indicator-step" data-project-idx="2" aria-label="View Project 03 Kumo Ramen">
-          <span class="step-dot" aria-hidden="true"></span>
-          <span class="step-num">03</span>
-          <span>Kumo Ramen</span>
-        </button>
-        <button type="button" class="sc-indicator-step" data-project-idx="3" aria-label="View Project 04 PastelForm">
-          <span class="step-dot" aria-hidden="true"></span>
-          <span class="step-num">04</span>
-          <span>PastelForm</span>
-        </button>
-      </nav>
 
-      <!-- 3D Spatial Gallery Arena: Dominant Hero (Left) + 3 Inactive Previews (Right) -->
-      <div class="sc-gallery-arena" id="sc-gallery-arena">
-
-        <!-- ==============================================================
-             LEFT COLUMN: DOMINANT HERO PRESENTATION (Active Project Focus)
-             ============================================================== -->
-        <div class="sc-hero-column" id="sc-hero-column">
-          
-          <!-- Hero Information Deck -->
-          <div class="sc-hero-info-deck" id="sc-hero-info-deck">
-            <div class="sc-kicker-line">
-              <span class="sc-hero-num-badge" id="sc-hero-num">PROJECT 01</span>
-              <span class="sc-kicker-sep">/</span>
-              <span class="sc-hero-category" id="sc-hero-category">AI Academic Copilot / Study Workspace</span>
-              <span class="sc-hero-status" id="sc-hero-status">
-                <span class="sc-pulse-dot" aria-hidden="true"></span>
-                <span id="sc-hero-status-label">LIVE SYSTEM</span>
-              </span>
-            </div>
-
-            <div class="sc-hero-title-row">
-              <h3 class="sc-hero-title" id="sc-hero-title">StudyPilot-AI</h3>
-              <p class="sc-hero-desc" id="sc-hero-desc">
-                An intelligent academic workspace designed around learning, study planning, and AI-assisted productivity.
-              </p>
-            </div>
-
-            <!-- Tactile Tech Chips -->
-            <div class="sc-hero-tech-row" id="sc-hero-tech-row">
-              <span class="sc-tech-chip">HTML</span>
-              <span class="sc-tech-chip">CSS</span>
-              <span class="sc-tech-chip">JavaScript</span>
-              <span class="sc-tech-chip">AI</span>
-              <span class="sc-tech-chip">Prompt Engineering</span>
-              <span class="sc-tech-chip">GSAP</span>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="sc-actions-row">
-              <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="sc-btn sc-btn-primary" id="sc-hero-live-btn">
-                <span>VIEW LIVE DEMO</span>
-                <span class="sc-btn-arrow">↗</span>
-              </a>
-              <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="sc-btn sc-btn-secondary" id="sc-hero-github-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-                <span>VIEW ON GITHUB</span>
-                <span class="sc-btn-arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Active 3D Presentation Board Frame (Large Physical 3D Board) -->
-          <div class="sc-board-wrapper" id="sc-board-wrapper">
-            <div class="sc-board-halo" id="sc-board-halo"></div>
-
-            <div class="sc-board-frame" id="sc-board-frame">
-              <!-- Browser Chrome Header -->
-              <div class="sc-chrome-header">
-                <div class="sc-chrome-dots" aria-hidden="true">
-                  <span class="sc-dot dot-close"></span>
-                  <span class="sc-dot dot-min"></span>
-                  <span class="sc-dot dot-max"></span>
-                </div>
-                <div class="sc-chrome-url">
-                  <span class="sc-lock-icon" aria-hidden="true">🔒</span>
-                  <span id="sc-hero-url">studypilot-ai.app/workspace</span>
-                </div>
-                <div class="sc-chrome-tag" id="sc-hero-tag">
-                  <span>✦ AI ACTIVE</span>
-                </div>
-              </div>
-
-              <!-- Interactive Screen Viewport (Injected Real Product UI) -->
-              <div class="sc-hero-viewport" id="sc-hero-viewport">
-                <!-- Rendered dynamically by script.js -->
-              </div>
-            </div>
-
-            <!-- Soft Elevation Floor Drop Shadow -->
-            <div class="sc-board-shadow" aria-hidden="true"></div>
-          </div>
-
+        <!-- The 3D Track containing the 4 Project Cards -->
+        <div class="gallery-track-3d" id="gallery-track-3d">
+          <!-- Populated and dynamically managed by script.js -->
         </div>
 
-        <!-- ==============================================================
-             RIGHT COLUMN: THREE MINIATURE DIMENSIONAL SECONDARY PREVIEWS
-             Hover-to-Activate Experience • Physical 3D Cards
-             ============================================================== -->
-        <aside class="sc-previews-column" aria-label="Secondary Project Previews">
-          <div class="sc-previews-header">
-            <span class="sc-previews-kicker">EXPLORE GALLERY</span>
-            <span class="sc-previews-hint">Hover to expand ↗</span>
-          </div>
+        <!-- Floating Navigation Arrow: Next -->
+        <button type="button" class="gallery-arrow-btn arrow-next" id="gallery-next-btn" aria-label="Next project">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
 
-          <!-- 3 Inactive Project Miniature Previews -->
-          <div class="sc-secondary-list" id="sc-secondary-list">
-            <!-- Dynamically populated and maintained with 3 inactive projects -->
-          </div>
-        </aside>
+      <!-- Bottom Minimal Pill Navigation Indicator (01 — 02 — 03 — 04) -->
+      <div class="gallery-bottom-nav">
+        <div class="gallery-indicator-capsule" id="gallery-indicator-capsule" role="tablist" aria-label="Project Quick Selector">
+          <button type="button" class="indicator-step active" data-project-idx="0" role="tab" aria-selected="true" aria-label="01 StudyPilot-AI">
+            <span class="step-num">01</span>
+            <span class="step-dot"></span>
+          </button>
+          <span class="indicator-track-line"></span>
+          <button type="button" class="indicator-step" data-project-idx="1" role="tab" aria-selected="false" aria-label="02 Velora Store">
+            <span class="step-num">02</span>
+            <span class="step-dot"></span>
+          </button>
+          <span class="indicator-track-line"></span>
+          <button type="button" class="indicator-step" data-project-idx="2" role="tab" aria-selected="false" aria-label="03 Kumo Ramen">
+            <span class="step-num">03</span>
+            <span class="step-dot"></span>
+          </button>
+          <span class="indicator-track-line"></span>
+          <button type="button" class="indicator-step" data-project-idx="3" role="tab" aria-selected="false" aria-label="04 PastelForm">
+            <span class="step-num">04</span>
+            <span class="step-dot"></span>
+          </button>
+        </div>
+      </div>
 
+      <!-- 4 Value / Craft Badges (Direct from reference image) -->
+      <div class="gallery-value-badges">
+        <div class="value-badge-card">
+          <div class="value-badge-icon icon-pencil">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+            </svg>
+          </div>
+          <div class="value-badge-text">
+            <strong>Thoughtful Design</strong>
+            <p>Designs that communicate clearly and beautifully</p>
+          </div>
+        </div>
+
+        <div class="value-badge-card">
+          <div class="value-badge-icon icon-code">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <div class="value-badge-text">
+            <strong>Clean Code</strong>
+            <p>Well structured, scalable and maintainable</p>
+          </div>
+        </div>
+
+        <div class="value-badge-card">
+          <div class="value-badge-icon icon-lightning">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="value-badge-text">
+            <strong>Seamless Experience</strong>
+            <p>Smooth interactions that engage and delight</p>
+          </div>
+        </div>
+
+        <div class="value-badge-card">
+          <div class="value-badge-icon icon-target">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <div class="value-badge-text">
+            <strong>Real Impact</strong>
+            <p>Solutions that solve problems and create value</p>
+          </div>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- =======================================================================
-       MY SKILLS — 2026 3D CLAYMORPHISM INTERACTIVE SHOWCASE
-       • Three Connected Floating 3D Stations:
-         - Station 01: FRONTEND DEVELOPMENT (Warm Ivory/Coral)
-         - Centerpiece: 3D CREATIVE WORKSTATION (Floating Laptop & Code Window)
-         - Station 02: AI TOOLS (Cyan/Soft Blue & Violet)
-         - Station 03: PROMPT ENGINEERING (Lower Center Pipeline & 4 Truthful Badges)
+    <!-- =======================================================================
+       MY EXPERTISE — 2026 PREMIUM 3D SKILLS SHOWCASE
+       Faithfully aligned with reference image (e1c5a528-f6f0-46da-9227-117b4482c16c.png)
+       Three 3D Showcase Panels: 01 Frontend • 02 AI Tools • 03 Prompt Engineering
+       3D Centerpieces: Floating Code Dome • Neural AI Sphere • Prompt Bubble
+       Bottom Tools Strip (Without ESLint & Postman) + Mindset Capsule
        ======================================================================= -->
-  <section id="skills" class="skills-showcase-3d" aria-label="Skills and Creative Technologies">
-    <!-- Atmospheric Ambient Lighting & Floating 3D Spheres -->
+  <section id="skills" class="skills-showcase-reference" aria-label="Skills and Technologies">
+    <!-- Atmospheric Ambient Lighting & 3D Orbiting Artifacts (Warm Ivory Studio Scene) -->
     <div class="skills-atmosphere" aria-hidden="true">
-      <div class="sk-glow sk-glow-coral"></div>
+      <div class="sk-glow sk-glow-peach"></div>
+      <div class="sk-glow sk-glow-violet"></div>
       <div class="sk-glow sk-glow-cyan"></div>
-      <div class="sk-glow sk-glow-lavender"></div>
-
-      <!-- Floating 3D Clay Spheres with Specular Highlights -->
-      <div class="sk-sphere sk-sphere-peach"></div>
-      <div class="sk-sphere sk-sphere-mint"></div>
-      <div class="sk-ring sk-ring-1"></div>
-      <div class="sk-ring sk-ring-2"></div>
-
-      <!-- Floating Sparkles -->
-      <span class="sk-sparkle sk-sp-1">✦</span>
-      <span class="sk-sparkle sk-sp-2">✦</span>
-      <span class="sk-sparkle sk-sp-3">★</span>
-    </div>
-
-    <div class="skills-showcase-container">
       
-      <!-- Compact Editorial Header -->
-      <div class="skills-showcase-header">
-        <div class="skills-eyebrow-pill">
-          <span class="pill-dot dot-coral" aria-hidden="true"></span>
-          <span>MY SKILLS</span>
+      <!-- Top Left 3D Translucent Amber Faceted Cube & Mini Orb (Direct from Reference) -->
+      <div class="sk-decor-cube-wrapper" aria-hidden="true">
+        <div class="sk-3d-amber-cube">
+          <div class="cube-side side-front"></div>
+          <div class="cube-side side-back"></div>
+          <div class="cube-side side-top"></div>
+          <div class="cube-side side-bottom"></div>
+          <div class="cube-side side-left"></div>
+          <div class="cube-side side-right"></div>
         </div>
-        <h2 class="skills-main-title">Frontend. AI. Prompt Engineering.</h2>
-        <p class="skills-main-subtitle">Tools and technologies I use to turn ideas into real digital experiences.</p>
+        <div class="sk-3d-orange-orb"></div>
       </div>
 
-      <!-- 3D Spatial Arena -->
-      <div class="skills-spatial-arena">
+      <!-- Top Right 3D Glossy Purple Sphere with Ring & Sparkle (Direct from Reference) -->
+      <div class="sk-decor-planet-wrapper" aria-hidden="true">
+        <div class="sk-3d-purple-sphere">
+          <div class="planet-body"></div>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-sparkle-star">✦</span>
+      </div>
+      
+      <span class="sk-ambient-sparkle spark-left">✦</span>
+      <span class="sk-ambient-sparkle spark-mid">✦</span>
+      <span class="sk-ambient-sparkle spark-right">✦</span>
+    </div>
 
-        <!-- Top Constellation: Station 01 (Frontend) + Central 3D Workstation + Station 02 (AI Tools) -->
-        <div class="skills-top-constellation">
+    <div class="skills-content-wrapper">
+      
+      <!-- Top Editorial Section Header -->
+      <div class="skills-editorial-header">
+        <div class="skills-eyebrow-capsule">
+          <span class="eyebrow-spark">✦</span>
+          <span>MY EXPERTISE</span>
+        </div>
+        <h2 class="skills-headline">
+          Skills That Shape <span class="skills-headline-gradient">My Work</span>
+        </h2>
+        <p class="skills-subcaption">
+          <span class="sub-spark">✦</span>
+          Blending <span class="accent-coral">creativity</span>, <span class="accent-purple">code</span> and <span class="accent-cyan">curiosity</span> to build digital experiences.
+          <span class="sub-spark">✦</span>
+        </p>
+      </div>
 
-          <!-- =====================================================
-               STATION 01: FRONTEND DEVELOPMENT (Left 3D Platform)
-               ===================================================== -->
-          <div class="skill-platform station-frontend" data-station="frontend">
-            <div class="station-halo halo-coral" aria-hidden="true"></div>
+      <!-- Main Three 3D Hero Panels (Desktop 3-Column Layout) -->
+      <div class="skills-panels-grid">
+        
+        <!-- ===================================================================
+             PANEL 01: FRONTEND DEVELOPMENT
+             Warm Coral/Amber Glow • Glass Dome with Glowing 3D Code Symbol
+             =================================================================== -->
+        <article class="skills-card-3d card-frontend" data-category="frontend" tabindex="0" aria-label="Frontend Development Skills">
+          <div class="card-glass-body">
             
-            <div class="station-clay-body">
-              <div class="station-header">
-                <div class="station-kicker">
-                  <span class="station-num">01</span>
-                  <span class="station-tag tag-coral">Core Frontend</span>
-                </div>
-                <h3 class="station-title">Frontend Development</h3>
-                <p class="station-desc">Modern interfaces, responsive layouts &amp; fluid web interactions.</p>
+            <!-- Top Showcase Row: Meta Text + 3D Centerpiece -->
+            <div class="card-hero-zone">
+              <div class="card-meta">
+                <span class="card-index-num">01</span>
+                <div class="card-dots"><span></span><span></span><span></span></div>
+                <h3 class="card-category-title">
+                  FRONTEND
+                  <span class="cat-accent cat-coral">DEVELOPMENT</span>
+                </h3>
+                <p class="card-desc">
+                  Building responsive, fast and beautiful web interfaces with modern technologies.
+                </p>
               </div>
 
-              <!-- 7 Frontend Clay Chiclet Tiles -->
-              <div class="clay-tiles-grid">
-                
-                <!-- HTML -->
-                <div class="clay-tile tile-html" tabindex="0" role="button" aria-label="HTML - Semantic structure and modern elements">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-html" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">HTML</span>
-                      <span class="tile-sub">Semantic &amp; Accessible</span>
-                    </div>
-                  </div>
+              <!-- 3D Centerpiece: Floating Glass Dome on Pedestal with Glowing </> Symbol -->
+              <div class="card-centerpiece-stage" aria-hidden="true">
+                <div class="centerpiece-obj centerpiece-frontend">
+                  <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-centerpiece">
+                    <defs>
+                      <radialGradient id="fePedestal" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#FFF5EE"/>
+                        <stop offset="60%" stop-color="#FED7AA"/>
+                        <stop offset="100%" stop-color="#FDBA74"/>
+                      </radialGradient>
+                      <linearGradient id="feGlassDome" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.75)"/>
+                        <stop offset="40%" stop-color="rgba(255, 255, 255, 0.25)"/>
+                        <stop offset="80%" stop-color="rgba(254, 215, 170, 0.35)"/>
+                        <stop offset="100%" stop-color="rgba(255, 122, 89, 0.45)"/>
+                      </linearGradient>
+                      <linearGradient id="feCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF8A65"/>
+                        <stop offset="45%" stop-color="#FA5538"/>
+                        <stop offset="100%" stop-color="#D9431E"/>
+                      </linearGradient>
+                      <filter id="feGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#FA5538" flood-opacity="0.45"/>
+                      </filter>
+                      <filter id="feDomeShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#18101C" flood-opacity="0.12"/>
+                      </filter>
+                    </defs>
+                    
+                    <!-- Ground shadow -->
+                    <ellipse cx="75" cy="132" rx="55" ry="12" fill="#18101C" fill-opacity="0.08" />
+                    <ellipse cx="75" cy="130" rx="42" ry="8" fill="#FA5538" fill-opacity="0.18" />
+
+                    <!-- Tiered Circular Pedestal Base -->
+                    <ellipse cx="75" cy="120" rx="46" ry="14" fill="#FED7AA" stroke="#FDBA74" stroke-width="1.5"/>
+                    <path d="M29 120 C29 127 121 127 121 120 L121 126 C121 133 29 133 29 126 Z" fill="#FBA669"/>
+                    <ellipse cx="75" cy="116" rx="40" ry="11" fill="url(#fePedestal)" stroke="#FFE4D6" stroke-width="1.5"/>
+                    
+                    <!-- Glass Cloche / Dome -->
+                    <path d="M35 112 C35 55 115 55 115 112 Z" fill="url(#feGlassDome)" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1.5" filter="url(#feDomeShadow)"/>
+                    <!-- Specular highlight arc -->
+                    <path d="M44 88 C46 65 72 58 84 58" stroke="rgba(255, 255, 255, 0.95)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M47 98 C47 94 48 91 50 88" stroke="rgba(255, 255, 255, 0.7)" stroke-width="2" stroke-linecap="round"/>
+
+                    <!-- Floating 3D Glowing </> Code Symbol -->
+                    <g filter="url(#feGlow)" class="floating-symbol">
+                      <!-- Left bracket < -->
+                      <path d="M60 76 L48 88 L60 100" stroke="url(#feCodeGrad)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M60 76 L48 88 L60 100" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                      <!-- Slash / -->
+                      <line x1="78" y1="72" x2="68" y2="104" stroke="url(#feCodeGrad)" stroke-width="6.5" stroke-linecap="round"/>
+                      <line x1="78" y1="72" x2="68" y2="104" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+                      <!-- Right bracket > -->
+                      <path d="M86 76 L98 88 L86 100" stroke="url(#feCodeGrad)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M86 76 L98 88 L86 100" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                    </g>
+
+                    <!-- Orbiting Glass Ring with Reflection -->
+                    <ellipse cx="75" cy="88" rx="52" ry="16" fill="none" stroke="rgba(255, 122, 89, 0.5)" stroke-width="1.8" transform="rotate(-15 75 88)"/>
+                    <ellipse cx="75" cy="88" rx="52" ry="16" fill="none" stroke="rgba(255, 255, 255, 0.8)" stroke-width="1" stroke-dasharray="14 100" transform="rotate(-15 75 88)"/>
+                  </svg>
                 </div>
-
-                <!-- CSS -->
-                <div class="clay-tile tile-css" tabindex="0" role="button" aria-label="CSS - Layouts, responsive design, modern properties">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-css" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m3 3 3 18 6 2 6-2 3-18Z"></path>
-                        <path d="M7 8h10"></path>
-                        <path d="M7 12h8"></path>
-                        <path d="m8 16 4 1 4-1"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">CSS</span>
-                      <span class="tile-sub">Layouts &amp; Styling</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- JavaScript -->
-                <div class="clay-tile tile-js" tabindex="0" role="button" aria-label="JavaScript - ES6+, DOM manipulation, dynamic UI logic">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-js" aria-hidden="true">
-                      <span class="js-badge-text">JS</span>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">JavaScript</span>
-                      <span class="tile-sub">ES6+ &amp; Dynamic UI</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Bootstrap -->
-                <div class="clay-tile tile-bootstrap" tabindex="0" role="button" aria-label="Bootstrap - Component grids and rapid responsiveness">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-bootstrap" aria-hidden="true">
-                      <span class="b-badge-text">B</span>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Bootstrap</span>
-                      <span class="tile-sub">Grids &amp; Components</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- React -->
-                <div class="clay-tile tile-react" tabindex="0" role="button" aria-label="React - Components, state, modern frontend architecture">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-react" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)"></ellipse>
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(90 12 12)"></ellipse>
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(150 12 12)"></ellipse>
-                        <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">React</span>
-                      <span class="tile-sub">Component Architecture</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Tailwind CSS -->
-                <div class="clay-tile tile-tailwind" tabindex="0" role="button" aria-label="Tailwind CSS - Utility-first styling and design systems">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-tailwind" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 12c.5-2.5 2-4 4.5-4 3 0 3 3 5.5 3s3-1 4-3c-.5 2.5-2 4-4.5 4-3 0-3-3-5.5-3s-3 1-4 3Z"></path>
-                        <path d="M2 17c.5-2.5 2-4 4.5-4 3 0 3 3 5.5 3s3-1 4-3c-.5 2.5-2 4-4.5 4-3 0-3-3-5.5-3s-3 1-4 3Z"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Tailwind CSS</span>
-                      <span class="tile-sub">Utility-First Design</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- GSAP -->
-                <div class="clay-tile tile-gsap" tabindex="0" role="button" aria-label="GSAP - Smooth interactive animations and micro-interactions">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-gsap" aria-hidden="true">
-                      <span class="gsap-badge-text">G</span>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">GSAP</span>
-                      <span class="tile-sub">Fluid Motion &amp; Choreography</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- =====================================================
-               CENTRAL 3D WORKSTATION OBJECT (Floating Creative Hub)
-               ===================================================== -->
-          <div class="skills-centerpiece-3d" aria-hidden="true">
-            <div class="centerpiece-halo"></div>
-
-            <!-- Floating Surrounding Symbols -->
-            <span class="cp-floating-symbol sym-tag">&lt;/&gt;</span>
-            <span class="cp-floating-symbol sym-brace">{ }</span>
-            <span class="cp-floating-symbol sym-cursor">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FA5538">
-                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
-              </svg>
-            </span>
-            <span class="cp-floating-symbol sym-sparkle">✦</span>
-            <span class="cp-floating-symbol sym-ai">AI</span>
-
-            <!-- 3D Laptop / Code Window -->
-            <div class="centerpiece-laptop">
-              <div class="laptop-screen">
-                <div class="screen-top-bar">
-                  <div class="screen-dots">
-                    <span class="s-dot dot-r"></span>
-                    <span class="s-dot dot-y"></span>
-                    <span class="s-dot dot-g"></span>
-                  </div>
-                  <span class="screen-title">arfa.dev/workspace</span>
-                </div>
-                <div class="screen-code-lines">
-                  <div><span class="c-kw">const</span> <span class="c-fn">buildExperience</span> = () =&gt; {</div>
-                  <div style="padding-left: 0.75rem;"><span class="c-kw">const</span> ideas = code + AI;</div>
-                  <div style="padding-left: 0.75rem;"><span class="c-kw">return</span> ideas.<span class="c-fn">ship</span>();<span class="c-cursor">|</span></div>
-                  <div>};</div>
-                </div>
-              </div>
-              <div class="laptop-base">
-                <div class="laptop-trackpad"></div>
               </div>
             </div>
 
-            <!-- Pedestal Disc Glow -->
-            <div class="centerpiece-pedestal"></div>
-          </div>
+            <!-- Mini Skill Modules: HTML5, CSS3, JavaScript, Bootstrap, React, Tailwind CSS, GSAP -->
+            <div class="skills-modules-grid grid-frontend">
+              <!-- HTML5 -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="html5">
+                <div class="chip-icon-box icon-html5">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 3L5.6 20.2L12 22L18.4 20.2L20 3H4Z" fill="#E44D26"/>
+                    <path d="M12 4.6V20.2L17.1 18.8L18.4 4.6H12Z" fill="#F16529"/>
+                    <path d="M12 8.2H8.3L8.5 10.6H12V8.2ZM12 13.4H9.6L9.8 15.6L12 16.2V13.4Z" fill="#EBEBEB"/>
+                    <path d="M12 8.2V10.6H15.4L15.1 13.4H12V15.8V16.2L14.2 15.6L14.4 13.4H16.8L16.4 18.2L12 19.4V13.4H12Z" fill="#FFFFFF"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">HTML5</span>
+                  <span class="chip-sub">Semantic Web</span>
+                </div>
+              </div>
 
-          <!-- =====================================================
-               STATION 02: AI TOOLS & WORKFLOW (Right 3D Platform)
-               ===================================================== -->
-          <div class="skill-platform station-ai-tools" data-station="ai-tools">
-            <div class="station-halo halo-cyan" aria-hidden="true"></div>
+              <!-- CSS3 -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="css3">
+                <div class="chip-icon-box icon-css3">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 3L5.6 20.2L12 22L18.4 20.2L20 3H4Z" fill="#1572B6"/>
+                    <path d="M12 4.6V20.2L17.1 18.8L18.4 4.6H12Z" fill="#33A9DC"/>
+                    <path d="M12 8.2H8.3L8.8 14.2H12V11.8H10.9L10.7 10.2H12V8.2ZM12 16.2L9.8 15.6L9.6 13.8H7.3L7.7 17.8L12 19V16.2Z" fill="#EBEBEB"/>
+                    <path d="M15.4 10.2L15.6 8.2H12V10.2H15.4ZM15.1 12.6L14.8 15.6L12 16.2V19L16.3 17.8L16.8 12.6H15.1Z" fill="#FFFFFF"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">CSS3</span>
+                  <span class="chip-sub">Modern Styling</span>
+                </div>
+              </div>
+
+              <!-- JavaScript -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="javascript">
+                <div class="chip-icon-box icon-js">
+                  <div class="badge-js-tile">JS</div>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">JavaScript</span>
+                  <span class="chip-sub">ES6+ & DOM</span>
+                </div>
+              </div>
+
+              <!-- Bootstrap -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="bootstrap">
+                <div class="chip-icon-box icon-bs">
+                  <div class="badge-bs-tile">B</div>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Bootstrap</span>
+                  <span class="chip-sub">Grid & Layout</span>
+                </div>
+              </div>
+
+              <!-- React -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="react">
+                <div class="chip-icon-box icon-react">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <ellipse cx="12" cy="12" rx="4" ry="10" stroke="#00D8FF" stroke-width="1.5" transform="rotate(30 12 12)"/>
+                    <ellipse cx="12" cy="12" rx="4" ry="10" stroke="#00D8FF" stroke-width="1.5" transform="rotate(90 12 12)"/>
+                    <ellipse cx="12" cy="12" rx="4" ry="10" stroke="#00D8FF" stroke-width="1.5" transform="rotate(150 12 12)"/>
+                    <circle cx="12" cy="12" r="2.2" fill="#00D8FF"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">React</span>
+                  <span class="chip-sub">Components</span>
+                </div>
+              </div>
+
+              <!-- Tailwind CSS -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="tailwind">
+                <div class="chip-icon-box icon-tailwind">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 13C7.2 13 8.1 13.6 8.7 14.8C9.5 13.2 10.7 12.4 12.3 12.4C14.7 12.4 15.6 14.2 15.9 16C16.8 16 17.7 16.6 18.3 17.8C19.1 16.2 20.3 15.4 21.9 15.4C24 15.4 24 17.2 24 19C24 20.8 22.8 22 20.4 22C17.7 22 16.5 20.2 16.2 18.4C15.3 18.4 14.4 17.8 13.8 16.6C13 18.2 11.8 19 10.2 19C8.1 19 7.2 17.2 6.9 15.4C6 15.4 5.1 14.8 4.5 13.6C5.3 12 6.5 11.2 8.1 11.2C10.5 11.2 11.4 13 11.7 14.8C12.6 14.8 13.5 14.2 14.1 13C14.9 11.4 16.1 10.6 17.7 10.6C19.8 10.6 20.7 12.4 21 14.2C20.1 14.2 19.2 13.6 18.6 12.4C17.8 14 16.6 14.8 15 14.8C12.9 14.8 12 13 11.7 11.2C10.8 11.2 9.9 11.8 9.3 13C8.5 11.4 7.3 10.6 5.7 10.6C3.6 10.6 3 12.4 3 14.2" fill="#38BDF8"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Tailwind CSS</span>
+                  <span class="chip-sub">Utility Design</span>
+                </div>
+              </div>
+
+              <!-- GSAP -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="gsap">
+                <div class="chip-icon-box icon-gsap">
+                  <span class="badge-gsap-tile">GSAP</span>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">GSAP</span>
+                  <span class="chip-sub">Kinetic Motion</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Pill Tags Row (Direct from Reference) -->
+            <div class="card-bottom-pill-row pill-coral-theme">
+              <span class="pill-dot"></span> Clean Code
+              <span class="pill-dot"></span> Performance
+              <span class="pill-dot"></span> Modern UI/UX
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             PANEL 02: AI TOOLS
+             Elevated Centerpiece • Luminous Violet AI Brain in Glass Sphere
+             =================================================================== -->
+        <article class="skills-card-3d card-aitools is-elevated" data-category="aitools" tabindex="0" aria-label="AI Tools Skills">
+          <div class="card-glass-body">
             
-            <div class="station-clay-body">
-              <div class="station-header">
-                <div class="station-kicker">
-                  <span class="station-num">02</span>
-                  <span class="station-tag tag-cyan">AI Prototyping</span>
-                </div>
-                <h3 class="station-title">AI Tools &amp; Workflow</h3>
-                <p class="station-desc">Accelerating ideation, coding, debugging &amp; modern web deployment.</p>
+            <div class="card-hero-zone">
+              <div class="card-meta">
+                <span class="card-index-num num-purple">02</span>
+                <div class="card-dots dots-purple"><span></span><span></span><span></span></div>
+                <h3 class="card-category-title">
+                  AI
+                  <span class="cat-accent cat-purple">TOOLS</span>
+                </h3>
+                <p class="card-desc">
+                  Exploring AI tools to accelerate ideas, development and creative workflows.
+                </p>
               </div>
 
-              <!-- 7 AI Tools Clay Chiclet Tiles -->
-              <div class="clay-tiles-grid">
-                
-                <!-- ChatGPT -->
-                <div class="clay-tile tile-chatgpt" tabindex="0" role="button" aria-label="ChatGPT - Ideation, logic drafting, and problem-solving">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-chatgpt" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3a9 9 0 0 1 9 9c0 2.3-.87 4.4-2.3 6L19 21l-3-1c-.9.6-1.9 1-3 1a9 9 0 0 1-9-9c0-5 4-9 9-9Z"></path>
-                        <path d="M8 12h.01"></path>
-                        <path d="M12 12h.01"></path>
-                        <path d="M16 12h.01"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">ChatGPT</span>
-                      <span class="tile-sub">Ideation &amp; Logic Drafting</span>
-                    </div>
-                  </div>
-                </div>
+              <!-- 3D Centerpiece: Luminous AI Brain / Neural Core in Crystal Glass Sphere -->
+              <div class="card-centerpiece-stage" aria-hidden="true">
+                <div class="centerpiece-obj centerpiece-ai">
+                  <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-centerpiece">
+                    <defs>
+                      <radialGradient id="aiPedestal" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#F5F3FF"/>
+                        <stop offset="60%" stop-color="#DDD6FE"/>
+                        <stop offset="100%" stop-color="#C4B5FD"/>
+                      </radialGradient>
+                      <linearGradient id="aiGlassSphere" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.8)"/>
+                        <stop offset="35%" stop-color="rgba(255, 255, 255, 0.2)"/>
+                        <stop offset="70%" stop-color="rgba(196, 181, 253, 0.3)"/>
+                        <stop offset="100%" stop-color="rgba(139, 92, 246, 0.45)"/>
+                      </linearGradient>
+                      <linearGradient id="aiBrainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#60A5FA"/>
+                        <stop offset="45%" stop-color="#8B5CF6"/>
+                        <stop offset="100%" stop-color="#4F46E5"/>
+                      </linearGradient>
+                      <filter id="aiBrainGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feDropShadow dx="0" dy="4" stdDeviation="9" flood-color="#8B5CF6" flood-opacity="0.5"/>
+                      </filter>
+                    </defs>
 
-                <!-- Gemini -->
-                <div class="clay-tile tile-gemini" tabindex="0" role="button" aria-label="Gemini - Multimodal reasoning, analysis, and research">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-gemini" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m12 3-1.9 6.1L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9Z"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Gemini</span>
-                      <span class="tile-sub">Reasoning &amp; Analysis</span>
-                    </div>
-                  </div>
-                </div>
+                    <!-- Ground shadow -->
+                    <ellipse cx="75" cy="132" rx="55" ry="12" fill="#18101C" fill-opacity="0.08" />
+                    <ellipse cx="75" cy="130" rx="42" ry="8" fill="#8B5CF6" fill-opacity="0.18" />
 
-                <!-- Antigravity -->
-                <div class="clay-tile tile-antigravity" tabindex="0" role="button" aria-label="Antigravity - Advanced AI prototyping and agent-driven engineering">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-antigravity" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <path d="m12 8 4 4-4 4-4-4 4-4Z"></path>
-                        <path d="M12 3v3"></path>
-                        <path d="M12 18v3"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Antigravity</span>
-                      <span class="tile-sub">Agent-Driven Dev</span>
-                    </div>
-                  </div>
-                </div>
+                    <!-- Circular Pedestal Base -->
+                    <ellipse cx="75" cy="120" rx="46" ry="14" fill="#DDD6FE" stroke="#C4B5FD" stroke-width="1.5"/>
+                    <path d="M29 120 C29 127 121 127 121 120 L121 126 C121 133 29 133 29 126 Z" fill="#A78BFA"/>
+                    <ellipse cx="75" cy="116" rx="40" ry="11" fill="url(#aiPedestal)" stroke="#EDE9FE" stroke-width="1.5"/>
 
-                <!-- Bolt -->
-                <div class="clay-tile tile-bolt" tabindex="0" role="button" aria-label="Bolt - Rapid fullstack AI web scaffolding">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-bolt" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Bolt</span>
-                      <span class="tile-sub">Rapid AI Scaffolding</span>
-                    </div>
-                  </div>
-                </div>
+                    <!-- Crystal Glass Sphere Enclosure -->
+                    <circle cx="75" cy="80" r="42" fill="url(#aiGlassSphere)" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1.5"/>
+                    <circle cx="75" cy="80" r="40" stroke="rgba(139, 92, 246, 0.25)" stroke-width="1.2"/>
 
-                <!-- GitHub Copilot -->
-                <div class="clay-tile tile-copilot" tabindex="0" role="button" aria-label="GitHub Copilot - Context-aware in-editor code completions">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-copilot" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">GitHub Copilot</span>
-                      <span class="tile-sub">Context-Aware Pairs</span>
-                    </div>
-                  </div>
-                </div>
+                    <!-- Sculpted 3D AI Brain / Intelligence Node inside -->
+                    <g filter="url(#aiBrainGlow)" class="floating-brain">
+                      <!-- Left hemisphere folds -->
+                      <path d="M73 66 C63 64 56 70 56 78 C56 82 58 85 61 87 C58 91 60 97 66 98 C69 98 71 97 73 95 Z" fill="url(#aiBrainGrad)"/>
+                      <!-- Right hemisphere folds -->
+                      <path d="M77 66 C87 64 94 70 94 78 C94 82 92 85 89 87 C92 91 90 97 84 98 C81 98 79 97 77 95 Z" fill="url(#aiBrainGrad)"/>
+                      <!-- Center neural cortex divide & synapses -->
+                      <path d="M75 65 V96" stroke="#EDE9FE" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+                      <circle cx="66" cy="74" r="2.5" fill="#FFFFFF"/>
+                      <circle cx="84" cy="74" r="2.5" fill="#FFFFFF"/>
+                      <circle cx="68" cy="88" r="2" fill="#67E8F9"/>
+                      <circle cx="82" cy="88" r="2" fill="#67E8F9"/>
+                      <line x1="66" y1="74" x2="68" y2="88" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+                      <line x1="84" y1="74" x2="82" y2="88" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+                    </g>
 
-                <!-- Netlify -->
-                <div class="clay-tile tile-netlify" tabindex="0" role="button" aria-label="Netlify - Modern web deployment, hosting, and continuous integration">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-netlify" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <path d="m9 12 2 2 4-4"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Netlify</span>
-                      <span class="tile-sub">Cloud Deploy &amp; CI/CD</span>
-                    </div>
-                  </div>
-                </div>
+                    <!-- Specular Curved Highlight on Glass -->
+                    <path d="M48 64 C54 50 72 44 86 44" stroke="rgba(255, 255, 255, 0.95)" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="50" cy="76" r="3" fill="rgba(255, 255, 255, 0.75)"/>
 
-                <!-- Cursor -->
-                <div class="clay-tile tile-cursor-ai" tabindex="0" role="button" aria-label="Cursor - Next-generation AI-first code editor and vibe coding">
-                  <div class="clay-tile-cap">
-                    <div class="tile-icon-wrap icon-cursor-ai" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4l16 8-7 2-2 7z"></path>
-                      </svg>
-                    </div>
-                    <div class="tile-meta">
-                      <span class="tile-name">Cursor</span>
-                      <span class="tile-sub">AI-First Code Editor</span>
-                    </div>
-                  </div>
+                    <!-- Dual Orbital Rings with Glowing Particles -->
+                    <ellipse cx="75" cy="80" rx="54" ry="18" fill="none" stroke="rgba(139, 92, 246, 0.6)" stroke-width="1.8" transform="rotate(-24 75 80)"/>
+                    <ellipse cx="75" cy="80" rx="54" ry="18" fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1" stroke-dasharray="16 110" transform="rotate(-24 75 80)"/>
+                    <circle cx="28" cy="68" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.2"/>
+                    <circle cx="122" cy="92" r="3.5" fill="#6366F1" stroke="#FFFFFF" stroke-width="1.2"/>
+                  </svg>
                 </div>
-
               </div>
             </div>
+
+            <!-- AI Tools Mini Modules: ChatGPT, Gemini, Antigravity, Bolt, GitHub Copilot, Netlify, Cursor -->
+            <div class="skills-modules-grid grid-aitools">
+              <!-- ChatGPT -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="chatgpt">
+                <div class="chip-icon-box icon-chatgpt">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.5 10.3C20.2 8.7 19.1 7.4 17.6 6.8C17.3 5.3 16.2 4.1 14.7 3.6C13.2 3.1 11.5 3.5 10.3 4.5C9.2 3.8 7.8 3.8 6.7 4.4C5.5 5 4.8 6.3 4.8 7.6C3.4 8.2 2.5 9.5 2.5 11C2.5 12.3 3.2 13.5 4.3 14.2C4.1 15.7 5.1 17.1 6.5 17.7C6.8 19.2 8 20.3 9.5 20.7C11 21.1 12.6 20.6 13.7 19.6C14.8 20.2 16.2 20.1 17.3 19.5C18.4 18.9 19.1 17.6 19.1 16.3C20.5 15.6 21.4 14.3 21.3 12.8C21.3 11.8 20.9 11 20.5 10.3Z" stroke="#10A37F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="2.5" fill="#10A37F"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">ChatGPT</span>
+                  <span class="chip-sub">OpenAI Engine</span>
+                </div>
+              </div>
+
+              <!-- Gemini -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="gemini">
+                <div class="chip-icon-box icon-gemini">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C12 7.5 7.5 12 2 12C7.5 12 12 16.5 12 22C12 16.5 16.5 12 22 12C16.5 12 12 7.5 12 2Z" fill="url(#geminiGradIcon)"/>
+                    <defs>
+                      <linearGradient id="geminiGradIcon" x1="2" y1="2" x2="22" y2="22">
+                        <stop offset="0%" stop-color="#4F46E5"/>
+                        <stop offset="50%" stop-color="#8B5CF6"/>
+                        <stop offset="100%" stop-color="#38BDF8"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Gemini</span>
+                  <span class="chip-sub">Multimodal AI</span>
+                </div>
+              </div>
+
+              <!-- Antigravity -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="antigravity">
+                <div class="chip-icon-box icon-antigravity">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L20 18H4L12 3Z" stroke="#8B5CF6" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="12" cy="13" r="3" fill="#06B6D4"/>
+                    <path d="M12 7V10" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Antigravity</span>
+                  <span class="chip-sub">Creative Workflows</span>
+                </div>
+              </div>
+
+              <!-- Bolt -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="bolt">
+                <div class="chip-icon-box icon-bolt">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#EAB308" stroke="#CA8A04" stroke-width="1.2" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Bolt</span>
+                  <span class="chip-sub">Fullstack Prototyping</span>
+                </div>
+              </div>
+
+              <!-- GitHub Copilot -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="copilot">
+                <div class="chip-icon-box icon-copilot">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" fill="#1F2937"/>
+                    <path d="M8 11C8 9.5 9.5 9 12 9C14.5 9 16 9.5 16 11V14C16 16 14 17 12 17C10 17 8 16 8 14V11Z" fill="#3B82F6"/>
+                    <circle cx="10" cy="12" r="1.5" fill="#FFFFFF"/>
+                    <circle cx="14" cy="12" r="1.5" fill="#FFFFFF"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">GitHub Copilot</span>
+                  <span class="chip-sub">Code Acceleration</span>
+                </div>
+              </div>
+
+              <!-- Netlify -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="netlify">
+                <div class="chip-icon-box icon-netlify">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L3 12L12 22L21 12L12 2Z" fill="#00C7B7" opacity="0.2"/>
+                    <path d="M12 2L4 12L12 17L20 12L12 2Z" stroke="#00C7B7" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="2.5" fill="#00C7B7"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Netlify</span>
+                  <span class="chip-sub">Deploy & Edge</span>
+                </div>
+              </div>
+
+              <!-- Cursor -->
+              <div class="mini-skill-chip" tabindex="0" data-skill="cursor">
+                <div class="chip-icon-box icon-cursor">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 3L11 21L14 13L21 9L4 3Z" fill="#18101C" stroke="#475569" stroke-width="1.5" stroke-linejoin="round"/>
+                    <circle cx="13" cy="13" r="2" fill="#8B5CF6"/>
+                  </svg>
+                </div>
+                <div class="chip-info">
+                  <span class="chip-name">Cursor</span>
+                  <span class="chip-sub">AI Code Editor</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Pill Tags Row -->
+            <div class="card-bottom-pill-row pill-purple-theme">
+              <span class="pill-dot"></span> Learn
+              <span class="pill-dot"></span> Experiment
+              <span class="pill-dot"></span> Automate
+              <span class="pill-dot"></span> Innovate
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             PANEL 03: PROMPT ENGINEERING
+             Teal/Cyan Glow • 3D Message Bubble on Glass Pedestal • Honest Process
+             =================================================================== -->
+        <article class="skills-card-3d card-prompt" data-category="prompt" tabindex="0" aria-label="Prompt Engineering Skills">
+          <div class="card-glass-body">
+            
+            <div class="card-hero-zone">
+              <div class="card-meta">
+                <span class="card-index-num num-teal">03</span>
+                <div class="card-dots dots-teal"><span></span><span></span><span></span></div>
+                <h3 class="card-category-title">
+                  PROMPT
+                  <span class="cat-accent cat-teal">ENGINEERING</span>
+                </h3>
+                <p class="card-desc">
+                  Crafting clear, structured prompts to communicate effectively with AI tools.
+                </p>
+              </div>
+
+              <!-- 3D Centerpiece: Glowing Emerald/Teal Chat Bubble with Dots on Pedestal -->
+              <div class="card-centerpiece-stage" aria-hidden="true">
+                <div class="centerpiece-obj centerpiece-prompt">
+                  <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-centerpiece">
+                    <defs>
+                      <radialGradient id="promptPedestal" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#F0FDF4"/>
+                        <stop offset="60%" stop-color="#A7F3D0"/>
+                        <stop offset="100%" stop-color="#6EE7B7"/>
+                      </radialGradient>
+                      <linearGradient id="promptBubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#34D399"/>
+                        <stop offset="45%" stop-color="#10B981"/>
+                        <stop offset="100%" stop-color="#059669"/>
+                      </linearGradient>
+                      <filter id="promptGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#10B981" flood-opacity="0.45"/>
+                      </filter>
+                    </defs>
+
+                    <!-- Ground shadow -->
+                    <ellipse cx="75" cy="132" rx="55" ry="12" fill="#18101C" fill-opacity="0.08" />
+                    <ellipse cx="75" cy="130" rx="42" ry="8" fill="#10B981" fill-opacity="0.18" />
+
+                    <!-- Circular Pedestal Base -->
+                    <ellipse cx="75" cy="120" rx="46" ry="14" fill="#A7F3D0" stroke="#6EE7B7" stroke-width="1.5"/>
+                    <path d="M29 120 C29 127 121 127 121 120 L121 126 C121 133 29 133 29 126 Z" fill="#34D399"/>
+                    <ellipse cx="75" cy="116" rx="40" ry="11" fill="url(#promptPedestal)" stroke="#D1FAE5" stroke-width="1.5"/>
+
+                    <!-- Floating 3D Emerald Chat Bubble with Tail -->
+                    <g filter="url(#promptGlow)" class="floating-bubble">
+                      <rect x="42" y="60" width="66" height="48" rx="16" fill="url(#promptBubbleGrad)" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1.5"/>
+                      <!-- Speech bubble tail pointing to pedestal -->
+                      <path d="M56 108 L64 108 L52 118 Z" fill="#059669" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1"/>
+                      
+                      <!-- Glossy reflection highlight on top edge -->
+                      <path d="M46 64 C52 62 98 62 104 64" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2.5" stroke-linecap="round"/>
+                      
+                      <!-- Three Glowing White Chat Dots -->
+                      <circle cx="58" cy="84" r="3.6" fill="#FFFFFF"/>
+                      <circle cx="75" cy="84" r="3.6" fill="#FFFFFF"/>
+                      <circle cx="92" cy="84" r="3.6" fill="#FFFFFF"/>
+                    </g>
+
+                    <!-- Orbiting Ring with Sparkle Node -->
+                    <ellipse cx="75" cy="84" rx="54" ry="18" fill="none" stroke="rgba(16, 185, 129, 0.55)" stroke-width="1.8" transform="rotate(-18 75 84)"/>
+                    <ellipse cx="75" cy="84" rx="54" ry="18" fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1" stroke-dasharray="14 100" transform="rotate(-18 75 84)"/>
+                    <circle cx="120" cy="94" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Honest Capability Indicators (Honest representation of fundamentals) -->
+            <div class="prompt-capabilities-deck">
+              <!-- Item 1: Prompt Structuring -->
+              <div class="prompt-cap-row">
+                <div class="cap-left">
+                  <div class="cap-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="8" y1="6" x2="21" y2="6"></line>
+                      <line x1="8" y1="12" x2="21" y2="12"></line>
+                      <line x1="8" y1="18" x2="21" y2="18"></line>
+                      <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                      <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                      <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                  </div>
+                  <div class="cap-text">
+                    <strong class="cap-title">Prompt Structuring</strong>
+                    <span class="cap-desc">Creating clear instructions & objectives</span>
+                  </div>
+                </div>
+                <div class="cap-meter-track">
+                  <div class="cap-meter-fill fill-95"></div>
+                </div>
+              </div>
+
+              <!-- Item 2: Context & Constraints -->
+              <div class="prompt-cap-row">
+                <div class="cap-left">
+                  <div class="cap-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                  </div>
+                  <div class="cap-text">
+                    <strong class="cap-title">Context & Constraints</strong>
+                    <span class="cap-desc">Providing useful context & defining requirements</span>
+                  </div>
+                </div>
+                <div class="cap-meter-track">
+                  <div class="cap-meter-fill fill-90"></div>
+                </div>
+              </div>
+
+              <!-- Item 3: Output Refinement -->
+              <div class="prompt-cap-row">
+                <div class="cap-left">
+                  <div class="cap-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                  </div>
+                  <div class="cap-text">
+                    <strong class="cap-title">Output Refinement</strong>
+                    <span class="cap-desc">Improving AI-generated results through iteration</span>
+                  </div>
+                </div>
+                <div class="cap-meter-track">
+                  <div class="cap-meter-fill fill-85"></div>
+                </div>
+              </div>
+
+              <!-- Item 4: AI Fundamentals -->
+              <div class="prompt-cap-row">
+                <div class="cap-left">
+                  <div class="cap-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                    </svg>
+                  </div>
+                  <div class="cap-text">
+                    <strong class="cap-title">AI Fundamentals</strong>
+                    <span class="cap-desc">Understanding & experimenting with AI workflows</span>
+                  </div>
+                </div>
+                <div class="cap-meter-track">
+                  <div class="cap-meter-fill fill-80"></div>
+                </div>
+              </div>
+
+              <!-- Visual Process Workflow (IDEA → CONTEXT → PROMPT → REFINE) -->
+              <div class="prompt-workflow-capsule">
+                <span class="wf-step">IDEA</span>
+                <span class="wf-arrow">→</span>
+                <span class="wf-step">CONTEXT</span>
+                <span class="wf-arrow">→</span>
+                <span class="wf-step">PROMPT</span>
+                <span class="wf-arrow">→</span>
+                <span class="wf-step wf-active">REFINE</span>
+              </div>
+            </div>
+
+            <!-- Bottom Pill Tags Row -->
+            <div class="card-bottom-pill-row pill-teal-theme">
+              <span class="pill-dot"></span> Clarity
+              <span class="pill-dot"></span> Relevance
+              <span class="pill-dot"></span> Precision
+              <span class="pill-dot"></span> Impact
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Bottom Row: Tools I Work With Shelf & Mindset Capsule (Direct from Reference) -->
+      <div class="skills-bottom-shelf-row">
+        
+        <!-- Shelf Card: TOOLS I WORK WITH (Without ESLint and Postman) -->
+        <div class="shelf-tools-card">
+          <div class="shelf-label-block">
+            <span class="shelf-title">TOOLS</span>
+            <span class="shelf-sub">I WORK WITH</span>
+            <span class="shelf-spark">✦</span>
           </div>
 
+          <div class="shelf-tools-icons">
+            <!-- VS Code -->
+            <div class="tool-shelf-item" title="VS Code">
+              <div class="tool-icon-circle icon-vscode">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M17.5 2L5.5 12L17.5 22L22 19.5V4.5L17.5 2Z" fill="#007ACC"/>
+                  <path d="M17.5 2L9 9.5L17.5 17L22 19.5V4.5L17.5 2Z" fill="#1F9CF0"/>
+                  <path d="M5.5 12L2 9.5L5.5 7L9 9.5L5.5 12Z" fill="#0065A9"/>
+                </svg>
+              </div>
+              <span class="tool-label">VS Code</span>
+            </div>
+
+            <!-- Git & GitHub -->
+            <div class="tool-shelf-item" title="Git & GitHub">
+              <div class="tool-icon-circle icon-git">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017C2 16.446 4.87 20.198 8.84 21.524C9.34 21.616 9.52 21.307 9.52 21.042C9.52 20.803 9.51 20.02 9.51 19.18C6.73 19.784 6.14 18.01 6.14 18.01C5.68 16.845 5.03 16.536 5.03 16.536C4.12 15.918 5.1 15.932 5.1 15.932C6.1 16.002 6.63 16.96 6.63 16.96C7.52 18.497 8.96 18.054 9.53 17.799C9.62 17.15 9.88 16.705 10.17 16.455C7.95 16.2 5.62 15.342 5.62 11.514C5.62 10.424 6.01 9.53 6.65 8.832C6.55 8.583 6.21 7.568 6.75 6.195C6.75 6.195 7.59 5.925 9.5 7.22C10.3 6.998 11.15 6.888 12 6.884C12.85 6.888 13.7 6.998 14.5 7.22C16.41 5.925 17.25 6.195 17.25 6.195C17.79 7.568 17.45 8.583 17.35 8.832C17.99 9.53 18.38 10.424 18.38 11.514C18.38 15.353 16.04 16.197 13.81 16.446C14.17 16.758 14.49 17.377 14.49 18.324C14.49 19.684 14.48 20.781 14.48 21.042C14.48 21.31 14.66 21.623 15.17 21.522C19.14 20.194 22 16.444 22 12.017C22 6.484 17.522 2 12 2Z" fill="#18101C"/>
+                </svg>
+              </div>
+              <span class="tool-label">Git & GitHub</span>
+            </div>
+
+            <!-- Figma -->
+            <div class="tool-shelf-item" title="Figma">
+              <div class="tool-icon-circle icon-figma">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 24C10.2091 24 12 22.2091 12 20V16H8C5.79086 16 4 17.7909 4 20C4 22.2091 5.79086 24 8 24Z" fill="#0ACF83"/>
+                  <path d="M4 12C4 9.79086 5.79086 8 8 8H12V16H8C5.79086 16 4 14.2091 4 12Z" fill="#A259FF"/>
+                  <path d="M4 4C4 1.79086 5.79086 0 8 0H12V8H8C5.79086 8 4 6.20914 4 4Z" fill="#F24E1E"/>
+                  <path d="M12 0H16C18.2091 0 20 1.79086 20 4C20 6.20914 18.2091 8 16 8H12V0Z" fill="#FF7262"/>
+                  <path d="M20 12C20 14.2091 18.2091 16 16 16C13.7909 16 12 14.2091 12 12C12 9.79086 13.7909 8 16 8C18.2091 8 20 9.79086 20 12Z" fill="#1ABCFE"/>
+                </svg>
+              </div>
+              <span class="tool-label">Figma</span>
+            </div>
+
+            <!-- Vercel -->
+            <div class="tool-shelf-item" title="Vercel">
+              <div class="tool-icon-circle icon-vercel">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3L22 20H2L12 3Z" fill="#000000"/>
+                </svg>
+              </div>
+              <span class="tool-label">Vercel</span>
+            </div>
+
+            <!-- Netlify -->
+            <div class="tool-shelf-item" title="Netlify">
+              <div class="tool-icon-circle icon-netlify-shelf">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L4 12L12 17L20 12L12 2Z" stroke="#00C7B7" stroke-width="2" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="2.5" fill="#00C7B7"/>
+                </svg>
+              </div>
+              <span class="tool-label">Netlify</span>
+            </div>
+
+            <!-- Prettier -->
+            <div class="tool-shelf-item" title="Prettier">
+              <div class="tool-icon-circle icon-prettier">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="4" height="4" fill="#F7B93E" rx="1"/>
+                  <rect x="10" y="4" width="4" height="4" fill="#56B3B4" rx="1"/>
+                  <rect x="16" y="4" width="4" height="4" fill="#EA5E5E" rx="1"/>
+                  <rect x="4" y="10" width="4" height="4" fill="#1A2B34" rx="1"/>
+                  <rect x="10" y="10" width="4" height="4" fill="#56B3B4" rx="1"/>
+                  <rect x="16" y="10" width="4" height="4" fill="#F7B93E" rx="1"/>
+                  <rect x="4" y="16" width="4" height="4" fill="#EA5E5E" rx="1"/>
+                  <rect x="10" y="16" width="4" height="4" fill="#F7B93E" rx="1"/>
+                  <rect x="16" y="16" width="4" height="4" fill="#1A2B34" rx="1"/>
+                </svg>
+              </div>
+              <span class="tool-label">Prettier</span>
+            </div>
+          </div>
         </div>
 
-        <!-- =====================================================
-             BOTTOM ROW: STATION 03 — PROMPT ENGINEERING
-             Centered & Lower with Visual Interactive Pipeline
-             ===================================================== -->
-        <div class="skills-bottom-constellation">
-          <div class="skill-platform station-prompt-eng" data-station="prompt-eng">
-            <div class="station-halo halo-violet" aria-hidden="true"></div>
-
-            <div class="station-clay-body prompt-body">
-              <div class="station-header prompt-header-row">
-                <div class="station-kicker">
-                  <span class="station-num">03</span>
-                  <span class="station-tag tag-violet">Workflow Methodology</span>
-                  <span class="prompt-learning-badge">✦ ACTIVE EXPERIMENTATION</span>
-                </div>
-                <h3 class="station-title">Prompt Engineering &amp; AI-Assisted Workflows</h3>
-                <p class="station-desc">Translating ambiguous concepts into high-precision, structured instructions with iterative evaluation.</p>
-              </div>
-
-              <!-- Interactive Visual Prompt-Building Pipeline -->
-              <div class="prompt-pipeline-container">
-                <div class="pipeline-track" role="region" aria-label="Visual Prompt Engineering Pipeline">
-                  
-                  <!-- Node 01: Prompt -->
-                  <div class="pipeline-node node-prompt active" tabindex="0">
-                    <span class="node-badge">01</span>
-                    <div class="node-icon-sphere">
-                      <span class="node-glyph">💡</span>
-                    </div>
-                    <div class="node-info">
-                      <span class="node-title">Intent &amp; Framing</span>
-                      <span class="node-sub">Clear problem objective</span>
-                    </div>
-                  </div>
-
-                  <!-- Connector 1-2 -->
-                  <div class="pipeline-connector" aria-hidden="true">
-                    <div class="pulse-line">
-                      <span class="pulse-spark"></span>
-                    </div>
-                    <span class="connector-arrow">→</span>
-                  </div>
-
-                  <!-- Node 02: Context -->
-                  <div class="pipeline-node node-context" tabindex="0">
-                    <span class="node-badge">02</span>
-                    <div class="node-icon-sphere">
-                      <span class="node-glyph">🧩</span>
-                    </div>
-                    <div class="node-info">
-                      <span class="node-title">Context &amp; Rules</span>
-                      <span class="node-sub">Constraints &amp; data shape</span>
-                    </div>
-                  </div>
-
-                  <!-- Connector 2-3 -->
-                  <div class="pipeline-connector" aria-hidden="true">
-                    <div class="pulse-line">
-                      <span class="pulse-spark"></span>
-                    </div>
-                    <span class="connector-arrow">→</span>
-                  </div>
-
-                  <!-- Node 03: Output -->
-                  <div class="pipeline-node node-output" tabindex="0">
-                    <span class="node-badge">03</span>
-                    <div class="node-icon-sphere">
-                      <span class="node-glyph">⚡</span>
-                    </div>
-                    <div class="node-info">
-                      <span class="node-title">Structured Output</span>
-                      <span class="node-sub">Clean code &amp; formats</span>
-                    </div>
-                  </div>
-
-                  <!-- Connector 3-4 -->
-                  <div class="pipeline-connector" aria-hidden="true">
-                    <div class="pulse-line">
-                      <span class="pulse-spark"></span>
-                    </div>
-                    <span class="connector-arrow">→</span>
-                  </div>
-
-                  <!-- Node 04: Refine -->
-                  <div class="pipeline-node node-refine" tabindex="0">
-                    <span class="node-badge">04</span>
-                    <div class="node-icon-sphere">
-                      <span class="node-glyph">🎯</span>
-                    </div>
-                    <div class="node-info">
-                      <span class="node-title">Iterative Refine</span>
-                      <span class="node-sub">Edge testing &amp; polish</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- 4 Specific Truthful Focus Badges -->
-                <div class="prompt-skills-pills-row">
-                  <div class="prompt-skill-pill">
-                    <span class="pill-dot dot-coral" aria-hidden="true"></span>
-                    <span class="pill-text">Prompt Engineering</span>
-                  </div>
-                  <div class="prompt-skill-pill">
-                    <span class="pill-dot dot-cyan" aria-hidden="true"></span>
-                    <span class="pill-text">AI fundamentals</span>
-                  </div>
-                  <div class="prompt-skill-pill">
-                    <span class="pill-dot dot-lavender" aria-hidden="true"></span>
-                    <span class="pill-text">Prompt refinement</span>
-                  </div>
-                  <div class="prompt-skill-pill">
-                    <span class="pill-dot dot-mint" aria-hidden="true"></span>
-                    <span class="pill-text">AI-assisted workflows</span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
+        <!-- Right Mindset Capsule (Direct from Reference) -->
+        <div class="shelf-mindset-card">
+          <div class="mindset-icon-bolt">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="url(#boltGradMindset)"/>
+              <defs>
+                <linearGradient id="boltGradMindset" x1="3" y1="2" x2="21" y2="22">
+                  <stop offset="0%" stop-color="#C084FC"/>
+                  <stop offset="100%" stop-color="#8B5CF6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="mindset-text-lines">
+            <span class="line-purple">Always <strong class="text-purple">learning.</strong></span>
+            <span class="line-coral">Always <strong class="text-coral">building.</strong></span>
+            <span class="line-teal">Always <strong class="text-teal">improving.</strong></span>
           </div>
         </div>
 
@@ -1234,6 +1500,7 @@
 
     </div>
   </section>
+
 
   <!-- =======================================================================
        CURRENTLY LEARNING — 3D INTERACTIVE VISUAL LEARNING ECOSYSTEM

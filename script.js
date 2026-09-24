@@ -709,9 +709,10 @@ function setupExploringRadar() {
  */
 /**
  * =========================================================================
- * 2026 3D INTERACTIVE PROJECT GALLERY SHOWCASE ENGINE
- * One Dominant Hero Project • Three Dimensional Secondary Previews
- * Hover-to-Activate Experience • Warm Ivory Background • Full Viewport Width
+ * 2026 PREMIUM CINEMATIC HORIZONTAL PROJECT GALLERY ENGINE
+ * Inspired directly by attached reference composition (portfoliooo.png)
+ * Warm Ivory Canvas • Center Active Card (Scale 1.0) • 3D Flanking Cards
+ * Explicit Click-to-Switch Interaction (NO hover switching)
  * 01 StudyPilot-AI • 02 Velora Store • 03 Kumo Ramen • 04 PastelForm
  * =========================================================================
  */
@@ -719,546 +720,452 @@ function setupProjectsShowcase() {
   const section = document.getElementById('projects');
   if (!section) return;
 
-  const heroNumEl = document.getElementById('sc-hero-num');
-  const heroCatEl = document.getElementById('sc-hero-category');
-  const heroStatusLabel = document.getElementById('sc-hero-status-label');
-  const heroTitleEl = document.getElementById('sc-hero-title');
-  const heroDescEl = document.getElementById('sc-hero-desc');
-  const heroTechRow = document.getElementById('sc-hero-tech-row');
-  const heroLiveBtn = document.getElementById('sc-hero-live-btn');
-  const heroGhBtn = document.getElementById('sc-hero-github-btn');
-  const heroUrlEl = document.getElementById('sc-hero-url');
-  const heroTagEl = document.getElementById('sc-hero-tag');
-  const heroHalo = document.getElementById('sc-board-halo');
-  const heroFrame = document.getElementById('sc-board-frame');
-  const heroViewport = document.getElementById('sc-hero-viewport');
-  const secondaryList = document.getElementById('sc-secondary-list');
-  const indicatorSteps = document.querySelectorAll('#sc-indicator-bar .sc-indicator-step');
+  const track = document.getElementById('gallery-track-3d');
+  const prevBtn = document.getElementById('gallery-prev-btn');
+  const nextBtn = document.getElementById('gallery-next-btn');
+  const indicatorCapsule = document.getElementById('gallery-indicator-capsule');
+  const indicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
 
-  // Exact 4 Projects Data with verified metadata and rich interactive mock UIs
+  if (!track) return;
+
   const projects = [
     {
-      idx: 0,
-      num: '01',
-      title: 'StudyPilot-AI',
-      category: 'AI Academic Copilot / Study Workspace',
-      desc: 'An intelligent academic workspace designed around learning, study planning, and AI-assisted productivity.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'AI', 'Prompt Engineering', 'GSAP'],
-      liveUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
-      ghUrl: 'https://github.com/ArfaMunam47/StudyPilot-AI',
-      address: 'studypilot-ai.app/workspace',
-      badge: '✦ AI ACTIVE',
-      accentColor: '#FA5538',
-      glow: 'radial-gradient(circle at center, rgba(250, 85, 56, 0.22) 0%, rgba(255, 138, 101, 0.08) 50%, transparent 70%)',
-      renderMiniPreview: () => `
-        <div class="mini-studypilot">
-          <div class="mini-sp-top">
-            <span class="mini-sp-brand">✦ StudyPilot</span>
-            <span class="mini-sp-badge">AI Active</span>
-          </div>
-          <div class="mini-sp-card">
-            "Decoder self-attention masking prevents lookahead..."
-          </div>
-        </div>
-      `,
-      renderHeroUI: () => `
-        <div class="mock-product-layout layout-studypilot">
-          <div class="mock-sidebar">
-            <div class="mock-brand-badge">
-              <span class="brand-spark">✦</span>
-              <span>StudyPilot</span>
+      id: "studypilot-ai",
+      number: "01",
+      title: "StudyPilot-AI",
+      category: "AI Academic Copilot / Study Workspace",
+      description: "An intelligent academic workspace designed around active learning, adaptive study sessions, and AI-assisted productivity tools.",
+      tags: ["HTML5", "CSS3", "JavaScript", "AI Logic", "Prompting", "GSAP"],
+      liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      image: "1.jpg",
+      badgeClass: "badge-01",
+      accent: "#6366F1",
+      renderMockup: function() {
+        return `
+          <div class="mockup-studypilot-screen">
+            <div class="mockup-sp-sidebar" aria-hidden="true">
+              <span class="sp-nav-icon active">✦</span>
+              <span class="sp-nav-icon">📚</span>
+              <span class="sp-nav-icon">📊</span>
+              <span class="sp-nav-icon">⚙️</span>
             </div>
-            <div class="mock-nav-items">
-              <div class="mock-nav-item active"><span>📊</span> Dashboard</div>
-              <div class="mock-nav-item"><span>🎴</span> Flashcards</div>
-              <div class="mock-nav-item"><span>🗺️</span> Study Plan</div>
-              <div class="mock-nav-item"><span>📈</span> Analytics</div>
-            </div>
-            <div class="mock-ai-copilot-status">
-              <span class="copilot-dot"></span>
-              <span>AI Active</span>
-            </div>
-          </div>
-          <div class="mock-main-content">
-            <div class="mock-stats-row">
-              <div class="mock-stat-tile">
-                <span class="mock-stat-label">Retention Rate</span>
-                <span class="mock-stat-val text-coral">94.8%</span>
-              </div>
-              <div class="mock-stat-tile">
-                <span class="mock-stat-label">Cards Mastered</span>
-                <span class="mock-stat-val text-cyan">148 / 160</span>
-              </div>
-              <div class="mock-stat-tile">
-                <span class="mock-stat-label">Study Streak</span>
-                <span class="mock-stat-val text-purple">12 Days</span>
-              </div>
-            </div>
-            <div class="mock-flashcard-stage">
-              <div class="flashcard-pill-tag">TOPIC: NEURAL ARCHITECTURES</div>
-              <div class="flashcard-question">
-                "How does attention masking prevent lookahead leakage in decoder self-attention?"
-              </div>
-              <div class="flashcard-actions">
-                <span class="fc-chip chip-hint">💡 AI Concept Hint</span>
-                <span class="fc-chip chip-flip">↻ Tap to Reveal Answer</span>
-              </div>
-            </div>
-            <div class="mock-ai-toast">
-              <div class="mock-ai-header">
-                <span class="ai-spark">✨</span>
-                <span>Gemini 2.5 Flash Synthesizer</span>
-              </div>
-              <p class="mock-ai-p">
-                "Synthesized 8 targeted practice prompts from Chapter 4. Next optimal recall review scheduled for 18:00 today."
-              </p>
-            </div>
-          </div>
-        </div>
-      `
-    },
-    {
-      idx: 1,
-      num: '02',
-      title: 'Velora Store',
-      category: 'E-commerce / Luxury Catalog',
-      desc: 'A premium e-commerce experience focused on elegant product presentation, interactive UI, and modern shopping interactions.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'GSAP'],
-      liveUrl: 'https://github.com/ArfaMunam47/Velora-Store',
-      ghUrl: 'https://github.com/ArfaMunam47/Velora-Store',
-      address: 'velora-luxury.store/catalog',
-      badge: '✦ CART: $420',
-      accentColor: '#0891B2',
-      glow: 'radial-gradient(circle at center, rgba(6, 182, 212, 0.22) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%)',
-      renderMiniPreview: () => `
-        <div class="mini-velora">
-          <div class="mini-velora-thumb">⌚</div>
-          <div class="mini-velora-info">
-            <span class="mini-velora-title">Velora Chrono Noir</span>
-            <span class="mini-velora-price">$240.00 · In Stock</span>
-          </div>
-        </div>
-      `,
-      renderHeroUI: () => `
-        <div class="mock-product-layout layout-velora">
-          <div class="mock-sidebar">
-            <div class="mock-brand-badge">
-              <span class="brand-spark" style="color: #06B6D4;">◆</span>
-              <span>Velora Atelier</span>
-            </div>
-            <div class="mock-nav-items">
-              <div class="mock-nav-item active" style="background: #E6FAF8; color: #0F766E;"><span>⌚</span> Chronographs</div>
-              <div class="mock-nav-item"><span>👜</span> Leather Goods</div>
-              <div class="mock-nav-item"><span>👓</span> Eyewear</div>
-              <div class="mock-nav-item"><span>🛍️</span> Cart (2)</div>
-            </div>
-            <div class="mock-ai-copilot-status" style="color: #0F766E;">
-              <span class="copilot-dot" style="background: #0F766E;"></span>
-              <span>Express Delivery</span>
-            </div>
-          </div>
-          <div class="mock-main-content">
-            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(6, 182, 212, 0.2); box-shadow: 0 4px 14px rgba(6, 182, 212, 0.06); display: flex; gap: 1rem; align-items: center;">
-              <div style="width: 76px; height: 76px; border-radius: 12px; background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #FFFFFF; box-shadow: 0 6px 16px rgba(6, 182, 212, 0.25);">
-                ⌚
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #101C35;">Velora Chrono Noir</span>
-                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #0891B2;">$240.00</span>
+            <div class="mockup-sp-body">
+              <div class="mockup-sp-topbar">
+                <div class="mockup-sp-search">
+                  <span>🔍</span>
+                  <span>Search cards, flashcards & notes...</span>
                 </div>
-                <span style="font-family: var(--font-sans); font-size: 0.74rem; color: #5A475C;">Sapphire Crystal Glass • Automatic Movement • Water Resistant 5ATM</span>
-                <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.35rem;">
-                  <span style="font-size: 0.7rem; font-weight: 700; color: #0D9488; background: #E6FAF8; padding: 0.2rem 0.6rem; border-radius: 9999px;">✓ Only 3 Left In Stock</span>
-                  <span style="font-size: 0.7rem; font-weight: 800; color: #FFFFFF; background: #0891B2; padding: 0.22rem 0.75rem; border-radius: 9999px; cursor: pointer;">Add to Bag</span>
+                <div class="mockup-sp-user-badge">AM</div>
+              </div>
+              <div class="mockup-sp-greet">
+                Good morning, Arfa! ☀️
+                <span>Your scheduled focus session is ready to begin.</span>
+              </div>
+              <div class="mockup-sp-grid">
+                <div class="mockup-sp-card">
+                  <div class="mockup-sp-card-title">Weekly Mastery</div>
+                  <div class="mockup-sp-stats-row">
+                    <div>
+                      <div class="mockup-sp-stat-num">48</div>
+                      <div class="mockup-sp-stat-label">Cards Mastered</div>
+                    </div>
+                    <div>
+                      <div class="mockup-sp-stat-num" style="color: #059669;">94%</div>
+                      <div class="mockup-sp-stat-label">Retention</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mockup-sp-card mockup-sp-circle-gauge">
+                  <div class="gauge-num">25:00</div>
+                  <div class="gauge-sub">✦ Focus Timer Active</div>
                 </div>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Chrono Silver</span>
-                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$210.00</span>
-              </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Monaco Gold</span>
-                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$285.00</span>
-              </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Minimalist Slate</span>
-                <span style="display: block; font-size: 0.68rem; color: #0891B2; font-weight: 800;">$195.00</span>
-              </div>
-            </div>
           </div>
-        </div>
-      `
+        `;
+      }
     },
     {
-      idx: 2,
-      num: '03',
-      title: 'Kumo Ramen',
-      category: 'Food Discovery Experience',
-      desc: 'A creative food discovery interface featuring immersive product presentation, 3D-inspired visuals, and interactive menu exploration.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'GSAP', '3D UI'],
-      liveUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
-      ghUrl: 'https://github.com/ArfaMunam47/Kumo-Ramen',
-      address: 'kumoramen.kyoto/experience',
-      badge: '✦ OPEN: 12-11PM',
-      accentColor: '#D97706',
-      glow: 'radial-gradient(circle at center, rgba(245, 158, 11, 0.22) 0%, rgba(239, 68, 68, 0.08) 50%, transparent 70%)',
-      renderMiniPreview: () => `
-        <div class="mini-kumo">
-          <div class="mini-kumo-bowl">🍜</div>
-          <div class="mini-kumo-info">
-            <span class="mini-kumo-title">Tonkotsu Black Garlic</span>
-            <span class="mini-kumo-broth">18h Simmered Broth</span>
+      id: "velora-store",
+      number: "02",
+      title: "Velora Store",
+      category: "Modern E-Commerce / Fashion & Lifestyle",
+      description: "A high-performance modern fashion storefront featuring real-time state management, instant carting, and editorial typography.",
+      tags: ["HTML5", "CSS3", "JavaScript", "Responsive UI", "E-Commerce"],
+      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      image: "2.jpg",
+      badgeClass: "badge-02",
+      accent: "#FA5538",
+      renderMockup: function() {
+        return `
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF9F6; padding: 1.1rem; gap: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.6rem;">
+              <span style="font-family: var(--font-hero); font-weight: 900; font-size: 1.1rem; color: #101C35; letter-spacing: 0.05em;">VELORA</span>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #64748B; background: #FFFFFF; padding: 0.25rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(0,0,0,0.06);">BAG (3)</span>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; flex: 1;">
+              <div style="background: #FFFFFF; border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="height: 80px; background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">
+                  🧥
+                </div>
+                <div>
+                  <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Minimalist Trench</div>
+                  <div style="font-size: 0.7rem; color: #FA5538; font-weight: 700;">$149.00</div>
+                </div>
+              </div>
+              <div style="background: #FFFFFF; border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="height: 80px; background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">
+                  👜
+                </div>
+                <div>
+                  <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Luxe Tote Bag</div>
+                  <div style="font-size: 0.7rem; color: #FA5538; font-weight: 700;">$89.00</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      `,
-      renderHeroUI: () => `
-        <div class="mock-product-layout layout-kumo">
-          <div class="mock-sidebar">
-            <div class="mock-brand-badge">
-              <span class="brand-spark" style="color: #F59E0B;">🍜</span>
-              <span>雲 Kumo Ramen</span>
+        `;
+      }
+    },
+    {
+      id: "kumo-ramen",
+      number: "03",
+      title: "Kumo Ramen",
+      category: "Culinary Dining Experience / Japanese Noodle Bar",
+      description: "A sensory dining experience celebrating authentic ramen craft with interactive broth pairing, artisanal menu, and online table reservations.",
+      tags: ["HTML5", "CSS Grid", "Animations", "UI/UX", "Mobile First"],
+      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen",
+      codeUrl: "https://github.com/ArfaMunam47/kumo-ramen",
+      image: "3.jpg",
+      badgeClass: "badge-03",
+      accent: "#059669",
+      renderMockup: function() {
+        return `
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FFFBF0; padding: 1.1rem; gap: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.5rem;">
+              <div>
+                <span style="font-family: var(--font-hero); font-weight: 900; font-size: 1.05rem; color: #1C1917;">雲 KUMO RAMEN</span>
+                <span style="display: block; font-size: 0.65rem; color: #B45309; font-weight: 700;">TOKYO CRAFT NOODLE BAR</span>
+              </div>
+              <span style="background: #FEF3C7; color: #92400E; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 9999px;">OPEN TODAY</span>
             </div>
-            <div class="mock-nav-items">
-              <div class="mock-nav-item active" style="background: #FEF3C7; color: #92400E;"><span>🍲</span> Signature Bowls</div>
-              <div class="mock-nav-item"><span>🏮</span> Table Booking</div>
-              <div class="mock-nav-item"><span>🥢</span> Broth Craft</div>
-              <div class="mock-nav-item"><span>📍</span> Locations</div>
-            </div>
-            <div class="mock-ai-copilot-status" style="color: #92400E;">
-              <span class="copilot-dot" style="background: #F59E0B;"></span>
-              <span>Tables Available</span>
-            </div>
-          </div>
-          <div class="mock-main-content">
-            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(245, 158, 11, 0.2); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.06); display: flex; gap: 1rem; align-items: center;">
-              <div style="width: 76px; height: 76px; border-radius: 50%; background: radial-gradient(circle, #F59E0B 0%, #B45309 100%); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: #FFFFFF; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25); border: 3px solid #FFFBEB;">
+            <div style="background: #FFFFFF; border-radius: 12px; padding: 0.9rem; border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; gap: 0.85rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #FED7AA; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
                 🍜
               </div>
-              <div style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #101C35;">Tonkotsu Black Garlic</span>
-                  <span style="font-family: var(--font-hero); font-size: 1.05rem; font-weight: 800; color: #D97706;">$18.50</span>
-                </div>
-                <span style="font-family: var(--font-sans); font-size: 0.74rem; color: #5A475C;">18h Simmered Broth • Chashu Pork • Ajitsuke Tamago • Mayu Oil</span>
-                <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.35rem;">
-                  <span style="font-size: 0.7rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 0.2rem 0.6rem; border-radius: 9999px;">Spice: Mild ★★☆☆</span>
-                  <span style="font-size: 0.7rem; font-weight: 800; color: #FFFFFF; background: #D97706; padding: 0.22rem 0.75rem; border-radius: 9999px; cursor: pointer;">Book Table</span>
-                </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 800; font-size: 0.84rem; color: #1C1917;">Black Garlic Tonkotsu</div>
+                <div style="font-size: 0.68rem; color: #78716C; margin: 0.15rem 0;">18-hr pork bone broth, soft-boiled ajitsuke egg, char siu</div>
+                <div style="font-size: 0.76rem; font-weight: 800; color: #D97706;">$18.50</div>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Spicy Miso</span>
-                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$17.00</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <div style="flex: 1; background: #FFFFFF; border-radius: 10px; padding: 0.55rem 0.75rem; text-align: center; border: 1px solid rgba(0,0,0,0.05); font-size: 0.68rem; font-weight: 700; color: #44403C;">
+                🥢 Rich Broth
               </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Truffle Shoyu</span>
-                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$19.50</span>
-              </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Yuzu Shio</span>
-                <span style="display: block; font-size: 0.68rem; color: #D97706; font-weight: 800;">$16.50</span>
+              <div style="flex: 1; background: #FFFFFF; border-radius: 10px; padding: 0.55rem 0.75rem; text-align: center; border: 1px solid rgba(0,0,0,0.05); font-size: 0.68rem; font-weight: 700; color: #44403C;">
+                🌶️ Spice Level 3
               </div>
             </div>
           </div>
-        </div>
-      `
+        `;
+      }
     },
     {
-      idx: 3,
-      num: '04',
-      title: 'PastelForm',
-      category: 'Smart Form Builder',
-      desc: 'A modern form-building interface focused on visual simplicity, flexible components, and an interactive creation experience.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'UI/UX'],
-      liveUrl: 'https://github.com/ArfaMunam47/PastelForm',
-      ghUrl: 'https://github.com/ArfaMunam47/PastelForm',
-      address: 'pastelform.design/canvas',
-      badge: '✦ WCAG AAA',
-      accentColor: '#7C3AED',
-      glow: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.22) 0%, rgba(236, 72, 153, 0.08) 50%, transparent 70%)',
-      renderMiniPreview: () => `
-        <div class="mini-pastel">
-          <div class="mini-pastel-top">
-            <span class="mini-pastel-brand">✦ PastelForm</span>
-            <div class="mini-pastel-swatches">
-              <span class="mini-pastel-swatch swatch-coral"></span>
-              <span class="mini-pastel-swatch swatch-mint"></span>
-              <span class="mini-pastel-swatch swatch-violet"></span>
-            </div>
-          </div>
-          <div class="mini-sp-card" style="color: #6B21A8; border-color: rgba(139, 92, 246, 0.2);">
-            Input: [Full Name] + Toggle [Active]
-          </div>
-        </div>
-      `,
-      renderHeroUI: () => `
-        <div class="mock-product-layout layout-pastel">
-          <div class="mock-sidebar">
-            <div class="mock-brand-badge">
-              <span class="brand-spark" style="color: #8B5CF6;">✦</span>
-              <span>PastelForm</span>
-            </div>
-            <div class="mock-nav-items">
-              <div class="mock-nav-item active" style="background: #F3E8FF; color: #6B21A8;"><span>🎨</span> Artboards</div>
-              <div class="mock-nav-item"><span>📐</span> Shapes</div>
-              <div class="mock-nav-item"><span>🔤</span> Typography</div>
-              <div class="mock-nav-item"><span>📦</span> Export (SVG)</div>
-            </div>
-            <div class="mock-ai-copilot-status" style="color: #6B21A8;">
-              <span class="copilot-dot" style="background: #8B5CF6;"></span>
-              <span>WCAG AAA 7.8:1</span>
-            </div>
-          </div>
-          <div class="mock-main-content">
-            <div style="background: #FFFFFF; border-radius: 14px; padding: 1rem; border: 1.5px solid rgba(139, 92, 246, 0.2); box-shadow: 0 4px 14px rgba(139, 92, 246, 0.06); display: flex; flex-direction: column; gap: 0.6rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-family: var(--font-hero); font-size: 0.95rem; font-weight: 800; color: #101C35;">Active Pastel Artboard</span>
-                <span style="font-family: var(--font-catchy); font-size: 0.7rem; font-weight: 800; color: #6D28D9; background: #F5EEFD; padding: 0.2rem 0.6rem; border-radius: 9999px;">Auto-Layout 8px</span>
+      id: "pastelform",
+      number: "04",
+      title: "PastelForm",
+      category: "Minimalist Pastel Form System / Dynamic Validation",
+      description: "An ultra-clean, aesthetic form validation playground demonstrating smooth micro-interactions, responsive form logic, and soft pastel color states.",
+      tags: ["JavaScript", "CSS3", "DOM Manipulation", "Forms", "UI Patterns"],
+      liveUrl: "https://github.com/ArfaMunam47/PastelForm",
+      codeUrl: "https://github.com/ArfaMunam47/PastelForm",
+      image: "1--.jpg",
+      badgeClass: "badge-04",
+      accent: "#8B5CF6",
+      renderMockup: function() {
+        return `
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF5FF; padding: 1.1rem; gap: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139,92,246,0.1); padding-bottom: 0.5rem;">
+              <span style="font-family: var(--font-hero); font-weight: 800; font-size: 1rem; color: #6B21A8;">PastelForm System</span>
+              <div style="display: flex; gap: 0.3rem;">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #F472B6;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #34D399;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #A78BFA;"></span>
               </div>
-              <div style="display: flex; gap: 0.75rem; align-items: center; background: #FAF5FF; padding: 0.75rem; border-radius: 10px;">
-                <div style="width: 44px; height: 44px; border-radius: 12px; background: #F472B6; box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);"></div>
-                <div style="width: 44px; height: 44px; border-radius: 12px; background: #34D399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);"></div>
-                <div style="width: 44px; height: 44px; border-radius: 12px; background: #A78BFA; box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);"></div>
-                <div style="margin-left: auto; display: flex; flex-direction: column; gap: 0.25rem;">
-                  <span style="font-size: 0.7rem; font-weight: 700; color: #6D28D9;">Palette: Dream Pop</span>
-                  <span style="font-size: 0.65rem; color: #5A475C;">Contrast Ratio: Passed</span>
+            </div>
+            <div style="background: #FFFFFF; border-radius: 12px; padding: 0.85rem; border: 1px solid rgba(139,92,246,0.12); display: flex; flex-direction: column; gap: 0.55rem;">
+              <div>
+                <div style="font-size: 0.65rem; font-weight: 800; color: #7C3AED; text-transform: uppercase;">Workspace Email</div>
+                <div style="background: #FAF5FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 0.35rem 0.65rem; font-size: 0.72rem; color: #5B21B6; margin-top: 0.2rem;">
+                  arfa.dev@portfolio.design ✓
                 </div>
               </div>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">Export SVG</span>
-                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Vector Clean</span>
+              <div>
+                <div style="font-size: 0.65rem; font-weight: 800; color: #7C3AED; text-transform: uppercase;">Secure Passcode</div>
+                <div style="background: #FAF5FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 0.35rem 0.65rem; font-size: 0.72rem; color: #5B21B6; margin-top: 0.2rem;">
+                  •••••••••••• (Strong)
+                </div>
               </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">React JSX</span>
-                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Component</span>
-              </div>
-              <div style="background: #FFFFFF; border-radius: 10px; padding: 0.5rem; text-align: center; border: 1px solid rgba(0,0,0,0.05);">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #101C35;">CSS Variables</span>
-                <span style="display: block; font-size: 0.68rem; color: #7C3AED; font-weight: 800;">Design Tokens</span>
+              <div style="background: #7C3AED; color: #FFFFFF; font-weight: 800; font-size: 0.72rem; text-align: center; padding: 0.45rem; border-radius: 8px; margin-top: 0.2rem;">
+                Validate Credentials
               </div>
             </div>
           </div>
-        </div>
-      `
+        `;
+      }
     }
   ];
 
-  let currentIdx = 0;
-  let hoverTimer = null;
+  let activeIndex = 0;
+  let isAnimating = false;
 
-  // Render the THREE inactive project previews in the secondary column
-  function renderSecondaryPreviews(activeIdx) {
-    if (!secondaryList) return;
+  // Build the 4 cards into DOM once
+  track.innerHTML = '';
+  const cardElements = [];
 
-    const inactiveProjects = projects.filter(p => p.idx !== activeIdx);
+  projects.forEach((proj, idx) => {
+    const card = document.createElement('article');
+    card.className = 'cinematic-project-card';
+    card.setAttribute('data-index', idx);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${proj.number} ${proj.title} project card`);
 
-    secondaryList.innerHTML = inactiveProjects.map(p => `
-      <div class="sc-secondary-card" data-project-idx="${p.idx}" role="button" tabindex="0" aria-label="Expand ${p.title}">
-        <div class="sc-mini-frame">
-          <div class="sc-mini-chrome">
-            <div class="sc-mini-dots" aria-hidden="true">
-              <span class="sc-mini-dot"></span>
-              <span class="sc-mini-dot"></span>
-              <span class="sc-mini-dot"></span>
-            </div>
-            <span class="sc-mini-url">${p.address}</span>
-          </div>
-          <div class="sc-mini-viewport">
-            ${p.renderMiniPreview()}
-          </div>
-        </div>
-        <div class="sc-card-meta">
-          <div class="sc-card-meta-left">
-            <div class="sc-card-num-row">
-              <span class="sc-card-num">${p.num}</span>
-              <h4 class="sc-card-title">${p.title}</h4>
-            </div>
-            <span class="sc-card-category">${p.category}</span>
-          </div>
-          <div class="sc-card-action-icon" aria-hidden="true">↗</div>
-        </div>
-      </div>
-    `).join('');
-
-    // Attach Hover (mouseenter) and Click listeners to all secondary cards
-    const cards = secondaryList.querySelectorAll('.sc-secondary-card');
-    cards.forEach(card => {
-      const targetIdx = parseInt(card.getAttribute('data-project-idx'), 10);
-
-      // Smooth hover activation with tiny debounce (60ms) to feel instant yet avoid accidental flickers
-      card.addEventListener('mouseenter', () => {
-        clearTimeout(hoverTimer);
-        hoverTimer = setTimeout(() => {
-          if (currentIdx !== targetIdx) {
-            switchProject(targetIdx, true);
-          }
-        }, 60);
-      });
-
-      card.addEventListener('mouseleave', () => {
-        clearTimeout(hoverTimer);
-      });
-
-      // Click also supported
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        clearTimeout(hoverTimer);
-        if (currentIdx !== targetIdx) {
-          switchProject(targetIdx, true);
-        }
-      });
-
-      // Keyboard accessible
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          switchProject(targetIdx, true);
-        }
-      });
-    });
-  }
-
-  // Smooth physical transition to target project
-  function switchProject(targetIdx, playSound = true) {
-    if (targetIdx < 0 || targetIdx >= projects.length) return;
-    currentIdx = targetIdx;
-
-    if (playSound && typeof playTactileClick === 'function') {
-      playTactileClick(760, 'sine');
-    }
-
-    const p = projects[targetIdx];
-
-    // Update Hero Metadata smoothly
-    if (heroNumEl) {
-      heroNumEl.textContent = `PROJECT ${p.num}`;
-      heroNumEl.style.color = p.accentColor;
-    }
-    if (heroCatEl) heroCatEl.textContent = p.category;
-    if (heroStatusLabel) heroStatusLabel.textContent = 'LIVE SYSTEM';
-
-    // Smooth title transition
-    if (heroTitleEl) {
-      heroTitleEl.style.opacity = '0.3';
-      heroTitleEl.style.transform = 'translateY(4px)';
-      setTimeout(() => {
-        heroTitleEl.textContent = p.title;
-        heroTitleEl.style.opacity = '1';
-        heroTitleEl.style.transform = 'translateY(0)';
-      }, 100);
-    }
-
-    if (heroDescEl) heroDescEl.textContent = p.desc;
-
-    // Update Tech Chips
-    if (heroTechRow) {
-      heroTechRow.innerHTML = p.tech.map(t => `<span class="sc-tech-chip">${t}</span>`).join('');
-    }
-
-    // Update Action Buttons Links
-    if (heroLiveBtn) heroLiveBtn.href = p.liveUrl;
-    if (heroGhBtn) heroGhBtn.href = p.ghUrl;
-
-    // Update Chrome info
-    if (heroUrlEl) heroUrlEl.textContent = p.address;
-    if (heroTagEl) {
-      heroTagEl.innerHTML = `<span>${p.badge}</span>`;
-    }
-
-    // Update Ambient Halo
-    if (heroHalo) {
-      heroHalo.style.background = p.glow;
-    }
-
-    // Viewport smooth 3D crossfade & spring scale
-    if (heroViewport) {
-      heroViewport.style.opacity = '0';
-      heroViewport.style.transform = 'scale(0.97) translateY(6px)';
-      setTimeout(() => {
-        heroViewport.innerHTML = p.renderHeroUI();
-        heroViewport.style.opacity = '1';
-        heroViewport.style.transform = 'scale(1) translateY(0)';
-      }, 120);
-    }
-
-    // Update Project Switch Indicator Buttons
-    indicatorSteps.forEach(btn => {
-      const idx = parseInt(btn.getAttribute('data-project-idx'), 10);
-      btn.classList.toggle('active', idx === targetIdx);
-    });
-
-    // Re-render the 3 secondary previews
-    renderSecondaryPreviews(targetIdx);
-  }
-
-  // Indicator Bar buttons hover & click interactions
-  indicatorSteps.forEach(btn => {
-    const idx = parseInt(btn.getAttribute('data-project-idx'), 10);
-
-    btn.addEventListener('mouseenter', () => {
-      clearTimeout(hoverTimer);
-      hoverTimer = setTimeout(() => {
-        if (currentIdx !== idx) {
-          switchProject(idx, true);
-        }
-      }, 80);
-    });
-
-    btn.addEventListener('mouseleave', () => {
-      clearTimeout(hoverTimer);
-    });
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      clearTimeout(hoverTimer);
-      if (currentIdx !== idx) {
-        switchProject(idx, true);
+    // Click on card selects it (NO hover selection)
+    card.addEventListener('click', (e) => {
+      // If clicking directly on a link inside the active card, let the link handle it
+      if (e.target.closest('a')) return;
+      if (idx !== activeIndex && !isAnimating) {
+        switchProject(idx);
       }
     });
-  });
 
-  // Cursor-based 3D Perspective Tilt on Desktop (Subtle 3-5 degrees)
-  const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouch && heroFrame) {
-    heroFrame.addEventListener('mousemove', (e) => {
-      const rect = heroFrame.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-      const tiltX = (y * -4).toFixed(2);
-      const tiltY = (x * 4).toFixed(2);
-
-      heroFrame.style.transform = `perspective(1200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-3px)`;
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (idx !== activeIndex && !isAnimating) {
+          switchProject(idx);
+        }
+      }
     });
 
-    heroFrame.addEventListener('mouseleave', () => {
-      heroFrame.style.transform = 'perspective(1200px) rotateX(1.5deg) rotateY(-1deg) translateY(0)';
+    track.appendChild(card);
+    cardElements.push(card);
+  });
+
+  function renderCardContent(card, proj, isActive) {
+    if (isActive) {
+      card.innerHTML = `
+        <div class="card-active-inner">
+          <div class="active-info-panel">
+            <div class="active-header-badge-row">
+              <span class="active-num-badge ${proj.badgeClass}">${proj.number}</span>
+              <div class="active-title-block">
+                <span class="active-project-category" style="color: ${proj.accent};">${proj.category}</span>
+                <h3 class="active-project-title">${proj.title}</h3>
+              </div>
+            </div>
+
+            <p class="active-project-desc">${proj.description}</p>
+
+            <div class="active-tech-tags">
+              ${proj.tags.map(t => `<span class="active-tech-pill">${t}</span>`).join('')}
+            </div>
+
+            <div class="active-cta-row">
+              <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-active-live">
+                <span>Live Demo</span>
+                <span>↗</span>
+              </a>
+              <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-active-code">
+                <span>View Code</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="active-mockup-panel">
+            ${proj.renderMockup()}
+          </div>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="preview-top-row">
+          <span class="preview-num-badge">${proj.number}</span>
+          <div class="preview-arrow-btn">↗</div>
+        </div>
+        <div class="preview-meta-block">
+          <h4 class="preview-title">${proj.title}</h4>
+          <span class="preview-subtitle">${proj.category}</span>
+        </div>
+        <div class="preview-screenshot-frame">
+          <img src="${proj.image}" alt="${proj.title} preview" loading="lazy" onerror="this.src='profile-photo.png'">
+        </div>
+      `;
+    }
+  }
+
+  function updateGallery(newIndex) {
+    activeIndex = newIndex;
+    isAnimating = true;
+
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 1080 && window.innerWidth > 768;
+
+    // Determine horizontal spacing based on viewport width
+    const xOffset = isTablet ? 310 : 380;
+
+    projects.forEach((proj, i) => {
+      const card = cardElements[i];
+      let diff = (i - activeIndex) % 4;
+      if (diff > 2) diff -= 4;
+      if (diff < -1) diff += 4;
+
+      if (diff === 0) {
+        // Active Center Card
+        card.classList.remove('is-preview');
+        card.classList.add('is-active');
+        card.setAttribute('aria-current', 'true');
+        renderCardContent(card, proj, true);
+
+        if (isMobile) {
+          card.style.transform = 'translate3d(0, 0, 0)';
+        } else {
+          card.style.transform = 'translate3d(0, 0, 80px) scale(1) rotateY(0deg)';
+        }
+        card.style.opacity = '1';
+        card.style.zIndex = '25';
+        card.style.pointerEvents = 'auto';
+      } else if (diff === -1) {
+        // Left Flanking Preview Card
+        card.classList.remove('is-active');
+        card.classList.add('is-preview');
+        card.removeAttribute('aria-current');
+        renderCardContent(card, proj, false);
+
+        if (isMobile) {
+          card.style.transform = 'translate3d(-120%, 0, -100px)';
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+        } else {
+          card.style.transform = `translate3d(-${xOffset}px, 0, -40px) scale(0.82) rotateY(16deg)`;
+          card.style.opacity = '0.88';
+          card.style.pointerEvents = 'auto';
+        }
+        card.style.zIndex = '15';
+      } else if (diff === 1) {
+        // Right Flanking Preview Card
+        card.classList.remove('is-active');
+        card.classList.add('is-preview');
+        card.removeAttribute('aria-current');
+        renderCardContent(card, proj, false);
+
+        if (isMobile) {
+          card.style.transform = 'translate3d(120%, 0, -100px)';
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+        } else {
+          card.style.transform = `translate3d(${xOffset}px, 0, -40px) scale(0.82) rotateY(-16deg)`;
+          card.style.opacity = '0.88';
+          card.style.pointerEvents = 'auto';
+        }
+        card.style.zIndex = '15';
+      } else {
+        // Deep background card
+        card.classList.remove('is-active');
+        card.classList.add('is-preview');
+        card.removeAttribute('aria-current');
+        renderCardContent(card, proj, false);
+
+        card.style.transform = 'translate3d(0, 0, -180px) scale(0.65)';
+        card.style.opacity = '0';
+        card.style.zIndex = '5';
+        card.style.pointerEvents = 'none';
+      }
+    });
+
+    // Update bottom indicator capsule buttons
+    indicatorBtns.forEach((btn, idx) => {
+      const isCurrent = idx === activeIndex;
+      btn.classList.toggle('active', isCurrent);
+      btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    });
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 600);
+  }
+
+  function switchProject(idx) {
+    if (idx === activeIndex || isAnimating) return;
+    updateGallery(idx);
+  }
+
+  // Previous & Next navigation buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isAnimating) {
+        const nextIdx = (activeIndex - 1 + 4) % 4;
+        switchProject(nextIdx);
+      }
     });
   }
 
-  // Keyboard navigation when section is in view
-  window.addEventListener('keydown', (e) => {
-    const rect = section.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3;
-    if (!inView) return;
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isAnimating) {
+        const nextIdx = (activeIndex + 1) % 4;
+        switchProject(nextIdx);
+      }
+    });
+  }
 
-    if (e.key === 'ArrowRight') {
-      if (currentIdx < projects.length - 1) switchProject(currentIdx + 1, true);
-      else switchProject(0, true);
-    } else if (e.key === 'ArrowLeft') {
-      if (currentIdx > 0) switchProject(currentIdx - 1, true);
-      else switchProject(projects.length - 1, true);
-    }
+  // Bottom indicator click events
+  indicatorBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(btn.getAttribute('data-project-idx') || '0', 10);
+      switchProject(idx);
+    });
   });
 
-  // Initial load: 01 StudyPilot-AI is the Hero, other 3 are secondary previews
-  switchProject(0, false);
+  // Touch Swipe Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 45 && !isAnimating) {
+      if (diff > 0) {
+        // Swiped left -> next
+        switchProject((activeIndex + 1) % 4);
+      } else {
+        // Swiped right -> prev
+        switchProject((activeIndex - 1 + 4) % 4);
+      }
+    }
+  }, { passive: true });
+
+  // Handle window resizing smoothly
+  window.addEventListener('resize', () => {
+    updateGallery(activeIndex);
+  });
+
+  // Initial gallery setup (01 StudyPilot-AI)
+  updateGallery(0);
 }
 
 
@@ -2992,77 +2899,91 @@ function showPortfolioToast(message) {
 
 /**
  * =========================================================================
- * 21. PREMIUM 3D CLAYMORPHIC SKILLS INTERACTIONS
- * Tactile micro-interactions, subtle 3D platform tilt & pipeline stepping
+ * 21. PREMIUM 3D SKILLS SHOWCASE INTERACTIONS
+ * Aligned with reference (e1c5a528-f6f0-46da-9227-117b4482c16c.png)
+ * Tactile micro-interactions, subtle 3D card perspective tilt, chip feedback
  * =========================================================================
  */
 function setupSkillsCompiler() {
-  const platforms = document.querySelectorAll('.skill-platform');
-  const tiles = document.querySelectorAll('.clay-tile');
-  const pipelineNodes = document.querySelectorAll('.pipeline-node');
+  const cards = document.querySelectorAll('.skills-card-3d');
+  const chips = document.querySelectorAll('.mini-skill-chip');
+  const toolShelfItems = document.querySelectorAll('.tool-shelf-item');
+  const workflowSteps = document.querySelectorAll('.prompt-workflow-capsule .wf-step');
 
-  // Subtle 3D tilt response on hover over platforms
-  platforms.forEach(platform => {
-    platform.addEventListener('mousemove', (e) => {
-      const rect = platform.getBoundingClientRect();
+  // Subtle 3D tilt response on hover over 3D panels (controlled, 1.5 deg max)
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotX = (y / (rect.height / 2)) * -4;
-      const rotY = (x / (rect.width / 2)) * 4;
-      platform.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+      const rotX = (y / (rect.height / 2)) * -2.2;
+      const rotY = (x / (rect.width / 2)) * 2.2;
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-6px)`;
     });
 
-    platform.addEventListener('mouseleave', () => {
-      platform.style.transform = '';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
     });
   });
 
-  // Tactile sound and press feel on Clay Tech Tiles
-  tiles.forEach(tile => {
-    tile.addEventListener('mouseenter', () => {
+  // Tactile sound and press feel on Mini Skill Chips
+  chips.forEach(chip => {
+    chip.addEventListener('mouseenter', () => {
       if (typeof playTactileClick === 'function') {
-        playTactileClick(680, 'triangle');
+        playTactileClick(700, 'triangle');
       }
     });
 
-    tile.addEventListener('click', () => {
+    chip.addEventListener('click', () => {
       if (typeof playTactileClick === 'function') {
-        playTactileClick(840, 'sine');
+        playTactileClick(860, 'sine');
       }
-      const name = tile.querySelector('.tile-name')?.textContent || 'Skill';
+      const name = chip.querySelector('.chip-name')?.textContent || 'Skill';
+      const sub = chip.querySelector('.chip-sub')?.textContent || '';
       if (typeof showSystemToast === 'function') {
-        showSystemToast(`✦ Selected: ${name}`);
+        showSystemToast(`✦ Selected: ${name} (${sub})`);
       }
     });
 
-    tile.addEventListener('keydown', (e) => {
+    chip.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        tile.click();
+        chip.click();
       }
     });
   });
 
-  // Interactive Pipeline Nodes in Station 03
-  if (pipelineNodes.length) {
-    pipelineNodes.forEach(node => {
-      node.addEventListener('click', () => {
-        pipelineNodes.forEach(n => n.classList.remove('active'));
-        node.classList.add('active');
-        if (typeof playTactileClick === 'function') {
-          playTactileClick(760, 'sine');
-        }
-        const title = node.querySelector('.node-title')?.textContent || '';
-        const sub = node.querySelector('.node-sub')?.textContent || '';
-        if (typeof showSystemToast === 'function') {
-          showSystemToast(`Pipeline Step: ${title} — ${sub}`);
-        }
-      });
+  // Bottom Shelf Tools interaction
+  toolShelfItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(720, 'triangle');
+      }
+    });
 
-      node.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          node.click();
+    item.addEventListener('click', () => {
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(900, 'sine');
+      }
+      const label = item.querySelector('.tool-label')?.textContent || 'Tool';
+      if (typeof showSystemToast === 'function') {
+        showSystemToast(`🛠️ Tool: ${label}`);
+      }
+    });
+  });
+
+  // Interactive Prompt Workflow Steps (IDEA → CONTEXT → PROMPT → REFINE)
+  if (workflowSteps.length) {
+    workflowSteps.forEach(step => {
+      step.style.cursor = 'pointer';
+      step.addEventListener('click', () => {
+        workflowSteps.forEach(s => s.classList.remove('wf-active'));
+        step.classList.add('wf-active');
+        if (typeof playTactileClick === 'function') {
+          playTactileClick(780, 'sine');
+        }
+        if (typeof showSystemToast === 'function') {
+          showSystemToast(`Workflow Phase: ${step.textContent}`);
         }
       });
     });
