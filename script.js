@@ -78,6 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 22. Currently Learning 3D Interactive Ecosystem
   setupLearningEcosystem();
+
+  // 23. My Learning Journey Cinematic Interactive Storybook & Phone
+  setupLearningJourneyStory();
+
+  // 24. Dedicated GitHub Showcase & Interactive Activity Visualization
+  setupGitHubShowcaseSection();
 });
 
 /**
@@ -384,12 +390,62 @@ function setupScrollReveal() {
 }
 
 /**
- * Functional contact form with validation, submission feedback, and email draft trigger
+ * Functional contact form with validation, submission feedback, character counter, and email draft trigger
  */
 function setupContactForm() {
   const form = document.getElementById('contact-form');
   const msgBox = document.getElementById('form-msg');
   const submitBtn = document.getElementById('submit-btn');
+  const messageTextarea = document.getElementById('form-message');
+  const charCurr = document.getElementById('char-curr');
+  const jumpBtn = document.getElementById('conn-btn-jump-form');
+  const contactSection = document.getElementById('contact');
+
+  // Live character counter
+  if (messageTextarea && charCurr) {
+    messageTextarea.addEventListener('input', () => {
+      charCurr.textContent = messageTextarea.value.length;
+    });
+  }
+
+  // Smooth scroll and focus for "Let's Chat" button
+  if (jumpBtn) {
+    jumpBtn.addEventListener('click', () => {
+      const nameInput = document.getElementById('form-name');
+      if (nameInput) {
+        setTimeout(() => nameInput.focus(), 350);
+      }
+    });
+  }
+
+  // Desktop subtle cursor parallax for 3D elements
+  if (contactSection && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const headphones = contactSection.querySelector('.conn-headphones-pod');
+    const plant = contactSection.querySelector('.conn-plant-pod');
+    const plane = contactSection.querySelector('.conn-plane-flight');
+
+    contactSection.addEventListener('mousemove', (e) => {
+      const rect = contactSection.getBoundingClientRect();
+      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+      if (headphones) {
+        headphones.style.transform = `translate(calc(-50% + ${(normX * 10).toFixed(1)}px), ${(normY * 7).toFixed(1)}px) rotate(${(normX * 3).toFixed(1)}deg)`;
+      }
+      if (plant) {
+        plant.style.transform = `translate(calc(-50% + ${(normX * 6).toFixed(1)}px), ${(normY * 5).toFixed(1)}px)`;
+      }
+      if (plane) {
+        plane.style.transform = `translate(${(normX * 12).toFixed(1)}px, ${(normY * 8).toFixed(1)}px) rotate(${(18 + normX * 5).toFixed(1)}deg)`;
+      }
+    });
+
+    contactSection.addEventListener('mouseleave', () => {
+      if (headphones) headphones.style.transform = '';
+      if (plant) plant.style.transform = '';
+      if (plane) plane.style.transform = '';
+    });
+  }
 
   if (!form) return;
 
@@ -398,6 +454,7 @@ function setupContactForm() {
 
     const name = form.elements['name']?.value.trim();
     const email = form.elements['email']?.value.trim();
+    const subject = form.elements['subject']?.value.trim() || 'Portfolio Contact';
     const message = form.elements['message']?.value.trim();
 
     if (!name || !email || !message) {
@@ -418,13 +475,14 @@ function setupContactForm() {
 
     setTimeout(() => {
       // Create mailto link as reliable direct email dispatch
-      const mailtoUrl = `mailto:arfamunam01@gmail.com?subject=Project Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      const mailtoUrl = `mailto:arfamunam01@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`)}`;
       
       showMessage(`Thank you, ${name}! Your message has been prepared. If your mail client didn't open automatically, feel free to email directly at arfamunam01@gmail.com.`, 'success');
 
       form.reset();
+      if (charCurr) charCurr.textContent = '0';
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Send Message</span><span class="conn-btn-plane" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>`;
+      submitBtn.innerHTML = `<span>Send Message</span><span class="conn-btn-plane" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>`;
 
       // Trigger mail client safely
       window.location.href = mailtoUrl;
@@ -436,13 +494,13 @@ function setupContactForm() {
     msgBox.style.display = 'block';
     msgBox.textContent = text;
     if (type === 'error') {
-      msgBox.style.background = '#FEE2E2';
-      msgBox.style.color = '#991B1B';
-      msgBox.style.border = '1px solid #F87171';
+      msgBox.style.background = 'rgba(239, 68, 68, 0.15)';
+      msgBox.style.color = '#FCA5A5';
+      msgBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
     } else {
-      msgBox.style.background = '#E6F4F1';
-      msgBox.style.color = '#0D3834';
-      msgBox.style.border = '1px solid #10B981';
+      msgBox.style.background = 'rgba(16, 185, 129, 0.15)';
+      msgBox.style.color = '#6EE7B7';
+      msgBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
     }
   }
 }
@@ -721,25 +779,29 @@ function setupProjectsShowcase() {
   if (!section) return;
 
   const track = document.getElementById('gallery-track-3d');
+  const viewport = document.getElementById('gallery-stage-viewport');
   const prevBtn = document.getElementById('gallery-prev-btn');
   const nextBtn = document.getElementById('gallery-next-btn');
+  const counterCurr = document.getElementById('gallery-counter-curr');
+  const counterTotal = document.getElementById('gallery-counter-total');
   const indicatorCapsule = document.getElementById('gallery-indicator-capsule');
   const indicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
 
   if (!track) return;
 
+  // Authentic 4 Projects Data
   const projects = [
     {
-      id: "studypilot-ai",
+      id: "studypilot",
+      key: "studypilot",
       number: "01",
       title: "StudyPilot-AI",
-      category: "AI Academic Copilot / Study Workspace",
-      description: "An intelligent academic workspace designed around active learning, adaptive study sessions, and AI-assisted productivity tools.",
-      tags: ["HTML5", "CSS3", "JavaScript", "AI Logic", "Prompting", "GSAP"],
+      category: "AI Academic Copilot",
+      tagline: "Intelligent Academic Workspace with Adaptive Flashcards & Study Planner",
+      description: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
+      tags: ["Claude 3.7 AI", "React", "Tailwind CSS", "FastAPI", "Spaced Repetition"],
       liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
-      image: "1.jpg",
-      badgeClass: "badge-01",
       accent: "#6366F1",
       renderMockup: function() {
         return `
@@ -771,7 +833,7 @@ function setupProjectsShowcase() {
                       <div class="mockup-sp-stat-label">Cards Mastered</div>
                     </div>
                     <div>
-                      <div class="mockup-sp-stat-num" style="color: #059669;">94%</div>
+                      <div class="mockup-sp-stat-num" style="color: #10B981;">94%</div>
                       <div class="mockup-sp-stat-label">Retention</div>
                     </div>
                   </div>
@@ -787,22 +849,22 @@ function setupProjectsShowcase() {
       }
     },
     {
-      id: "velora-store",
+      id: "velora",
+      key: "velora",
       number: "02",
       title: "Velora Store",
-      category: "Modern E-Commerce / Fashion & Lifestyle",
-      description: "A high-performance modern fashion storefront featuring real-time state management, instant carting, and editorial typography.",
-      tags: ["HTML5", "CSS3", "JavaScript", "Responsive UI", "E-Commerce"],
+      category: "Minimalist E-Commerce",
+      tagline: "Minimalist High-Conversion Fashion & Lifestyle Storefront",
+      description: "A chic modern e-commerce storefront designed with editorial typography, ultra-responsive grid layouts, instant faceted filtering, slide-out micro-cart drawer, and dynamic voucher calculations for a frictionless retail journey.",
+      tags: ["JavaScript ES6+", "React", "Tailwind CSS", "Stripe Checkout", "State Engine"],
       liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
       codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      image: "2.jpg",
-      badgeClass: "badge-02",
-      accent: "#FA5538",
+      accent: "#FF6045",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF9F6; padding: 1.1rem; gap: 0.85rem;">
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF9F6; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.6rem;">
-              <span style="font-family: var(--font-hero); font-weight: 900; font-size: 1.1rem; color: #101C35; letter-spacing: 0.05em;">VELORA</span>
+              <span style="font-family: var(--font-display, serif); font-weight: 900; font-size: 1.15rem; color: #101C35; letter-spacing: 0.05em;">VELORA</span>
               <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <span style="font-size: 0.72rem; font-weight: 700; color: #64748B; background: #FFFFFF; padding: 0.25rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(0,0,0,0.06);">BAG (3)</span>
               </div>
@@ -814,7 +876,7 @@ function setupProjectsShowcase() {
                 </div>
                 <div>
                   <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Minimalist Trench</div>
-                  <div style="font-size: 0.7rem; color: #FA5538; font-weight: 700;">$149.00</div>
+                  <div style="font-size: 0.7rem; color: #FF6045; font-weight: 700;">$149.00</div>
                 </div>
               </div>
               <div style="background: #FFFFFF; border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
@@ -823,7 +885,7 @@ function setupProjectsShowcase() {
                 </div>
                 <div>
                   <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Luxe Tote Bag</div>
-                  <div style="font-size: 0.7rem; color: #FA5538; font-weight: 700;">$89.00</div>
+                  <div style="font-size: 0.7rem; color: #FF6045; font-weight: 700;">$89.00</div>
                 </div>
               </div>
             </div>
@@ -832,23 +894,23 @@ function setupProjectsShowcase() {
       }
     },
     {
-      id: "kumo-ramen",
+      id: "kumo",
+      key: "kumo",
       number: "03",
       title: "Kumo Ramen",
-      category: "Culinary Dining Experience / Japanese Noodle Bar",
-      description: "A sensory dining experience celebrating authentic ramen craft with interactive broth pairing, artisanal menu, and online table reservations.",
-      tags: ["HTML5", "CSS Grid", "Animations", "UI/UX", "Mobile First"],
-      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen",
-      codeUrl: "https://github.com/ArfaMunam47/kumo-ramen",
-      image: "3.jpg",
-      badgeClass: "badge-03",
-      accent: "#059669",
+      category: "Artisan Culinary Experience",
+      tagline: "Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion",
+      description: "An evocative culinary showcase for an artisan Tokyo ramen bar. Features an interactive bowl builder (broth richness, noodle firmness, chashu pork, ajitsuke tamago), ambient kitchen soundscapes, reservation table picker, and sensory editorial dark aesthetics.",
+      tags: ["JavaScript ES6+", "CSS3 Motion", "Interactive State", "Order Calculator", "Audio Ambiance"],
+      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      codeUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      accent: "#F59E0B",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FFFBF0; padding: 1.1rem; gap: 0.85rem;">
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FFFBF0; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.5rem;">
               <div>
-                <span style="font-family: var(--font-hero); font-weight: 900; font-size: 1.05rem; color: #1C1917;">雲 KUMO RAMEN</span>
+                <span style="font-family: var(--font-display, serif); font-weight: 900; font-size: 1.05rem; color: #1C1917;">雲 KUMO RAMEN</span>
                 <span style="display: block; font-size: 0.65rem; color: #B45309; font-weight: 700;">TOKYO CRAFT NOODLE BAR</span>
               </div>
               <span style="background: #FEF3C7; color: #92400E; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 9999px;">OPEN TODAY</span>
@@ -877,21 +939,21 @@ function setupProjectsShowcase() {
     },
     {
       id: "pastelform",
+      key: "pastelform",
       number: "04",
       title: "PastelForm",
-      category: "Minimalist Pastel Form System / Dynamic Validation",
-      description: "An ultra-clean, aesthetic form validation playground demonstrating smooth micro-interactions, responsive form logic, and soft pastel color states.",
-      tags: ["JavaScript", "CSS3", "DOM Manipulation", "Forms", "UI Patterns"],
-      liveUrl: "https://github.com/ArfaMunam47/PastelForm",
-      codeUrl: "https://github.com/ArfaMunam47/PastelForm",
-      image: "1--.jpg",
-      badgeClass: "badge-04",
-      accent: "#8B5CF6",
+      category: "Aesthetic Form Engine",
+      tagline: "Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes",
+      description: "A fluid, human-centered form and questionnaire experience crafted with soothing pastel palettes, micro-interactions, real-time validation, dynamic branch logic, and instant feedback loops that make data collection an absolute joy.",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "Accessible Forms", "State Engine"],
+      liveUrl: "https://github.com/ArfaMunam47/pastelform",
+      codeUrl: "https://github.com/ArfaMunam47/pastelform",
+      accent: "#EC4899",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF5FF; padding: 1.1rem; gap: 0.85rem;">
+          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF5FF; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139,92,246,0.1); padding-bottom: 0.5rem;">
-              <span style="font-family: var(--font-hero); font-weight: 800; font-size: 1rem; color: #6B21A8;">PastelForm System</span>
+              <span style="font-family: var(--font-display, serif); font-weight: 800; font-size: 1rem; color: #6B21A8;">PastelForm System</span>
               <div style="display: flex; gap: 0.3rem;">
                 <span style="width: 12px; height: 12px; border-radius: 50%; background: #F472B6;"></span>
                 <span style="width: 12px; height: 12px; border-radius: 50%; background: #34D399;"></span>
@@ -921,10 +983,17 @@ function setupProjectsShowcase() {
     }
   ];
 
+  const totalCount = projects.length;
+  if (counterTotal) counterTotal.textContent = String(totalCount).padStart(2, '0');
+
   let activeIndex = 0;
   let isAnimating = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragCurrentX = 0;
+  let dragHasMoved = false;
 
-  // Build the 4 cards into DOM once
+  // Build the 4 cards into DOM once with unified structure
   track.innerHTML = '';
   const cardElements = [];
 
@@ -932,25 +1001,128 @@ function setupProjectsShowcase() {
     const card = document.createElement('article');
     card.className = 'cinematic-project-card';
     card.setAttribute('data-index', idx);
-    card.setAttribute('role', 'button');
+    card.setAttribute('role', 'group');
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', `${proj.number} ${proj.title} project card`);
+    card.setAttribute('aria-roledescription', 'slide');
+    card.setAttribute('aria-label', `${proj.number} of ${totalCount}: ${proj.title}`);
 
-    // Click on card selects it (NO hover selection)
+    card.innerHTML = `
+      <!-- TOP TIER: Project Window & Visual Presentation Canvas -->
+      <div class="card-preview-viewport">
+        <div class="card-window-bar">
+          <div class="window-dot-cluster" aria-hidden="true">
+            <span class="window-dot dot-red"></span>
+            <span class="window-dot dot-yellow"></span>
+            <span class="window-dot dot-green"></span>
+          </div>
+          <div class="window-category-capsule">
+            <span class="category-spark">✦</span>
+            <span class="category-name">${proj.category}</span>
+          </div>
+          <div class="window-counter-badge">
+            <span>${proj.number}</span>
+          </div>
+        </div>
+        <div class="card-visual-canvas">
+          ${proj.renderMockup()}
+        </div>
+      </div>
+
+      <!-- BOTTOM TIER: Information Deck & Actions -->
+      <div class="card-info-deck">
+        <div class="card-header-line">
+          <div class="card-title-group">
+            <h3 class="card-project-title">${proj.title}</h3>
+            <p class="card-tagline">${proj.tagline}</p>
+          </div>
+          <span class="card-corner-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <p class="card-project-desc">${proj.description}</p>
+
+        <div class="card-tech-row">
+          ${proj.tags.map(t => `<span class="card-tech-chip">${t}</span>`).join('')}
+        </div>
+
+        <div class="card-actions-bar">
+          <button type="button" class="btn-card-explore tactile-btn" data-project-key="${proj.key}">
+            <span>Explore Project</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </button>
+
+          <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-secondary tactile-btn" aria-label="${proj.title} Live Demo">
+            <span>Live Demo</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-secondary btn-icon-only tactile-btn" aria-label="${proj.title} GitHub Repository">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    `;
+
+    // Click handler for card
     card.addEventListener('click', (e) => {
-      // If clicking directly on a link inside the active card, let the link handle it
       if (e.target.closest('a')) return;
-      if (idx !== activeIndex && !isAnimating) {
+
+      const exploreBtn = e.target.closest('.btn-card-explore');
+      if (exploreBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const pKey = exploreBtn.getAttribute('data-project-key');
+        if (typeof window.openProjectModal === 'function') {
+          window.openProjectModal(pKey);
+        } else {
+          const tabBtn = document.querySelector(`#fullpage-nav-tabs [data-project="${pKey}"]`);
+          if (tabBtn) tabBtn.click();
+        }
+        return;
+      }
+
+      if (idx !== activeIndex && !isAnimating && !dragHasMoved) {
+        e.preventDefault();
         switchProject(idx);
       }
     });
 
+    // Keyboard navigation on individual card
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (idx !== activeIndex && !isAnimating) {
+        if (idx !== activeIndex) {
+          e.preventDefault();
           switchProject(idx);
+        } else {
+          if (typeof window.openProjectModal === 'function') {
+            e.preventDefault();
+            window.openProjectModal(proj.key);
+          }
         }
+      }
+    });
+
+    // Desktop cursor hover 3D tilt on active card
+    card.addEventListener('mousemove', (e) => {
+      if (idx !== activeIndex || isDragging || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      const rect = card.getBoundingClientRect();
+      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+      const tiltX = -normY * 5;
+      const tiltY = normX * 5;
+      card.style.transform = `translate3d(0, 0, 95px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale(1)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (idx === activeIndex) {
+        card.style.transform = 'translate3d(0, 0, 90px) rotateX(0deg) rotateY(0deg) scale(1)';
       }
     });
 
@@ -958,148 +1130,84 @@ function setupProjectsShowcase() {
     cardElements.push(card);
   });
 
-  function renderCardContent(card, proj, isActive) {
-    if (isActive) {
-      card.innerHTML = `
-        <div class="card-active-inner">
-          <div class="active-info-panel">
-            <div class="active-header-badge-row">
-              <span class="active-num-badge ${proj.badgeClass}">${proj.number}</span>
-              <div class="active-title-block">
-                <span class="active-project-category" style="color: ${proj.accent};">${proj.category}</span>
-                <h3 class="active-project-title">${proj.title}</h3>
-              </div>
-            </div>
-
-            <p class="active-project-desc">${proj.description}</p>
-
-            <div class="active-tech-tags">
-              ${proj.tags.map(t => `<span class="active-tech-pill">${t}</span>`).join('')}
-            </div>
-
-            <div class="active-cta-row">
-              <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-active-live">
-                <span>Live Demo</span>
-                <span>↗</span>
-              </a>
-              <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-active-code">
-                <span>View Code</span>
-                <span>↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="active-mockup-panel">
-            ${proj.renderMockup()}
-          </div>
-        </div>
-      `;
-    } else {
-      card.innerHTML = `
-        <div class="preview-top-row">
-          <span class="preview-num-badge">${proj.number}</span>
-          <div class="preview-arrow-btn">↗</div>
-        </div>
-        <div class="preview-meta-block">
-          <h4 class="preview-title">${proj.title}</h4>
-          <span class="preview-subtitle">${proj.category}</span>
-        </div>
-        <div class="preview-screenshot-frame">
-          <img src="${proj.image}" alt="${proj.title} preview" loading="lazy" onerror="this.src='profile-photo.png'">
-        </div>
-      `;
-    }
+  function getXOffset() {
+    const w = window.innerWidth;
+    if (w <= 480) return Math.min(w * 0.85, 340);
+    if (w <= 768) return Math.min(w * 0.82, 380);
+    if (w <= 1080) return 340;
+    return 460;
   }
 
-  function updateGallery(newIndex) {
-    activeIndex = newIndex;
+  function updateGallery(newIndex, immediate = false) {
+    activeIndex = (newIndex + totalCount) % totalCount;
     isAnimating = true;
 
+    const xOffset = getXOffset();
     const isMobile = window.innerWidth <= 768;
-    const isTablet = window.innerWidth <= 1080 && window.innerWidth > 768;
+    const sideScale = isMobile ? 0.82 : 0.84;
 
-    // Determine horizontal spacing based on viewport width
-    const xOffset = isTablet ? 310 : 380;
-
-    projects.forEach((proj, i) => {
+    projects.forEach((_, i) => {
       const card = cardElements[i];
-      let diff = (i - activeIndex) % 4;
-      if (diff > 2) diff -= 4;
-      if (diff < -1) diff += 4;
+      if (immediate) {
+        card.style.transition = 'none';
+      } else {
+        card.style.transition = '';
+      }
+
+      let diff = (i - activeIndex) % totalCount;
+      if (diff > 2) diff -= totalCount;
+      if (diff < -1) diff += totalCount;
+
+      card.classList.remove('is-active', 'is-left', 'is-right', 'is-hidden');
 
       if (diff === 0) {
-        // Active Center Card
-        card.classList.remove('is-preview');
         card.classList.add('is-active');
-        card.setAttribute('aria-current', 'true');
-        renderCardContent(card, proj, true);
-
-        if (isMobile) {
-          card.style.transform = 'translate3d(0, 0, 0)';
-        } else {
-          card.style.transform = 'translate3d(0, 0, 80px) scale(1) rotateY(0deg)';
-        }
+        card.setAttribute('aria-hidden', 'false');
+        card.style.transform = 'translate3d(0, 0, 90px) rotateX(0deg) rotateY(0deg) scale(1)';
         card.style.opacity = '1';
+        card.style.filter = 'blur(0px)';
         card.style.zIndex = '25';
         card.style.pointerEvents = 'auto';
       } else if (diff === -1) {
-        // Left Flanking Preview Card
-        card.classList.remove('is-active');
-        card.classList.add('is-preview');
-        card.removeAttribute('aria-current');
-        renderCardContent(card, proj, false);
-
-        if (isMobile) {
-          card.style.transform = 'translate3d(-120%, 0, -100px)';
-          card.style.opacity = '0';
-          card.style.pointerEvents = 'none';
-        } else {
-          card.style.transform = `translate3d(-${xOffset}px, 0, -40px) scale(0.82) rotateY(16deg)`;
-          card.style.opacity = '0.88';
-          card.style.pointerEvents = 'auto';
-        }
-        card.style.zIndex = '15';
+        card.classList.add('is-left');
+        card.setAttribute('aria-hidden', 'false');
+        const rotY = isMobile ? 12 : 18;
+        card.style.transform = `translate3d(-${xOffset}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+        card.style.opacity = isMobile ? '0.65' : '0.85';
+        card.style.filter = 'blur(0.4px)';
+        card.style.zIndex = '12';
+        card.style.pointerEvents = 'auto';
       } else if (diff === 1) {
-        // Right Flanking Preview Card
-        card.classList.remove('is-active');
-        card.classList.add('is-preview');
-        card.removeAttribute('aria-current');
-        renderCardContent(card, proj, false);
-
-        if (isMobile) {
-          card.style.transform = 'translate3d(120%, 0, -100px)';
-          card.style.opacity = '0';
-          card.style.pointerEvents = 'none';
-        } else {
-          card.style.transform = `translate3d(${xOffset}px, 0, -40px) scale(0.82) rotateY(-16deg)`;
-          card.style.opacity = '0.88';
-          card.style.pointerEvents = 'auto';
-        }
-        card.style.zIndex = '15';
+        card.classList.add('is-right');
+        card.setAttribute('aria-hidden', 'false');
+        const rotY = isMobile ? -12 : -18;
+        card.style.transform = `translate3d(${xOffset}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+        card.style.opacity = isMobile ? '0.65' : '0.85';
+        card.style.filter = 'blur(0.4px)';
+        card.style.zIndex = '12';
+        card.style.pointerEvents = 'auto';
       } else {
-        // Deep background card
-        card.classList.remove('is-active');
-        card.classList.add('is-preview');
-        card.removeAttribute('aria-current');
-        renderCardContent(card, proj, false);
-
-        card.style.transform = 'translate3d(0, 0, -180px) scale(0.65)';
+        card.classList.add('is-hidden');
+        card.setAttribute('aria-hidden', 'true');
+        card.style.transform = 'translate3d(0, 0, -220px) scale(0.65)';
         card.style.opacity = '0';
-        card.style.zIndex = '5';
+        card.style.filter = 'blur(2px)';
+        card.style.zIndex = '2';
         card.style.pointerEvents = 'none';
       }
     });
 
-    // Update bottom indicator capsule buttons
+    if (counterCurr) counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
+
     indicatorBtns.forEach((btn, idx) => {
-      const isCurrent = idx === activeIndex;
-      btn.classList.toggle('active', isCurrent);
-      btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+      const isCur = idx === activeIndex;
+      btn.classList.toggle('active', isCur);
+      btn.setAttribute('aria-selected', isCur ? 'true' : 'false');
     });
 
     setTimeout(() => {
       isAnimating = false;
-    }, 600);
+    }, immediate ? 50 : 650);
   }
 
   function switchProject(idx) {
@@ -1107,13 +1215,11 @@ function setupProjectsShowcase() {
     updateGallery(idx);
   }
 
-  // Previous & Next navigation buttons
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (!isAnimating) {
-        const nextIdx = (activeIndex - 1 + 4) % 4;
-        switchProject(nextIdx);
+        switchProject(activeIndex - 1);
       }
     });
   }
@@ -1122,13 +1228,11 @@ function setupProjectsShowcase() {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (!isAnimating) {
-        const nextIdx = (activeIndex + 1) % 4;
-        switchProject(nextIdx);
+        switchProject(activeIndex + 1);
       }
     });
   }
 
-  // Bottom indicator click events
   indicatorBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1137,41 +1241,129 @@ function setupProjectsShowcase() {
     });
   });
 
-  // Touch Swipe Support
-  let touchStartX = 0;
-  let touchEndX = 0;
+  window.addEventListener('keydown', (e) => {
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) return;
 
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 45 && !isAnimating) {
-      if (diff > 0) {
-        // Swiped left -> next
-        switchProject((activeIndex + 1) % 4);
-      } else {
-        // Swiped right -> prev
-        switchProject((activeIndex - 1 + 4) % 4);
-      }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (!isAnimating) switchProject(activeIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (!isAnimating) switchProject(activeIndex + 1);
     }
-  }, { passive: true });
-
-  // Handle window resizing smoothly
-  window.addEventListener('resize', () => {
-    updateGallery(activeIndex);
   });
 
-  // Initial gallery setup (01 StudyPilot-AI)
-  updateGallery(0);
+  track.addEventListener('mousedown', (e) => {
+    if (e.target.closest('a, button, input')) return;
+    isDragging = true;
+    dragHasMoved = false;
+    dragStartX = e.clientX;
+    dragCurrentX = e.clientX;
+    track.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    dragCurrentX = e.clientX;
+    const deltaX = dragCurrentX - dragStartX;
+    if (Math.abs(deltaX) > 6) dragHasMoved = true;
+
+    const xOffset = getXOffset();
+    const isMobile = window.innerWidth <= 768;
+    const sideScale = isMobile ? 0.82 : 0.84;
+
+    projects.forEach((_, i) => {
+      const card = cardElements[i];
+      card.style.transition = 'none';
+
+      let diff = (i - activeIndex) % totalCount;
+      if (diff > 2) diff -= totalCount;
+      if (diff < -1) diff += totalCount;
+
+      if (diff === 0) {
+        const moveX = deltaX * 0.9;
+        const rotY = -deltaX * 0.025;
+        const scaleVal = Math.max(0.85, 1 - Math.abs(deltaX) * 0.0003);
+        card.style.transform = `translate3d(${moveX}px, 0, ${90 - Math.abs(deltaX) * 0.15}px) rotateY(${rotY}deg) scale(${scaleVal})`;
+      } else if (diff === -1) {
+        const moveX = -xOffset + deltaX * 0.85;
+        const rotY = 18 - deltaX * 0.03;
+        card.style.transform = `translate3d(${moveX}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+      } else if (diff === 1) {
+        const moveX = xOffset + deltaX * 0.85;
+        const rotY = -18 - deltaX * 0.03;
+        card.style.transform = `translate3d(${moveX}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+      }
+    });
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('is-dragging');
+
+    const deltaX = dragCurrentX - dragStartX;
+    if (dragHasMoved) {
+      if (deltaX < -50) {
+        switchProject(activeIndex + 1);
+      } else if (deltaX > 50) {
+        switchProject(activeIndex - 1);
+      } else {
+        updateGallery(activeIndex);
+      }
+    } else {
+      updateGallery(activeIndex);
+    }
+  });
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchCurrentX = 0;
+  let touchHasMoved = false;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchCurrentX = touchStartX;
+    touchHasMoved = false;
+  }, { passive: true });
+
+  track.addEventListener('touchmove', (e) => {
+    touchCurrentX = e.touches[0].clientX;
+    const dx = touchCurrentX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy) + 4) {
+      touchHasMoved = true;
+      if (e.cancelable) e.preventDefault();
+    }
+  }, { passive: false });
+
+  track.addEventListener('touchend', () => {
+    if (touchHasMoved) {
+      const dx = touchCurrentX - touchStartX;
+      if (dx < -40) {
+        switchProject(activeIndex + 1);
+      } else if (dx > 40) {
+        switchProject(activeIndex - 1);
+      } else {
+        updateGallery(activeIndex);
+      }
+    } else {
+      updateGallery(activeIndex);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    updateGallery(activeIndex, true);
+  });
+
+  updateGallery(0, true);
 }
 
 
-/**
- * StudyPilot-AI Interactive Simulator (Spaced Repetition Flashcards & Concepts)
- */
 function setupStudyPilotSimulator() {
   const flashcardConcepts = [
     {
@@ -1813,204 +2005,368 @@ function setupCertificatePhotoUploads() {
  * =========================================================================
  */
 function setupCertificatesGallery() {
-  const track = document.getElementById('cert-track');
-  const slides = document.querySelectorAll('.cert-slide-card');
-  const tabBtns = document.querySelectorAll('.cert-tab-btn');
-  const dots = document.querySelectorAll('.cert-indicator-dot');
-  const prevBtn = document.getElementById('cert-prev-btn');
-  const nextBtn = document.getElementById('cert-next-btn');
-  const currNumEl = document.getElementById('cert-curr-num');
-  const stage = document.getElementById('cert-carousel-stage');
+  const section = document.getElementById('certifications');
+  if (!section) return;
 
-  if (!track || slides.length === 0) return;
+  const stageViewport = document.getElementById('cert-wall-stage-viewport');
+  const stage3D = document.getElementById('cert-wall-3d-stage');
+  const cards = Array.from(document.querySelectorAll('.cert-wall-card'));
+  const tabs = Array.from(document.querySelectorAll('.cert-selector-btn'));
+  const prevBtn = document.getElementById('cert-wall-prev-btn');
+  const nextBtn = document.getElementById('cert-wall-next-btn');
+  const counterCurr = document.getElementById('cert-wall-counter-curr');
 
-  let currentIndex = 0;
-  const total = slides.length;
+  // Dossier elements
+  const dossierTitle = document.getElementById('dossier-title');
+  const dossierDesc = document.getElementById('dossier-desc');
+  const dossierIssuer = document.getElementById('dossier-issuer');
+  const dossierLevel = document.getElementById('dossier-level');
+  const dossierYear = document.getElementById('dossier-year');
+  const dossierTags = document.getElementById('dossier-tags');
+  const btnDossierExpand = document.getElementById('btn-dossier-expand');
 
-  function goToSlide(index, playSound = true) {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    currentIndex = index;
+  // Expansion modal elements
+  const expandOverlay = document.getElementById('cert-expand-overlay');
+  const expandBackdrop = document.getElementById('cert-expand-backdrop');
+  const expandCloseBtn = document.getElementById('cert-expand-close-btn');
+  const expandImg = document.getElementById('cert-expand-img');
+  const expandModalTitle = document.getElementById('expand-modal-title');
+  const expandModalSub = document.getElementById('expand-modal-sub');
+  const expandModalCounter = document.getElementById('expand-modal-counter');
+  const expandPrevBtn = document.getElementById('expand-prev-btn');
+  const expandNextBtn = document.getElementById('expand-next-btn');
 
-    // Slide track horizontally
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  if (!stage3D || cards.length === 0) return;
 
-    // Toggle active classes on slides
-    slides.forEach((slide, i) => {
-      if (i === currentIndex) {
-        slide.classList.add('active-slide');
+  // The 3 Authentic Google Credentials
+  const certificatesData = [
+    {
+      id: "cert-1",
+      number: "01",
+      title: "Google AI Professional Certificate",
+      issuer: "Google & Grow with Google",
+      level: "Advanced Professional Certification",
+      date: "Issued 2024",
+      image: "certificate-1.jpg",
+      fallbackImage: "1--.jpg",
+      sealBadge: "GOOGLE CERTIFIED",
+      description: "Comprehensive Google professional credential verifying advanced mastery in generative artificial intelligence architectures, machine learning foundation models, Vertex AI integration, and production-level prompt engineering workflows.",
+      skills: ["Generative AI Systems", "Foundation Models", "Vertex AI Studio", "System Architectures", "Responsible AI Governance"]
+    },
+    {
+      id: "cert-2",
+      number: "02",
+      title: "Google AI Essentials Specialization",
+      issuer: "Google / Coursera",
+      level: "Applied AI Foundations",
+      date: "Issued 2024",
+      image: "certificate-2.jpg",
+      fallbackImage: "2--.jpg",
+      sealBadge: "GOOGLE SPECIALIZATION",
+      description: "Official credential focusing on cross-disciplinary AI integration, conversational workflows, automating digital routines, productivity acceleration, and leveraging modern AI toolsets with ethical guidelines and risk mitigation.",
+      skills: ["Cross-Functional AI", "Workflow Automation", "Productivity Optimization", "Prompt Techniques", "Ethical AI Integration"]
+    },
+    {
+      id: "cert-3",
+      number: "03",
+      title: "Google Prompting Essentials Specialization",
+      issuer: "Google / Coursera",
+      level: "Expert Prompt Engineering",
+      date: "Issued 2025",
+      image: "certificate-3.jpg",
+      fallbackImage: "3--.jpg",
+      sealBadge: "GOOGLE SPECIALIZATION",
+      description: "Specialized training in architecting high-precision prompt pipelines, structured system instructions, multi-turn context retention, few-shot conditioning, Chain-of-Thought reasoning, and eliminating LLM hallucinations.",
+      skills: ["Few-Shot Prompting", "Multi-Turn Chains", "System Context Framing", "Deliberate Reasoning", "Output Parsing & Schemas"]
+    }
+  ];
+
+  let activeIndex = 0;
+  let isAnimating = false;
+
+  // 1. Update 3D Arrangement of the 3 Floating Certificates
+  function updateGallery(newIndex, playSound = false) {
+    activeIndex = (newIndex + certificatesData.length) % certificatesData.length;
+    isAnimating = true;
+
+    cards.forEach((card, i) => {
+      let diff = (i - activeIndex) % 3;
+      if (diff < 0) diff += 3;
+
+      card.classList.remove('is-active', 'is-side-right', 'is-side-left');
+
+      if (diff === 0) {
+        // Active Center Card (Focal Point)
+        card.classList.add('is-active');
+        card.setAttribute('aria-selected', 'true');
+        card.setAttribute('tabindex', '0');
+      } else if (diff === 1) {
+        // Top-Right Side Card (Layered Behind)
+        card.classList.add('is-side-right');
+        card.setAttribute('aria-selected', 'false');
+        card.setAttribute('tabindex', '0');
       } else {
-        slide.classList.remove('active-slide');
+        // Bottom-Left Side Card (Layered Behind)
+        card.classList.add('is-side-left');
+        card.setAttribute('aria-selected', 'false');
+        card.setAttribute('tabindex', '0');
       }
     });
 
-    // Update tab buttons
-    tabBtns.forEach((tab, i) => {
-      const isActive = i === currentIndex;
-      tab.classList.toggle('active', isActive);
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    // Update Counter
+    if (counterCurr) {
+      counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
+    }
+
+    // Update Tabs
+    tabs.forEach((tab, i) => {
+      const isCur = i === activeIndex;
+      tab.classList.toggle('active', isCur);
+      tab.setAttribute('aria-selected', isCur ? 'true' : 'false');
     });
 
-    // Update bottom dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
+    // Update Dossier Deck with smooth micro-fade
+    const activeData = certificatesData[activeIndex];
+    if (activeData) {
+      if (dossierTitle) dossierTitle.textContent = activeData.title;
+      if (dossierDesc) dossierDesc.textContent = activeData.description;
+      if (dossierIssuer) dossierIssuer.textContent = activeData.issuer;
+      if (dossierLevel) dossierLevel.textContent = activeData.level;
+      if (dossierYear) dossierYear.textContent = activeData.date;
 
-    // Update counter
-    if (currNumEl) {
-      currNumEl.textContent = String(currentIndex + 1).padStart(2, '0');
+      if (dossierTags) {
+        dossierTags.innerHTML = activeData.skills
+          .map(skill => `<span class="dossier-tag">${skill}</span>`)
+          .join('');
+      }
     }
 
     if (playSound && typeof playTactileClick === 'function') {
-      playTactileClick(620 + currentIndex * 60, 'sine');
+      playTactileClick(620 + activeIndex * 60, 'sine');
+    }
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 550);
+  }
+
+  // 2. Card Click & Keyboard Handlers
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      if (idx !== activeIndex) {
+        // Clicking a side card selects it and brings it to the active spot!
+        updateGallery(idx, true);
+      } else {
+        // Clicking the active card expands it into detailed inspection mode!
+        openExpandModal(activeIndex);
+      }
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (idx !== activeIndex) {
+          updateGallery(idx, true);
+        } else {
+          openExpandModal(activeIndex);
+        }
+      }
+    });
+
+    // Specular Reflection / Glare Movement on Individual Card
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const pctX = ((e.clientX - rect.left) / rect.width) * 100;
+      const pctY = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${pctX.toFixed(1)}%`);
+      card.style.setProperty('--mouse-y', `${pctY.toFixed(1)}%`);
+    });
+  });
+
+  // 3. Tab Buttons Click Handlers
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const idx = parseInt(tab.getAttribute('data-index') || '0', 10);
+      updateGallery(idx, true);
+    });
+  });
+
+  // 4. Arrow Navigation Buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (!isAnimating) updateGallery(activeIndex - 1, true);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (!isAnimating) updateGallery(activeIndex + 1, true);
+    });
+  }
+
+  if (btnDossierExpand) {
+    btnDossierExpand.addEventListener('click', () => {
+      openExpandModal(activeIndex);
+    });
+  }
+
+  // 5. Desktop Cursor Parallax Environment with Smooth Lerping
+  let targetRotX = 0;
+  let targetRotY = 0;
+  let currentRotX = 0;
+  let currentRotY = 0;
+  let isHoveringStage = false;
+  let rafId = null;
+
+  function renderParallax() {
+    // Linear interpolation for silky organic motion
+    currentRotX += (targetRotX - currentRotX) * 0.08;
+    currentRotY += (targetRotY - currentRotY) * 0.08;
+
+    if (stage3D) {
+      stage3D.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+    }
+
+    if (isHoveringStage || Math.abs(currentRotX) > 0.05 || Math.abs(currentRotY) > 0.05) {
+      rafId = requestAnimationFrame(renderParallax);
+    } else {
+      rafId = null;
+      if (stage3D) stage3D.style.transform = 'rotateX(0deg) rotateY(0deg)';
     }
   }
 
-  // Next & Prev arrows
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
+  if (stageViewport && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    stageViewport.addEventListener('mouseenter', () => {
+      isHoveringStage = true;
+      if (!rafId) rafId = requestAnimationFrame(renderParallax);
+    });
+
+    stageViewport.addEventListener('mousemove', (e) => {
+      const rect = stageViewport.getBoundingClientRect();
+      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+      targetRotY = normX * 6.5; // subtle tilt left/right
+      targetRotX = -normY * 4.5; // subtle tilt up/down
+
+      if (!rafId) rafId = requestAnimationFrame(renderParallax);
+    });
+
+    stageViewport.addEventListener('mouseleave', () => {
+      isHoveringStage = false;
+      targetRotX = 0;
+      targetRotY = 0;
     });
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
+  // 6. Smooth In-Place Focused Expansion Lightbox Modal
+  function openExpandModal(idx) {
+    const data = certificatesData[idx];
+    if (!data || !expandOverlay) return;
+
+    if (expandImg) {
+      expandImg.src = data.image;
+      expandImg.alt = data.title;
+      expandImg.onerror = () => {
+        expandImg.src = data.fallbackImage;
+      };
+    }
+
+    if (expandModalTitle) expandModalTitle.textContent = data.title;
+    if (expandModalSub) expandModalSub.textContent = `${data.issuer} · ${data.date}`;
+    if (expandModalCounter) expandModalCounter.textContent = `${data.number} of 03`;
+
+    expandOverlay.classList.add('is-open');
+    expandOverlay.setAttribute('aria-hidden', 'false');
+
+    if (typeof playTactileClick === 'function') {
+      playTactileClick(740, 'sine');
+    }
+  }
+
+  function closeExpandModal() {
+    if (!expandOverlay) return;
+    expandOverlay.classList.remove('is-open');
+    expandOverlay.setAttribute('aria-hidden', 'true');
+
+    if (typeof playTactileClick === 'function') {
+      playTactileClick(480, 'triangle');
+    }
+  }
+
+  if (expandCloseBtn) expandCloseBtn.addEventListener('click', closeExpandModal);
+  if (expandBackdrop) expandBackdrop.addEventListener('click', closeExpandModal);
+
+  if (expandPrevBtn) {
+    expandPrevBtn.addEventListener('click', () => {
+      const prevIdx = (activeIndex - 1 + certificatesData.length) % certificatesData.length;
+      updateGallery(prevIdx);
+      openExpandModal(prevIdx);
     });
   }
 
-  // Tab Buttons click
-  tabBtns.forEach((tab, idx) => {
-    tab.addEventListener('click', () => {
-      goToSlide(idx);
+  if (expandNextBtn) {
+    expandNextBtn.addEventListener('click', () => {
+      const nextIdx = (activeIndex + 1) % certificatesData.length;
+      updateGallery(nextIdx);
+      openExpandModal(nextIdx);
     });
-  });
+  }
 
-  // Dots click
-  dots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      goToSlide(idx);
-    });
-  });
-
-  // Slide internal "Next" button click
-  const nextActions = document.querySelectorAll('.cert-action-next');
-  nextActions.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetIndex = parseInt(btn.getAttribute('data-goto'), 10);
-      if (!isNaN(targetIndex)) {
-        goToSlide(targetIndex);
+  // 7. Global Keyboard Navigation
+  window.addEventListener('keydown', (e) => {
+    if (expandOverlay && expandOverlay.classList.contains('is-open')) {
+      if (e.key === 'Escape') {
+        closeExpandModal();
+      } else if (e.key === 'ArrowLeft') {
+        const prevIdx = (activeIndex - 1 + certificatesData.length) % certificatesData.length;
+        updateGallery(prevIdx);
+        openExpandModal(prevIdx);
+      } else if (e.key === 'ArrowRight') {
+        const nextIdx = (activeIndex + 1) % certificatesData.length;
+        updateGallery(nextIdx);
+        openExpandModal(nextIdx);
       }
-    });
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+    if (!inView) return;
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (!isAnimating) updateGallery(activeIndex - 1, true);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (!isAnimating) updateGallery(activeIndex + 1, true);
+    }
   });
 
-  // Touch Swipe Support on Stage
-  if (stage) {
+  // 8. Mobile Touch Swipe Support
+  if (stageViewport) {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    stage.addEventListener('touchstart', (e) => {
+    stageViewport.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    stage.addEventListener('touchend', (e) => {
+    stageViewport.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const diff = touchEndX - touchStartX;
-      if (Math.abs(diff) > 40) {
-        if (diff < 0) {
-          // Swipe left -> next slide
-          goToSlide(currentIndex + 1);
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40 && !isAnimating) {
+        if (diff > 0) {
+          updateGallery(activeIndex + 1, true);
         } else {
-          // Swipe right -> prev slide
-          goToSlide(currentIndex - 1);
+          updateGallery(activeIndex - 1, true);
         }
       }
-    }
+    }, { passive: true });
   }
 
-  // Keyboard navigation when Certifications section is focused/in viewport
-  document.addEventListener('keydown', (e) => {
-    const certSection = document.getElementById('certifications');
-    if (!certSection) return;
-
-    const rect = certSection.getBoundingClientRect();
-    const isInView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
-
-    // If modal is open, don't trigger slider with arrow keys
-    const modal = document.getElementById('cert-lightbox');
-    if (modal && modal.classList.contains('lightbox-open')) return;
-
-    if (isInView) {
-      if (e.key === 'ArrowRight') {
-        goToSlide(currentIndex + 1);
-      } else if (e.key === 'ArrowLeft') {
-        goToSlide(currentIndex - 1);
-      }
-    }
-  });
-
-  // Lightbox Modal Handling (Zero black borders)
-  const lightbox = document.getElementById('cert-lightbox');
-  const lightboxImg = document.getElementById('cert-lightbox-img');
-  const lightboxCaption = document.getElementById('cert-lightbox-caption');
-  const lightboxClose = document.getElementById('cert-lightbox-close');
-
-  const triggers = document.querySelectorAll('.cert-inspect-trigger');
-  triggers.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const targetSrc = btn.getAttribute('data-target');
-      const targetAlt = btn.getAttribute('data-alt') || 'Certificate Preview';
-
-      if (lightbox && lightboxImg) {
-        lightboxImg.src = targetSrc;
-        lightboxImg.alt = targetAlt;
-        if (lightboxCaption) {
-          lightboxCaption.textContent = targetAlt;
-        }
-        lightbox.classList.add('lightbox-open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        if (typeof playTactileClick === 'function') {
-          playTactileClick(780, 'sine');
-        }
-      }
-    });
-  });
-
-  function closeLightbox() {
-    if (lightbox) {
-      lightbox.classList.remove('lightbox-open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      if (typeof playTactileClick === 'function') {
-        playTactileClick(480, 'triangle');
-      }
-    }
-  }
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeLightbox();
-    }
-  });
-
-  // Initial call to calibrate slide
-  goToSlide(0, false);
+  // Initialize Gallery at Index 0
+  updateGallery(0, false);
 }
 
 /**
@@ -3270,6 +3626,561 @@ function setupLearningEcosystem() {
     }
   }
 }
+
+/**
+ * =========================================================================
+ * 23. MY LEARNING JOURNEY — CINEMATIC INTERACTIVE STORYBOOK & PHONE EXPERIENCE
+ * =========================================================================
+ */
+function setupLearningJourneyStory() {
+  const section = document.getElementById('experience');
+  if (!section) return;
+
+  const stage = document.getElementById('lj-story-stage');
+  const bookWrapper = document.getElementById('lj-book-wrapper');
+  const phoneDevice = document.getElementById('lj-phone-device');
+
+  // Stage Navigator Tabs & Book Ribbon Tabs
+  const navTabs = Array.from(document.querySelectorAll('.lj-nav-tab'));
+  const ribbonTabs = Array.from(document.querySelectorAll('.lj-ribbon-tab'));
+  const phoneNavIcons = Array.from(document.querySelectorAll('.phone-nav-icon'));
+  const nextChapterBtn = document.getElementById('lj-next-chapter-btn');
+
+  // Book Page Elements
+  const leftPageNum = document.getElementById('lj-left-page-num');
+  const rightPageNum = document.getElementById('lj-right-page-num');
+  const chapterNumLabel = document.getElementById('lj-chapter-num-label');
+  const chapterTitle = document.getElementById('lj-chapter-title');
+  const chapterHandwritten = document.getElementById('lj-chapter-handwritten');
+  const chapterDesc = document.getElementById('lj-chapter-desc');
+  const chapterBadge = document.getElementById('lj-chapter-badge');
+  const checklistEl = document.getElementById('lj-checklist');
+  const nextLabel = document.getElementById('lj-next-label');
+
+  // Sticky Note & Index Card Elements
+  const stickyText = document.getElementById('lj-sticky-text');
+  const indexTitle = document.getElementById('lj-index-title');
+  const indexStat = document.getElementById('lj-index-stat');
+  const indexLabel = document.getElementById('lj-index-label');
+  const indexQuote = document.getElementById('lj-index-quote');
+
+  // Phone Screen Elements
+  const phoneStageBadge = document.getElementById('phone-stage-badge');
+  const phoneFocusName = document.getElementById('phone-focus-name');
+  const phoneFocusSub = document.getElementById('phone-focus-sub');
+  const phoneProgressVal = document.getElementById('phone-progress-val');
+  const phoneProgressFill = document.getElementById('phone-progress-fill');
+  const phoneCodeFilename = document.getElementById('phone-code-filename');
+  const phoneCodeSnippet = document.getElementById('phone-code-snippet');
+
+  // 4 Carefully Curated Chapters of Arfa Munam's Real Learning Journey
+  const chapters = [
+    {
+      id: "foundations",
+      numLabel: "CHAPTER 01",
+      leftPage: "P. 12",
+      rightPage: "P. 13",
+      title: "Foundations & Core Logic",
+      handwritten: "“Curiosity turns into real capability when you start building.”",
+      desc: "Mastering the fundamental building blocks of modern web engineering. Deeply deconstructing algorithms, semantic architecture, and understanding computational logic from first principles.",
+      badge: "Core Web Foundations Verified",
+      checklist: [
+        "Semantic HTML5 & Modern Accessibility (ARIA)",
+        "TypeScript & ES6+ Functional Programming",
+        "CSS Box Model, Flexbox & Fluid Grid Systems",
+        "Git Workflow, Version Control & Deployment"
+      ],
+      nextLabel: "Next: 02 Frontend Craft",
+      sticky: "“Rule #1: Build every day. Even 20 lines of clean code compounds into mastery.”",
+      indexTitle: "STAGE 01 SUMMARY",
+      indexStat: "100%",
+      indexLabel: "Foundation Applied",
+      indexQuote: "“Solid fundamentals make every modern framework easy to learn.”",
+      phone: {
+        stageBadge: "STAGE 01",
+        focusName: "Web Fundamentals",
+        focusSub: "Mastering clean code mechanics and accessible semantic structuring.",
+        progressVal: "98%",
+        codeFilename: "core-logic.ts",
+        codeSnippet: `interface DevCraft {
+  curiosity: boolean;
+  dailyPractice: number;
+}
+const buildSkills = (input: DevCraft) => {
+  return input.curiosity ? "Breakthrough" : "Keep Exploring";
+};`
+      }
+    },
+    {
+      id: "frontend",
+      numLabel: "CHAPTER 02",
+      leftPage: "P. 24",
+      rightPage: "P. 25",
+      title: "Modern Frontend Craft",
+      handwritten: "“Interface design is not just how it looks, but how it breathes and reacts.”",
+      desc: "Architecting fluid digital experiences, neo-skeuomorphic depth, tactile micro-interactions, responsive physics-driven layouts, and seamless visual hierarchies across all viewport dimensions.",
+      badge: "Component Architecture Verified",
+      checklist: [
+        "Component-Driven Modular Design & Clean State",
+        "Fluid Typography, CSS Math & Dynamic Clamp()",
+        "3D CSS Perspectives, Parallax & Micro-Animations",
+        "Performance Profiling & 60fps Frame Budget"
+      ],
+      nextLabel: "Next: 03 AI & Prompting",
+      sticky: "“Design with intention. Every shadow and bevel should guide the visitor’s focus.”",
+      indexTitle: "STAGE 02 SUMMARY",
+      indexStat: "60 FPS",
+      indexLabel: "Smooth Fluid Render",
+      indexQuote: "“Micro-interactions turn static web pages into living software.”",
+      phone: {
+        stageBadge: "STAGE 02",
+        focusName: "Frontend Craft & Motion",
+        focusSub: "Crafting editorial typography and tactile responsive interfaces.",
+        progressVal: "92%",
+        codeFilename: "interactive-ui.tsx",
+        codeSnippet: `const Card3D = ({ children, tilt }: Props) => {
+  const [rotX, rotY] = useSpringLerp(tilt);
+  return (
+    <div style={{ transform: \`rotateX(\${rotX}deg)\` }}>
+      {children}
+    </div>
+  );
+};`
+      }
+    },
+    {
+      id: "ai",
+      numLabel: "CHAPTER 03",
+      leftPage: "P. 38",
+      rightPage: "P. 39",
+      title: "AI Systems & Prompting",
+      handwritten: "“AI does not replace craftsmanship; it amplifies curiosity and velocity.”",
+      desc: "Bridging human intent and machine reasoning. Leveraging Google AI certifications, multimodal prompt engineering, Chain-of-Thought deliberation, few-shot conditioning, and Vertex AI developer integrations.",
+      badge: "Google AI Certified Professional",
+      checklist: [
+        "Google Certified AI Professional Foundations",
+        "Few-Shot Conditioning & Context Window Management",
+        "Multimodal Vision & Text Embedding Pipelines",
+        "Structured JSON Schemas & Function Calling"
+      ],
+      nextLabel: "Next: 04 Automation & Logic",
+      sticky: "“A great prompt is an engineered specification, not a vague question.”",
+      indexTitle: "STAGE 03 SUMMARY",
+      indexStat: "Cert.",
+      indexLabel: "Google Certified 2024-2026",
+      indexQuote: "“Precision inputs yield predictable, production-ready AI outputs.”",
+      phone: {
+        stageBadge: "STAGE 03",
+        focusName: "Prompt Pipelines & Models",
+        focusSub: "Architecting multimodal reasoning chains and grounded system prompts.",
+        progressVal: "88%",
+        codeFilename: "prompt-pipeline.py",
+        codeSnippet: `def build_prompt_chain(query: str, ctx: dict) -> str:
+    system = "You are a senior systems engineer."
+    return f"{system}\\nContext: {ctx}\\nTask: {query}"`
+      }
+    },
+    {
+      id: "automation",
+      numLabel: "CHAPTER 04",
+      leftPage: "P. 52",
+      rightPage: "P. 53",
+      title: "Automation & Smarter Workflows",
+      handwritten: "“Automate repetitive tasks so your mind remains free for creative breakthroughs.”",
+      desc: "Constructing connected toolchains, server-side data proxies, webhook triggers, API synchronizations, and intelligent background routines that transform complex workflows into effortless actions.",
+      badge: "Workflow Automation Verified",
+      checklist: [
+        "RESTful & GraphQL API Integrations",
+        "Headless Automation & Node.js Server Routines",
+        "Asynchronous Queue Workers & Data Parsing",
+        "Modern Tooling & Autonomous Developer Workflows"
+      ],
+      nextLabel: "Cycle Back: 01 Foundations ↺",
+      sticky: "“The best automation is invisible: it simply makes complex things feel effortless.”",
+      indexTitle: "STAGE 04 SUMMARY",
+      indexStat: "10x",
+      indexLabel: "End-to-End Velocity",
+      indexQuote: "“Connecting APIs and intelligent systems unlocks unprecedented creative scale.”",
+      phone: {
+        stageBadge: "STAGE 04",
+        focusName: "Automation & APIs",
+        focusSub: "Building autonomous background routines and scalable tool integrations.",
+        progressVal: "82%",
+        codeFilename: "automation-worker.ts",
+        codeSnippet: `async function processPipeline(task: WorkItem) {
+  const result = await runModelAgent(task.data);
+  await syncToDatabase(result);
+  return { status: "success", timestamp: Date.now() };
+}`
+      }
+    }
+  ];
+
+  let currentChapterIdx = 0;
+  let isTransitioning = false;
+
+  function setChapter(index, playSound = false) {
+    if (isTransitioning) return;
+    currentChapterIdx = (index + chapters.length) % chapters.length;
+    const data = chapters[currentChapterIdx];
+    if (!data) return;
+
+    isTransitioning = true;
+
+    // Update active tab buttons
+    navTabs.forEach((tab, i) => {
+      const isActive = i === currentChapterIdx;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    ribbonTabs.forEach((ribbon, i) => {
+      ribbon.classList.toggle('active', i === currentChapterIdx);
+    });
+
+    phoneNavIcons.forEach((icon, i) => {
+      icon.classList.toggle('active', i === currentChapterIdx);
+    });
+
+    // Animate book page content update
+    const leftPage = document.getElementById('lj-page-left');
+    const rightPage = document.getElementById('lj-page-right');
+    const phoneScreen = document.querySelector('.lj-phone-screen');
+
+    if (leftPage) leftPage.style.opacity = '0.4';
+    if (rightPage) rightPage.style.opacity = '0.4';
+    if (phoneScreen) phoneScreen.style.opacity = '0.6';
+
+    setTimeout(() => {
+      // Left Page Updates
+      if (leftPageNum) leftPageNum.textContent = data.leftPage;
+      if (rightPageNum) rightPageNum.textContent = data.rightPage;
+      if (chapterNumLabel) chapterNumLabel.textContent = data.numLabel;
+      if (chapterTitle) chapterTitle.textContent = data.title;
+      if (chapterHandwritten) chapterHandwritten.textContent = data.handwritten;
+      if (chapterDesc) chapterDesc.textContent = data.desc;
+      if (chapterBadge) chapterBadge.textContent = data.badge;
+
+      // Right Page Updates
+      if (checklistEl) {
+        checklistEl.innerHTML = data.checklist.map(item => `
+          <li class="lj-check-item">
+            <span class="check-box checked">✓</span>
+            <span class="check-text">${item}</span>
+          </li>
+        `).join('');
+      }
+      if (nextLabel) nextLabel.textContent = data.nextLabel;
+
+      // Sticky Note & Index Card
+      if (stickyText) stickyText.textContent = data.sticky;
+      if (indexTitle) indexTitle.textContent = data.indexTitle;
+      if (indexStat) indexStat.textContent = data.indexStat;
+      if (indexLabel) indexLabel.textContent = data.indexLabel;
+      if (indexQuote) indexQuote.textContent = data.indexQuote;
+
+      // Phone Updates
+      if (phoneStageBadge) phoneStageBadge.textContent = data.phone.stageBadge;
+      if (phoneFocusName) phoneFocusName.textContent = data.phone.focusName;
+      if (phoneFocusSub) phoneFocusSub.textContent = data.phone.focusSub;
+      if (phoneProgressVal) phoneProgressVal.textContent = data.phone.progressVal;
+      if (phoneProgressFill) phoneProgressFill.style.width = data.phone.progressVal;
+      if (phoneCodeFilename) phoneCodeFilename.textContent = data.phone.codeFilename;
+      if (phoneCodeSnippet) phoneCodeSnippet.textContent = data.phone.codeSnippet;
+
+      // Restore opacity smoothly
+      if (leftPage) leftPage.style.opacity = '1';
+      if (rightPage) rightPage.style.opacity = '1';
+      if (phoneScreen) phoneScreen.style.opacity = '1';
+
+      if (playSound && typeof playTactileClick === 'function') {
+        playTactileClick(560 + currentChapterIdx * 80, 'sine');
+      }
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 200);
+    }, 180);
+  }
+
+  // Bind Navigator Tabs
+  navTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = parseInt(tab.getAttribute('data-chapter') || '0', 10);
+      setChapter(idx, true);
+    });
+  });
+
+  // Bind Ribbon Tabs
+  ribbonTabs.forEach(ribbon => {
+    ribbon.addEventListener('click', () => {
+      const idx = parseInt(ribbon.getAttribute('data-chapter') || '0', 10);
+      setChapter(idx, true);
+    });
+  });
+
+  // Bind Phone Nav Icons
+  phoneNavIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      const idx = parseInt(icon.getAttribute('data-chapter') || '0', 10);
+      setChapter(idx, true);
+    });
+  });
+
+  // Bind Next Chapter Dog-Ear Button
+  if (nextChapterBtn) {
+    nextChapterBtn.addEventListener('click', () => {
+      setChapter(currentChapterIdx + 1, true);
+    });
+  }
+
+  // Keyboard navigation when section is in view
+  window.addEventListener('keydown', (e) => {
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
+    if (!inView) return;
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setChapter(currentChapterIdx + 1, true);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setChapter(currentChapterIdx - 1, true);
+    }
+  });
+
+  // Desktop Smooth 3D Cursor Parallax
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (isFinePointer && stage && bookWrapper && phoneDevice) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovering = false;
+    let rafId = null;
+
+    function renderParallax() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+
+      // Book subtle tilt
+      const bookRotX = -currentY * 4.5;
+      const bookRotY = currentX * 6.5;
+      const bookTransX = currentX * 8;
+      const bookTransY = currentY * 5;
+      bookWrapper.style.transform = `rotateX(${bookRotX.toFixed(2)}deg) rotateY(${bookRotY.toFixed(2)}deg) translate3d(${bookTransX.toFixed(1)}px, ${bookTransY.toFixed(1)}px, 0)`;
+
+      // Phone slightly more dynamic tilt & reflection
+      const phoneRotX = -currentY * 6.5;
+      const phoneRotY = currentX * 8.5;
+      const phoneTransX = currentX * 14;
+      const phoneTransY = currentY * 8;
+      phoneDevice.style.transform = `rotateX(${phoneRotX.toFixed(2)}deg) rotateY(${phoneRotY.toFixed(2)}deg) translate3d(${phoneTransX.toFixed(1)}px, ${phoneTransY.toFixed(1)}px, 20px)`;
+
+      if (isHovering || Math.abs(currentX) > 0.02 || Math.abs(currentY) > 0.02) {
+        rafId = requestAnimationFrame(renderParallax);
+      } else {
+        rafId = null;
+        bookWrapper.style.transform = '';
+        phoneDevice.style.transform = '';
+      }
+    }
+
+    section.addEventListener('mouseenter', () => {
+      isHovering = true;
+      if (!rafId) rafId = requestAnimationFrame(renderParallax);
+    });
+
+    section.addEventListener('mousemove', (e) => {
+      const rect = section.getBoundingClientRect();
+      mouseX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      mouseY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+      if (!rafId) rafId = requestAnimationFrame(renderParallax);
+    });
+
+    section.addEventListener('mouseleave', () => {
+      isHovering = false;
+      mouseX = 0;
+      mouseY = 0;
+    });
+  }
+
+  // Initialize at Chapter 0
+  setChapter(0, false);
+}
+
+/**
+ * =========================================================================
+ * 24. DEDICATED GITHUB SHOWCASE & INTERACTIVE ACTIVITY VISUALIZATION
+ * Open Source & Version Control · 35+ Repositories · 900+ Commits
+ * =========================================================================
+ */
+function setupGitHubShowcaseSection() {
+  const section = document.getElementById('github-section');
+  if (!section) return;
+
+  const matrix = document.getElementById('gh-heatmap-matrix');
+  const tooltip = document.getElementById('gh-tooltip');
+  const canvas = document.getElementById('gh-visual-canvas');
+  const scrollWrapper = document.getElementById('gh-heatmap-scroll');
+
+  if (!matrix) return;
+
+  // Clear existing content to prevent duplicates
+  matrix.innerHTML = '';
+
+  // Generate 52 weeks x 7 days (364 cells) ending around current date
+  const now = new Date();
+  const totalDays = 52 * 7;
+  const startDate = new Date(now);
+  startDate.setDate(startDate.getDate() - totalDays);
+
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  // Seeded/predictable realistic activity generator matching 900+ commits
+  // High consistency, occasional high-velocity sprints
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < totalDays; i++) {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+
+    const dayOfWeek = d.getDay(); // 0 is Sunday, 1 is Monday ...
+    const monthName = months[d.getMonth()];
+    const dateNum = d.getDate();
+    const dateStr = `${monthName} ${dateNum}`;
+
+    // Pseudorandom pseudo-natural activity distribution
+    // Higher probability of commits on weekdays (1-5)
+    const seed = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+    const rand = seed - Math.floor(seed);
+
+    let count = 0;
+    let lvlClass = 'lvl-0';
+
+    // Weekend baseline vs Weekday baseline
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    const threshold = isWeekend ? 0.42 : 0.22;
+
+    if (rand > threshold) {
+      if (rand > 0.94) {
+        count = Math.floor(rand * 5) + 6; // 6-10 commits (Sprint / release day)
+        lvlClass = 'lvl-milestone';
+      } else if (rand > 0.82) {
+        count = Math.floor(rand * 3) + 4; // 4-6 commits
+        lvlClass = 'lvl-3';
+      } else if (rand > 0.55) {
+        count = Math.floor(rand * 2) + 2; // 2-3 commits
+        lvlClass = 'lvl-2';
+      } else {
+        count = 1;
+        lvlClass = 'lvl-1';
+      }
+    }
+
+    const cell = document.createElement('div');
+    cell.className = `gh-cell ${lvlClass}`;
+    cell.setAttribute('role', 'gridcell');
+    cell.setAttribute('tabindex', '0');
+
+    const commitWord = count === 1 ? 'commit' : 'commits';
+    const summary = count > 0 
+      ? `${count} ${commitWord} on ${dateStr}`
+      : `No commits on ${dateStr}`;
+
+    cell.setAttribute('aria-label', summary);
+    cell.dataset.summary = summary;
+    cell.dataset.count = String(count);
+    cell.dataset.date = dateStr;
+
+    // Interaction handlers
+    const showTooltip = () => {
+      if (!tooltip || !canvas) return;
+      tooltip.textContent = summary;
+      tooltip.classList.add('is-visible');
+
+      const cellRect = cell.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
+
+      const left = cellRect.left - canvasRect.left + cellRect.width / 2;
+      const top = cellRect.top - canvasRect.top;
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
+
+    const hideTooltip = () => {
+      if (!tooltip) return;
+      tooltip.classList.remove('is-visible');
+    };
+
+    cell.addEventListener('mouseenter', showTooltip);
+    cell.addEventListener('mouseleave', hideTooltip);
+    cell.addEventListener('focus', showTooltip);
+    cell.addEventListener('blur', hideTooltip);
+
+    fragment.appendChild(cell);
+  }
+
+  matrix.appendChild(fragment);
+
+  // Auto-scroll to current/latest weeks on smaller viewports
+  if (scrollWrapper && scrollWrapper.scrollWidth > scrollWrapper.clientWidth) {
+    // Scroll near the end so recent activity is visible
+    setTimeout(() => {
+      scrollWrapper.scrollLeft = scrollWrapper.scrollWidth - scrollWrapper.clientWidth - 20;
+    }, 100);
+  }
+
+  // Subtle interactive 3D perspective parallax for desktop canvas
+  if (canvas && window.innerWidth > 960) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let rafId = null;
+    let isHovering = false;
+
+    const renderCanvasTilt = () => {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+
+      const rotX = -currentY * 3.5;
+      const rotY = currentX * 4.5;
+      const transX = currentX * 6;
+      const transY = currentY * 4;
+
+      canvas.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translate3d(${transX.toFixed(1)}px, ${transY.toFixed(1)}px, 0)`;
+
+      if (isHovering || Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01) {
+        rafId = requestAnimationFrame(renderCanvasTilt);
+      } else {
+        rafId = null;
+        canvas.style.transform = '';
+      }
+    };
+
+    canvas.addEventListener('mouseenter', () => {
+      isHovering = true;
+      if (!rafId) rafId = requestAnimationFrame(renderCanvasTilt);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      mouseY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+      if (!rafId) rafId = requestAnimationFrame(renderCanvasTilt);
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isHovering = false;
+      mouseX = 0;
+      mouseY = 0;
+    });
+  }
+}
+
 
 
 
