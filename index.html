@@ -24,10 +24,10 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="favicon-192.png">
 
-  <!-- Google Fonts: Syne & Unbounded (High-Impact Editorial Display) + Bricolage Grotesque + Cinzel + Calistoga + Fraunces + Playfair Display + Plus Jakarta Sans + Caveat -->
+  <!-- Google Fonts: Syne & Outfit (High-Impact Editorial Display) + Bricolage Grotesque + Cinzel + Calistoga + Fraunces + Playfair Display + Plus Jakarta Sans + Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Calistoga&family=Caveat:wght@600;700&family=Cinzel:wght@600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,700..900&family=Lilita+One&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=Titan+One&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Calistoga&family=Caveat:wght@600;700&family=Cinzel:wght@600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,700..900&family=Lilita+One&family=Outfit:wght@700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=Titan+One&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -90,7 +90,7 @@
        EDITORIAL HERO SECTION: ARFA MUNAM
        Creative Personal Brand • Editorial Poster Typography • 3D Stage Environment
        ======================================================================= -->
-  <section id="hero" class="editorial-poster-hero">
+  <section id="hero" class="editorial-poster-hero" aria-label="Hero Section">
     <!-- Subtle Background Ambient Hues & Micro Texture -->
     <div class="hero-canvas-decor" aria-hidden="true">
       <div class="ambient-glow glow-peach"></div>
@@ -107,12 +107,12 @@
           <!-- Small Eyebrow Label -->
           <div class="hero-eyebrow-container" id="hero-eyebrow-wrap">
             <div class="hero-eyebrow-pill">
-              <span class="eyebrow-sparkle-icon">✦</span>
+              <span class="eyebrow-sparkle-icon" aria-hidden="true">✦</span>
               <span class="eyebrow-text">DESIGNING DIGITAL EXPERIENCES</span>
             </div>
           </div>
 
-          <!-- Large Expressive Name Typography: ARFA MUNAM IS THE HERO -->
+          <!-- Large Expressive Name Typography: ARFA MUNAM (Bold, Geometric, Distinctive 2026 Display) -->
           <div class="hero-name-poster-wrap" id="hero-main-name" aria-label="Arfa Munam">
             <h1 class="hero-editorial-brand-name">
               <span class="name-row name-row-arfa">
@@ -125,23 +125,33 @@
             </h1>
           </div>
 
-          <!-- Professional Identities (Individual tactile 3D role pills with soft lighting depth) -->
+          <!-- Professional Identities (3 Coordinated Badges with Distinct Professional Icons) -->
           <div class="hero-identities-bar" id="hero-roles-bar">
             <div class="identities-pill-container">
+              <!-- FRONT-END DEVELOPER: Clean Code Brackets </> -->
               <div class="hero-role-pill role-pill-frontend">
-                <svg class="globe-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                <svg class="role-badge-icon icon-code" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
                 <strong class="role-pill-text">FRONT-END DEVELOPER</strong>
               </div>
+
+              <!-- PROMPT ENGINEER: Clean Prompt Sparkle / Wand Icon -->
               <div class="hero-role-pill role-pill-prompt">
-                <span class="role-sparkle-dot" aria-hidden="true">✦</span>
+                <svg class="role-badge-icon icon-prompt" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+                </svg>
                 <strong class="role-pill-text">PROMPT ENGINEER</strong>
               </div>
+
+              <!-- AI ENTHUSIAST: Clean Neural Atom / Orbital Spark Icon -->
               <div class="hero-role-pill role-pill-ai">
-                <span class="role-pulse-dot" aria-hidden="true"></span>
+                <svg class="role-badge-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)"></ellipse>
+                  <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)"></ellipse>
+                </svg>
                 <strong class="role-pill-text">AI ENTHUSIAST</strong>
               </div>
             </div>
@@ -161,7 +171,7 @@
           <div class="hero-cta-action-row" id="hero-cta-group">
             <a href="#projects" class="btn-editorial-primary tactile-btn" id="hero-btn-work">
               <span>VIEW MY WORK</span>
-              <span class="btn-arrow">↗</span>
+              <span class="btn-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="#contact" class="btn-editorial-secondary tactile-btn" id="hero-btn-connect">
               <span>LET'S CONNECT</span>
@@ -171,14 +181,14 @@
           <!-- Editorial Micro Meta Footer: AI × WEB × DESIGN -->
           <div class="hero-editorial-meta" id="hero-meta-signals">
             <div class="editorial-meta-node">
-              <span class="meta-status-beacon"></span>
+              <span class="meta-status-beacon" aria-hidden="true"></span>
               <span>AI × WEB × DESIGN</span>
             </div>
-            <div class="editorial-meta-sep">/</div>
+            <div class="editorial-meta-sep" aria-hidden="true">/</div>
             <div class="editorial-meta-node">
               <span>CREATIVE FRONTEND</span>
             </div>
-            <div class="editorial-meta-sep">/</div>
+            <div class="editorial-meta-sep" aria-hidden="true">/</div>
             <div class="editorial-meta-node">
               <span>OPEN FOR COLLABORATION</span>
             </div>
@@ -186,7 +196,7 @@
 
         </div>
 
-        <!-- RIGHT / CREATIVE 3D HERO VISUAL STAGE (User's Exact Creative Universe Composition) -->
+        <!-- RIGHT / INTERACTIVE HERO PORTRAIT STAGE WITH MAGICAL AURA -->
         <div class="hero-visual-column reveal" id="hero-portrait-stage">
           <div class="hero-creative-visual-stage" id="hero-portrait-showcase">
             
@@ -196,16 +206,40 @@
               <span>BUILDING • LEARNING • EXPLORING</span>
             </div>
 
-            <!-- Layered Colorful 3D Backdrop Elements (Vibrant Coral & Cyan Discs, NO dark background) -->
+            <!-- Magical Layered Atmosphere Behind Portrait (Floating energy, orbital rings, radiant particles) -->
             <div class="hero-stage-backdrop-art" aria-hidden="true">
               <div class="hero-backdrop-disc hero-disc-coral"></div>
               <div class="hero-backdrop-disc hero-disc-cyan"></div>
               <div class="hero-backdrop-disc hero-disc-purple"></div>
               <div class="hero-backdrop-glow-aura"></div>
+
+              <!-- Refined SVG Orbital System (Dashed rings with gentle continuous rotation) -->
+              <svg class="hero-orbital-system" viewBox="0 0 500 500" fill="none">
+                <ellipse cx="250" cy="250" rx="215" ry="145" transform="rotate(-16 250 250)" stroke="url(#heroOrbitalGrad1)" stroke-width="1.2" stroke-dasharray="4 8" class="orbital-track-1" />
+                <ellipse cx="250" cy="250" rx="165" ry="195" transform="rotate(34 250 250)" stroke="url(#heroOrbitalGrad2)" stroke-width="1" stroke-dasharray="2 6" class="orbital-track-2" />
+                <defs>
+                  <linearGradient id="heroOrbitalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FA5538" stop-opacity="0.8"/>
+                    <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.8"/>
+                  </linearGradient>
+                  <linearGradient id="heroOrbitalGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.75"/>
+                    <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.55"/>
+                    <stop offset="100%" stop-color="#FA5538" stop-opacity="0.75"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <!-- Subtle Ambient Starbursts and Floating Spark Points -->
+              <div class="hero-magical-sparkle spark-point-1">✦</div>
+              <div class="hero-magical-sparkle spark-point-2">★</div>
+              <div class="hero-magical-sparkle spark-point-3">✦</div>
+              <div class="hero-magical-sparkle spark-point-4">·</div>
             </div>
 
-            <!-- Large 3D Floating Cutout Portrait Subject Container (Clean, Spacious, Not Messy) -->
-            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame">
+            <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
+            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="button" tabindex="0" aria-label="Interactive Portrait of Arfa Munam. Click to enter focus state, click again or press Escape to return.">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
                 <img src="me.png" 
                      alt="Arfa Munam — Creative Developer" 
@@ -215,8 +249,15 @@
                      fetchpriority="high"
                      onerror="this.onerror=null; this.src='me.png.png';">
               </div>
+
               <!-- Soft Grounding Ambient Shadow -->
               <div class="hero-subject-ground-shadow"></div>
+
+              <!-- Refined Focus State Indicator Badge -->
+              <div class="hero-portrait-focus-badge" id="hero-focus-badge" aria-hidden="true">
+                <span class="focus-badge-pulse"></span>
+                <span class="focus-badge-text" id="hero-focus-badge-text">Interactive Portrait</span>
+              </div>
             </div>
 
           </div>
@@ -2208,7 +2249,7 @@
             <div class="cert-card-inner">
               <div class="cert-doc-mat">
                 <div class="cert-doc-image-frame">
-                  <img src="certificate-1.jpg" 
+                  <img src="1.jpg" 
                        alt="Official Google AI Professional Certificate issued to Arfa Munam" 
                        class="cert-doc-img" 
                        loading="eager" 
@@ -2242,7 +2283,7 @@
             <div class="cert-card-inner">
               <div class="cert-doc-mat">
                 <div class="cert-doc-image-frame">
-                  <img src="certificate-2.jpg" 
+                  <img src="2.jpg" 
                        alt="Official Google AI Essentials Specialization Certificate issued to Arfa Munam" 
                        class="cert-doc-img" 
                        loading="lazy" 
@@ -2272,7 +2313,7 @@
             <div class="cert-card-inner">
               <div class="cert-doc-mat">
                 <div class="cert-doc-image-frame">
-                  <img src="certificate-3.jpg" 
+                  <img src="3.jpg" 
                        alt="Official Google Prompting Essentials Specialization Certificate issued to Arfa Munam" 
                        class="cert-doc-img" 
                        loading="lazy" 
@@ -2366,7 +2407,7 @@
 
         <div class="cert-expand-stage">
           <div class="cert-expand-frame">
-            <img src="certificate-1.jpg" alt="Expanded Certificate" class="cert-expand-img" id="cert-expand-img">
+            <img src="1.jpg" alt="Expanded Certificate" class="cert-expand-img" id="cert-expand-img">
           </div>
         </div>
 
@@ -2391,370 +2432,440 @@
     </div>
   </section>
 
-    <!-- =======================================================================
-       MY LEARNING JOURNEY — CINEMATIC INTERACTIVE STORYBOOK & PHONE EXPERIENCE
-       Editorial Storytelling • Central Dimensional Learning Journal • Smartphone Preview
-       4 Interactive Chapters: 01 Foundations • 02 Frontend • 03 AI & Prompting • 04 Automation
-       Physical Paper Notes • Sticky Annotations • Ribbon Bookmarks • Live Parallax
+  <!-- =======================================================================
+       LEARNING JOURNEY — 3D FUTURISTIC INTERACTIVE LEARNING SYSTEM
+       "Turning Curiosity Into Capability"
+       6 Interactive 3D Stages • Central Floating Glass Card • Concentric Pedestals
+       Conical Light Beam • Orbital Rings • Floating Spheres • 4-Block Info Strip
        ======================================================================= -->
-  <section id="experience" class="learning-journey-scene" aria-label="My Learning Journey">
+  <section id="experience" class="futuristic-journey-section" aria-label="Learning Journey" data-section="learning-journey">
+    <span id="learning-journey" class="section-hash-anchor" aria-hidden="true"></span>
     
-    <!-- Atmospheric Ambient Lighting & Warm Cinematic Studio Atmosphere -->
-    <div class="lj-atmosphere" aria-hidden="true">
-      <div class="lj-blob lj-blob-cream"></div>
-      <div class="lj-blob lj-blob-peach"></div>
-      <div class="lj-blob lj-blob-coral"></div>
-      <div class="lj-blob lj-blob-violet"></div>
-      <div class="lj-bokeh-orb bokeh-1"></div>
-      <div class="lj-bokeh-orb bokeh-2"></div>
-      <div class="lj-sparkle-dust dust-1">✦</div>
-      <div class="lj-sparkle-dust dust-2">★</div>
-      <div class="lj-sparkle-dust dust-3">✦</div>
+    <!-- Atmospheric Ambient Depth & Soft Studio Lighting -->
+    <div class="fj-atmosphere" aria-hidden="true">
+      <div class="fj-ambient-blob blob-peach"></div>
+      <div class="fj-ambient-blob blob-cyan"></div>
+      <div class="fj-ambient-blob blob-purple"></div>
+      <div class="fj-dotted-matrix"></div>
+      
+      <!-- 3D Realistic Floating Spheres -->
+      <div class="fj-floating-sphere sphere-coral" data-depth="0.08"></div>
+      <div class="fj-floating-sphere sphere-cyan" data-depth="0.12"></div>
+      <div class="fj-floating-sphere sphere-amber" data-depth="0.06"></div>
+      <div class="fj-floating-sphere sphere-purple" data-depth="0.10"></div>
+      
+      <!-- Delicate Ambient Sparkles -->
+      <span class="fj-spark-point spark-1">✦</span>
+      <span class="fj-spark-point spark-2">★</span>
+      <span class="fj-spark-point spark-3">✦</span>
     </div>
 
-    <div class="container lj-container">
+    <div class="container fj-container">
       
-      <!-- SECTION HEADER (Top Editorial Headline) -->
-      <div class="lj-header reveal">
-        <div class="lj-eyebrow-pill">
-          <span class="lj-eyebrow-spark">✦</span>
-          <span>THE JOURNEY SO FAR</span>
-        </div>
-        <h2 class="lj-headline">
-          My Learning <span class="lj-headline-gradient">Journey.</span>
-        </h2>
-        <p class="lj-subcaption">
-          Learning by building, experimenting, and turning curiosity into <span class="accent-gradient">real skills.</span>
-        </p>
-      </div>
-
-      <!-- INTERACTIVE STAGE SELECTOR TABS (Chapter Navigation Strip) -->
-      <div class="lj-stage-navigator reveal" role="tablist" aria-label="Learning Journey Chapters">
-        <button type="button" class="lj-nav-tab active" data-chapter="0" role="tab" aria-selected="true" id="lj-tab-0">
-          <span class="tab-num">01</span>
-          <span class="tab-title">Foundations</span>
-        </button>
-        <button type="button" class="lj-nav-tab" data-chapter="1" role="tab" aria-selected="false" id="lj-tab-1">
-          <span class="tab-num">02</span>
-          <span class="tab-title">Frontend Craft</span>
-        </button>
-        <button type="button" class="lj-nav-tab" data-chapter="2" role="tab" aria-selected="false" id="lj-tab-2">
-          <span class="tab-num">03</span>
-          <span class="tab-title">AI &amp; Prompting</span>
-        </button>
-        <button type="button" class="lj-nav-tab" data-chapter="3" role="tab" aria-selected="false" id="lj-tab-3">
-          <span class="tab-num">04</span>
-          <span class="tab-title">Automation</span>
-        </button>
-      </div>
-
-      <!-- MAIN CINEMATIC STORYTELLING COMPOSITION (Book + Phone + Paper Notes) -->
-      <div class="lj-story-composition reveal" id="lj-story-stage">
+      <!-- Top Header Row: Heading & Controls on Left, Categories on Right -->
+      <div class="fj-top-row">
         
-        <!-- ===============================================================
-             CENTRAL PHYSICAL STORY OBJECT: PREMIUM OPEN BOOK / DEV JOURNAL
-             =============================================================== -->
-        <div class="lj-book-wrapper" id="lj-book-wrapper">
+        <!-- Left Column: Eyebrow, Heading, Subtitle, Progress & Drag -->
+        <div class="fj-intro-block reveal">
           
-          <!-- Bookmark Ribbon Tabs protruding from top of book -->
-          <div class="lj-book-ribbon-tabs" aria-label="Book page ribbon bookmarks">
-            <button type="button" class="lj-ribbon-tab tab-coral active" data-chapter="0" title="Go to Chapter 01: Foundations">
-              <span>01 Found</span>
-            </button>
-            <button type="button" class="lj-ribbon-tab tab-purple" data-chapter="1" title="Go to Chapter 02: Frontend">
-              <span>02 Front</span>
-            </button>
-            <button type="button" class="lj-ribbon-tab tab-cyan" data-chapter="2" title="Go to Chapter 03: AI &amp; Prompting">
-              <span>03 AI</span>
-            </button>
-            <button type="button" class="lj-ribbon-tab tab-gold" data-chapter="3" title="Go to Chapter 04: Automation">
-              <span>04 Auto</span>
-            </button>
+          <!-- Small Eyebrow -->
+          <div class="fj-eyebrow-line">
+            <span class="fj-eyebrow-star" aria-hidden="true">✦</span>
+            <span class="fj-eyebrow-my">MY</span>
+            <span class="fj-eyebrow-lj">LEARNING JOURNEY</span>
           </div>
 
-          <!-- Physical 3D Book Body -->
-          <div class="lj-book-body">
-            
-            <!-- Book Spine & Hardcover Outer Trim (Rich Cognac/Coral Leather with Bevel) -->
-            <div class="lj-book-cover-base"></div>
-            
-            <!-- Multi-layered Page Stack Thickness on Left & Right Sides -->
-            <div class="lj-book-edge-left" aria-hidden="true"></div>
-            <div class="lj-book-edge-right" aria-hidden="true"></div>
+          <!-- Main Heading: Turning Curiosity / Into Capability -->
+          <h2 class="fj-main-headline">
+            <span class="headline-line-1">Turning Curiosity</span>
+            <span class="headline-line-2">Into Capability</span>
+          </h2>
 
-            <!-- Open Book Spread Surface -->
-            <div class="lj-book-spread">
+          <!-- Subtitle Text -->
+          <p class="fj-started-text">
+            <span>Started in </span><strong class="highlight-year">2026.</strong><span> Learning by building.</span>
+          </p>
+
+          <!-- Interactive Progress Pill Control -->
+          <div class="fj-progress-control-pill" aria-label="Journey Progress">
+            <div class="fj-progress-counter">
+              <span class="progress-active-num" id="fj-progress-curr">04</span>
+              <span class="progress-sep">/</span>
+              <span class="progress-total-num">06</span>
+            </div>
+            <div class="fj-progress-bar-track">
+              <div class="fj-progress-bar-fill" id="fj-progress-fill" style="width: 66.6%;"></div>
+            </div>
+          </div>
+
+          <!-- Drag / Scroll Instruction -->
+          <div class="fj-drag-instruction">
+            <div class="drag-mouse-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="3" width="12" height="18" rx="6"></rect>
+                <line x1="12" y1="7" x2="12" y2="10"></line>
+              </svg>
+            </div>
+            <span class="drag-text">DRAG / SCROLL TO EXPLORE</span>
+            <span class="drag-accent-line" aria-hidden="true"></span>
+          </div>
+
+        </div><!-- /.fj-intro-block -->
+
+        <!-- Right Column: Top Right Category Capsule Indicator -->
+        <div class="fj-category-indicator-wrap reveal">
+          <div class="fj-category-pill">
+            <div class="cat-item">
+              <span class="cat-dot dot-coral" aria-hidden="true"></span>
+              <span class="cat-label">LEARN</span>
+            </div>
+            <span class="cat-sep" aria-hidden="true">•</span>
+            <div class="cat-item">
+              <span class="cat-dot dot-pink" aria-hidden="true"></span>
+              <span class="cat-label">BUILD</span>
+            </div>
+            <span class="cat-sep" aria-hidden="true">•</span>
+            <div class="cat-item">
+              <span class="cat-dot dot-cyan" aria-hidden="true"></span>
+              <span class="cat-label">IMPROVE</span>
+            </div>
+            <span class="cat-sep" aria-hidden="true">•</span>
+            <div class="cat-item">
+              <span class="cat-dot dot-purple" aria-hidden="true"></span>
+              <span class="cat-label">GROW</span>
+            </div>
+          </div>
+        </div><!-- /.fj-category-indicator-wrap -->
+
+      </div><!-- /.fj-top-row -->
+
+      <!-- =========================================================
+           CENTRAL 3D LEARNING SYSTEM (Track & 6 Stages)
+           ========================================================= -->
+      <div class="fj-system-stage" id="fj-system-stage">
+        
+        <!-- Large Background Orbital Rings -->
+        <div class="fj-orbital-backdrop" aria-hidden="true">
+          <svg class="fj-orbit-svg" viewBox="0 0 1000 480" fill="none">
+            <ellipse cx="500" cy="240" rx="420" ry="180" transform="rotate(-6 500 240)" stroke="url(#fjOrbitGrad1)" stroke-width="1.4" stroke-dasharray="6 8" class="fj-orbit-line-1"/>
+            <ellipse cx="500" cy="240" rx="350" ry="210" transform="rotate(12 500 240)" stroke="url(#fjOrbitGrad2)" stroke-width="1.1" stroke-dasharray="4 6" class="fj-orbit-line-2"/>
+            <defs>
+              <linearGradient id="fjOrbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FA5538" stop-opacity="0.6"/>
+                <stop offset="50%" stop-color="#EC4899" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.6"/>
+              </linearGradient>
+              <linearGradient id="fjOrbitGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.5"/>
+                <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#FA5538" stop-opacity="0.5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- 3D Physical Illuminated Pathway Track -->
+        <div class="fj-track-circuits" aria-hidden="true">
+          <svg class="fj-circuit-svg" viewBox="0 0 1200 320" fill="none" preserveAspectRatio="none">
+            <path d="M 60,240 C 220,260 400,270 600,270 C 800,270 980,260 1140,240" stroke="rgba(250, 85, 56, 0.22)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 60,240 C 220,260 400,270 600,270 C 800,270 980,260 1140,240" stroke="url(#fjCircuitGrad)" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="8 12" class="fj-circuit-pulse"/>
+            <defs>
+              <linearGradient id="fjCircuitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FA5538"/>
+                <stop offset="25%" stop-color="#EC4899"/>
+                <stop offset="50%" stop-color="#FA5538"/>
+                <stop offset="75%" stop-color="#06B6D4"/>
+                <stop offset="100%" stop-color="#8B5CF6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- The 6 Stages Interactive Track Grid / Flex Row -->
+        <div class="fj-stages-track-container" id="fj-stages-track">
+
+          <!-- STAGE 01: Frontend Foundations -->
+          <div class="fj-stage-node stage-01" data-index="0" role="button" tabindex="0" aria-label="Stage 01: Frontend Foundations">
+            <div class="node-label-group">
+              <span class="node-number color-coral">01</span>
+              <h3 class="node-title">Frontend<br>Foundations</h3>
+            </div>
+            <div class="node-pedestal-wrap">
+              <div class="node-icon-box box-coral">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div class="node-platform-3d plat-coral">
+                <div class="plat-ring-outer"></div>
+                <div class="plat-ring-glow"></div>
+                <div class="plat-ring-top"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector Chevron 01 -> 02 -->
+          <div class="fj-track-connector conn-1-2" aria-hidden="true">»</div>
+
+          <!-- STAGE 02: Building Real Projects -->
+          <div class="fj-stage-node stage-02" data-index="1" role="button" tabindex="0" aria-label="Stage 02: Building Real Projects">
+            <div class="node-label-group">
+              <span class="node-number color-pink">02</span>
+              <h3 class="node-title">Building<br>Real Projects</h3>
+            </div>
+            <div class="node-pedestal-wrap">
+              <div class="node-icon-box box-pink">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="node-platform-3d plat-pink">
+                <div class="plat-ring-outer"></div>
+                <div class="plat-ring-glow"></div>
+                <div class="plat-ring-top"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector Chevron 02 -> 03 -->
+          <div class="fj-track-connector conn-2-3" aria-hidden="true">»</div>
+
+          <!-- STAGE 03: React & Modern UI -->
+          <div class="fj-stage-node stage-03" data-index="2" role="button" tabindex="0" aria-label="Stage 03: React & Modern UI">
+            <div class="node-label-group">
+              <span class="node-number color-purple">03</span>
+              <h3 class="node-title">React &amp;<br>Modern UI</h3>
+            </div>
+            <div class="node-pedestal-wrap">
+              <div class="node-icon-box box-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="2.5"></circle>
+                  <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(30 12 12)"></ellipse>
+                  <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-30 12 12)"></ellipse>
+                  <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(90 12 12)"></ellipse>
+                </svg>
+              </div>
+              <div class="node-platform-3d plat-purple">
+                <div class="plat-ring-outer"></div>
+                <div class="plat-ring-glow"></div>
+                <div class="plat-ring-top"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STAGE 04 (ACTIVE CENTERPIECE): Backend Development -->
+          <div class="fj-central-active-stage is-active" id="fj-central-stage" data-index="3">
+            
+            <!-- Conical Illuminated Light Beam from Platform to Card -->
+            <div class="fj-active-light-beam" id="fj-light-beam" aria-hidden="true"></div>
+
+            <!-- Central Active 3D Floating Glass Card -->
+            <div class="fj-active-glass-card" id="fj-active-card">
               
-              <!-- Central Gutter / Spine Fold Shadow with Satin Ribbon -->
-              <div class="lj-book-spine-gutter" aria-hidden="true">
-                <div class="lj-gutter-shadow"></div>
-                <div class="lj-satin-ribbon">
-                  <div class="ribbon-tail"></div>
+              <!-- Card Top Bar: Icon Container + CURRENT FOCUS Pill -->
+              <div class="card-top-header">
+                <div class="card-icon-container" id="fj-card-icon-container">
+                  <div class="card-icon-3d-bubble" id="fj-card-icon-bubble">
+                    <!-- Default: Server Discs Icon -->
+                    <svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="card-focus-pill" id="fj-card-focus-pill">
+                  <span class="focus-pill-text" id="fj-card-pill-text">CURRENT FOCUS</span>
+                  <span class="focus-pill-dot" id="fj-card-pill-dot" aria-hidden="true">●</span>
                 </div>
               </div>
 
-              <!-- LEFT PAGE: Chapter Title, Philosophy & Core Narrative -->
-              <div class="lj-page lj-page-left" id="lj-page-left">
-                <div class="lj-page-paper-texture"></div>
-                <div class="lj-page-inner">
-                  <div class="lj-page-header">
-                    <span class="lj-page-num" id="lj-left-page-num">P. 12</span>
-                    <span class="lj-page-header-tag" id="lj-left-tag">DEV JOURNAL · 2026</span>
-                  </div>
+              <!-- Card Title: Large 2-Line Bold Heading -->
+              <h3 class="card-main-title" id="fj-card-title">
+                Backend<br>Development
+              </h3>
 
-                  <div class="lj-chapter-eyebrow">
-                    <span class="chapter-star">✦</span>
-                    <span id="lj-chapter-num-label">CHAPTER 01</span>
-                  </div>
-
-                  <h3 class="lj-chapter-heading" id="lj-chapter-title">
-                    Foundations &amp; Core Logic
-                  </h3>
-
-                  <div class="lj-chapter-handwritten">
-                    <span class="handwritten-bracket">[</span>
-                    <span class="handwritten-quote" id="lj-chapter-handwritten">
-                      "Curiosity turns into real capability when you start building."
-                    </span>
-                    <span class="handwritten-bracket">]</span>
-                  </div>
-
-                  <p class="lj-chapter-body" id="lj-chapter-desc">
-                    Mastering the fundamental building blocks of modern web engineering. Deeply deconstructing algorithms, semantic architecture, and understanding computational logic from first principles.
-                  </p>
-
-                  <div class="lj-page-footer">
-                    <span class="lj-stamp-badge">
-                      <span class="stamp-dot"></span>
-                      <span id="lj-chapter-badge">Core Web Foundations Verified</span>
-                    </span>
-                  </div>
-                </div>
+              <!-- Handwritten Accent Touch: One step at a time. -->
+              <div class="card-script-accent" id="fj-card-script">
+                One step at a time.
               </div>
 
-              <!-- RIGHT PAGE: Practical Execution, Checklist & Interactive Notes -->
-              <div class="lj-page lj-page-right" id="lj-page-right">
-                <div class="lj-page-paper-texture"></div>
-                <div class="lj-page-inner">
-                  <div class="lj-page-header">
-                    <span class="lj-page-header-tag">PRACTICAL MILESTONES</span>
-                    <span class="lj-page-num" id="lj-right-page-num">P. 13</span>
-                  </div>
+              <!-- Card Body Description -->
+              <p class="card-body-description" id="fj-card-desc">
+                Currently building backend abilities step by step — learning databases, APIs, authentication, and server logic to build full-stack applications.
+              </p>
 
-                  <div class="lj-skills-subhead">
-                    <span class="subhead-icon">⚡</span>
-                    <span>KEY COMPETENCIES MASTERED</span>
-                  </div>
-
-                  <ul class="lj-checklist" id="lj-checklist" role="list">
-                    <li class="lj-check-item">
-                      <span class="check-box checked">✓</span>
-                      <span class="check-text">Semantic HTML5 &amp; Modern Accessibility (ARIA)</span>
-                    </li>
-                    <li class="lj-check-item">
-                      <span class="check-box checked">✓</span>
-                      <span class="check-text">TypeScript &amp; ES6+ Functional Programming</span>
-                    </li>
-                    <li class="lj-check-item">
-                      <span class="check-box checked">✓</span>
-                      <span class="check-text">Box Model, Flexbox &amp; Fluid Grid Systems</span>
-                    </li>
-                    <li class="lj-check-item">
-                      <span class="check-box checked">✓</span>
-                      <span class="check-text">Git Workflow, Version Control &amp; Deployment</span>
-                    </li>
-                  </ul>
-
-                  <!-- Interactive Chapter Dog-Ear Next Trigger -->
-                  <div class="lj-dog-ear-action">
-                    <button type="button" class="lj-turn-page-btn" id="lj-next-chapter-btn">
-                      <span id="lj-next-label">Next: 02 Frontend Craft</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </div><!-- /.lj-book-spread -->
-
-            <!-- Realistic Soft Contact Shadow Underneath Book -->
-            <div class="lj-book-contact-shadow" aria-hidden="true"></div>
-          </div><!-- /.lj-book-body -->
-
-          <!-- STICKY NOTE / ANNOTATION ELEMENT (Pinned at an angle on the left) -->
-          <aside class="lj-sticky-note" id="lj-sticky-note" aria-label="Author note">
-            <div class="sticky-pin" aria-hidden="true"></div>
-            <div class="sticky-tape" aria-hidden="true"></div>
-            <span class="sticky-label">NOTE TO SELF</span>
-            <p class="sticky-text" id="lj-sticky-text">
-              "Never stop experimenting. The deepest learning happens when code breaks and you figure out why."
-            </p>
-            <div class="sticky-footer">
-              <span class="sticky-date">✦ Daily Habit</span>
-              <span class="sticky-heart">♥</span>
-            </div>
-          </aside>
-
-          <!-- MINI INDEX CARD ON RIGHT: CURIOSITY METRICS -->
-          <aside class="lj-index-card" id="lj-index-card" aria-label="Milestone summary card">
-            <div class="index-card-header">
-              <span class="index-dot"></span>
-              <span class="index-title" id="lj-index-title">STAGE SUMMARY</span>
-            </div>
-            <div class="index-card-stat">
-              <span class="stat-number" id="lj-index-stat">100%</span>
-              <span class="stat-label" id="lj-index-label">Foundation Applied</span>
-            </div>
-            <p class="index-card-quote" id="lj-index-quote">
-              "Without strong foundations, frameworks become confusing rather than empowering."
-            </p>
-          </aside>
-
-        </div><!-- /.lj-book-wrapper -->
-
-
-        <!-- ===============================================================
-             INTERACTIVE SMARTPHONE ELEMENT: CURRENTLY LEARNING VISUALIZER
-             =============================================================== -->
-        <aside class="lj-phone-device" id="lj-phone-device" aria-label="Interactive Phone Preview: Currently Learning">
-          <div class="lj-phone-chassis">
-            
-            <!-- Dynamic Glare & Specular Reflection overlay -->
-            <div class="lj-phone-glare" aria-hidden="true"></div>
-            
-            <!-- Smartphone Display Screen -->
-            <div class="lj-phone-screen">
-              
-              <!-- Screen Status Bar -->
-              <div class="phone-status-bar">
-                <span class="phone-clock">09:41</span>
-                <div class="phone-notch">
-                  <span class="notch-camera"></span>
-                  <span class="notch-speaker"></span>
-                </div>
-                <div class="phone-status-icons">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.57 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/>
+              <!-- Card Bottom Status Capsule Pill -->
+              <div class="card-status-capsule" id="fj-card-status-capsule">
+                <span class="status-capsule-icon" id="fj-card-status-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="6"></circle>
+                    <circle cx="12" cy="12" r="2"></circle>
                   </svg>
-                  <span class="phone-battery">100%</span>
-                </div>
+                </span>
+                <span class="status-capsule-text" id="fj-card-status-text">Building Strong Foundations</span>
               </div>
 
-              <!-- Phone App Header -->
-              <div class="phone-app-header">
-                <div class="phone-live-indicator">
-                  <span class="live-dot pulse-coral"></span>
-                  <span class="live-label">CURRENTLY LEARNING</span>
-                </div>
-                <span class="phone-app-sparkle">✦</span>
+            </div><!-- /.fj-active-glass-card -->
+
+            <!-- Central Multi-Tier Concentric 3D Platform Pedestal -->
+            <div class="fj-central-pedestal-3d" id="fj-central-pedestal" aria-hidden="true">
+              <div class="pedestal-outer-glass-ring"></div>
+              <div class="pedestal-middle-glow-ring"></div>
+              <div class="pedestal-inner-stepped-ring"></div>
+              <div class="pedestal-core-emitter"></div>
+              <div class="pedestal-ground-shadow"></div>
+            </div>
+
+          </div><!-- /.fj-central-active-stage -->
+
+          <!-- Connector Chevron 04 -> 05 -->
+          <div class="fj-track-connector conn-4-5" aria-hidden="true">»</div>
+
+          <!-- STAGE 05: AI Tools & Prompt Engineering -->
+          <div class="fj-stage-node stage-05" data-index="4" role="button" tabindex="0" aria-label="Stage 05: AI Tools & Prompt Engineering">
+            <div class="node-label-group">
+              <span class="node-number color-cyan">05</span>
+              <h3 class="node-title">AI Tools &amp;<br>Prompt Engineering</h3>
+            </div>
+            <div class="node-pedestal-wrap">
+              <div class="node-icon-box box-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
+                </svg>
               </div>
-
-              <!-- Active Learning Stage Card on Screen -->
-              <div class="phone-learning-card">
-                <div class="phone-card-top">
-                  <span class="phone-stage-badge" id="phone-stage-badge">STAGE 01</span>
-                  <span class="phone-streak-badge">🔥 Active Focus</span>
-                </div>
-                
-                <h4 class="phone-focus-name" id="phone-focus-name">
-                  Web Fundamentals
-                </h4>
-                <p class="phone-focus-sub" id="phone-focus-sub">
-                  Mastering the core mechanics of clean code and responsive structure.
-                </p>
-
-                <!-- Visual Progress Bar / Metric -->
-                <div class="phone-progress-wrap">
-                  <div class="phone-progress-row">
-                    <span class="progress-label">Milestone Progress</span>
-                    <span class="progress-val" id="phone-progress-val">98%</span>
-                  </div>
-                  <div class="phone-progress-track">
-                    <div class="phone-progress-fill" id="phone-progress-fill" style="width: 98%;"></div>
-                  </div>
-                </div>
-
-                <!-- Code / Component Interactive Micro-Simulator -->
-                <div class="phone-code-preview" id="phone-code-preview">
-                  <div class="code-preview-bar">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot yellow"></span>
-                    <span class="mac-dot green"></span>
-                    <span class="code-filename" id="phone-code-filename">core-logic.ts</span>
-                  </div>
-                  <pre class="code-content"><code id="phone-code-snippet">interface DevCraft {
-  curiosity: boolean;
-  dailyPractice: number;
-}
-const buildSkills = (input: DevCraft) => {
-  return input.curiosity ? "Breakthrough" : "Keep Exploring";
-};</code></pre>
-                </div>
+              <div class="node-platform-3d plat-cyan">
+                <div class="plat-ring-outer"></div>
+                <div class="plat-ring-glow"></div>
+                <div class="plat-ring-top"></div>
               </div>
+            </div>
+          </div>
 
-              <!-- Phone Bottom Dock / Quick Switcher -->
-              <div class="phone-bottom-nav">
-                <button type="button" class="phone-nav-icon active" data-chapter="0" title="Foundations">01</button>
-                <button type="button" class="phone-nav-icon" data-chapter="1" title="Frontend">02</button>
-                <button type="button" class="phone-nav-icon" data-chapter="2" title="AI">03</button>
-                <button type="button" class="phone-nav-icon" data-chapter="3" title="Automation">04</button>
+          <!-- Connector Chevron 05 -> 06 -->
+          <div class="fj-track-connector conn-5-6" aria-hidden="true">»</div>
+
+          <!-- STAGE 06: AI Automation -->
+          <div class="fj-stage-node stage-06" data-index="5" role="button" tabindex="0" aria-label="Stage 06: AI Automation">
+            <div class="node-label-group">
+              <span class="node-number color-purple">06</span>
+              <h3 class="node-title">AI<br>Automation</h3>
+            </div>
+            <div class="node-pedestal-wrap">
+              <div class="node-icon-box box-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                  <circle cx="12" cy="5" r="2"></circle>
+                  <path d="M12 7v4"></path>
+                  <line x1="8" y1="16" x2="8" y2="16"></line>
+                  <line x1="16" y1="16" x2="16" y2="16"></line>
+                </svg>
               </div>
-
-              <!-- Home Indicator Bar -->
-              <div class="phone-home-indicator"></div>
-
-            </div><!-- /.lj-phone-screen -->
-
-            <!-- Phone Rim Lighting and Shadow -->
-            <div class="lj-phone-shadow" aria-hidden="true"></div>
-          </div>
-        </aside>
-
-      </div><!-- /.lj-story-composition -->
-
-      <!-- SUPPORTING PHILOSOPHY SHELF (Bottom Clean Bar: 4 Pillars from Reference) -->
-      <div class="lj-philosophy-shelf reveal">
-        <div class="shelf-brand">
-          <span class="shelf-spark">✦</span>
-          <span class="shelf-heading">CORE DRIVERS</span>
-        </div>
-        <div class="shelf-divider" aria-hidden="true"></div>
-        <div class="shelf-items-grid">
-          <div class="shelf-item">
-            <span class="shelf-item-num">01</span>
-            <div class="shelf-item-body">
-              <strong>Curiosity First</strong>
-              <p>Exploring the 'why' behind every system.</p>
+              <div class="node-platform-3d plat-purple">
+                <div class="plat-ring-outer"></div>
+                <div class="plat-ring-glow"></div>
+                <div class="plat-ring-top"></div>
+              </div>
             </div>
           </div>
-          <div class="shelf-item">
-            <span class="shelf-item-num">02</span>
-            <div class="shelf-item-body">
-              <strong>Daily Consistency</strong>
-              <p>Small compounding gains every single day.</p>
-            </div>
-          </div>
-          <div class="shelf-item">
-            <span class="shelf-item-num">03</span>
-            <div class="shelf-item-body">
-              <strong>Applied Craft</strong>
-              <p>Theory is only validated when built.</p>
-            </div>
-          </div>
-          <div class="shelf-item">
-            <span class="shelf-item-num">04</span>
-            <div class="shelf-item-body">
-              <strong>Future Ready</strong>
-              <p>Blending frontend design with AI logic.</p>
-            </div>
+
+        </div><!-- /.fj-stages-track-container -->
+
+        <!-- Bottom Active Stage Number & 6-Dot Pagination -->
+        <div class="fj-bottom-indicator-block">
+          <div class="bottom-active-number" id="fj-bottom-num">04</div>
+          <div class="bottom-pagination-dots" id="fj-pagination-dots" role="tablist" aria-label="Stage Pagination">
+            <button class="dot-btn" data-index="0" role="tab" aria-selected="false" aria-label="Go to Stage 01"></button>
+            <button class="dot-btn" data-index="1" role="tab" aria-selected="false" aria-label="Go to Stage 02"></button>
+            <button class="dot-btn" data-index="2" role="tab" aria-selected="false" aria-label="Go to Stage 03"></button>
+            <button class="dot-btn is-active" data-index="3" role="tab" aria-selected="true" aria-label="Go to Stage 04"></button>
+            <button class="dot-btn" data-index="4" role="tab" aria-selected="false" aria-label="Go to Stage 05"></button>
+            <button class="dot-btn" data-index="5" role="tab" aria-selected="false" aria-label="Go to Stage 06"></button>
           </div>
         </div>
-      </div>
+
+      </div><!-- /.fj-system-stage -->
+
+      <!-- =========================================================
+           BOTTOM INFORMATION STRIP (4 Distinct Blocks)
+           ========================================================= -->
+      <div class="fj-info-strip-card reveal">
+        <div class="fj-info-grid">
+          
+          <!-- Block 1: Consistent Learning -->
+          <div class="fj-info-block block-consistent">
+            <div class="info-icon-bubble bubble-coral">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+            <div class="info-text-group">
+              <h4 class="info-title">Consistent Learning</h4>
+              <p class="info-sub">Everyday progress matters</p>
+            </div>
+          </div>
+
+          <div class="info-vertical-divider" aria-hidden="true"></div>
+
+          <!-- Block 2: Learning by Building -->
+          <div class="fj-info-block block-building">
+            <div class="info-icon-bubble bubble-purple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="info-text-group">
+              <h4 class="info-title">Learning by Building</h4>
+              <p class="info-sub">Hands-on. Real. Practical.</p>
+            </div>
+          </div>
+
+          <div class="info-vertical-divider" aria-hidden="true"></div>
+
+          <!-- Block 3: Growing Every Day -->
+          <div class="fj-info-block block-growing">
+            <div class="info-icon-bubble bubble-cyan">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+                <line x1="2" y1="20" x2="22" y2="20"></line>
+              </svg>
+            </div>
+            <div class="info-text-group">
+              <h4 class="info-title">Growing Every Day</h4>
+              <p class="info-sub">Improving bit by bit</p>
+            </div>
+          </div>
+
+          <div class="info-vertical-divider" aria-hidden="true"></div>
+
+          <!-- Block 4: Future Focused -->
+          <div class="fj-info-block block-future">
+            <div class="info-icon-bubble bubble-pink">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <div class="info-text-group">
+              <h4 class="info-title">Future Focused</h4>
+              <p class="info-sub">Building a long-term vision</p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /.fj-info-strip-card -->
 
     </div><!-- /.container -->
   </section>
+
 
   <!-- =======================================================================
        DEDICATED GITHUB SHOWCASE SECTION

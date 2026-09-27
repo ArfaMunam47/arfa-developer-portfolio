@@ -2047,7 +2047,7 @@ function setupCertificatesGallery() {
       issuer: "Google & Grow with Google",
       level: "Advanced Professional Certification",
       date: "Issued 2024",
-      image: "certificate-1.jpg",
+      image: "1.jpg",
       fallbackImage: "1--.jpg",
       sealBadge: "GOOGLE CERTIFIED",
       description: "Comprehensive Google professional credential verifying advanced mastery in generative artificial intelligence architectures, machine learning foundation models, Vertex AI integration, and production-level prompt engineering workflows.",
@@ -2060,7 +2060,7 @@ function setupCertificatesGallery() {
       issuer: "Google / Coursera",
       level: "Applied AI Foundations",
       date: "Issued 2024",
-      image: "certificate-2.jpg",
+      image: "2.jpg",
       fallbackImage: "2--.jpg",
       sealBadge: "GOOGLE SPECIALIZATION",
       description: "Official credential focusing on cross-disciplinary AI integration, conversational workflows, automating digital routines, productivity acceleration, and leveraging modern AI toolsets with ethical guidelines and risk mitigation.",
@@ -2073,7 +2073,7 @@ function setupCertificatesGallery() {
       issuer: "Google / Coursera",
       level: "Expert Prompt Engineering",
       date: "Issued 2025",
-      image: "certificate-3.jpg",
+      image: "3.jpg",
       fallbackImage: "3--.jpg",
       sealBadge: "GOOGLE SPECIALIZATION",
       description: "Specialized training in architecting high-precision prompt pipelines, structured system instructions, multi-turn context retention, few-shot conditioning, Chain-of-Thought reasoning, and eliminating LLM hallucinations.",
@@ -2399,23 +2399,26 @@ function setupTactileButtonInteractions() {
 }
 
 /**
- * 3D Parallax Tilt on the Creative Editorial Portrait Showcase
- * Applies realistic multi-plane 3D depth and subtle parallax response to cursor motion
- * (Gentle, non-aggressive motion, zero spin, premium editorial feel)
+ * 3D Parallax Tilt & Interactive Focus on the Hero Portrait Showcase
+ * Delivers refined multi-plane 3D depth, smooth cursor tracking, in-place focus expansion,
+ * and responsive magical aura behavior.
  */
 function setupHero3DPortraitParallax() {
   const visualZone = document.getElementById('hero-portrait-stage') || document.querySelector('.hero-visual-column');
-  const stage = visualZone ? (visualZone.querySelector('.hero-creative-visual-stage') || visualZone.querySelector('.creative-portrait-stage-wrapper') || visualZone.querySelector('.editorial-portrait-stage-wrapper') || visualZone.querySelector('.editorial-3d-stage-wrapper')) : null;
-  const portrait = visualZone ? (visualZone.querySelector('.hero-portrait-cutout-img') || visualZone.querySelector('.editorial-character-img')) : null;
+  const stage = visualZone ? (visualZone.querySelector('.hero-creative-visual-stage') || visualZone.querySelector('.hero-portrait-showcase')) : null;
+  const cutoutFrame = visualZone ? visualZone.querySelector('#hero-portrait-cutout-frame') : null;
+  const portrait = visualZone ? visualZone.querySelector('.hero-portrait-cutout-img') : null;
   const kickerBadge = visualZone ? visualZone.querySelector('.hero-creative-kicker-pill') : null;
-  const coralDisc = visualZone ? (visualZone.querySelector('.hero-disc-coral') || visualZone.querySelector('.cutout-coral-disc') || visualZone.querySelector('.stage-coral-circle')) : null;
+  const coralDisc = visualZone ? visualZone.querySelector('.hero-disc-coral') : null;
   const cyanDisc = visualZone ? visualZone.querySelector('.hero-disc-cyan') : null;
-  const cyanRing = visualZone ? (visualZone.querySelector('.hero-shape-ring-cyan') || visualZone.querySelector('.shape-teal-ring')) : null;
-  const coralOrb = visualZone ? (visualZone.querySelector('.hero-shape-orb-coral') || visualZone.querySelector('.shape-coral-orb')) : null;
-  const mintPill = visualZone ? visualZone.querySelector('.hero-shape-pill-mint') : null;
-  const starburst = visualZone ? (visualZone.querySelector('.hero-shape-torus-gold') || visualZone.querySelector('.cutout-star-accent') || visualZone.querySelector('.stage-arch-star')) : null;
+  const purpleDisc = visualZone ? visualZone.querySelector('.hero-disc-purple') : null;
+  const auraGlow = visualZone ? visualZone.querySelector('.hero-backdrop-glow-aura') : null;
+  const orbitalSystem = visualZone ? visualZone.querySelector('.hero-orbital-system') : null;
+  const badgeText = document.getElementById('hero-focus-badge-text');
+  const cursorRing = document.getElementById('cursor-follower');
+  const cursorDot = document.getElementById('cursor-dot');
 
-  if (!visualZone || !stage) return;
+  if (!visualZone || !stage || !cutoutFrame) return;
 
   let bounds = visualZone.getBoundingClientRect();
   let rafId = null;
@@ -2423,27 +2426,44 @@ function setupHero3DPortraitParallax() {
   let targetRotY = 0;
   let currentRotX = 0;
   let currentRotY = 0;
+  let currentScale = 1.0;
+  let isHovered = false;
+  let isFocused = false;
 
   function updateBounds() {
     bounds = visualZone.getBoundingClientRect();
   }
 
-  window.addEventListener('resize', updateBounds);
+  function getDynamicHoverScale() {
+    const w = window.innerWidth;
+    if (w > 1200) return 1.11;
+    if (w > 992) return 1.09;
+    if (w > 640) return 1.07;
+    return 1.05;
+  }
+
+  window.addEventListener('resize', updateBounds, { passive: true });
   window.addEventListener('scroll', updateBounds, { passive: true });
 
+  // Pointer movement over the visual stage
   visualZone.addEventListener('pointermove', (e) => {
     const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
     const centerX = bounds.width / 2;
     const centerY = bounds.height / 2;
 
-    // Subtle, elegant editorial tilt (max 4 degrees)
-    targetRotY = ((x - centerX) / centerX) * 4.0;
-    targetRotX = -((y - centerY) / centerY) * 4.0;
+    // Smooth, controlled tilt (max ~3.5 degrees)
+    const factor = isFocused ? 2.0 : 3.5;
+    targetRotY = ((x - centerX) / centerX) * factor;
+    targetRotX = -((y - centerY) / centerY) * factor;
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
+  }, { passive: true });
+
+  visualZone.addEventListener('pointerenter', () => {
+    updateBounds();
   });
 
   visualZone.addEventListener('pointerleave', () => {
@@ -2454,45 +2474,116 @@ function setupHero3DPortraitParallax() {
     }
   });
 
+  // Layered Hover State on Portrait Cutout Frame
+  cutoutFrame.addEventListener('pointerenter', () => {
+    isHovered = true;
+    cutoutFrame.classList.add('is-hovered');
+    stage.classList.add('has-hover');
+    if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
+    if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
+    updateBounds();
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
+    }
+  });
+
+  cutoutFrame.addEventListener('pointerleave', () => {
+    isHovered = false;
+    cutoutFrame.classList.remove('is-hovered');
+    stage.classList.remove('has-hover');
+    if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
+    if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
+    }
+  });
+
+  // In-place Click Interaction: Focus State Toggle
+  function toggleFocus(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    isFocused = !isFocused;
+
+    if (isFocused) {
+      cutoutFrame.classList.add('is-focused');
+      stage.classList.add('has-focus');
+      if (badgeText) badgeText.textContent = 'Click to minimize (Esc)';
+    } else {
+      cutoutFrame.classList.remove('is-focused');
+      stage.classList.remove('has-focus');
+      if (badgeText) badgeText.textContent = 'Interactive Portrait';
+    }
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
+    }
+  }
+
+  cutoutFrame.addEventListener('click', toggleFocus);
+
+  // Keyboard accessibility: Enter or Space toggles focus, Escape exits focus
+  cutoutFrame.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      toggleFocus(e);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isFocused) {
+      toggleFocus();
+    }
+  });
+
+  // Clicking outside portrait returns to normal state
+  document.addEventListener('click', (e) => {
+    if (isFocused && !cutoutFrame.contains(e.target)) {
+      toggleFocus();
+    }
+  });
+
+  // Physics animation loop using linear interpolation
   function renderParallax() {
-    currentRotX += (targetRotX - currentRotX) * 0.1;
-    currentRotY += (targetRotY - currentRotY) * 0.1;
+    currentRotX += (targetRotX - currentRotX) * 0.12;
+    currentRotY += (targetRotY - currentRotY) * 0.12;
 
-    stage.style.transform = `perspective(1100px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+    const targetScale = isFocused ? 1.12 : (isHovered ? getDynamicHoverScale() : 1.0);
+    currentScale += (targetScale - currentScale) * 0.14;
 
+    const basePerspective = 1100;
+    stage.style.transform = `perspective(${basePerspective}px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+
+    // Organic multi-layer depth response
     if (coralDisc) {
-      coralDisc.style.transform = `translateX(${(-currentRotY * 0.6).toFixed(1)}px) translateY(${(currentRotX * 0.6).toFixed(1)}px)`;
+      const discScale = isHovered ? 1.05 : 1.0;
+      coralDisc.style.transform = `scale(${discScale}) translateX(${(-currentRotY * 0.6).toFixed(1)}px) translateY(${(currentRotX * 0.6).toFixed(1)}px)`;
     }
 
     if (cyanDisc) {
-      cyanDisc.style.transform = `translateX(${(currentRotY * 0.5).toFixed(1)}px) translateY(${(-currentRotX * 0.5).toFixed(1)}px)`;
+      const discScale = isHovered ? 1.05 : 1.0;
+      cyanDisc.style.transform = `scale(${discScale}) translateX(${(currentRotY * 0.5).toFixed(1)}px) translateY(${(-currentRotX * 0.5).toFixed(1)}px)`;
     }
 
-    if (portrait) {
-      portrait.style.transform = `scale(1.015) translateX(${(currentRotY * 0.7).toFixed(1)}px) translateY(${(-currentRotX * 0.7).toFixed(1)}px)`;
+    if (purpleDisc) {
+      purpleDisc.style.transform = `translateX(${(-currentRotY * 0.4).toFixed(1)}px) translateY(${(currentRotX * 0.4).toFixed(1)}px)`;
     }
 
-    if (cyanRing) {
-      cyanRing.style.transform = `translateX(${(currentRotY * 1.1).toFixed(1)}px) translateY(${(-currentRotX * 1.1).toFixed(1)}px)`;
-    }
-
-    if (coralOrb) {
-      coralOrb.style.transform = `translateX(${(-currentRotY * 0.9).toFixed(1)}px) translateY(${(currentRotX * 0.9).toFixed(1)}px)`;
-    }
-
-    if (mintPill) {
-      mintPill.style.transform = `translateX(${(-currentRotY * 1.2).toFixed(1)}px) translateY(${(currentRotX * 1.2).toFixed(1)}px)`;
+    if (orbitalSystem) {
+      orbitalSystem.style.transform = `translateX(${(currentRotY * 0.35).toFixed(1)}px) translateY(${(-currentRotX * 0.35).toFixed(1)}px)`;
     }
 
     if (kickerBadge) {
-      kickerBadge.style.transform = `translateX(${(-currentRotY * 0.4).toFixed(1)}px) translateY(${(currentRotX * 0.4).toFixed(1)}px)`;
+      kickerBadge.style.transform = `translateX(${(-currentRotY * 0.3).toFixed(1)}px) translateY(${(currentRotX * 0.3).toFixed(1)}px)`;
     }
 
-    if (starburst) {
-      starburst.style.transform = `translateX(${(currentRotY * 0.8).toFixed(1)}px) translateY(${(currentRotX * 0.8).toFixed(1)}px)`;
+    // Portrait 3D depth shift and inward scaling
+    if (portrait) {
+      portrait.style.transform = `scale(${currentScale.toFixed(3)}) translateX(${(currentRotY * 0.45).toFixed(1)}px) translateY(${(-currentRotX * 0.45).toFixed(1)}px)`;
     }
 
-    if (Math.abs(targetRotX - currentRotX) > 0.01 || Math.abs(targetRotY - currentRotY) > 0.01) {
+    // Keep loop active while motion is noticeable
+    if (Math.abs(targetRotX - currentRotX) > 0.01 || Math.abs(targetRotY - currentRotY) > 0.01 || Math.abs(targetScale - currentScale) > 0.001) {
       rafId = requestAnimationFrame(renderParallax);
     } else {
       rafId = null;
@@ -3629,385 +3720,298 @@ function setupLearningEcosystem() {
 
 /**
  * =========================================================================
- * 23. MY LEARNING JOURNEY — CINEMATIC INTERACTIVE STORYBOOK & PHONE EXPERIENCE
+ * 23. MY LEARNING JOURNEY — 3D FUTURISTIC INTERACTIVE LEARNING SYSTEM
+ * "Turning Curiosity Into Capability"
+ * 6 Interactive 3D Stages • Central Floating Glass Card • Concentric Pedestals
+ * Conical Light Beam • Orbital Tracks • Drag / Scroll Exploration • Dynamic Updating
  * =========================================================================
  */
 function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const stage = document.getElementById('lj-story-stage');
-  const bookWrapper = document.getElementById('lj-book-wrapper');
-  const phoneDevice = document.getElementById('lj-phone-device');
+  const card = document.getElementById('fj-active-card');
+  const lightBeam = document.getElementById('fj-light-beam');
+  const pedestal = document.getElementById('fj-central-pedestal');
+  const cardIconBubble = document.getElementById('fj-card-icon-bubble');
+  const cardPillText = document.getElementById('fj-card-pill-text');
+  const cardPillDot = document.getElementById('fj-card-pill-dot');
+  const cardTitle = document.getElementById('fj-card-title');
+  const cardScript = document.getElementById('fj-card-script');
+  const cardDesc = document.getElementById('fj-card-desc');
+  const cardStatusText = document.getElementById('fj-card-status-text');
+  const cardStatusIcon = document.getElementById('fj-card-status-icon');
+  const progressCurr = document.getElementById('fj-progress-curr');
+  const progressFill = document.getElementById('fj-progress-fill');
+  const bottomNum = document.getElementById('fj-bottom-num');
+  const paginationDots = Array.from(document.querySelectorAll('.fj-bottom-indicator-block .dot-btn'));
+  const stageNodes = Array.from(document.querySelectorAll('.fj-stage-node'));
+  const centralStage = document.getElementById('fj-central-stage');
+  const trackContainer = document.getElementById('fj-stages-track');
 
-  // Stage Navigator Tabs & Book Ribbon Tabs
-  const navTabs = Array.from(document.querySelectorAll('.lj-nav-tab'));
-  const ribbonTabs = Array.from(document.querySelectorAll('.lj-ribbon-tab'));
-  const phoneNavIcons = Array.from(document.querySelectorAll('.phone-nav-icon'));
-  const nextChapterBtn = document.getElementById('lj-next-chapter-btn');
-
-  // Book Page Elements
-  const leftPageNum = document.getElementById('lj-left-page-num');
-  const rightPageNum = document.getElementById('lj-right-page-num');
-  const chapterNumLabel = document.getElementById('lj-chapter-num-label');
-  const chapterTitle = document.getElementById('lj-chapter-title');
-  const chapterHandwritten = document.getElementById('lj-chapter-handwritten');
-  const chapterDesc = document.getElementById('lj-chapter-desc');
-  const chapterBadge = document.getElementById('lj-chapter-badge');
-  const checklistEl = document.getElementById('lj-checklist');
-  const nextLabel = document.getElementById('lj-next-label');
-
-  // Sticky Note & Index Card Elements
-  const stickyText = document.getElementById('lj-sticky-text');
-  const indexTitle = document.getElementById('lj-index-title');
-  const indexStat = document.getElementById('lj-index-stat');
-  const indexLabel = document.getElementById('lj-index-label');
-  const indexQuote = document.getElementById('lj-index-quote');
-
-  // Phone Screen Elements
-  const phoneStageBadge = document.getElementById('phone-stage-badge');
-  const phoneFocusName = document.getElementById('phone-focus-name');
-  const phoneFocusSub = document.getElementById('phone-focus-sub');
-  const phoneProgressVal = document.getElementById('phone-progress-val');
-  const phoneProgressFill = document.getElementById('phone-progress-fill');
-  const phoneCodeFilename = document.getElementById('phone-code-filename');
-  const phoneCodeSnippet = document.getElementById('phone-code-snippet');
-
-  // 4 Carefully Curated Chapters of Arfa Munam's Real Learning Journey
-  const chapters = [
+  // The 6 Authentic Learning Stages
+  const stages = [
     {
-      id: "foundations",
-      numLabel: "CHAPTER 01",
-      leftPage: "P. 12",
-      rightPage: "P. 13",
-      title: "Foundations & Core Logic",
-      handwritten: "“Curiosity turns into real capability when you start building.”",
-      desc: "Mastering the fundamental building blocks of modern web engineering. Deeply deconstructing algorithms, semantic architecture, and understanding computational logic from first principles.",
-      badge: "Core Web Foundations Verified",
-      checklist: [
-        "Semantic HTML5 & Modern Accessibility (ARIA)",
-        "TypeScript & ES6+ Functional Programming",
-        "CSS Box Model, Flexbox & Fluid Grid Systems",
-        "Git Workflow, Version Control & Deployment"
-      ],
-      nextLabel: "Next: 02 Frontend Craft",
-      sticky: "“Rule #1: Build every day. Even 20 lines of clean code compounds into mastery.”",
-      indexTitle: "STAGE 01 SUMMARY",
-      indexStat: "100%",
-      indexLabel: "Foundation Applied",
-      indexQuote: "“Solid fundamentals make every modern framework easy to learn.”",
-      phone: {
-        stageBadge: "STAGE 01",
-        focusName: "Web Fundamentals",
-        focusSub: "Mastering clean code mechanics and accessible semantic structuring.",
-        progressVal: "98%",
-        codeFilename: "core-logic.ts",
-        codeSnippet: `interface DevCraft {
-  curiosity: boolean;
-  dailyPractice: number;
-}
-const buildSkills = (input: DevCraft) => {
-  return input.curiosity ? "Breakthrough" : "Keep Exploring";
-};`
-      }
+      num: "01",
+      title: "Frontend<br>Foundations",
+      theme: "coral",
+      color: "#FA5538",
+      colorRgb: "250, 85, 56",
+      pillText: "FOUNDATION FOCUS",
+      accentNote: "Crafting semantic layouts.",
+      desc: "Mastering the fundamental building blocks of the web — semantic HTML5 hierarchies, responsive CSS Grid and Flexbox layouts, accessible DOM structures, and core JavaScript logic.",
+      statusText: "Web Standards & Responsive Craft",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
     },
     {
-      id: "frontend",
-      numLabel: "CHAPTER 02",
-      leftPage: "P. 24",
-      rightPage: "P. 25",
-      title: "Modern Frontend Craft",
-      handwritten: "“Interface design is not just how it looks, but how it breathes and reacts.”",
-      desc: "Architecting fluid digital experiences, neo-skeuomorphic depth, tactile micro-interactions, responsive physics-driven layouts, and seamless visual hierarchies across all viewport dimensions.",
-      badge: "Component Architecture Verified",
-      checklist: [
-        "Component-Driven Modular Design & Clean State",
-        "Fluid Typography, CSS Math & Dynamic Clamp()",
-        "3D CSS Perspectives, Parallax & Micro-Animations",
-        "Performance Profiling & 60fps Frame Budget"
-      ],
-      nextLabel: "Next: 03 AI & Prompting",
-      sticky: "“Design with intention. Every shadow and bevel should guide the visitor’s focus.”",
-      indexTitle: "STAGE 02 SUMMARY",
-      indexStat: "60 FPS",
-      indexLabel: "Smooth Fluid Render",
-      indexQuote: "“Micro-interactions turn static web pages into living software.”",
-      phone: {
-        stageBadge: "STAGE 02",
-        focusName: "Frontend Craft & Motion",
-        focusSub: "Crafting editorial typography and tactile responsive interfaces.",
-        progressVal: "92%",
-        codeFilename: "interactive-ui.tsx",
-        codeSnippet: `const Card3D = ({ children, tilt }: Props) => {
-  const [rotX, rotY] = useSpringLerp(tilt);
-  return (
-    <div style={{ transform: \`rotateX(\${rotX}deg)\` }}>
-      {children}
-    </div>
-  );
-};`
-      }
+      num: "02",
+      title: "Building<br>Real Projects",
+      theme: "pink",
+      color: "#EC4899",
+      colorRgb: "236, 72, 153",
+      pillText: "APPLIED PRACTICE",
+      accentNote: "Learning by shipping.",
+      desc: "Transforming design ideas into working, responsive web applications — testing cross-browser compatibility, tactile interactive details, and shipping clean code to production.",
+      statusText: "Hands-on Applications",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
     },
     {
-      id: "ai",
-      numLabel: "CHAPTER 03",
-      leftPage: "P. 38",
-      rightPage: "P. 39",
-      title: "AI Systems & Prompting",
-      handwritten: "“AI does not replace craftsmanship; it amplifies curiosity and velocity.”",
-      desc: "Bridging human intent and machine reasoning. Leveraging Google AI certifications, multimodal prompt engineering, Chain-of-Thought deliberation, few-shot conditioning, and Vertex AI developer integrations.",
-      badge: "Google AI Certified Professional",
-      checklist: [
-        "Google Certified AI Professional Foundations",
-        "Few-Shot Conditioning & Context Window Management",
-        "Multimodal Vision & Text Embedding Pipelines",
-        "Structured JSON Schemas & Function Calling"
-      ],
-      nextLabel: "Next: 04 Automation & Logic",
-      sticky: "“A great prompt is an engineered specification, not a vague question.”",
-      indexTitle: "STAGE 03 SUMMARY",
-      indexStat: "Cert.",
-      indexLabel: "Google Certified 2024-2026",
-      indexQuote: "“Precision inputs yield predictable, production-ready AI outputs.”",
-      phone: {
-        stageBadge: "STAGE 03",
-        focusName: "Prompt Pipelines & Models",
-        focusSub: "Architecting multimodal reasoning chains and grounded system prompts.",
-        progressVal: "88%",
-        codeFilename: "prompt-pipeline.py",
-        codeSnippet: `def build_prompt_chain(query: str, ctx: dict) -> str:
-    system = "You are a senior systems engineer."
-    return f"{system}\\nContext: {ctx}\\nTask: {query}"`
-      }
+      num: "03",
+      title: "React &<br>Modern UI",
+      theme: "purple",
+      color: "#8B5CF6",
+      colorRgb: "139, 92, 246",
+      pillText: "DYNAMIC INTERFACES",
+      accentNote: "Declarative & reactive.",
+      desc: "Structuring modular component-driven frontends with React, modern state hooks, Tailwind CSS design tokens, responsive typography math, and fluid spring motion physics.",
+      statusText: "Component Architecture",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"></circle><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(30 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-30 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(90 12 12)"></ellipse></svg>`
     },
     {
-      id: "automation",
-      numLabel: "CHAPTER 04",
-      leftPage: "P. 52",
-      rightPage: "P. 53",
-      title: "Automation & Smarter Workflows",
-      handwritten: "“Automate repetitive tasks so your mind remains free for creative breakthroughs.”",
-      desc: "Constructing connected toolchains, server-side data proxies, webhook triggers, API synchronizations, and intelligent background routines that transform complex workflows into effortless actions.",
-      badge: "Workflow Automation Verified",
-      checklist: [
-        "RESTful & GraphQL API Integrations",
-        "Headless Automation & Node.js Server Routines",
-        "Asynchronous Queue Workers & Data Parsing",
-        "Modern Tooling & Autonomous Developer Workflows"
-      ],
-      nextLabel: "Cycle Back: 01 Foundations ↺",
-      sticky: "“The best automation is invisible: it simply makes complex things feel effortless.”",
-      indexTitle: "STAGE 04 SUMMARY",
-      indexStat: "10x",
-      indexLabel: "End-to-End Velocity",
-      indexQuote: "“Connecting APIs and intelligent systems unlocks unprecedented creative scale.”",
-      phone: {
-        stageBadge: "STAGE 04",
-        focusName: "Automation & APIs",
-        focusSub: "Building autonomous background routines and scalable tool integrations.",
-        progressVal: "82%",
-        codeFilename: "automation-worker.ts",
-        codeSnippet: `async function processPipeline(task: WorkItem) {
-  const result = await runModelAgent(task.data);
-  await syncToDatabase(result);
-  return { status: "success", timestamp: Date.now() };
-}`
-      }
+      num: "04",
+      title: "Backend<br>Development",
+      theme: "coral",
+      color: "#FA5538",
+      colorRgb: "250, 85, 56",
+      pillText: "CURRENT FOCUS",
+      accentNote: "One step at a time.",
+      desc: "Currently building backend abilities step by step — learning databases, APIs, authentication, and server logic to build full-stack applications.",
+      statusText: "Building Strong Foundations",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
+    },
+    {
+      num: "05",
+      title: "AI Tools &<br>Prompt Engineering",
+      theme: "cyan",
+      color: "#06B6D4",
+      colorRgb: "6, 182, 212",
+      pillText: "AI ACCELERATION",
+      accentNote: "Structured reasoning loops.",
+      desc: "Designing high-precision prompt pipelines, few-shot conditioning, Chain-of-Thought workflows, and leveraging Google AI APIs to accelerate practical development velocity.",
+      statusText: "Prompt Architecture & LLMs",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
+    },
+    {
+      num: "06",
+      title: "AI<br>Automation",
+      theme: "purple",
+      color: "#8B5CF6",
+      colorRgb: "139, 92, 246",
+      pillText: "INTELLIGENT SYSTEMS",
+      accentNote: "Autonomous execution.",
+      desc: "Connecting automated webhook pipelines, intelligent agents, background API orchestrations, and structured data extraction to build scalable future-ready digital systems.",
+      statusText: "Intelligent Workflows",
+      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>`
     }
   ];
 
-  let currentChapterIdx = 0;
-  let isTransitioning = false;
+  let currentStageIndex = 3; // Stage 04 Backend Development is default active stage (0-indexed: 3)
 
-  function setChapter(index, playSound = false) {
-    if (isTransitioning) return;
-    currentChapterIdx = (index + chapters.length) % chapters.length;
-    const data = chapters[currentChapterIdx];
-    if (!data) return;
+  function setActiveStage(index, smoothAnimate = true) {
+    if (index < 0 || index >= stages.length) return;
+    currentStageIndex = index;
+    const stage = stages[index];
 
-    isTransitioning = true;
+    // Update Progress Pill
+    if (progressCurr) progressCurr.textContent = stage.num;
+    if (progressFill) {
+      const percentage = ((index + 1) / stages.length) * 100;
+      progressFill.style.width = `${percentage}%`;
+      progressFill.style.background = `linear-gradient(90deg, ${stage.color} 0%, #FA5538 100%)`;
+    }
 
-    // Update active tab buttons
-    navTabs.forEach((tab, i) => {
-      const isActive = i === currentChapterIdx;
-      tab.classList.toggle('active', isActive);
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    // Update Bottom Large Number & Dots
+    if (bottomNum) {
+      bottomNum.textContent = stage.num;
+      bottomNum.style.color = stage.color;
+      bottomNum.style.transform = 'scale(1.15)';
+      setTimeout(() => { if (bottomNum) bottomNum.style.transform = 'scale(1)'; }, 250);
+    }
+
+    paginationDots.forEach((dot, i) => {
+      const isActive = i === index;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      dot.style.background = isActive ? stage.color : '';
+      dot.style.boxShadow = isActive ? `0 0 10px rgba(${stage.colorRgb}, 0.6)` : '';
     });
 
-    ribbonTabs.forEach((ribbon, i) => {
-      ribbon.classList.toggle('active', i === currentChapterIdx);
+    // Update active highlight on peripheral stage nodes
+    stageNodes.forEach((node) => {
+      const nodeIdx = parseInt(node.getAttribute('data-index'), 10);
+      node.classList.toggle('is-selected', nodeIdx === index);
     });
 
-    phoneNavIcons.forEach((icon, i) => {
-      icon.classList.toggle('active', i === currentChapterIdx);
-    });
-
-    // Animate book page content update
-    const leftPage = document.getElementById('lj-page-left');
-    const rightPage = document.getElementById('lj-page-right');
-    const phoneScreen = document.querySelector('.lj-phone-screen');
-
-    if (leftPage) leftPage.style.opacity = '0.4';
-    if (rightPage) rightPage.style.opacity = '0.4';
-    if (phoneScreen) phoneScreen.style.opacity = '0.6';
-
-    setTimeout(() => {
-      // Left Page Updates
-      if (leftPageNum) leftPageNum.textContent = data.leftPage;
-      if (rightPageNum) rightPageNum.textContent = data.rightPage;
-      if (chapterNumLabel) chapterNumLabel.textContent = data.numLabel;
-      if (chapterTitle) chapterTitle.textContent = data.title;
-      if (chapterHandwritten) chapterHandwritten.textContent = data.handwritten;
-      if (chapterDesc) chapterDesc.textContent = data.desc;
-      if (chapterBadge) chapterBadge.textContent = data.badge;
-
-      // Right Page Updates
-      if (checklistEl) {
-        checklistEl.innerHTML = data.checklist.map(item => `
-          <li class="lj-check-item">
-            <span class="check-box checked">✓</span>
-            <span class="check-text">${item}</span>
-          </li>
-        `).join('');
-      }
-      if (nextLabel) nextLabel.textContent = data.nextLabel;
-
-      // Sticky Note & Index Card
-      if (stickyText) stickyText.textContent = data.sticky;
-      if (indexTitle) indexTitle.textContent = data.indexTitle;
-      if (indexStat) indexStat.textContent = data.indexStat;
-      if (indexLabel) indexLabel.textContent = data.indexLabel;
-      if (indexQuote) indexQuote.textContent = data.indexQuote;
-
-      // Phone Updates
-      if (phoneStageBadge) phoneStageBadge.textContent = data.phone.stageBadge;
-      if (phoneFocusName) phoneFocusName.textContent = data.phone.focusName;
-      if (phoneFocusSub) phoneFocusSub.textContent = data.phone.focusSub;
-      if (phoneProgressVal) phoneProgressVal.textContent = data.phone.progressVal;
-      if (phoneProgressFill) phoneProgressFill.style.width = data.phone.progressVal;
-      if (phoneCodeFilename) phoneCodeFilename.textContent = data.phone.codeFilename;
-      if (phoneCodeSnippet) phoneCodeSnippet.textContent = data.phone.codeSnippet;
-
-      // Restore opacity smoothly
-      if (leftPage) leftPage.style.opacity = '1';
-      if (rightPage) rightPage.style.opacity = '1';
-      if (phoneScreen) phoneScreen.style.opacity = '1';
-
-      if (playSound && typeof playTactileClick === 'function') {
-        playTactileClick(560 + currentChapterIdx * 80, 'sine');
+    // Animate Card Content Transition
+    if (card) {
+      if (smoothAnimate) {
+        card.style.transform = 'translateY(10px) scale(0.97)';
+        card.style.opacity = '0.7';
       }
 
       setTimeout(() => {
-        isTransitioning = false;
-      }, 200);
-    }, 180);
-  }
+        if (cardIconBubble) {
+          cardIconBubble.innerHTML = stage.iconSvg;
+          cardIconBubble.style.background = `linear-gradient(135deg, ${stage.color} 0%, #FA5538 100%)`;
+          cardIconBubble.style.boxShadow = `0 10px 24px -4px rgba(${stage.colorRgb}, 0.45)`;
+        }
 
-  // Bind Navigator Tabs
-  navTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const idx = parseInt(tab.getAttribute('data-chapter') || '0', 10);
-      setChapter(idx, true);
-    });
-  });
+        if (cardPillText) cardPillText.textContent = stage.pillText;
+        if (cardPillText) cardPillText.style.color = stage.color;
+        if (cardPillDot) cardPillDot.style.color = stage.color;
+        if (cardTitle) cardTitle.innerHTML = stage.title;
+        if (cardScript) {
+          cardScript.textContent = stage.accentNote;
+          cardScript.style.color = stage.color;
+        }
+        if (cardDesc) cardDesc.textContent = stage.desc;
+        if (cardStatusText) {
+          cardStatusText.textContent = stage.statusText;
+          cardStatusText.style.color = stage.color;
+        }
 
-  // Bind Ribbon Tabs
-  ribbonTabs.forEach(ribbon => {
-    ribbon.addEventListener('click', () => {
-      const idx = parseInt(ribbon.getAttribute('data-chapter') || '0', 10);
-      setChapter(idx, true);
-    });
-  });
+        // Tint conical light beam & pedestal glow
+        if (lightBeam) {
+          lightBeam.style.background = `linear-gradient(180deg, rgba(${stage.colorRgb}, 0.16) 0%, rgba(255, 255, 255, 0.45) 55%, rgba(${stage.colorRgb}, 0.5) 100%)`;
+        }
 
-  // Bind Phone Nav Icons
-  phoneNavIcons.forEach(icon => {
-    icon.addEventListener('click', () => {
-      const idx = parseInt(icon.getAttribute('data-chapter') || '0', 10);
-      setChapter(idx, true);
-    });
-  });
+        const middleGlowRing = pedestal ? pedestal.querySelector('.pedestal-middle-glow-ring') : null;
+        if (middleGlowRing) {
+          middleGlowRing.style.borderColor = stage.color;
+          middleGlowRing.style.boxShadow = `0 0 24px rgba(${stage.colorRgb}, 0.65)`;
+        }
 
-  // Bind Next Chapter Dog-Ear Button
-  if (nextChapterBtn) {
-    nextChapterBtn.addEventListener('click', () => {
-      setChapter(currentChapterIdx + 1, true);
-    });
-  }
-
-  // Keyboard navigation when section is in view
-  window.addEventListener('keydown', (e) => {
-    const rect = section.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
-    if (!inView) return;
-
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      setChapter(currentChapterIdx + 1, true);
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      setChapter(currentChapterIdx - 1, true);
+        if (smoothAnimate) {
+          card.style.transform = 'translateY(0) scale(1)';
+          card.style.opacity = '1';
+        }
+      }, smoothAnimate ? 140 : 0);
     }
-  });
+  }
 
-  // Desktop Smooth 3D Cursor Parallax
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (isFinePointer && stage && bookWrapper && phoneDevice) {
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let isHovering = false;
-    let rafId = null;
+  // Click handler for 5 peripheral stage nodes
+  stageNodes.forEach((node) => {
+    node.addEventListener('click', () => {
+      const idx = parseInt(node.getAttribute('data-index'), 10);
+      setActiveStage(idx);
+    });
 
-    function renderParallax() {
-      currentX += (mouseX - currentX) * 0.08;
-      currentY += (mouseY - currentY) * 0.08;
-
-      // Book subtle tilt
-      const bookRotX = -currentY * 4.5;
-      const bookRotY = currentX * 6.5;
-      const bookTransX = currentX * 8;
-      const bookTransY = currentY * 5;
-      bookWrapper.style.transform = `rotateX(${bookRotX.toFixed(2)}deg) rotateY(${bookRotY.toFixed(2)}deg) translate3d(${bookTransX.toFixed(1)}px, ${bookTransY.toFixed(1)}px, 0)`;
-
-      // Phone slightly more dynamic tilt & reflection
-      const phoneRotX = -currentY * 6.5;
-      const phoneRotY = currentX * 8.5;
-      const phoneTransX = currentX * 14;
-      const phoneTransY = currentY * 8;
-      phoneDevice.style.transform = `rotateX(${phoneRotX.toFixed(2)}deg) rotateY(${phoneRotY.toFixed(2)}deg) translate3d(${phoneTransX.toFixed(1)}px, ${phoneTransY.toFixed(1)}px, 20px)`;
-
-      if (isHovering || Math.abs(currentX) > 0.02 || Math.abs(currentY) > 0.02) {
-        rafId = requestAnimationFrame(renderParallax);
-      } else {
-        rafId = null;
-        bookWrapper.style.transform = '';
-        phoneDevice.style.transform = '';
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const idx = parseInt(node.getAttribute('data-index'), 10);
+        setActiveStage(idx);
       }
+    });
+  });
+
+  // Click handler for pagination dots
+  paginationDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.getAttribute('data-index'), 10);
+      setActiveStage(idx);
+    });
+  });
+
+  // Keyboard navigation when focusing inside the system stage
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      const nextIdx = (currentStageIndex + 1) % stages.length;
+      setActiveStage(nextIdx);
+    } else if (e.key === 'ArrowLeft') {
+      const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
+      setActiveStage(prevIdx);
     }
+  });
 
-    section.addEventListener('mouseenter', () => {
-      isHovering = true;
-      if (!rafId) rafId = requestAnimationFrame(renderParallax);
-    });
+  // Drag / swipe exploration on the track container
+  let startX = 0;
+  let isDragging = false;
 
-    section.addEventListener('mousemove', (e) => {
-      const rect = section.getBoundingClientRect();
-      mouseX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      mouseY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-      if (!rafId) rafId = requestAnimationFrame(renderParallax);
-    });
+  if (trackContainer) {
+    trackContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+    }, { passive: true });
 
-    section.addEventListener('mouseleave', () => {
-      isHovering = false;
-      mouseX = 0;
-      mouseY = 0;
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = e.clientX - startX;
+      if (diff < -50) {
+        // Swiped left -> next
+        const nextIdx = (currentStageIndex + 1) % stages.length;
+        setActiveStage(nextIdx);
+      } else if (diff > 50) {
+        // Swiped right -> prev
+        const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
+        setActiveStage(prevIdx);
+      }
+    }, { passive: true });
+
+    // Touch drag support
+    let touchStartX = 0;
+    trackContainer.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    trackContainer.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches[0]) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchEndX - touchStartX;
+        if (diff < -45) {
+          const nextIdx = (currentStageIndex + 1) % stages.length;
+          setActiveStage(nextIdx);
+        } else if (diff > 45) {
+          const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
+          setActiveStage(prevIdx);
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Subtle 3D perspective tilt on the active card tracking cursor (2–4 degrees max)
+  if (card) {
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / (rect.height / 2)) * 3;
+      const rotY = (x / (rect.width / 2)) * 3;
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+    }, { passive: true });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
     });
   }
 
-  // Initialize at Chapter 0
-  setChapter(0, false);
+  // Initialize Stage 04 (Backend Development) as shown in reference
+  setActiveStage(3, false);
 }
+
 
 /**
  * =========================================================================
