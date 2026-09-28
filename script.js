@@ -767,6 +767,111 @@ function setupExploringRadar() {
  */
 /**
  * =========================================================================
+ * 2026 PREMIUM "WORK, IN MOTION" 3D HERO INTERACTION
+ * Physically emerging 3D character with multi-layer spring parallax,
+ * cursor tracking, smooth hover depth lift, and editorial entrance reveal.
+ * =========================================================================
+ */
+function setupWorkInMotionIntro() {
+  const hero = document.getElementById('work-in-motion-hero');
+  if (!hero) return;
+
+  // 1. Viewport Entrance Reveal (one-shot, stable)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          hero.classList.add('is-revealed');
+          observer.unobserve(hero);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(hero);
+  } else {
+    hero.classList.add('is-revealed');
+  }
+
+  // Check reduced motion preference
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const stage = document.getElementById('motion-character-stage');
+  const character = document.getElementById('motion-character-entity');
+  const circle = document.getElementById('dimensional-circle-frame');
+  const glow = stage ? stage.querySelector('.character-backdrop-glow') : null;
+
+  if (!stage || !character || !circle) return;
+
+  let targetRotX = 0, targetRotY = 0;
+  let currRotX = 0, currRotY = 0;
+  let targetTransX = 0, targetTransY = 0;
+  let currTransX = 0, currTransY = 0;
+  let isHovered = false;
+  let rafId = null;
+
+  function updatePhysics() {
+    currRotX += (targetRotX - currRotX) * 0.085;
+    currRotY += (targetRotY - currRotY) * 0.085;
+    currTransX += (targetTransX - currTransX) * 0.085;
+    currTransY += (targetTransY - currTransY) * 0.085;
+
+    const zDepth = isHovered ? 48 : 35;
+    const scaleFactor = isHovered ? 1.035 : 1;
+
+    character.style.transform = `translate3d(${currTransX.toFixed(2)}px, ${currTransY.toFixed(2)}px, ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
+    
+    // Parallax on the circular frame behind her (moves less, creating physical depth)
+    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.35).toFixed(2)}px), calc(-50% + ${(currTransY * 0.35).toFixed(2)}px), 0px) rotateX(${(currRotX * 0.35).toFixed(2)}deg) rotateY(${(currRotY * 0.35).toFixed(2)}deg)`;
+
+    if (glow) {
+      glow.style.transform = `translate(calc(-50% + ${(currTransX * 0.5).toFixed(2)}px), calc(-50% + ${(currTransY * 0.5).toFixed(2)}px)) scale(${isHovered ? 1.08 : 1})`;
+    }
+
+    // Continue loop if active or still decelerating
+    if (isHovered || Math.abs(currRotX) > 0.01 || Math.abs(currRotY) > 0.01 || Math.abs(currTransX) > 0.01) {
+      rafId = requestAnimationFrame(updatePhysics);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function startPhysicsLoop() {
+    if (!rafId) {
+      rafId = requestAnimationFrame(updatePhysics);
+    }
+  }
+
+  stage.addEventListener('pointerenter', () => {
+    isHovered = true;
+    startPhysicsLoop();
+  });
+
+  stage.addEventListener('pointermove', (e) => {
+    const rect = stage.getBoundingClientRect();
+    const normX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+    const normY = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+
+    // Subtle physical tilt: max 5-6 degrees, gentle translation
+    targetRotX = -normY * 6;
+    targetRotY = normX * 6;
+    targetTransX = normX * 18;
+    targetTransY = normY * 18;
+
+    startPhysicsLoop();
+  });
+
+  stage.addEventListener('pointerleave', () => {
+    isHovered = false;
+    targetRotX = 0;
+    targetRotY = 0;
+    targetTransX = 0;
+    targetTransY = 0;
+    startPhysicsLoop();
+  });
+}
+
+/**
+ * =========================================================================
  * 2026 PREMIUM CINEMATIC HORIZONTAL PROJECT GALLERY ENGINE
  * Inspired directly by attached reference composition (portfoliooo.png)
  * Warm Ivory Canvas • Center Active Card (Scale 1.0) • 3D Flanking Cards
@@ -777,6 +882,9 @@ function setupExploringRadar() {
 function setupProjectsShowcase() {
   const section = document.getElementById('projects');
   if (!section) return;
+
+  // Initialize the 2026 Premium "Work, in Motion" 3D Hero Introduction
+  setupWorkInMotionIntro();
 
   const track = document.getElementById('gallery-track-3d');
   const viewport = document.getElementById('gallery-stage-viewport');
@@ -789,7 +897,7 @@ function setupProjectsShowcase() {
 
   if (!track) return;
 
-  // Authentic 4 Projects Data
+  // Authentic 4 Projects Data with User's Provided Image Screenshots
   const projects = [
     {
       id: "studypilot",
@@ -803,47 +911,16 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       accent: "#6366F1",
+      image: "studypilot.png",
       renderMockup: function() {
         return `
-          <div class="mockup-studypilot-screen">
-            <div class="mockup-sp-sidebar" aria-hidden="true">
-              <span class="sp-nav-icon active">✦</span>
-              <span class="sp-nav-icon">📚</span>
-              <span class="sp-nav-icon">📊</span>
-              <span class="sp-nav-icon">⚙️</span>
-            </div>
-            <div class="mockup-sp-body">
-              <div class="mockup-sp-topbar">
-                <div class="mockup-sp-search">
-                  <span>🔍</span>
-                  <span>Search cards, flashcards & notes...</span>
-                </div>
-                <div class="mockup-sp-user-badge">AM</div>
-              </div>
-              <div class="mockup-sp-greet">
-                Good morning, Arfa! ☀️
-                <span>Your scheduled focus session is ready to begin.</span>
-              </div>
-              <div class="mockup-sp-grid">
-                <div class="mockup-sp-card">
-                  <div class="mockup-sp-card-title">Weekly Mastery</div>
-                  <div class="mockup-sp-stats-row">
-                    <div>
-                      <div class="mockup-sp-stat-num">48</div>
-                      <div class="mockup-sp-stat-label">Cards Mastered</div>
-                    </div>
-                    <div>
-                      <div class="mockup-sp-stat-num" style="color: #10B981;">94%</div>
-                      <div class="mockup-sp-stat-label">Retention</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mockup-sp-card mockup-sp-circle-gauge">
-                  <div class="gauge-num">25:00</div>
-                  <div class="gauge-sub">✦ Focus Timer Active</div>
-                </div>
-              </div>
-            </div>
+          <div class="mockup-project-image-wrap">
+            <img 
+              src="studypilot.png" 
+              alt="StudyPilot-AI — Intelligent Academic Workspace" 
+              class="project-screenshot-img" 
+              loading="lazy" 
+            />
           </div>
         `;
       }
@@ -860,35 +937,16 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
       codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
       accent: "#FF6045",
+      image: "veloraa.png",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF9F6; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.6rem;">
-              <span style="font-family: var(--font-display, serif); font-weight: 900; font-size: 1.15rem; color: #101C35; letter-spacing: 0.05em;">VELORA</span>
-              <div style="display: flex; gap: 0.5rem; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #64748B; background: #FFFFFF; padding: 0.25rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(0,0,0,0.06);">BAG (3)</span>
-              </div>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; flex: 1;">
-              <div style="background: #FFFFFF; border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
-                <div style="height: 80px; background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">
-                  🧥
-                </div>
-                <div>
-                  <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Minimalist Trench</div>
-                  <div style="font-size: 0.7rem; color: #FF6045; font-weight: 700;">$149.00</div>
-                </div>
-              </div>
-              <div style="background: #FFFFFF; border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
-                <div style="height: 80px; background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">
-                  👜
-                </div>
-                <div>
-                  <div style="font-weight: 800; font-size: 0.78rem; color: #101C35; margin-top: 0.35rem;">Luxe Tote Bag</div>
-                  <div style="font-size: 0.7rem; color: #FF6045; font-weight: 700;">$89.00</div>
-                </div>
-              </div>
-            </div>
+          <div class="mockup-project-image-wrap">
+            <img 
+              src="veloraa.png" 
+              alt="Velora Store — Minimalist Fashion E-Commerce" 
+              class="project-screenshot-img" 
+              loading="lazy" 
+            />
           </div>
         `;
       }
@@ -905,34 +963,16 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       codeUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       accent: "#F59E0B",
+      image: "kumo.png",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FFFBF0; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 0.5rem;">
-              <div>
-                <span style="font-family: var(--font-display, serif); font-weight: 900; font-size: 1.05rem; color: #1C1917;">雲 KUMO RAMEN</span>
-                <span style="display: block; font-size: 0.65rem; color: #B45309; font-weight: 700;">TOKYO CRAFT NOODLE BAR</span>
-              </div>
-              <span style="background: #FEF3C7; color: #92400E; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 9999px;">OPEN TODAY</span>
-            </div>
-            <div style="background: #FFFFFF; border-radius: 12px; padding: 0.9rem; border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; gap: 0.85rem;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #FED7AA; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-                🍜
-              </div>
-              <div style="flex: 1;">
-                <div style="font-weight: 800; font-size: 0.84rem; color: #1C1917;">Black Garlic Tonkotsu</div>
-                <div style="font-size: 0.68rem; color: #78716C; margin: 0.15rem 0;">18-hr pork bone broth, soft-boiled ajitsuke egg, char siu</div>
-                <div style="font-size: 0.76rem; font-weight: 800; color: #D97706;">$18.50</div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 0.5rem;">
-              <div style="flex: 1; background: #FFFFFF; border-radius: 10px; padding: 0.55rem 0.75rem; text-align: center; border: 1px solid rgba(0,0,0,0.05); font-size: 0.68rem; font-weight: 700; color: #44403C;">
-                🥢 Rich Broth
-              </div>
-              <div style="flex: 1; background: #FFFFFF; border-radius: 10px; padding: 0.55rem 0.75rem; text-align: center; border: 1px solid rgba(0,0,0,0.05); font-size: 0.68rem; font-weight: 700; color: #44403C;">
-                🌶️ Spice Level 3
-              </div>
-            </div>
+          <div class="mockup-project-image-wrap">
+            <img 
+              src="kumo.png" 
+              alt="Kumo Ramen — Artisan Tokyo Craft Noodle Bar" 
+              class="project-screenshot-img" 
+              loading="lazy" 
+            />
           </div>
         `;
       }
@@ -949,34 +989,16 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/pastelform",
       codeUrl: "https://github.com/ArfaMunam47/pastelform",
       accent: "#EC4899",
+      image: "pastel.png",
       renderMockup: function() {
         return `
-          <div style="height: 100%; display: flex; flex-direction: column; background: #FAF5FF; padding: 1.1rem; gap: 0.85rem; font-family: var(--font-body, sans-serif);">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139,92,246,0.1); padding-bottom: 0.5rem;">
-              <span style="font-family: var(--font-display, serif); font-weight: 800; font-size: 1rem; color: #6B21A8;">PastelForm System</span>
-              <div style="display: flex; gap: 0.3rem;">
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #F472B6;"></span>
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #34D399;"></span>
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #A78BFA;"></span>
-              </div>
-            </div>
-            <div style="background: #FFFFFF; border-radius: 12px; padding: 0.85rem; border: 1px solid rgba(139,92,246,0.12); display: flex; flex-direction: column; gap: 0.55rem;">
-              <div>
-                <div style="font-size: 0.65rem; font-weight: 800; color: #7C3AED; text-transform: uppercase;">Workspace Email</div>
-                <div style="background: #FAF5FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 0.35rem 0.65rem; font-size: 0.72rem; color: #5B21B6; margin-top: 0.2rem;">
-                  arfa.dev@portfolio.design ✓
-                </div>
-              </div>
-              <div>
-                <div style="font-size: 0.65rem; font-weight: 800; color: #7C3AED; text-transform: uppercase;">Secure Passcode</div>
-                <div style="background: #FAF5FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 0.35rem 0.65rem; font-size: 0.72rem; color: #5B21B6; margin-top: 0.2rem;">
-                  •••••••••••• (Strong)
-                </div>
-              </div>
-              <div style="background: #7C3AED; color: #FFFFFF; font-weight: 800; font-size: 0.72rem; text-align: center; padding: 0.45rem; border-radius: 8px; margin-top: 0.2rem;">
-                Validate Credentials
-              </div>
-            </div>
+          <div class="mockup-project-image-wrap">
+            <img 
+              src="pastel.png" 
+              alt="PastelForm — Aesthetic Multi-Step Form Engine" 
+              class="project-screenshot-img" 
+              loading="lazy" 
+            />
           </div>
         `;
       }
@@ -2498,57 +2520,101 @@ function setupHero3DPortraitParallax() {
     }
   });
 
-  // In-place Click Interaction: Focus State Toggle
-  function toggleFocus(e) {
+  // Dedicated Cinematic Portrait Enlarge Modal
+  const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
+  const modalCloseBtn = document.getElementById('enlarge-modal-close-btn');
+  const modalBackdrop = document.getElementById('enlarge-modal-backdrop');
+
+  function openEnlargedModal(e) {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
-    isFocused = !isFocused;
+    isFocused = true;
+    cutoutFrame.classList.add('is-focused');
+    stage.classList.add('has-focus');
 
-    if (isFocused) {
-      cutoutFrame.classList.add('is-focused');
-      stage.classList.add('has-focus');
-      if (badgeText) badgeText.textContent = 'Click to minimize (Esc)';
-    } else {
-      cutoutFrame.classList.remove('is-focused');
-      stage.classList.remove('has-focus');
-      if (badgeText) badgeText.textContent = 'Interactive Portrait';
+    if (enlargeModal) {
+      enlargeModal.classList.add('is-open');
+      enlargeModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (modalCloseBtn) modalCloseBtn.focus();
     }
 
+    if (badgeText) badgeText.textContent = 'Enlarged View';
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
   }
 
-  cutoutFrame.addEventListener('click', toggleFocus);
+  function closeEnlargedModal(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    isFocused = false;
+    cutoutFrame.classList.remove('is-focused');
+    stage.classList.remove('has-focus');
 
-  // Keyboard accessibility: Enter or Space toggles focus, Escape exits focus
+    if (enlargeModal) {
+      enlargeModal.classList.remove('is-open');
+      enlargeModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (cutoutFrame && typeof cutoutFrame.focus === 'function') {
+        try {
+          cutoutFrame.focus({ preventScroll: true });
+        } catch (_) {}
+      }
+    }
+
+    if (badgeText) badgeText.textContent = 'Interactive Portrait';
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderParallax);
+    }
+  }
+
+  // Click / Tap on Portrait opens properly padded enlargement
+  cutoutFrame.addEventListener('click', openEnlargedModal);
+
+  // Close handlers
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeEnlargedModal);
+  }
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', closeEnlargedModal);
+  }
+  const enlargeImg = document.getElementById('enlarge-portrait-img');
+  if (enlargeImg) {
+    enlargeImg.addEventListener('click', closeEnlargedModal);
+  }
+  if (enlargeModal) {
+    enlargeModal.addEventListener('click', (e) => {
+      // Close on backdrop or modal wrapper click
+      if (e.target === enlargeModal || e.target === modalBackdrop || e.target.classList.contains('enlarge-modal-dialog') || e.target.classList.contains('enlarge-portrait-stage')) {
+        closeEnlargedModal(e);
+      }
+    });
+  }
+
+  // Keyboard accessibility: Enter or Space opens, Escape exits
   cutoutFrame.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      toggleFocus(e);
+      openEnlargedModal(e);
     }
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isFocused) {
-      toggleFocus();
+      closeEnlargedModal(e);
     }
   });
 
-  // Clicking outside portrait returns to normal state
-  document.addEventListener('click', (e) => {
-    if (isFocused && !cutoutFrame.contains(e.target)) {
-      toggleFocus();
-    }
-  });
-
-  // Physics animation loop using linear interpolation
+  // Physics animation loop using linear interpolation (Controlled scale prevents oscillation)
   function renderParallax() {
     currentRotX += (targetRotX - currentRotX) * 0.12;
     currentRotY += (targetRotY - currentRotY) * 0.12;
 
-    const targetScale = isFocused ? 1.12 : (isHovered ? getDynamicHoverScale() : 1.0);
+    const targetScale = isFocused ? 1.05 : (isHovered ? 1.035 : 1.0);
     currentScale += (targetScale - currentScale) * 0.14;
 
     const basePerspective = 1100;
@@ -3720,298 +3786,199 @@ function setupLearningEcosystem() {
 
 /**
  * =========================================================================
- * 23. MY LEARNING JOURNEY — 3D FUTURISTIC INTERACTIVE LEARNING SYSTEM
- * "Turning Curiosity Into Capability"
- * 6 Interactive 3D Stages • Central Floating Glass Card • Concentric Pedestals
- * Conical Light Beam • Orbital Tracks • Drag / Scroll Exploration • Dynamic Updating
+ * 23. MY LEARNING JOURNEY — 3D ART-DIRECTED INTERACTIVE LEARNING EXPERIENCE
+ * "Learning. Growing. Becoming."
+ * 6 Interactive 3D Milestones • Single Compact Active Detail Card
+ * 3D Orbital Portrait Parallax Tilt • Keyboard Accessibility (Enter, Space, Arrows)
  * =========================================================================
  */
 function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const card = document.getElementById('fj-active-card');
-  const lightBeam = document.getElementById('fj-light-beam');
-  const pedestal = document.getElementById('fj-central-pedestal');
-  const cardIconBubble = document.getElementById('fj-card-icon-bubble');
-  const cardPillText = document.getElementById('fj-card-pill-text');
-  const cardPillDot = document.getElementById('fj-card-pill-dot');
-  const cardTitle = document.getElementById('fj-card-title');
-  const cardScript = document.getElementById('fj-card-script');
-  const cardDesc = document.getElementById('fj-card-desc');
-  const cardStatusText = document.getElementById('fj-card-status-text');
-  const cardStatusIcon = document.getElementById('fj-card-status-icon');
-  const progressCurr = document.getElementById('fj-progress-curr');
-  const progressFill = document.getElementById('fj-progress-fill');
-  const bottomNum = document.getElementById('fj-bottom-num');
-  const paginationDots = Array.from(document.querySelectorAll('.fj-bottom-indicator-block .dot-btn'));
-  const stageNodes = Array.from(document.querySelectorAll('.fj-stage-node'));
-  const centralStage = document.getElementById('fj-central-stage');
-  const trackContainer = document.getElementById('fj-stages-track');
+  const portraitStage = document.getElementById('lj-portrait-stage');
+  const portraitCutout = document.getElementById('lj-portrait-cutout');
+  const nodes = Array.from(document.querySelectorAll('.lj-node-item'));
+  const detailCard = document.getElementById('lj-single-detail-card');
+  const cardIndexBadge = document.getElementById('lj-card-index-badge');
+  const cardKicker = document.getElementById('lj-card-kicker');
+  const cardTitle = document.getElementById('lj-card-title');
+  const cardDesc = document.getElementById('lj-card-description');
+  const cardIcon = document.getElementById('lj-card-icon');
+  const cardAccentStrip = document.getElementById('lj-card-accent-strip');
+  const activeCounter = document.getElementById('lj-active-counter');
 
-  // The 6 Authentic Learning Stages
-  const stages = [
+  // The 6 Authentic Milestones
+  const milestones = [
     {
       num: "01",
-      title: "Frontend<br>Foundations",
-      theme: "coral",
+      kicker: "01 — 2026",
+      title: "2026",
+      desc: "Started my frontend journey.",
       color: "#FA5538",
-      colorRgb: "250, 85, 56",
-      pillText: "FOUNDATION FOCUS",
-      accentNote: "Crafting semantic layouts.",
-      desc: "Mastering the fundamental building blocks of the web — semantic HTML5 hierarchies, responsive CSS Grid and Flexbox layouts, accessible DOM structures, and core JavaScript logic.",
-      statusText: "Web Standards & Responsive Craft",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
+      accentGrad: "linear-gradient(90deg, #FA5538, #FF8A65)",
+      borderColor: "rgba(250, 85, 56, 0.35)",
+      badgeBg: "rgba(254, 237, 222, 0.8)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
     },
     {
       num: "02",
-      title: "Building<br>Real Projects",
-      theme: "pink",
-      color: "#EC4899",
-      colorRgb: "236, 72, 153",
-      pillText: "APPLIED PRACTICE",
-      accentNote: "Learning by shipping.",
-      desc: "Transforming design ideas into working, responsive web applications — testing cross-browser compatibility, tactile interactive details, and shipping clean code to production.",
-      statusText: "Hands-on Applications",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
+      kicker: "02 — Core Foundations",
+      title: "Core Foundations",
+      desc: "HTML, CSS, JavaScript. Building strong foundations.",
+      color: "#F97316",
+      accentGrad: "linear-gradient(90deg, #F97316, #FB923C)",
+      borderColor: "rgba(249, 115, 22, 0.35)",
+      badgeBg: "rgba(255, 237, 213, 0.8)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
     },
     {
       num: "03",
-      title: "React &<br>Modern UI",
-      theme: "purple",
-      color: "#8B5CF6",
-      colorRgb: "139, 92, 246",
-      pillText: "DYNAMIC INTERFACES",
-      accentNote: "Declarative & reactive.",
-      desc: "Structuring modular component-driven frontends with React, modern state hooks, Tailwind CSS design tokens, responsive typography math, and fluid spring motion physics.",
-      statusText: "Component Architecture",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"></circle><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(30 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-30 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(90 12 12)"></ellipse></svg>`
+      kicker: "03 — Frontend Development",
+      title: "Frontend Development",
+      desc: "Bootstrap, Tailwind, React, GSAP. Building real-world UI experiences.",
+      color: "#EC4899",
+      accentGrad: "linear-gradient(90deg, #EC4899, #F472B6)",
+      borderColor: "rgba(236, 72, 153, 0.35)",
+      badgeBg: "rgba(253, 242, 248, 0.85)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
     },
     {
       num: "04",
-      title: "Backend<br>Development",
-      theme: "coral",
-      color: "#FA5538",
-      colorRgb: "250, 85, 56",
-      pillText: "CURRENT FOCUS",
-      accentNote: "One step at a time.",
-      desc: "Currently building backend abilities step by step — learning databases, APIs, authentication, and server logic to build full-stack applications.",
-      statusText: "Building Strong Foundations",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
+      kicker: "04 — Exploring AI",
+      title: "Exploring AI",
+      desc: "Prompt Engineering, AI Basics, Automation. Integrating AI into real solutions.",
+      color: "#8B5CF6",
+      accentGrad: "linear-gradient(90deg, #8B5CF6, #A78BFA)",
+      borderColor: "rgba(139, 92, 246, 0.35)",
+      badgeBg: "rgba(245, 243, 255, 0.85)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
     },
     {
       num: "05",
-      title: "AI Tools &<br>Prompt Engineering",
-      theme: "cyan",
+      kicker: "05 — Currently Focusing",
+      title: "Currently Focusing",
+      desc: "Backend Development and AI Automation to build smarter, scalable applications.",
       color: "#06B6D4",
-      colorRgb: "6, 182, 212",
-      pillText: "AI ACCELERATION",
-      accentNote: "Structured reasoning loops.",
-      desc: "Designing high-precision prompt pipelines, few-shot conditioning, Chain-of-Thought workflows, and leveraging Google AI APIs to accelerate practical development velocity.",
-      statusText: "Prompt Architecture & LLMs",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
+      accentGrad: "linear-gradient(90deg, #06B6D4, #38BDF8)",
+      borderColor: "rgba(6, 182, 212, 0.35)",
+      badgeBg: "rgba(236, 254, 255, 0.85)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
     },
     {
       num: "06",
-      title: "AI<br>Automation",
-      theme: "purple",
-      color: "#8B5CF6",
-      colorRgb: "139, 92, 246",
-      pillText: "INTELLIGENT SYSTEMS",
-      accentNote: "Autonomous execution.",
-      desc: "Connecting automated webhook pipelines, intelligent agents, background API orchestrations, and structured data extraction to build scalable future-ready digital systems.",
-      statusText: "Intelligent Workflows",
-      iconSvg: `<svg class="card-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>`
+      kicker: "06 — Future Goals",
+      title: "Future Goals",
+      desc: "Full-Stack Development. AI-driven products. Making meaningful impact through code.",
+      color: "#10B981",
+      accentGrad: "linear-gradient(90deg, #10B981, #34D399)",
+      borderColor: "rgba(16, 185, 129, 0.35)",
+      badgeBg: "rgba(236, 253, 245, 0.85)",
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
     }
   ];
 
-  let currentStageIndex = 3; // Stage 04 Backend Development is default active stage (0-indexed: 3)
+  let currentMilestoneIndex = 0;
 
-  function setActiveStage(index, smoothAnimate = true) {
-    if (index < 0 || index >= stages.length) return;
-    currentStageIndex = index;
-    const stage = stages[index];
+  function setActiveMilestone(index, animate = true) {
+    if (index < 0 || index >= milestones.length) return;
+    currentMilestoneIndex = index;
+    const m = milestones[index];
 
-    // Update Progress Pill
-    if (progressCurr) progressCurr.textContent = stage.num;
-    if (progressFill) {
-      const percentage = ((index + 1) / stages.length) * 100;
-      progressFill.style.width = `${percentage}%`;
-      progressFill.style.background = `linear-gradient(90deg, ${stage.color} 0%, #FA5538 100%)`;
-    }
-
-    // Update Bottom Large Number & Dots
-    if (bottomNum) {
-      bottomNum.textContent = stage.num;
-      bottomNum.style.color = stage.color;
-      bottomNum.style.transform = 'scale(1.15)';
-      setTimeout(() => { if (bottomNum) bottomNum.style.transform = 'scale(1)'; }, 250);
-    }
-
-    paginationDots.forEach((dot, i) => {
+    // 1. Update node classes & ARIA attributes
+    nodes.forEach((node, i) => {
       const isActive = i === index;
-      dot.classList.toggle('is-active', isActive);
-      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      dot.style.background = isActive ? stage.color : '';
-      dot.style.boxShadow = isActive ? `0 0 10px rgba(${stage.colorRgb}, 0.6)` : '';
+      node.classList.toggle('is-active', isActive);
+      node.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
-    // Update active highlight on peripheral stage nodes
-    stageNodes.forEach((node) => {
-      const nodeIdx = parseInt(node.getAttribute('data-index'), 10);
-      node.classList.toggle('is-selected', nodeIdx === index);
-    });
+    // 2. Update counter
+    if (activeCounter) {
+      activeCounter.innerHTML = `${m.num} <span class="counter-sep">/</span> 06`;
+    }
 
-    // Animate Card Content Transition
-    if (card) {
-      if (smoothAnimate) {
-        card.style.transform = 'translateY(10px) scale(0.97)';
-        card.style.opacity = '0.7';
+    // 3. Update single compact active detail card with spring transition
+    if (detailCard) {
+      if (animate) {
+        detailCard.style.opacity = '0';
+        detailCard.style.transform = 'translateY(8px) scale(0.97)';
       }
 
       setTimeout(() => {
-        if (cardIconBubble) {
-          cardIconBubble.innerHTML = stage.iconSvg;
-          cardIconBubble.style.background = `linear-gradient(135deg, ${stage.color} 0%, #FA5538 100%)`;
-          cardIconBubble.style.boxShadow = `0 10px 24px -4px rgba(${stage.colorRgb}, 0.45)`;
+        if (cardIndexBadge) {
+          cardIndexBadge.textContent = m.num;
+          cardIndexBadge.style.color = m.color;
+          cardIndexBadge.style.background = m.badgeBg;
         }
+        if (cardKicker) cardKicker.textContent = m.kicker;
+        if (cardTitle) cardTitle.textContent = m.title;
+        if (cardDesc) cardDesc.textContent = m.desc;
+        if (cardIcon) {
+          cardIcon.innerHTML = m.icon;
+          cardIcon.style.color = m.color;
+          cardIcon.style.background = m.badgeBg;
+        }
+        if (cardAccentStrip) {
+          cardAccentStrip.style.background = m.accentGrad;
+        }
+        detailCard.style.borderColor = m.borderColor;
 
-        if (cardPillText) cardPillText.textContent = stage.pillText;
-        if (cardPillText) cardPillText.style.color = stage.color;
-        if (cardPillDot) cardPillDot.style.color = stage.color;
-        if (cardTitle) cardTitle.innerHTML = stage.title;
-        if (cardScript) {
-          cardScript.textContent = stage.accentNote;
-          cardScript.style.color = stage.color;
+        if (animate) {
+          detailCard.style.opacity = '1';
+          detailCard.style.transform = 'translateY(0) scale(1)';
         }
-        if (cardDesc) cardDesc.textContent = stage.desc;
-        if (cardStatusText) {
-          cardStatusText.textContent = stage.statusText;
-          cardStatusText.style.color = stage.color;
-        }
-
-        // Tint conical light beam & pedestal glow
-        if (lightBeam) {
-          lightBeam.style.background = `linear-gradient(180deg, rgba(${stage.colorRgb}, 0.16) 0%, rgba(255, 255, 255, 0.45) 55%, rgba(${stage.colorRgb}, 0.5) 100%)`;
-        }
-
-        const middleGlowRing = pedestal ? pedestal.querySelector('.pedestal-middle-glow-ring') : null;
-        if (middleGlowRing) {
-          middleGlowRing.style.borderColor = stage.color;
-          middleGlowRing.style.boxShadow = `0 0 24px rgba(${stage.colorRgb}, 0.65)`;
-        }
-
-        if (smoothAnimate) {
-          card.style.transform = 'translateY(0) scale(1)';
-          card.style.opacity = '1';
-        }
-      }, smoothAnimate ? 140 : 0);
+      }, animate ? 140 : 0);
     }
   }
 
-  // Click handler for 5 peripheral stage nodes
-  stageNodes.forEach((node) => {
+  // Bind clicks and keyboard on milestone nodes
+  nodes.forEach((node, idx) => {
     node.addEventListener('click', () => {
-      const idx = parseInt(node.getAttribute('data-index'), 10);
-      setActiveStage(idx);
+      setActiveMilestone(idx, true);
     });
 
     node.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        const idx = parseInt(node.getAttribute('data-index'), 10);
-        setActiveStage(idx);
+        setActiveMilestone(idx, true);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const nextIdx = (idx + 1) % milestones.length;
+        setActiveMilestone(nextIdx, true);
+        if (nodes[nextIdx]) nodes[nextIdx].focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prevIdx = (idx - 1 + milestones.length) % milestones.length;
+        setActiveMilestone(prevIdx, true);
+        if (nodes[prevIdx]) nodes[prevIdx].focus();
       }
     });
   });
 
-  // Click handler for pagination dots
-  paginationDots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.getAttribute('data-index'), 10);
-      setActiveStage(idx);
-    });
-  });
-
-  // Keyboard navigation when focusing inside the system stage
-  section.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      const nextIdx = (currentStageIndex + 1) % stages.length;
-      setActiveStage(nextIdx);
-    } else if (e.key === 'ArrowLeft') {
-      const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
-      setActiveStage(prevIdx);
-    }
-  });
-
-  // Drag / swipe exploration on the track container
-  let startX = 0;
-  let isDragging = false;
-
-  if (trackContainer) {
-    trackContainer.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-    }, { passive: true });
-
-    window.addEventListener('mouseup', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      const diff = e.clientX - startX;
-      if (diff < -50) {
-        // Swiped left -> next
-        const nextIdx = (currentStageIndex + 1) % stages.length;
-        setActiveStage(nextIdx);
-      } else if (diff > 50) {
-        // Swiped right -> prev
-        const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
-        setActiveStage(prevIdx);
-      }
-    }, { passive: true });
-
-    // Touch drag support
-    let touchStartX = 0;
-    trackContainer.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches[0]) {
-        touchStartX = e.touches[0].clientX;
-      }
-    }, { passive: true });
-
-    trackContainer.addEventListener('touchend', (e) => {
-      if (e.changedTouches && e.changedTouches[0]) {
-        const touchEndX = e.changedTouches[0].clientX;
-        const diff = touchEndX - touchStartX;
-        if (diff < -45) {
-          const nextIdx = (currentStageIndex + 1) % stages.length;
-          setActiveStage(nextIdx);
-        } else if (diff > 45) {
-          const prevIdx = (currentStageIndex - 1 + stages.length) % stages.length;
-          setActiveStage(prevIdx);
-        }
-      }
-    }, { passive: true });
-  }
-
-  // Subtle 3D perspective tilt on the active card tracking cursor (2–4 degrees max)
-  if (card) {
-    card.addEventListener('pointermove', (e) => {
-      const rect = card.getBoundingClientRect();
+  // 3D Parallax Tilt on Portrait Frame on mouse move
+  if (portraitStage) {
+    portraitStage.addEventListener('pointermove', (e) => {
+      const rect = portraitStage.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotX = -(y / (rect.height / 2)) * 3;
-      const rotY = (x / (rect.width / 2)) * 3;
-      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+      const rotX = -(y / (rect.height / 2)) * 3.5;
+      const rotY = (x / (rect.width / 2)) * 3.5;
+      
+      if (portraitCutout) {
+        portraitCutout.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(10px)`;
+      }
     }, { passive: true });
 
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    portraitStage.addEventListener('pointerleave', () => {
+      if (portraitCutout) {
+        portraitCutout.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
+      }
     });
   }
 
-  // Initialize Stage 04 (Backend Development) as shown in reference
-  setActiveStage(3, false);
+  // Initialize milestone 01 on load
+  setActiveMilestone(0, false);
 }
-
 
 /**
  * =========================================================================
