@@ -206,36 +206,14 @@
               <span>BUILDING • LEARNING • EXPLORING</span>
             </div>
 
-            <!-- Magical Layered Atmosphere Behind Portrait (Floating energy, orbital rings, radiant particles) -->
-            <div class="hero-stage-backdrop-art" aria-hidden="true">
-              <div class="hero-backdrop-disc hero-disc-coral"></div>
-              <div class="hero-backdrop-disc hero-disc-cyan"></div>
-              <div class="hero-backdrop-disc hero-disc-purple"></div>
-              <div class="hero-backdrop-glow-aura"></div>
-
-              <!-- Refined SVG Orbital System (Dashed rings with gentle continuous rotation) -->
-              <svg class="hero-orbital-system" viewBox="0 0 500 500" fill="none">
-                <ellipse cx="250" cy="250" rx="215" ry="145" transform="rotate(-16 250 250)" stroke="url(#heroOrbitalGrad1)" stroke-width="1.2" stroke-dasharray="4 8" class="orbital-track-1" />
-                <ellipse cx="250" cy="250" rx="165" ry="195" transform="rotate(34 250 250)" stroke="url(#heroOrbitalGrad2)" stroke-width="1" stroke-dasharray="2 6" class="orbital-track-2" />
-                <defs>
-                  <linearGradient id="heroOrbitalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FA5538" stop-opacity="0.8"/>
-                    <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.6"/>
-                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.8"/>
-                  </linearGradient>
-                  <linearGradient id="heroOrbitalGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.75"/>
-                    <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.55"/>
-                    <stop offset="100%" stop-color="#FA5538" stop-opacity="0.75"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <!-- Subtle Ambient Starbursts and Floating Spark Points -->
-              <div class="hero-magical-sparkle spark-point-1">✦</div>
-              <div class="hero-magical-sparkle spark-point-2">★</div>
-              <div class="hero-magical-sparkle spark-point-3">✦</div>
-              <div class="hero-magical-sparkle spark-point-4">·</div>
+            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (No busy or dotted decorations) -->
+            <div class="hero-stage-backdrop-art" id="hero-stage-backdrop-art" aria-hidden="true">
+              <div class="hero-light-ambient"></div>
+              <div class="hero-light-coral"></div>
+              <div class="hero-light-cyan"></div>
+              <div class="hero-light-pink"></div>
+              <div class="hero-light-violet"></div>
+              <div class="hero-light-bloom"></div>
             </div>
 
             <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
@@ -710,52 +688,41 @@
         <!-- Two-Sided Composition Grid: Left Character & 3D Circle | Right Editorial Title -->
         <div class="motion-hero-grid">
           
-          <!-- LEFT SIDE: 3D Character Physically Emerging from Dimensional Orbital Frame -->
-          <div class="motion-stage-left" id="motion-character-stage">
+          <!-- LEFT SIDE: 3D Portrait Physically Emerging from Rectangular Frame -->
+          <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="3D Portrait of Arfa Munam emerging from dimensional rectangular frame">
             
-            <!-- Atmospheric Depth & Aura behind the 3D frame -->
-            <div class="character-backdrop-glow" aria-hidden="true"></div>
+            <!-- BACK LAYER: Soft Atmospheric Diffused Glow (Coral, Pink, Violet, Cyan) -->
+            <div class="character-backdrop-glow motion-portrait-ambient-glow" aria-hidden="true"></div>
 
-            <!-- 1. The Large Dimensional 3D Circular Frame (Positioned BEHIND character) -->
-            <div class="dimensional-circle-frame" id="dimensional-circle-frame" aria-hidden="true">
-              <!-- Outer Dimensional Beveled Rim -->
-              <div class="circle-outer-bevel"></div>
-              <!-- Inner Illuminated Glowing Ring -->
-              <div class="circle-inner-ring"></div>
-              <!-- Secondary Thin Orbital Ring with Rotating Micro Nodes -->
-              <div class="circle-orbital-ring">
-                <span class="orbital-node node-coral"></span>
-                <span class="orbital-node node-cyan"></span>
+            <!-- SECOND LAYER: Dimensional 3D Rectangular Portal Frame Behind the Subject -->
+            <div class="dimensional-rect-frame" id="dimensional-rect-frame" aria-hidden="true">
+              <!-- Outer Dimensional Bevel with Specular Highlights -->
+              <div class="rect-outer-bevel"></div>
+              
+              <!-- Translucent Glass Backplane with Portfolio Gradients -->
+              <div class="rect-glass-backplane">
+                <div class="rect-inner-sheen"></div>
               </div>
-              <!-- Glass-like Reflection Sheen -->
-              <div class="circle-glass-sheen"></div>
-              <!-- Radial Core Gradient Falloff -->
-              <div class="circle-radial-core"></div>
+
+              <!-- Refined Inner Beveled Edge -->
+              <div class="rect-inner-rim"></div>
             </div>
 
-            <!-- 2. The 3D Character (Positioned IN FRONT of the circular frame, breaking bounds) -->
+            <!-- FRONT LAYER: 3D Portrait Subject Physically Emerging In Front of Frame -->
             <div class="motion-character-entity" id="motion-character-entity">
-              <!-- Soft Ground / Contact Shadow for the Character -->
+              <!-- Soft Realistic Depth Shadow Behind Subject Falling on Frame -->
               <div class="character-contact-shadow" aria-hidden="true"></div>
 
-              <!-- Character Visual Asset -->
-              <div class="character-image-box">
+              <!-- Clean Cutout Subject (Head, hair, and upper body breaking beyond frame boundaries) -->
+              <div class="character-breakout-wrap">
                 <img 
                   src="menew.png" 
-                  alt="Arfa Munam — Frontend Developer & Creative Technologist" 
+                  alt="Arfa Munam — Creative Developer" 
                   class="motion-character-img"
                   id="motion-character-img"
-                  onerror="this.onerror=null; this.src='menew.jpg';"
+                  onerror="this.onerror=null; this.src='me.png';"
                   loading="eager"
                 />
-              </div>
-
-              <!-- Subtle 3D Floating Accents around Character -->
-              <div class="character-floating-accents" aria-hidden="true">
-                <span class="motion-sparkle spark-top-right">✦</span>
-                <span class="motion-sparkle spark-left-mid">★</span>
-                <span class="motion-micro-dot dot-top-left"></span>
-                <span class="motion-micro-dot dot-bottom-right"></span>
               </div>
             </div>
 
@@ -2583,57 +2550,39 @@
       <!-- UPPER STAGE: Left 3D Orbital Portrait + Right Editorial Content & Floating Objects -->
       <div class="lj-upper-stage">
         
-        <!-- LEFT: Dimensional 3D Circular Orbital Portrait Stage -->
+        <!-- LEFT: Dimensional 3D Rounded-Square Frame with Emerging Portrait -->
         <div class="lj-portrait-column reveal">
-          <div class="lj-portrait-3d-stage" id="lj-portrait-stage" tabindex="0" role="region" aria-label="Interactive 3D Portrait of Arfa Munam in Orbital Frame">
+          <div class="lj-portrait-3d-stage" id="lj-portrait-stage" tabindex="0" role="region" aria-label="Interactive 3D Portrait of Arfa Munam emerging from dimensional frame">
             
-            <!-- Multi-layered Physical 3D Orbiting Framework -->
-            <div class="lj-orbit-outer-system" aria-hidden="true">
-              <!-- Soft Atmospheric Bloom Backplate -->
-              <div class="lj-portrait-bloom-glow"></div>
+            <!-- Atmospheric Studio Lighting (Diffused warm coral & cyan/violet ambient backlighting) -->
+            <div class="lj-frame-ambient-glow" aria-hidden="true"></div>
+
+            <!-- LAYER 2: Refined Rounded-Square 3D Dimensional Frame Behind the Subject -->
+            <div class="lj-rect-frame" id="lj-rect-frame" aria-hidden="true">
+              <!-- Outer Dimensional Bevel with Glass Specular Highlights -->
+              <div class="lj-rect-glass-bevel"></div>
               
-              <!-- Layered Rings & Bevels with Luminous Glows -->
-              <div class="lj-orbit-outer-bevel"></div>
-              <div class="lj-orbit-middle-ring"></div>
-              <div class="lj-orbit-inner-well"></div>
+              <!-- Translucent Glass Backplane with Soft Portfolio Gradients -->
+              <div class="lj-rect-glass-backplane">
+                <div class="lj-rect-inner-sheen"></div>
+              </div>
 
-              <!-- Continuous Slow SVG Orbital Track -->
-              <svg class="lj-orbital-svg-track" viewBox="0 0 380 380" fill="none">
-                <ellipse cx="190" cy="190" rx="170" ry="115" transform="rotate(-18 190 190)" stroke="url(#ljOrbitGrad1)" stroke-width="1.4" stroke-dasharray="4 8" class="lj-orbit-ring-1" />
-                <ellipse cx="190" cy="190" rx="135" ry="165" transform="rotate(32 190 190)" stroke="url(#ljOrbitGrad2)" stroke-width="1.2" stroke-dasharray="3 6" class="lj-orbit-ring-2" />
-                <defs>
-                  <linearGradient id="ljOrbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FA5538" stop-opacity="0.85"/>
-                    <stop offset="50%" stop-color="#F43F5E" stop-opacity="0.65"/>
-                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.8"/>
-                  </linearGradient>
-                  <linearGradient id="ljOrbitGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.8"/>
-                    <stop offset="60%" stop-color="#FA5538" stop-opacity="0.65"/>
-                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.8"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <!-- Orbital Floating 3D Spheres & Geometric Objects -->
-              <div class="lj-orb-sphere sphere-cyan" id="lj-orb-cyan"></div>
-              <div class="lj-orb-sphere sphere-orange" id="lj-orb-orange"></div>
-              <div class="lj-orb-geo geo-purple" id="lj-geo-purple"></div>
-              <div class="lj-orb-sparkle orb-spark-1">✦</div>
-              <div class="lj-orb-sparkle orb-spark-2">✦</div>
+              <!-- Inner Floating Beveled Ring -->
+              <div class="lj-rect-inner-rim"></div>
             </div>
 
-            <!-- Authentic 3D Portrait Cutout (Head extends naturally over circular edge) -->
+            <!-- LAYER 3: 3D Portrait Subject Physically Emerging In Front of Frame -->
             <div class="lj-portrait-cutout-container" id="lj-portrait-cutout">
-              <div class="lj-portrait-inner-frame">
-                <img src="menew.png"
-                     alt="Arfa Munam — Learning Journey"
-                     class="lj-portrait-img"
-                     id="lj-journey-portrait-img"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='me.png';" />
-              </div>
-              <div class="lj-portrait-base-shadow"></div>
+              <!-- Soft Depth Shadow Cast by the Subject onto the Frame Behind Her -->
+              <div class="lj-subject-depth-shadow" aria-hidden="true"></div>
+
+              <!-- Authentic Transparent Cutout Portrait (Breaks cleanly beyond top and sides) -->
+              <img src="menew.png"
+                   alt="Arfa Munam — Learning Journey"
+                   class="lj-portrait-img"
+                   id="lj-journey-portrait-img"
+                   loading="eager"
+                   onerror="this.onerror=null; this.src='me.png';" />
             </div>
 
           </div><!-- /.lj-portrait-3d-stage -->
@@ -2663,7 +2612,7 @@
             My journey in tech started in 2026. Every concept I learn, every project I build and every challenge I solve, brings me one step closer to the <span class="lj-highlight-aspire">developer I aspire to be.</span>
           </p>
 
-          <!-- Floating 3D Decorative Assets: Developer Notebook & Future Rocket -->
+          <!-- Floating 3D Decorative Assets: Developer Notebook & Upgraded 3D Rocket -->
           <div class="lj-decorative-stage" aria-hidden="true">
             
             <!-- 3D Stylized Open Developer Code Book -->
@@ -2689,31 +2638,118 @@
               </div>
             </div>
 
-            <!-- 3D Rocket Element Representing Future Growth -->
+            <!-- Upgraded Dimensional 3D Rocket Element Representing Future Direction -->
             <div class="lj-3d-rocket" id="lj-rocket-element" title="Future Direction">
               <div class="rocket-perspective-rig">
-                <!-- Glowing Curved Exhaust Trail -->
-                <svg class="rocket-trail-canvas" viewBox="0 0 110 110" fill="none">
-                  <path d="M 15,98 C 30,85 45,60 88,28" stroke="url(#exhaustTrailGrad)" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 4" />
+                <!-- Glowing Curved Exhaust Contrail -->
+                <svg class="rocket-trail-canvas" viewBox="0 0 130 130" fill="none" aria-hidden="true">
                   <defs>
-                    <linearGradient id="exhaustTrailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.15" />
-                      <stop offset="45%" stop-color="#8B5CF6" stop-opacity="0.55" />
+                    <linearGradient id="rocketExhaustGlowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.1" />
+                      <stop offset="35%" stop-color="#8B5CF6" stop-opacity="0.45" />
+                      <stop offset="75%" stop-color="#EC4899" stop-opacity="0.75" />
                       <stop offset="100%" stop-color="#FA5538" stop-opacity="0.95" />
                     </linearGradient>
+                    <filter id="rocketTrailBlur" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
                   </defs>
+                  <!-- Soft Ambient Glow Trail -->
+                  <path d="M 12,118 C 34,102 54,74 102,34" stroke="url(#rocketExhaustGlowGrad)" stroke-width="7" stroke-linecap="round" opacity="0.45" filter="url(#rocketTrailBlur)" />
+                  <!-- Crisp Core Ribbon Trail with Stardust Dashes -->
+                  <path d="M 12,118 C 34,102 54,74 102,34" stroke="url(#rocketExhaustGlowGrad)" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="4 6" class="rocket-trail-core" />
+                  <!-- Starburst Sparkles along Trail -->
+                  <circle cx="28" cy="108" r="1.8" fill="#06B6D4" opacity="0.8" />
+                  <circle cx="56" cy="78" r="2.2" fill="#8B5CF6" opacity="0.85" />
+                  <circle cx="82" cy="52" r="1.6" fill="#FA5538" opacity="0.9" />
                 </svg>
 
-                <!-- Rocket Ship Dimensional Body -->
-                <div class="rocket-ship-body">
-                  <div class="rocket-nose-cone"></div>
-                  <div class="rocket-fuselage">
-                    <span class="rocket-porthole"></span>
-                    <span class="rocket-stripe-accent"></span>
-                  </div>
-                  <div class="rocket-wing wing-left"></div>
-                  <div class="rocket-wing wing-right"></div>
-                  <div class="rocket-thruster-bloom"></div>
+                <!-- Premium 3D Illustrated Rocket Ship with Realistic Rounded Geometry & Shading -->
+                <div class="rocket-ship-3d-craft">
+                  <svg class="rocket-vector-3d" viewBox="0 0 68 84" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="rktFuselageGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F1F5F9" />
+                        <stop offset="25%" stop-color="#FFFFFF" />
+                        <stop offset="65%" stop-color="#F8FAFC" />
+                        <stop offset="100%" stop-color="#CBD5E1" />
+                      </linearGradient>
+                      <linearGradient id="rktNoseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#FA5538" />
+                        <stop offset="40%" stop-color="#FF7A59" />
+                        <stop offset="80%" stop-color="#E11D48" />
+                        <stop offset="100%" stop-color="#BE123C" />
+                      </linearGradient>
+                      <linearGradient id="rktFinGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF6B4A" />
+                        <stop offset="100%" stop-color="#BE123C" />
+                      </linearGradient>
+                      <linearGradient id="rktFinGradR" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FF6B4A" />
+                        <stop offset="100%" stop-color="#9F1239" />
+                      </linearGradient>
+                      <linearGradient id="rktPortholeGrad" x1="20%" y1="20%" x2="80%" y2="80%">
+                        <stop offset="0%" stop-color="#A5F3FC" />
+                        <stop offset="45%" stop-color="#06B6D4" />
+                        <stop offset="100%" stop-color="#0E7490" />
+                      </linearGradient>
+                      <linearGradient id="rktExhaustFlameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FFFFFF" />
+                        <stop offset="25%" stop-color="#FEF08A" />
+                        <stop offset="60%" stop-color="#FA5538" />
+                        <stop offset="100%" stop-color="#EC4899" stop-opacity="0" />
+                      </linearGradient>
+                      <filter id="rktShadow" x="-20%" y="-10%" width="140%" height="130%">
+                        <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#101C35" flood-opacity="0.22" />
+                      </filter>
+                    </defs>
+
+                    <!-- Thruster Engine Plasma Plume (Animated in CSS) -->
+                    <g class="rocket-plasma-plume">
+                      <ellipse cx="34" cy="73" rx="7" ry="11" fill="url(#rktExhaustFlameGrad)" />
+                      <ellipse cx="34" cy="70" rx="3.5" ry="6" fill="#FFFFFF" opacity="0.9" />
+                    </g>
+
+                    <!-- Main Rocket Hull with 3D Drop Shadow -->
+                    <g filter="url(#rktShadow)">
+                      <!-- Left Wing Fin -->
+                      <path d="M 22,46 L 6,61 C 5,63 8,66 12,65 L 22,58 Z" fill="url(#rktFinGradL)" />
+                      <path d="M 22,46 L 8,60 L 13,64 Z" fill="rgba(255, 255, 255, 0.3)" />
+
+                      <!-- Right Wing Fin -->
+                      <path d="M 46,46 L 62,61 C 63,63 60,66 56,65 L 46,58 Z" fill="url(#rktFinGradR)" />
+                      <path d="M 46,46 L 60,60 L 55,64 Z" fill="rgba(0, 0, 0, 0.15)" />
+
+                      <!-- Center Engine Nozzle -->
+                      <path d="M 27,60 L 41,60 L 39,66 L 29,66 Z" fill="#475569" />
+                      <ellipse cx="34" cy="66" rx="5" ry="1.5" fill="#1E293B" />
+
+                      <!-- Fuselage Body (Smooth Cylindrical Bullet) -->
+                      <path d="M 22,25 C 22,25 22,54 22,58 C 22,60 46,60 46,58 C 46,54 46,25 46,25 Z" fill="url(#rktFuselageGrad)" />
+
+                      <!-- Specular Edge Highlight on Fuselage -->
+                      <path d="M 24,25 L 24,58" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1.5" stroke-linecap="round" />
+
+                      <!-- Violet Graphic Racing Stripe -->
+                      <path d="M 22,49 L 46,49 L 46,53 L 22,53 Z" fill="#8B5CF6" />
+                      <path d="M 22,50 L 46,50" stroke="rgba(255, 255, 255, 0.4)" stroke-width="0.8" />
+
+                      <!-- 3D Aerodynamic Nose Cone -->
+                      <path d="M 22,25 C 22,17 30,5 34,4 C 38,5 46,17 46,25 Z" fill="url(#rktNoseGrad)" />
+                      <path d="M 25,24 C 25,18 31,8 34,5 C 34,5 33,18 33,24 Z" fill="rgba(255, 255, 255, 0.4)" />
+
+                      <!-- Circular Glass Porthole Window -->
+                      <circle cx="34" cy="35" r="7" fill="#E2E8F0" />
+                      <circle cx="34" cy="35" r="6" fill="#0F172A" />
+                      <circle cx="34" cy="35" r="5.2" fill="url(#rktPortholeGrad)" />
+                      <ellipse cx="32.5" cy="33" rx="2" ry="1.2" fill="#FFFFFF" opacity="0.9" />
+                      <circle cx="35.5" cy="36.5" r="0.8" fill="#FFFFFF" opacity="0.6" />
+                    </g>
+                  </svg>
                 </div>
               </div>
             </div>
@@ -2902,6 +2938,9 @@
             <p class="panel-description" id="lj-card-description">
               Started my frontend journey.
             </p>
+
+            <!-- Authentic Milestone Skills / Focus Tags -->
+            <div class="panel-skills-row" id="lj-card-skills-row"></div>
 
             <div class="panel-bottom-accent-strip" id="lj-card-accent-strip"></div>
           </div>
