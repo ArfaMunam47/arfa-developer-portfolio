@@ -206,7 +206,7 @@
               <span>BUILDING • LEARNING • EXPLORING</span>
             </div>
 
-            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (No busy or dotted decorations) -->
+            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (Layered with 3D Orbital Rings & Particles) -->
             <div class="hero-stage-backdrop-art" id="hero-stage-backdrop-art" aria-hidden="true">
               <div class="hero-light-ambient"></div>
               <div class="hero-light-coral"></div>
@@ -214,6 +214,54 @@
               <div class="hero-light-pink"></div>
               <div class="hero-light-violet"></div>
               <div class="hero-light-bloom"></div>
+
+              <!-- 2-3 Thin Elliptical 3D Orbital Rings with Continuous Orbiting Spheres (Behind Portrait) -->
+              <div class="hero-3d-orbital-system" id="hero-orbital-system">
+                <div class="hero-orbit-ring ring-primary">
+                  <!-- Orbiting 3D Sphere (Cyan) -->
+                  <div class="orbiting-sphere sphere-cyan-orbit" title="Orbiting Cyan Sphere">
+                    <div class="sphere-specular"></div>
+                  </div>
+                  <!-- Orbiting 3D Sphere (Coral) -->
+                  <div class="orbiting-sphere sphere-coral-orbit" title="Orbiting Coral Sphere">
+                    <div class="sphere-specular"></div>
+                  </div>
+                </div>
+                <div class="hero-orbit-ring ring-secondary">
+                  <!-- Orbiting 3D Sphere (Violet) -->
+                  <div class="orbiting-sphere sphere-violet-orbit" title="Orbiting Violet Sphere">
+                    <div class="sphere-specular"></div>
+                  </div>
+                  <!-- Orbiting Micro Sphere (Amber) -->
+                  <div class="orbiting-sphere sphere-amber-orbit" title="Orbiting Amber Micro-Sphere">
+                    <div class="sphere-specular"></div>
+                  </div>
+                </div>
+                <div class="hero-orbit-ring ring-tertiary"></div>
+              </div>
+
+              <!-- Small 3D Floating Particles (Calm idle, responsive hover) -->
+              <div class="hero-3d-particles-field" id="hero-particles-field">
+                <!-- Tiny Glossy Cyan 3D Sphere -->
+                <div class="hero-particle particle-sphere sphere-cyan" data-depth="1.4">
+                  <div class="sphere-specular"></div>
+                </div>
+                <!-- Tiny Translucent Violet 3D Sphere -->
+                <div class="hero-particle particle-sphere sphere-violet" data-depth="0.9">
+                  <div class="sphere-specular"></div>
+                </div>
+                <!-- Tiny Illuminated Coral 3D Sphere -->
+                <div class="hero-particle particle-sphere sphere-coral" data-depth="1.2">
+                  <div class="sphere-specular"></div>
+                </div>
+                <!-- Small Glowing Dot (Peach) -->
+                <div class="hero-particle particle-glow-dot dot-peach" data-depth="0.7"></div>
+                <!-- Small Glowing Dot (Cyan) -->
+                <div class="hero-particle particle-glow-dot dot-cyan" data-depth="1.1"></div>
+                <!-- Tiny Sparkles -->
+                <span class="hero-particle particle-spark spark-top" data-depth="1.5">✦</span>
+                <span class="hero-particle particle-spark spark-bottom" data-depth="0.8">✦</span>
+              </div>
             </div>
 
             <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
@@ -688,32 +736,100 @@
         <!-- Two-Sided Composition Grid: Left Character & 3D Circle | Right Editorial Title -->
         <div class="motion-hero-grid">
           
-          <!-- LEFT SIDE: 3D Portrait Physically Emerging from Rectangular Frame -->
-          <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="3D Portrait of Arfa Munam emerging from dimensional rectangular frame">
+          <!-- LEFT SIDE: 3D Portrait Physically Emerging from Dimensional Circular Frame -->
+          <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="3D Portrait of Arfa Munam emerging from dimensional circular frame">
             
-            <!-- BACK LAYER: Soft Atmospheric Diffused Glow (Coral, Pink, Violet, Cyan) -->
+            <!-- BACK LAYER: Soft Atmospheric Diffused Glow (Coral -> Pink -> Violet -> Cyan) -->
             <div class="character-backdrop-glow motion-portrait-ambient-glow" aria-hidden="true"></div>
 
-            <!-- SECOND LAYER: Dimensional 3D Rectangular Portal Frame Behind the Subject -->
-            <div class="dimensional-rect-frame" id="dimensional-rect-frame" aria-hidden="true">
-              <!-- Outer Dimensional Bevel with Specular Highlights -->
-              <div class="rect-outer-bevel"></div>
-              
-              <!-- Translucent Glass Backplane with Portfolio Gradients -->
-              <div class="rect-glass-backplane">
-                <div class="rect-inner-sheen"></div>
-              </div>
+            <!-- SECOND LAYER: Dimensional 3D Circular Portal Frame (Hollow 3D Torus) -->
+            <div class="dimensional-circular-frame" id="dimensional-circular-frame" aria-hidden="true">
+              <svg class="portal-torus-svg" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Base Torus Gradient: Coral -> Pink -> Magenta -> Violet -> Cyan -->
+                  <linearGradient id="wimTorusGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+                    <stop offset="0%" stop-color="#FF7A59" />
+                    <stop offset="26%" stop-color="#FA5538" />
+                    <stop offset="48%" stop-color="#F43F5E" />
+                    <stop offset="68%" stop-color="#D946EF" />
+                    <stop offset="86%" stop-color="#8B5CF6" />
+                    <stop offset="100%" stop-color="#06B6D4" />
+                  </linearGradient>
 
-              <!-- Refined Inner Beveled Edge -->
-              <div class="rect-inner-rim"></div>
+                  <!-- Outer Bevel Light Arc -->
+                  <linearGradient id="wimOuterBevel" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.4" />
+                    <stop offset="70%" stop-color="#FA5538" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.45" />
+                  </linearGradient>
+
+                  <!-- Specular Crown Ridge Highlight -->
+                  <linearGradient id="wimCrownHighlight" x1="10%" y1="10%" x2="70%" y2="70%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.5" />
+                    <stop offset="65%" stop-color="#FFFFFF" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                  </linearGradient>
+
+                  <!-- Inner Cylindrical Wall Occlusion & Ambient Depth -->
+                  <linearGradient id="wimInnerDepth" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#101C35" stop-opacity="0.55" />
+                    <stop offset="35%" stop-color="#101C35" stop-opacity="0.25" />
+                    <stop offset="70%" stop-color="#FA5538" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#FED7AA" stop-opacity="0.6" />
+                  </linearGradient>
+
+                  <!-- Soft Drop Shadow Filter for Vector Extrusion -->
+                  <filter id="wimTorusShadow" x="-20%" y="-15%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#101C35" flood-opacity="0.18" />
+                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#FA5538" flood-opacity="0.14" />
+                  </filter>
+                </defs>
+
+                <!-- 1. Ambient Occlusion Base Under Ring -->
+                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
+                      fill="#101C35" opacity="0.12" transform="translate(0, 8)" filter="url(#wimTorusShadow)" fill-rule="evenodd" />
+
+                <!-- 2. Main 3D Hollow Torus Body (Coral -> Pink -> Magenta -> Violet -> Cyan) -->
+                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
+                      fill="url(#wimTorusGrad)" fill-rule="evenodd" />
+
+                <!-- 3. Outer Dimensional Bevel Rim (Crisp Specular Edge) -->
+                <circle cx="170" cy="170" r="155.2" stroke="url(#wimOuterBevel)" stroke-width="2.2" fill="none" />
+
+                <!-- 4. Rounded Torus Crown Ridge Highlight (Glinting Apex) -->
+                <circle cx="169" cy="168" r="137" stroke="url(#wimCrownHighlight)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85" />
+
+                <!-- 5. Inner Wall Cylindrical Recess (Shadow at Top, Warm Bounce at Bottom) -->
+                <circle cx="170" cy="170" r="118.8" stroke="url(#wimInnerDepth)" stroke-width="3.5" fill="none" />
+
+                <!-- 6. Inner Bevel Highlight (Defines the Inner Opening Edge) -->
+                <circle cx="170" cy="170" r="117.2" stroke="rgba(255, 255, 255, 0.65)" stroke-width="1.4" fill="none" />
+              </svg>
+
+              <!-- Supporting 3D Micro-Floating Spheres Around Frame (Section 14) -->
+              <div class="portal-floating-elements" aria-hidden="true">
+                <div class="portal-micro-sphere sphere-cyan-gloss" data-depth="1.3">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <div class="portal-micro-sphere sphere-violet-glass" data-depth="0.9">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <div class="portal-micro-sphere sphere-coral-rim" data-depth="1.1">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <span class="portal-micro-spark spark-top" data-depth="1.4">✦</span>
+                <span class="portal-micro-spark spark-bottom" data-depth="0.8">·</span>
+              </div>
             </div>
 
-            <!-- FRONT LAYER: 3D Portrait Subject Physically Emerging In Front of Frame -->
+            <!-- FRONT LAYER: 3D Portrait Subject Emerging Out of the Circular Frame -->
             <div class="motion-character-entity" id="motion-character-entity">
               <!-- Soft Realistic Depth Shadow Behind Subject Falling on Frame -->
               <div class="character-contact-shadow" aria-hidden="true"></div>
 
-              <!-- Clean Cutout Subject (Head, hair, and upper body breaking beyond frame boundaries) -->
+              <!-- Clean Cutout Subject (Head, hair, and upper shoulders break out above circular frame) -->
               <div class="character-breakout-wrap">
                 <img 
                   src="menew.png" 
@@ -2550,25 +2666,79 @@
       <!-- UPPER STAGE: Left 3D Orbital Portrait + Right Editorial Content & Floating Objects -->
       <div class="lj-upper-stage">
         
-        <!-- LEFT: Dimensional 3D Rounded-Square Frame with Emerging Portrait -->
+        <!-- LEFT: Dimensional 3D Circular Frame with Emerging Portrait -->
         <div class="lj-portrait-column reveal">
-          <div class="lj-portrait-3d-stage" id="lj-portrait-stage" tabindex="0" role="region" aria-label="Interactive 3D Portrait of Arfa Munam emerging from dimensional frame">
+          <div class="lj-portrait-3d-stage" id="lj-portrait-stage" tabindex="0" role="region" aria-label="Interactive 3D Portrait of Arfa Munam emerging from dimensional circular frame">
             
-            <!-- Atmospheric Studio Lighting (Diffused warm coral & cyan/violet ambient backlighting) -->
+            <!-- LAYER 1 & 2: Atmospheric Studio Lighting (Diffused warm coral & cyan/violet ambient backlighting) -->
             <div class="lj-frame-ambient-glow" aria-hidden="true"></div>
 
-            <!-- LAYER 2: Refined Rounded-Square 3D Dimensional Frame Behind the Subject -->
-            <div class="lj-rect-frame" id="lj-rect-frame" aria-hidden="true">
-              <!-- Outer Dimensional Bevel with Glass Specular Highlights -->
-              <div class="lj-rect-glass-bevel"></div>
-              
-              <!-- Translucent Glass Backplane with Soft Portfolio Gradients -->
-              <div class="lj-rect-glass-backplane">
-                <div class="lj-rect-inner-sheen"></div>
-              </div>
+            <!-- LAYER 3, 4, 5: Dimensional 3D Circular Portal Frame (Hollow 3D Torus) -->
+            <div class="lj-circular-frame" id="lj-circular-frame" aria-hidden="true">
+              <svg class="portal-torus-svg" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ljTorusGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+                    <stop offset="0%" stop-color="#FF7A59" />
+                    <stop offset="26%" stop-color="#FA5538" />
+                    <stop offset="48%" stop-color="#F43F5E" />
+                    <stop offset="68%" stop-color="#D946EF" />
+                    <stop offset="86%" stop-color="#8B5CF6" />
+                    <stop offset="100%" stop-color="#06B6D4" />
+                  </linearGradient>
 
-              <!-- Inner Floating Beveled Ring -->
-              <div class="lj-rect-inner-rim"></div>
+                  <linearGradient id="ljOuterBevel" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.4" />
+                    <stop offset="70%" stop-color="#FA5538" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.45" />
+                  </linearGradient>
+
+                  <linearGradient id="ljCrownHighlight" x1="10%" y1="10%" x2="70%" y2="70%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.5" />
+                    <stop offset="65%" stop-color="#FFFFFF" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                  </linearGradient>
+
+                  <linearGradient id="ljInnerDepth" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#101C35" stop-opacity="0.55" />
+                    <stop offset="35%" stop-color="#101C35" stop-opacity="0.25" />
+                    <stop offset="70%" stop-color="#FA5538" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#FED7AA" stop-opacity="0.6" />
+                  </linearGradient>
+
+                  <filter id="ljTorusShadow" x="-20%" y="-15%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#101C35" flood-opacity="0.18" />
+                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#FA5538" flood-opacity="0.14" />
+                  </filter>
+                </defs>
+
+                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
+                      fill="#101C35" opacity="0.12" transform="translate(0, 8)" filter="url(#ljTorusShadow)" fill-rule="evenodd" />
+
+                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
+                      fill="url(#ljTorusGrad)" fill-rule="evenodd" />
+
+                <circle cx="170" cy="170" r="155.2" stroke="url(#ljOuterBevel)" stroke-width="2.2" fill="none" />
+                <circle cx="169" cy="168" r="137" stroke="url(#ljCrownHighlight)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85" />
+                <circle cx="170" cy="170" r="118.8" stroke="url(#ljInnerDepth)" stroke-width="3.5" fill="none" />
+                <circle cx="170" cy="170" r="117.2" stroke="rgba(255, 255, 255, 0.65)" stroke-width="1.4" fill="none" />
+              </svg>
+
+              <!-- Supporting 3D Micro-Floating Spheres -->
+              <div class="portal-floating-elements" aria-hidden="true">
+                <div class="portal-micro-sphere sphere-cyan-gloss" data-depth="1.3">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <div class="portal-micro-sphere sphere-violet-glass" data-depth="0.9">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <div class="portal-micro-sphere sphere-coral-rim" data-depth="1.1">
+                  <div class="micro-sphere-specular"></div>
+                </div>
+                <span class="portal-micro-spark spark-top" data-depth="1.4">✦</span>
+                <span class="portal-micro-spark spark-bottom" data-depth="0.8">·</span>
+              </div>
             </div>
 
             <!-- LAYER 3: 3D Portrait Subject Physically Emerging In Front of Frame -->

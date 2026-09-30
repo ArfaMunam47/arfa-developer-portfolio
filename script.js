@@ -798,7 +798,7 @@ function setupWorkInMotionIntro() {
 
   const stage = document.getElementById('motion-character-stage');
   const character = document.getElementById('motion-character-entity');
-  const circle = document.getElementById('dimensional-rect-frame') || document.getElementById('dimensional-circle-frame');
+  const circle = document.getElementById('dimensional-circular-frame') || document.getElementById('dimensional-rect-frame') || document.getElementById('dimensional-circle-frame');
   const glow = stage ? stage.querySelector('.character-backdrop-glow') : null;
 
   if (!stage || !character || !circle) return;
@@ -826,6 +826,14 @@ function setupWorkInMotionIntro() {
 
     if (glow) {
       glow.style.transform = `translate(calc(-50% + ${(currTransX * 0.5).toFixed(2)}px), calc(-50% + ${(currTransY * 0.5).toFixed(2)}px)) scale(${isHovered ? 1.08 : 1})`;
+    }
+
+    const spheres = stage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
+    if (spheres.length) {
+      spheres.forEach((sp) => {
+        const depth = parseFloat(sp.getAttribute('data-depth')) || 1.0;
+        sp.style.transform = `translate3d(${(currTransX * 0.6 * depth).toFixed(2)}px, ${(currTransY * 0.6 * depth).toFixed(2)}px, ${(depth * 14).toFixed(1)}px)`;
+      });
     }
 
     // Continue loop if active or still decelerating
@@ -2425,6 +2433,8 @@ function setupHero3DPortraitParallax() {
   const pinkLight = visualZone ? visualZone.querySelector('.hero-light-pink') : null;
   const violetLight = visualZone ? (visualZone.querySelector('.hero-light-violet') || visualZone.querySelector('.hero-disc-purple')) : null;
   const bloomLight = visualZone ? (visualZone.querySelector('.hero-light-bloom') || visualZone.querySelector('.hero-backdrop-glow-aura')) : null;
+  const orbitalRings = visualZone ? Array.from(visualZone.querySelectorAll('.hero-orbit-ring')) : [];
+  const particles = visualZone ? Array.from(visualZone.querySelectorAll('.hero-particle')) : [];
 
   const cursorRing = document.getElementById('cursor-follower');
   const cursorDot = document.getElementById('cursor-dot');
@@ -2627,6 +2637,22 @@ function setupHero3DPortraitParallax() {
       ambientLight.style.transform = `translate(${(currentLightX * 0.5).toFixed(1)}px, ${(currentLightY * 0.5).toFixed(1)}px)`;
     }
 
+    // Subtle 3D parallax on orbital rings behind portrait
+    if (orbitalRings.length) {
+      orbitalRings.forEach((ring, idx) => {
+        const factor = 0.4 + idx * 0.2;
+        ring.style.transform = `translate(${(currentLightX * factor).toFixed(1)}px, ${(currentLightY * factor).toFixed(1)}px)`;
+      });
+    }
+
+    // Small 3D floating particles shifting gently with depth
+    if (particles.length) {
+      particles.forEach((p) => {
+        const depth = parseFloat(p.getAttribute('data-depth')) || 1.0;
+        p.style.transform = `translate(${(currentLightX * 0.7 * depth).toFixed(1)}px, ${(currentLightY * 0.7 * depth).toFixed(1)}px)`;
+      });
+    }
+
     if (kickerBadge) {
       kickerBadge.style.transform = `translate(${(-currentRotY * 0.25).toFixed(1)}px, ${(currentRotX * 0.25).toFixed(1)}px)`;
     }
@@ -2649,6 +2675,8 @@ function setupHero3DPortraitParallax() {
         if (bloomLight) bloomLight.style.transform = '';
         if (ambientLight) ambientLight.style.transform = '';
         if (kickerBadge) kickerBadge.style.transform = '';
+        orbitalRings.forEach((r) => { r.style.transform = ''; });
+        particles.forEach((p) => { p.style.transform = ''; });
       }
       rafId = null;
     }
@@ -3888,7 +3916,7 @@ function setupLearningJourneyStory() {
   if (!section) return;
 
   const portraitStage = document.getElementById('lj-portrait-stage');
-  const rectFrame = document.getElementById('lj-rect-frame');
+  const rectFrame = document.getElementById('lj-circular-frame') || document.getElementById('lj-rect-frame');
   const portraitCutout = document.getElementById('lj-portrait-cutout');
   const nodes = Array.from(document.querySelectorAll('.lj-node-item'));
   const detailCard = document.getElementById('lj-single-detail-card');
@@ -4074,7 +4102,7 @@ function setupLearningJourneyStory() {
     });
   });
 
-  // 3D Parallax Tilt on Rectangular Frame and Emerging Cutout on mouse move
+  // 3D Parallax Tilt on Circular Torus Frame and Emerging Cutout on mouse move
   if (portraitStage) {
     portraitStage.addEventListener('pointermove', (e) => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -4083,13 +4111,20 @@ function setupLearningJourneyStory() {
       const y = e.clientY - rect.top - rect.height / 2;
       const rotX = -(y / (rect.height / 2)) * 3.6;
       const rotY = (x / (rect.width / 2)) * 3.6;
+      const transX = (x / (rect.width / 2)) * 10;
+      const transY = (y / (rect.height / 2)) * 10;
       
       if (rectFrame) {
-        rectFrame.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(0px)`;
+        rectFrame.style.transform = `translateX(-50%) perspective(1000px) rotateX(${(rotX * 0.4).toFixed(2)}deg) rotateY(${(rotY * 0.4).toFixed(2)}deg) translate(${(transX * 0.35).toFixed(1)}px, ${(transY * 0.35).toFixed(1)}px)`;
       }
       if (portraitCutout) {
-        portraitCutout.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(16px)`;
+        portraitCutout.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translate3d(${transX.toFixed(1)}px, ${transY.toFixed(1)}px, 48px) scale(1.025)`;
       }
+      const ljSpheres = portraitStage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
+      ljSpheres.forEach((sp) => {
+        const depth = parseFloat(sp.getAttribute('data-depth')) || 1.0;
+        sp.style.transform = `translate3d(${(transX * 0.6 * depth).toFixed(1)}px, ${(transY * 0.6 * depth).toFixed(1)}px, ${(depth * 14).toFixed(1)}px)`;
+      });
     }, { passive: true });
 
     portraitStage.addEventListener('pointerleave', () => {
@@ -4099,6 +4134,10 @@ function setupLearningJourneyStory() {
       if (portraitCutout) {
         portraitCutout.style.transform = '';
       }
+      const ljSpheres = portraitStage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
+      ljSpheres.forEach((sp) => {
+        sp.style.transform = '';
+      });
     });
   }
 
