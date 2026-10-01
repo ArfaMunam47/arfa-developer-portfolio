@@ -811,28 +811,30 @@ function setupWorkInMotionIntro() {
   let rafId = null;
 
   function updatePhysics() {
-    currRotX += (targetRotX - currRotX) * 0.085;
-    currRotY += (targetRotY - currRotY) * 0.085;
-    currTransX += (targetTransX - currTransX) * 0.085;
-    currTransY += (targetTransY - currTransY) * 0.085;
+    currRotX += (targetRotX - currRotX) * 0.065;
+    currRotY += (targetRotY - currRotY) * 0.065;
+    currTransX += (targetTransX - currTransX) * 0.065;
+    currTransY += (targetTransY - currTransY) * 0.065;
 
-    const zDepth = isHovered ? 48 : 35;
-    const scaleFactor = isHovered ? 1.035 : 1;
+    const zDepth = isHovered ? 46 : 30;
+    const scaleFactor = isHovered ? 1.01 : 1.0;
 
-    character.style.transform = `translate3d(${currTransX.toFixed(2)}px, ${currTransY.toFixed(2)}px, ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
+    // Portrait cutout: 3x movement in front
+    character.style.transform = `translate3d(calc(-50% + ${currTransX.toFixed(2)}px), ${currTransY.toFixed(2)}px, ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
     
-    // Parallax on the circular frame behind her (moves less, creating physical depth)
-    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.35).toFixed(2)}px), calc(-50% + ${(currTransY * 0.35).toFixed(2)}px), 0px) rotateX(${(currRotX * 0.35).toFixed(2)}deg) rotateY(${(currRotY * 0.35).toFixed(2)}deg)`;
+    // Frame: 2x movement behind portrait
+    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.66).toFixed(2)}px), ${(currTransY * 0.66).toFixed(2)}px, 0px) rotateX(${(currRotX * 0.66).toFixed(2)}deg) rotateY(${(currRotY * 0.66).toFixed(2)}deg)`;
 
+    // Background glow: 1x movement
     if (glow) {
-      glow.style.transform = `translate(calc(-50% + ${(currTransX * 0.5).toFixed(2)}px), calc(-50% + ${(currTransY * 0.5).toFixed(2)}px)) scale(${isHovered ? 1.08 : 1})`;
+      glow.style.transform = `translate3d(${(currTransX * 0.33).toFixed(2)}px, ${(currTransY * 0.33).toFixed(2)}px, 0px) scale(${isHovered ? 1.04 : 1})`;
     }
 
     const spheres = stage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
     if (spheres.length) {
       spheres.forEach((sp) => {
         const depth = parseFloat(sp.getAttribute('data-depth')) || 1.0;
-        sp.style.transform = `translate3d(${(currTransX * 0.6 * depth).toFixed(2)}px, ${(currTransY * 0.6 * depth).toFixed(2)}px, ${(depth * 14).toFixed(1)}px)`;
+        sp.style.transform = `translate3d(${(currTransX * 0.5 * depth).toFixed(2)}px, ${(currTransY * 0.5 * depth).toFixed(2)}px, ${(depth * 10).toFixed(1)}px)`;
       });
     }
 
@@ -841,6 +843,12 @@ function setupWorkInMotionIntro() {
       rafId = requestAnimationFrame(updatePhysics);
     } else {
       rafId = null;
+      circle.style.transform = '';
+      character.style.transform = '';
+      if (glow) glow.style.transform = '';
+      if (spheres.length) {
+        spheres.forEach((sp) => { sp.style.transform = ''; });
+      }
     }
   }
 
@@ -860,11 +868,11 @@ function setupWorkInMotionIntro() {
     const normX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
     const normY = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
 
-    // Subtle physical tilt: max 5-6 degrees, gentle translation
-    targetRotX = -normY * 6;
-    targetRotY = normX * 6;
-    targetTransX = normX * 18;
-    targetTransY = normY * 18;
+    // Subtle physical tilt: max 2.5–3.2 degrees, gentle translation
+    targetRotX = -normY * 3.2;
+    targetRotY = normX * 3.2;
+    targetTransX = normX * 12;
+    targetTransY = normY * 12;
 
     startPhysicsLoop();
   });
@@ -3915,12 +3923,9 @@ function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const portraitStage = document.getElementById('lj-portrait-stage');
-  const rectFrame = document.getElementById('lj-circular-frame') || document.getElementById('lj-rect-frame');
-  const portraitCutout = document.getElementById('lj-portrait-cutout');
-  const nodes = Array.from(document.querySelectorAll('.lj-node-item'));
+  const timelineUniverse = document.getElementById('lj-timeline-universe') || section;
+  const nodes = Array.from(section.querySelectorAll('.lj-card-3d, .lj-node-item'));
   const detailCard = document.getElementById('lj-single-detail-card');
-  const cardIndexBadge = document.getElementById('lj-card-index-badge');
   const cardKicker = document.getElementById('lj-card-kicker');
   const cardTitle = document.getElementById('lj-card-title');
   const cardDesc = document.getElementById('lj-card-description');
@@ -3928,86 +3933,169 @@ function setupLearningJourneyStory() {
   const cardIcon = document.getElementById('lj-card-icon');
   const cardAccentStrip = document.getElementById('lj-card-accent-strip');
   const activeCounter = document.getElementById('lj-active-counter');
+  const artifactNum = document.getElementById('lj-artifact-num');
+  const artifactGlow = document.getElementById('lj-artifact-glow');
+  const cardStatus = document.getElementById('lj-card-status');
+  const statusDot = document.getElementById('lj-status-dot');
+  const cardQuote = document.getElementById('lj-card-quote');
+  const studioSpotlight = document.getElementById('lj-studio-spotlight');
+  const floatingObjects = Array.from(section.querySelectorAll('.lj-3d-floating-object'));
+  const stageArtifact = document.getElementById('lj-stage-artifact');
+  const ribbonCore = section.querySelector('.lj-ribbon-core');
 
-  // The 6 Authentic Milestones with rich, informative content & skills
+  // The 8 Authentic Milestones faithfully representing Arfa Munam's learning roadmap
   const milestones = [
     {
       num: "01",
+      stepNum: "01",
+      year: "2026",
+      shortTitle: "Started",
+      stageTitle: "2026 Started",
+      subtitle: "Web Engineering Primitives",
       kicker: "01 · THE GENESIS",
       title: "Stepping Into Web Engineering",
       desc: "Began my focused tech journey in 2026. Prioritized understanding fundamental web architecture, programming paradigms, and turning creative visual imagination into clean, semantic code.",
-      skills: ["Semantic HTML5", "Modern CSS", "Web Fundamentals", "Design Craft"],
+      skills: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5"],
+      status: "Foundations Mastered",
+      quote: "Mastering the primitives before abstractions. Semantic structure is the foundation of digital longevity.",
       color: "#FA5538",
-      accentGrad: "linear-gradient(90deg, #FA5538, #FF8A65)",
-      borderColor: "rgba(250, 85, 56, 0.42)",
-      glowColor: "rgba(250, 85, 56, 0.22)",
-      badgeBg: "rgba(254, 237, 222, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+      accentGrad: "linear-gradient(135deg, #FA5538, #FF8A65)",
+      borderColor: "rgba(250, 85, 56, 0.48)",
+      glowColor: "rgba(250, 85, 56, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
     },
     {
       num: "02",
-      kicker: "02 · CORE MASTERY",
+      stepNum: "02",
+      year: "Core",
+      shortTitle: "Foundations",
+      stageTitle: "Core Foundations",
+      subtitle: "JavaScript ES6+ Bedrock",
+      kicker: "02 · CORE FOUNDATIONS",
       title: "HTML, CSS & JavaScript Foundations",
       desc: "Built a resilient bedrock in modern JavaScript (ES6+), deep DOM manipulation, event-driven interfaces, and responsive layouts with Flexbox and CSS Grid without leaning prematurely on heavy libraries.",
-      skills: ["ES6+ JavaScript", "DOM Events", "CSS Grid & Flexbox", "Responsive UI"],
-      color: "#F97316",
-      accentGrad: "linear-gradient(90deg, #F97316, #FB923C)",
-      borderColor: "rgba(249, 115, 22, 0.42)",
-      glowColor: "rgba(249, 115, 22, 0.22)",
-      badgeBg: "rgba(255, 237, 213, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
+      skills: ["JavaScript (ES6+)", "DOM Events", "CSS Grid & Flexbox", "Responsive UI"],
+      status: "Core Competency",
+      quote: "Understanding the runtime and DOM mechanics turns code from simple syntax into high-performance craft.",
+      color: "#FB923C",
+      accentGrad: "linear-gradient(135deg, #F97316, #FB923C)",
+      borderColor: "rgba(249, 115, 22, 0.48)",
+      glowColor: "rgba(249, 115, 22, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
     },
     {
       num: "03",
-      kicker: "03 · MODERN TOOLING",
-      title: "React, Tailwind CSS & Motion Systems",
-      desc: "Advanced to component-driven architectures, declarative state handling in React, rapid styling with Tailwind CSS, and crafting fluid micro-interactions and tactile animations using GSAP and CSS transforms.",
-      skills: ["React.js", "Tailwind CSS", "GSAP Animations", "UI Engineering"],
-      color: "#EC4899",
-      accentGrad: "linear-gradient(90deg, #EC4899, #F472B6)",
-      borderColor: "rgba(236, 72, 153, 0.42)",
-      glowColor: "rgba(236, 72, 153, 0.22)",
-      badgeBg: "rgba(253, 242, 248, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
+      stepNum: "03",
+      year: "Frontend",
+      shortTitle: "Front End",
+      stageTitle: "Front End",
+      subtitle: "React & Component Architecture",
+      kicker: "03 · FRONT END DEVELOPMENT",
+      title: "React & Tailwind CSS Component Architecture",
+      desc: "Advanced into component-driven development, declarative state handling in React, rapid responsive styling with Tailwind CSS, and designing modular UI systems with comfortable, intuitive visual hierarchy.",
+      skills: ["React.js", "Tailwind CSS", "Component Systems", "State Architecture"],
+      status: "Active Production",
+      quote: "Component architecture and fluid interfaces bridge the divide between engineering utility and human delight.",
+      color: "#FB7185",
+      accentGrad: "linear-gradient(135deg, #F43F5E, #FB7185)",
+      borderColor: "rgba(251, 113, 133, 0.5)",
+      glowColor: "rgba(251, 113, 133, 0.38)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
     },
     {
       num: "04",
-      kicker: "04 · AI INTEGRATION",
-      title: "Exploring AI, Prompting & Automation",
-      desc: "Combined software engineering with cutting-edge artificial intelligence. Deepened mastery in prompt engineering, Gemini API integrations, workflow automation, and rapid vibe-coding architectures.",
-      skills: ["Prompt Engineering", "Gemini API", "AI Workflows", "Vibe Coding"],
-      color: "#8B5CF6",
-      accentGrad: "linear-gradient(90deg, #8B5CF6, #A78BFA)",
-      borderColor: "rgba(139, 92, 246, 0.42)",
-      glowColor: "rgba(139, 92, 246, 0.22)",
-      badgeBg: "rgba(245, 243, 255, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
+      stepNum: "04",
+      year: "Motion",
+      shortTitle: "Motion Systems",
+      stageTitle: "Motion & UI Craft",
+      subtitle: "Tactile Physics & Micro-Interactions",
+      kicker: "04 · MOTION & INTERACTIVE CRAFT",
+      title: "GSAP Animations, 3D Transforms & Fluid Polish",
+      desc: "Engineered rich visual experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and tactile micro-interactions that make web applications feel physical and alive.",
+      skills: ["GSAP Motion", "CSS 3D Transforms", "ScrollTrigger", "Micro-Interactions"],
+      status: "High Polish Craft",
+      quote: "Great software feels tangible. Motion should clarify spatial relationships rather than merely decorate.",
+      color: "#EC4899",
+      accentGrad: "linear-gradient(135deg, #EC4899, #F472B6)",
+      borderColor: "rgba(236, 72, 153, 0.48)",
+      glowColor: "rgba(236, 72, 153, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`
     },
     {
       num: "05",
-      kicker: "05 · CURRENT FOCUS",
-      title: "Backend Architecture & Smart Systems",
-      desc: "Currently expanding horizontally into server-side development with Node.js and Express, API design, data persistence, and building end-to-end intelligent applications with robust data foundations.",
-      skills: ["Node.js / Express", "API Architecture", "Database Systems", "Backend Logic"],
-      color: "#06B6D4",
-      accentGrad: "linear-gradient(90deg, #06B6D4, #38BDF8)",
-      borderColor: "rgba(6, 182, 212, 0.42)",
-      glowColor: "rgba(6, 182, 212, 0.22)",
-      badgeBg: "rgba(236, 254, 255, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
+      stepNum: "05",
+      year: "AI",
+      shortTitle: "Exploring AI",
+      stageTitle: "Exploring AI",
+      subtitle: "Prompt Engineering & Reasoning Loops",
+      kicker: "05 · FRONTIER AI & PROMPTING",
+      title: "Exploring AI, Prompt Engineering & Vibe Coding",
+      desc: "Combined software engineering with cutting-edge artificial intelligence. Deepened mastery in prompt engineering, Gemini API integrations, workflow automation, and rapid vibe-coding architectures.",
+      skills: ["Prompt Engineering", "Gemini API", "Claude Reasoning", "Vibe Coding"],
+      status: "AI Integrated",
+      quote: "AI is the ultimate amplifier. Pairing intelligent models with clean engineering produces exceptional velocity.",
+      color: "#A78BFA",
+      accentGrad: "linear-gradient(135deg, #8B5CF6, #A78BFA)",
+      borderColor: "rgba(167, 139, 250, 0.48)",
+      glowColor: "rgba(167, 139, 250, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
     },
     {
       num: "06",
-      kicker: "06 · FUTURE GOALS",
-      title: "Full-Stack Products & High-Impact Code",
-      desc: "Aspiring to engineer full-stack, AI-native products that solve genuine problems with tactile craft and speed. Dedicated to continuous learning, building impactful tools, and shipping exceptional work.",
+      stepNum: "06",
+      year: "Backend",
+      shortTitle: "Backend Architecture",
+      stageTitle: "Backend Architecture",
+      subtitle: "Server Runtimes & REST APIs",
+      kicker: "06 · BACKEND ARCHITECTURE",
+      title: "Node.js, Express & RESTful API Systems",
+      desc: "Currently expanding horizontally into server-side development with Node.js and Express, API design, middleware pipelines, authentication patterns, and building robust server infrastructure.",
+      skills: ["Node.js", "Express.js", "RESTful APIs", "Server Middleware"],
+      status: "Active Focus",
+      quote: "A frontend engineer becomes truly formidable when they master server-side logic and deterministic data flow.",
+      color: "#F59E0B",
+      accentGrad: "linear-gradient(135deg, #EA580C, #F59E0B)",
+      borderColor: "rgba(245, 158, 11, 0.48)",
+      glowColor: "rgba(245, 158, 11, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
+    },
+    {
+      num: "07",
+      stepNum: "07",
+      year: "Data",
+      shortTitle: "Data & Persistence",
+      stageTitle: "Data & Cloud Systems",
+      subtitle: "PostgreSQL & Cloud Infrastructure",
+      kicker: "07 · DATA PERSISTENCE & CLOUD",
+      title: "Relational Modeling, PostgreSQL & Cloud Storage",
+      desc: "Designing persistent data models, relational database queries in PostgreSQL, cloud authentication and real-time event subscriptions with Supabase, and resilient data sync contracts.",
+      skills: ["PostgreSQL", "Supabase", "Data Modeling", "Cloud Storage"],
+      status: "Scaling Frontier",
+      quote: "Clean schemas create clean codebases. Resilient data architecture guarantees long-term application integrity.",
+      color: "#38BDF8",
+      accentGrad: "linear-gradient(135deg, #0284C7, #38BDF8)",
+      borderColor: "rgba(56, 189, 248, 0.48)",
+      glowColor: "rgba(56, 189, 248, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M12 12v9"></path><path d="m8 17 4 4 4-4"></path></svg>`
+    },
+    {
+      num: "08",
+      stepNum: "08",
+      year: "Future",
+      shortTitle: "Future Goals",
+      stageTitle: "Full-Stack Horizon",
+      subtitle: "High-Impact AI-Native Products",
+      kicker: "08 · FUTURE GOALS",
+      title: "Full-Stack Products & High-Impact Software",
+      desc: "Aspiring to architect end-to-end full-stack products that combine tactile frontend craft with frontier AI models. Dedicated to continuous learning, building open-source tooling, and shipping exceptional work.",
       skills: ["Full-Stack Solutions", "AI-Native Products", "High Polish", "Continuous Growth"],
-      color: "#10B981",
-      accentGrad: "linear-gradient(90deg, #10B981, #34D399)",
-      borderColor: "rgba(16, 185, 129, 0.42)",
-      glowColor: "rgba(16, 185, 129, 0.22)",
-      badgeBg: "rgba(236, 253, 245, 0.85)",
-      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
+      status: "Horizon Objective",
+      quote: "Building software that leaves an imprint. High polish, genuine utility, and relentless dedication to user craft.",
+      color: "#34D399",
+      accentGrad: "linear-gradient(135deg, #10B981, #34D399)",
+      borderColor: "rgba(52, 211, 153, 0.48)",
+      glowColor: "rgba(52, 211, 153, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
     }
   ];
 
@@ -4018,70 +4106,99 @@ function setupLearningJourneyStory() {
     currentMilestoneIndex = index;
     const m = milestones[index];
 
-    // 1. Update node classes & ARIA attributes on all 6 buttons
+    // 1. Update node classes & ARIA attributes on all 8 buttons
     nodes.forEach((node, i) => {
       const isActive = i === index;
       node.classList.toggle('is-active', isActive);
       node.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      
-      const disc = node.querySelector('.node-3d-disc');
-      const halo = node.querySelector('.disc-active-halo');
-      if (halo) {
-        halo.style.borderColor = isActive ? m.color : '';
+      if (isActive) {
+        node.style.setProperty('--card-active-glow', m.glowColor);
       }
     });
 
-    // 2. Update counter
+    // 2. Update counter display
     if (activeCounter) {
-      activeCounter.innerHTML = `${m.num} <span class="counter-sep">/</span> 06`;
+      activeCounter.innerHTML = `<span class="counter-num" id="lj-counter-current">${m.num}</span> <span class="counter-sep">/</span> <span class="counter-total">08</span>`;
     }
 
     // 3. Update single compact active detail card with smooth glass transition
     if (detailCard) {
       if (animate) {
         detailCard.style.opacity = '0';
-        detailCard.style.transform = 'translateY(6px) scale(0.98)';
+        detailCard.style.transform = 'translateY(8px) scale(0.985)';
       }
 
       setTimeout(() => {
-        if (cardIndexBadge) {
-          cardIndexBadge.textContent = m.num;
-          cardIndexBadge.style.color = m.color;
-          cardIndexBadge.style.background = m.badgeBg;
-          cardIndexBadge.style.borderColor = m.borderColor;
-        }
         if (cardKicker) cardKicker.textContent = m.kicker;
         if (cardTitle) cardTitle.textContent = m.title;
         if (cardDesc) cardDesc.textContent = m.desc;
-        if (cardSkillsRow && Array.isArray(m.skills)) {
-          cardSkillsRow.innerHTML = m.skills.map(s => 
-            `<span class="panel-skill-pill" style="border-color:${m.borderColor}; color:#101C35; background:${m.badgeBg};">${s}</span>`
-          ).join('');
+        if (cardStatus) cardStatus.textContent = m.status;
+        if (statusDot) {
+          statusDot.style.background = m.color;
+          statusDot.style.boxShadow = `0 0 10px ${m.color}`;
+        }
+        if (cardQuote) cardQuote.textContent = m.quote;
+        if (artifactNum) artifactNum.textContent = `STAGE ${m.num}`;
+        if (artifactGlow) {
+          artifactGlow.style.background = `radial-gradient(circle, ${m.glowColor} 0%, transparent 70%)`;
         }
         if (cardIcon) {
           cardIcon.innerHTML = m.icon;
           cardIcon.style.color = m.color;
-          cardIcon.style.background = m.badgeBg;
         }
         if (cardAccentStrip) {
           cardAccentStrip.style.background = m.accentGrad;
         }
+        if (cardSkillsRow && Array.isArray(m.skills)) {
+          cardSkillsRow.innerHTML = m.skills.map(s => 
+            `<span class="panel-skill-pill-3d" style="--chip-accent:${m.color};">
+              <span class="chip-star">✦</span>
+              <span class="chip-label">${s}</span>
+            </span>`
+          ).join('');
+        }
+
         detailCard.style.borderColor = m.borderColor;
-        detailCard.style.boxShadow = `0 22px 48px -12px rgba(16, 28, 53, 0.12), 0 0 28px -4px ${m.glowColor}, inset 0 1.5px 2px rgba(255, 255, 255, 0.98)`;
+        detailCard.style.boxShadow = `0 35px 80px -15px rgba(0, 0, 0, 0.9), 0 0 45px -10px ${m.glowColor}, inset 0 1px 1px rgba(255, 255, 255, 0.18)`;
 
         if (animate) {
           detailCard.style.opacity = '1';
           detailCard.style.transform = 'translateY(0) scale(1)';
         }
-      }, animate ? 130 : 0);
+      }, animate ? 120 : 0);
     }
   }
 
-  // Bind clicks and keyboard on milestone nodes (Guaranteed all 6 nodes work reliably)
+  // Bind clicks, hover, and keyboard on 8 milestone cards with 3D tactile tilt
   nodes.forEach((node, idx) => {
     node.addEventListener('click', (e) => {
       e.preventDefault();
       setActiveMilestone(idx, true);
+    });
+
+    node.addEventListener('mouseenter', () => {
+      if (ribbonCore) {
+        ribbonCore.style.filter = `drop-shadow(0 0 20px ${milestones[idx].glowColor})`;
+      }
+    });
+
+    node.addEventListener('mouseleave', () => {
+      if (ribbonCore) {
+        ribbonCore.style.filter = '';
+      }
+      node.style.transform = '';
+    });
+
+    // Subtle 3D perspective tilt on cursor movement over card
+    node.addEventListener('mousemove', (e) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const rect = node.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const rotX = -y * 8;
+      const rotY = x * 8;
+      const elev = node.classList.contains('is-active') ? -10 : -7;
+      node.style.transform = `perspective(600px) translateY(${elev}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.02)`;
     });
 
     node.addEventListener('keydown', (e) => {
@@ -4102,44 +4219,50 @@ function setupLearningJourneyStory() {
     });
   });
 
-  // 3D Parallax Tilt on Circular Torus Frame and Emerging Cutout on mouse move
-  if (portraitStage) {
-    portraitStage.addEventListener('pointermove', (e) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const rect = portraitStage.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      const rotX = -(y / (rect.height / 2)) * 3.6;
-      const rotY = (x / (rect.width / 2)) * 3.6;
-      const transX = (x / (rect.width / 2)) * 10;
-      const transY = (y / (rect.height / 2)) * 10;
-      
-      if (rectFrame) {
-        rectFrame.style.transform = `translateX(-50%) perspective(1000px) rotateX(${(rotX * 0.4).toFixed(2)}deg) rotateY(${(rotY * 0.4).toFixed(2)}deg) translate(${(transX * 0.35).toFixed(1)}px, ${(transY * 0.35).toFixed(1)}px)`;
-      }
-      if (portraitCutout) {
-        portraitCutout.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translate3d(${transX.toFixed(1)}px, ${transY.toFixed(1)}px, 48px) scale(1.025)`;
-      }
-      const ljSpheres = portraitStage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
-      ljSpheres.forEach((sp) => {
-        const depth = parseFloat(sp.getAttribute('data-depth')) || 1.0;
-        sp.style.transform = `translate3d(${(transX * 0.6 * depth).toFixed(1)}px, ${(transY * 0.6 * depth).toFixed(1)}px, ${(depth * 14).toFixed(1)}px)`;
-      });
-    }, { passive: true });
+  // Tasteful Studio Depth & 3D Object Parallax Tracking
+  section.addEventListener('pointermove', (e) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = section.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width - 0.5;
+    const relY = (e.clientY - rect.top) / rect.height - 0.5;
 
-    portraitStage.addEventListener('pointerleave', () => {
-      if (rectFrame) {
-        rectFrame.style.transform = '';
-      }
-      if (portraitCutout) {
-        portraitCutout.style.transform = '';
-      }
-      const ljSpheres = portraitStage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
-      ljSpheres.forEach((sp) => {
-        sp.style.transform = '';
-      });
+    // 1. Move 3D floating background objects according to depth
+    floatingObjects.forEach((obj) => {
+      const depth = parseFloat(obj.getAttribute('data-depth')) || 0.8;
+      const moveX = relX * 26 * depth;
+      const moveY = relY * 22 * depth;
+      obj.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0px)`;
     });
-  }
+
+    // 2. Subtle perspective tilt on stage artifact
+    if (stageArtifact) {
+      const artBody = stageArtifact.querySelector('.artifact-floating-body');
+      if (artBody) {
+        const tiltX = -relY * 14;
+        const tiltY = relX * 14;
+        artBody.style.transform = `perspective(500px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+      }
+    }
+
+    // 3. Subtle studio spotlight follow
+    if (studioSpotlight) {
+      const posX = ((e.clientX - rect.left) / rect.width) * 100;
+      const posY = ((e.clientY - rect.top) / rect.height) * 100;
+      studioSpotlight.style.background = `radial-gradient(circle at ${posX.toFixed(1)}% ${posY.toFixed(1)}%, rgba(251, 113, 133, 0.08) 0%, transparent 60%)`;
+    }
+  }, { passive: true });
+
+  section.addEventListener('pointerleave', () => {
+    floatingObjects.forEach((obj) => {
+      obj.style.transform = '';
+    });
+    if (stageArtifact) {
+      const artBody = stageArtifact.querySelector('.artifact-floating-body');
+      if (artBody) {
+        artBody.style.transform = '';
+      }
+    }
+  });
 
   // Initialize milestone 01 on load
   setActiveMilestone(0, false);

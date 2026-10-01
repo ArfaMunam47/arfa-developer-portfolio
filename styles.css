@@ -6212,30 +6212,47 @@ nav.floating-nav.scrolled {
 
 
 /* ==========================================================================
-   MY LEARNING JOURNEY — 3D ART-DIRECTED INTERACTIVE LEARNING SYSTEM
+   MY LEARNING JOURNEY — PREMIUM DARK CINEMATIC STUDIO EXPERIENCE
    "Learning. Growing. Becoming."
-   Matches Reference: 3D Orbital Portrait Frame • Floating 3D Code Book & Rocket
-   Curved 3D Glowing Roadmap with 6 Interactive Milestones & Single Detail Card
-   Bottom "What Drives Me" 4-Value Strip
+   Deep Charcoal & Near-Black Studio Atmosphere
+   Controlled Muted Rose, Warm Coral & Subtle Peach Lighting
+   3D Illuminated Flowing Ribbon Path with 6 Physical Milestone Objects
+   Floating Glass Feature Panel with 3 Balanced Visual Zones
+   Refined "What Drives Me" Value Pillars Strip
    ========================================================================== */
+
+:root {
+  --lj-studio-black: #090B10;
+  --lj-studio-deep: #0D1017;
+  --lj-studio-surface: #121622;
+  --lj-studio-glass: rgba(18, 22, 34, 0.82);
+  --lj-studio-border: rgba(255, 255, 255, 0.08);
+  --lj-rose-glow: #FB7185;
+  --lj-rose-light: #FDA4AF;
+  --lj-coral-glow: #FA5538;
+  --lj-peach-glow: #FED7AA;
+  --lj-lavender-glow: #A78BFA;
+  --lj-cyan-glow: #38BDF8;
+  --lj-emerald-glow: #34D399;
+}
 
 #experience.futuristic-journey-section,
 .futuristic-journey-section {
   position: relative;
-  background: #FFFDF8;
+  background-color: #090B10;
   background-image: 
-    radial-gradient(at 12% 18%, rgba(254, 237, 222, 0.55) 0px, transparent 48%),
-    radial-gradient(at 88% 16%, rgba(224, 242, 254, 0.45) 0px, transparent 45%),
-    radial-gradient(at 50% 50%, rgba(255, 241, 242, 0.38) 0px, transparent 55%),
-    radial-gradient(at 82% 82%, rgba(243, 232, 255, 0.45) 0px, transparent 48%),
-    radial-gradient(at 18% 85%, rgba(254, 215, 170, 0.35) 0px, transparent 42%);
+    radial-gradient(ellipse at 50% -10%, rgba(251, 113, 133, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 35%, rgba(250, 85, 56, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 60%, rgba(167, 139, 250, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(254, 215, 170, 0.05) 0%, transparent 60%);
+  color: #F8FAFC;
   overflow: hidden;
-  border-top: 1px solid rgba(16, 28, 53, 0.06);
-  border-bottom: 1px solid rgba(16, 28, 53, 0.06);
-  padding: clamp(4.5rem, 7vw, 6.5rem) 0 clamp(3.5rem, 5.5vw, 5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: clamp(5.0rem, 8vw, 7.5rem) 0 clamp(4.0rem, 6vw, 6.0rem);
 }
 
-/* Atmospheric Ambient Lighting Blobs (Peach, Pink, Lavender, Cyan) */
+/* Atmospheric Ambient Depth & Soft Studio Lighting Blobs */
 .lj-atmosphere {
   position: absolute;
   inset: 0;
@@ -6247,921 +6264,1025 @@ nav.floating-nav.scrolled {
 .lj-ambient-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
+  filter: blur(95px);
   pointer-events: none;
+  opacity: 0.65;
 }
 
-.lj-ambient-glow.glow-peach {
+.lj-ambient-glow.glow-rose {
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.16) 0%, transparent 70%);
+  top: 5%;
+  left: 20%;
+  animation: ljAtmosphereBreathe 12s ease-in-out infinite alternate;
+}
+
+.lj-ambient-glow.glow-coral {
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(254, 186, 150, 0.32) 0%, rgba(255, 247, 237, 0) 70%);
-  top: -80px;
-  left: -80px;
-}
-
-.lj-ambient-glow.glow-pink {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.22) 0%, rgba(253, 242, 248, 0) 70%);
-  top: 15%;
-  right: -50px;
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.12) 0%, transparent 70%);
+  top: 30%;
+  right: 5%;
+  animation: ljAtmosphereBreathe 14s ease-in-out infinite alternate -3s;
 }
 
 .lj-ambient-glow.glow-lavender {
-  width: 540px;
-  height: 540px;
-  background: radial-gradient(circle, rgba(192, 132, 252, 0.22) 0%, rgba(250, 245, 255, 0) 70%);
-  bottom: 10%;
-  left: 30%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.10) 0%, transparent 70%);
+  bottom: 15%;
+  left: 5%;
+  animation: ljAtmosphereBreathe 16s ease-in-out infinite alternate -6s;
 }
 
-.lj-ambient-glow.glow-cyan {
+.lj-ambient-glow.glow-peach {
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.20) 0%, rgba(236, 254, 255, 0) 70%);
-  bottom: -60px;
-  right: 5%;
+  background: radial-gradient(circle, rgba(254, 215, 170, 0.08) 0%, transparent 70%);
+  bottom: 0%;
+  right: 25%;
 }
 
-/* Delicate Sparse Atmospheric Sparkles */
-.lj-sparkle-star {
+@keyframes ljAtmosphereBreathe {
+  0% { transform: scale(1) translateY(0); opacity: 0.55; }
+  50% { transform: scale(1.08) translateY(-15px); opacity: 0.75; }
+  100% { transform: scale(0.96) translateY(10px); opacity: 0.55; }
+}
+
+/* Subtle Floating Studio Dust Particles */
+.lj-dust-particle {
   position: absolute;
-  font-size: 1rem;
-  color: #FA5538;
-  opacity: 0.38;
+  color: rgba(253, 164, 175, 0.35);
+  font-size: 0.75rem;
+  pointer-events: none;
   user-select: none;
-  animation: floatSlowParticle 7s ease-in-out infinite;
+  animation: ljDustFloat 8s ease-in-out infinite alternate;
 }
 
-.spark-pos-1 { top: 12%; left: 8%; animation-delay: 0s; font-size: 1.1rem; }
-.spark-pos-2 { top: 22%; right: 14%; animation-delay: 2s; color: #8B5CF6; font-size: 1.2rem; }
-.spark-pos-3 { top: 62%; left: 4%; animation-delay: 3.5s; color: #06B6D4; }
-.spark-pos-4 { top: 48%; right: 6%; animation-delay: 1.5s; font-size: 1.4rem; color: #EC4899; }
-.spark-pos-5 { bottom: 18%; left: 24%; animation-delay: 4.5s; }
+.dust-pos-1 { top: 12%; left: 14%; animation-delay: 0s; font-size: 0.9rem; }
+.dust-pos-2 { top: 22%; right: 18%; animation-delay: -2s; color: rgba(250, 85, 56, 0.3); }
+.dust-pos-3 { bottom: 35%; left: 24%; animation-delay: -4s; }
+.dust-pos-4 { bottom: 20%; right: 12%; animation-delay: -6s; color: rgba(167, 139, 250, 0.35); }
 
-@keyframes floatSlowParticle {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.35; }
-  50% { transform: translateY(-8px) scale(1.15); opacity: 0.65; }
-}
-
-/* Section Main Container */
-.lj-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 clamp(1.2rem, 3.5vw, 2.5rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3rem, 5vh, 4.5rem);
+@keyframes ljDustFloat {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-12px) rotate(45deg); opacity: 0.6; }
+  100% { transform: translateY(6px) rotate(90deg); opacity: 0.25; }
 }
 
 /* ==========================================================================
-   UPPER STAGE: 3D PORTRAIT (LEFT) + EDITORIAL HEADLINE & 3D OBJECTS (RIGHT)
+   TASTEFUL 3D STUDIO PHYSICAL OBJECTS (Frosted Glass Tile, Crystal Prism, Sphere, Cube)
    ========================================================================== */
-.lj-upper-stage {
-  display: grid;
-  grid-template-columns: minmax(320px, 420px) 1fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: center;
-}
-
-/* ==========================================================================
-   LEARNING JOURNEY: 3D PORTRAIT PHYSICALLY EMERGING FROM DIMENSIONAL CIRCULAR FRAME
-   ========================================================================== */
-.lj-portrait-column {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.lj-portrait-3d-stage {
-  position: relative;
-  width: clamp(320px, 34vw, 420px);
-  height: clamp(400px, 42vw, 480px);
-  perspective: 1200px;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  transform-style: preserve-3d;
+.lj-3d-floating-object {
+  position: absolute;
+  pointer-events: none;
   user-select: none;
-}
-
-/* LAYER 1 & 2: Soft Diffused Ambient Studio Lighting Behind Frame (Warm coral, cyan, violet rim light) */
-.lj-frame-ambient-glow {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(310px, 32vw, 370px);
-  height: clamp(310px, 32vw, 370px);
-  border-radius: 50%;
-  background: radial-gradient(circle at 48% 48%, rgba(254, 215, 170, 0.35) 0%, rgba(244, 114, 182, 0.20) 40%, rgba(139, 92, 246, 0.12) 65%, rgba(6, 182, 212, 0.14) 85%, transparent 100%);
-  filter: blur(36px);
   z-index: 1;
-  pointer-events: none;
-  opacity: 0.78;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.lj-portrait-3d-stage:hover .lj-frame-ambient-glow {
-  opacity: 0.95;
-  transform: translateX(-50%) scale(1.08);
-}
-
-/* LAYER 3, 4, 5: Refined 3D Dimensional Circular Frame (Hollow 3D Torus Portal) */
-.lj-circular-frame {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%) translateZ(0);
-  width: clamp(290px, 30vw, 350px);
-  height: clamp(290px, 30vw, 350px);
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  z-index: 2;
-  pointer-events: none;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* LAYER 6 & 7: 3D Portrait Subject Physically Emerging In Front of Circular Frame */
-.lj-portrait-cutout-container {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  transform-style: preserve-3d;
-  transform: translateZ(48px);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* 1. Floating Translucent Code Plaque */
+.obj-code-plaque {
+  top: 13%;
+  left: 6%;
+  animation: objPlaqueFloat 8.5s ease-in-out infinite alternate;
 }
 
-.lj-portrait-3d-stage:hover .lj-portrait-cutout-container {
-  transform: translateZ(60px) scale(1.025);
-}
-
-/* Soft Contact Depth Shadow Cast by the Emerging Person onto the Frame */
-.lj-subject-depth-shadow {
-  position: absolute;
-  bottom: 30px;
-  left: 14%;
-  right: 14%;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(16, 28, 53, 0.32) 0%, rgba(250, 85, 56, 0.08) 50%, transparent 75%);
-  filter: blur(10px);
-  pointer-events: none;
-  z-index: -1;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.lj-portrait-3d-stage:hover .lj-subject-depth-shadow {
-  transform: scale(1.08) translateY(2px);
-  opacity: 0.95;
-}
-
-/* The Clean Cutout Subject (Head & hair break out cleanly above circular rim) */
-.lj-portrait-img {
-  width: auto;
-  height: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: bottom center;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  /* Cinematic Lighting: Warm coral rim light on left, cyan/violet ambient on right, soft grounding shadow */
-  filter: 
-    drop-shadow(0 20px 28px rgba(16, 28, 53, 0.22))
-    drop-shadow(-4px -2px 14px rgba(250, 85, 56, 0.25))
-    drop-shadow(4px 4px 16px rgba(6, 182, 212, 0.20));
-  transform: translateY(-4px) scale(1.02);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-  z-index: 6;
-}
-
-.lj-portrait-3d-stage:hover .lj-portrait-img {
-  transform: translateY(-8px) scale(1.04);
-  filter: 
-    drop-shadow(0 26px 36px rgba(16, 28, 53, 0.26))
-    drop-shadow(-5px -3px 18px rgba(250, 85, 56, 0.30))
-    drop-shadow(5px 5px 22px rgba(6, 182, 212, 0.25));
-}
-
-.status-tag-text {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #101C35;
-  text-transform: uppercase;
-}
-
-/* ==========================================================================
-   RIGHT EDITORIAL COLUMN: PILL, HEADLINE, INTRO & DECORATIVE 3D ASSETS
-   ========================================================================== */
-.lj-editorial-column {
+.obj-glass-tile {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.15rem;
-}
-
-/* Top Label Pill */
-.lj-top-pill-wrap {
-  display: inline-flex;
-}
-
-.lj-label-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.38rem 0.95rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(250, 85, 56, 0.32);
-  box-shadow: 0 4px 14px rgba(16, 28, 53, 0.05), 0 1px 4px rgba(250, 85, 56, 0.08);
-}
-
-.lj-pill-star-icon {
-  font-size: 0.78rem;
-  color: #FA5538;
-  line-height: 1;
-}
-
-.lj-pill-title-text {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #101C35;
-  text-transform: uppercase;
-}
-
-/* Main Bold Geometric Headline */
-.lj-main-headline {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.lj-headline-row.line-learning,
-.lj-headline-row.line-growing {
-  color: #101C35;
-}
-
-.lj-headline-row.line-becoming {
-  background: linear-gradient(90deg, #FA5538 0%, #FF5A36 25%, #F43F5E 55%, #EC4899 80%, #8B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(250, 85, 56, 0.22));
-}
-
-/* Introduction Paragraph */
-.lj-intro-paragraph {
-  font-family: var(--font-sans);
-  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
-  line-height: 1.65;
-  color: #475569;
-  max-width: 620px;
-  margin: 0;
-}
-
-.lj-highlight-aspire {
-  font-weight: 700;
-  background: linear-gradient(90deg, #FA5538 0%, #EC4899 60%, #8B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Floating 3D Decorative Stage (Notebook & Rocket) */
-.lj-decorative-stage {
-  position: absolute;
-  top: -10px;
-  right: 0;
-  width: 200px;
-  height: 130px;
-  pointer-events: none;
-}
-
-/* 3D Developer Notebook / Code Book */
-.lj-3d-notebook {
-  position: absolute;
-  top: 10px;
-  right: 85px;
-  width: 78px;
-  height: 60px;
-  perspective: 600px;
-  animation: floatNotebook 6s ease-in-out infinite;
-}
-
-@keyframes floatNotebook {
-  0%, 100% { transform: translateY(0) rotateZ(-6deg) rotateX(12deg); }
-  50% { transform: translateY(-7px) rotateZ(-3deg) rotateX(16deg); }
-}
-
-.notebook-perspective-rig {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform: rotateZ(-8deg) rotateX(16deg) rotateY(-10deg);
-  transform-style: preserve-3d;
-}
-
-.notebook-glow-backplate {
-  position: absolute;
-  inset: -8px;
-  border-radius: 12px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(139, 92, 246, 0.15) 50%, transparent 70%);
-  filter: blur(10px);
-}
-
-.notebook-pages {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background: #FFFFFF;
-  border-radius: 8px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(32, 38, 56, 0.65) 0%, rgba(14, 18, 28, 0.88) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(251, 113, 133, 0.32);
   box-shadow: 
-    0 12px 24px rgba(16, 28, 53, 0.15),
-    0 2px 6px rgba(250, 85, 56, 0.18),
-    inset 0 1px 2px rgba(255, 255, 255, 0.9);
-  border: 1.5px solid rgba(250, 85, 56, 0.3);
-  overflow: hidden;
+    0 18px 40px -4px rgba(0, 0, 0, 0.85),
+    0 0 20px -2px rgba(251, 113, 133, 0.22),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: perspective(600px) rotateX(16deg) rotateY(-18deg) rotateZ(4deg);
 }
 
-.notebook-spine-bevel {
+.tile-specular-edge {
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  background: linear-gradient(180deg, rgba(250, 85, 56, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%);
-  z-index: 5;
-}
-
-.notebook-leaf {
-  flex: 1;
-  padding: 6px 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.notebook-leaf.leaf-left {
-  background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%);
-  border-right: 1px dashed rgba(16, 28, 53, 0.08);
-}
-
-.notebook-leaf.leaf-right {
-  background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
-}
-
-.leaf-symbol {
-  font-size: 0.62rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.leaf-symbol.symbol-code {
-  color: #FA5538;
-}
-
-.leaf-symbol.symbol-check {
-  color: #10B981;
-  align-self: flex-end;
-}
-
-.leaf-code-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin-top: 4px;
-}
-
-.nb-code-line {
-  height: 2px;
-  border-radius: 1px;
-  background: rgba(16, 28, 53, 0.2);
-}
-
-.ln-1 { width: 85%; background: rgba(250, 85, 56, 0.5); }
-.ln-2 { width: 65%; }
-.ln-3 { width: 75%; }
-.ln-4 { width: 80%; background: rgba(139, 92, 246, 0.5); }
-.ln-5 { width: 55%; }
-
-/* Upgraded 3D Rocket Element */
-.lj-3d-rocket {
-  position: absolute;
-  top: -8px;
-  right: -5px;
-  width: 78px;
-  height: 78px;
-  animation: floatRocket3D 5.5s ease-in-out infinite;
-}
-
-@keyframes floatRocket3D {
-  0%, 100% { transform: translateY(0) rotate(14deg); }
-  50% { transform: translateY(-9px) rotate(18deg); }
-}
-
-.rocket-perspective-rig {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.rocket-trail-canvas {
-  position: absolute;
-  bottom: -22px;
-  left: -28px;
-  width: 75px;
-  height: 75px;
+  left: 0;
+  right: 0;
+  height: 40%;
+  border-radius: 14px 14px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
   pointer-events: none;
 }
 
-.rocket-trail-core {
-  animation: rocketDashScroll 2.2s linear infinite;
+.tile-code-glyph {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #FDA4AF;
+  text-shadow: 0 0 12px rgba(251, 113, 133, 0.65);
 }
 
-@keyframes rocketDashScroll {
-  0% { stroke-dashoffset: 20; }
-  100% { stroke-dashoffset: 0; }
+@keyframes objPlaqueFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+  100% { transform: translateY(6px) rotate(-2deg); }
 }
 
-.rocket-ship-3d-craft {
+/* 2. Floating Geometric Crystal Prism */
+.obj-crystal-prism {
+  top: 24%;
+  right: 6%;
+  animation: objCrystalFloat 10s ease-in-out infinite alternate -2s;
+}
+
+.obj-crystal-body {
+  position: relative;
+  width: 44px;
+  height: 56px;
+  clip-path: polygon(50% 0%, 100% 36%, 82% 100%, 18% 100%, 0% 36%);
+  background: linear-gradient(145deg, rgba(251, 113, 133, 0.35) 0%, rgba(250, 85, 56, 0.22) 50%, rgba(167, 139, 250, 0.28) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(251, 113, 133, 0.32);
+  transform: perspective(500px) rotateX(-14deg) rotateY(22deg);
+}
+
+.crystal-facet.facet-sheen {
   position: absolute;
-  top: 4px;
-  right: 8px;
-  width: 48px;
-  height: 60px;
-}
-
-.rocket-vector-3d {
-  width: 100%;
+  top: 0;
+  left: 0;
+  width: 50%;
   height: 100%;
-  overflow: visible;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0%, transparent 100%);
+  pointer-events: none;
 }
 
-.rocket-plasma-plume {
-  animation: thrusterPulse3D 0.7s ease-in-out infinite alternate;
-  transform-origin: 34px 68px;
+.crystal-core-glow {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.6) 0%, transparent 70%);
+  filter: blur(6px);
 }
 
-@keyframes thrusterPulse3D {
-  0% { transform: scale(0.85); opacity: 0.8; }
-  100% { transform: scale(1.22); opacity: 1; }
+@keyframes objCrystalFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-4deg); }
+  100% { transform: translateY(8px) rotate(3deg); }
+}
+
+/* 3. Floating Translucent Acrylic Sphere */
+.obj-glass-sphere {
+  bottom: 26%;
+  right: 4%;
+  animation: objSphereFloat 7.5s ease-in-out infinite alternate -3s;
+}
+
+.obj-sphere-body {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(167, 139, 250, 0.28) 45%, rgba(16, 20, 32, 0.9) 100%);
+  border: 1.2px solid rgba(255, 255, 255, 0.26);
+  box-shadow: 
+    0 18px 36px -4px rgba(0, 0, 0, 0.88),
+    0 0 24px rgba(167, 139, 250, 0.3),
+    inset 0 2px 3px rgba(255, 255, 255, 0.55);
+}
+
+.sphere-specular-rim {
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  width: 14px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  filter: blur(1px);
+  transform: rotate(-35deg);
+}
+
+.sphere-internal-glow {
+  position: absolute;
+  bottom: 12%;
+  right: 18%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.55) 0%, transparent 70%);
+  filter: blur(4px);
+}
+
+@keyframes objSphereFloat {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-11px) scale(1.05); }
+  100% { transform: translateY(5px) scale(0.97); }
+}
+
+/* 4. Floating Minimal Isometric Cube */
+.obj-minimal-cube {
+  bottom: 12%;
+  left: 7%;
+  animation: objCubeFloat 11s ease-in-out infinite alternate -1s;
+}
+
+.obj-cube-assembly {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(30, 36, 54, 0.7) 0%, rgba(14, 18, 28, 0.92) 100%);
+  border: 1.5px solid rgba(254, 215, 170, 0.38);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(254, 215, 170, 0.22),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.4);
+  transform: perspective(600px) rotateX(45deg) rotateZ(35deg);
+}
+
+@keyframes objCubeFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+  100% { transform: translateY(7px) rotate(-3deg); }
+}
+
+.lj-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 3.5vw, 2.5rem);
 }
 
 /* ==========================================================================
-   MIDDLE: 3D CURVED LEARNING ROADMAP & SINGLE COMPACT ACTIVE DETAIL CARD
+   SECTION EDITORIAL HEADER
    ========================================================================== */
-.lj-roadmap-universe {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.lj-header-editorial {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(3.0rem, 5vw, 4.5rem);
 }
 
-/* Roadmap Nav Header */
-.lj-roadmap-nav-header {
+.lj-eyebrow-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 1.05rem;
+  background: rgba(251, 113, 133, 0.07);
+  border: 1px solid rgba(251, 113, 133, 0.22);
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FDA4AF;
+  box-shadow: 0 0 20px -3px rgba(251, 113, 133, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.lj-eyebrow-accent {
+  color: #FB7185;
+  font-size: 0.8rem;
+}
+
+.lj-eyebrow-divider {
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 400;
+}
+
+.lj-eyebrow-meta {
+  color: #CBD5E1;
+  letter-spacing: 0.08em;
+}
+
+.lj-cinematic-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #F8FAFC;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem 0.95rem;
+}
+
+.lj-headline-serif {
+  display: inline-block;
+  color: #F8FAFC;
+}
+
+.lj-headline-glow {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FDA4AF 40%, #FB7185 80%, #FA5538 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 24px rgba(251, 113, 133, 0.4));
+}
+
+.lj-cinematic-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0rem, 1.35vw, 1.15rem);
+  line-height: 1.7;
+  color: #94A3B8;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.lj-highlight-rose {
+  color: #FDA4AF;
+  font-weight: 600;
+  text-shadow: 0 0 14px rgba(251, 113, 133, 0.35);
+}
+
+/* ==========================================================================
+   INTERACTIVE JOURNEY TIMELINE (RIBBON PATH + 6 3D MILESTONES)
+   ========================================================================== */
+.lj-timeline-universe {
+  position: relative;
+  width: 100%;
+  margin-bottom: clamp(3.5rem, 5.5vw, 5.5rem);
+}
+
+.lj-timeline-meta-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(18, 22, 34, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(12px);
 }
 
-.roadmap-header-left {
+.timeline-meta-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
+  flex-wrap: wrap;
 }
 
-.roadmap-header-tag {
+.timeline-meta-label {
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #FA5538;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: #FB7185;
 }
 
-.roadmap-header-hint {
+.timeline-meta-hint {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #64748B;
 }
 
-.roadmap-counter-display {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 0.85rem;
+.timeline-counter-display {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.05rem;
   font-weight: 800;
-  color: #101C35;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #F8FAFC;
+}
+
+.counter-num {
+  color: #FB7185;
+  text-shadow: 0 0 10px rgba(251, 113, 133, 0.6);
 }
 
 .counter-sep {
-  color: #CBD5E1;
-  font-weight: 400;
-  margin: 0 0.2rem;
+  color: #475569;
+  font-size: 0.85rem;
 }
 
-/* 3D Track Surface with SVG Ribbon and 6 Milestone Nodes */
-.lj-roadmap-track-surface {
+.counter-total {
+  color: #64748B;
+  font-size: 0.95rem;
+}
+
+/* 3D Timeline Stage Canvas */
+.lj-timeline-stage {
   position: relative;
   width: 100%;
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: clamp(2.5rem, 4vw, 4.0rem) 0 3.25rem;
 }
 
+/* Continuous Flowing Glass Ribbon SVG */
 .lj-track-svg-container {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
   width: 100%;
-  height: 100%;
+  height: 160px;
   pointer-events: none;
+  z-index: 1;
+  overflow: visible;
 }
 
 .lj-track-svg {
   width: 100%;
   height: 100%;
+  display: block;
 }
 
-.lj-main-path-ribbon {
-  filter: drop-shadow(0 6px 16px rgba(16, 28, 53, 0.15));
+.lj-ribbon-core {
+  filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.45));
 }
 
-/* 6 Clickable Milestone Nodes */
-.lj-nodes-container {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  display: flex;
+/* 6 Physical 3D Milestone Nodes Grid */
+.lj-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
 }
 
 .lj-node-item {
-  position: relative;
-  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65rem;
+  padding: 0.5rem 0.25rem;
   outline: none;
-  pointer-events: auto;
-  z-index: 20;
-  touch-action: manipulation;
-  user-select: none;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.lj-node-item * {
+.lj-node-item:focus-visible .node-glass-cylinder {
+  outline: 2px solid #FB7185;
+  outline-offset: 4px;
+}
+
+/* 3D Node Assembly */
+.node-3d-assembly {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 600px;
+  transform-style: preserve-3d;
+}
+
+.node-pedestal-base {
+  position: absolute;
+  bottom: -6px;
+  width: 62px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 80%);
+  filter: blur(3.5px);
   pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.lj-node-item:focus-visible .node-3d-disc {
-  box-shadow: 0 0 0 3px #101C35, 0 8px 24px rgba(250, 85, 56, 0.4);
-}
-
-/* Vertical staggering to naturally ride the curved SVG path wave */
-.node-stage-0 { transform: translateY(15px); }
-.node-stage-1 { transform: translateY(-24px); }
-.node-stage-2 { transform: translateY(22px); }
-.node-stage-3 { transform: translateY(-24px); }
-.node-stage-4 { transform: translateY(20px); }
-.node-stage-5 { transform: translateY(-16px); }
-
-/* Hover State (Subtle Lift & Glow) */
-.node-stage-0:hover { transform: translateY(10px) scale(1.06); }
-.node-stage-1:hover { transform: translateY(-29px) scale(1.06); }
-.node-stage-2:hover { transform: translateY(17px) scale(1.06); }
-.node-stage-3:hover { transform: translateY(-29px) scale(1.06); }
-.node-stage-4:hover { transform: translateY(15px) scale(1.06); }
-.node-stage-5:hover { transform: translateY(-21px) scale(1.06); }
-
-/* Active Press Tactile Feedback */
-.lj-node-item:active .node-3d-disc {
-  transform: scale(0.92);
-  transition: transform 0.08s ease;
-}
-
-/* Active State (Gently scales to ~1.10, halo expands) */
-.lj-node-item.is-active {
-  z-index: 25;
-}
-
-.node-stage-0.is-active { transform: translateY(15px) scale(1.10); }
-.node-stage-1.is-active { transform: translateY(-24px) scale(1.10); }
-.node-stage-2.is-active { transform: translateY(22px) scale(1.10); }
-.node-stage-3.is-active { transform: translateY(-24px) scale(1.10); }
-.node-stage-4.is-active { transform: translateY(20px) scale(1.10); }
-.node-stage-5.is-active { transform: translateY(-16px) scale(1.10); }
-
-/* 3D Physical Disc */
-.node-3d-disc {
-  position: relative;
-  width: clamp(54px, 5.4vw, 70px);
-  height: clamp(54px, 5.4vw, 70px);
+.node-bloom-spotlight {
+  position: absolute;
+  inset: -14px;
   border-radius: 50%;
+  background: radial-gradient(circle, var(--node-glow) 0%, transparent 68%);
+  opacity: 0.16;
+  filter: blur(12px);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The Physical Glass Cylinder Object */
+.node-glass-cylinder {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(32, 38, 56, 0.8) 0%, rgba(14, 17, 26, 0.94) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 12px 26px -4px rgba(0, 0, 0, 0.75),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.disc-glow-layer {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  filter: blur(10px);
-  opacity: 0.4;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.lj-node-item:hover .disc-glow-layer,
-.lj-node-item.is-active .disc-glow-layer {
-  opacity: 0.95;
-  transform: scale(1.24);
-}
-
-.disc-glow-layer.glow-coral { background: rgba(250, 85, 56, 0.65); }
-.disc-glow-layer.glow-orange { background: rgba(249, 115, 22, 0.65); }
-.disc-glow-layer.glow-pink { background: rgba(236, 72, 153, 0.65); }
-.disc-glow-layer.glow-purple { background: rgba(139, 92, 246, 0.65); }
-.disc-glow-layer.glow-cyan { background: rgba(6, 182, 212, 0.65); }
-.disc-glow-layer.glow-emerald { background: rgba(16, 185, 129, 0.65); }
-
-.disc-bevel-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(241, 245, 249, 0.85) 100%);
-  box-shadow: 
-    0 12px 26px rgba(16, 28, 53, 0.18),
-    inset 0 2px 4px rgba(255, 255, 255, 0.95),
-    inset 0 -2.5px 5px rgba(16, 28, 53, 0.14);
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
-}
-
-.disc-inner-surface {
-  position: relative;
-  z-index: 2;
-  width: 76%;
-  height: 76%;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.75),
-    0 3px 8px rgba(16, 28, 53, 0.16);
-  transition: transform 0.2s ease;
-}
-
-.disc-stage-0 .disc-inner-surface { background: linear-gradient(135deg, #FF6B4A 0%, #FA5538 100%); color: #FFFFFF; }
-.disc-stage-1 .disc-inner-surface { background: linear-gradient(135deg, #FB923C 0%, #F97316 100%); color: #FFFFFF; }
-.disc-stage-2 .disc-inner-surface { background: linear-gradient(135deg, #F472B6 0%, #EC4899 100%); color: #FFFFFF; }
-.disc-stage-3 .disc-inner-surface { background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%); color: #FFFFFF; }
-.disc-stage-4 .disc-inner-surface { background: linear-gradient(135deg, #38BDF8 0%, #06B6D4 100%); color: #FFFFFF; }
-.disc-stage-5 .disc-inner-surface { background: linear-gradient(135deg, #34D399 0%, #10B981 100%); color: #FFFFFF; }
-
-.disc-num {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: clamp(0.72rem, 1vw, 0.88rem);
-  font-weight: 800;
-  line-height: 1;
-}
-
-/* Active Ring Halo */
-.disc-active-halo {
-  position: absolute;
-  inset: -9px;
-  border-radius: 50%;
-  border: 2px dashed rgba(250, 85, 56, 0.7);
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-}
-
-.lj-node-item.is-active .disc-active-halo {
-  opacity: 1;
-  transform: scale(1);
-  animation: rotateHalo 12s linear infinite;
-}
-
-@keyframes rotateHalo {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Node Micro Label Below */
-.node-label-pill {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  text-align: center;
-}
-
-.node-label-sub {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 800;
-  color: #FA5538;
-  letter-spacing: 0.04em;
-}
-
-.node-label-main {
-  font-family: var(--font-sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: #101C35;
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   THE SINGLE COMPACT ACTIVE MILESTONE DETAIL PANEL (GLASSMORPHISM & CLARITY)
-   ========================================================================== */
-.lj-single-card-viewport {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.lj-active-milestone-panel {
-  position: relative;
-  max-width: 580px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 1.5rem 1.8rem 1.3rem;
-  box-shadow: 
-    0 22px 48px -12px rgba(16, 28, 53, 0.12),
-    0 4px 18px rgba(250, 85, 56, 0.08),
-    inset 0 1.5px 2px rgba(255, 255, 255, 0.98),
-    inset 0 -1px 2px rgba(16, 28, 53, 0.03);
-  border: 1.5px solid rgba(250, 85, 56, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.panel-specular-reflection {
+.cylinder-specular-rim {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
+  height: 50%;
+  border-radius: 58px 58px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 100%);
+  pointer-events: none;
 }
 
-.panel-header-row {
+.cylinder-inner-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cylinder-num {
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #CBD5E1;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.cylinder-shine {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Node Metadata Caption */
+.node-meta-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.18rem;
+  pointer-events: none;
+}
+
+.caption-year {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  transition: color 0.35s ease;
+}
+
+.caption-title {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94A3B8;
+  line-height: 1.25;
+  transition: color 0.35s ease;
+}
+
+/* Hover State */
+.lj-node-item:hover {
+  transform: translateY(-7px) scale(1.02);
+}
+
+.lj-node-item:hover .node-pedestal-base {
+  transform: scale(0.85);
+  opacity: 0.35;
+}
+
+.lj-node-item:hover .node-glass-cylinder {
+  border-color: rgba(251, 113, 133, 0.75);
+  box-shadow: 
+    0 18px 36px -4px rgba(0, 0, 0, 0.9),
+    0 0 24px var(--node-glow),
+    inset 0 2px 2px rgba(255, 255, 255, 0.75);
+}
+
+.lj-node-item:hover .node-bloom-spotlight {
+  opacity: 0.55;
+  transform: scale(1.25);
+}
+
+.lj-timeline-stage:has(.lj-node-item:hover) .lj-ribbon-core {
+  filter: drop-shadow(0 0 16px rgba(251, 113, 133, 0.75));
+  stroke-width: 3.8px;
+}
+
+.lj-node-item:hover .caption-title {
+  color: #F8FAFC;
+}
+
+/* Active State */
+.lj-node-item.is-active {
+  transform: translateY(-8px);
+}
+
+.lj-node-item.is-active .node-glass-cylinder {
+  border-color: #FFFFFF;
+  background: linear-gradient(135deg, rgba(46, 54, 78, 0.9) 0%, rgba(20, 24, 38, 0.98) 100%);
+  box-shadow: 
+    0 20px 40px -4px rgba(0, 0, 0, 0.95),
+    0 0 30px var(--node-glow),
+    0 0 8px rgba(255, 255, 255, 0.6),
+    inset 0 2px 3px #FFFFFF;
+}
+
+.lj-node-item.is-active .node-bloom-spotlight {
+  opacity: 0.9;
+  transform: scale(1.35);
+}
+
+.lj-node-item.is-active .cylinder-num {
+  color: #FFFFFF;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 22px var(--node-glow);
+}
+
+.lj-node-item.is-active .caption-year {
+  color: #FDA4AF;
+}
+
+.lj-node-item.is-active .caption-title {
+  color: #F8FAFC;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   MAIN FEATURE DETAIL PANEL (LARGE FLOATING GLASS OBJECT)
+   ========================================================================== */
+.lj-detail-panel-viewport {
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.lj-cinematic-feature-panel {
+  position: relative;
+  width: 100%;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(18, 22, 34, 0.84) 0%, rgba(10, 13, 20, 0.95) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(251, 113, 133, 0.24);
+  box-shadow: 
+    0 35px 80px -15px rgba(0, 0, 0, 0.9),
+    0 0 45px -10px rgba(251, 113, 133, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  padding: clamp(2.0rem, 3.5vw, 3.25rem);
+  overflow: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.panel-rose-spotlight {
+  position: absolute;
+  top: -40px;
+  left: 20%;
+  width: 60%;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(251, 113, 133, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(24px);
+}
+
+.panel-specular-top-edge {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 30%, rgba(251, 113, 133, 0.5) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Three Balanced Visual Zones */
+.panel-three-zones {
+  display: grid;
+  grid-template-columns: 140px 1fr 280px;
+  gap: clamp(1.8rem, 3vw, 3.25rem);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Zone 1 (Left): 3D Visual Stage Artifact */
+.panel-zone-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-3d-assembly {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.artifact-ambient-glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.35) 0%, transparent 70%);
+  filter: blur(22px);
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.artifact-floating-body {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(34, 42, 62, 0.85) 0%, rgba(16, 20, 32, 0.96) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 18px 40px -6px rgba(0, 0, 0, 0.85),
+    inset 0 2px 3px rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: artifactGentleFloat 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes artifactGentleFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(2deg); }
+  100% { transform: translateY(5px) rotate(-1.5deg); }
+}
+
+.artifact-icon-canvas {
+  position: relative;
+  z-index: 2;
+  color: #FB7185;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 12px currentColor);
+  transition: color 0.4s ease;
+}
+
+.artifact-reflection-sheen {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
+  pointer-events: none;
+}
+
+.artifact-badge-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+/* Zone 2 (Center): Content, Description & Skill Chips */
+.panel-zone-center {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-kicker-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
 }
 
-.panel-index-badge {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: #FA5538;
-  background: rgba(254, 237, 222, 0.7);
-  padding: 0.35rem 0.65rem;
-  border-radius: 10px;
-  border: 1px solid rgba(250, 85, 56, 0.2);
-  line-height: 1;
-}
-
-.panel-headings {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.panel-kicker {
+.panel-chapter-tag {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #64748B;
+  letter-spacing: 0.14em;
+  color: #FB7185;
   text-transform: uppercase;
 }
 
-.panel-title {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #101C35;
-  margin: 0;
-  line-height: 1.2;
-}
-
-.panel-icon-bubble {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
+.panel-status-tag {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(254, 237, 222, 0.5);
-  color: #FA5538;
-  box-shadow: 0 4px 10px rgba(16, 28, 53, 0.05);
-  transition: all 0.3s ease;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  color: #CBD5E1;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0.22rem 0.75rem;
 }
 
-.panel-description {
+.status-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 8px #34D399;
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); box-shadow: 0 0 12px #34D399; }
+}
+
+.panel-stage-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #F8FAFC;
+  margin: 0 0 0.85rem;
+}
+
+.panel-stage-desc {
   font-family: var(--font-sans);
-  font-size: 0.96rem;
-  line-height: 1.6;
-  color: #334155;
-  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #CBD5E1;
+  margin: 0 0 1.5rem;
+  max-width: 650px;
 }
 
-.panel-skills-row {
+/* Refined Skill Chips */
+.panel-technologies-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tech-group-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.panel-skill-chips-row {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.panel-skill-pill-3d {
+  display: inline-flex;
+  align-items: center;
   gap: 0.45rem;
-  margin-top: 0.2rem;
-}
-
-.panel-skill-pill {
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #F1F5F9;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
-  padding: 0.26rem 0.65rem;
-  border-radius: 6px;
-  background: rgba(16, 28, 53, 0.04);
-  color: #334155;
-  border: 1px solid rgba(16, 28, 53, 0.08);
   transition: all 0.25s ease;
+  user-select: none;
 }
 
-.panel-bottom-accent-strip {
+.panel-skill-pill-3d .chip-star {
+  font-size: 0.72rem;
+  color: var(--chip-accent, #FB7185);
+  opacity: 0.85;
+}
+
+.panel-skill-pill-3d:hover {
+  background: rgba(251, 113, 133, 0.12);
+  border-color: rgba(251, 113, 133, 0.38);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Zone 3 (Right): Editorial Takeaway & Principle */
+.panel-zone-right {
+  display: flex;
+  align-items: stretch;
+}
+
+.panel-quote-card {
+  position: relative;
   width: 100%;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #FA5538, #FF8A65);
-  margin-top: 0.2rem;
-  transition: background 0.3s ease;
+  padding: 1.45rem 1.45rem 1.45rem 1.65rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 2.5px solid #FB7185;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.15rem;
+  box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s ease;
+}
+
+.quote-mark-glyph {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: rgba(251, 113, 133, 0.4);
+  height: 16px;
+  user-select: none;
+}
+
+.quote-text-body {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.quote-footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.quote-signee {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #F8FAFC;
+  letter-spacing: 0.04em;
+}
+
+.quote-context {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+/* Luminous Bottom Accent Rail */
+.panel-bottom-luminous-rail {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FA5538, #FB7185 50%, #38BDF8 100%);
+  opacity: 0.85;
+  box-shadow: 0 0 12px rgba(251, 113, 133, 0.6);
+  transition: background 0.4s ease;
 }
 
 /* ==========================================================================
-   BOTTOM: “WHAT DRIVES ME” STRIP (4 Refined Value Pillars)
+   BOTTOM: "WHAT DRIVES ME" VALUE STRIP (CINEMATIC DARK GLASS)
    ========================================================================== */
 .lj-drives-me-strip {
   position: relative;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 20px;
-  border: 1px solid rgba(16, 28, 53, 0.08);
-  box-shadow: 
-    0 14px 34px -8px rgba(16, 28, 53, 0.06),
-    0 2px 8px rgba(16, 28, 53, 0.03);
-  padding: 1.4rem 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  width: 100%;
+  margin-top: clamp(3.0rem, 5vw, 4.5rem);
 }
 
 .drives-strip-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FB7185;
 }
 
 .drives-spark {
@@ -7169,112 +7290,106 @@ nav.floating-nav.scrolled {
   font-size: 0.85rem;
 }
 
-.drives-heading-text {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #101C35;
-  text-transform: uppercase;
-}
-
 .drives-values-grid {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: stretch;
+  background: rgba(14, 18, 28, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 0.5rem;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
 }
 
 .drives-value-card {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1.15rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 14px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.val-icon-3d {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 6px 14px rgba(16, 28, 53, 0.08);
-}
-
-.val-icon-3d.icon-coral {
-  background: linear-gradient(135deg, #FFE4DE 0%, #FFD0C7 100%);
-  color: #FA5538;
-}
-
-.val-icon-3d.icon-orange {
-  background: linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%);
-  color: #F97316;
-}
-
-.val-icon-3d.icon-purple {
-  background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
-  color: #8B5CF6;
-}
-
-.val-icon-3d.icon-cyan {
-  background: linear-gradient(135deg, #CFFAFE 0%, #A5F3FC 100%);
-  color: #06B6D4;
-}
-
-.val-info-block {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.val-title {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  font-weight: 800;
-  color: #101C35;
-  margin: 0;
-}
-
-.val-caption {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  color: #64748B;
-  line-height: 1.4;
-  margin: 0;
+.drives-value-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.65);
 }
 
 .val-hairline-separator {
   width: 1px;
-  height: 38px;
-  background: rgba(16, 28, 53, 0.08);
+  align-self: stretch;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0.08) 70%, transparent 100%);
+}
+
+.val-icon-3d {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.drives-value-card:hover .val-icon-3d {
+  transform: scale(1.08);
+}
+
+.val-icon-3d.icon-coral { color: #FA5538; box-shadow: 0 0 16px rgba(250, 85, 56, 0.25); }
+.val-icon-3d.icon-orange { color: #FB923C; box-shadow: 0 0 16px rgba(251, 146, 60, 0.25); }
+.val-icon-3d.icon-rose { color: #FB7185; box-shadow: 0 0 16px rgba(251, 113, 133, 0.25); }
+.val-icon-3d.icon-cyan { color: #38BDF8; box-shadow: 0 0 16px rgba(56, 189, 248, 0.25); }
+
+.val-info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.val-title {
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #F8FAFC;
+  margin: 0 0 0.2rem;
+}
+
+.val-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #94A3B8;
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (1024px Tablet, 768px Mobile, 480px Small Mobile)
+   RESPONSIVENESS (TABLET & MOBILE DEDICATED JOURNEY FLOW)
    ========================================================================== */
 @media (max-width: 1024px) {
-  .lj-upper-stage {
-    grid-template-columns: minmax(260px, 340px) 1fr;
+  .panel-three-zones {
+    grid-template-columns: 100px 1fr;
+    grid-template-areas: 
+      "artifact center"
+      "quote quote";
     gap: 2rem;
   }
-  
-  .lj-decorative-stage {
-    display: none;
-  }
 
-  .lj-nodes-container {
-    padding: 0 1rem;
-  }
-  
+  .panel-zone-left { grid-area: artifact; }
+  .panel-zone-center { grid-area: center; }
+  .panel-zone-right { grid-area: quote; }
+
   .drives-values-grid {
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
 
   .drives-value-card {
-    flex: 1 1 calc(50% - 1.5rem);
+    flex: 1 1 calc(50% - 1rem);
   }
 
   .val-hairline-separator {
@@ -7285,44 +7400,87 @@ nav.floating-nav.scrolled {
 @media (max-width: 768px) {
   #experience.futuristic-journey-section,
   .futuristic-journey-section {
-    padding: 3.5rem 0 3rem;
+    padding: 4.0rem 0 3.5rem;
   }
 
-  .lj-upper-stage {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
+  .lj-timeline-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .lj-editorial-column {
-    align-items: center;
-    text-align: center;
-  }
-
-  .lj-portrait-column {
-    order: -1;
-  }
-
-  .lj-portrait-3d-stage {
-    width: clamp(260px, 75vw, 300px);
-    height: clamp(330px, 95vw, 380px);
-  }
-
-  .lj-roadmap-track-surface {
-    overflow-x: auto;
-    overflow-y: hidden;
-    justify-content: flex-start;
-    padding-bottom: 1rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
+  /* Mobile Vertical Timeline Transformation */
   .lj-track-svg-container {
-    min-width: 720px;
+    display: none;
   }
 
-  .lj-nodes-container {
-    min-width: 720px;
-    padding: 0 1.5rem;
+  .lj-nodes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    padding-left: 2rem;
+    margin-left: 1rem;
+    border-left: 2px solid rgba(251, 113, 133, 0.35);
+  }
+
+  .lj-node-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.4rem 0;
+  }
+
+  .node-3d-assembly {
+    margin-left: -3.1rem;
+    width: 60px;
+    height: 60px;
+  }
+
+  .node-glass-cylinder {
+    width: 48px;
+    height: 48px;
+  }
+
+  .node-meta-caption {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .caption-title {
+    font-size: 0.95rem;
+  }
+
+  /* Main Detail Panel Mobile Stacking */
+  .panel-three-zones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+
+  .panel-zone-left {
+    align-self: flex-start;
+  }
+
+  .artifact-3d-assembly {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .artifact-floating-body {
+    width: 68px;
+    height: 68px;
+  }
+
+  .panel-stage-title {
+    font-size: 1.5rem;
+  }
+
+  .panel-stage-desc {
+    font-size: 0.92rem;
   }
 
   .drives-value-card {
@@ -7331,19 +7489,16 @@ nav.floating-nav.scrolled {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lj-orbital-svg-track,
-  .lj-3d-notebook,
-  .lj-3d-rocket,
-  .lj-sparkle-star,
-  .lj-orb-sphere,
-  .lj-orb-geo,
-  .disc-active-halo {
+  .lj-ambient-glow,
+  .lj-dust-particle,
+  .artifact-floating-body,
+  .status-pulse-dot {
     animation: none !important;
   }
-  
+
   .lj-node-item,
-  .lj-active-milestone-panel,
-  .lj-portrait-cutout-container {
+  .lj-cinematic-feature-panel,
+  .drives-value-card {
     transition: none !important;
   }
 }
@@ -21696,38 +21851,41 @@ nav.floating-nav.scrolled {
   transform-style: preserve-3d;
   cursor: pointer;
   user-select: none;
-  margin: 0 auto;
+  margin: 1.25rem auto 0;
 }
 
-/* BACK LAYER 1 & 2: Soft Atmospheric Diffused Glow Behind Frame (Coral -> Pink -> Violet -> Cyan) */
+/* BACK LAYER 1: Soft Atmospheric Diffused Glow Behind Frame (Soft Diffused Color Fields - NOT a circle!) */
 .character-backdrop-glow {
   position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(310px, 32vw, 370px);
-  height: clamp(310px, 32vw, 370px);
-  border-radius: 50%;
-  background: radial-gradient(circle at 45% 45%, rgba(254, 215, 170, 0.48) 0%, rgba(244, 114, 182, 0.25) 40%, rgba(139, 92, 246, 0.16) 65%, rgba(6, 182, 212, 0.18) 85%, transparent 100%);
-  filter: blur(34px);
+  top: 20%;
+  bottom: 8%;
+  left: 6%;
+  right: 6%;
+  border-radius: 44px;
+  background: 
+    radial-gradient(ellipse at 25% 45%, rgba(250, 85, 56, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 55%, rgba(6, 182, 212, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 30%, rgba(217, 70, 239, 0.12) 0%, transparent 65%);
+  filter: blur(52px);
   z-index: 1;
-  opacity: 0.88;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .motion-stage-left:hover .character-backdrop-glow {
-  opacity: 0.95;
-  transform: translateX(-50%) scale(1.08);
+  opacity: 0.96;
+  transform: scale(1.04);
 }
 
-/* SECOND LAYER 3, 4, 5: Realistic 3D Dimensional Circular Frame (Hollow 3D Torus Portal) */
+/* SECOND LAYER 2 & 3: Realistic 3D Dimensional Circular Frame (Positioned BEHIND Portrait at Shoulders Level) */
 .dimensional-circular-frame {
   position: absolute;
-  bottom: 22px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateZ(0);
-  width: clamp(290px, 30vw, 350px);
-  height: clamp(290px, 30vw, 350px);
+  width: clamp(260px, 26vw, 300px);
+  height: clamp(260px, 26vw, 300px);
   background: transparent;
   border: none;
   box-shadow: none;
@@ -21735,7 +21893,13 @@ nav.floating-nav.scrolled {
   pointer-events: none;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: subtleFrameBreathe 9s ease-in-out infinite alternate;
+}
+
+@keyframes subtleFrameBreathe {
+  0% { transform: translateX(-50%) translateY(0px) translateZ(0); }
+  100% { transform: translateX(-50%) translateY(-3px) translateZ(2px); }
 }
 
 /* Common 3D Torus Portal SVG Element */
@@ -21814,6 +21978,16 @@ nav.floating-nav.scrolled {
   animation: floatPortalSphere1 7s ease-in-out infinite alternate -3.5s;
 }
 
+.sphere-amber-orb {
+  width: 9px;
+  height: 9px;
+  top: 60%;
+  right: 6%;
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #FDE047 35%, #F59E0B 75%, #D97706 100%);
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4), inset -1px -1px 2px rgba(217, 119, 6, 0.6);
+  animation: floatPortalSphere2 6.2s ease-in-out infinite alternate -1s;
+}
+
 .portal-micro-spark {
   position: absolute;
   line-height: 1;
@@ -21851,45 +22025,49 @@ nav.floating-nav.scrolled {
   100% { transform: translateY(-5px) translateX(3px); }
 }
 
-/* FRONT LAYER 6 & 7: 3D Character Entity (Emerging Forward Out of Circular Frame) */
+/* FRONT LAYER: 3D Portrait Subject Physically Emerging In Front of Circular Frame */
 .motion-character-entity {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateZ(46px);
+  width: 100%;
+  height: 100%;
   z-index: 10;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   pointer-events: none;
   transform-style: preserve-3d;
-  transform: translateZ(46px);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .motion-stage-left:hover .motion-character-entity {
-  transform: translateZ(58px) scale(1.025);
+  transform: translateX(-50%) translateZ(52px) scale(1.01);
 }
 
 /* Realistic Depth Shadow Cast by the Emerging Subject onto the Recessed Frame Behind */
 .character-contact-shadow {
   position: absolute;
-  bottom: 30px;
-  left: 14%;
-  right: 14%;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(16, 28, 53, 0.32) 0%, rgba(250, 85, 56, 0.08) 50%, transparent 75%);
-  filter: blur(10px);
+  top: 38%;
+  bottom: 12%;
+  left: 18%;
+  right: 18%;
+  border-radius: 40px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(16, 28, 53, 0.42) 0%, rgba(16, 28, 53, 0.20) 45%, rgba(250, 85, 56, 0.08) 65%, transparent 80%);
+  filter: blur(15px);
   pointer-events: none;
   z-index: -1;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .motion-stage-left:hover .character-contact-shadow {
-  transform: scale(1.08) translateY(2px);
+  transform: scale(1.04) translateY(1px);
   opacity: 0.95;
 }
 
-/* Clean Subject Cutout Wrap (Unconstrained Top: Head & Hair Break Out Above Rim) */
+/* Clean Subject Cutout Wrap (Unconstrained Top: Head & Hair Break Out High Above Rim) */
 .character-breakout-wrap {
   position: relative;
   width: 100%;
@@ -21904,26 +22082,27 @@ nav.floating-nav.scrolled {
   width: auto;
   height: 100%;
   max-height: 100%;
+  max-width: none;
   object-fit: contain;
   object-position: bottom center;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
-  /* Cinematic Lighting: Warm coral rim light on left, cyan/violet ambient on right, soft grounding shadow */
   filter: 
-    drop-shadow(0 20px 28px rgba(16, 28, 53, 0.22))
-    drop-shadow(-4px -2px 14px rgba(250, 85, 56, 0.25))
-    drop-shadow(4px 4px 16px rgba(6, 182, 212, 0.20));
-  transform: translateY(-4px) scale(1.02);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    drop-shadow(0 16px 28px rgba(16, 28, 53, 0.20))
+    drop-shadow(-4px -2px 14px rgba(250, 85, 56, 0.20))
+    drop-shadow(4px 4px 16px rgba(6, 182, 212, 0.16));
+  transform: translateY(-2px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  pointer-events: auto;
 }
 
 .motion-stage-left:hover .motion-character-img {
-  transform: translateY(-8px) scale(1.04);
+  transform: translateY(-4px) scale(1.01);
   filter: 
-    drop-shadow(0 26px 36px rgba(16, 28, 53, 0.26))
-    drop-shadow(-5px -3px 18px rgba(250, 85, 56, 0.30))
-    drop-shadow(5px 5px 22px rgba(6, 182, 212, 0.25));
+    drop-shadow(0 22px 34px rgba(16, 28, 53, 0.25))
+    drop-shadow(-5px -3px 16px rgba(250, 85, 56, 0.25))
+    drop-shadow(5px 5px 20px rgba(6, 182, 212, 0.20));
 }
 
 /* Floating Sparkles & Micro Dots */
@@ -22135,13 +22314,15 @@ nav.floating-nav.scrolled {
   }
 
   .dimensional-circular-frame {
-    width: 240px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
     bottom: 16px;
   }
 
   .motion-character-entity {
-    inset: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(40px);
     width: 100%;
     height: 100%;
   }
