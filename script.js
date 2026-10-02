@@ -816,14 +816,14 @@ function setupWorkInMotionIntro() {
     currTransX += (targetTransX - currTransX) * 0.065;
     currTransY += (targetTransY - currTransY) * 0.065;
 
-    const zDepth = isHovered ? 46 : 30;
-    const scaleFactor = isHovered ? 1.01 : 1.0;
+    const zDepth = isHovered ? 44 : 28;
+    const scaleFactor = isHovered ? 1.03 : 1.0;
 
-    // Portrait cutout: 3x movement in front
-    character.style.transform = `translate3d(calc(-50% + ${currTransX.toFixed(2)}px), ${currTransY.toFixed(2)}px, ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
+    // Portrait card: 3x movement in front
+    character.style.transform = `translate3d(calc(-50% + ${currTransX.toFixed(2)}px), calc(-50% + ${currTransY.toFixed(2)}px), ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
     
-    // Frame: 2x movement behind portrait
-    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.66).toFixed(2)}px), ${(currTransY * 0.66).toFixed(2)}px, 0px) rotateX(${(currRotX * 0.66).toFixed(2)}deg) rotateY(${(currRotY * 0.66).toFixed(2)}deg)`;
+    // Background frame & offset panel: 2x movement behind portrait
+    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.66).toFixed(2)}px), calc(-50% + ${(currTransY * 0.66).toFixed(2)}px), 0px) rotateX(${(currRotX * 0.66).toFixed(2)}deg) rotateY(${(currRotY * 0.66).toFixed(2)}deg)`;
 
     // Background glow: 1x movement
     if (glow) {
@@ -2465,6 +2465,8 @@ function setupHero3DPortraitParallax() {
   let targetLightY = 0;
   let currentLightX = 0;
   let currentLightY = 0;
+  let targetKickerLiftY = 0;
+  let currentKickerLiftY = 0;
   let isHovered = false;
 
   function updateBounds() {
@@ -2473,8 +2475,8 @@ function setupHero3DPortraitParallax() {
 
   function getResponsiveHoverScale() {
     const w = window.innerWidth;
-    if (w > 1024) return 1.08; // desktop: controlled 1.08 enlargement
-    if (w > 768) return 1.05;  // tablet: subtle 1.05
+    if (w > 1024) return 1.05; // desktop: controlled 1.05 enlargement
+    if (w > 768) return 1.04;  // tablet: subtle 1.04
     return 1.0;                // mobile: keep clean native bounds
   }
 
@@ -2512,6 +2514,7 @@ function setupHero3DPortraitParallax() {
     updateBounds();
     targetScale = getResponsiveHoverScale();
     targetTranslateZ = prefersReduced ? 0 : 24;
+    targetKickerLiftY = prefersReduced ? 0 : -22; // Elevates kicker pill on hover to create clear padding
     cutoutFrame.classList.add('is-hovered');
     stage.classList.add('has-hover');
     if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
@@ -2532,6 +2535,7 @@ function setupHero3DPortraitParallax() {
     targetTranslateZ = 0;
     targetLightX = 0;
     targetLightY = 0;
+    targetKickerLiftY = 0; // Return kicker pill cleanly to resting position
     cutoutFrame.classList.remove('is-hovered');
     stage.classList.remove('has-hover');
     if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
@@ -2609,11 +2613,13 @@ function setupHero3DPortraitParallax() {
     const lerpRot = 0.12;
     const lerpScale = 0.14;
     const lerpLight = 0.08; // slightly delayed spring response for organic physical feeling
+    const lerpKicker = 0.14;
 
     currentRotX += (targetRotX - currentRotX) * lerpRot;
     currentRotY += (targetRotY - currentRotY) * lerpRot;
     currentScale += (targetScale - currentScale) * lerpScale;
     currentTranslateZ += (targetTranslateZ - currentTranslateZ) * lerpRot;
+    currentKickerLiftY += (targetKickerLiftY - currentKickerLiftY) * lerpKicker;
 
     currentLightX += (targetLightX - currentLightX) * lerpLight;
     currentLightY += (targetLightY - currentLightY) * lerpLight;
@@ -2662,15 +2668,16 @@ function setupHero3DPortraitParallax() {
     }
 
     if (kickerBadge) {
-      kickerBadge.style.transform = `translate(${(-currentRotY * 0.25).toFixed(1)}px, ${(currentRotX * 0.25).toFixed(1)}px)`;
+      kickerBadge.style.transform = `translate(${(-currentRotY * 0.25).toFixed(1)}px, ${(currentKickerLiftY + currentRotX * 0.25).toFixed(1)}px)`;
     }
 
     // Check if motion is still active
     const rotDiff = Math.abs(targetRotX - currentRotX) + Math.abs(targetRotY - currentRotY);
     const scaleDiff = Math.abs(targetScale - currentScale);
     const lightDiff = Math.abs(targetLightX - currentLightX) + Math.abs(targetLightY - currentLightY);
+    const kickerDiff = Math.abs(targetKickerLiftY - currentKickerLiftY);
 
-    if (rotDiff > 0.01 || scaleDiff > 0.001 || lightDiff > 0.01 || isHovered) {
+    if (rotDiff > 0.01 || scaleDiff > 0.001 || lightDiff > 0.01 || kickerDiff > 0.01 || isHovered) {
       rafId = requestAnimationFrame(renderParallax);
     } else {
       // Cleanly clear transforms when settled back at rest
@@ -3942,6 +3949,8 @@ function setupLearningJourneyStory() {
   const floatingObjects = Array.from(section.querySelectorAll('.lj-3d-floating-object'));
   const stageArtifact = document.getElementById('lj-stage-artifact');
   const ribbonCore = section.querySelector('.lj-ribbon-core');
+  const portalAssembly = document.getElementById('portal-assembly');
+  const deskPlatform = document.getElementById('desk-platform');
 
   // The 8 Authentic Milestones faithfully representing Arfa Munam's learning roadmap
   const milestones = [
@@ -4244,7 +4253,19 @@ function setupLearningJourneyStory() {
       }
     }
 
-    // 3. Subtle studio spotlight follow
+    // 3. Subtle perspective tilt on portal and desk platform
+    if (portalAssembly) {
+      const pTiltX = -relY * 8;
+      const pTiltY = relX * 8;
+      portalAssembly.style.transform = `perspective(1000px) rotateX(${pTiltX.toFixed(2)}deg) rotateY(${pTiltY.toFixed(2)}deg)`;
+    }
+    if (deskPlatform) {
+      const dTiltX = -relY * 5;
+      const dTiltY = relX * 5;
+      deskPlatform.style.transform = `perspective(1000px) rotateX(${dTiltX.toFixed(2)}deg) rotateY(${dTiltY.toFixed(2)}deg)`;
+    }
+
+    // 4. Subtle studio spotlight follow
     if (studioSpotlight) {
       const posX = ((e.clientX - rect.left) / rect.width) * 100;
       const posY = ((e.clientY - rect.top) / rect.height) * 100;
@@ -4261,6 +4282,12 @@ function setupLearningJourneyStory() {
       if (artBody) {
         artBody.style.transform = '';
       }
+    }
+    if (portalAssembly) {
+      portalAssembly.style.transform = '';
+    }
+    if (deskPlatform) {
+      deskPlatform.style.transform = '';
     }
   });
 

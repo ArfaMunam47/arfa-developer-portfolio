@@ -727,141 +727,97 @@
     <div class="gallery-container">
       
       <!-- 2026 PREMIUM "WORK, IN MOTION" 3D HERO INTRODUCTION -->
+      <!-- 2026 PREMIUM "WORK, IN MOTION" 3D HERO INTRODUCTION -->
       <div class="work-in-motion-hero" id="work-in-motion-hero">
         
-        <!-- Ambient Decorative Lighting Elements -->
+        <!-- Ambient Decorative Lighting Elements (Warm Ivory, Soft Blush & Subtle Lavender Atmosphere) -->
         <div class="motion-ambient-lighting" aria-hidden="true">
-          <div class="motion-glow-orb glow-coral"></div>
-          <div class="motion-glow-orb glow-cyan"></div>
-          <div class="motion-glow-orb glow-violet"></div>
+          <div class="motion-glow-orb glow-blush"></div>
+          <div class="motion-glow-orb glow-peach"></div>
+          <div class="motion-glow-orb glow-lavender"></div>
+          <!-- Large Abstract Translucent Background Shapes -->
+          <div class="hero-bg-ring" aria-hidden="true"></div>
+          <div class="hero-bg-organic-shape" aria-hidden="true"></div>
         </div>
 
-        <!-- Two-Sided Composition Grid: Left Character & 3D Circle | Right Editorial Title -->
+        <!-- Two-Sided Composition Grid: Left 3D Portrait Stage (45%) | Right Editorial Typography (55%) -->
         <div class="motion-hero-grid">
           
-          <!-- LEFT SIDE: 3D Portrait Physically Emerging from Dimensional Circular Frame -->
-          <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="3D Portrait of Arfa Munam emerging from dimensional circular frame">
+          <!-- LEFT SIDE: 3D Portrait Composition with Layered Depth -->
+          <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="3D Portrait Presentation">
             
-            <!-- BACK LAYER: Soft Atmospheric Diffused Glow (Coral -> Pink -> Violet -> Cyan) -->
+            <!-- LAYER 1: Large Soft Gradient Shape Behind Image -->
             <div class="character-backdrop-glow motion-portrait-ambient-glow" aria-hidden="true"></div>
 
-            <!-- SECOND LAYER: Dimensional 3D Circular Portal Frame (Hollow 3D Torus) -->
+            <!-- LAYER 2 & 3: Translucent Offset Glass Panel & Subtle Curved Ring Shape Behind Portrait -->
             <div class="dimensional-circular-frame" id="dimensional-circular-frame" aria-hidden="true">
-              <svg class="portal-torus-svg" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <!-- Base Torus Gradient: Coral -> Pink -> Magenta -> Violet -> Cyan -->
-                  <linearGradient id="wimTorusGrad" x1="15%" y1="10%" x2="85%" y2="90%">
-                    <stop offset="0%" stop-color="#FF7A59" />
-                    <stop offset="26%" stop-color="#FA5538" />
-                    <stop offset="48%" stop-color="#F43F5E" />
-                    <stop offset="68%" stop-color="#D946EF" />
-                    <stop offset="86%" stop-color="#8B5CF6" />
-                    <stop offset="100%" stop-color="#06B6D4" />
-                  </linearGradient>
-
-                  <!-- 3D Extrusion Side Wall Gradient -->
-                  <linearGradient id="wimExtrudeGrad" x1="20%" y1="10%" x2="80%" y2="90%">
-                    <stop offset="0%" stop-color="#C2410C" />
-                    <stop offset="35%" stop-color="#BE185D" />
-                    <stop offset="70%" stop-color="#6D28D9" />
-                    <stop offset="100%" stop-color="#0E7490" />
-                  </linearGradient>
-
-                  <!-- Outer Bevel Light Arc -->
-                  <linearGradient id="wimOuterBevel" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-                    <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.5" />
-                    <stop offset="65%" stop-color="#FA5538" stop-opacity="0.25" />
-                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.5" />
-                  </linearGradient>
-
-                  <!-- Specular Crown Ridge Highlight -->
-                  <linearGradient id="wimCrownHighlight" x1="10%" y1="10%" x2="70%" y2="70%">
-                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-                    <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.6" />
-                    <stop offset="65%" stop-color="#FFFFFF" stop-opacity="0.15" />
-                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0" />
-                  </linearGradient>
-
-                  <!-- Inner Cylindrical Wall Occlusion & Ambient Depth -->
-                  <linearGradient id="wimInnerDepth" x1="50%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stop-color="#0F172A" stop-opacity="0.65" />
-                    <stop offset="30%" stop-color="#0F172A" stop-opacity="0.35" />
-                    <stop offset="70%" stop-color="#FA5538" stop-opacity="0.15" />
-                    <stop offset="100%" stop-color="#FED7AA" stop-opacity="0.75" />
-                  </linearGradient>
-
-                  <!-- Soft Drop Shadow Filter for Vector Extrusion -->
-                  <filter id="wimTorusShadow" x="-25%" y="-20%" width="150%" height="160%">
-                    <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#101C35" flood-opacity="0.22" />
-                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#FA5538" flood-opacity="0.16" />
-                  </filter>
-                </defs>
-
-                <!-- 1. Extruded 3D Wall Behind (Physical Ring Thickness) -->
-                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
-                      fill="url(#wimExtrudeGrad)" transform="translate(2, 6)" fill-rule="evenodd" opacity="0.75" />
-
-                <!-- 2. Main 3D Hollow Torus Body with Ambient Shadow -->
-                <path d="M 170 14 A 156 156 0 1 0 170 326 A 156 156 0 1 0 170 14 Z M 170 52 A 118 118 0 1 1 170 288 A 118 118 0 1 1 170 52 Z"
-                      fill="url(#wimTorusGrad)" fill-rule="evenodd" filter="url(#wimTorusShadow)" />
-
-                <!-- 3. Outer Dimensional Bevel Rim (Crisp Specular Edge) -->
-                <circle cx="170" cy="170" r="155.2" stroke="url(#wimOuterBevel)" stroke-width="2.4" fill="none" />
-
-                <!-- 4. Rounded Torus Crown Ridge Highlight (Glinting Apex) -->
-                <circle cx="168.5" cy="168" r="137" stroke="url(#wimCrownHighlight)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.88" />
-
-                <!-- 5. Top-Left Specular Light Arc (Curved Softbox Reflection) -->
-                <path d="M 85 85 A 137 137 0 0 1 190 35" stroke="rgba(255, 255, 255, 0.85)" stroke-width="2.5" stroke-linecap="round" fill="none" />
-
-                <!-- 6. Inner Wall Cylindrical Recess (Shadow at Top, Warm Bounce at Bottom) -->
-                <circle cx="170" cy="170" r="118.8" stroke="url(#wimInnerDepth)" stroke-width="4.2" fill="none" />
-
-                <!-- 7. Inner Bevel Highlight (Defines the Inner Opening Edge) -->
-                <circle cx="170" cy="170" r="116.8" stroke="rgba(255, 255, 255, 0.72)" stroke-width="1.6" fill="none" />
-              </svg>
-
-              <!-- Supporting 3D Micro-Floating Spheres Around Frame (Section 14) -->
-              <div class="portal-floating-elements" aria-hidden="true">
-                <div class="portal-micro-sphere sphere-cyan-gloss" data-depth="1.3">
-                  <div class="micro-sphere-specular"></div>
-                </div>
-                <div class="portal-micro-sphere sphere-violet-glass" data-depth="0.9">
-                  <div class="micro-sphere-specular"></div>
-                </div>
-                <div class="portal-micro-sphere sphere-coral-rim" data-depth="1.1">
-                  <div class="micro-sphere-specular"></div>
-                </div>
-                <div class="portal-micro-sphere sphere-amber-orb" data-depth="0.6">
-                  <div class="micro-sphere-specular"></div>
-                </div>
-                <span class="portal-micro-spark spark-top" data-depth="1.4">✦</span>
-                <span class="portal-micro-spark spark-bottom" data-depth="0.8">·</span>
-              </div>
+              <!-- Layer 2: Slightly Offset Frosted Glass Panel -->
+              <div class="portrait-offset-glass-panel" aria-hidden="true"></div>
+              
+              <!-- Layer 3: Subtle Curved / Circular Accent Ring -->
+              <div class="portrait-curved-accent-ring" aria-hidden="true"></div>
             </div>
 
-            <!-- FRONT LAYER: 3D Portrait Subject Emerging Out of the Circular Frame -->
+            <!-- DECORATIVE 3D OBJECTS (Strictly limited to user specification) -->
+            <div class="ws-floating-objects-layer" aria-hidden="true">
+              <!-- 1. One Translucent 3D Glass Cube with Slow Floating Rotation (Upper Right) -->
+              <div class="ws-3d-cube portal-micro-sphere" data-depth="1.3" title="3D Geometry">
+                <div class="cube-assembly">
+                  <div class="cube-side cube-front"></div>
+                  <div class="cube-side cube-back"></div>
+                  <div class="cube-side cube-top"></div>
+                  <div class="cube-side cube-left"></div>
+                  <div class="cube-side cube-right"></div>
+                  <div class="cube-side cube-bottom"></div>
+                </div>
+              </div>
+
+              <!-- 2. Glossy Small Sphere (Coral/Peach Tone, Middle Left) -->
+              <div class="ws-3d-sphere sphere-blush portal-micro-sphere" data-depth="1.1">
+                <div class="micro-sphere-specular"></div>
+              </div>
+
+              <!-- 3. Glossy Small Sphere (Soft Lavender Tone, Lower Right) -->
+              <div class="ws-3d-sphere sphere-violet portal-micro-sphere" data-depth="0.85">
+                <div class="micro-sphere-specular"></div>
+              </div>
+
+              <!-- 4. One Thin Curved Orbital Ring (Lower Left) -->
+              <div class="ws-3d-halo-ring portal-micro-sphere" data-depth="0.7"></div>
+
+              <!-- 5. A Few Tiny Spark / Star Accents -->
+              <span class="portal-micro-spark spark-top" data-depth="1.4">✦</span>
+              <span class="portal-micro-spark spark-bottom" data-depth="0.8">✦</span>
+              <span class="portal-micro-spark spark-mid-left" data-depth="1.0">·</span>
+            </div>
+
+            <!-- FRONT LAYER: 3D Portrait in Dimensional Layered Card Frame -->
             <div class="motion-character-entity" id="motion-character-entity">
-              <!-- Soft Realistic Depth Shadow Behind Subject Falling on Frame -->
               <div class="character-contact-shadow" aria-hidden="true"></div>
 
-              <!-- Clean Cutout Subject (Head, hair, and upper shoulders break out above circular frame) -->
               <div class="character-breakout-wrap">
-                <img 
-                  src="new.png" 
-                  alt="Arfa Munam — Creative Developer" 
-                  class="motion-character-img"
-                  id="motion-character-img"
-                  onerror="this.onerror=null; this.src='menew.png';"
-                  loading="eager"
-                />
+                <!-- Large Softly Rounded Visual Card Frame with Existing Portrait -->
+                <div class="portrait-card-frame">
+                  <!-- Subtle gradient interior canvas of the card -->
+                  <div class="portrait-card-canvas">
+                    <img 
+                      src="new.png" 
+                      alt="Arfa Munam — Creative Developer Portrait" 
+                      class="motion-character-img portrait-featured-img"
+                      id="motion-character-img"
+                      onerror="this.onerror=null; this.src='menew.png';"
+                      loading="eager"
+                    />
+                    <!-- Subtle glass sheen highlight overlay across card -->
+                    <div class="portrait-card-glass-sheen"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
           </div><!-- /.motion-stage-left -->
 
-          <!-- RIGHT SIDE: Editorial "Work, in Motion." Typography & Supporting Elements -->
+          <!-- RIGHT SIDE: Project Showcase Introduction Typography & Supporting Elements -->
           <div class="motion-stage-right">
             
             <!-- Small Editorial Pill: ✦ SELECTED WORK -->
@@ -870,7 +826,7 @@
               <span class="badge-text">SELECTED WORK</span>
             </div>
 
-            <!-- Main Title: WORK, IN MOTION. -->
+            <!-- Main Headline: Work, in Motion. -->
             <h2 class="motion-main-heading" id="motion-heading" aria-label="Work, in Motion.">
               <span class="heading-line heading-line-work">
                 <span class="reveal-inner">Work, in</span>
@@ -885,12 +841,14 @@
               Selected digital experiences built with code, creativity, and curiosity.
             </p>
 
-            <!-- Subtle Right-side Accents -->
-            <div class="motion-right-accents" aria-hidden="true">
-              <div class="accent-orbital-arc"></div>
-              <div class="accent-craft-dot dot-coral"></div>
-              <div class="accent-craft-dot dot-pink"></div>
-              <div class="accent-craft-dot dot-cyan"></div>
+            <!-- Small Progress Indicator: 1 thin horizontal gradient line + 3 circular dots -->
+            <div class="motion-decorative-indicator" aria-hidden="true">
+              <span class="indicator-gradient-line"></span>
+              <div class="indicator-dots-group">
+                <span class="indicator-dot dot-coral dot-prominent"></span>
+                <span class="indicator-dot dot-pink"></span>
+                <span class="indicator-dot dot-cyan"></span>
+              </div>
             </div>
 
           </div><!-- /.motion-stage-right -->
@@ -2715,25 +2673,181 @@
 
     <div class="container lj-container">
       
-      <!-- EDITORIAL SECTION HEADER -->
-      <div class="lj-header-editorial reveal">
-        <div class="lj-eyebrow-wrapper">
-          <span class="lj-eyebrow-accent" aria-hidden="true">✦</span>
-          <span class="lj-eyebrow-text">CHAPTER 02 · INTERACTIVE CHRONICLE</span>
-          <span class="lj-eyebrow-divider" aria-hidden="true">/</span>
-          <span class="lj-eyebrow-meta">2026 — PRESENT</span>
-        </div>
+      <!-- CINEMATIC EDITORIAL HERO AREA (2-COLUMN VISUAL SHOWCASE) -->
+      <div class="lj-hero-showcase reveal" id="lj-hero-showcase">
+        
+        <!-- LEFT COLUMN: Typography & Narrative (42%) -->
+        <div class="lj-hero-content">
+          <!-- Top Slim Premium Chapter Badge -->
+          <div class="lj-eyebrow-wrapper">
+            <span class="lj-eyebrow-accent" aria-hidden="true">✦</span>
+            <span class="lj-eyebrow-text">CHAPTER 02 · INTERACTIVE CHRONICLE</span>
+            <span class="lj-eyebrow-divider" aria-hidden="true">/</span>
+            <span class="lj-eyebrow-meta">2026 — PRESENT</span>
+          </div>
 
-        <h2 class="lj-cinematic-headline">
-          <span class="lj-headline-serif">Learning.</span>
-          <span class="lj-headline-serif lj-headline-glow">Growing.</span>
-          <span class="lj-headline-serif">Becoming.</span>
-        </h2>
+          <!-- Editorial Main Title (3 Separate Lines) -->
+          <h2 class="lj-cinematic-headline">
+            <span class="hero-title-line title-line-1">Learning.</span>
+            <span class="hero-title-line title-line-2">Growing.</span>
+            <span class="hero-title-line title-line-3">Becoming.</span>
+          </h2>
 
-        <p class="lj-cinematic-desc">
-          My journey in tech started in 2026. Every concept I master, every project I architect, and every challenge I solve brings me one step closer to the <span class="lj-highlight-rose">developer I aspire to be</span>.
-        </p>
-      </div>
+          <!-- Introductory Paragraph -->
+          <p class="lj-cinematic-desc">
+            My journey in tech started in 2026. Every concept I master, every project I architect, and every challenge I solve brings me one step closer to the <span class="lj-highlight-rose">developer I aspire to be</span>.
+          </p>
+
+          <!-- Small Interactive CTA / Status Pill -->
+          <div class="lj-hero-cta-pill" role="status" aria-label="Learning Journey Active Status">
+            <span class="cta-pulse-dot" aria-hidden="true"></span>
+            <span class="cta-text">LEARNING IN MOTION</span>
+            <span class="cta-arrow-icon" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </span>
+          </div>
+        </div><!-- /.lj-hero-content -->
+
+        <!-- RIGHT COLUMN: Magical 3D Dimensional Portal & Developer Workspace (58%) -->
+        <div class="lj-hero-visual" aria-hidden="true">
+          <div class="portal-3d-scene" id="portal-3d-scene">
+            
+            <!-- Soft Atmospheric Ambient Glow Bloom -->
+            <div class="portal-ambient-light-bloom"></div>
+
+            <!-- Concentric 3D Portal Ring Assembly -->
+            <div class="portal-assembly" id="portal-assembly">
+              
+              <!-- Thick Outer 3D Beveled Metallic Ring -->
+              <div class="portal-outer-chassis">
+                <div class="chassis-specular-highlight"></div>
+                <div class="chassis-inner-groove"></div>
+              </div>
+
+              <!-- Illuminated Neon Glowing Inner Rim -->
+              <div class="portal-glow-rim"></div>
+
+              <!-- Masked Circular Portal Window with Dreamy Futuristic Landscape -->
+              <div class="portal-inner-window">
+                <img 
+                  src="portal-landscape.jpg" 
+                  alt="Dreamy futuristic landscape representing the developer learning journey" 
+                  class="portal-landscape-img" 
+                />
+                <div class="portal-landscape-overlay"></div>
+                <div class="portal-path-highlight-pulse"></div>
+              </div>
+
+              <!-- 3D Depth / Breakout Elements extending outside the circular portal -->
+              <div class="portal-breakout-elements">
+                <span class="breakout-spark spark-top-right">✦</span>
+                <span class="breakout-spark spark-top-left">·</span>
+                <span class="breakout-spark spark-right">✦</span>
+                <div class="breakout-light-orb orb-1"></div>
+                <div class="breakout-light-orb orb-2"></div>
+              </div>
+
+            </div><!-- /.portal-assembly -->
+
+            <!-- Floating 3D Developer Desk Platform -->
+            <div class="portal-floating-desk-platform" id="desk-platform">
+              <div class="desk-platform-chassis">
+                <div class="platform-surface-sheen"></div>
+                <div class="platform-underside-glow"></div>
+              </div>
+
+              <!-- The 4 Cohesive Developer Desk Items -->
+              <div class="desk-items-row">
+                
+                <!-- 1. Open Book representing continuous learning -->
+                <div class="desk-item desk-item-book" title="Foundational Knowledge & Books">
+                  <div class="book-pages-wrapper">
+                    <div class="book-page book-page-left">
+                      <span class="page-line"></span>
+                      <span class="page-line short"></span>
+                      <span class="page-line"></span>
+                    </div>
+                    <div class="book-spine"></div>
+                    <div class="book-page book-page-right">
+                      <span class="page-line"></span>
+                      <span class="page-line"></span>
+                      <span class="page-line short"></span>
+                    </div>
+                    <div class="book-ribbon-marker"></div>
+                  </div>
+                </div>
+
+                <!-- 2. Modern Angled Laptop displaying colorful code -->
+                <div class="desk-item desk-item-laptop" title="Modern Software Engineering">
+                  <div class="laptop-screen-casing">
+                    <div class="laptop-screen-display">
+                      <div class="screen-code-editor">
+                        <div class="editor-header">
+                          <span class="dot-red"></span>
+                          <span class="dot-yellow"></span>
+                          <span class="dot-green"></span>
+                        </div>
+                        <div class="editor-code-lines">
+                          <div class="code-line"><span class="c-pink">const</span> <span class="c-blue">journey</span> = <span class="c-amber">2026</span>;</div>
+                          <div class="code-line indent"><span class="c-purple">while</span> (<span class="c-mint">growing</span>) {</div>
+                          <div class="code-line double-indent"><span class="c-blue">build</span>(<span class="c-pink">"excellence"</span>);</div>
+                          <div class="code-line indent">}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="screen-specular-edge"></div>
+                  </div>
+                  <div class="laptop-base-chassis">
+                    <div class="laptop-keyboard-track"></div>
+                    <div class="laptop-trackpad"></div>
+                  </div>
+                </div>
+
+                <!-- 3. Developer Coffee Mug with </> symbol -->
+                <div class="desk-item desk-item-mug" title="Developer Fuel">
+                  <div class="mug-steam-particles" aria-hidden="true">
+                    <span class="steam-particle s-1">~</span>
+                    <span class="steam-particle s-2">~</span>
+                  </div>
+                  <div class="mug-cylinder">
+                    <span class="mug-code-glyph">&lt;/&gt;</span>
+                    <div class="mug-handle"></div>
+                  </div>
+                </div>
+
+                <!-- 4. Minimalist Workspace Plant -->
+                <div class="desk-item desk-item-plant" title="Organic Growth">
+                  <div class="plant-pot">
+                    <div class="plant-succulent-leaves">
+                      <div class="leaf leaf-1"></div>
+                      <div class="leaf leaf-2"></div>
+                      <div class="leaf leaf-3"></div>
+                      <div class="leaf leaf-center"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /.desk-items-row -->
+            </div><!-- /.portal-floating-desk-platform -->
+
+            <!-- Floating 3D Technology Detail Badges -->
+            <div class="portal-tech-badge badge-code" title="Code Primitives">
+              <span class="badge-icon">&lt;/&gt;</span>
+            </div>
+            <div class="portal-tech-badge badge-ai" title="AI Intelligence">
+              <span class="badge-spark">✦</span>
+              <span class="badge-label">AI</span>
+            </div>
+            <div class="portal-tech-badge badge-brackets" title="Modern Systems">
+              <span class="badge-icon">{ }</span>
+            </div>
+
+          </div><!-- /.portal-3d-scene -->
+        </div><!-- /.lj-hero-visual -->
+
+      </div><!-- /.lj-hero-showcase -->
 
       <!-- INTERACTIVE JOURNEY TIMELINE (6 3D MILESTONES + ILLUMINATED FLOWING RIBBON PATH) -->
       <div class="lj-timeline-universe reveal" id="lj-timeline-universe">
