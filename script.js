@@ -792,16 +792,30 @@ function setupWorkInMotionIntro() {
     hero.classList.add('is-revealed');
   }
 
+  // Smooth scroll bridge to projects carousel
+  const bridgeLink = document.getElementById('bridge-to-projects-link');
+  if (bridgeLink) {
+    bridgeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('gallery-stage-viewport') || document.querySelector('.gallery-stage-viewport');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
   // Check reduced motion preference
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
 
   const stage = document.getElementById('motion-character-stage');
+  const frame = document.getElementById('portal-frame-chassis');
   const character = document.getElementById('motion-character-entity');
-  const circle = document.getElementById('dimensional-circular-frame') || document.getElementById('dimensional-rect-frame') || document.getElementById('dimensional-circle-frame');
-  const glow = stage ? stage.querySelector('.character-backdrop-glow') : null;
+  const halo = stage ? stage.querySelector('.portal-ambient-halo') : null;
+  const spotlight = stage ? stage.querySelector('.frame-ambient-spotlight') : null;
+  const gemEls = stage ? Array.from(stage.querySelectorAll('.portal-gem')) : [];
 
-  if (!stage || !character || !circle) return;
+  if (!stage || !frame || !character) return;
 
   let targetRotX = 0, targetRotY = 0;
   let currRotX = 0, currRotY = 0;
@@ -811,43 +825,50 @@ function setupWorkInMotionIntro() {
   let rafId = null;
 
   function updatePhysics() {
-    currRotX += (targetRotX - currRotX) * 0.065;
-    currRotY += (targetRotY - currRotY) * 0.065;
-    currTransX += (targetTransX - currTransX) * 0.065;
-    currTransY += (targetTransY - currTransY) * 0.065;
+    currRotX += (targetRotX - currRotX) * 0.08;
+    currRotY += (targetRotY - currRotY) * 0.08;
+    currTransX += (targetTransX - currTransX) * 0.08;
+    currTransY += (targetTransY - currTransY) * 0.08;
 
-    const zDepth = isHovered ? 44 : 28;
-    const scaleFactor = isHovered ? 1.03 : 1.0;
+    const zDepth = isHovered ? 56 : 46;
+    const charScale = isHovered ? 1.03 : 1.0;
 
-    // Portrait card: 3x movement in front
-    character.style.transform = `translate3d(calc(-50% + ${currTransX.toFixed(2)}px), calc(-50% + ${currTransY.toFixed(2)}px), ${zDepth}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg) scale(${scaleFactor})`;
-    
-    // Background frame & offset panel: 2x movement behind portrait
-    circle.style.transform = `translate3d(calc(-50% + ${(currTransX * 0.66).toFixed(2)}px), calc(-50% + ${(currTransY * 0.66).toFixed(2)}px), 0px) rotateX(${(currRotX * 0.66).toFixed(2)}deg) rotateY(${(currRotY * 0.66).toFixed(2)}deg)`;
+    // 1. Frame chassis: physical 3D tilt with subtle translation
+    frame.style.transform = `translateX(calc(-50% + ${(currTransX * 0.45).toFixed(2)}px)) translateY(${(currTransY * 0.45).toFixed(2)}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg)`;
 
-    // Background glow: 1x movement
-    if (glow) {
-      glow.style.transform = `translate3d(${(currTransX * 0.33).toFixed(2)}px, ${(currTransY * 0.33).toFixed(2)}px, 0px) scale(${isHovered ? 1.04 : 1})`;
+    // 2. Character entity: foreground 3D breakout at higher depth & parallax disparity
+    character.style.transform = `translateX(calc(-50% + ${(currTransX * 0.85).toFixed(2)}px)) translateY(${(currTransY * 0.85).toFixed(2)}px) translateZ(${zDepth}px) rotateX(${(currRotX * 1.15).toFixed(2)}deg) rotateY(${(currRotY * 1.15).toFixed(2)}deg) scale(${charScale})`;
+
+    // 3. Interior spotlight: counter-shift for deep interior volume
+    if (spotlight) {
+      spotlight.style.transform = `translate(${(-currTransX * 0.55).toFixed(1)}px, ${(-currTransY * 0.55).toFixed(1)}px)`;
     }
 
-    const spheres = stage.querySelectorAll('.portal-micro-sphere, .portal-micro-spark');
-    if (spheres.length) {
-      spheres.forEach((sp) => {
-        const depth = parseFloat(sp.getAttribute('data-depth')) || 1.0;
-        sp.style.transform = `translate3d(${(currTransX * 0.5 * depth).toFixed(2)}px, ${(currTransY * 0.5 * depth).toFixed(2)}px, ${(depth * 10).toFixed(1)}px)`;
-      });
+    // 4. Floating 3D Prismatic Gems parallax
+    gemEls.forEach((gem) => {
+      const depth = parseFloat(gem.getAttribute('data-depth')) || 1.0;
+      const gx = currTransX * 0.9 * depth;
+      const gy = currTransY * 0.9 * depth;
+      const gz = 46 * depth;
+      gem.style.transform = `translate3d(${gx.toFixed(1)}px, ${gy.toFixed(1)}px, ${gz.toFixed(1)}px)`;
+    });
+
+    // 5. Ambient halo
+    if (halo) {
+      halo.style.transform = `translate(${(currTransX * 0.25).toFixed(1)}px, ${(currTransY * 0.25).toFixed(1)}px) scale(${isHovered ? 1.08 : 1})`;
     }
 
     // Continue loop if active or still decelerating
-    if (isHovered || Math.abs(currRotX) > 0.01 || Math.abs(currRotY) > 0.01 || Math.abs(currTransX) > 0.01) {
+    if (isHovered || Math.abs(currRotX - targetRotX) > 0.01 || Math.abs(currRotY - targetRotY) > 0.01 || Math.abs(currTransX - targetTransX) > 0.01) {
       rafId = requestAnimationFrame(updatePhysics);
     } else {
       rafId = null;
-      circle.style.transform = '';
-      character.style.transform = '';
-      if (glow) glow.style.transform = '';
-      if (spheres.length) {
-        spheres.forEach((sp) => { sp.style.transform = ''; });
+      if (!isHovered) {
+        frame.style.transform = '';
+        character.style.transform = '';
+        if (spotlight) spotlight.style.transform = '';
+        gemEls.forEach(gem => { gem.style.transform = ''; });
+        if (halo) halo.style.transform = '';
       }
     }
   }
@@ -858,6 +879,7 @@ function setupWorkInMotionIntro() {
     }
   }
 
+  // Pointer tracking across the 3D portal stage
   stage.addEventListener('pointerenter', () => {
     isHovered = true;
     startPhysicsLoop();
@@ -865,14 +887,13 @@ function setupWorkInMotionIntro() {
 
   stage.addEventListener('pointermove', (e) => {
     const rect = stage.getBoundingClientRect();
-    const normX = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
-    const normY = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+    const normX = Math.max(-1, Math.min(1, ((e.clientX - rect.left) / rect.width - 0.5) * 2)); // -1 to 1
+    const normY = Math.max(-1, Math.min(1, ((e.clientY - rect.top) / rect.height - 0.5) * 2)); // -1 to 1
 
-    // Subtle physical tilt: max 2.5–3.2 degrees, gentle translation
-    targetRotX = -normY * 3.2;
-    targetRotY = normX * 3.2;
+    targetRotX = -normY * 4.5;
+    targetRotY = normX * 5.0;
     targetTransX = normX * 12;
-    targetTransY = normY * 12;
+    targetTransY = normY * 10;
 
     startPhysicsLoop();
   });
@@ -2441,8 +2462,31 @@ function setupHero3DPortraitParallax() {
   const pinkLight = visualZone ? visualZone.querySelector('.hero-light-pink') : null;
   const violetLight = visualZone ? (visualZone.querySelector('.hero-light-violet') || visualZone.querySelector('.hero-disc-purple')) : null;
   const bloomLight = visualZone ? (visualZone.querySelector('.hero-light-bloom') || visualZone.querySelector('.hero-backdrop-glow-aura')) : null;
-  const orbitalRings = visualZone ? Array.from(visualZone.querySelectorAll('.hero-orbit-ring')) : [];
-  const particles = visualZone ? Array.from(visualZone.querySelectorAll('.hero-particle')) : [];
+  const singleRing = visualZone ? (visualZone.querySelector('#hero-single-ring') || visualZone.querySelector('.single-hero-ring')) : null;
+  const ringTrack = visualZone ? visualZone.querySelector('#ring-particles-track') : null;
+  const ringParticleEls = ringTrack ? Array.from(ringTrack.querySelectorAll('.ring-particle')) : [];
+  let ringParticleAngle = 0;
+  let ringRafId = null;
+
+  const particleEls = visualZone ? Array.from(visualZone.querySelectorAll('.hero-particle')) : [];
+  const particleNodes = particleEls.map((el, i) => {
+    const depth = parseFloat(el.getAttribute('data-depth')) || 1.0;
+    const radiusX = parseFloat(el.getAttribute('data-radius-x')) || (18 + (i % 4) * 3);
+    const radiusY = parseFloat(el.getAttribute('data-radius-y')) || (13 + (i % 3) * 2.5);
+    const speed = parseFloat(el.getAttribute('data-speed')) || 1.0;
+    const baseAngle = (i / Math.max(1, particleEls.length)) * Math.PI * 2;
+    return {
+      el,
+      depth,
+      radiusX,
+      radiusY,
+      speed,
+      angle: baseAngle,
+      currX: 0,
+      currY: 0,
+      currZ: 0
+    };
+  });
 
   const cursorRing = document.getElementById('cursor-follower');
   const cursorDot = document.getElementById('cursor-dot');
@@ -2499,6 +2543,10 @@ function setupHero3DPortraitParallax() {
     targetRotY = relX * 2.6;
     targetRotX = -relY * 2.6;
 
+    // Extra dynamic clearance when cursor is near the top of the portrait picture
+    const extraTopClearance = relY < 0 ? (-relY * 6) : 0;
+    targetKickerLiftY = (prefersReduced ? -18 : -28) - extraTopClearance;
+
     // Cursor-responsive lighting: shifts slightly in the direction of cursor
     // moving left -> shifts left, right -> shifts right, up -> up, down -> down
     targetLightX = relX * 22;
@@ -2514,7 +2562,7 @@ function setupHero3DPortraitParallax() {
     updateBounds();
     targetScale = getResponsiveHoverScale();
     targetTranslateZ = prefersReduced ? 0 : 24;
-    targetKickerLiftY = prefersReduced ? 0 : -22; // Elevates kicker pill on hover to create clear padding
+    targetKickerLiftY = prefersReduced ? -18 : -28; // Elevates kicker pill on hover to create clear, generous padding
     cutoutFrame.classList.add('is-hovered');
     stage.classList.add('has-hover');
     if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
@@ -2651,20 +2699,27 @@ function setupHero3DPortraitParallax() {
       ambientLight.style.transform = `translate(${(currentLightX * 0.5).toFixed(1)}px, ${(currentLightY * 0.5).toFixed(1)}px)`;
     }
 
-    // Subtle 3D parallax on orbital rings behind portrait
-    if (orbitalRings.length) {
-      orbitalRings.forEach((ring, idx) => {
-        const factor = 0.4 + idx * 0.2;
-        ring.style.transform = `translate(${(currentLightX * factor).toFixed(1)}px, ${(currentLightY * factor).toFixed(1)}px)`;
-      });
-    }
+    // Alive Organic Particle Physics: continuous orbital drift + cursor excitation
+    const orbitSpeed = isHovered ? 0.038 : 0.012; // accelerates smoothly when cursor is over picture
+    particleNodes.forEach((node) => {
+      node.angle += orbitSpeed * node.speed;
+      
+      // Elliptical orbital path + cursor light influence + 3D depth
+      const targetX = Math.cos(node.angle) * node.radiusX + currentLightX * 0.85 * node.depth;
+      const targetY = Math.sin(node.angle) * node.radiusY + currentLightY * 0.85 * node.depth;
+      const targetZ = Math.sin(node.angle) * 20 * node.depth;
 
-    // Small 3D floating particles shifting gently with depth
-    if (particles.length) {
-      particles.forEach((p) => {
-        const depth = parseFloat(p.getAttribute('data-depth')) || 1.0;
-        p.style.transform = `translate(${(currentLightX * 0.7 * depth).toFixed(1)}px, ${(currentLightY * 0.7 * depth).toFixed(1)}px)`;
-      });
+      // Spring-like lerp for physical fluidity
+      node.currX += (targetX - node.currX) * 0.14;
+      node.currY += (targetY - node.currY) * 0.14;
+      node.currZ += (targetZ - node.currZ) * 0.14;
+
+      node.el.style.transform = `translate3d(${node.currX.toFixed(1)}px, ${node.currY.toFixed(1)}px, ${node.currZ.toFixed(1)}px) scale(${isHovered ? 1.12 : 1.0})`;
+    });
+
+    // Single 3D Celestial Orbital Ring: Reacts to cursor in 3D perspective
+    if (singleRing) {
+      singleRing.style.transform = `rotateX(${(66 - currentRotX * 1.6).toFixed(1)}deg) rotateY(${(-16 + currentRotY * 1.6).toFixed(1)}deg) translate3d(${(currentLightX * 0.45).toFixed(1)}px, ${(currentLightY * 0.45).toFixed(1)}px, 0px)`;
     }
 
     if (kickerBadge) {
@@ -2690,12 +2745,41 @@ function setupHero3DPortraitParallax() {
         if (bloomLight) bloomLight.style.transform = '';
         if (ambientLight) ambientLight.style.transform = '';
         if (kickerBadge) kickerBadge.style.transform = '';
-        orbitalRings.forEach((r) => { r.style.transform = ''; });
-        particles.forEach((p) => { p.style.transform = ''; });
+        if (singleRing) singleRing.style.transform = '';
       }
       rafId = null;
     }
   }
+
+  // Dedicated Continuous 3D Flowing Ring Particles Animation Loop
+  function animateRingParticles() {
+    if (prefersReduced) return;
+    const ringSpeed = isHovered ? 0.038 : 0.013;
+    ringParticleAngle += ringSpeed;
+
+    if (ringParticleEls.length > 0) {
+      const totalRingParticles = ringParticleEls.length;
+      ringParticleEls.forEach((pEl, pIdx) => {
+        const offsetAngle = ringParticleAngle + (pIdx / totalRingParticles) * Math.PI * 2;
+        const rx = 49.5;
+        const ry = 49.5;
+        const px = 50 + Math.cos(offsetAngle) * rx;
+        const py = 50 + Math.sin(offsetAngle) * ry;
+
+        const depthFactor = (Math.sin(offsetAngle) + 1) / 2;
+        const pScale = isHovered ? (0.95 + depthFactor * 0.42) : (0.85 + depthFactor * 0.32);
+        const pOpacity = isHovered ? (0.8 + depthFactor * 0.2) : (0.6 + depthFactor * 0.35);
+        const pZ = Math.sin(offsetAngle) * 22;
+
+        pEl.style.left = `${px.toFixed(2)}%`;
+        pEl.style.top = `${py.toFixed(2)}%`;
+        pEl.style.transform = `translate3d(-50%, -50%, ${pZ.toFixed(1)}px) scale(${pScale.toFixed(2)})`;
+        pEl.style.opacity = pOpacity.toFixed(2);
+      });
+    }
+    ringRafId = requestAnimationFrame(animateRingParticles);
+  }
+  animateRingParticles();
 }
 
 /**
@@ -3951,6 +4035,43 @@ function setupLearningJourneyStory() {
   const ribbonCore = section.querySelector('.lj-ribbon-core');
   const portalAssembly = document.getElementById('portal-assembly');
   const deskPlatform = document.getElementById('desk-platform');
+
+  // 3D Architectural Knowledge Engine Interactive Tabs & Parallax
+  const consoleTabs = Array.from(section.querySelectorAll('.console-tab'));
+  const consolePanes = Array.from(section.querySelectorAll('.console-pane'));
+  const engineConsole = document.getElementById('lj-engine-console');
+  const engineStage = document.getElementById('lj-engine-stage');
+
+  if (consoleTabs.length > 0) {
+    consoleTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+        consoleTabs.forEach(t => {
+          const isActive = t === btn;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        consolePanes.forEach(pane => {
+          const isTarget = pane.id === `pane-${targetTab}`;
+          pane.classList.toggle('is-active', isTarget);
+        });
+      });
+    });
+  }
+
+  // Interactive 3D Perspective Tilt on Mouse Movement over the Engine Console
+  if (engineStage && engineConsole) {
+    engineStage.addEventListener('mousemove', (e) => {
+      const rect = engineStage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      engineConsole.style.transform = `rotateX(${-y * 12}deg) rotateY(${x * 14}deg) translateZ(8px)`;
+    });
+
+    engineStage.addEventListener('mouseleave', () => {
+      engineConsole.style.transform = 'rotateX(2deg) rotateY(-2.5deg)';
+    });
+  }
 
   // The 8 Authentic Milestones faithfully representing Arfa Munam's learning roadmap
   const milestones = [
