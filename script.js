@@ -935,13 +935,27 @@ function setupProjectsShowcase() {
 
   if (!track) return;
 
-  // Authentic 4 Projects Data with User's Provided Image Screenshots
+  // Authentic 5 Projects Data with User's Uploaded Screenshots
   const projects = [
+    {
+      id: "prism",
+      key: "prism",
+      number: "01",
+      title: "Prism",
+      category: "3D WebGL & Spatial AR",
+      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
+      description: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
+      tags: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion"],
+      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      codeUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      accent: "#8B5CF6",
+      image: "Prism.jpeg"
+    },
     {
       id: "studypilot",
       key: "studypilot",
-      number: "01",
-      title: "StudyPilot-AI",
+      number: "02",
+      title: "StudyPilot AI",
       category: "AI Academic Copilot",
       tagline: "Intelligent Academic Workspace with Adaptive Flashcards & Study Planner",
       description: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
@@ -949,50 +963,26 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       accent: "#6366F1",
-      image: "studypilot.png",
-      renderMockup: function() {
-        return `
-          <div class="mockup-project-image-wrap">
-            <img 
-              src="studypilot.png" 
-              alt="StudyPilot-AI — Intelligent Academic Workspace" 
-              class="project-screenshot-img" 
-              loading="lazy" 
-            />
-          </div>
-        `;
-      }
+      image: "studypilot.png"
     },
     {
       id: "velora",
       key: "velora",
-      number: "02",
-      title: "Velora Store",
+      number: "03",
+      title: "Velora",
       category: "Minimalist E-Commerce",
       tagline: "Minimalist High-Conversion Fashion & Lifestyle Storefront",
       description: "A chic modern e-commerce storefront designed with editorial typography, ultra-responsive grid layouts, instant faceted filtering, slide-out micro-cart drawer, and dynamic voucher calculations for a frictionless retail journey.",
       tags: ["JavaScript ES6+", "React", "Tailwind CSS", "Stripe Checkout", "State Engine"],
       liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
       codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      accent: "#FF6045",
-      image: "veloraa.png",
-      renderMockup: function() {
-        return `
-          <div class="mockup-project-image-wrap">
-            <img 
-              src="veloraa.png" 
-              alt="Velora Store — Minimalist Fashion E-Commerce" 
-              class="project-screenshot-img" 
-              loading="lazy" 
-            />
-          </div>
-        `;
-      }
+      accent: "#FA5538",
+      image: "veloraa.png"
     },
     {
       id: "kumo",
       key: "kumo",
-      number: "03",
+      number: "04",
       title: "Kumo Ramen",
       category: "Artisan Culinary Experience",
       tagline: "Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion",
@@ -1001,25 +991,13 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       codeUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       accent: "#F59E0B",
-      image: "kumo.png",
-      renderMockup: function() {
-        return `
-          <div class="mockup-project-image-wrap">
-            <img 
-              src="kumo.png" 
-              alt="Kumo Ramen — Artisan Tokyo Craft Noodle Bar" 
-              class="project-screenshot-img" 
-              loading="lazy" 
-            />
-          </div>
-        `;
-      }
+      image: "kumo.png"
     },
     {
       id: "pastelform",
       key: "pastelform",
-      number: "04",
-      title: "PastelForm",
+      number: "05",
+      title: "Pastel Form",
       category: "Aesthetic Form Engine",
       tagline: "Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes",
       description: "A fluid, human-centered form and questionnaire experience crafted with soothing pastel palettes, micro-interactions, real-time validation, dynamic branch logic, and instant feedback loops that make data collection an absolute joy.",
@@ -1027,19 +1005,7 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/pastelform",
       codeUrl: "https://github.com/ArfaMunam47/pastelform",
       accent: "#EC4899",
-      image: "pastel.png",
-      renderMockup: function() {
-        return `
-          <div class="mockup-project-image-wrap">
-            <img 
-              src="pastel.png" 
-              alt="PastelForm — Aesthetic Multi-Step Form Engine" 
-              class="project-screenshot-img" 
-              loading="lazy" 
-            />
-          </div>
-        `;
-      }
+      image: "pastel.png"
     }
   ];
 
@@ -1053,7 +1019,7 @@ function setupProjectsShowcase() {
   let dragCurrentX = 0;
   let dragHasMoved = false;
 
-  // Build the 4 cards into DOM once with unified structure
+  // Build the 5 cards into DOM once with clean unified structure
   track.innerHTML = '';
   const cardElements = [];
 
@@ -1067,23 +1033,27 @@ function setupProjectsShowcase() {
     card.setAttribute('aria-label', `${proj.number} of ${totalCount}: ${proj.title}`);
 
     card.innerHTML = `
-      <!-- TOP: Clean Horizontal Project Header (01 StudyPilot-AI) -->
+      <!-- TOP: Clean Horizontal Project Header (01 Prism) -->
       <div class="card-window-bar">
         <div class="card-project-identity">
           <span class="card-project-num">${proj.number}</span>
           <h3 class="card-project-title">${proj.title}</h3>
         </div>
+        <span class="card-category-pill">${proj.category}</span>
       </div>
 
-      <!-- MAIN HERO: Large Dominant Project Screenshot (Occupies ~75-80% of card) -->
+      <!-- MAIN HERO: Large Dominant Project Screenshot (Preserves Aspect Ratio, Zero Distortion) -->
       <div class="card-preview-viewport">
         <div class="mockup-project-image-wrap">
           <img 
             src="${proj.image}" 
-            alt="${proj.title} — Real Project Screenshot" 
+            alt="${proj.title} — Authentic Project Screenshot" 
             class="project-screenshot-img" 
             loading="lazy" 
           />
+        </div>
+        <div class="card-flank-cue" aria-hidden="true">
+          <span>Click to View</span>
         </div>
       </div>
 
@@ -1135,6 +1105,11 @@ function setupProjectsShowcase() {
       if (idx !== activeIndex && !isAnimating && !dragHasMoved) {
         e.preventDefault();
         switchProject(idx);
+      } else if (idx === activeIndex && !dragHasMoved) {
+        // Clicking the active center card opens the detailed project modal
+        if (typeof window.openProjectModal === 'function') {
+          window.openProjectModal(proj.key);
+        }
       }
     });
 
@@ -1153,20 +1128,20 @@ function setupProjectsShowcase() {
       }
     });
 
-    // Desktop cursor hover 3D tilt on active card
+    // Desktop cursor hover 3D tilt on active center card
     card.addEventListener('mousemove', (e) => {
       if (idx !== activeIndex || isDragging || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       const rect = card.getBoundingClientRect();
       const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
       const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-      const tiltX = -normY * 5;
-      const tiltY = normX * 5;
-      card.style.transform = `translate3d(0, 0, 95px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale(1)`;
+      const tiltX = -normY * 4.5;
+      const tiltY = normX * 4.5;
+      card.style.transform = `translate3d(0, 0, 100px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale(1)`;
     });
 
     card.addEventListener('mouseleave', () => {
       if (idx === activeIndex) {
-        card.style.transform = 'translate3d(0, 0, 90px) rotateX(0deg) rotateY(0deg) scale(1)';
+        card.style.transform = 'translate3d(0, 0, 95px) rotateX(0deg) rotateY(0deg) scale(1)';
       }
     });
 
@@ -1174,21 +1149,81 @@ function setupProjectsShowcase() {
     cardElements.push(card);
   });
 
-  function getXOffset() {
+  // Responsive Carousel Geometry Provider for Symmetrical 5-Card Layout
+  function getCarouselGeometry() {
     const w = window.innerWidth;
-    if (w <= 480) return Math.min(w * 0.85, 340);
-    if (w <= 768) return Math.min(w * 0.82, 380);
-    if (w <= 1080) return 340;
-    return 460;
+    if (w <= 480) {
+      return {
+        nearX: Math.min(w * 0.38, 130),
+        farX: Math.min(w * 0.68, 220),
+        scaleCenter: 1.0,
+        scaleNear: 0.80,
+        scaleFar: 0.62,
+        rotNear: 7,
+        rotFar: 13,
+        nearZ: -30,
+        farZ: -95
+      };
+    }
+    if (w <= 768) {
+      return {
+        nearX: Math.min(w * 0.36, 180),
+        farX: Math.min(w * 0.64, 320),
+        scaleCenter: 1.0,
+        scaleNear: 0.83,
+        scaleFar: 0.66,
+        rotNear: 9,
+        rotFar: 16,
+        nearZ: -35,
+        farZ: -105
+      };
+    }
+    if (w <= 1080) {
+      return {
+        nearX: 245,
+        farX: 450,
+        scaleCenter: 1.0,
+        scaleNear: 0.85,
+        scaleFar: 0.71,
+        rotNear: 12,
+        rotFar: 20,
+        nearZ: -35,
+        farZ: -115
+      };
+    }
+    if (w <= 1380) {
+      return {
+        nearX: 290,
+        farX: 530,
+        scaleCenter: 1.0,
+        scaleNear: 0.86,
+        scaleFar: 0.73,
+        rotNear: 14,
+        rotFar: 22,
+        nearZ: -35,
+        farZ: -120
+      };
+    }
+    // Large Desktop screens (> 1380px)
+    return {
+      nearX: 330,
+      farX: 610,
+      scaleCenter: 1.0,
+      scaleNear: 0.88,
+      scaleFar: 0.75,
+      rotNear: 15,
+      rotFar: 24,
+      nearZ: -30,
+      farZ: -115
+    };
   }
 
   function updateGallery(newIndex, immediate = false) {
-    activeIndex = (newIndex + totalCount) % totalCount;
+    activeIndex = ((newIndex % totalCount) + totalCount) % totalCount;
     isAnimating = true;
 
-    const xOffset = getXOffset();
+    const geo = getCarouselGeometry();
     const isMobile = window.innerWidth <= 768;
-    const sideScale = isMobile ? 0.82 : 0.84;
 
     projects.forEach((_, i) => {
       const card = cardElements[i];
@@ -1198,52 +1233,71 @@ function setupProjectsShowcase() {
         card.style.transition = '';
       }
 
+      // Compute relative distance in circular 5-slot space: [-2, -1, 0, 1, 2]
       let diff = (i - activeIndex) % totalCount;
       if (diff > 2) diff -= totalCount;
-      if (diff < -1) diff += totalCount;
+      if (diff < -2) diff += totalCount;
 
-      card.classList.remove('is-active', 'is-left', 'is-right', 'is-hidden');
+      card.classList.remove('is-active', 'is-near-left', 'is-near-right', 'is-far-left', 'is-far-right', 'is-left', 'is-right', 'is-hidden');
 
       if (diff === 0) {
+        // Prominent Center Card
         card.classList.add('is-active');
         card.setAttribute('aria-hidden', 'false');
-        card.style.transform = 'translate3d(0, 0, 90px) rotateX(0deg) rotateY(0deg) scale(1)';
+        card.setAttribute('tabindex', '0');
+        card.style.transform = `translate3d(0, 0, 95px) rotateY(0deg) scale(${geo.scaleCenter})`;
         card.style.opacity = '1';
         card.style.filter = 'blur(0px)';
         card.style.zIndex = '25';
         card.style.pointerEvents = 'auto';
       } else if (diff === -1) {
-        card.classList.add('is-left');
+        // Symmetrical Near Left Card
+        card.classList.add('is-near-left', 'is-left');
         card.setAttribute('aria-hidden', 'false');
-        const rotY = isMobile ? 12 : 18;
-        card.style.transform = `translate3d(-${xOffset}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
-        card.style.opacity = isMobile ? '0.65' : '0.85';
-        card.style.filter = 'blur(0.4px)';
-        card.style.zIndex = '12';
+        card.setAttribute('tabindex', '0');
+        card.style.transform = `translate3d(-${geo.nearX}px, 0, ${geo.nearZ}px) rotateY(${geo.rotNear}deg) scale(${geo.scaleNear})`;
+        card.style.opacity = isMobile ? '0.75' : '0.92';
+        card.style.filter = 'blur(0px)';
+        card.style.zIndex = '18';
         card.style.pointerEvents = 'auto';
       } else if (diff === 1) {
-        card.classList.add('is-right');
+        // Symmetrical Near Right Card
+        card.classList.add('is-near-right', 'is-right');
         card.setAttribute('aria-hidden', 'false');
-        const rotY = isMobile ? -12 : -18;
-        card.style.transform = `translate3d(${xOffset}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
-        card.style.opacity = isMobile ? '0.65' : '0.85';
-        card.style.filter = 'blur(0.4px)';
-        card.style.zIndex = '12';
+        card.setAttribute('tabindex', '0');
+        card.style.transform = `translate3d(${geo.nearX}px, 0, ${geo.nearZ}px) rotateY(-${geo.rotNear}deg) scale(${geo.scaleNear})`;
+        card.style.opacity = isMobile ? '0.75' : '0.92';
+        card.style.filter = 'blur(0px)';
+        card.style.zIndex = '18';
         card.style.pointerEvents = 'auto';
-      } else {
-        card.classList.add('is-hidden');
-        card.setAttribute('aria-hidden', 'true');
-        card.style.transform = 'translate3d(0, 0, -220px) scale(0.65)';
-        card.style.opacity = '0';
-        card.style.filter = 'blur(2px)';
-        card.style.zIndex = '2';
-        card.style.pointerEvents = 'none';
+      } else if (diff === -2) {
+        // Symmetrical Far Left Card
+        card.classList.add('is-far-left', 'is-left');
+        card.setAttribute('aria-hidden', isMobile ? 'true' : 'false');
+        card.setAttribute('tabindex', isMobile ? '-1' : '0');
+        card.style.transform = `translate3d(-${geo.farX}px, 0, ${geo.farZ}px) rotateY(${geo.rotFar}deg) scale(${geo.scaleFar})`;
+        card.style.opacity = isMobile ? '0' : '0.74';
+        card.style.filter = isMobile ? 'blur(2px)' : 'blur(0.4px)';
+        card.style.zIndex = '10';
+        card.style.pointerEvents = isMobile ? 'none' : 'auto';
+      } else if (diff === 2) {
+        // Symmetrical Far Right Card
+        card.classList.add('is-far-right', 'is-right');
+        card.setAttribute('aria-hidden', isMobile ? 'true' : 'false');
+        card.setAttribute('tabindex', isMobile ? '-1' : '0');
+        card.style.transform = `translate3d(${geo.farX}px, 0, ${geo.farZ}px) rotateY(-${geo.rotFar}deg) scale(${geo.scaleFar})`;
+        card.style.opacity = isMobile ? '0' : '0.74';
+        card.style.filter = isMobile ? 'blur(2px)' : 'blur(0.4px)';
+        card.style.zIndex = '10';
+        card.style.pointerEvents = isMobile ? 'none' : 'auto';
       }
     });
 
     if (counterCurr) counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
 
-    indicatorBtns.forEach((btn, idx) => {
+    // Synchronize bottom pill indicator tabs
+    const freshIndicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
+    freshIndicatorBtns.forEach((btn, idx) => {
       const isCur = idx === activeIndex;
       btn.classList.toggle('active', isCur);
       btn.setAttribute('aria-selected', isCur ? 'true' : 'false');
@@ -1251,7 +1305,7 @@ function setupProjectsShowcase() {
 
     setTimeout(() => {
       isAnimating = false;
-    }, immediate ? 50 : 650);
+    }, immediate ? 40 : 650);
   }
 
   function switchProject(idx) {
@@ -1277,7 +1331,8 @@ function setupProjectsShowcase() {
     });
   }
 
-  indicatorBtns.forEach((btn) => {
+  const liveIndicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
+  liveIndicatorBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const idx = parseInt(btn.getAttribute('data-project-idx') || '0', 10);
@@ -1314,9 +1369,7 @@ function setupProjectsShowcase() {
     const deltaX = dragCurrentX - dragStartX;
     if (Math.abs(deltaX) > 6) dragHasMoved = true;
 
-    const xOffset = getXOffset();
-    const isMobile = window.innerWidth <= 768;
-    const sideScale = isMobile ? 0.82 : 0.84;
+    const geo = getCarouselGeometry();
 
     projects.forEach((_, i) => {
       const card = cardElements[i];
@@ -1324,21 +1377,29 @@ function setupProjectsShowcase() {
 
       let diff = (i - activeIndex) % totalCount;
       if (diff > 2) diff -= totalCount;
-      if (diff < -1) diff += totalCount;
+      if (diff < -2) diff += totalCount;
 
       if (diff === 0) {
         const moveX = deltaX * 0.9;
         const rotY = -deltaX * 0.025;
-        const scaleVal = Math.max(0.85, 1 - Math.abs(deltaX) * 0.0003);
-        card.style.transform = `translate3d(${moveX}px, 0, ${90 - Math.abs(deltaX) * 0.15}px) rotateY(${rotY}deg) scale(${scaleVal})`;
+        const scaleVal = Math.max(0.85, geo.scaleCenter - Math.abs(deltaX) * 0.0003);
+        card.style.transform = `translate3d(${moveX}px, 0, ${95 - Math.abs(deltaX) * 0.15}px) rotateY(${rotY}deg) scale(${scaleVal})`;
       } else if (diff === -1) {
-        const moveX = -xOffset + deltaX * 0.85;
-        const rotY = 18 - deltaX * 0.03;
-        card.style.transform = `translate3d(${moveX}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+        const moveX = -geo.nearX + deltaX * 0.85;
+        const rotY = geo.rotNear - deltaX * 0.03;
+        card.style.transform = `translate3d(${moveX}px, 0, ${geo.nearZ}px) rotateY(${rotY}deg) scale(${geo.scaleNear})`;
       } else if (diff === 1) {
-        const moveX = xOffset + deltaX * 0.85;
-        const rotY = -18 - deltaX * 0.03;
-        card.style.transform = `translate3d(${moveX}px, 0, -80px) rotateY(${rotY}deg) scale(${sideScale})`;
+        const moveX = geo.nearX + deltaX * 0.85;
+        const rotY = -geo.rotNear - deltaX * 0.03;
+        card.style.transform = `translate3d(${moveX}px, 0, ${geo.nearZ}px) rotateY(${rotY}deg) scale(${geo.scaleNear})`;
+      } else if (diff === -2) {
+        const moveX = -geo.farX + deltaX * 0.75;
+        const rotY = geo.rotFar - deltaX * 0.02;
+        card.style.transform = `translate3d(${moveX}px, 0, ${geo.farZ}px) rotateY(${rotY}deg) scale(${geo.scaleFar})`;
+      } else if (diff === 2) {
+        const moveX = geo.farX + deltaX * 0.75;
+        const rotY = -geo.rotFar - deltaX * 0.02;
+        card.style.transform = `translate3d(${moveX}px, 0, ${geo.farZ}px) rotateY(${rotY}deg) scale(${geo.scaleFar})`;
       }
     });
   });
@@ -1350,9 +1411,9 @@ function setupProjectsShowcase() {
 
     const deltaX = dragCurrentX - dragStartX;
     if (dragHasMoved) {
-      if (deltaX < -50) {
+      if (deltaX < -45) {
         switchProject(activeIndex + 1);
-      } else if (deltaX > 50) {
+      } else if (deltaX > 45) {
         switchProject(activeIndex - 1);
       } else {
         updateGallery(activeIndex);
@@ -3052,11 +3113,31 @@ function setupProjectFullPageExperience() {
   if (!modal) return;
 
   const projectCatalog = {
-    'studypilot': {
+    'prism': {
       index: 0,
+      title: "Prism — 3D Spatial AR Showcase",
+      badge: "✦ 3D WEBGL & SPATIAL UX",
+      counter: "PROJECT 01 / 05",
+      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
+      desc: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
+      problem: "Hardware and spatial computing products struggle to convey optical clarity, real-time light refraction, and tactile physical presence using static flat marketing pages.",
+      solution: "Engineered a custom Three.js WebGL scene with real-time chromatic dispersion shaders, interactive orbit constraints, and zero-jank scroll timeline synchronization.",
+      tech: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion", "Spatial UI"],
+      metrics: [
+        { val: "60 FPS", lbl: "WebGL Render Rate", color: "#8B5CF6" },
+        { val: "< 1.2s", lbl: "3D Asset Hydration", color: "#2DD4BF" },
+        { val: "100%", lbl: "Hardware Acceleration", color: "#F59E0B" }
+      ],
+      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      ghUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      image: "Prism.jpeg",
+      stageSourceId: "stage-prism"
+    },
+    'studypilot': {
+      index: 1,
       title: "StudyPilot-AI",
       badge: "✦ AI PRODUCT SUITE",
-      counter: "PROJECT 01 / 04",
+      counter: "PROJECT 02 / 05",
       tagline: "Autonomous Spaced Repetition & AI Study Operating System",
       desc: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex engineering syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
       problem: "Students face intense cognitive overload when synthesizing multi-hundred page technical lecture slides and syllabus notes into actionable, structured review cycles before critical examinations.",
@@ -3069,13 +3150,14 @@ function setupProjectFullPageExperience() {
       ],
       liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       ghUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      image: "studypilot.png",
       stageSourceId: "stage-studypilot"
     },
     'velora': {
-      index: 1,
+      index: 2,
       title: "Velora Luxury Store",
       badge: "✦ HIGH-CONVERSION COMMERCE",
-      counter: "PROJECT 02 / 04",
+      counter: "PROJECT 03 / 05",
       tagline: "Sub-Second Micro-Interactions & Accessible Luxury E-Commerce",
       desc: "A bespoke e-commerce boutique platform built with tactile client-side micro-interactions, real-time cart subtotal calculations, fluid currency conversions, and WCAG AA accessibility compliance across all screen sizes.",
       problem: "Legacy online retail checkouts frequently suffer from cumbersome multi-page reload funnels, sluggish cart calculations, and poor mobile touch target ergonomics that degrade user trust.",
@@ -3086,15 +3168,16 @@ function setupProjectFullPageExperience() {
         { val: "100/100", lbl: "Lighthouse Performance", color: "#2DD4BF" },
         { val: "0ms", lbl: "Layout Shift (CLS)", color: "#A78BFA" }
       ],
-      liveUrl: "https://velora-luxury-store.vercel.app",
-      ghUrl: "https://github.com/ArfaMunam47/velora-luxury-store",
+      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      ghUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      image: "veloraa.png",
       stageSourceId: "stage-velora"
     },
     'kumo': {
-      index: 2,
+      index: 3,
       title: "Kumo Ramen Artisanal",
       badge: "✦ INTERACTIVE CULINARY UI",
-      counter: "PROJECT 03 / 04",
+      counter: "PROJECT 04 / 05",
       tagline: "Artisanal Ramen Builder & Real-Time Broth Customizer",
       desc: "An immersive, editorial restaurant digital experience allowing patrons to construct personalized ramen bowls in real-time, dynamically toggling slow-simmered broths, noodle firmness levels, and savory toppings with live pricing feedback.",
       problem: "Standard restaurant menus present static PDF lists that fail to communicate dish customization depth, rich culinary heritage, or allergen transparency.",
@@ -3105,15 +3188,16 @@ function setupProjectFullPageExperience() {
         { val: "60 FPS", lbl: "Fluid Animation Speed", color: "#2DD4BF" },
         { val: "4.9 ★", lbl: "Patron Experience Score", color: "#F59E0B" }
       ],
-      liveUrl: "https://kumo-ramen.vercel.app",
-      ghUrl: "https://github.com/ArfaMunam47/kumo-ramen-artisanal",
+      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      ghUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      image: "kumo.png",
       stageSourceId: "stage-kumo"
     },
     'pastelform': {
-      index: 3,
+      index: 4,
       title: "PastelForm Engine",
       badge: "✦ DYNAMIC FORM ARCHITECTURE",
-      counter: "PROJECT 04 / 04",
+      counter: "PROJECT 05 / 05",
       tagline: "Accessible Multi-Step Form Builder with Schema Validation",
       desc: "A soft-hued, high-ergonomics multi-step questionnaire and schema survey engine engineered with zero layout shift, tactile choice buttons, animated step progress meters, and immediate payload serialization.",
       problem: "Multi-page survey forms generate high user fatigue and abandonment when questions feel disconnected and validation errors are confusingly presented.",
@@ -3124,14 +3208,15 @@ function setupProjectFullPageExperience() {
         { val: "0 CLS", lbl: "Zero Cumulative Shift", color: "#2DD4BF" },
         { val: "100%", lbl: "Accessible ARIA Compliance", color: "#F59E0B" }
       ],
-      liveUrl: "https://pastelform.vercel.app",
-      ghUrl: "https://github.com/ArfaMunam47/pastelform-engine",
+      liveUrl: "https://github.com/ArfaMunam47/pastelform",
+      ghUrl: "https://github.com/ArfaMunam47/pastelform",
+      image: "pastel.png",
       stageSourceId: "stage-pastelform"
     }
   };
 
-  const projectKeys = ['studypilot', 'velora', 'kumo', 'pastelform'];
-  let currentProjectKey = 'studypilot';
+  const projectKeys = ['prism', 'studypilot', 'velora', 'kumo', 'pastelform'];
+  let currentProjectKey = 'prism';
 
   function renderFullPageProject(key) {
     const data = projectCatalog[key];
@@ -3190,6 +3275,12 @@ function setupProjectFullPageExperience() {
 
         // Wire interactions for this cloned stage
         wireClonedStageInteractions(key, stageClone);
+      } else {
+        stageWrapper.innerHTML = `
+          <div class="fullpage-project-media-preview" style="width:100%;height:100%;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, rgba(30,27,75,0.3) 0%, rgba(11,15,25,0.85) 100%);border-radius:20px;padding:1.5rem;box-sizing:border-box;border:1px solid rgba(255,255,255,0.08);">
+            <img src="${data.image || 'Prism.jpeg'}" alt="${data.title}" style="max-width:100%;max-height:460px;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.12);object-fit:contain;" />
+          </div>
+        `;
       }
     }
   }
@@ -3287,13 +3378,14 @@ function setupProjectFullPageExperience() {
     }
   }
 
-  function openModal(key = 'studypilot') {
+  function openModal(key = 'prism') {
     renderFullPageProject(key);
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     playTactileClick(740, 'triangle');
   }
+  window.openProjectModal = openModal;
 
   function closeModal() {
     modal.classList.remove('active');
@@ -4079,13 +4171,13 @@ function setupLearningJourneyStory() {
       num: "01",
       stepNum: "01",
       year: "2026",
-      shortTitle: "Started",
-      stageTitle: "2026 Started",
-      subtitle: "Web Engineering Primitives",
+      shortTitle: "Web Fundamentals",
+      stageTitle: "Web Fundamentals",
+      subtitle: "HTML, CSS, JavaScript, responsive design",
       kicker: "01 · THE GENESIS",
-      title: "Stepping Into Web Engineering",
-      desc: "Began my focused tech journey in 2026. Prioritized understanding fundamental web architecture, programming paradigms, and turning creative visual imagination into clean, semantic code.",
-      skills: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5"],
+      title: "Web Fundamentals",
+      desc: "Mastered fundamental web architecture, semantic markup in HTML5, modern styling with CSS3, DOM programming in JavaScript (ES6+), and resilient responsive layouts.",
+      skills: ["HTML5", "CSS3", "JavaScript ES6+", "Responsive UI"],
       status: "Foundations Mastered",
       quote: "Mastering the primitives before abstractions. Semantic structure is the foundation of digital longevity.",
       color: "#FA5538",
@@ -4097,59 +4189,59 @@ function setupLearningJourneyStory() {
     {
       num: "02",
       stepNum: "02",
-      year: "Core",
-      shortTitle: "Foundations",
-      stageTitle: "Core Foundations",
-      subtitle: "JavaScript ES6+ Bedrock",
-      kicker: "02 · CORE FOUNDATIONS",
-      title: "HTML, CSS & JavaScript Foundations",
-      desc: "Built a resilient bedrock in modern JavaScript (ES6+), deep DOM manipulation, event-driven interfaces, and responsive layouts with Flexbox and CSS Grid without leaning prematurely on heavy libraries.",
-      skills: ["JavaScript (ES6+)", "DOM Events", "CSS Grid & Flexbox", "Responsive UI"],
-      status: "Core Competency",
-      quote: "Understanding the runtime and DOM mechanics turns code from simple syntax into high-performance craft.",
-      color: "#FB923C",
-      accentGrad: "linear-gradient(135deg, #F97316, #FB923C)",
-      borderColor: "rgba(249, 115, 22, 0.48)",
-      glowColor: "rgba(249, 115, 22, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
+      year: "Frontend",
+      shortTitle: "Frontend Dev",
+      stageTitle: "Frontend Development",
+      subtitle: "React, Tailwind CSS, component architecture",
+      kicker: "02 · COMPONENT ARCHITECTURE",
+      title: "Frontend Development",
+      desc: "Component-driven architecture in React, declarative state flows, rapid responsive styling with Tailwind CSS, and engineering modular design systems.",
+      skills: ["React.js", "Tailwind CSS", "Component Systems", "State Flow"],
+      status: "Production Ready",
+      quote: "Component architecture and fluid interfaces bridge the divide between engineering utility and human delight.",
+      color: "#2563EB",
+      accentGrad: "linear-gradient(135deg, #2563EB, #60A5FA)",
+      borderColor: "rgba(37, 99, 235, 0.48)",
+      glowColor: "rgba(37, 99, 235, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
     },
     {
       num: "03",
       stepNum: "03",
-      year: "Frontend",
-      shortTitle: "Front End",
-      stageTitle: "Front End",
-      subtitle: "React & Component Architecture",
-      kicker: "03 · FRONT END DEVELOPMENT",
-      title: "React & Tailwind CSS Component Architecture",
-      desc: "Advanced into component-driven development, declarative state handling in React, rapid responsive styling with Tailwind CSS, and designing modular UI systems with comfortable, intuitive visual hierarchy.",
-      skills: ["React.js", "Tailwind CSS", "Component Systems", "State Architecture"],
-      status: "Active Production",
-      quote: "Component architecture and fluid interfaces bridge the divide between engineering utility and human delight.",
-      color: "#FB7185",
-      accentGrad: "linear-gradient(135deg, #F43F5E, #FB7185)",
-      borderColor: "rgba(251, 113, 133, 0.5)",
-      glowColor: "rgba(251, 113, 133, 0.38)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
+      year: "Motion",
+      shortTitle: "Animation & UI",
+      stageTitle: "Animation & Interactive UI",
+      subtitle: "GSAP, motion, micro-interactions, scroll animation",
+      kicker: "03 · TACTILE INTERACTION",
+      title: "Animation & Interactive UI",
+      desc: "Engineered rich visual experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and tactile micro-interactions that make web applications feel physical and alive.",
+      skills: ["GSAP Motion", "CSS 3D Transforms", "ScrollTrigger", "Tactile Physics"],
+      status: "High Polish Craft",
+      quote: "Great software feels tangible. Motion should clarify spatial relationships rather than merely decorate.",
+      color: "#06B6D4",
+      accentGrad: "linear-gradient(135deg, #0891B2, #06B6D4)",
+      borderColor: "rgba(6, 182, 212, 0.48)",
+      glowColor: "rgba(6, 182, 212, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`
     },
     {
       num: "04",
       stepNum: "04",
-      year: "Motion",
-      shortTitle: "Motion Systems",
-      stageTitle: "Motion & UI Craft",
-      subtitle: "Tactile Physics & Micro-Interactions",
-      kicker: "04 · MOTION & INTERACTIVE CRAFT",
-      title: "GSAP Animations, 3D Transforms & Fluid Polish",
-      desc: "Engineered rich visual experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and tactile micro-interactions that make web applications feel physical and alive.",
-      skills: ["GSAP Motion", "CSS 3D Transforms", "ScrollTrigger", "Micro-Interactions"],
-      status: "High Polish Craft",
-      quote: "Great software feels tangible. Motion should clarify spatial relationships rather than merely decorate.",
+      year: "Prompt",
+      shortTitle: "Prompt Craft",
+      stageTitle: "Prompt Engineering",
+      subtitle: "Prompt design, AI workflows, creative problem solving",
+      kicker: "04 · AI WORKFLOWS & PROMPTING",
+      title: "Prompt Engineering",
+      desc: "Structured prompt design, system directives, reasoning chains, few-shot prompting, and AI-assisted vibe coding workflows for exponential development speed.",
+      skills: ["Prompt Design", "AI Workflows", "Context Windows", "Vibe Coding"],
+      status: "Integrated Speed",
+      quote: "AI is the ultimate amplifier. Pairing intelligent models with clean engineering produces exceptional velocity.",
       color: "#EC4899",
-      accentGrad: "linear-gradient(135deg, #EC4899, #F472B6)",
+      accentGrad: "linear-gradient(135deg, #DB2777, #EC4899)",
       borderColor: "rgba(236, 72, 153, 0.48)",
       glowColor: "rgba(236, 72, 153, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
     },
     {
       num: "05",
@@ -4157,77 +4249,98 @@ function setupLearningJourneyStory() {
       year: "AI",
       shortTitle: "Exploring AI",
       stageTitle: "Exploring AI",
-      subtitle: "Prompt Engineering & Reasoning Loops",
-      kicker: "05 · FRONTIER AI & PROMPTING",
-      title: "Exploring AI, Prompt Engineering & Vibe Coding",
-      desc: "Combined software engineering with cutting-edge artificial intelligence. Deepened mastery in prompt engineering, Gemini API integrations, workflow automation, and rapid vibe-coding architectures.",
-      skills: ["Prompt Engineering", "Gemini API", "Claude Reasoning", "Vibe Coding"],
-      status: "AI Integrated",
-      quote: "AI is the ultimate amplifier. Pairing intelligent models with clean engineering produces exceptional velocity.",
-      color: "#A78BFA",
-      accentGrad: "linear-gradient(135deg, #8B5CF6, #A78BFA)",
-      borderColor: "rgba(167, 139, 250, 0.48)",
-      glowColor: "rgba(167, 139, 250, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
+      subtitle: "Generative AI, LLMs, AI integrations",
+      kicker: "05 · FRONTIER INTELLIGENCE",
+      title: "Exploring AI",
+      desc: "Integrating Gemini API and LLM models, streaming multimodal interactions, structured function calling, and building ambient intelligent web experiences.",
+      skills: ["Generative AI", "Gemini API", "LLM Integrations", "AI Interfaces"],
+      status: "Frontier Explorer",
+      quote: "Merging creative frontend with frontier models to engineer software that anticipates user intent.",
+      color: "#8B5CF6",
+      accentGrad: "linear-gradient(135deg, #7C3AED, #8B5CF6)",
+      borderColor: "rgba(139, 92, 246, 0.48)",
+      glowColor: "rgba(139, 92, 246, 0.35)",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>`
     },
     {
       num: "06",
       stepNum: "06",
       year: "Backend",
-      shortTitle: "Backend Architecture",
-      stageTitle: "Backend Architecture",
-      subtitle: "Server Runtimes & REST APIs",
-      kicker: "06 · BACKEND ARCHITECTURE",
-      title: "Node.js, Express & RESTful API Systems",
+      shortTitle: "Backend Core",
+      stageTitle: "Backend Core",
+      subtitle: "Node.js, Express, REST APIs, server architecture",
+      kicker: "06 · BACKEND ARCHITECTURE (CURRENT FOCUS)",
+      title: "Backend Core",
       desc: "Currently expanding horizontally into server-side development with Node.js and Express, API design, middleware pipelines, authentication patterns, and building robust server infrastructure.",
-      skills: ["Node.js", "Express.js", "RESTful APIs", "Server Middleware"],
-      status: "Active Focus",
+      skills: ["Node.js", "Express.js", "RESTful APIs", "Server Architecture"],
+      status: "Current Focus",
       quote: "A frontend engineer becomes truly formidable when they master server-side logic and deterministic data flow.",
-      color: "#F59E0B",
-      accentGrad: "linear-gradient(135deg, #EA580C, #F59E0B)",
-      borderColor: "rgba(245, 158, 11, 0.48)",
-      glowColor: "rgba(245, 158, 11, 0.35)",
+      color: "#10B981",
+      accentGrad: "linear-gradient(135deg, #059669, #10B981)",
+      borderColor: "rgba(16, 185, 129, 0.48)",
+      glowColor: "rgba(16, 185, 129, 0.35)",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
     },
     {
       num: "07",
       stepNum: "07",
-      year: "Data",
-      shortTitle: "Data & Persistence",
-      stageTitle: "Data & Cloud Systems",
-      subtitle: "PostgreSQL & Cloud Infrastructure",
+      year: "Cloud",
+      shortTitle: "Data & Cloud",
+      stageTitle: "Data & Cloud",
+      subtitle: "PostgreSQL, Supabase, databases, deployment",
       kicker: "07 · DATA PERSISTENCE & CLOUD",
-      title: "Relational Modeling, PostgreSQL & Cloud Storage",
-      desc: "Designing persistent data models, relational database queries in PostgreSQL, cloud authentication and real-time event subscriptions with Supabase, and resilient data sync contracts.",
-      skills: ["PostgreSQL", "Supabase", "Data Modeling", "Cloud Storage"],
-      status: "Scaling Frontier",
+      title: "Data & Cloud",
+      desc: "Relational database modeling in PostgreSQL, real-time events and auth with Supabase, cloud infrastructure deployment, and durable persistence.",
+      skills: ["PostgreSQL", "Supabase", "Cloud Deploy", "Data Schemas"],
+      status: "Persistent Systems",
       quote: "Clean schemas create clean codebases. Resilient data architecture guarantees long-term application integrity.",
-      color: "#38BDF8",
-      accentGrad: "linear-gradient(135deg, #0284C7, #38BDF8)",
-      borderColor: "rgba(56, 189, 248, 0.48)",
-      glowColor: "rgba(56, 189, 248, 0.35)",
+      color: "#F59E0B",
+      accentGrad: "linear-gradient(135deg, #D97706, #F59E0B)",
+      borderColor: "rgba(245, 158, 11, 0.48)",
+      glowColor: "rgba(245, 158, 11, 0.35)",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M12 12v9"></path><path d="m8 17 4 4 4-4"></path></svg>`
     },
     {
       num: "08",
       stepNum: "08",
-      year: "Future",
+      year: "Horizon",
       shortTitle: "Future Goals",
-      stageTitle: "Full-Stack Horizon",
-      subtitle: "High-Impact AI-Native Products",
+      stageTitle: "Future Goals",
+      subtitle: "Full-stack AI products, AI agents, advanced interfaces",
       kicker: "08 · FUTURE GOALS",
-      title: "Full-Stack Products & High-Impact Software",
-      desc: "Aspiring to architect end-to-end full-stack products that combine tactile frontend craft with frontier AI models. Dedicated to continuous learning, building open-source tooling, and shipping exceptional work.",
-      skills: ["Full-Stack Solutions", "AI-Native Products", "High Polish", "Continuous Growth"],
+      title: "Future Goals",
+      desc: "Architecting end-to-end full-stack AI products, autonomous agents, and high-impact web software with aesthetic discipline and production-grade engineering.",
+      skills: ["Full-Stack AI", "AI Agents", "Advanced UI", "Ambitious Software"],
       status: "Horizon Objective",
       quote: "Building software that leaves an imprint. High polish, genuine utility, and relentless dedication to user craft.",
-      color: "#34D399",
-      accentGrad: "linear-gradient(135deg, #10B981, #34D399)",
-      borderColor: "rgba(52, 211, 153, 0.48)",
-      glowColor: "rgba(52, 211, 153, 0.35)",
+      color: "#6366F1",
+      accentGrad: "linear-gradient(135deg, #4F46E5, #6366F1)",
+      borderColor: "rgba(99, 102, 241, 0.48)",
+      glowColor: "rgba(99, 102, 241, 0.35)",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
     }
   ];
+
+  // Sequential Entrance Stagger on Scroll
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const universeContainer = document.getElementById('lj-timeline-universe');
+    if (universeContainer) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            nodes.forEach((node, i) => {
+              node.style.animationDelay = `${(i * 75)}ms`;
+              node.classList.add('is-revealed');
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(universeContainer);
+    }
+  } else {
+    nodes.forEach(node => node.classList.add('is-revealed'));
+  }
 
   let currentMilestoneIndex = 0;
 
@@ -4301,14 +4414,17 @@ function setupLearningJourneyStory() {
 
   // Bind clicks, hover, and keyboard on 8 milestone cards with 3D tactile tilt
   nodes.forEach((node, idx) => {
+    const dataIdx = parseInt(node.getAttribute('data-index'), 10);
+    const targetIdx = !isNaN(dataIdx) ? dataIdx : idx;
+
     node.addEventListener('click', (e) => {
       e.preventDefault();
-      setActiveMilestone(idx, true);
+      setActiveMilestone(targetIdx, true);
     });
 
     node.addEventListener('mouseenter', () => {
-      if (ribbonCore) {
-        ribbonCore.style.filter = `drop-shadow(0 0 20px ${milestones[idx].glowColor})`;
+      if (ribbonCore && milestones[targetIdx]) {
+        ribbonCore.style.filter = `drop-shadow(0 0 22px ${milestones[targetIdx].glowColor})`;
       }
     });
 
@@ -4319,32 +4435,34 @@ function setupLearningJourneyStory() {
       node.style.transform = '';
     });
 
-    // Subtle 3D perspective tilt on cursor movement over card
+    // Tactile 3D perspective tilt on cursor movement over card
     node.addEventListener('mousemove', (e) => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const rect = node.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const rotX = -y * 8;
-      const rotY = x * 8;
+      const rotX = -y * 10;
+      const rotY = x * 10;
       const elev = node.classList.contains('is-active') ? -10 : -7;
-      node.style.transform = `perspective(600px) translateY(${elev}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.02)`;
+      node.style.transform = `perspective(700px) translateY(${elev}px) translateZ(26px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.03)`;
     });
 
     node.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        setActiveMilestone(idx, true);
+        setActiveMilestone(targetIdx, true);
       } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
-        const nextIdx = (idx + 1) % milestones.length;
+        const nextIdx = (targetIdx + 1) % milestones.length;
         setActiveMilestone(nextIdx, true);
-        if (nodes[nextIdx]) nodes[nextIdx].focus();
+        const nextNode = nodes.find(n => parseInt(n.getAttribute('data-index'), 10) === nextIdx) || nodes[nextIdx];
+        if (nextNode) nextNode.focus();
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const prevIdx = (idx - 1 + milestones.length) % milestones.length;
+        const prevIdx = (targetIdx - 1 + milestones.length) % milestones.length;
         setActiveMilestone(prevIdx, true);
-        if (nodes[prevIdx]) nodes[prevIdx].focus();
+        const prevNode = nodes.find(n => parseInt(n.getAttribute('data-index'), 10) === prevIdx) || nodes[prevIdx];
+        if (prevNode) prevNode.focus();
       }
     });
   });

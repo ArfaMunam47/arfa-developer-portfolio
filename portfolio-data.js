@@ -86,12 +86,28 @@ const PORTFOLIO_DATA = {
   ],
 
   // -----------------------------------------------------------------------
-  // FEATURED & SHOWCASE PROJECTS (4 Curated Stacking Exhibition Artifacts)
+  // FEATURED & SHOWCASE PROJECTS (5 Curated Interactive Exhibition Projects)
   // -----------------------------------------------------------------------
   projects: [
     {
-      id: "studypilot",
+      id: "prism",
       number: "01",
+      title: "Prism — 3D Spatial AR Showcase",
+      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
+      category: "spatial-3d",
+      categoryLabel: "3D WebGL & Spatial Experience",
+      description: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
+      technologies: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion", "Spatial UI"],
+      githubUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      accentColor: "#8B5CF6",
+      previewGradient: "linear-gradient(135deg, #090B10 0%, #17152B 50%, #2E1A47 100%)",
+      icon: "💎",
+      highlights: ["Custom GLSL Refraction", "Three.js 3D Viewport", "Fluid Scroll Physics"]
+    },
+    {
+      id: "studypilot",
+      number: "02",
       title: "StudyPilot-AI — AI Academic Copilot",
       tagline: "Intelligent Academic Workspace with Adaptive Flashcards & Study Planner",
       category: "ai-study",
@@ -107,7 +123,7 @@ const PORTFOLIO_DATA = {
     },
     {
       id: "velora",
-      number: "02",
+      number: "03",
       title: "Velora Store — Minimalist E-Commerce",
       tagline: "Minimalist High-Conversion Fashion & Lifestyle Storefront",
       category: "e-commerce",
@@ -123,7 +139,7 @@ const PORTFOLIO_DATA = {
     },
     {
       id: "kumo-ramen",
-      number: "03",
+      number: "04",
       title: "Kumo Ramen Showcase — Artisan Restaurant",
       tagline: "Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion",
       category: "culinary",
@@ -139,7 +155,7 @@ const PORTFOLIO_DATA = {
     },
     {
       id: "pastelform",
-      number: "04",
+      number: "05",
       title: "PastelForm — Aesthetic Form Engine",
       tagline: "Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes",
       category: "creative-ui",
