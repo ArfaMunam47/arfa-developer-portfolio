@@ -419,32 +419,83 @@ function setupContactForm() {
     });
   }
 
-  // Desktop subtle cursor parallax for 3D elements
-  if (contactSection && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const headphones = contactSection.querySelector('.conn-headphones-pod');
-    const plant = contactSection.querySelector('.conn-plant-pod');
-    const plane = contactSection.querySelector('.conn-plane-flight');
+  // Desktop subtle cursor parallax for 3D centerpiece & floating depth elements
+  const centerpieceStage = document.getElementById('conn-centerpiece-stage');
+  if (centerpieceStage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const headphones = centerpieceStage.querySelector('.conn-headphones-visual');
+    const floatElems = centerpieceStage.querySelectorAll('.conn-float-element');
+    const orbitFront = centerpieceStage.querySelector('.conn-orbit-front');
+    const orbitBack = centerpieceStage.querySelector('.conn-orbit-back');
+    const radialGlow = centerpieceStage.querySelector('.conn-centerpiece-radial-glow');
 
-    contactSection.addEventListener('mousemove', (e) => {
-      const rect = contactSection.getBoundingClientRect();
-      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    let mouseX = 0;
+    let mouseY = 0;
+    let currX = 0;
+    let currY = 0;
+    let animId = null;
+    let isHovering = false;
+
+    function renderParallax() {
+      currX += (mouseX - currX) * 0.08;
+      currY += (mouseY - currY) * 0.08;
 
       if (headphones) {
-        headphones.style.transform = `translate(calc(-50% + ${(normX * 10).toFixed(1)}px), ${(normY * 7).toFixed(1)}px) rotate(${(normX * 3).toFixed(1)}deg)`;
+        headphones.style.transform = `translate3d(${(currX * 12).toFixed(1)}px, ${(currY * 10).toFixed(1)}px, 20px) rotateY(${(currX * 4).toFixed(1)}deg) rotateX(${(-currY * 4).toFixed(1)}deg)`;
       }
-      if (plant) {
-        plant.style.transform = `translate(calc(-50% + ${(normX * 6).toFixed(1)}px), ${(normY * 5).toFixed(1)}px)`;
+
+      if (radialGlow) {
+        radialGlow.style.transform = `translate(calc(-50% + ${(currX * 6).toFixed(1)}px), calc(-50% + ${(currY * 6).toFixed(1)}px))`;
       }
-      if (plane) {
-        plane.style.transform = `translate(${(normX * 12).toFixed(1)}px, ${(normY * 8).toFixed(1)}px) rotate(${(18 + normX * 5).toFixed(1)}deg)`;
+
+      if (orbitFront) {
+        orbitFront.style.transform = `translate(calc(-50% + ${(currX * 14).toFixed(1)}px), calc(-50% + ${(currY * 10).toFixed(1)}px))`;
+      }
+
+      if (orbitBack) {
+        orbitBack.style.transform = `translate(calc(-50% + ${(currX * 4).toFixed(1)}px), calc(-50% + ${(currY * 4).toFixed(1)}px))`;
+      }
+
+      floatElems.forEach((el) => {
+        const depth = parseFloat(el.getAttribute('data-depth')) || 0.5;
+        const shiftX = (currX * depth * 22).toFixed(1);
+        const shiftY = (currY * depth * 18).toFixed(1);
+        el.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
+      });
+
+      const dist = Math.abs(mouseX - currX) + Math.abs(mouseY - currY);
+      if (isHovering || dist > 0.01) {
+        animId = requestAnimationFrame(renderParallax);
+      } else {
+        if (!isHovering) {
+          if (headphones) headphones.style.transform = '';
+          if (radialGlow) radialGlow.style.transform = '';
+          if (orbitFront) orbitFront.style.transform = '';
+          if (orbitBack) orbitBack.style.transform = '';
+          floatElems.forEach((el) => { el.style.transform = ''; });
+          animId = null;
+        }
+      }
+    }
+
+    centerpieceStage.addEventListener('mousemove', (e) => {
+      const rect = centerpieceStage.getBoundingClientRect();
+      const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      mouseX = Math.max(-1, Math.min(1, normX));
+      mouseY = Math.max(-1, Math.min(1, normY));
+      isHovering = true;
+      if (!animId) {
+        animId = requestAnimationFrame(renderParallax);
       }
     });
 
-    contactSection.addEventListener('mouseleave', () => {
-      if (headphones) headphones.style.transform = '';
-      if (plant) plant.style.transform = '';
-      if (plane) plane.style.transform = '';
+    centerpieceStage.addEventListener('mouseleave', () => {
+      mouseX = 0;
+      mouseY = 0;
+      isHovering = false;
+      if (!animId) {
+        animId = requestAnimationFrame(renderParallax);
+      }
     });
   }
 
@@ -2515,39 +2566,17 @@ function setupHero3DPortraitParallax() {
   const cutoutFrame = visualZone ? visualZone.querySelector('#hero-portrait-cutout-frame') : null;
   const portrait = visualZone ? visualZone.querySelector('.hero-portrait-cutout-img') : null;
   const kickerBadge = visualZone ? visualZone.querySelector('.hero-creative-kicker-pill') : null;
+  const orbitSystem = visualZone ? visualZone.querySelector('#hero-tech-orbit-system') : null;
+  const nodesLayer = visualZone ? (visualZone.querySelector('#tech-orbit-nodes-layer') || (orbitSystem ? orbitSystem.querySelector('.tech-orbit-nodes-layer') : null)) : null;
+  const orbitNodes = visualZone ? Array.from(visualZone.querySelectorAll('.tech-orbit-node')) : [];
 
-  // Magical atmospheric lighting nodes behind portrait
+  // Magical atmospheric lighting nodes behind portrait (Preserved soft studio glows)
   const ambientLight = visualZone ? visualZone.querySelector('.hero-light-ambient') : null;
   const coralLight = visualZone ? (visualZone.querySelector('.hero-light-coral') || visualZone.querySelector('.hero-disc-coral')) : null;
   const cyanLight = visualZone ? (visualZone.querySelector('.hero-light-cyan') || visualZone.querySelector('.hero-disc-cyan')) : null;
   const pinkLight = visualZone ? visualZone.querySelector('.hero-light-pink') : null;
   const violetLight = visualZone ? (visualZone.querySelector('.hero-light-violet') || visualZone.querySelector('.hero-disc-purple')) : null;
   const bloomLight = visualZone ? (visualZone.querySelector('.hero-light-bloom') || visualZone.querySelector('.hero-backdrop-glow-aura')) : null;
-  const singleRing = visualZone ? (visualZone.querySelector('#hero-single-ring') || visualZone.querySelector('.single-hero-ring')) : null;
-  const ringTrack = visualZone ? visualZone.querySelector('#ring-particles-track') : null;
-  const ringParticleEls = ringTrack ? Array.from(ringTrack.querySelectorAll('.ring-particle')) : [];
-  let ringParticleAngle = 0;
-  let ringRafId = null;
-
-  const particleEls = visualZone ? Array.from(visualZone.querySelectorAll('.hero-particle')) : [];
-  const particleNodes = particleEls.map((el, i) => {
-    const depth = parseFloat(el.getAttribute('data-depth')) || 1.0;
-    const radiusX = parseFloat(el.getAttribute('data-radius-x')) || (18 + (i % 4) * 3);
-    const radiusY = parseFloat(el.getAttribute('data-radius-y')) || (13 + (i % 3) * 2.5);
-    const speed = parseFloat(el.getAttribute('data-speed')) || 1.0;
-    const baseAngle = (i / Math.max(1, particleEls.length)) * Math.PI * 2;
-    return {
-      el,
-      depth,
-      radiusX,
-      radiusY,
-      speed,
-      angle: baseAngle,
-      currX: 0,
-      currY: 0,
-      currZ: 0
-    };
-  });
 
   const cursorRing = document.getElementById('cursor-follower');
   const cursorDot = document.getElementById('cursor-dot');
@@ -2555,6 +2584,36 @@ function setupHero3DPortraitParallax() {
   if (!visualZone || !stage || !cutoutFrame) return;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Static mathematically balanced positions matching image.png (tilt=-7 deg, rx=246, ry=142)
+  const STATIC_ORBIT_CONFIG = [
+    { name: 'HTML',       baseX: -216.2, baseY: -34.3, depthZ: -0.3 },
+    { name: 'CSS',        baseX:  107.1, baseY: -122.0, depthZ: -0.3 },
+    { name: 'JavaScript', baseX:  241.7, baseY: -27.1, depthZ:  0.7 },
+    { name: 'React',      baseX:  193.0, baseY:  87.0, depthZ:  1.0 },
+    { name: 'Git',        baseX:   -4.0, baseY: 158.0, depthZ:  1.0 },
+    { name: 'GitHub',     baseX: -190.1, baseY: 120.4, depthZ:  0.7 }
+  ];
+
+  function getScaleFactor() {
+    const w = window.innerWidth;
+    if (w <= 768) return 0.65;
+    if (w <= 1024) return 0.85;
+    return 1.0;
+  }
+
+  function positionNodesStatic() {
+    const scale = getScaleFactor();
+    orbitNodes.forEach((node, idx) => {
+      const cfg = STATIC_ORBIT_CONFIG[idx] || STATIC_ORBIT_CONFIG[0];
+      const x = (cfg.baseX * scale).toFixed(1);
+      const y = (cfg.baseY * scale).toFixed(1);
+      node.style.transform = `translate3d(${x}px, ${y}px, 0px) scale(1)`;
+    });
+  }
+
+  // Position nodes statically on load
+  positionNodesStatic();
 
   let bounds = cutoutFrame.getBoundingClientRect();
   let rafId = null;
@@ -2570,19 +2629,25 @@ function setupHero3DPortraitParallax() {
   let targetLightY = 0;
   let currentLightX = 0;
   let currentLightY = 0;
+  let targetParallaxX = 0;
+  let targetParallaxY = 0;
+  let currentParallaxX = 0;
+  let currentParallaxY = 0;
   let targetKickerLiftY = 0;
   let currentKickerLiftY = 0;
+  let orbitFloatAngle = 0;
   let isHovered = false;
 
   function updateBounds() {
     bounds = cutoutFrame.getBoundingClientRect();
+    positionNodesStatic();
   }
 
   function getResponsiveHoverScale() {
     const w = window.innerWidth;
-    if (w > 1024) return 1.05; // desktop: controlled 1.05 enlargement
-    if (w > 768) return 1.04;  // tablet: subtle 1.04
-    return 1.0;                // mobile: keep clean native bounds
+    if (w > 1024) return 1.04; // Desktop: elegant 1.04 lift
+    if (w > 768) return 1.03;  // Tablet: subtle 1.03 lift
+    return 1.02;               // Mobile: subtle 1.02 lift
   }
 
   window.addEventListener('resize', updateBounds, { passive: true });
@@ -2600,43 +2665,45 @@ function setupHero3DPortraitParallax() {
     const relX = Math.max(-1, Math.min(1, (e.clientX - centerX) / halfW));
     const relY = Math.max(-1, Math.min(1, (e.clientY - centerY) / halfH));
 
-    // Subtle 3D tilt (max ~2.6 degrees — no spinning, no wobbling)
-    targetRotY = relX * 2.6;
-    targetRotX = -relY * 2.6;
+    // Subtle 3D tilt toward cursor (max ~2.2 degrees — refined, no spinning)
+    targetRotY = relX * 2.2;
+    targetRotX = -relY * 2.2;
 
-    // Extra dynamic clearance when cursor is near the top of the portrait picture
-    const extraTopClearance = relY < 0 ? (-relY * 6) : 0;
-    targetKickerLiftY = (prefersReduced ? -18 : -28) - extraTopClearance;
+    // Small stable kicker response that never pulls away from the portrait
+    targetKickerLiftY = -2;
 
-    // Cursor-responsive lighting: shifts slightly in the direction of cursor
-    // moving left -> shifts left, right -> shifts right, up -> up, down -> down
-    targetLightX = relX * 22;
-    targetLightY = relY * 22;
+    // Cursor-responsive lighting shifts gently in cursor direction
+    targetLightX = relX * 14;
+    targetLightY = relY * 14;
+
+    // Subtle micro-parallax for icons (max 5-6px)
+    targetParallaxX = relX * 5.5;
+    targetParallaxY = relY * 5.5;
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
   }
 
-  cutoutFrame.addEventListener('pointerenter', () => {
+  function activateHoverState() {
     isHovered = true;
     updateBounds();
     targetScale = getResponsiveHoverScale();
-    targetTranslateZ = prefersReduced ? 0 : 24;
-    targetKickerLiftY = prefersReduced ? -18 : -28; // Elevates kicker pill on hover to create clear, generous padding
+    targetTranslateZ = prefersReduced ? 0 : 12;
+    targetKickerLiftY = -2;
     cutoutFrame.classList.add('is-hovered');
     stage.classList.add('has-hover');
+    if (orbitSystem) orbitSystem.classList.add('is-revealed');
+    if (nodesLayer) nodesLayer.classList.add('is-revealed');
     if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
-  });
+  }
 
-  cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
-
-  cutoutFrame.addEventListener('pointerleave', () => {
+  function deactivateHoverState() {
     isHovered = false;
     targetRotX = 0;
     targetRotY = 0;
@@ -2644,16 +2711,56 @@ function setupHero3DPortraitParallax() {
     targetTranslateZ = 0;
     targetLightX = 0;
     targetLightY = 0;
-    targetKickerLiftY = 0; // Return kicker pill cleanly to resting position
+    targetParallaxX = 0;
+    targetParallaxY = 0;
+    targetKickerLiftY = 0;
     cutoutFrame.classList.remove('is-hovered');
     stage.classList.remove('has-hover');
+    if (orbitSystem) orbitSystem.classList.remove('is-revealed');
+    if (nodesLayer) nodesLayer.classList.remove('is-revealed');
     if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
-  });
+  }
+
+  stage.addEventListener('pointerenter', activateHoverState);
+  stage.addEventListener('pointermove', handlePointerMove, { passive: true });
+  stage.addEventListener('pointerleave', deactivateHoverState);
+
+  cutoutFrame.addEventListener('pointerenter', activateHoverState);
+  cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
+  cutoutFrame.addEventListener('pointerleave', deactivateHoverState);
+
+  // If user moves over orbiting icons, maintain hover continuity
+  if (nodesLayer) {
+    nodesLayer.addEventListener('pointerenter', activateHoverState);
+    nodesLayer.addEventListener('pointermove', handlePointerMove, { passive: true });
+    nodesLayer.addEventListener('pointerleave', deactivateHoverState);
+  }
+  if (orbitSystem) {
+    orbitSystem.addEventListener('pointerenter', activateHoverState);
+    orbitSystem.addEventListener('pointermove', handlePointerMove, { passive: true });
+    orbitSystem.addEventListener('pointerleave', deactivateHoverState);
+  }
+
+  // Touch device support: tap reveals interactive orbit without breaking scroll
+  let touchActive = false;
+  cutoutFrame.addEventListener('touchstart', (e) => {
+    if (!touchActive) {
+      touchActive = true;
+      activateHoverState();
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchstart', (e) => {
+    if (touchActive && !visualZone.contains(e.target)) {
+      touchActive = false;
+      deactivateHoverState();
+    }
+  }, { passive: true });
 
   // Dedicated Cinematic Portrait Enlarge Modal (Support clicking for enlarged modal)
   const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
@@ -2690,8 +2797,8 @@ function setupHero3DPortraitParallax() {
     }
   }
 
-  // Click on Portrait opens enlarged modal
-  cutoutFrame.addEventListener('click', openEnlargedModal);
+  // Double click / Enter key on Portrait opens enlarged modal
+  cutoutFrame.addEventListener('dblclick', openEnlargedModal);
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeEnlargedModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeEnlargedModal);
@@ -2717,11 +2824,11 @@ function setupHero3DPortraitParallax() {
     }
   });
 
-  // Physics animation loop using smooth linear interpolation (Delayed spring feel for lighting)
+  // Physics animation loop using smooth linear interpolation
   function renderParallax() {
     const lerpRot = 0.12;
     const lerpScale = 0.14;
-    const lerpLight = 0.08; // slightly delayed spring response for organic physical feeling
+    const lerpLight = 0.08;
     const lerpKicker = 0.14;
 
     currentRotX += (targetRotX - currentRotX) * lerpRot;
@@ -2733,14 +2840,17 @@ function setupHero3DPortraitParallax() {
     currentLightX += (targetLightX - currentLightX) * lerpLight;
     currentLightY += (targetLightY - currentLightY) * lerpLight;
 
-    // Apply smooth 3D transform & enlargement to the portrait cutout
+    currentParallaxX += (targetParallaxX - currentParallaxX) * lerpRot;
+    currentParallaxY += (targetParallaxY - currentParallaxY) * lerpRot;
+
+    // Apply smooth 3D transform to the portrait cutout
     if (prefersReduced) {
       cutoutFrame.style.transform = `scale(${currentScale.toFixed(3)})`;
     } else {
       cutoutFrame.style.transform = `perspective(1100px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale(${currentScale.toFixed(3)}) translateZ(${currentTranslateZ.toFixed(1)}px)`;
     }
 
-    // Cursor-responsive magical background lights (Subtle multi-plane parallax)
+    // Cursor-responsive magical background lights
     if (coralLight) {
       coralLight.style.transform = `translate(${(currentLightX * 0.9).toFixed(1)}px, ${(currentLightY * 0.9).toFixed(1)}px)`;
     }
@@ -2760,43 +2870,41 @@ function setupHero3DPortraitParallax() {
       ambientLight.style.transform = `translate(${(currentLightX * 0.5).toFixed(1)}px, ${(currentLightY * 0.5).toFixed(1)}px)`;
     }
 
-    // Alive Organic Particle Physics: continuous orbital drift + cursor excitation
-    const orbitSpeed = isHovered ? 0.038 : 0.012; // accelerates smoothly when cursor is over picture
-    particleNodes.forEach((node) => {
-      node.angle += orbitSpeed * node.speed;
-      
-      // Elliptical orbital path + cursor light influence + 3D depth
-      const targetX = Math.cos(node.angle) * node.radiusX + currentLightX * 0.85 * node.depth;
-      const targetY = Math.sin(node.angle) * node.radiusY + currentLightY * 0.85 * node.depth;
-      const targetZ = Math.sin(node.angle) * 20 * node.depth;
+    // Interactive depth micro-parallax and subtle floating wave for the 6 tech badges
+    if (orbitNodes.length > 0) {
+      const scale = getScaleFactor();
+      if (isHovered && !prefersReduced) {
+        orbitFloatAngle += 0.02;
+      }
+      orbitNodes.forEach((node, idx) => {
+        const cfg = STATIC_ORBIT_CONFIG[idx] || STATIC_ORBIT_CONFIG[0];
+        const parallaxFactor = 1 + (cfg.depthZ || 0) * 0.35;
+        const floatY = isHovered && !prefersReduced ? Math.sin(orbitFloatAngle + idx * 1.05) * 3 : 0;
+        const floatX = isHovered && !prefersReduced ? Math.cos(orbitFloatAngle + idx * 1.05) * 2 : 0;
+        const finalX = (cfg.baseX * scale + currentParallaxX * parallaxFactor + floatX).toFixed(1);
+        const finalY = (cfg.baseY * scale + currentParallaxY * parallaxFactor + floatY).toFixed(1);
+        const nodeScale = (isHovered ? 1.04 : 1.00).toFixed(3);
+        const nodeOpacity = 1.00;
 
-      // Spring-like lerp for physical fluidity
-      node.currX += (targetX - node.currX) * 0.14;
-      node.currY += (targetY - node.currY) * 0.14;
-      node.currZ += (targetZ - node.currZ) * 0.14;
-
-      node.el.style.transform = `translate3d(${node.currX.toFixed(1)}px, ${node.currY.toFixed(1)}px, ${node.currZ.toFixed(1)}px) scale(${isHovered ? 1.12 : 1.0})`;
-    });
-
-    // Single 3D Celestial Orbital Ring: Reacts to cursor in 3D perspective
-    if (singleRing) {
-      singleRing.style.transform = `rotateX(${(66 - currentRotX * 1.6).toFixed(1)}deg) rotateY(${(-16 + currentRotY * 1.6).toFixed(1)}deg) translate3d(${(currentLightX * 0.45).toFixed(1)}px, ${(currentLightY * 0.45).toFixed(1)}px, 0px)`;
+        node.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scale(${nodeScale})`;
+        node.style.opacity = nodeOpacity;
+      });
     }
 
     if (kickerBadge) {
-      kickerBadge.style.transform = `translate(${(-currentRotY * 0.25).toFixed(1)}px, ${(currentKickerLiftY + currentRotX * 0.25).toFixed(1)}px)`;
+      kickerBadge.style.transform = `translate(${(-currentRotY * 0.2).toFixed(1)}px, ${(currentKickerLiftY + currentRotX * 0.2).toFixed(1)}px)`;
     }
 
-    // Check if motion is still active
+    // Check if motion is active or still needs to settle back to resting state
     const rotDiff = Math.abs(targetRotX - currentRotX) + Math.abs(targetRotY - currentRotY);
     const scaleDiff = Math.abs(targetScale - currentScale);
     const lightDiff = Math.abs(targetLightX - currentLightX) + Math.abs(targetLightY - currentLightY);
-    const kickerDiff = Math.abs(targetKickerLiftY - currentKickerLiftY);
+    const parallaxDiff = Math.abs(targetParallaxX - currentParallaxX) + Math.abs(targetParallaxY - currentParallaxY);
 
-    if (rotDiff > 0.01 || scaleDiff > 0.001 || lightDiff > 0.01 || kickerDiff > 0.01 || isHovered) {
+    if (isHovered || rotDiff > 0.01 || scaleDiff > 0.001 || lightDiff > 0.01 || parallaxDiff > 0.01) {
       rafId = requestAnimationFrame(renderParallax);
     } else {
-      // Cleanly clear transforms when settled back at rest
+      // Cleanly reset transforms and stop loop completely when cursor leaves
       if (!isHovered) {
         cutoutFrame.style.transform = '';
         if (coralLight) coralLight.style.transform = '';
@@ -2806,41 +2914,12 @@ function setupHero3DPortraitParallax() {
         if (bloomLight) bloomLight.style.transform = '';
         if (ambientLight) ambientLight.style.transform = '';
         if (kickerBadge) kickerBadge.style.transform = '';
-        if (singleRing) singleRing.style.transform = '';
+        orbitFloatAngle = 0;
+        positionNodesStatic();
       }
       rafId = null;
     }
   }
-
-  // Dedicated Continuous 3D Flowing Ring Particles Animation Loop
-  function animateRingParticles() {
-    if (prefersReduced) return;
-    const ringSpeed = isHovered ? 0.038 : 0.013;
-    ringParticleAngle += ringSpeed;
-
-    if (ringParticleEls.length > 0) {
-      const totalRingParticles = ringParticleEls.length;
-      ringParticleEls.forEach((pEl, pIdx) => {
-        const offsetAngle = ringParticleAngle + (pIdx / totalRingParticles) * Math.PI * 2;
-        const rx = 49.5;
-        const ry = 49.5;
-        const px = 50 + Math.cos(offsetAngle) * rx;
-        const py = 50 + Math.sin(offsetAngle) * ry;
-
-        const depthFactor = (Math.sin(offsetAngle) + 1) / 2;
-        const pScale = isHovered ? (0.95 + depthFactor * 0.42) : (0.85 + depthFactor * 0.32);
-        const pOpacity = isHovered ? (0.8 + depthFactor * 0.2) : (0.6 + depthFactor * 0.35);
-        const pZ = Math.sin(offsetAngle) * 22;
-
-        pEl.style.left = `${px.toFixed(2)}%`;
-        pEl.style.top = `${py.toFixed(2)}%`;
-        pEl.style.transform = `translate3d(-50%, -50%, ${pZ.toFixed(1)}px) scale(${pScale.toFixed(2)})`;
-        pEl.style.opacity = pOpacity.toFixed(2);
-      });
-    }
-    ringRafId = requestAnimationFrame(animateRingParticles);
-  }
-  animateRingParticles();
 }
 
 /**

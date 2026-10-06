@@ -209,7 +209,7 @@
               <span>BUILDING • LEARNING • EXPLORING</span>
             </div>
 
-            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (Layered with 3D Orbital Rings & Particles) -->
+            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (Subtle, Soft Ambient Glows) -->
             <div class="hero-stage-backdrop-art" id="hero-stage-backdrop-art" aria-hidden="true">
               <div class="hero-light-ambient"></div>
               <div class="hero-light-coral"></div>
@@ -217,72 +217,61 @@
               <div class="hero-light-pink"></div>
               <div class="hero-light-violet"></div>
               <div class="hero-light-bloom"></div>
+            </div>
 
-              <!-- Single Majestic 3D Celestial Orbital Ring with Orbiting Satellites -->
-              <div class="hero-3d-orbital-system" id="hero-orbital-system">
-                <div class="hero-orbit-ring single-hero-ring" id="hero-single-ring">
-                  <div class="ring-glow-core" aria-hidden="true"></div>
-                  <!-- Dynamic Flowing Particle Stream inside the Big Circle -->
-                  <div class="ring-particles-track" id="ring-particles-track" aria-hidden="true">
-                    <div class="ring-particle p-cyan" data-index="0" title="Moving Cyan Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-coral" data-index="1" title="Moving Coral Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-amber" data-index="2" title="Moving Amber Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-violet" data-index="3" title="Moving Violet Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-emerald" data-index="4" title="Moving Emerald Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-rose" data-index="5" title="Moving Rose Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-gold" data-index="6" title="Moving Gold Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                    <div class="ring-particle p-azure" data-index="7" title="Moving Azure Particle">
-                      <div class="particle-specular"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <!-- Interactive Technology Orbital System (Bold Luminous Orbit Stream Around Portrait) -->
+            <div class="hero-tech-orbit-system" id="hero-tech-orbit-system" aria-hidden="true">
+              <!-- EXACTLY ONE Bold, Luminous Multi-Tone 3D Light Stream -->
+              <svg class="tech-orbit-paths-svg" viewBox="-320 -230 640 460" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bold-orbit-stream-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00F0FF" stop-opacity="1" />
+                    <stop offset="22%" stop-color="#38BDF8" stop-opacity="0.95" />
+                    <stop offset="42%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="65%" stop-color="#FF2E93" stop-opacity="1" />
+                    <stop offset="85%" stop-color="#FB923C" stop-opacity="0.95" />
+                    <stop offset="100%" stop-color="#B026FF" stop-opacity="0.95" />
+                  </linearGradient>
+                  <filter id="bold-orbit-glow-filter" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="6" result="blurWide" />
+                    <feGaussianBlur stdDeviation="2.5" result="blurSharp" />
+                    <feMerge>
+                      <feMergeNode in="blurWide" />
+                      <feMergeNode in="blurSharp" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <g transform="rotate(-7 0 15)">
+                  <!-- Outer Wide Neon Bloom Halo -->
+                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-neon-bloom" stroke="url(#bold-orbit-stream-gradient)" stroke-width="12" fill="none" opacity="0.45" filter="url(#bold-orbit-glow-filter)" />
+                  <!-- Main Bold Glowing Light Ribbon -->
+                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-main-beam" stroke="url(#bold-orbit-stream-gradient)" stroke-width="4.5" fill="none" filter="url(#bold-orbit-glow-filter)" />
+                  <!-- Core Brilliant White Specular Stream -->
+                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-core-light" stroke="#FFFFFF" stroke-width="2.2" fill="none" opacity="0.95" />
+                  <!-- Fine Luminous Glass Edge Streak -->
+                  <ellipse cx="0" cy="15" rx="249" ry="144" class="orbit-fiber-streak" stroke="#38BDF8" stroke-width="1.2" fill="none" opacity="0.65" stroke-dasharray="14 18" />
+                </g>
+              </svg>
 
-              <!-- Alive 3D Magical Floating Particles Field (Dynamic Organic Movement & Cursor Reaction) -->
-              <div class="hero-3d-particles-field" id="hero-particles-field">
-                <!-- Glossy Cyan 3D Micro-Sphere -->
-                <div class="hero-particle particle-sphere sphere-cyan" data-depth="1.4" data-radius-x="18" data-radius-y="14" data-speed="1.1">
-                  <div class="sphere-specular"></div>
-                </div>
-                <!-- Translucent Violet 3D Micro-Sphere -->
-                <div class="hero-particle particle-sphere sphere-violet" data-depth="0.9" data-radius-x="22" data-radius-y="16" data-speed="0.85">
-                  <div class="sphere-specular"></div>
-                </div>
-                <!-- Radiant Coral 3D Micro-Sphere -->
-                <div class="hero-particle particle-sphere sphere-coral" data-depth="1.2" data-radius-x="20" data-radius-y="15" data-speed="1.25">
-                  <div class="sphere-specular"></div>
-                </div>
-                <!-- Radiant Amber 3D Micro-Sphere -->
-                <div class="hero-particle particle-sphere sphere-amber" data-depth="1.0" data-radius-x="16" data-radius-y="12" data-speed="0.95">
-                  <div class="sphere-specular"></div>
-                </div>
-                <!-- Luminous Peach Glow Dot -->
-                <div class="hero-particle particle-glow-dot dot-peach" data-depth="0.75" data-radius-x="15" data-radius-y="10" data-speed="1.3"></div>
-                <!-- Luminous Cyan Glow Dot -->
-                <div class="hero-particle particle-glow-dot dot-cyan" data-depth="1.1" data-radius-x="19" data-radius-y="13" data-speed="0.8"></div>
-                <!-- Magical Micro Sparkles -->
-                <span class="hero-particle particle-spark spark-top" data-depth="1.5" data-radius-x="24" data-radius-y="18" data-speed="1.15">✦</span>
-                <span class="hero-particle particle-spark spark-bottom" data-depth="0.85" data-radius-x="17" data-radius-y="12" data-speed="0.9">✦</span>
+              <!-- Controlled subtle stardust sparkles on hover -->
+              <div class="tech-orbit-stardust" aria-hidden="true">
+                <span class="stardust-spark s-1">✦</span>
+                <span class="stardust-spark s-2">✦</span>
+                <span class="stardust-spark s-3">✦</span>
+                <span class="stardust-spark s-4">✦</span>
+                <span class="stardust-dot d-1"></span>
+                <span class="stardust-dot d-2"></span>
+                <span class="stardust-dot d-3"></span>
+                <span class="stardust-dot d-4"></span>
               </div>
             </div>
 
             <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
             <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="button" tabindex="0" aria-label="Interactive Portrait of Arfa Munam. Click to enter focus state, click again or press Escape to return.">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
+                <!-- Soft Luminous Silhouette Backlight (Behind Image, Keeps Face Razor-Sharp) -->
+                <div class="hero-portrait-silhouette-glow" aria-hidden="true"></div>
                 <img src="me.png" 
                      alt="Arfa Munam — Creative Developer" 
                      class="hero-portrait-cutout-img" 
@@ -299,6 +288,89 @@
               <div class="hero-portrait-focus-badge" id="hero-focus-badge" aria-hidden="true">
                 <span class="focus-badge-pulse"></span>
                 <span class="focus-badge-text" id="hero-focus-badge-text">Interactive Portrait</span>
+              </div>
+            </div>
+
+            <!-- 6 Foreground 3D Glass Technology Orbs (ALWAYS ABOVE PORTRAIT, SHOWN ON HOVER) -->
+            <div class="tech-orbit-nodes-layer" id="tech-orbit-nodes-layer" aria-label="Featured Core Technologies">
+              <!-- 1. HTML -->
+              <div class="tech-orbit-node tech-node-html" data-index="0" data-tech="HTML">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" aria-hidden="true">
+                    <path fill="#E44D26" d="M3 2l1.8 18.2L12 22l7.2-1.8L21 2H3z"/>
+                    <path fill="#F16529" d="M12 3.8v16.4l5.5-1.4L18.9 3.8H12z"/>
+                    <path fill="#FFFFFF" d="M12 7.6h4.8l-.2 2.4H12v2.3h4.3l-.4 4.6-3.9 1.1v-2.3l2-.6.2-1.7H12V7.6zm0 0H7.2l.2 2.4H12v-2.4z"/>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">HTML</span>
+              </div>
+
+              <!-- 2. CSS -->
+              <div class="tech-orbit-node tech-node-css" data-index="1" data-tech="CSS">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" aria-hidden="true">
+                    <path fill="#264DE4" d="M3 2l1.8 18.2L12 22l7.2-1.8L21 2H3z"/>
+                    <path fill="#2965F1" d="M12 3.8v16.4l5.5-1.4L18.9 3.8H12z"/>
+                    <path fill="#FFFFFF" d="M12 7.6h4.8l-.2 2.4H12v2.3h4.3l-.4 4.6-3.9 1.1v-2.3l2-.6.2-1.7H12V7.6zm0 0H7.2l.2 2.4H12v-2.4z"/>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">CSS</span>
+              </div>
+
+              <!-- 3. JavaScript -->
+              <div class="tech-orbit-node tech-node-js" data-index="2" data-tech="JavaScript">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg js-icon-svg" aria-hidden="true">
+                    <rect width="24" height="24" rx="4.5" fill="#F7DF1E"/>
+                    <text x="12" y="17.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="900" fill="#000000" text-anchor="middle" letter-spacing="-0.4">JS</text>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">JavaScript</span>
+              </div>
+
+              <!-- 4. React -->
+              <div class="tech-orbit-node tech-node-react" data-index="3" data-tech="React">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="32" height="32" class="tech-icon-svg react-icon-svg" fill="none" aria-hidden="true">
+                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8"/>
+                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8" transform="rotate(60 12 12)"/>
+                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8" transform="rotate(120 12 12)"/>
+                    <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">React</span>
+              </div>
+
+              <!-- 5. Git -->
+              <div class="tech-orbit-node tech-node-git" data-index="4" data-tech="Git">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" fill="#F05032" aria-hidden="true">
+                    <path d="M21.6 10.9L13.1 2.4a1.7 1.7 0 0 0-2.4 0L8.3 4.8l3 3a2 2 0 0 1 2.5 2.5l2.9 2.9a2 2 0 1 1-1.2 1.2l-2.7-2.7v4a2 2 0 1 1-1.7 0v-4.3a2 2 0 0 1-1-2.6L7.1 6.1 2.4 10.8a1.7 1.7 0 0 0 0 2.4l8.5 8.5a1.7 1.7 0 0 0 2.4 0l8.3-8.3a1.7 1.7 0 0 0 0-2.5z"/>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">Git</span>
+              </div>
+
+              <!-- 6. GitHub -->
+              <div class="tech-orbit-node tech-node-github" data-index="5" data-tech="GitHub">
+                <div class="tech-orb-sphere">
+                  <div class="tech-orb-specular"></div>
+                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" fill="#181717" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                  <div class="tech-orb-glow"></div>
+                </div>
+                <span class="tech-orb-label-pill">GitHub</span>
               </div>
             </div>
 
@@ -4093,87 +4165,148 @@
        ======================================================================= -->
   <section id="contact" class="connect-scene-section" aria-label="Let's Connect and Collaborate">
     
-    <!-- Atmospheric Ambient Lighting & Controlled Color Depth -->
+    <!-- Atmospheric Ambient Lighting & Controlled Color Depth (Light, Soft Multi-Layer Glow) -->
     <div class="conn-atmosphere" aria-hidden="true">
-      <div class="conn-blob conn-blob-peach"></div>
-      <div class="conn-blob conn-blob-coral"></div>
-      <div class="conn-blob conn-blob-violet"></div>
-      <div class="conn-blob conn-blob-lavender"></div>
-      <div class="conn-blob conn-blob-floor"></div>
-
-      <!-- Subtle Floating 3D Star & Orb Accents -->
-      <div class="conn-star-decor star-top-left">✦</div>
-      <div class="conn-star-decor star-top-right">✦</div>
-      <div class="conn-orb-decor orb-left"></div>
-      <div class="conn-orb-decor orb-right"></div>
+      <div class="conn-ambient-light conn-light-cream"></div>
+      <div class="conn-ambient-light conn-light-coral"></div>
+      <div class="conn-ambient-light conn-light-lavender"></div>
+      <div class="conn-ambient-light conn-light-blue"></div>
+      <div class="conn-ambient-light conn-light-centerpiece"></div>
+      
+      <!-- Subtle Floating Decorative Sparkles & Nodes -->
+      <span class="conn-particle p-1">✦</span>
+      <span class="conn-particle p-2">✦</span>
+      <span class="conn-particle p-3">✦</span>
+      <span class="conn-particle p-4">✦</span>
+      <span class="conn-particle p-dot pd-1"></span>
+      <span class="conn-particle p-dot pd-2"></span>
+      <span class="conn-particle p-dot pd-3"></span>
     </div>
 
     <div class="container conn-container">
       
-      <!-- TOP LEFT EYEBROW BADGE -->
+      <!-- TOP EYEBROW BADGE (Refined Floating Pill with Directional Accent) -->
       <div class="conn-eyebrow-wrapper reveal">
         <div class="conn-eyebrow-pill">
-          <span class="conn-pill-sparkle">✦</span>
-          <span>Let's Build Something Amazing</span>
-          <span class="conn-pill-sparkle">✦</span>
+          <span class="conn-pill-sparkle" aria-hidden="true">✦</span>
+          <span class="conn-pill-text">LET'S BUILD SOMETHING AMAZING</span>
+          <span class="conn-pill-arrow" aria-hidden="true">→</span>
         </div>
       </div>
 
-      <!-- MAIN 2-COLUMN COMPOSITION WITH 3D DECORATIVE BRIDGE -->
+      <!-- MAIN 2-COLUMN COMPOSITION: Left Creative Scene + Right Precision Dark Form -->
       <div class="conn-main-grid reveal">
         
         <!-- ===============================================================
-             LEFT COLUMN: Editorial Headline, 2x2 Contact Cards & Opportunities
+             LEFT COLUMN: Creative Introduction + 3D Centerpiece + Social Tiles
              =============================================================== -->
         <div class="conn-left-col">
-          <!-- Main Hero Heading -->
-          <h2 class="conn-headline">
-            <span class="conn-head-ink">Let's</span><br>
-            <span class="conn-head-gradient">Connect</span>
-          </h2>
+          
+          <!-- Editorial Headline & Introduction -->
+          <div class="conn-intro-block">
+            <h2 class="conn-headline">
+              <span class="conn-head-ink">LET'S</span><br>
+              <span class="conn-head-gradient">CONNECT</span>
+            </h2>
 
-          <!-- Handwritten / Cursive Supporting Phrase -->
-          <div class="conn-cursive-wrapper">
-            <span class="conn-cursive-text">and create impact together!</span>
-            <div class="conn-cursive-underline" aria-hidden="true"></div>
-          </div>
-
-          <!-- Introduction Copy -->
-          <p class="conn-supporting-copy">
-            I'm open to exciting opportunities, collaborations, and innovative ideas. Let's turn your vision into something <strong class="conn-accent-gradient">extraordinary.</strong>
-          </p>
-
-          <!-- 3D Paper Plane with Dotted Connecting Trail (Visual Bridge) -->
-          <div class="conn-plane-bridge" aria-hidden="true">
-            <svg class="conn-trail-svg" viewBox="0 0 280 120" fill="none">
-              <path d="M 15 95 C 75 80, 140 30, 260 15" stroke="url(#connTrailGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 6"/>
-              <defs>
-                <linearGradient id="connTrailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#FF6045" stop-opacity="0.8"/>
-                  <stop offset="50%" stop-color="#F43F5E" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#A855F7" stop-opacity="0.95"/>
-                </linearGradient>
-              </defs>
-            </svg>
-            <div class="conn-plane-flight">
-              <img src="src/assets/images/contact_3d_paper_plane_1790334351403.jpg" 
-                   alt="Floating 3D Paper Airplane" 
-                   class="conn-plane-3d-img" 
-                   loading="lazy">
+            <!-- Handwritten Supporting Phrase with Shimmering Line -->
+            <div class="conn-cursive-wrapper">
+              <span class="conn-cursive-text">and create impact together!</span>
+              <div class="conn-cursive-underline" aria-hidden="true">
+                <span class="conn-shimmer-traveler"></span>
+              </div>
             </div>
+
+            <!-- Concise Introductory Message -->
+            <p class="conn-supporting-copy">
+              I'm open to exciting opportunities, collaborations, and innovative ideas. Let's turn your vision into something <strong class="conn-accent-gradient">extraordinary.</strong>
+            </p>
           </div>
+
+          <!-- =============================================================
+               3D HERO HEADPHONE CENTERPIECE (Clean, Focused, Product-Render Quality)
+               Spacious bounding box • No overlapping lines or elements
+               ============================================================= -->
+          <div class="conn-3d-centerpiece-stage" id="conn-centerpiece-stage" aria-label="3D Floating Headphones Centerpiece">
+            
+            <!-- BACK LAYER: Soft Framing Radial Glow, Thin Orbital Ellipse, 3 Perimeter Badges -->
+            <div class="conn-3d-layer conn-layer-back" aria-hidden="true">
+              <!-- Soft Framing Ambient Glow (Soft, frames rather than swallows) -->
+              <div class="conn-centerpiece-radial-glow"></div>
+              
+              <!-- Thin Orbital Trajectory BEHIND Headphones (Never cuts across headphone) -->
+              <svg class="conn-orbit-svg conn-orbit-back" viewBox="0 0 480 260">
+                <defs>
+                  <linearGradient id="connThinOrbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.32" />
+                    <stop offset="35%" stop-color="#F43F5E" stop-opacity="0.38" />
+                    <stop offset="70%" stop-color="#A855F7" stop-opacity="0.28" />
+                    <stop offset="100%" stop-color="#FB923C" stop-opacity="0.25" />
+                  </linearGradient>
+                </defs>
+                <ellipse cx="240" cy="130" rx="195" ry="88" stroke="url(#connThinOrbitGrad)" stroke-width="1.2" fill="none" opacity="0.6" />
+                <ellipse cx="240" cy="130" rx="215" ry="98" stroke="url(#connThinOrbitGrad)" stroke-width="0.8" stroke-dasharray="6 10" fill="none" opacity="0.3" />
+              </svg>
+
+              <!-- ONLY 3 Small Floating Communication Elements in a Loose Triangle Far Away -->
+              <!-- 1. Small Email Icon (Upper-Left Apex) -->
+              <div class="conn-float-element el-email-tri" data-depth="0.35">
+                <div class="conn-float-badge badge-email-small">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- 2. Small Send / Paper Plane Icon (Lower-Left Corner) -->
+              <div class="conn-float-element el-send-tri" data-depth="0.45">
+                <div class="conn-float-badge badge-send-small">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- 3. Small Chat / Message Icon (Lower-Right Corner) -->
+              <div class="conn-float-element el-chat-tri" data-depth="0.4">
+                <div class="conn-float-badge badge-chat-small">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- MIDDLE HERO LAYER: 3D HEADPHONES (Hero Object, Unobstructed, Centered) -->
+            <div class="conn-3d-layer conn-layer-mid">
+              <!-- Soft Realistic Ground Shadow Beneath Headphones -->
+              <div class="conn-headphones-shadow" aria-hidden="true"></div>
+
+              <!-- Centered, Sized to 48-52% of Stage, Complete Silhouette Visible -->
+              <div class="conn-headphones-visual" data-depth="0.6">
+                <img src="src/assets/images/headphones_3d_centerpiece.png" 
+                     alt="Premium 3D Studio Headphones Floating in Mid-Air" 
+                     class="conn-headphones-hero-img" 
+                     loading="lazy">
+              </div>
+            </div>
+
+          </div><!-- /.conn-3d-centerpiece-stage -->
 
           <!-- Section Label: Connect With Me -->
           <div class="conn-social-header">
-            <span class="conn-sparkle-icon">✦</span>
+            <span class="conn-sparkle-icon" aria-hidden="true">✦</span>
             <h3 class="conn-social-title">Connect With Me</h3>
           </div>
 
-          <!-- 2x2 Arrangement of Contact Cards -->
+          <!-- 2x2 Tactile Interaction Tiles -->
           <div class="conn-contact-grid" role="list">
             
             <!-- Card 1: GitHub -->
             <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="conn-card conn-card-github tactile-btn" role="listitem" aria-label="Visit Arfa's GitHub Profile">
+              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
               <div class="conn-card-icon-wrap icon-github">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -4188,6 +4321,7 @@
 
             <!-- Card 2: LinkedIn -->
             <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="conn-card conn-card-linkedin tactile-btn" role="listitem" aria-label="Connect with Arfa on LinkedIn">
+              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
               <div class="conn-card-icon-wrap icon-linkedin">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -4202,6 +4336,7 @@
 
             <!-- Card 3: Email Me -->
             <a href="mailto:arfamunam01@gmail.com" class="conn-card conn-card-email tactile-btn" role="listitem" aria-label="Send an email to Arfa">
+              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
               <div class="conn-card-icon-wrap icon-email">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -4217,6 +4352,7 @@
 
             <!-- Card 4: Let's Chat -->
             <a href="#contact-form" class="conn-card conn-card-chat tactile-btn" id="conn-btn-jump-form" role="listitem" aria-label="Jump to contact form">
+              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
               <div class="conn-card-icon-wrap icon-chat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -4231,86 +4367,43 @@
 
           </div>
 
-          <!-- Open Opportunities Horizontal Panel -->
-          <div class="conn-opp-panel">
-            <div class="conn-opp-left">
-              <div class="conn-opp-icon" aria-hidden="true">⚡</div>
-              <div class="conn-opp-text">
-                <strong class="conn-opp-heading">Open for opportunities</strong>
-                <span class="conn-opp-sub">Freelance • Full-time • Collaboration</span>
-              </div>
-            </div>
-            <div class="conn-opp-right">
-              <span class="conn-opp-phrase">Let's create something meaningful together ✨</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- ===============================================================
-             CENTRAL 3D FLOATING DECORATIONS (Headphones & Potted Plant)
-             =============================================================== -->
-        <div class="conn-center-visuals" aria-hidden="true">
-          <!-- Floating 3D Headphones -->
-          <div class="conn-headphones-pod">
-            <img src="src/assets/images/contact_3d_headphones_1790424409195.jpg" 
-                 alt="3D Floating Pastel Headphones" 
-                 class="conn-headphones-img" 
-                 loading="lazy">
-            <div class="conn-headphones-shadow"></div>
-          </div>
-
-          <!-- Small Elegant 3D Potted Plant -->
-          <div class="conn-plant-pod">
-            <img src="src/assets/images/contact_3d_plant_1790424422612.jpg" 
-                 alt="3D Potted Succulent Plant" 
-                 class="conn-plant-img" 
-                 loading="lazy">
-            <div class="conn-plant-shadow"></div>
-          </div>
-        </div>
+        </div><!-- /.conn-left-col -->
 
         <!-- ===============================================================
              RIGHT COLUMN: Premium Dark Navy 3D Contact Form Panel
              =============================================================== -->
         <div class="conn-right-col">
           
-          <!-- 3D Layered Platform Base beneath the form -->
-          <div class="conn-form-platform-base" aria-hidden="true">
-            <div class="platform-ellipse platform-ellipse-glow"></div>
-            <div class="platform-ellipse platform-ellipse-top"></div>
-          </div>
+          <div class="conn-form-card" id="conn-form-card">
+            <!-- Illuminated Border Glow Effect -->
+            <div class="conn-form-border-glow" aria-hidden="true"></div>
 
-          <!-- The Dominant Dark Contact Form Card -->
-          <div class="conn-form-card">
-            
-            <!-- Form Header with Glowing Circular Chat Icon -->
+            <!-- Form Header with Circular Message Icon -->
             <div class="conn-form-header">
-              <div class="conn-header-icon-orb">
-                <img src="src/assets/images/contact_3d_chat_bubble_1790334365624.jpg" 
-                     alt="3D Speech Bubble Icon" 
-                     class="conn-header-3d-icon" 
-                     loading="lazy">
+              <div class="conn-header-icon-orb" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
               </div>
               <div class="conn-header-text">
                 <h3 class="conn-form-title">
-                  Send Me a <span class="conn-head-gradient">Message</span>
+                  Send Me a <span class="conn-form-title-gradient">Message</span>
                 </h3>
                 <p class="conn-form-subtitle">I'll get back to you as soon as possible.</p>
               </div>
             </div>
 
-            <!-- Decorative Gradient Underline -->
+            <!-- Decorative Gradient Divider Line with Soft Glow -->
             <div class="conn-form-header-line" aria-hidden="true"></div>
 
             <!-- Functional Contact Form -->
             <form id="contact-form" class="conn-actual-form" novalidate>
               <input type="hidden" name="subject_prefix" value="Portfolio Let's Connect">
 
-              <!-- Row 1: Your Name & Your Email side by side on desktop -->
+              <!-- Row 1: Name and Email -->
               <div class="conn-form-row">
                 <div class="conn-field-group">
-                  <label for="form-name" class="conn-field-label">Your Name</label>
+                  <label for="form-name" class="conn-field-label">YOUR NAME</label>
                   <div class="conn-input-shell">
                     <span class="conn-shell-icon" aria-hidden="true">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -4328,7 +4421,7 @@
                 </div>
 
                 <div class="conn-field-group">
-                  <label for="form-email" class="conn-field-label">Your Email</label>
+                  <label for="form-email" class="conn-field-label">YOUR EMAIL</label>
                   <div class="conn-input-shell">
                     <span class="conn-shell-icon" aria-hidden="true">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -4348,7 +4441,7 @@
 
               <!-- Row 2: Subject Field -->
               <div class="conn-field-group full-width">
-                <label for="form-subject" class="conn-field-label">Subject</label>
+                <label for="form-subject" class="conn-field-label">SUBJECT</label>
                 <div class="conn-input-shell">
                   <span class="conn-shell-icon" aria-hidden="true">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -4366,10 +4459,10 @@
                 </div>
               </div>
 
-              <!-- Row 3: Message Field with Character Counter -->
+              <!-- Row 3: Message with Character Counter -->
               <div class="conn-field-group full-width">
                 <div class="conn-label-row">
-                  <label for="form-message" class="conn-field-label">Your Message</label>
+                  <label for="form-message" class="conn-field-label">YOUR MESSAGE</label>
                   <span class="conn-char-count" aria-live="polite"><span id="char-curr">0</span> / 500</span>
                 </div>
                 <div class="conn-input-shell textarea-shell">
@@ -4415,11 +4508,26 @@
             </form>
 
           </div>
-        </div>
+        </div><!-- /.conn-right-col -->
 
       </div><!-- /.conn-main-grid -->
 
-    </div>
+      <!-- Subtle Flowing Abstract Ribbon Connecting Left & Right at Bottom -->
+      <div class="conn-bottom-ribbon-decor" aria-hidden="true">
+        <svg class="conn-ribbon-svg" viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path d="M 0,30 C 250,55 500,5 750,35 C 920,52 1080,18 1200,28 L 1200,60 L 0,60 Z" fill="url(#connRibbonGrad)" opacity="0.3" />
+          <defs>
+            <linearGradient id="connRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF6045" stop-opacity="0.35" />
+              <stop offset="35%" stop-color="#F43F5E" stop-opacity="0.45" />
+              <stop offset="70%" stop-color="#8B5CF6" stop-opacity="0.35" />
+              <stop offset="100%" stop-color="#0284C7" stop-opacity="0.2" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+    </div><!-- /.container -->
   </section>
 
   <!-- =======================================================================
