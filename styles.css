@@ -1596,6 +1596,118 @@ nav.floating-nav.scrolled {
   100% { transform: scale(0.85); opacity: 0.4; }
 }
 
+/* ==========================================================================
+   CINEMATIC CURSOR LIGHT & ATMOSPHERIC LENS ILLUMINATION
+   ========================================================================== */
+.hero-cinematic-cursor-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 22;
+  opacity: 0;
+  background: radial-gradient(circle at center, 
+    rgba(255, 255, 255, 0.45) 0%, 
+    rgba(56, 189, 248, 0.24) 26%, 
+    rgba(244, 114, 182, 0.12) 52%, 
+    rgba(139, 92, 246, 0.05) 72%, 
+    transparent 86%
+  );
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.hero-creative-visual-stage.has-hover .hero-cinematic-cursor-light {
+  opacity: 0.88;
+}
+
+/* Subtle Specular Gloss Reflection across Girl's Portrait */
+.hero-portrait-gloss-highlight {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.45s ease;
+  will-change: opacity, background;
+}
+
+.hero-creative-visual-stage.has-hover .hero-portrait-gloss-highlight,
+.hero-subject-cutout-frame.is-hovered .hero-portrait-gloss-highlight {
+  opacity: 0.72;
+}
+
+/* Cinematic Luminous Energy Ripple along the Circular Orbit */
+.orbit-energy-ripple {
+  stroke-dasharray: 220 1200;
+  stroke-dashoffset: 600;
+  opacity: 0;
+  pointer-events: none;
+  will-change: stroke-dashoffset, opacity, stroke-width;
+  transition: opacity 0.3s ease;
+}
+
+.orbit-energy-ripple.is-rippling {
+  opacity: 0.95;
+  animation: orbitEnergyRippleFlow 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes orbitEnergyRippleFlow {
+  0% {
+    stroke-dashoffset: 700;
+    opacity: 0.15;
+    stroke-width: 3px;
+  }
+  35% {
+    stroke-dashoffset: 100;
+    opacity: 1;
+    stroke-width: 6.5px;
+  }
+  75% {
+    stroke-dashoffset: -350;
+    opacity: 0.65;
+    stroke-width: 4.5px;
+  }
+  100% {
+    stroke-dashoffset: -750;
+    opacity: 0;
+    stroke-width: 2px;
+  }
+}
+
+/* Magnetic & Interactive Hover State for Tech Nodes */
+.tech-orbit-node.is-attracted .tech-orb-sphere {
+  transform: translateY(-2px) scale(1.12);
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, rgba(255, 255, 255, 0.95) 45%, rgba(255, 255, 255, 0.65) 100%);
+  box-shadow: 
+    0 18px 36px -4px rgba(15, 23, 42, 0.22),
+    0 0 24px rgba(0, 240, 255, 0.65),
+    inset 0 2px 4px #FFFFFF;
+  border-color: rgba(255, 255, 255, 1);
+  filter: brightness(1.12);
+}
+
+.tech-orbit-node.is-attracted .tech-orb-label-pill {
+  transform: translateY(2px) scale(1.08);
+  background: #FFFFFF;
+  color: #0F172A;
+  box-shadow: 0 6px 14px rgba(16, 28, 53, 0.18);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+.tech-orbit-node.is-attracted .tech-orb-glow {
+  opacity: 0.85;
+  filter: blur(14px);
+}
+
 @media (max-width: 1024px) {
   .hero-tech-orbit-system,
   .tech-orbit-nodes-layer {
@@ -7507,6 +7619,93 @@ nav.floating-nav.scrolled {
   margin-bottom: clamp(3.5rem, 5.5vw, 5.5rem);
 }
 
+/* ==========================================================================
+   REFINED SECTION HEADER BLOCK (Section 18 Architecture)
+   ========================================================================== */
+.lj-roadmap-header-block {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 3.5vw, 3rem);
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lj-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(250, 85, 56, 0.28);
+  border-radius: 9999px;
+  box-shadow: 0 2px 10px rgba(250, 85, 56, 0.08), inset 0 1px 1px #FFFFFF;
+  margin-bottom: 0.85rem;
+}
+
+.lj-eyebrow-pill .eyebrow-spark {
+  color: #FA5538;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.lj-eyebrow-pill .eyebrow-text {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FA5538;
+}
+
+.lj-roadmap-heading {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #101C35;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.lj-roadmap-subheading {
+  font-family: var(--font-sans, system-ui);
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  color: #475569;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 0 1.25rem;
+  text-wrap: balance;
+}
+
+.lj-roadmap-heading-accent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 220px;
+}
+
+.lj-roadmap-heading-accent .accent-bar-lead,
+.lj-roadmap-heading-accent .accent-bar-trail {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(250, 85, 56, 0.65));
+  border-radius: 2px;
+}
+
+.lj-roadmap-heading-accent .accent-bar-trail {
+  background: linear-gradient(90deg, rgba(250, 85, 56, 0.65), transparent);
+}
+
+.lj-roadmap-heading-accent .accent-diamond {
+  color: #FA5538;
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
 .lj-timeline-meta-bar {
   display: flex;
   align-items: center;
@@ -7650,76 +7849,132 @@ nav.floating-nav.scrolled {
   align-items: stretch;
 }
 
-/* Tactile 3D Milestone Interactive Card Button (Light Luxury Pearl Glass & Volumetric 3D Depth) */
+/* ==========================================================================
+   TACTILE 3D MILESTONE CARDS — 2026 PRODUCT-LIKE ROADMAP INTERFACE
+   Multi-Layer Physical Stacking • Glassmorphic Specular Highlights
+   Cursor-Reactive 3D Tilt • Dynamic Light-Follow • Waypoint Telemetry
+   ========================================================================== */
+
+/* Main Interactive Card Container */
 .lj-card-3d {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  min-width: 0; /* Critical in CSS Grid to allow equal flexible column sizing */
-  min-height: 224px;
+  min-width: 0;
+  min-height: 228px;
   padding: 1.45rem 1.25rem 1.25rem;
   box-sizing: border-box;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 251, 254, 0.95) 55%, rgba(244, 247, 252, 0.92) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 22px;
-  border: 1.8px solid var(--step-border, rgba(20, 35, 63, 0.16));
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.98) 0%, rgba(251, 253, 255, 0.94) 52%, rgba(245, 248, 253, 0.91) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
+  border: 1.5px solid var(--step-border, rgba(20, 35, 63, 0.16));
   box-shadow: 
-    0 16px 36px -6px rgba(15, 23, 42, 0.08),
-    0 0 24px -2px var(--step-glow, transparent),
+    0 16px 36px -6px rgba(15, 23, 42, 0.07),
+    0 0 22px -2px var(--step-glow, transparent),
     inset 0 1.5px 2px #FFFFFF,
-    inset 0 0 12px var(--step-inner-glow, transparent);
+    inset 0 0 14px var(--step-inner-glow, transparent);
   cursor: pointer;
   text-align: left;
   outline: none;
-  overflow: visible; /* Allows 3D extrusion and floating micro-badges to pop */
+  overflow: visible;
   transform-style: preserve-3d;
   will-change: transform, box-shadow, border-color;
   opacity: 0;
   transform: perspective(1000px) translateY(24px) scale(0.96);
   transition: 
     opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease,
-    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     background 0.35s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 3D Resting Perspective Orientation & Skew Freedom Angles */
+/* Revealed Entrance State */
 .lj-card-3d.is-revealed {
   opacity: 1;
   transform: perspective(1000px) rotateX(var(--card-rot-x, 0deg)) rotateY(var(--card-rot-y, 0deg)) translateZ(0);
 }
 
-/* Glass Specular Glare across upper portion of card */
+/* --------------------------------------------------------------------------
+   PHYSICAL 3D CARD STACKING: 3 Discrete Layers (Back -> Mid -> Front)
+   -------------------------------------------------------------------------- */
+
+/* Back Layer: Soft Colored Depth & Atmospheric Shadow */
+.card-depth-layer-back {
+  position: absolute;
+  inset: -3px;
+  border-radius: 24px;
+  background: var(--step-accent, #FA5538);
+  opacity: 0.16;
+  filter: blur(14px);
+  transform: translateZ(-16px) translateY(8px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Middle Layer: Offset Translucent Duplicate Acrylic Tile */
+.card-depth-layer-mid {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1.2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.06);
+  transform: translateZ(-8px) translateY(4px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dynamic Cursor-Following Radial Spotlight (Light Follow) */
+.card-cursor-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  opacity: 0;
+  background: radial-gradient(
+    260px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(255, 255, 255, 0.88) 0%, 
+    rgba(255, 255, 255, 0.28) 35%, 
+    transparent 72%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+/* Glass Specular Glare across upper portion */
 .card-glass-specular {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 44%;
-  border-radius: 22px 22px 0 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.12) 75%, transparent 100%);
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.12) 75%, transparent 100%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* 3D Prismatic Specular Rim */
+/* 3D Prismatic Specular Edge Rim */
 .card-prismatic-rim {
   position: absolute;
   inset: 0;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   pointer-events: none;
   z-index: 2;
-  mask: linear-gradient(135deg, #FFFFFF 0%, transparent 55%);
-  -webkit-mask: linear-gradient(135deg, #FFFFFF 0%, transparent 55%);
+  mask: linear-gradient(135deg, #FFFFFF 0%, transparent 60%);
+  -webkit-mask: linear-gradient(135deg, #FFFFFF 0%, transparent 60%);
 }
 
-/* Prominent Top Accent Neon Rail */
+/* Top Accent Luminous Ribbon */
 .lj-card-3d::before {
   content: "";
   position: absolute;
@@ -7743,7 +7998,7 @@ nav.floating-nav.scrolled {
 .card-3d-ambient {
   position: absolute;
   inset: 0;
-  border-radius: 22px;
+  border-radius: 20px;
   background: radial-gradient(circle at 75% 20%, var(--step-glow, rgba(250, 85, 56, 0.25)) 0%, transparent 70%);
   opacity: 0.45;
   pointer-events: none;
@@ -7758,13 +8013,28 @@ nav.floating-nav.scrolled {
   left: 0;
   right: 0;
   height: 8px;
-  border-radius: 0 0 22px 22px;
+  border-radius: 0 0 20px 20px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(15, 23, 42, 0.05) 100%);
   border-bottom: 2.5px solid var(--step-accent, #FA5538);
   box-shadow: 0 4px 14px var(--step-glow, rgba(250, 85, 56, 0.35));
   pointer-events: none;
   z-index: 2;
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Physical 3D Bottom Shelf Edge */
+.card-layered-edge {
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 4px;
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(90deg, transparent 0%, var(--step-accent, #FA5538) 50%, transparent 100%);
+  opacity: 0.55;
+  filter: blur(1px);
+  pointer-events: none;
+  transition: opacity 0.35s ease, height 0.35s ease;
 }
 
 /* Card Inner Content Wrapper */
@@ -7800,7 +8070,7 @@ nav.floating-nav.scrolled {
   color: var(--step-accent, #FA5538);
   line-height: 1;
   text-shadow: 0 2px 10px var(--step-glow, transparent);
-  transition: transform 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-status-label {
@@ -7835,8 +8105,41 @@ nav.floating-nav.scrolled {
   50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px #10B981; }
 }
 
+/* Floating Focus Badge Above Card 06 */
+.card-floating-focus-badge {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1.4px solid rgba(16, 185, 129, 0.45);
+  box-shadow: 
+    0 6px 16px rgba(16, 185, 129, 0.22),
+    0 0 12px rgba(16, 185, 129, 0.15),
+    inset 0 1px 1px #FFFFFF;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #059669;
+  text-transform: uppercase;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-floating-focus-badge .focus-badge-text {
+  line-height: 1;
+}
+
 /* ==========================================================================
-   THE 8 CUSTOM 3D-INSPIRED MINI OBJECTS (Volumetric, Tactile, Distinct)
+   THE 8 3D PRODUCT MINI OBJECTS (Volumetric, Tactile, Physical Components)
    ========================================================================== */
 .card-3d-mini-object {
   position: relative;
@@ -7847,7 +8150,7 @@ nav.floating-nav.scrolled {
   justify-content: center;
   transform-style: preserve-3d;
   flex-shrink: 0;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
 .mini-obj-halo {
@@ -7882,14 +8185,17 @@ nav.floating-nav.scrolled {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* 01. Code Window Object */
+/* 01. Code Window Object — Tactile Mini Terminal */
 .obj-code-window .mini-window-frame {
   width: 44px;
   height: 34px;
   border-radius: 8px;
   background: #0B1120;
-  border: 1.4px solid rgba(250, 85, 56, 0.5);
-  box-shadow: 0 6px 16px rgba(250, 85, 56, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  border: 1.4px solid rgba(250, 85, 56, 0.55);
+  box-shadow: 
+    0 6px 16px rgba(250, 85, 56, 0.3), 
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -7906,10 +8212,11 @@ nav.floating-nav.scrolled {
   width: 3.5px;
   height: 3.5px;
   border-radius: 50%;
+  box-shadow: 0 0 4px currentColor;
 }
-.mw-dot.r { background: #EF4444; }
-.mw-dot.y { background: #F59E0B; }
-.mw-dot.g { background: #10B981; }
+.mw-dot.r { background: #EF4444; color: #EF4444; }
+.mw-dot.y { background: #F59E0B; color: #F59E0B; }
+.mw-dot.g { background: #10B981; color: #10B981; }
 
 .mini-window-code {
   display: flex;
@@ -7923,7 +8230,7 @@ nav.floating-nav.scrolled {
   font-size: 9px;
   font-weight: 900;
   color: #FA5538;
-  text-shadow: 0 0 6px rgba(250, 85, 56, 0.6);
+  text-shadow: 0 0 6px rgba(250, 85, 56, 0.7);
 }
 
 .code-line-bars {
@@ -7938,10 +8245,10 @@ nav.floating-nav.scrolled {
   height: 2px;
   border-radius: 1px;
 }
-.c-bar.bar-1 { width: 85%; background: #FB7185; }
-.c-bar.bar-2 { width: 55%; background: #38BDF8; }
+.c-bar.bar-1 { width: 85%; background: #FB7185; box-shadow: 0 0 4px rgba(251, 113, 133, 0.6); }
+.c-bar.bar-2 { width: 55%; background: #38BDF8; box-shadow: 0 0 4px rgba(56, 189, 248, 0.6); }
 
-/* 02. Layered UI Component Stack */
+/* 02. Layered UI Component Stack — Tactile React System */
 .obj-ui-stack {
   position: relative;
 }
@@ -7950,7 +8257,7 @@ nav.floating-nav.scrolled {
   position: absolute;
   border-radius: 6px;
   border: 1.2px solid rgba(255, 255, 255, 0.95);
-  transition: transform 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ui-layer.layer-base {
@@ -8007,13 +8314,14 @@ nav.floating-nav.scrolled {
   background: #FFFFFF;
 }
 
-/* 03. Kinetic Motion & Orbit Timeline */
+/* 03. Kinetic Motion & Bezier Orbit — Physical Motion Ring */
 .obj-kinetic-motion .kinetic-orbit-ring {
   position: absolute;
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1.4px dashed rgba(6, 182, 212, 0.6);
+  border: 1.4px dashed rgba(6, 182, 212, 0.7);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
   animation: orbitSpin 8s linear infinite;
 }
 
@@ -8056,14 +8364,14 @@ nav.floating-nav.scrolled {
   100% { transform: translate(-3px, -3px); }
 }
 
-/* 04. Intelligent Prompt Bubble & Sparkle */
+/* 04. Intelligent Prompt Bubble & Sparkle — 3D Prompt Chip */
 .obj-prompt-bubble .prompt-chat-capsule {
   width: 38px;
   height: 26px;
   border-radius: 8px 8px 8px 2px;
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.18) 0%, rgba(255, 255, 255, 0.98) 100%);
-  border: 1.4px solid rgba(236, 72, 153, 0.5);
-  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.22) 0%, rgba(255, 255, 255, 0.98) 100%);
+  border: 1.4px solid rgba(236, 72, 153, 0.55);
+  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3), inset 0 1px 1px #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8075,6 +8383,7 @@ nav.floating-nav.scrolled {
   font-size: 11px;
   font-weight: 900;
   color: #EC4899;
+  text-shadow: 0 0 6px rgba(236, 72, 153, 0.6);
 }
 
 .prompt-spark-flare {
@@ -8096,10 +8405,11 @@ nav.floating-nav.scrolled {
   height: 4px;
   border-radius: 50%;
   background: #EC4899;
-  opacity: 0.75;
+  box-shadow: 0 0 6px rgba(236, 72, 153, 0.6);
+  opacity: 0.85;
 }
 
-/* 05. Glowing Neural Brain Node Network */
+/* 05. Glowing Neural Brain Node Network — Luminous Node Cluster */
 .obj-neural-brain .neural-cluster {
   position: relative;
   width: 38px;
@@ -8116,7 +8426,15 @@ nav.floating-nav.scrolled {
   box-shadow: 0 0 10px #8B5CF6;
   z-index: 2;
 }
-.n-node.center { top: 15px; left: 15px; width: 9px; height: 9px; background: #FFFFFF; border: 1.8px solid #8B5CF6; }
+.n-node.center { 
+  top: 15px; 
+  left: 15px; 
+  width: 9px; 
+  height: 9px; 
+  background: #FFFFFF; 
+  border: 1.8px solid #8B5CF6; 
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+}
 .n-node.n-1 { top: 7px; left: 5px; }
 .n-node.n-2 { top: 7px; right: 5px; }
 .n-node.n-3 { bottom: 5px; left: 16px; }
@@ -8127,7 +8445,7 @@ nav.floating-nav.scrolled {
   z-index: 1;
 }
 
-/* 06. Multi-Tier Server Stack & API Node */
+/* 06. Multi-Tier Server Stack & API Node — Futuristic Server Blade */
 .obj-server-stack .server-rack-box {
   width: 38px;
   display: flex;
@@ -8139,8 +8457,8 @@ nav.floating-nav.scrolled {
   height: 9px;
   border-radius: 3px;
   background: #0B1120;
-  border: 1.2px solid rgba(16, 185, 129, 0.5);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+  border: 1.2px solid rgba(16, 185, 129, 0.55);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8158,17 +8476,17 @@ nav.floating-nav.scrolled {
 
 @keyframes ledPulse {
   0% { opacity: 0.4; }
-  100% { opacity: 1; box-shadow: 0 0 8px #10B981; }
+  100% { opacity: 1; box-shadow: 0 0 10px #10B981; }
 }
 
 .unit-slot {
   width: 16px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
   border-radius: 1px;
 }
 
-/* 07. Database Cylinder & Cloud Connection */
+/* 07. Database Cylinder & Cloud Connection — Stacked Precision Discs */
 .obj-database-cylinder {
   position: relative;
   width: 38px;
@@ -8192,7 +8510,7 @@ nav.floating-nav.scrolled {
   border-radius: 50%;
   background: linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%);
   border: 1px solid #D97706;
-  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.4), inset 0 1px 1px #FFFFFF;
 }
 
 .db-cloud-halo {
@@ -8203,7 +8521,7 @@ nav.floating-nav.scrolled {
   filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.45));
 }
 
-/* 08. Ascending Launch Capsule / Future Target */
+/* 08. Ascending Launch Capsule / Future Target — Aerodynamic Rocket */
 .obj-launch-capsule {
   position: relative;
   width: 38px;
@@ -8215,7 +8533,7 @@ nav.floating-nav.scrolled {
 
 .capsule-vector {
   color: #6366F1;
-  filter: drop-shadow(0 2px 10px rgba(99, 102, 241, 0.5));
+  filter: drop-shadow(0 2px 10px rgba(99, 102, 241, 0.55));
   animation: rocketHover 3s ease-in-out infinite alternate;
 }
 
@@ -8287,7 +8605,7 @@ nav.floating-nav.scrolled {
   font-weight: 800;
 }
 
-/* Card Bottom Rail: Step Kicker & Action Cue */
+/* Card Bottom Rail: Step Kicker & Technical Action Cue */
 .card-bottom-rail {
   display: flex;
   align-items: center;
@@ -8311,46 +8629,47 @@ nav.floating-nav.scrolled {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(20, 35, 63, 0.03);
+  border: 1px solid rgba(20, 35, 63, 0.08);
   font-family: var(--font-sans, system-ui);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--step-accent, #FA5538);
-  opacity: 0.95;
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-action-cue svg {
-  transition: transform 0.3s ease;
-}
-
-/* Physical 3D Bottom Shelf Edge */
-.card-layered-edge {
-  position: absolute;
-  bottom: 0;
-  left: 8px;
-  right: 8px;
-  height: 4px;
-  border-radius: 0 0 14px 14px;
-  background: linear-gradient(90deg, transparent 0%, var(--step-accent, #FA5538) 50%, transparent 100%);
-  opacity: 0.55;
-  filter: blur(1px);
-  pointer-events: none;
-  transition: opacity 0.35s ease, height 0.35s ease;
+  transition: transform 0.25s ease;
 }
 
 /* ==========================================================================
    INTERACTIONS & HOVER ELEVATION (Volumetric 3D Freedom, Tactile Response)
    ========================================================================== */
 .lj-card-3d:hover {
-  transform: perspective(1000px) translateY(-10px) translateZ(26px) scale(1.03);
   border-color: var(--step-accent, #FA5538);
   box-shadow: 
     0 28px 60px -8px rgba(15, 23, 42, 0.14),
     0 0 36px -2px var(--step-glow, rgba(250, 85, 56, 0.45)),
     inset 0 2px 3px #FFFFFF,
     inset 0 0 18px var(--step-inner-glow, rgba(250, 85, 56, 0.15));
+}
+
+.lj-card-3d:hover .card-cursor-spotlight {
+  opacity: 1;
+}
+
+.lj-card-3d:hover .card-depth-layer-back {
+  opacity: 0.28;
+  transform: translateZ(-20px) translateY(12px) scale(1.02);
+}
+
+.lj-card-3d:hover .card-depth-layer-mid {
+  transform: translateZ(-10px) translateY(6px);
+  box-shadow: 0 14px 30px -4px rgba(15, 23, 42, 0.08);
 }
 
 .lj-card-3d:hover::before {
@@ -8365,7 +8684,8 @@ nav.floating-nav.scrolled {
 }
 
 .lj-card-3d:hover .card-3d-mini-object {
-  transform: translateZ(24px) scale(1.18);
+  transform: translateZ(28px) translateY(-5px) scale(1.14);
+  filter: drop-shadow(0 10px 18px var(--step-glow, rgba(250, 85, 56, 0.45)));
 }
 
 .lj-card-3d:hover .mini-obj-badge {
@@ -8390,7 +8710,10 @@ nav.floating-nav.scrolled {
 }
 
 .lj-card-3d:hover .card-action-cue {
-  opacity: 1;
+  background: #FFFFFF;
+  border-color: var(--step-accent, #FA5538);
+  box-shadow: 0 4px 12px var(--step-glow, rgba(250, 85, 56, 0.25));
+  transform: translateY(-1px);
 }
 
 .lj-card-3d:hover .card-action-cue svg {
@@ -8401,17 +8724,21 @@ nav.floating-nav.scrolled {
 .lj-card-3d.is-current-focus {
   border-color: rgba(16, 185, 129, 0.55);
   box-shadow: 
-    0 18px 40px -6px rgba(16, 185, 129, 0.15),
-    0 0 30px -2px rgba(16, 185, 129, 0.35),
+    0 20px 45px -6px rgba(16, 185, 129, 0.18),
+    0 0 32px -2px rgba(16, 185, 129, 0.38),
     inset 0 1.5px 2px #FFFFFF,
-    inset 0 0 16px rgba(16, 185, 129, 0.16);
+    inset 0 0 18px rgba(16, 185, 129, 0.18);
+}
+
+.lj-card-3d.is-current-focus .card-depth-layer-back {
+  opacity: 0.22;
+  filter: blur(16px);
 }
 
 /* Card Active / Selected State */
 .lj-card-3d.is-active {
   background: #FFFFFF;
   border-color: var(--step-accent, #FA5538);
-  transform: perspective(1000px) translateY(-8px) translateZ(28px) scale(1.03);
   box-shadow: 
     0 32px 64px -8px rgba(15, 23, 42, 0.16),
     0 0 42px -2px var(--step-glow, rgba(250, 85, 56, 0.55)),
@@ -8432,7 +8759,7 @@ nav.floating-nav.scrolled {
 }
 
 .lj-card-3d.is-active .card-3d-mini-object {
-  transform: translateZ(28px) scale(1.22);
+  transform: translateZ(28px) scale(1.18);
 }
 
 .lj-card-3d.is-active .card-stage-title {
@@ -8445,6 +8772,47 @@ nav.floating-nav.scrolled {
   height: 6px;
   background: var(--step-accent, #FA5538);
   box-shadow: 0 0 18px var(--step-glow, rgba(250, 85, 56, 0.7));
+}
+
+/* --------------------------------------------------------------------------
+   ROADMAP WAYPOINT NODES ON SVG PATH
+   -------------------------------------------------------------------------- */
+.waypoint-glow-halo {
+  opacity: 0.35;
+  transition: opacity 0.35s ease, r 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.waypoint-ring {
+  transition: r 0.35s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 0.3s ease, filter 0.35s ease;
+  filter: drop-shadow(0 2px 5px rgba(15, 23, 42, 0.12));
+}
+
+.waypoint-core {
+  transition: r 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.waypoint-ring.is-illuminated,
+.waypoint-ring.is-active {
+  r: 10.5;
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.waypoint-glow-halo.is-illuminated,
+.waypoint-glow-halo.is-active {
+  opacity: 0.85;
+  r: 16;
+}
+
+.waypoint-current-focus {
+  stroke-dasharray: 40;
+  animation: waypointFocusSpin 12s linear infinite;
+}
+
+@keyframes waypointFocusSpin {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 80; }
 }
 
 /* ==========================================================================
@@ -11168,16 +11536,28 @@ nav.floating-nav.scrolled {
   }
 
   .conn-headphones-hero-img {
-    width: 165px;
+    width: 125px;
+    max-height: 155px;
   }
 
   .conn-headphones-shadow {
-    width: 160px;
+    width: 120px;
+    height: 14px;
   }
 
-  .badge-envelope { width: 38px; height: 38px; }
-  .badge-chat { width: 42px; height: 42px; }
-  .badge-plane { width: 40px; height: 40px; }
+  .badge-email-small,
+  .badge-send-small,
+  .badge-chat-small {
+    width: 29px;
+    height: 29px;
+  }
+
+  .badge-email-small svg,
+  .badge-send-small svg,
+  .badge-chat-small svg {
+    width: 13px;
+    height: 13px;
+  }
 
   .conn-contact-grid {
     grid-template-columns: 1fr;
@@ -24864,32 +25244,58 @@ nav.floating-nav.scrolled {
   }
 }
 
+/* ==========================================================================
+   CINEMATIC PROJECT CARDS — REFINED 2026 ARCHITECTURAL COMPONENT DESIGN
+   Light, Sophisticated, Recruiter-Friendly Portfolio Exhibition Cards
+   • Refined 1.5px Border with Project Accent Tint
+   • Multi-Layer Soft Depth Shadow + Inner Highlight
+   • Contained Framed Inset Browser Mockup Canvas
+   • Subtle Individual Accent Harmony (Prism, StudyPilot, Velora, Kumo, PastelForm)
+   ========================================================================== */
+
+/* Project Specific Accent Color Variables */
+.proj-card-prism {
+  --card-accent: #8B5CF6;
+}
+
+.proj-card-studypilot {
+  --card-accent: #6366F1;
+}
+
+.proj-card-velora {
+  --card-accent: #FA5538;
+}
+
+.proj-card-kumo {
+  --card-accent: #F59E0B;
+}
+
+.proj-card-pastelform {
+  --card-accent: #EC4899;
+}
+
 .cinematic-project-card {
+  --card-accent-fallback: #6366F1;
+  --card-accent-current: var(--card-accent, var(--card-accent-fallback));
+  --card-border: color-mix(in srgb, var(--card-accent-current) 22%, rgba(20, 35, 63, 0.08));
+  --card-border-hover: color-mix(in srgb, var(--card-accent-current) 42%, rgba(20, 35, 63, 0.12));
+  --card-glow: color-mix(in srgb, var(--card-accent-current) 22%, transparent);
+  --card-inner-frame-border: color-mix(in srgb, var(--card-accent-current) 16%, rgba(20, 35, 63, 0.08));
+
   position: absolute;
-  width: clamp(430px, 38vw, 540px);
-  height: 450px;
-  border-radius: 22px;
-  border: 4px solid transparent;
-  background: 
-    linear-gradient(#FFFFFF, #FFFFFF) padding-box,
-    linear-gradient(115deg, 
-      #FA5538 0%, 
-      #FDA4AF 16%, 
-      #C084FC 32%, 
-      #8B5CF6 48%, 
-      #38BDF8 64%, 
-      #34D399 78%, 
-      #FBBF24 90%, 
-      #FA5538 100%
-    ) border-box;
-  background-size: 280% 280%;
-  animation: liquidWaveBorder 6s ease-in-out infinite alternate;
+  width: clamp(430px, 38vw, 530px);
+  height: 456px;
+  border-radius: 18px; /* Clean, refined, avoids excessive pill styling */
+  border: 1.5px solid var(--card-border);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAFCFF 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 
-    0 16px 45px -10px rgba(20, 35, 63, 0.08),
-    0 0 20px -2px rgba(250, 85, 56, 0.12),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+    0 1px 3px rgba(20, 35, 63, 0.04),
+    0 8px 24px -4px rgba(20, 35, 63, 0.07),
+    0 20px 48px -10px rgba(20, 35, 63, 0.09),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(20, 35, 63, 0.02);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -24898,98 +25304,96 @@ nav.floating-nav.scrolled {
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.5s ease,
               filter 0.5s ease,
-              box-shadow 0.55s ease,
-              border-color 0.4s ease;
+              box-shadow 0.45s ease,
+              border-color 0.35s ease;
   will-change: transform, opacity, filter, box-shadow;
 }
 
-/* Active State: Centered, Elevated, Dominant, Luminous Living Wave Border */
+/* Active State: Centered, Elevated, Dominant Visual Component */
 .cinematic-project-card.is-active {
   opacity: 1;
   filter: blur(0px);
   z-index: 25;
   pointer-events: auto;
   cursor: default;
-  border: 4.5px solid transparent;
-  background: 
-    linear-gradient(#FFFFFF, #FFFFFF) padding-box,
-    linear-gradient(115deg, 
-      #FA5538 0%, 
-      #FF6B55 14%, 
-      #FDA4AF 28%, 
-      #A855F7 45%, 
-      #06B6D4 62%, 
-      #10B981 76%, 
-      #F59E0B 88%, 
-      #FA5538 100%
-    ) border-box;
-  background-size: 260% 260%;
-  animation: liquidWaveBorder 4s ease-in-out infinite alternate, waveEdgeGlow 4s ease-in-out infinite;
+  border: 1.5px solid color-mix(in srgb, var(--card-accent-current) 48%, rgba(20, 35, 63, 0.12));
+  background: linear-gradient(180deg, #FFFFFF 0%, #F9FBFE 100%);
   box-shadow: 
-    0 28px 75px -12px rgba(20, 35, 63, 0.16),
-    0 0 32px -2px rgba(250, 85, 56, 0.30),
-    0 0 45px -4px rgba(139, 92, 246, 0.20),
-    inset 0 1px 3px rgba(255, 255, 255, 1);
+    0 2px 6px rgba(20, 35, 63, 0.04),
+    0 14px 34px -4px rgba(20, 35, 63, 0.12),
+    0 32px 68px -10px rgba(20, 35, 63, 0.15),
+    0 0 26px -4px var(--card-glow),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
-/* Contact ground shadow under active card */
+/* Ground shadow under active card */
 .cinematic-project-card.is-active::after {
   content: "";
   position: absolute;
-  bottom: -22px;
-  left: 6%;
-  width: 88%;
-  height: 24px;
-  background: radial-gradient(ellipse at center, rgba(20, 35, 63, 0.14) 0%, rgba(20, 35, 63, 0.02) 65%, transparent 75%);
-  filter: blur(12px);
+  bottom: -20px;
+  left: 8%;
+  width: 84%;
+  height: 22px;
+  background: radial-gradient(ellipse at center, rgba(20, 35, 63, 0.12) 0%, rgba(20, 35, 63, 0.02) 60%, transparent 75%);
+  filter: blur(10px);
   border-radius: 50%;
   pointer-events: none;
 }
 
-/* Symmetrical Near Flanking Cards (Positions -1 and +1) */
+/* Symmetrical Near Flanking Cards (Positions -1 and +1) — Clearly Defined Boundaries */
 .cinematic-project-card.is-near-left,
 .cinematic-project-card.is-near-right {
-  opacity: 0.92;
+  opacity: 0.94;
   filter: blur(0px);
   z-index: 18;
   cursor: pointer;
   pointer-events: auto;
+  border: 1.5px solid color-mix(in srgb, var(--card-accent-current) 24%, rgba(20, 35, 63, 0.08));
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: 
-    0 18px 45px -8px rgba(20, 35, 63, 0.10),
-    0 0 20px -2px rgba(20, 35, 63, 0.04),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+    0 1px 3px rgba(20, 35, 63, 0.03),
+    0 8px 24px -4px rgba(20, 35, 63, 0.08),
+    0 18px 42px -8px rgba(20, 35, 63, 0.10),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
 }
 
 .cinematic-project-card.is-near-left:hover,
 .cinematic-project-card.is-near-right:hover {
   opacity: 1;
   filter: brightness(1.02);
+  border-color: color-mix(in srgb, var(--card-accent-current) 44%, rgba(20, 35, 63, 0.12));
   box-shadow: 
-    0 24px 60px -8px rgba(20, 35, 63, 0.16),
-    0 0 26px rgba(250, 85, 56, 0.22),
+    0 12px 30px -4px rgba(20, 35, 63, 0.12),
+    0 24px 54px -8px rgba(20, 35, 63, 0.14),
+    0 0 22px -4px var(--card-glow),
     inset 0 1px 2px rgba(255, 255, 255, 1);
 }
 
 /* Symmetrical Far Flanking Cards (Positions -2 and +2) */
 .cinematic-project-card.is-far-left,
 .cinematic-project-card.is-far-right {
-  opacity: 0.74;
+  opacity: 0.76;
   filter: blur(0.4px);
   z-index: 10;
   cursor: pointer;
   pointer-events: auto;
+  border: 1.5px solid color-mix(in srgb, var(--card-accent-current) 18%, rgba(20, 35, 63, 0.06));
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: 
-    0 12px 35px -8px rgba(20, 35, 63, 0.08),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+    0 6px 20px -4px rgba(20, 35, 63, 0.06),
+    0 12px 32px -8px rgba(20, 35, 63, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 .cinematic-project-card.is-far-left:hover,
 .cinematic-project-card.is-far-right:hover {
   opacity: 0.92;
   filter: blur(0px);
+  border-color: color-mix(in srgb, var(--card-accent-current) 32%, rgba(20, 35, 63, 0.1));
   box-shadow: 
-    0 20px 48px -6px rgba(20, 35, 63, 0.14),
-    0 0 22px rgba(139, 92, 246, 0.2),
+    0 10px 28px -4px rgba(20, 35, 63, 0.10),
+    0 20px 44px -6px rgba(20, 35, 63, 0.12),
     inset 0 1px 2px rgba(255, 255, 255, 1);
 }
 
@@ -25046,7 +25450,7 @@ nav.floating-nav.scrolled {
   background: rgba(20, 35, 63, 0.04);
   border: 1px solid rgba(20, 35, 63, 0.08);
   border-radius: 999px;
-  padding: 0.22rem 0.6rem;
+  padding: 0.22rem 0.65rem;
   margin-left: auto;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -25056,16 +25460,16 @@ nav.floating-nav.scrolled {
 /* ==========================================================================
    CARD INTERNAL COMPOSITION:
    TOP: Project Number + Title on same horizontal line
-   CENTER: Dominant Screenshot occupying full upper visual area
+   CENTER: Contained Framed Inset Mockup (Intentional, Not Floating in Void)
    BOTTOM: Compact Actions Bar (Explore Project, Live Demo, GitHub)
    ========================================================================== */
 
-/* Top Header Bar: 01 StudyPilot-AI on single clean horizontal line */
+/* Top Header Bar: Clean horizontal project identity */
 .card-window-bar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.75rem 1.35rem;
+  padding: 0.8rem 1.35rem;
   background: #FFFFFF;
   border-bottom: 1px solid rgba(20, 35, 63, 0.06);
   flex-shrink: 0;
@@ -25080,20 +25484,21 @@ nav.floating-nav.scrolled {
 
 .card-project-num {
   font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 800;
-  color: #FA5538;
-  background: rgba(250, 85, 56, 0.08);
+  color: var(--card-accent-current);
+  background: color-mix(in srgb, var(--card-accent-current) 10%, #FFFFFF);
   padding: 0.22rem 0.55rem;
-  border-radius: 8px;
-  border: 1px solid rgba(250, 85, 56, 0.22);
+  border-radius: 7px;
+  border: 1px solid color-mix(in srgb, var(--card-accent-current) 26%, transparent);
   line-height: 1;
   letter-spacing: -0.01em;
+  transition: all 0.3s ease;
 }
 
 .card-project-title {
   font-family: 'Syne', 'Outfit', sans-serif;
-  font-size: 1.22rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #101C35;
@@ -25101,34 +25506,111 @@ nav.floating-nav.scrolled {
   line-height: 1;
 }
 
-/* Center Tier: Dominant Visual Presentation Canvas (Flush Edge-to-Edge, Zero Left & Right Padding) */
+/* Center Tier: Contained Framed Inset Device Mockup (Intentional Framing) */
 .card-preview-viewport {
   position: relative;
   flex: 1 1 auto;
   width: 100%;
   min-height: 0;
-  background: #FFFFFF;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.85) 0%, rgba(241, 245, 249, 0.95) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 !important;
+  padding: 0.75rem 1.15rem !important;
   margin: 0 !important;
   box-sizing: border-box;
   overflow: hidden;
 }
 
+/* Inset Framed Browser / Device Canvas */
 .mockup-project-image-wrap {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
-  background: #FFFFFF;
+  background: #0B1120;
+  border-radius: 12px;
+  border: 1px solid var(--card-inner-frame-border);
+  box-shadow: 
+    0 4px 16px -2px rgba(20, 35, 63, 0.06),
+    0 1px 3px rgba(20, 35, 63, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box;
+}
+
+/* Subtle Mini Chrome Window Header */
+.mockup-frame-bar {
+  height: 26px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(20, 35, 63, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.frame-window-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.f-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #FF5F56; }
+.dot-yellow { background: #FFBD2E; }
+.dot-green { background: #27C93F; }
+
+.frame-browser-address {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(20, 35, 63, 0.04);
+  border: 1px solid rgba(20, 35, 63, 0.07);
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.frame-secure-icon {
+  font-size: 0.58rem;
+  opacity: 0.8;
+}
+
+.frame-browser-url {
+  letter-spacing: -0.01em;
+}
+
+.frame-bar-spacer {
+  width: 32px;
+}
+
+.mockup-frame-canvas {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #0B1120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-screenshot-img {
@@ -25148,7 +25630,7 @@ nav.floating-nav.scrolled {
   transform: scale(1.025);
 }
 
-/* Bottom Tier: Clean Compact Action Buttons Bar */
+/* Bottom Tier: Clean Compact Action Buttons Bar with Card Accent Harmony */
 .card-actions-bar {
   display: flex;
   align-items: center;
@@ -25167,24 +25649,24 @@ nav.floating-nav.scrolled {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  padding: 0.6rem 1.05rem;
+  padding: 0.58rem 1.05rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #FA5538 0%, #F43F5E 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--card-accent-current) 0%, color-mix(in srgb, var(--card-accent-current) 75%, #0B132B) 100%);
   color: #FFFFFF;
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: 0.84rem;
+  font-size: 0.83rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+  box-shadow: 0 4px 14px -2px var(--card-glow);
   transition: all 0.22s ease;
   white-space: nowrap;
 }
 
 .btn-card-explore:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(244, 63, 94, 0.42);
-  filter: brightness(1.05);
+  box-shadow: 0 8px 22px -2px var(--card-glow);
+  filter: brightness(1.06);
 }
 
 .btn-card-secondary {
@@ -25192,25 +25674,25 @@ nav.floating-nav.scrolled {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.58rem 0.92rem;
+  padding: 0.56rem 0.92rem;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.98);
+  background: #FFFFFF;
   color: #101C35;
-  border: 1px solid rgba(20, 35, 63, 0.14);
+  border: 1px solid rgba(20, 35, 63, 0.12);
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(20, 35, 63, 0.04);
+  box-shadow: 0 1px 3px rgba(20, 35, 63, 0.04);
   transition: all 0.22s ease;
   white-space: nowrap;
 }
 
 .btn-card-secondary:hover {
   transform: translateY(-2px);
-  border-color: #FA5538;
-  color: #FA5538;
-  box-shadow: 0 4px 12px rgba(250, 85, 56, 0.15);
+  border-color: var(--card-accent-current);
+  color: var(--card-accent-current);
+  box-shadow: 0 4px 12px -2px var(--card-glow);
 }
 
 .btn-card-secondary.btn-card-github {
@@ -25424,6 +25906,20 @@ nav.floating-nav.scrolled {
     border-radius: 18px;
   }
 
+  .card-preview-viewport {
+    padding: 0.55rem 0.85rem !important;
+  }
+
+  .mockup-frame-bar {
+    height: 23px;
+    padding: 0 0.55rem;
+  }
+
+  .frame-browser-address {
+    font-size: 0.62rem;
+    padding: 0.08rem 0.45rem;
+  }
+
   .card-window-bar {
     padding: 0.65rem 1rem;
   }
@@ -25484,6 +25980,10 @@ nav.floating-nav.scrolled {
     width: clamp(285px, 92vw, 350px);
     height: 350px;
     border-radius: 16px;
+  }
+
+  .card-preview-viewport {
+    padding: 0.45rem 0.65rem !important;
   }
 
   .card-window-bar {

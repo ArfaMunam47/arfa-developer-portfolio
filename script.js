@@ -424,7 +424,6 @@ function setupContactForm() {
   if (centerpieceStage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const headphones = centerpieceStage.querySelector('.conn-headphones-visual');
     const floatElems = centerpieceStage.querySelectorAll('.conn-float-element');
-    const orbitFront = centerpieceStage.querySelector('.conn-orbit-front');
     const orbitBack = centerpieceStage.querySelector('.conn-orbit-back');
     const radialGlow = centerpieceStage.querySelector('.conn-centerpiece-radial-glow');
 
@@ -440,25 +439,21 @@ function setupContactForm() {
       currY += (mouseY - currY) * 0.08;
 
       if (headphones) {
-        headphones.style.transform = `translate3d(${(currX * 12).toFixed(1)}px, ${(currY * 10).toFixed(1)}px, 20px) rotateY(${(currX * 4).toFixed(1)}deg) rotateX(${(-currY * 4).toFixed(1)}deg)`;
+        headphones.style.transform = `translate3d(${(currX * 8).toFixed(1)}px, ${(currY * 6 - 2).toFixed(1)}px, 15px) rotateY(${(currX * 1.8).toFixed(1)}deg) rotateX(${(-currY * 1.5).toFixed(1)}deg)`;
       }
 
       if (radialGlow) {
-        radialGlow.style.transform = `translate(calc(-50% + ${(currX * 6).toFixed(1)}px), calc(-50% + ${(currY * 6).toFixed(1)}px))`;
-      }
-
-      if (orbitFront) {
-        orbitFront.style.transform = `translate(calc(-50% + ${(currX * 14).toFixed(1)}px), calc(-50% + ${(currY * 10).toFixed(1)}px))`;
+        radialGlow.style.transform = `translate(calc(-50% + ${(currX * 4).toFixed(1)}px), calc(-50% + ${(currY * 4).toFixed(1)}px))`;
       }
 
       if (orbitBack) {
-        orbitBack.style.transform = `translate(calc(-50% + ${(currX * 4).toFixed(1)}px), calc(-50% + ${(currY * 4).toFixed(1)}px))`;
+        orbitBack.style.transform = `translate(calc(-50% + ${(currX * 3).toFixed(1)}px), calc(-50% + ${(currY * 3).toFixed(1)}px))`;
       }
 
       floatElems.forEach((el) => {
-        const depth = parseFloat(el.getAttribute('data-depth')) || 0.5;
-        const shiftX = (currX * depth * 22).toFixed(1);
-        const shiftY = (currY * depth * 18).toFixed(1);
+        const depth = parseFloat(el.getAttribute('data-depth')) || 0.4;
+        const shiftX = (currX * depth * 16).toFixed(1);
+        const shiftY = (currY * depth * 14).toFixed(1);
         el.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
       });
 
@@ -469,7 +464,6 @@ function setupContactForm() {
         if (!isHovering) {
           if (headphones) headphones.style.transform = '';
           if (radialGlow) radialGlow.style.transform = '';
-          if (orbitFront) orbitFront.style.transform = '';
           if (orbitBack) orbitBack.style.transform = '';
           floatElems.forEach((el) => { el.style.transform = ''; });
           animId = null;
@@ -1076,8 +1070,11 @@ function setupProjectsShowcase() {
 
   projects.forEach((proj, idx) => {
     const card = document.createElement('article');
-    card.className = 'cinematic-project-card';
+    card.className = `cinematic-project-card proj-card-${proj.id}`;
     card.setAttribute('data-index', idx);
+    card.setAttribute('data-project', proj.id);
+    card.setAttribute('data-accent', proj.accent);
+    card.style.setProperty('--card-accent', proj.accent);
     card.setAttribute('role', 'group');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-roledescription', 'slide');
@@ -1093,15 +1090,29 @@ function setupProjectsShowcase() {
         <span class="card-category-pill">${proj.category}</span>
       </div>
 
-      <!-- MAIN HERO: Large Dominant Project Screenshot (Preserves Aspect Ratio, Zero Distortion) -->
+      <!-- MAIN HERO: Contained Framed Device Mockup Inset -->
       <div class="card-preview-viewport">
         <div class="mockup-project-image-wrap">
-          <img 
-            src="${proj.image}" 
-            alt="${proj.title} — Authentic Project Screenshot" 
-            class="project-screenshot-img" 
-            loading="lazy" 
-          />
+          <div class="mockup-frame-bar" aria-hidden="true">
+            <div class="frame-window-dots">
+              <span class="f-dot dot-red"></span>
+              <span class="f-dot dot-yellow"></span>
+              <span class="f-dot dot-green"></span>
+            </div>
+            <div class="frame-browser-address">
+              <span class="frame-secure-icon">🔒</span>
+              <span class="frame-browser-url">${proj.title.toLowerCase().replace(/\s+/g, '')}.dev</span>
+            </div>
+            <div class="frame-bar-spacer"></div>
+          </div>
+          <div class="mockup-frame-canvas">
+            <img 
+              src="${proj.image}" 
+              alt="${proj.title} — Authentic Project Screenshot" 
+              class="project-screenshot-img" 
+              loading="lazy" 
+            />
+          </div>
         </div>
         <div class="card-flank-cue" aria-hidden="true">
           <span>Click to View</span>
@@ -1200,70 +1211,70 @@ function setupProjectsShowcase() {
     cardElements.push(card);
   });
 
-  // Responsive Carousel Geometry Provider for Symmetrical 5-Card Layout
+  // Responsive Carousel Geometry Provider for Symmetrical 5-Card Layout with Distinct Separation
   function getCarouselGeometry() {
     const w = window.innerWidth;
     if (w <= 480) {
       return {
-        nearX: Math.min(w * 0.38, 130),
-        farX: Math.min(w * 0.68, 220),
+        nearX: Math.min(w * 0.40, 140),
+        farX: Math.min(w * 0.72, 240),
         scaleCenter: 1.0,
-        scaleNear: 0.80,
-        scaleFar: 0.62,
-        rotNear: 7,
-        rotFar: 13,
+        scaleNear: 0.81,
+        scaleFar: 0.63,
+        rotNear: 6,
+        rotFar: 12,
         nearZ: -30,
         farZ: -95
       };
     }
     if (w <= 768) {
       return {
-        nearX: Math.min(w * 0.36, 180),
-        farX: Math.min(w * 0.64, 320),
+        nearX: Math.min(w * 0.38, 195),
+        farX: Math.min(w * 0.68, 330),
         scaleCenter: 1.0,
         scaleNear: 0.83,
-        scaleFar: 0.66,
-        rotNear: 9,
-        rotFar: 16,
+        scaleFar: 0.67,
+        rotNear: 8,
+        rotFar: 15,
         nearZ: -35,
         farZ: -105
       };
     }
     if (w <= 1080) {
       return {
-        nearX: 245,
-        farX: 450,
+        nearX: 270,
+        farX: 480,
         scaleCenter: 1.0,
         scaleNear: 0.85,
         scaleFar: 0.71,
-        rotNear: 12,
-        rotFar: 20,
+        rotNear: 10,
+        rotFar: 18,
         nearZ: -35,
         farZ: -115
       };
     }
     if (w <= 1380) {
       return {
-        nearX: 290,
-        farX: 530,
+        nearX: 335,
+        farX: 580,
         scaleCenter: 1.0,
         scaleNear: 0.86,
         scaleFar: 0.73,
-        rotNear: 14,
-        rotFar: 22,
+        rotNear: 12,
+        rotFar: 20,
         nearZ: -35,
         farZ: -120
       };
     }
-    // Large Desktop screens (> 1380px)
+    // Large Desktop screens (> 1380px): Generous separation so 3 cards don't visually clump
     return {
-      nearX: 330,
-      farX: 610,
+      nearX: 380,
+      farX: 670,
       scaleCenter: 1.0,
-      scaleNear: 0.88,
-      scaleFar: 0.75,
-      rotNear: 15,
-      rotFar: 24,
+      scaleNear: 0.87,
+      scaleFar: 0.74,
+      rotNear: 13,
+      rotFar: 22,
       nearZ: -30,
       farZ: -115
     };
@@ -2570,7 +2581,12 @@ function setupHero3DPortraitParallax() {
   const nodesLayer = visualZone ? (visualZone.querySelector('#tech-orbit-nodes-layer') || (orbitSystem ? orbitSystem.querySelector('.tech-orbit-nodes-layer') : null)) : null;
   const orbitNodes = visualZone ? Array.from(visualZone.querySelectorAll('.tech-orbit-node')) : [];
 
-  // Magical atmospheric lighting nodes behind portrait (Preserved soft studio glows)
+  // Cinematic enhancement elements
+  const cursorLensLight = visualZone ? visualZone.querySelector('#hero-cinematic-cursor-light') : null;
+  const glossHighlight = visualZone ? visualZone.querySelector('#hero-portrait-gloss-highlight') : null;
+  const orbitRipple = visualZone ? visualZone.querySelector('#orbit-energy-ripple') : null;
+
+  // Background atmospheric studio lighting nodes
   const ambientLight = visualZone ? visualZone.querySelector('.hero-light-ambient') : null;
   const coralLight = visualZone ? (visualZone.querySelector('.hero-light-coral') || visualZone.querySelector('.hero-disc-coral')) : null;
   const cyanLight = visualZone ? (visualZone.querySelector('.hero-light-cyan') || visualZone.querySelector('.hero-disc-cyan')) : null;
@@ -2585,7 +2601,7 @@ function setupHero3DPortraitParallax() {
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Static mathematically balanced positions matching image.png (tilt=-7 deg, rx=246, ry=142)
+  // Static mathematically balanced orbit positions (tilt=-7 deg, rx=246, ry=142)
   const STATIC_ORBIT_CONFIG = [
     { name: 'HTML',       baseX: -216.2, baseY: -34.3, depthZ: -0.3 },
     { name: 'CSS',        baseX:  107.1, baseY: -122.0, depthZ: -0.3 },
@@ -2609,94 +2625,212 @@ function setupHero3DPortraitParallax() {
       const x = (cfg.baseX * scale).toFixed(1);
       const y = (cfg.baseY * scale).toFixed(1);
       node.style.transform = `translate3d(${x}px, ${y}px, 0px) scale(1)`;
+      node.style.filter = '';
+      node.classList.remove('is-attracted');
     });
   }
 
-  // Position nodes statically on load
+  // Initial static positioning
   positionNodesStatic();
 
   let bounds = cutoutFrame.getBoundingClientRect();
+  let stageBounds = stage.getBoundingClientRect();
   let rafId = null;
+
+  // 3D Parallax & layer motion physics
   let targetRotX = 0;
   let targetRotY = 0;
   let currentRotX = 0;
   let currentRotY = 0;
+
+  let targetGirlX = 0;
+  let targetGirlY = 0;
+  let currentGirlX = 0;
+  let currentGirlY = 0;
+
   let targetScale = 1.0;
   let currentScale = 1.0;
   let targetTranslateZ = 0;
   let currentTranslateZ = 0;
-  let targetLightX = 0;
-  let targetLightY = 0;
-  let currentLightX = 0;
-  let currentLightY = 0;
-  let targetParallaxX = 0;
-  let targetParallaxY = 0;
-  let currentParallaxX = 0;
-  let currentParallaxY = 0;
+
+  // Cinematic lens light (follows cursor with gentle delay)
+  let targetLensX = 0;
+  let targetLensY = 0;
+  let currentLensX = 0;
+  let currentLensY = 0;
+  let targetLensOpacity = 0;
+  let currentLensOpacity = 0;
+
+  // Portrait gloss highlight (moves across image)
+  let targetGlossX = 50;
+  let targetGlossY = 40;
+  let currentGlossX = 50;
+  let currentGlossY = 40;
+  let targetGlossOpacity = 0;
+  let currentGlossOpacity = 0;
+
+  // Magnetic cursor field per tech node
+  const currentNodePullX = [0, 0, 0, 0, 0, 0];
+  const currentNodePullY = [0, 0, 0, 0, 0, 0];
+  const targetPullX = [0, 0, 0, 0, 0, 0];
+  const targetPullY = [0, 0, 0, 0, 0, 0];
+  const currentNodeScale = [1, 1, 1, 1, 1, 1];
+  const targetNodeScale = [1, 1, 1, 1, 1, 1];
+  const currentNodeBrightness = [1, 1, 1, 1, 1, 1];
+  const targetNodeBrightness = [1, 1, 1, 1, 1, 1];
+
   let targetKickerLiftY = 0;
   let currentKickerLiftY = 0;
   let orbitFloatAngle = 0;
   let isHovered = false;
 
+  // Motion tracking for energy ripple
+  let lastMoveX = 0;
+  let lastMoveY = 0;
+  let lastRippleTime = 0;
+  let rippleTimeoutId = null;
+
   function updateBounds() {
     bounds = cutoutFrame.getBoundingClientRect();
-    positionNodesStatic();
+    stageBounds = stage.getBoundingClientRect();
+    if (!isHovered) {
+      positionNodesStatic();
+    }
   }
 
   function getResponsiveHoverScale() {
     const w = window.innerWidth;
-    if (w > 1024) return 1.04; // Desktop: elegant 1.04 lift
-    if (w > 768) return 1.03;  // Tablet: subtle 1.03 lift
-    return 1.02;               // Mobile: subtle 1.02 lift
+    if (w > 1024) return 1.035; // Desktop: very subtle 1.035
+    if (w > 768) return 1.025;  // Tablet
+    return 1.015;               // Mobile
   }
 
   window.addEventListener('resize', updateBounds, { passive: true });
   window.addEventListener('scroll', updateBounds, { passive: true });
 
-  // Pointer movement tracking over cutout frame and visual zone
+  // Handle pointer movement across hero stage
   function handlePointerMove(e) {
     if (prefersReduced) return;
     updateBounds();
-    const centerX = bounds.left + bounds.width / 2;
-    const centerY = bounds.top + bounds.height / 2;
-    const halfW = bounds.width / 2 || 1;
-    const halfH = bounds.height / 2 || 1;
 
-    const relX = Math.max(-1, Math.min(1, (e.clientX - centerX) / halfW));
-    const relY = Math.max(-1, Math.min(1, (e.clientY - centerY) / halfH));
+    const stageCenterX = stageBounds.left + stageBounds.width / 2;
+    const stageCenterY = stageBounds.top + stageBounds.height / 2;
+    const relCursorX = e.clientX - stageCenterX;
+    const relCursorY = e.clientY - stageCenterY;
 
-    // Subtle 3D tilt toward cursor (max ~2.2 degrees — refined, no spinning)
-    targetRotY = relX * 2.2;
-    targetRotX = -relY * 2.2;
+    // 1. Cinematic Lens Light: Follows cursor in stage space (centered: 340px / 2 = 170)
+    targetLensX = e.clientX - stageBounds.left - 170;
+    targetLensY = e.clientY - stageBounds.top - 170;
+    targetLensOpacity = 0.88;
 
-    // Small stable kicker response that never pulls away from the portrait
+    // 2. Portrait Specular Gloss Reflection: Normalized coordinates across cutout
+    const glossRelX = ((e.clientX - bounds.left) / (bounds.width || 1)) * 100;
+    const glossRelY = ((e.clientY - bounds.top) / (bounds.height || 1)) * 100;
+    targetGlossX = Math.max(8, Math.min(92, glossRelX));
+    targetGlossY = Math.max(8, Math.min(92, glossRelY));
+    targetGlossOpacity = 0.72;
+
+    // 3. Cinematic Energy Ripple: Triggered only on meaningful movement
+    const distMoved = Math.hypot(e.clientX - lastMoveX, e.clientY - lastMoveY);
+    lastMoveX = e.clientX;
+    lastMoveY = e.clientY;
+    const now = performance.now();
+
+    if (distMoved > 16 && now - lastRippleTime > 850 && orbitRipple) {
+      lastRippleTime = now;
+      orbitRipple.classList.remove('is-rippling');
+      void orbitRipple.offsetWidth; // Force CSS reflow to restart animation smoothly
+      orbitRipple.classList.add('is-rippling');
+      if (rippleTimeoutId) clearTimeout(rippleTimeoutId);
+      rippleTimeoutId = setTimeout(() => {
+        if (orbitRipple) orbitRipple.classList.remove('is-rippling');
+      }, 850);
+    }
+
+    // 4. Subtle 3D Parallax: Total tilt strictly 2 to 3.2 degrees max
+    const halfW = stageBounds.width / 2 || 1;
+    const halfH = stageBounds.height / 2 || 1;
+    const normX = Math.max(-1, Math.min(1, relCursorX / halfW));
+    const normY = Math.max(-1, Math.min(1, relCursorY / halfH));
+
+    targetRotY = normX * 2.8;   // Subtle ~2.8 deg max horizontal tilt
+    targetRotX = -normY * 2.8;  // Subtle ~2.8 deg max vertical tilt
+
+    // Layer 3: Girl Cutout Frame moves only ~3.5px
+    targetGirlX = normX * 3.5;
+    targetGirlY = normY * 3.5;
     targetKickerLiftY = -2;
 
-    // Cursor-responsive lighting shifts gently in cursor direction
-    targetLightX = relX * 14;
-    targetLightY = relY * 14;
+    // 5. Magnetic Cursor Field: Influences nearby tech icons
+    const scale = getScaleFactor();
+    const magneticRadius = 145 * scale;
+    let closestDist = Infinity;
+    let closestIdx = -1;
 
-    // Subtle micro-parallax for icons (max 5-6px)
-    targetParallaxX = relX * 5.5;
-    targetParallaxY = relY * 5.5;
+    STATIC_ORBIT_CONFIG.forEach((cfg, idx) => {
+      const nodeHomeX = cfg.baseX * scale;
+      const nodeHomeY = cfg.baseY * scale;
+      const dist = Math.hypot(relCursorX - nodeHomeX, relCursorY - nodeHomeY);
+
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIdx = idx;
+      }
+
+      if (dist < magneticRadius) {
+        // Smooth falloff factor
+        const rawFactor = 1 - dist / magneticRadius;
+        const smoothFactor = rawFactor * rawFactor * (3 - 2 * rawFactor);
+        const pullDist = smoothFactor * (8.5 * scale); // Restrained to 8.5px max, remains in orbit
+        const angle = Math.atan2(relCursorY - nodeHomeY, relCursorX - nodeHomeX);
+
+        targetPullX[idx] = Math.cos(angle) * pullDist;
+        targetPullY[idx] = Math.sin(angle) * pullDist;
+        targetNodeScale[idx] = 1.0 + smoothFactor * 0.12;
+        targetNodeBrightness[idx] = 1.0 + smoothFactor * 0.15;
+      } else {
+        targetPullX[idx] = 0;
+        targetPullY[idx] = 0;
+        targetNodeScale[idx] = 1.0;
+        targetNodeBrightness[idx] = 1.0;
+      }
+    });
+
+    // Mark the closest icon for elevated styling
+    orbitNodes.forEach((node, idx) => {
+      if (idx === closestIdx && closestDist < magneticRadius * 0.85) {
+        node.classList.add('is-attracted');
+      } else {
+        node.classList.remove('is-attracted');
+      }
+    });
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
   }
 
-  function activateHoverState() {
+  function activateHoverState(e) {
     isHovered = true;
     updateBounds();
     targetScale = getResponsiveHoverScale();
-    targetTranslateZ = prefersReduced ? 0 : 12;
+    targetTranslateZ = prefersReduced ? 0 : 10;
     targetKickerLiftY = -2;
+    targetLensOpacity = 0.88;
+    targetGlossOpacity = 0.72;
+
     cutoutFrame.classList.add('is-hovered');
     stage.classList.add('has-hover');
     if (orbitSystem) orbitSystem.classList.add('is-revealed');
     if (nodesLayer) nodesLayer.classList.add('is-revealed');
     if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
+
+    if (e && e.clientX) {
+      lastMoveX = e.clientX;
+      lastMoveY = e.clientY;
+      handlePointerMove(e);
+    }
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
@@ -2707,25 +2841,36 @@ function setupHero3DPortraitParallax() {
     isHovered = false;
     targetRotX = 0;
     targetRotY = 0;
+    targetGirlX = 0;
+    targetGirlY = 0;
     targetScale = 1.0;
     targetTranslateZ = 0;
-    targetLightX = 0;
-    targetLightY = 0;
-    targetParallaxX = 0;
-    targetParallaxY = 0;
     targetKickerLiftY = 0;
+    targetLensOpacity = 0;
+    targetGlossOpacity = 0;
+
+    for (let i = 0; i < 6; i++) {
+      targetPullX[i] = 0;
+      targetPullY[i] = 0;
+      targetNodeScale[i] = 1.0;
+      targetNodeBrightness[i] = 1.0;
+    }
+
     cutoutFrame.classList.remove('is-hovered');
     stage.classList.remove('has-hover');
     if (orbitSystem) orbitSystem.classList.remove('is-revealed');
     if (nodesLayer) nodesLayer.classList.remove('is-revealed');
     if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
+    if (orbitRipple) orbitRipple.classList.remove('is-rippling');
+    orbitNodes.forEach(node => node.classList.remove('is-attracted'));
 
     if (!rafId) {
       rafId = requestAnimationFrame(renderParallax);
     }
   }
 
+  // Event Listeners on Stage and Cutout Frame
   stage.addEventListener('pointerenter', activateHoverState);
   stage.addEventListener('pointermove', handlePointerMove, { passive: true });
   stage.addEventListener('pointerleave', deactivateHoverState);
@@ -2734,7 +2879,6 @@ function setupHero3DPortraitParallax() {
   cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
   cutoutFrame.addEventListener('pointerleave', deactivateHoverState);
 
-  // If user moves over orbiting icons, maintain hover continuity
   if (nodesLayer) {
     nodesLayer.addEventListener('pointerenter', activateHoverState);
     nodesLayer.addEventListener('pointermove', handlePointerMove, { passive: true });
@@ -2746,12 +2890,12 @@ function setupHero3DPortraitParallax() {
     orbitSystem.addEventListener('pointerleave', deactivateHoverState);
   }
 
-  // Touch device support: tap reveals interactive orbit without breaking scroll
+  // Touch device support
   let touchActive = false;
   cutoutFrame.addEventListener('touchstart', (e) => {
     if (!touchActive) {
       touchActive = true;
-      activateHoverState();
+      activateHoverState(e);
     }
   }, { passive: true });
 
@@ -2762,7 +2906,7 @@ function setupHero3DPortraitParallax() {
     }
   }, { passive: true });
 
-  // Dedicated Cinematic Portrait Enlarge Modal (Support clicking for enlarged modal)
+  // Dedicated Cinematic Portrait Enlarge Modal
   const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
   const modalCloseBtn = document.getElementById('enlarge-modal-close-btn');
   const modalBackdrop = document.getElementById('enlarge-modal-backdrop');
@@ -2797,9 +2941,7 @@ function setupHero3DPortraitParallax() {
     }
   }
 
-  // Double click / Enter key on Portrait opens enlarged modal
   cutoutFrame.addEventListener('dblclick', openEnlargedModal);
-
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeEnlargedModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeEnlargedModal);
   const enlargeImg = document.getElementById('enlarge-portrait-img');
@@ -2824,70 +2966,99 @@ function setupHero3DPortraitParallax() {
     }
   });
 
-  // Physics animation loop using smooth linear interpolation
+  // 60FPS Physics animation loop using smooth linear interpolation
   function renderParallax() {
-    const lerpRot = 0.12;
-    const lerpScale = 0.14;
-    const lerpLight = 0.08;
-    const lerpKicker = 0.14;
+    const lerpRot = 0.10;
+    const lerpGirl = 0.09;
+    const lerpLens = 0.08;
+    const lerpNode = 0.12;
+    const lerpBackdrop = 0.07;
 
     currentRotX += (targetRotX - currentRotX) * lerpRot;
     currentRotY += (targetRotY - currentRotY) * lerpRot;
-    currentScale += (targetScale - currentScale) * lerpScale;
+    currentGirlX += (targetGirlX - currentGirlX) * lerpGirl;
+    currentGirlY += (targetGirlY - currentGirlY) * lerpGirl;
+    currentScale += (targetScale - currentScale) * 0.12;
     currentTranslateZ += (targetTranslateZ - currentTranslateZ) * lerpRot;
-    currentKickerLiftY += (targetKickerLiftY - currentKickerLiftY) * lerpKicker;
+    currentKickerLiftY += (targetKickerLiftY - currentKickerLiftY) * 0.14;
 
-    currentLightX += (targetLightX - currentLightX) * lerpLight;
-    currentLightY += (targetLightY - currentLightY) * lerpLight;
+    // 1. Cinematic Lens Light: Smooth interpolation with natural lens delay
+    currentLensX += (targetLensX - currentLensX) * lerpLens;
+    currentLensY += (targetLensY - currentLensY) * lerpLens;
+    currentLensOpacity += (targetLensOpacity - currentLensOpacity) * lerpLens;
 
-    currentParallaxX += (targetParallaxX - currentParallaxX) * lerpRot;
-    currentParallaxY += (targetParallaxY - currentParallaxY) * lerpRot;
+    if (cursorLensLight) {
+      cursorLensLight.style.transform = `translate3d(${currentLensX.toFixed(1)}px, ${currentLensY.toFixed(1)}px, 0)`;
+      cursorLensLight.style.opacity = currentLensOpacity.toFixed(3);
+    }
 
-    // Apply smooth 3D transform to the portrait cutout
+    // 2. Portrait Specular Gloss: Smooth highlight across girl image
+    currentGlossX += (targetGlossX - currentGlossX) * lerpLens;
+    currentGlossY += (targetGlossY - currentGlossY) * lerpLens;
+    currentGlossOpacity += (targetGlossOpacity - currentGlossOpacity) * lerpLens;
+
+    if (glossHighlight) {
+      glossHighlight.style.background = `radial-gradient(circle 220px at ${currentGlossX.toFixed(1)}% ${currentGlossY.toFixed(1)}%, rgba(255, 255, 255, 0.44) 0%, rgba(254, 215, 170, 0.18) 32%, transparent 68%)`;
+      glossHighlight.style.opacity = currentGlossOpacity.toFixed(3);
+    }
+
+    // 3. Layer 3: Girl Cutout Frame (Subtle 3D perspective tilt + few px shift)
     if (prefersReduced) {
       cutoutFrame.style.transform = `scale(${currentScale.toFixed(3)})`;
     } else {
-      cutoutFrame.style.transform = `perspective(1100px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale(${currentScale.toFixed(3)}) translateZ(${currentTranslateZ.toFixed(1)}px)`;
+      cutoutFrame.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translate3d(${currentGirlX.toFixed(1)}px, ${currentGirlY.toFixed(1)}px, ${currentTranslateZ.toFixed(1)}px) scale(${currentScale.toFixed(3)})`;
     }
 
-    // Cursor-responsive magical background lights
-    if (coralLight) {
-      coralLight.style.transform = `translate(${(currentLightX * 0.9).toFixed(1)}px, ${(currentLightY * 0.9).toFixed(1)}px)`;
-    }
-    if (cyanLight) {
-      cyanLight.style.transform = `translate(${(currentLightX * 1.15).toFixed(1)}px, ${(currentLightY * 1.15).toFixed(1)}px)`;
-    }
-    if (pinkLight) {
-      pinkLight.style.transform = `translate(${(currentLightX * 1.35).toFixed(1)}px, ${(currentLightY * 1.35).toFixed(1)}px)`;
-    }
-    if (violetLight) {
-      violetLight.style.transform = `translate(${(currentLightX * 0.75).toFixed(1)}px, ${(currentLightY * 0.75).toFixed(1)}px)`;
-    }
-    if (bloomLight) {
-      bloomLight.style.transform = `translate(${(currentLightX * 1.0).toFixed(1)}px, ${(currentLightY * 1.0).toFixed(1)}px)`;
-    }
-    if (ambientLight) {
-      ambientLight.style.transform = `translate(${(currentLightX * 0.5).toFixed(1)}px, ${(currentLightY * 0.5).toFixed(1)}px)`;
+    // 4. Layer 1: Background Atmospheric Studio Lights (Differential depth speed)
+    const bgFactorX = currentRotY * 1.5;
+    const bgFactorY = -currentRotX * 1.5;
+    if (coralLight) coralLight.style.transform = `translate(${(bgFactorX * 0.9).toFixed(1)}px, ${(bgFactorY * 0.9).toFixed(1)}px)`;
+    if (cyanLight) cyanLight.style.transform = `translate(${(bgFactorX * 1.15).toFixed(1)}px, ${(bgFactorY * 1.15).toFixed(1)}px)`;
+    if (pinkLight) pinkLight.style.transform = `translate(${(bgFactorX * 1.35).toFixed(1)}px, ${(bgFactorY * 1.35).toFixed(1)}px)`;
+    if (violetLight) violetLight.style.transform = `translate(${(bgFactorX * 0.75).toFixed(1)}px, ${(bgFactorY * 0.75).toFixed(1)}px)`;
+    if (bloomLight) bloomLight.style.transform = `translate(${(bgFactorX * 1.0).toFixed(1)}px, ${(bgFactorY * 1.0).toFixed(1)}px)`;
+    if (ambientLight) ambientLight.style.transform = `translate(${(bgFactorX * 0.5).toFixed(1)}px, ${(bgFactorY * 0.5).toFixed(1)}px)`;
+
+    // 5. Layer 2: Technology Orbit System (Subtle intermediate parallax)
+    if (orbitSystem && !prefersReduced) {
+      const orbitShiftX = (currentRotY * 1.8).toFixed(1);
+      const orbitShiftY = (-currentRotX * 1.8).toFixed(1);
+      orbitSystem.style.transform = `translate3d(${orbitShiftX}px, ${orbitShiftY}px, 0)`;
     }
 
-    // Interactive depth micro-parallax and subtle floating wave for the 6 tech badges
+    // 6. Technology Orbit Nodes: Independent depth & magnetic field
     if (orbitNodes.length > 0) {
       const scale = getScaleFactor();
       if (isHovered && !prefersReduced) {
-        orbitFloatAngle += 0.02;
+        orbitFloatAngle += 0.018;
       }
       orbitNodes.forEach((node, idx) => {
         const cfg = STATIC_ORBIT_CONFIG[idx] || STATIC_ORBIT_CONFIG[0];
-        const parallaxFactor = 1 + (cfg.depthZ || 0) * 0.35;
-        const floatY = isHovered && !prefersReduced ? Math.sin(orbitFloatAngle + idx * 1.05) * 3 : 0;
-        const floatX = isHovered && !prefersReduced ? Math.cos(orbitFloatAngle + idx * 1.05) * 2 : 0;
-        const finalX = (cfg.baseX * scale + currentParallaxX * parallaxFactor + floatX).toFixed(1);
-        const finalY = (cfg.baseY * scale + currentParallaxY * parallaxFactor + floatY).toFixed(1);
-        const nodeScale = (isHovered ? 1.04 : 1.00).toFixed(3);
-        const nodeOpacity = 1.00;
 
-        node.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scale(${nodeScale})`;
-        node.style.opacity = nodeOpacity;
+        // Smooth spring/lerp on magnetic pull and scale
+        currentNodePullX[idx] += (targetPullX[idx] - currentNodePullX[idx]) * lerpNode;
+        currentNodePullY[idx] += (targetPullY[idx] - currentNodePullY[idx]) * lerpNode;
+        currentNodeScale[idx] += (targetNodeScale[idx] - currentNodeScale[idx]) * lerpNode;
+        currentNodeBrightness[idx] += (targetNodeBrightness[idx] - currentNodeBrightness[idx]) * lerpNode;
+
+        const parallaxFactor = 1 + (cfg.depthZ || 0) * 0.35;
+        const iconParallaxX = currentRotY * 2.2 * parallaxFactor;
+        const iconParallaxY = -currentRotX * 2.2 * parallaxFactor;
+        const floatY = isHovered && !prefersReduced ? Math.sin(orbitFloatAngle + idx * 1.05) * 2.5 : 0;
+        const floatX = isHovered && !prefersReduced ? Math.cos(orbitFloatAngle + idx * 1.05) * 1.5 : 0;
+
+        const finalX = (cfg.baseX * scale + iconParallaxX + floatX + currentNodePullX[idx]).toFixed(1);
+        const finalY = (cfg.baseY * scale + iconParallaxY + floatY + currentNodePullY[idx]).toFixed(1);
+
+        const baseHoverScale = isHovered ? 1.04 : 1.00;
+        const finalScale = (baseHoverScale * currentNodeScale[idx]).toFixed(3);
+
+        node.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scale(${finalScale})`;
+        if (currentNodeBrightness[idx] > 1.01) {
+          node.style.filter = `brightness(${currentNodeBrightness[idx].toFixed(2)})`;
+        } else {
+          node.style.filter = '';
+        }
       });
     }
 
@@ -2895,16 +3066,16 @@ function setupHero3DPortraitParallax() {
       kickerBadge.style.transform = `translate(${(-currentRotY * 0.2).toFixed(1)}px, ${(currentKickerLiftY + currentRotX * 0.2).toFixed(1)}px)`;
     }
 
-    // Check if motion is active or still needs to settle back to resting state
+    // Convergence check: Continue RAF loop until motion is at rest
     const rotDiff = Math.abs(targetRotX - currentRotX) + Math.abs(targetRotY - currentRotY);
+    const girlDiff = Math.abs(targetGirlX - currentGirlX) + Math.abs(targetGirlY - currentGirlY);
     const scaleDiff = Math.abs(targetScale - currentScale);
-    const lightDiff = Math.abs(targetLightX - currentLightX) + Math.abs(targetLightY - currentLightY);
-    const parallaxDiff = Math.abs(targetParallaxX - currentParallaxX) + Math.abs(targetParallaxY - currentParallaxY);
+    const lensDiff = Math.abs(targetLensOpacity - currentLensOpacity);
 
-    if (isHovered || rotDiff > 0.01 || scaleDiff > 0.001 || lightDiff > 0.01 || parallaxDiff > 0.01) {
+    if (isHovered || rotDiff > 0.01 || girlDiff > 0.01 || scaleDiff > 0.001 || lensDiff > 0.01) {
       rafId = requestAnimationFrame(renderParallax);
     } else {
-      // Cleanly reset transforms and stop loop completely when cursor leaves
+      // Cleanly return to resting position when cursor is outside scene
       if (!isHovered) {
         cutoutFrame.style.transform = '';
         if (coralLight) coralLight.style.transform = '';
@@ -2914,7 +3085,19 @@ function setupHero3DPortraitParallax() {
         if (bloomLight) bloomLight.style.transform = '';
         if (ambientLight) ambientLight.style.transform = '';
         if (kickerBadge) kickerBadge.style.transform = '';
+        if (orbitSystem) orbitSystem.style.transform = '';
+        if (cursorLensLight) {
+          cursorLensLight.style.opacity = '0';
+          cursorLensLight.style.transform = '';
+        }
+        if (glossHighlight) {
+          glossHighlight.style.opacity = '0';
+        }
         orbitFloatAngle = 0;
+        orbitNodes.forEach((node) => {
+          node.classList.remove('is-attracted');
+          node.style.filter = '';
+        });
         positionNodesStatic();
       }
       rafId = null;
@@ -4400,24 +4583,33 @@ function setupLearningJourneyStory() {
     }
   ];
 
-  // Sequential Entrance Stagger on Scroll
+  // Sequential Entrance Stagger on Scroll (80-120ms Staggered Reveal)
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
     const universeContainer = document.getElementById('lj-timeline-universe');
     if (universeContainer) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            universeContainer.classList.add('is-revealed');
             nodes.forEach((node, i) => {
-              node.style.animationDelay = `${(i * 75)}ms`;
+              node.style.transitionDelay = `${(i * 95)}ms`;
               node.classList.add('is-revealed');
             });
+            // Clear transitionDelay after entrance so hover responses are instant
+            setTimeout(() => {
+              nodes.forEach(node => {
+                node.style.transitionDelay = '';
+              });
+            }, 1400);
             observer.disconnect();
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.12 });
       observer.observe(universeContainer);
     }
   } else {
+    const universeContainer = document.getElementById('lj-timeline-universe');
+    if (universeContainer) universeContainer.classList.add('is-revealed');
     nodes.forEach(node => node.classList.add('is-revealed'));
   }
 
@@ -4436,6 +4628,16 @@ function setupLearningJourneyStory() {
       if (isActive) {
         node.style.setProperty('--card-active-glow', m.glowColor);
       }
+    });
+
+    // 1b. Update active state on SVG roadmap waypoints
+    const allWaypointRings = section.querySelectorAll('.waypoint-ring');
+    const allWaypointHalos = section.querySelectorAll('.waypoint-glow-halo');
+    allWaypointRings.forEach((ring, i) => {
+      ring.classList.toggle('is-active', i === index);
+    });
+    allWaypointHalos.forEach((halo, i) => {
+      halo.classList.toggle('is-active', i === index);
     });
 
     // 2. Update counter display
@@ -4505,6 +4707,10 @@ function setupLearningJourneyStory() {
       if (ribbonCore && milestones[targetIdx]) {
         ribbonCore.style.filter = `drop-shadow(0 0 22px ${milestones[targetIdx].glowColor})`;
       }
+      const ring = section.querySelector(`.waypoint-ring[data-waypoint="${targetIdx}"]`);
+      const halo = section.querySelector(`.waypoint-glow-halo.halo-${targetIdx}`);
+      if (ring) ring.classList.add('is-illuminated');
+      if (halo) halo.classList.add('is-illuminated');
     });
 
     node.addEventListener('mouseleave', () => {
@@ -4512,18 +4718,31 @@ function setupLearningJourneyStory() {
         ribbonCore.style.filter = '';
       }
       node.style.transform = '';
+      node.style.removeProperty('--mouse-x');
+      node.style.removeProperty('--mouse-y');
+      const ring = section.querySelector(`.waypoint-ring[data-waypoint="${targetIdx}"]`);
+      const halo = section.querySelector(`.waypoint-glow-halo.halo-${targetIdx}`);
+      if (ring) ring.classList.remove('is-illuminated');
+      if (halo) halo.classList.remove('is-illuminated');
     });
 
-    // Tactile 3D perspective tilt on cursor movement over card
+    // Tactile 3D perspective tilt (subtle ±3.5deg max) and dynamic cursor light-follow
     node.addEventListener('mousemove', (e) => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const rect = node.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const rotX = -y * 10;
-      const rotY = x * 10;
-      const elev = node.classList.contains('is-active') ? -10 : -7;
-      node.style.transform = `perspective(700px) translateY(${elev}px) translateZ(26px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.03)`;
+      
+      const rotX = Math.max(-3.5, Math.min(3.5, -y * 7));
+      const rotY = Math.max(-3.5, Math.min(3.5, x * 7));
+      const elev = node.classList.contains('is-active') ? -8 : -6;
+      
+      node.style.transform = `perspective(900px) translateY(${elev}px) translateZ(24px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.025)`;
+      
+      const mouseX = (e.clientX - rect.left).toFixed(1);
+      const mouseY = (e.clientY - rect.top).toFixed(1);
+      node.style.setProperty('--mouse-x', `${mouseX}px`);
+      node.style.setProperty('--mouse-y', `${mouseY}px`);
     });
 
     node.addEventListener('keydown', (e) => {

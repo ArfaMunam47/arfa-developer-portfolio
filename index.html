@@ -251,6 +251,8 @@
                   <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-core-light" stroke="#FFFFFF" stroke-width="2.2" fill="none" opacity="0.95" />
                   <!-- Fine Luminous Glass Edge Streak -->
                   <ellipse cx="0" cy="15" rx="249" ry="144" class="orbit-fiber-streak" stroke="#38BDF8" stroke-width="1.2" fill="none" opacity="0.65" stroke-dasharray="14 18" />
+                  <!-- Cinematic Orbit Energy Ripple (Triggers on meaningful cursor movement) -->
+                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-energy-ripple" id="orbit-energy-ripple" stroke="#FFFFFF" stroke-width="5" fill="none" opacity="0" filter="url(#bold-orbit-glow-filter)" />
                 </g>
               </svg>
 
@@ -267,6 +269,9 @@
               </div>
             </div>
 
+            <!-- Cinematic Cursor Lens Light (Subtle Camera Lens Illumination Following Cursor) -->
+            <div class="hero-cinematic-cursor-light" id="hero-cinematic-cursor-light" aria-hidden="true"></div>
+
             <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
             <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="button" tabindex="0" aria-label="Interactive Portrait of Arfa Munam. Click to enter focus state, click again or press Escape to return.">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
@@ -279,6 +284,8 @@
                      loading="eager"
                      fetchpriority="high"
                      onerror="this.onerror=null; this.src='me.png.png';">
+                <!-- Subtle Glossy Specular Highlight Following Cursor -->
+                <div class="hero-portrait-gloss-highlight" id="hero-portrait-gloss-highlight" aria-hidden="true"></div>
               </div>
 
               <!-- Soft Grounding Ambient Shadow -->
@@ -3144,11 +3151,26 @@
       <!-- INTERACTIVE JOURNEY TIMELINE (8 3D MILESTONES + ILLUMINATED FLOWING RIBBON PATH) -->
       <div class="lj-timeline-universe reveal" id="lj-timeline-universe">
         
+        <!-- Refined Section Header Block: Continuous Growth & 3D Interactive Roadmap -->
+        <div class="lj-roadmap-header-block">
+          <div class="lj-eyebrow-pill">
+            <span class="eyebrow-spark" aria-hidden="true">✦</span>
+            <span class="eyebrow-text">DEVELOPER EVOLUTION &bull; CONTINUOUS GROWTH</span>
+          </div>
+          <h3 class="lj-roadmap-heading">Learning Journey</h3>
+          <p class="lj-roadmap-subheading">An interactive 3D roadmap tracing technical progression from web fundamentals and tactile kinetic UI to full-stack architecture and applied AI systems.</p>
+          <div class="lj-roadmap-heading-accent" aria-hidden="true">
+            <span class="accent-bar-lead"></span>
+            <span class="accent-diamond">✦</span>
+            <span class="accent-bar-trail"></span>
+          </div>
+        </div>
+
         <!-- Timeline Navigation Header Bar -->
         <div class="lj-timeline-meta-bar">
           <div class="timeline-meta-left">
             <span class="timeline-meta-label">✦ PROGRESSION PATH</span>
-            <span class="timeline-meta-hint">Select a chapter milestone to inspect technical evolution</span>
+            <span class="timeline-meta-hint">Select any milestone to inspect technical architecture</span>
           </div>
           <div class="timeline-meta-right">
             <span class="timeline-counter-display" id="lj-active-counter">
@@ -3213,6 +3235,42 @@
               <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="rgba(255,255,255,0.08)" stroke-width="8" stroke-linecap="round" />
               <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="url(#roadmapGrad2)" stroke-width="3" stroke-linecap="round" filter="url(#roadmapBloom)" class="roadmap-active-glow-2" />
               <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-dasharray="6 14" stroke-linecap="round" class="roadmap-flowing-dots" />
+
+              <!-- 8 Glowing Waypoint Milestone Nodes on Path (Illuminate on Card Hover/Active) -->
+              <g class="roadmap-waypoint-nodes" id="roadmap-waypoint-nodes">
+                <!-- 01 Web Fundamentals (140, 88) -->
+                <circle cx="140" cy="88" r="11" class="waypoint-glow-halo halo-0" fill="rgba(250, 85, 56, 0.25)" />
+                <circle cx="140" cy="88" r="8" class="waypoint-ring ring-0" stroke="#FA5538" stroke-width="2.2" fill="#FFFFFF" data-waypoint="0" />
+                <circle cx="140" cy="88" r="4" class="waypoint-core core-0" fill="#FA5538" data-waypoint="0" />
+                <!-- 02 Frontend Dev (430, 88) -->
+                <circle cx="430" cy="88" r="11" class="waypoint-glow-halo halo-1" fill="rgba(37, 99, 235, 0.25)" />
+                <circle cx="430" cy="88" r="8" class="waypoint-ring ring-1" stroke="#2563EB" stroke-width="2.2" fill="#FFFFFF" data-waypoint="1" />
+                <circle cx="430" cy="88" r="4" class="waypoint-core core-1" fill="#2563EB" data-waypoint="1" />
+                <!-- 03 Motion UI (720, 88) -->
+                <circle cx="720" cy="88" r="11" class="waypoint-glow-halo halo-2" fill="rgba(6, 182, 212, 0.25)" />
+                <circle cx="720" cy="88" r="8" class="waypoint-ring ring-2" stroke="#06B6D4" stroke-width="2.2" fill="#FFFFFF" data-waypoint="2" />
+                <circle cx="720" cy="88" r="4" class="waypoint-core core-2" fill="#06B6D4" data-waypoint="2" />
+                <!-- 04 Prompt Engineering (1010, 88) -->
+                <circle cx="1010" cy="88" r="11" class="waypoint-glow-halo halo-3" fill="rgba(236, 72, 153, 0.25)" />
+                <circle cx="1010" cy="88" r="8" class="waypoint-ring ring-3" stroke="#EC4899" stroke-width="2.2" fill="#FFFFFF" data-waypoint="3" />
+                <circle cx="1010" cy="88" r="4" class="waypoint-core core-3" fill="#EC4899" data-waypoint="3" />
+                <!-- 05 Exploring AI (1010, 310) -->
+                <circle cx="1010" cy="310" r="11" class="waypoint-glow-halo halo-4" fill="rgba(139, 92, 246, 0.25)" />
+                <circle cx="1010" cy="310" r="8" class="waypoint-ring ring-4" stroke="#8B5CF6" stroke-width="2.2" fill="#FFFFFF" data-waypoint="4" />
+                <circle cx="1010" cy="310" r="4" class="waypoint-core core-4" fill="#8B5CF6" data-waypoint="4" />
+                <!-- 06 Backend Core (720, 310) - Current Focus -->
+                <circle cx="720" cy="310" r="13" class="waypoint-glow-halo halo-5 waypoint-focus-halo" fill="rgba(16, 185, 129, 0.35)" />
+                <circle cx="720" cy="310" r="9" class="waypoint-ring ring-5 waypoint-current-focus" stroke="#10B981" stroke-width="2.6" fill="#FFFFFF" data-waypoint="5" />
+                <circle cx="720" cy="310" r="4.5" class="waypoint-core core-5" fill="#10B981" data-waypoint="5" />
+                <!-- 07 Data & Cloud (430, 310) -->
+                <circle cx="430" cy="310" r="11" class="waypoint-glow-halo halo-6" fill="rgba(245, 158, 11, 0.25)" />
+                <circle cx="430" cy="310" r="8" class="waypoint-ring ring-6" stroke="#F59E0B" stroke-width="2.2" fill="#FFFFFF" data-waypoint="6" />
+                <circle cx="430" cy="310" r="4" class="waypoint-core core-6" fill="#F59E0B" data-waypoint="6" />
+                <!-- 08 Future Goals (140, 310) -->
+                <circle cx="140" cy="310" r="11" class="waypoint-glow-halo halo-7" fill="rgba(99, 102, 241, 0.25)" />
+                <circle cx="140" cy="310" r="8" class="waypoint-ring ring-7" stroke="#6366F1" stroke-width="2.2" fill="#FFFFFF" data-waypoint="7" />
+                <circle cx="140" cy="310" r="4" class="waypoint-core core-7" fill="#6366F1" data-waypoint="7" />
+              </g>
             </svg>
           </div>
 
@@ -3224,6 +3282,9 @@
               
               <!-- Card 01 — Web Fundamentals -->
               <button type="button" class="lj-card-3d is-active card-stage-01" data-index="0" role="tab" aria-selected="true" aria-controls="lj-single-detail-card" id="milestone-tab-0" aria-label="Milestone 01: Web Fundamentals — HTML, CSS, JavaScript, responsive design" style="--step-accent:#FA5538; --step-glow:rgba(250,85,56,0.40); --step-border:rgba(250,85,56,0.45); --step-inner-glow:rgba(250,85,56,0.14); --card-rot-x:1.2deg; --card-rot-y:2.2deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3296,6 +3357,9 @@
 
               <!-- Card 02 — Frontend Development -->
               <button type="button" class="lj-card-3d card-stage-02" data-index="1" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-1" aria-label="Milestone 02: Frontend Development — React, Tailwind CSS, component architecture, modern UI" style="--step-accent:#2563EB; --step-glow:rgba(37,99,235,0.40); --step-border:rgba(37,99,235,0.45); --step-inner-glow:rgba(37,99,235,0.14); --card-rot-x:1.4deg; --card-rot-y:0.8deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3360,6 +3424,9 @@
 
               <!-- Card 03 — Animation & Interactive UI -->
               <button type="button" class="lj-card-3d card-stage-03" data-index="2" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-2" aria-label="Milestone 03: Animation & Interactive UI — GSAP, motion, micro-interactions, scroll animation, tactile interfaces" style="--step-accent:#06B6D4; --step-glow:rgba(6,182,212,0.40); --step-border:rgba(6,182,212,0.45); --step-inner-glow:rgba(6,182,212,0.14); --card-rot-x:1.4deg; --card-rot-y:-0.8deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3427,6 +3494,9 @@
 
               <!-- Card 04 — Prompt Engineering -->
               <button type="button" class="lj-card-3d card-stage-04" data-index="3" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-3" aria-label="Milestone 04: Prompt Engineering — Prompt design, AI workflows, creative problem solving, AI-assisted development" style="--step-accent:#EC4899; --step-glow:rgba(236,72,153,0.40); --step-border:rgba(236,72,153,0.45); --step-inner-glow:rgba(236,72,153,0.14); --card-rot-x:1.2deg; --card-rot-y:-2.2deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3513,6 +3583,9 @@
               
               <!-- Card 05 — Exploring AI (Desktop Column 4: Directly below Card 04) -->
               <button type="button" class="lj-card-3d card-stage-05" data-index="4" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-4" aria-label="Milestone 05: Exploring AI — Generative AI, LLMs, AI integrations, AI-powered experiences" style="--step-accent:#8B5CF6; --step-glow:rgba(139,92,246,0.40); --step-border:rgba(139,92,246,0.45); --step-inner-glow:rgba(139,92,246,0.14); --card-rot-x:-1.2deg; --card-rot-y:-2.2deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3581,6 +3654,13 @@
 
               <!-- Card 06 — Backend Core (CURRENT ACTIVE FOCUS: Desktop Column 3) -->
               <button type="button" class="lj-card-3d is-current-focus card-stage-06" data-index="5" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-5" aria-label="Milestone 06: Backend Core — Node.js, Express, REST APIs, server-side architecture (Current Focus)" style="--step-accent:#10B981; --step-glow:rgba(16,185,129,0.50); --step-border:rgba(16,185,129,0.55); --step-inner-glow:rgba(16,185,129,0.18); --card-rot-x:-1.4deg; --card-rot-y:-0.8deg;">
+                <div class="card-floating-focus-badge" aria-hidden="true">
+                  <span class="focus-live-dot"></span>
+                  <span class="focus-badge-text">CURRENT FOCUS</span>
+                </div>
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3655,6 +3735,9 @@
 
               <!-- Card 07 — Data & Cloud (Desktop Column 2) -->
               <button type="button" class="lj-card-3d card-stage-07" data-index="6" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-6" aria-label="Milestone 07: Data & Cloud — PostgreSQL, Supabase, databases, deployment, cloud infrastructure" style="--step-accent:#F59E0B; --step-glow:rgba(245,158,11,0.40); --step-border:rgba(245,158,11,0.45); --step-inner-glow:rgba(245,158,11,0.14); --card-rot-x:-1.4deg; --card-rot-y:0.8deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
@@ -3720,6 +3803,9 @@
 
               <!-- Card 08 — Future Goals (Desktop Column 1: Grand Destination) -->
               <button type="button" class="lj-card-3d card-stage-08" data-index="7" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-7" aria-label="Milestone 08: Future Goals — Full-stack AI products, AI agents, advanced interfaces, ambitious product building" style="--step-accent:#6366F1; --step-glow:rgba(99,102,241,0.40); --step-border:rgba(99,102,241,0.45); --step-inner-glow:rgba(99,102,241,0.14); --card-rot-x:-1.2deg; --card-rot-y:2.2deg;">
+                <div class="card-depth-layer-back" aria-hidden="true"></div>
+                <div class="card-depth-layer-mid" aria-hidden="true"></div>
+                <div class="card-cursor-spotlight" aria-hidden="true"></div>
                 <div class="card-3d-ambient" aria-hidden="true"></div>
                 <div class="card-glass-specular" aria-hidden="true"></div>
                 <div class="card-prismatic-rim" aria-hidden="true"></div>
