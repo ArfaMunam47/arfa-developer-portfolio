@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupGitHubShowcaseSection();
 
   // 25. Cinematic Welcome Intro Opening Experience (Isolated Overlay)
-  initCinematicWelcomeIntro();
+  initWelcomeVideoIntro();
 });
 
 /**
@@ -4834,947 +4834,98 @@ function setupGitHubShowcaseSection() {
 }
 
 /* ==========================================================================
-   25. CINEMATIC MINIATURE ROPE WORLD INTRO (ISOLATED OVERLAY)
-   Miniature Studio Stage • Real Braided Colorful Rope • Tiny 3D Worker Figures
-   Physical Construction of "WELCOME" • Interactive Keyboard Entry
+   25. CINEMATIC FULLSCREEN WELCOME VIDEO INTRO (Welcome.mp4)
+   Isolated Opening Scene • Zero Session Storage Skip • Keyboard Entry
    ========================================================================== */
-function initCinematicWelcomeIntro() {
-  const overlay = document.getElementById('cinematic-welcome-experience');
+function initWelcomeVideoIntro() {
+  const overlay = document.getElementById('welcome-video-intro');
   if (!overlay) return;
 
-  const canvas = document.getElementById('cwe-rope-canvas');
-  const stage = document.getElementById('cwe-stage');
-  const skipBtn = document.getElementById('cwe-skip-btn');
-  const enterBtn = document.getElementById('cwe-enter-btn');
-  const progressBar = document.getElementById('cwe-progress-bar');
+  const video = document.getElementById('welcome-intro-video');
+  const skipBtn = document.getElementById('wvi-skip-btn');
+  const progressBar = document.getElementById('wvi-progress-bar');
 
-  // MANDATORY OPENING SCREEN: Always active on every page load / reload.
-  // NO sessionStorage, NO localStorage, NO cookies, NO persistent skip state.
-  document.body.classList.add('cwe-active');
-  overlay.classList.remove('cwe-hidden', 'cwe-exiting', 'step-hold');
+  // Always active on every page load / reload (no storage tracking)
+  document.body.classList.add('wvi-active');
+  overlay.classList.remove('wvi-hidden', 'wvi-exiting');
   overlay.setAttribute('aria-hidden', 'false');
 
   let isExiting = false;
-  let isSequenceFinished = false;
-  let animFrameId = null;
 
-  // Canvas Setup
-  const ctx = canvas.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const V_WIDTH = 1360;
-  const V_HEIGHT = 720;
-  canvas.width = V_WIDTH * dpr;
-  canvas.height = V_HEIGHT * dpr;
+  if (video) {
+    // Sound is automatically ON
+    video.muted = false;
+    video.volume = 1.0;
+    video.currentTime = 0;
 
-  // Interactive mouse camera tilt
-  let mouseTiltX = 0;
-  let mouseTiltY = 0;
-  let curTiltX = 0;
-  let curTiltY = 0;
+    // Start playback with audio automatically
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback for strict browser autoplay policies:
+        // Begin playback muted immediately to avoid visual stall,
+        // and instantly auto-unmute on the very first user interaction anywhere
+        video.muted = true;
+        video.play().catch(() => {});
 
-  // --------------------------------------------------------------------------
-  // LETTER SPLINE DEFINITIONS: "W - E - L - C - O - M - E"
-  // Each letter has control nodes defining the physical rope shape.
-  // --------------------------------------------------------------------------
-  const BASE_Y = 460;
-  const TOP_Y = 250;
-  const MID_Y = 360;
+        const autoUnmute = () => {
+          if (video) {
+            video.muted = false;
+            video.volume = 1.0;
+          }
+          ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'wheel'].forEach((evt) => {
+            window.removeEventListener(evt, autoUnmute);
+          });
+        };
 
-  const letterConfigs = [
-    // 0: W (Coral Red #FA5538)
-    {
-      char: 'W',
-      color: '#FA5538',
-      accentColor: '#FFFFFF',
-      startSec: 0.6,
-      endSec: 1.8,
-      targetNodes: [
-        { x: 215, y: 245 },
-        { x: 250, y: 460 },
-        { x: 290, y: 310 },
-        { x: 330, y: 460 },
-        { x: 370, y: 245 }
-      ]
-    },
-    // 1: E (Amber Sunshine #F59E0B)
-    {
-      char: 'E',
-      color: '#F59E0B',
-      accentColor: '#FEF3C7',
-      startSec: 1.5,
-      endSec: 2.6,
-      targetNodes: [
-        { x: 385, y: 260 },
-        { x: 430, y: 230 },
-        { x: 470, y: 235 },
-        { x: 480, y: 315 },
-        { x: 420, y: 345 },
-        { x: 465, y: 460 },
-        { x: 505, y: 450 }
-      ]
-    },
-    // 2: L (Electric Cyan #06B6D4)
-    {
-      char: 'L',
-      color: '#06B6D4',
-      accentColor: '#CFFAFE',
-      startSec: 2.3,
-      endSec: 3.4,
-      targetNodes: [
-        { x: 535, y: 220 },
-        { x: 560, y: 175 },
-        { x: 580, y: 215 },
-        { x: 575, y: 410 },
-        { x: 590, y: 460 },
-        { x: 635, y: 455 }
-      ]
-    },
-    // 3: C (Cobalt Blue #2563EB)
-    {
-      char: 'C',
-      color: '#2563EB',
-      accentColor: '#DBEAFE',
-      startSec: 3.1,
-      endSec: 4.1,
-      targetNodes: [
-        { x: 730, y: 250 },
-        { x: 680, y: 230 },
-        { x: 645, y: 345 },
-        { x: 680, y: 460 },
-        { x: 735, y: 440 }
-      ]
-    },
-    // 4: O (Emerald Green #10B981)
-    {
-      char: 'O',
-      color: '#10B981',
-      accentColor: '#D1FAE5',
-      startSec: 3.8,
-      endSec: 4.9,
-      targetNodes: [
-        { x: 805, y: 230 },
-        { x: 760, y: 345 },
-        { x: 805, y: 460 },
-        { x: 850, y: 345 },
-        { x: 810, y: 230 }
-      ]
-    },
-    // 5: M (Royal Violet #8B5CF6)
-    {
-      char: 'M',
-      color: '#8B5CF6',
-      accentColor: '#EDE9FE',
-      startSec: 4.5,
-      endSec: 5.6,
-      targetNodes: [
-        { x: 870, y: 460 },
-        { x: 890, y: 245 },
-        { x: 930, y: 395 },
-        { x: 970, y: 245 },
-        { x: 1000, y: 460 }
-      ]
-    },
-    // 6: E (Hot Magenta #EC4899)
-    {
-      char: 'E',
-      color: '#EC4899',
-      accentColor: '#FCE7F3',
-      startSec: 5.2,
-      endSec: 6.3,
-      targetNodes: [
-        { x: 1025, y: 260 },
-        { x: 1065, y: 230 },
-        { x: 1105, y: 235 },
-        { x: 1115, y: 315 },
-        { x: 1060, y: 345 },
-        { x: 1105, y: 460 },
-        { x: 1145, y: 445 }
-      ]
-    }
-  ];
-
-  // Initialize node physics: nodes start in loose, wavy cords on the floor
-  const letters = letterConfigs.map((cfg, idx) => {
-    const nodes = cfg.targetNodes.map((target, nIdx) => {
-      // Loose chaotic floor wave at start
-      const floorY = 485 + Math.sin(idx * 2 + nIdx) * 20;
-      const waveX = target.x + (Math.sin(nIdx * 3) - 0.5) * 45;
-      return {
-        tx: target.x,
-        ty: target.y,
-        x: waveX,
-        y: floorY,
-        vx: 0,
-        vy: 0,
-        built: false
-      };
-    });
-    return {
-      ...cfg,
-      nodes,
-      poppedSparkles: false
-    };
-  });
-
-  // Miniature dust / craft sparkles particle pool
-  const craftParticles = [];
-  function spawnCraftSparkles(x, y, color) {
-    for (let i = 0; i < 9; i++) {
-      const angle = (Math.PI * 2 * i) / 9 + (Math.random() - 0.5) * 0.4;
-      const spd = 1.5 + Math.random() * 2.5;
-      craftParticles.push({
-        x,
-        y,
-        vx: Math.cos(angle) * spd,
-        vy: Math.sin(angle) * spd - 1.2,
-        alpha: 1,
-        color,
-        size: 2 + Math.random() * 2.5
+        ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'wheel'].forEach((evt) => {
+          window.addEventListener(evt, autoUnmute, { once: true, passive: true });
+        });
       });
     }
-  }
 
-  // --------------------------------------------------------------------------
-  // TINY 3D WORKER HUMANOIDS
-  // Articulated little toy figures that actively build the rope letters!
-  // --------------------------------------------------------------------------
-  const workers = [
-    {
-      id: 1,
-      targetLetterIdx: 0,
-      targetNodeIdx: 0,
-      name: 'W-Puller-Left',
-      bodyColor: '#FA5538',
-      helmetColor: '#F59E0B',
-      x: 165,
-      y: 475,
-      dir: 1,
-      role: 'puller',
-      pullTension: 0,
-      idleAnim: 0
-    },
-    {
-      id: 2,
-      targetLetterIdx: 0,
-      targetNodeIdx: 2,
-      name: 'W-Apex-Anchor',
-      bodyColor: '#06B6D4',
-      helmetColor: '#FFFFFF',
-      x: 290,
-      y: 495,
-      dir: 1,
-      role: 'anchor',
-      pullTension: 0,
-      idleAnim: 0.8
-    },
-    {
-      id: 3,
-      targetLetterIdx: 1,
-      targetNodeIdx: 2,
-      name: 'E-Hoister',
-      bodyColor: '#F59E0B',
-      helmetColor: '#FA5538',
-      x: 435,
-      y: 490,
-      dir: 1,
-      role: 'hoister',
-      pullTension: 0,
-      idleAnim: 1.5
-    },
-    {
-      id: 4,
-      targetLetterIdx: 2,
-      targetNodeIdx: 1,
-      name: 'L-Upright-Puller',
-      bodyColor: '#2563EB',
-      helmetColor: '#F59E0B',
-      x: 515,
-      y: 485,
-      dir: 1,
-      role: 'puller',
-      pullTension: 0,
-      idleAnim: 2.2
-    },
-    {
-      id: 5,
-      targetLetterIdx: 3,
-      targetNodeIdx: 2,
-      name: 'C-Curve-Pusher',
-      bodyColor: '#10B981',
-      helmetColor: '#FFFFFF',
-      x: 610,
-      y: 470,
-      dir: 1,
-      role: 'pusher',
-      pullTension: 0,
-      idleAnim: 3.1
-    },
-    {
-      id: 6,
-      targetLetterIdx: 4,
-      targetNodeIdx: 2,
-      name: 'O-Base-Anchor',
-      bodyColor: '#8B5CF6',
-      helmetColor: '#F59E0B',
-      x: 745,
-      y: 490,
-      dir: 1,
-      role: 'anchor',
-      pullTension: 0,
-      idleAnim: 0.4
-    },
-    {
-      id: 7,
-      targetLetterIdx: 4,
-      targetNodeIdx: 0,
-      name: 'O-Top-Sitter',
-      bodyColor: '#EC4899',
-      helmetColor: '#F59E0B',
-      x: 805,
-      y: 485,
-      dir: 1,
-      role: 'sitter',
-      pullTension: 0,
-      idleAnim: 1.2
-    },
-    {
-      id: 8,
-      targetLetterIdx: 5,
-      targetNodeIdx: 1,
-      name: 'M-Arch-Hoister',
-      bodyColor: '#06B6D4',
-      helmetColor: '#FFFFFF',
-      x: 855,
-      y: 485,
-      dir: 1,
-      role: 'hoister',
-      pullTension: 0,
-      idleAnim: 2.0
-    },
-    {
-      id: 9,
-      targetLetterIdx: 5,
-      targetNodeIdx: 4,
-      name: 'M-Right-Anchor',
-      bodyColor: '#10B981',
-      helmetColor: '#FA5538',
-      x: 1020,
-      y: 490,
-      dir: -1,
-      role: 'anchor',
-      pullTension: 0,
-      idleAnim: 0.7
-    },
-    {
-      id: 10,
-      targetLetterIdx: 6,
-      targetNodeIdx: 5,
-      name: 'E-Finisher',
-      bodyColor: '#FA5538',
-      helmetColor: '#2563EB',
-      x: 1175,
-      y: 480,
-      dir: -1,
-      role: 'finisher',
-      pullTension: 0,
-      idleAnim: 1.9
-    },
-    {
-      id: 11,
-      targetLetterIdx: 0,
-      targetNodeIdx: 0,
-      name: 'Crew-Director',
-      bodyColor: '#2563EB',
-      helmetColor: '#FFFFFF',
-      x: 105,
-      y: 492,
-      dir: 1,
-      role: 'director',
-      pullTension: 0,
-      idleAnim: 0.5
-    },
-    {
-      id: 12,
-      targetLetterIdx: 6,
-      targetNodeIdx: 6,
-      name: 'Spool-Tender',
-      bodyColor: '#10B981',
-      helmetColor: '#F59E0B',
-      x: 1240,
-      y: 485,
-      dir: -1,
-      role: 'spooler',
-      pullTension: 0,
-      idleAnim: 2.7
-    }
-  ];
-
-  // --------------------------------------------------------------------------
-  // PHYSICAL BRAIDED ROPE RENDERER
-  // Evaluates smooth curve with 3D volume, drop shadows, and woven ridges
-  // --------------------------------------------------------------------------
-  function getSplinePoints(nodes, stepsPerSeg = 14) {
-    if (nodes.length < 2) return nodes;
-    const pts = [];
-    for (let i = 0; i < nodes.length - 1; i++) {
-      const p0 = i > 0 ? nodes[i - 1] : nodes[i];
-      const p1 = nodes[i];
-      const p2 = nodes[i + 1];
-      const p3 = i < nodes.length - 2 ? nodes[i + 2] : p2;
-
-      for (let t = 0; t <= 1; t += 1 / stepsPerSeg) {
-        const t2 = t * t;
-        const t3 = t2 * t;
-        // Catmull-Rom spline formula
-        const x = 0.5 * (
-          (2 * p1.x) +
-          (-p0.x + p2.x) * t +
-          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 +
-          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3
-        );
-        const y = 0.5 * (
-          (2 * p1.y) +
-          (-p0.y + p2.y) * t +
-          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
-          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3
-        );
-        pts.push({ x, y });
-      }
-    }
-    return pts;
-  }
-
-  function drawPhysicalRope(splinePts, baseColor, accentColor, ropeRadius = 13.5) {
-    if (splinePts.length < 2) return;
-
-    // 1. Soft Floor Contact Drop Shadow
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(splinePts[0].x, splinePts[0].y + 16);
-    for (let i = 1; i < splinePts.length; i++) {
-      ctx.lineTo(splinePts[i].x, splinePts[i].y + 16);
-    }
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = ropeRadius * 2.2;
-    ctx.strokeStyle = 'rgba(25, 20, 15, 0.18)';
-    ctx.filter = 'blur(9px)';
-    ctx.stroke();
-    ctx.restore();
-
-    // 2. Ambient Occlusion Crevice Shadow
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(splinePts[0].x, splinePts[0].y + 7);
-    for (let i = 1; i < splinePts.length; i++) {
-      ctx.lineTo(splinePts[i].x, splinePts[i].y + 7);
-    }
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = ropeRadius * 2;
-    ctx.strokeStyle = 'rgba(15, 12, 10, 0.28)';
-    ctx.filter = 'blur(4px)';
-    ctx.stroke();
-    ctx.restore();
-
-    // 3. Base Cylindrical Rope Tube
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(splinePts[0].x, splinePts[0].y);
-    for (let i = 1; i < splinePts.length; i++) {
-      ctx.lineTo(splinePts[i].x, splinePts[i].y);
-    }
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = ropeRadius * 2;
-    ctx.strokeStyle = baseColor;
-    ctx.stroke();
-
-    // 4. Lower Shadow Depth Layer
-    ctx.beginPath();
-    ctx.moveTo(splinePts[0].x, splinePts[0].y + 3);
-    for (let i = 1; i < splinePts.length; i++) {
-      ctx.lineTo(splinePts[i].x, splinePts[i].y + 3);
-    }
-    ctx.lineWidth = ropeRadius * 1.4;
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.24)';
-    ctx.stroke();
-
-    // 5. Upper Luminous Specular Volume
-    ctx.beginPath();
-    ctx.moveTo(splinePts[0].x, splinePts[0].y - 3.5);
-    for (let i = 1; i < splinePts.length; i++) {
-      ctx.lineTo(splinePts[i].x, splinePts[i].y - 3.5);
-    }
-    ctx.lineWidth = ropeRadius * 0.9;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.42)';
-    ctx.stroke();
-
-    // 6. Braided Twist / Helical Woven Ridges (Procedural Rope Texture)
-    const step = 6;
-    for (let i = step; i < splinePts.length - step; i += step) {
-      const pPrev = splinePts[i - 3];
-      const pNext = splinePts[i + 3];
-      const dx = pNext.x - pPrev.x;
-      const dy = pNext.y - pPrev.y;
-      const len = Math.hypot(dx, dy) || 1;
-      const nx = -dy / len;
-      const ny = dx / len;
-
-      const p = splinePts[i];
-      const isStripe = (Math.floor(i / 18) % 2 === 0);
-      const ridgeLen = ropeRadius * 0.95;
-
-      // Draw angled braid stitch
-      ctx.beginPath();
-      ctx.moveTo(p.x - nx * ridgeLen + dx * 0.35, p.y - ny * ridgeLen + dy * 0.35);
-      ctx.lineTo(p.x + nx * ridgeLen - dx * 0.35, p.y + ny * ridgeLen - dy * 0.35);
-      ctx.lineWidth = 2.4;
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = isStripe ? 'rgba(255, 255, 255, 0.65)' : 'rgba(0, 0, 0, 0.25)';
-      ctx.stroke();
-    }
-
-    // 7. Finished Rope Aglet Caps at Endpoints
-    [splinePts[0], splinePts[splinePts.length - 1]].forEach((pt) => {
-      ctx.beginPath();
-      ctx.arc(pt.x, pt.y, ropeRadius * 0.85, 0, Math.PI * 2);
-      ctx.fillStyle = '#1C1917';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(pt.x, pt.y, ropeRadius * 0.55, 0, Math.PI * 2);
-      ctx.fillStyle = '#D97706';
-      ctx.fill();
-    });
-
-    ctx.restore();
-  }
-
-  // --------------------------------------------------------------------------
-  // TINY 3D HUMANOID WORKER FIGURES RENDERER
-  // Cute, articulated toy characters with helmets, boots, and tension ropes
-  // --------------------------------------------------------------------------
-  function drawWorker(w, timeSec) {
-    ctx.save();
-
-    // Contact Ground Shadow
-    ctx.save();
-    ctx.beginPath();
-    ctx.ellipse(w.x, w.y + 4, 11, 4.5, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(20, 15, 10, 0.22)';
-    ctx.filter = 'blur(2px)';
-    ctx.fill();
-    ctx.restore();
-
-    // Dynamic animation parameters based on role and stage
-    let bodyTilt = 0;
-    let armLeft = { x: -6, y: -16 };
-    let armRight = { x: 6, y: -16 };
-    let legCycle = Math.sin(timeSec * 8 + w.id) * 4;
-
-    const letter = letters[w.targetLetterIdx];
-    const node = letter.nodes[w.targetNodeIdx];
-    const isBuilt = letter.built;
-
-    if (!isBuilt) {
-      // Actively pulling / pushing / heaving / directing
-      if (w.role === 'puller') {
-        bodyTilt = -0.38 * w.dir; // Leaning back with weight
-        armLeft = { x: 10 * w.dir, y: -18 };
-        armRight = { x: 12 * w.dir, y: -14 };
-      } else if (w.role === 'pusher') {
-        bodyTilt = 0.35 * w.dir; // Leaning forward into rope
-        armLeft = { x: 8 * w.dir, y: -18 };
-        armRight = { x: 10 * w.dir, y: -16 };
-      } else if (w.role === 'hoister') {
-        bodyTilt = 0.1;
-        armLeft = { x: -4, y: -26 }; // Arms reaching high
-        armRight = { x: 4, y: -26 };
-      } else if (w.role === 'director') {
-        bodyTilt = 0.14;
-        armLeft = { x: -8, y: -16 };
-        armRight = { x: 12, y: -24 }; // Pointing forward
-      } else if (w.role === 'spooler') {
-        bodyTilt = -0.16;
-        armLeft = { x: -8, y: -16 };
-        armRight = { x: 8, y: -14 };
-      }
-    } else {
-      // Idle celebrations & relaxed poses
-      if (w.role === 'sitter') {
-        // Sitting on top of the loop, swinging legs!
-        w.x = node.x;
-        w.y = node.y - 12;
-        bodyTilt = 0.05;
-        legCycle = Math.sin(timeSec * 3 + w.idleAnim) * 5;
-        armLeft = { x: -8, y: -10 };
-        armRight = { x: 8, y: -10 };
-      } else if (w.role === 'finisher' || w.role === 'director') {
-        // Thumbs up / cheering
-        armRight = { x: 12, y: -26 };
-        armLeft = { x: -6, y: -14 };
-        bodyTilt = Math.sin(timeSec * 4 + w.idleAnim) * 0.08;
-      } else {
-        // Casual breathing idle
-        bodyTilt = Math.sin(timeSec * 2 + w.idleAnim) * 0.06;
-      }
-    }
-
-    // Draw Tension Cable from hands to the rope node
-    if (!isBuilt && node) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(w.x + armRight.x, w.y + armRight.y);
-      ctx.lineTo(node.x, node.y);
-      ctx.lineWidth = 1.4;
-      ctx.strokeStyle = '#57534E';
-      ctx.stroke();
-
-      // Little tension tie knot
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 2.8, 0, Math.PI * 2);
-      ctx.fillStyle = '#D97706';
-      ctx.fill();
-      ctx.restore();
-    }
-
-    ctx.translate(w.x, w.y);
-    ctx.rotate(bodyTilt);
-
-    // 1. Legs & Rounded Worker Boots
-    ctx.lineWidth = 4;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = '#292524'; // Sturdy dark work pants
-    // Left leg
-    ctx.beginPath();
-    ctx.moveTo(-4, -12);
-    ctx.lineTo(-5, 0 + (isBuilt ? 0 : legCycle));
-    ctx.stroke();
-    // Right leg
-    ctx.beginPath();
-    ctx.moveTo(4, -12);
-    ctx.lineTo(5, 0 - (isBuilt ? 0 : legCycle));
-    ctx.stroke();
-
-    // Boots (Chunky orange/tan work boots)
-    ctx.fillStyle = '#D97706';
-    ctx.beginPath();
-    ctx.ellipse(-6, 2, 4.5, 2.5, 0, 0, Math.PI * 2);
-    ctx.ellipse(6, 2, 4.5, 2.5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // 2. 3D Torso (Colorful Jumpsuit)
-    ctx.save();
-    ctx.beginPath();
-    ctx.roundRect(-7, -22, 14, 13, 4);
-    ctx.fillStyle = w.bodyColor;
-    ctx.fill();
-    // Overalls straps & shading
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
-    ctx.fillRect(-7, -13, 14, 4);
-    ctx.restore();
-
-    // 3. Articulated Arms
-    ctx.lineWidth = 3.2;
-    ctx.strokeStyle = w.bodyColor;
-    // Left arm
-    ctx.beginPath();
-    ctx.moveTo(-6, -20);
-    ctx.lineTo(armLeft.x, armLeft.y);
-    ctx.stroke();
-    // Right arm
-    ctx.beginPath();
-    ctx.moveTo(6, -20);
-    ctx.lineTo(armRight.x, armRight.y);
-    ctx.stroke();
-
-    // Hands
-    ctx.fillStyle = '#FBBF24';
-    ctx.beginPath();
-    ctx.arc(armLeft.x, armLeft.y, 2.2, 0, Math.PI * 2);
-    ctx.arc(armRight.x, armRight.y, 2.2, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Director props (Rolled blueprint)
-    if (w.role === 'director') {
-      ctx.save();
-      ctx.fillStyle = '#E0E7FF';
-      ctx.beginPath();
-      ctx.roundRect(armLeft.x - 3, armLeft.y - 6, 6, 12, 1.5);
-      ctx.fill();
-      ctx.strokeStyle = '#3B82F6';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    // 4. Wooden Sphere Head
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(0, -28, 6.2, 0, Math.PI * 2);
-    const headGrad = ctx.createRadialGradient(-2, -30, 1, 0, -28, 6.5);
-    headGrad.addColorStop(0, '#FEF3C7');
-    headGrad.addColorStop(0.7, '#FDE68A');
-    headGrad.addColorStop(1, '#D97706');
-    ctx.fillStyle = headGrad;
-    ctx.fill();
-
-    // 5. Hard Hat / Safety Helmet with 3D Specular Ridge
-    ctx.beginPath();
-    ctx.arc(0, -31, 7.2, Math.PI * 0.95, Math.PI * 2.05);
-    ctx.closePath();
-    ctx.fillStyle = w.helmetColor;
-    ctx.fill();
-    // Helmet Brim
-    ctx.beginPath();
-    ctx.roundRect(-8, -31, 16, 2.8, 1.4);
-    ctx.fillStyle = w.helmetColor;
-    ctx.fill();
-    // Specular Highlight
-    ctx.beginPath();
-    ctx.arc(-2, -33, 2, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.fill();
-    ctx.restore();
-
-    ctx.restore();
-  }
-
-  // --------------------------------------------------------------------------
-  // MINIATURE HANDCRAFTED STAGE PROPS
-  // Wooden step ladder, thread spool, brass guide pins, and dust sparkles
-  // --------------------------------------------------------------------------
-  function drawMiniatureStageProps() {
-    ctx.save();
-
-    // 1. Miniature Wooden Step Ladder near letter 'L' (x: 510, y: 310 to 465)
-    ctx.save();
-    ctx.translate(508, 318);
-    ctx.rotate(0.1);
-    // Ladder floor shadow
-    ctx.fillStyle = 'rgba(25, 20, 15, 0.12)';
-    ctx.fillRect(8, 12, 24, 150);
-    // Ladder rails
-    ctx.fillStyle = '#A16207';
-    ctx.fillRect(0, 0, 5, 155);
-    ctx.fillRect(22, 0, 5, 155);
-    // Ladder rungs
-    ctx.fillStyle = '#CA8A04';
-    for (let r = 20; r < 150; r += 26) {
-      ctx.fillRect(0, r, 27, 4);
-    }
-    ctx.restore();
-
-    // 2. Miniature Rope Spool on the right (x: 1240, y: 465)
-    ctx.save();
-    ctx.translate(1240, 465);
-    // Spool ground shadow
-    ctx.beginPath();
-    ctx.ellipse(0, 18, 28, 9, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(25, 20, 15, 0.2)';
-    ctx.fill();
-    // Back wooden flange
-    ctx.fillStyle = '#78350F';
-    ctx.beginPath();
-    ctx.ellipse(0, 0, 24, 20, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // Wound colorful rope cylinder
-    ctx.fillStyle = '#EC4899';
-    ctx.fillRect(-16, -14, 32, 28);
-    // Helical rope coils on spool
-    ctx.strokeStyle = '#FCE7F3';
-    ctx.lineWidth = 2.5;
-    for (let c = -12; c <= 12; c += 5) {
-      ctx.beginPath();
-      ctx.moveTo(-16, c);
-      ctx.lineTo(16, c + 2);
-      ctx.stroke();
-    }
-    // Front wooden flange
-    ctx.fillStyle = '#92400E';
-    ctx.beginPath();
-    ctx.ellipse(0, 2, 22, 18, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // Center axle peg
-    ctx.fillStyle = '#451A03';
-    ctx.beginPath();
-    ctx.arc(0, 2, 4.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-
-    // 3. Brass Floor Guide Pins / Pegs
-    const pinCoords = [
-      { x: 250, y: 462 },
-      { x: 330, y: 462 },
-      { x: 590, y: 462 },
-      { x: 680, y: 462 },
-      { x: 805, y: 462 },
-      { x: 1000, y: 462 },
-      { x: 1105, y: 462 }
-    ];
-    pinCoords.forEach((p) => {
-      ctx.fillStyle = 'rgba(25, 20, 15, 0.25)';
-      ctx.beginPath();
-      ctx.ellipse(p.x + 3, p.y + 4, 4, 2, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#D97706';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#FEF3C7';
-      ctx.beginPath();
-      ctx.arc(p.x - 1, p.y - 1, 1.2, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    ctx.restore();
-  }
-
-  function updateAndDrawParticles() {
-    for (let i = craftParticles.length - 1; i >= 0; i--) {
-      const p = craftParticles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.08;
-      p.vx *= 0.96;
-      p.alpha -= 0.025;
-
-      if (p.alpha <= 0) {
-        craftParticles.splice(i, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.globalAlpha = Math.max(0, p.alpha);
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  // --------------------------------------------------------------------------
-  // MAIN ANIMATION LOOP & PHYSICS UPDATE
-  // --------------------------------------------------------------------------
-  const startTime = performance.now();
-
-  function animate() {
-    const elapsedSec = (performance.now() - startTime) / 1000;
-
-    // Smooth camera tilt tracking
-    curTiltX += (mouseTiltX - curTiltX) * 0.08;
-    curTiltY += (mouseTiltY - curTiltY) * 0.08;
-
-    // High-DPI Clear Entire Bitmap
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.save();
-    ctx.scale(dpr, dpr);
-    // Subtle 3D perspective shift on canvas
-    ctx.translate(curTiltX * 12, curTiltY * 10);
-
-    // Update Progress Telemetry
-    const buildProgress = Math.min(100, Math.round((elapsedSec / 6.4) * 100));
-    if (progressBar) progressBar.style.width = `${buildProgress}%`;
-
-    // 1. Update letter nodes physics & construction triggers
-    letters.forEach((letter) => {
-      const isTriggered = elapsedSec >= letter.startSec;
-      const t = Math.max(0, Math.min(1, (elapsedSec - letter.startSec) / (letter.endSec - letter.startSec)));
-
-      if (isTriggered) {
-        letter.nodes.forEach((node, nIdx) => {
-          // Elastic spring interpolation with slight progressive delay per node
-          const nodeDelay = nIdx * 0.06;
-          const localT = Math.max(0, Math.min(1, (t - nodeDelay) / (1 - nodeDelay)));
-
-          // Spring easing formula
-          const easeSpring = localT >= 1 ? 1 : 1 - Math.pow(2, -10 * localT) * Math.cos((localT * 10 - 0.75) * ((2 * Math.PI) / 3));
-
-          // Interpolate position
-          node.x = node.x + (node.tx - node.x) * 0.16 * easeSpring;
-          node.y = node.y + (node.ty - node.y) * 0.16 * easeSpring;
-
-          // Micro breathing idle when locked
-          if (localT >= 1) {
-            node.y = node.ty + Math.sin(elapsedSec * 2.5 + nIdx) * 1.2;
-          }
-        });
-
-        if (t >= 1 && !letter.poppedSparkles) {
-          letter.built = true;
-          letter.poppedSparkles = true;
-          const node = letter.nodes[0] || letter.nodes[1];
-          if (node) {
-            spawnCraftSparkles(node.tx, node.ty, letter.color);
-          }
-        }
+    // Telemetry Progress Bar
+    video.addEventListener('timeupdate', () => {
+      if (video.duration && progressBar) {
+        const percent = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
+        progressBar.style.width = percent + '%';
       }
     });
 
-    // 2. Render Miniature Stage Props (Ladder, Spool, Guide Pins)
-    drawMiniatureStageProps();
-
-    // 3. Render all 7 Rope Letter Segments in depth order
-    letters.forEach((letter) => {
-      const splinePts = getSplinePoints(letter.nodes, 12);
-      drawPhysicalRope(splinePts, letter.color, letter.accentColor);
+    // When video completes, seamlessly transition into portfolio
+    video.addEventListener('ended', () => {
+      exitIntro();
     });
-
-    // 4. Render Tiny 3D Worker Humanoids
-    workers.forEach((w) => {
-      drawWorker(w, elapsedSec);
-    });
-
-    // 5. Render Craft Dust & Sparkle Particles
-    updateAndDrawParticles();
-
-    ctx.restore();
-
-    // Check completion state
-    if (elapsedSec >= 6.4 && !isSequenceFinished) {
-      isSequenceFinished = true;
-      overlay.classList.add('step-hold');
-      if (progressBar) progressBar.style.width = '100%';
-      // CRITICAL: DO NOT AUTOMATICALLY ENTER!
-      // The miniature world stays alive and WAITS for keyboard entry.
-    }
-
-    if (!isExiting) {
-      animFrameId = requestAnimationFrame(animate);
-    }
   }
 
-  // --------------------------------------------------------------------------
-  // USER ENTRY & KEYBOARD CONTROLS (ENTER, SPACE, ESCAPE, TAB)
-  // --------------------------------------------------------------------------
+  // Smooth Exit Transition from Welcome Video into Creative Introduction Page
   function exitIntro() {
     if (isExiting) return;
     isExiting = true;
 
-    if (animFrameId) cancelAnimationFrame(animFrameId);
     window.removeEventListener('keydown', handleKeyDown);
 
-    overlay.classList.add('cwe-exiting');
+    overlay.classList.add('wvi-exiting');
 
     setTimeout(() => {
-      overlay.classList.remove('cwe-exiting');
-      overlay.classList.add('cwe-hidden');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('cwe-active');
-
-      if (typeof setupScrollReveal === 'function') {
-        window.dispatchEvent(new Event('scroll'));
+      if (video) {
+        try { video.pause(); } catch (err) {}
       }
-    }, 900);
+      overlay.classList.remove('wvi-exiting');
+      overlay.classList.add('wvi-hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('wvi-active');
+
+      // Seamlessly transition to Step 3: The Creative Introduction Cover Page
+      transitionToCreativeIntroPage();
+    }, 750);
   }
 
+  // Keyboard controls: ESCAPE, ENTER, SPACE, TAB to skip/enter
   function handleKeyDown(e) {
     if (isExiting) return;
     const key = e.key;
-    if (key === 'Enter' || key === ' ' || e.code === 'Space' || key === 'Escape' || key === 'Tab') {
+    if (key === 'Escape' || key === 'Enter' || key === ' ' || e.code === 'Space' || key === 'Tab') {
       e.preventDefault();
       exitIntro();
     }
@@ -5782,45 +4933,102 @@ function initCinematicWelcomeIntro() {
 
   window.addEventListener('keydown', handleKeyDown);
 
-  // Click controls
+  // Skip button click (Orange Bento Grid style button)
   if (skipBtn) {
     skipBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+      e.stopPropagation();
       exitIntro();
     });
   }
 
-  if (enterBtn) {
-    enterBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      exitIntro();
-    });
-  }
-
-  // Clicking canvas or stage once built also triggers entry
+  // Clicking on overlay/video also skips to next step
   overlay.addEventListener('click', (e) => {
-    if (isSequenceFinished && e.target !== skipBtn && !skipBtn?.contains(e.target)) {
-      exitIntro();
-    }
+    if (e.target.closest('#wvi-skip-btn')) return;
+    exitIntro();
   });
-
-  // Mouse Parallax across the miniature stage
-  overlay.addEventListener('pointermove', (e) => {
-    if (isExiting) return;
-    const w = window.innerWidth || 1000;
-    const h = window.innerHeight || 800;
-    mouseTiltX = (e.clientX - w / 2) / (w / 2);
-    mouseTiltY = (e.clientY - h / 2) / (h / 2);
-  });
-
-  // Start the 60fps miniature world simulation
-  animate();
 }
 
+// =========================================================================
+// CREATIVE INTRODUCTION COVER CONTROLLER (STEP 3)
+// Clean Page with Large Centralized Portfolio Image between Video & Portfolio
+// =========================================================================
+function transitionToCreativeIntroPage() {
+  const cipOverlay = document.getElementById('creative-intro-cover');
+  if (!cipOverlay) {
+    finishIntoPortfolio();
+    return;
+  }
 
+  // Keep body scroll-locked during creative intro
+  document.body.classList.remove('wvi-active');
+  document.body.classList.add('cip-active');
 
+  cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
+  cipOverlay.classList.add('cip-entering');
+  cipOverlay.setAttribute('aria-hidden', 'false');
 
+  let cipExiting = false;
 
+  function finishIntoPortfolio() {
+    if (cipExiting) return;
+    cipExiting = true;
 
+    window.removeEventListener('keydown', handleCipKeyDown);
+    window.removeEventListener('wheel', handleCipWheel);
+
+    cipOverlay.classList.remove('cip-entering');
+    cipOverlay.classList.add('cip-exiting');
+
+    setTimeout(() => {
+      cipOverlay.classList.remove('cip-exiting');
+      cipOverlay.classList.add('cip-hidden');
+      cipOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cip-active');
+
+      // Refresh layouts and scroll triggers in portfolio
+      window.dispatchEvent(new Event('scroll'));
+      window.dispatchEvent(new Event('resize'));
+    }, 650);
+  }
+
+  // Key handlers for Creative Intro Page: ENTER, SPACE, ESC, TAB, ArrowDown
+  function handleCipKeyDown(e) {
+    if (cipExiting) return;
+    const key = e.key;
+    if (key === 'Enter' || key === ' ' || e.code === 'Space' || key === 'Escape' || key === 'Tab' || key === 'ArrowDown') {
+      e.preventDefault();
+      finishIntoPortfolio();
+    }
+  }
+
+  window.addEventListener('keydown', handleCipKeyDown);
+
+  // Clicking anywhere on the page or the central image advances into the portfolio
+  cipOverlay.addEventListener('click', () => {
+    finishIntoPortfolio();
+  });
+
+  // Subtle scroll wheel gesture triggers transition into portfolio
+  const handleCipWheel = (e) => {
+    if (e.deltaY > 20) {
+      finishIntoPortfolio();
+    }
+  };
+  window.addEventListener('wheel', handleCipWheel, { passive: true });
+
+  // Subtle interactive floating tilt on the central portfolio image
+  const portfolioImg = document.getElementById('cip-portfolio-img');
+  if (portfolioImg) {
+    cipOverlay.addEventListener('pointermove', (e) => {
+      const rect = cipOverlay.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) - 0.5;
+      const y = ((e.clientY - rect.top) / rect.height) - 0.5;
+      portfolioImg.style.transform = `scale(1.02) translate(${x * 14}px, ${y * 14}px)`;
+    });
+    cipOverlay.addEventListener('pointerleave', () => {
+      portfolioImg.style.transform = '';
+    });
+  }
+}
 
 

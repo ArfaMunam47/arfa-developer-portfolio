@@ -38,65 +38,66 @@
 <body>
 
   <!-- =======================================================================
-       CINEMATIC MINIATURE ROPE WORLD INTRO (ISOLATED OVERLAY)
-       Miniature Studio Stage • Real Braided Colorful Rope • Tiny 3D Worker Figures
-       Physical Construction of "WELCOME" • Interactive Keyboard Entry
+       FULLSCREEN CINEMATIC WELCOME VIDEO INTRO (Welcome.mp4)
+       Isolated Full-Screen Opening Scene • Zero Session Storage Skip
+       Interactive Keyboard Entry • Real Video Playback • Clean Exit
        ======================================================================= -->
-  <aside id="cinematic-welcome-experience" class="cwe-overlay" aria-label="Miniature Rope World Opening" role="region">
-    
-    <!-- Studio Lighting & Warm Architectural Floor -->
-    <div class="cwe-studio-environment" aria-hidden="true">
-      <div class="cwe-studio-spotlight"></div>
-      <div class="cwe-tabletop-surface"></div>
-      <div class="cwe-studio-vignette"></div>
+  <aside id="welcome-video-intro" class="wvi-overlay" aria-label="Welcome Intro Video" role="region">
+    <!-- Fullscreen Video Element -->
+    <div class="wvi-video-container">
+      <video
+        id="welcome-intro-video"
+        class="wvi-video"
+        playsinline
+        preload="auto"
+        tabindex="-1"
+      >
+        <source src="Welcome.mp4" type="video/mp4">
+        <source src="welcome.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+      <div class="wvi-vignette" aria-hidden="true"></div>
     </div>
 
-    <!-- Header / Controls Bar (Minimal & Secondary) -->
-    <div class="cwe-controls-bar">
-      <div class="cwe-brand-mini" aria-hidden="true">
-        <span class="cwe-studio-tag">MINIATURE CRAFT STUDIO</span>
-      </div>
-      <button type="button" id="cwe-skip-btn" class="cwe-skip-btn" aria-label="Skip to portfolio">
-        <span class="cwe-skip-text">Skip</span>
-        <span class="cwe-skip-key" aria-hidden="true">ESC</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    <!-- Top Right Skip Button (Orange Bento Grid Style) -->
+    <div class="wvi-top-bar">
+      <button type="button" id="wvi-skip-btn" class="wvi-bento-skip-btn" aria-label="Skip intro to portfolio">
+        <span class="wvi-bento-icon-box" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+          </svg>
+        </span>
+        <span class="wvi-bento-text">Skip</span>
+        <span class="wvi-bento-kbd" aria-hidden="true">ESC</span>
       </button>
     </div>
 
-    <!-- The Miniature 3D Studio Stage (Physical Rope & Tiny Workers Canvas) -->
-    <div class="cwe-miniature-stage" id="cwe-stage">
-      <div class="cwe-canvas-wrap">
-        <canvas id="cwe-rope-canvas" class="cwe-rope-canvas" width="1400" height="750"></canvas>
-      </div>
-
-      <!-- Subtle Progress Telemetry Indicator -->
-      <div class="cwe-telemetry-rail" aria-hidden="true">
-        <div class="cwe-progress-bar" id="cwe-progress-bar"></div>
-      </div>
+    <!-- Bottom Telemetry Progress Bar -->
+    <div class="wvi-progress-track" aria-hidden="true">
+      <div class="wvi-progress-fill" id="wvi-progress-bar"></div>
     </div>
+  </aside>
 
-    <!-- Subtle Keyboard Action Prompt (Appears after rope construction finishes) -->
-    <div class="cwe-enter-prompt" id="cwe-enter-prompt" aria-live="polite">
-      
-      <!-- Handcrafted Miniature Plaque: Arfa Munam -->
-      <div class="cwe-creator-tag" id="cwe-creator-tag">
-        <span class="cwe-creator-eyebrow">A HANDCRAFTED EXPERIENCE</span>
-        <h2 class="cwe-creator-name">ARFA MUNAM</h2>
-        <span class="cwe-creator-sub">Front-End Developer &bull; Creative UI Engineer</span>
-      </div>
-
-      <button type="button" class="cwe-enter-pill-btn" id="cwe-enter-btn" aria-label="Press Enter, Space, Escape, or Tab to enter portfolio">
-        <span class="cwe-key-icon-badge" aria-hidden="true">↵</span>
-        <span class="cwe-enter-main-label">Press <span class="cwe-inline-kbd">ENTER</span> to enter</span>
-        <svg class="cwe-enter-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-      <div class="cwe-enter-hint-keys" aria-hidden="true">
-        <span>Supports <kbd>ENTER</kbd> &bull; <kbd>SPACE</kbd> &bull; <kbd>ESC</kbd> &bull; <kbd>TAB</kbd></span>
-      </div>
+  <!-- =======================================================================
+       CREATIVE INTRODUCTION PAGE (Portfolio Showcase Bridge)
+       Minimalist Background with Large Centralized Portfolio Artwork
+       ======================================================================= -->
+  <aside id="creative-intro-cover" class="cip-overlay cip-hidden" aria-label="Portfolio Introduction" role="region" aria-hidden="true">
+    <!-- Clean Minimalist Center Display for Large Portfolio Image -->
+    <div class="cip-center-container" id="cip-center-container">
+      <img 
+        src="portfolio.png" 
+        alt="Portfolio"
+        class="cip-portfolio-img"
+        id="cip-portfolio-img"
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+        width="2140"
+        height="1864"
+      >
     </div>
-
   </aside>
 
   <!-- Sleek Fluid Precision Cursor (Desktop only, hidden on touch & reduced motion) -->
