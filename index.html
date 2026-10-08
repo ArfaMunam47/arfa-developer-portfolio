@@ -37,6 +37,68 @@
 </head>
 <body>
 
+  <!-- =======================================================================
+       CINEMATIC MINIATURE ROPE WORLD INTRO (ISOLATED OVERLAY)
+       Miniature Studio Stage • Real Braided Colorful Rope • Tiny 3D Worker Figures
+       Physical Construction of "WELCOME" • Interactive Keyboard Entry
+       ======================================================================= -->
+  <aside id="cinematic-welcome-experience" class="cwe-overlay" aria-label="Miniature Rope World Opening" role="region">
+    
+    <!-- Studio Lighting & Warm Architectural Floor -->
+    <div class="cwe-studio-environment" aria-hidden="true">
+      <div class="cwe-studio-spotlight"></div>
+      <div class="cwe-tabletop-surface"></div>
+      <div class="cwe-studio-vignette"></div>
+    </div>
+
+    <!-- Header / Controls Bar (Minimal & Secondary) -->
+    <div class="cwe-controls-bar">
+      <div class="cwe-brand-mini" aria-hidden="true">
+        <span class="cwe-studio-tag">MINIATURE CRAFT STUDIO</span>
+      </div>
+      <button type="button" id="cwe-skip-btn" class="cwe-skip-btn" aria-label="Skip to portfolio">
+        <span class="cwe-skip-text">Skip</span>
+        <span class="cwe-skip-key" aria-hidden="true">ESC</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- The Miniature 3D Studio Stage (Physical Rope & Tiny Workers Canvas) -->
+    <div class="cwe-miniature-stage" id="cwe-stage">
+      <div class="cwe-canvas-wrap">
+        <canvas id="cwe-rope-canvas" class="cwe-rope-canvas" width="1400" height="750"></canvas>
+      </div>
+
+      <!-- Subtle Progress Telemetry Indicator -->
+      <div class="cwe-telemetry-rail" aria-hidden="true">
+        <div class="cwe-progress-bar" id="cwe-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Subtle Keyboard Action Prompt (Appears after rope construction finishes) -->
+    <div class="cwe-enter-prompt" id="cwe-enter-prompt" aria-live="polite">
+      
+      <!-- Handcrafted Miniature Plaque: Arfa Munam -->
+      <div class="cwe-creator-tag" id="cwe-creator-tag">
+        <span class="cwe-creator-eyebrow">A HANDCRAFTED EXPERIENCE</span>
+        <h2 class="cwe-creator-name">ARFA MUNAM</h2>
+        <span class="cwe-creator-sub">Front-End Developer &bull; Creative UI Engineer</span>
+      </div>
+
+      <button type="button" class="cwe-enter-pill-btn" id="cwe-enter-btn" aria-label="Press Enter, Space, Escape, or Tab to enter portfolio">
+        <span class="cwe-key-icon-badge" aria-hidden="true">↵</span>
+        <span class="cwe-enter-main-label">Press <span class="cwe-inline-kbd">ENTER</span> to enter</span>
+        <svg class="cwe-enter-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <div class="cwe-enter-hint-keys" aria-hidden="true">
+        <span>Supports <kbd>ENTER</kbd> &bull; <kbd>SPACE</kbd> &bull; <kbd>ESC</kbd> &bull; <kbd>TAB</kbd></span>
+      </div>
+    </div>
+
+  </aside>
+
   <!-- Sleek Fluid Precision Cursor (Desktop only, hidden on touch & reduced motion) -->
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
@@ -219,61 +281,73 @@
               <div class="hero-light-bloom"></div>
             </div>
 
-            <!-- Interactive Technology Orbital System (Bold Luminous Orbit Stream Around Portrait) -->
-            <div class="hero-tech-orbit-system" id="hero-tech-orbit-system" aria-hidden="true">
-              <!-- EXACTLY ONE Bold, Luminous Multi-Tone 3D Light Stream -->
-              <svg class="tech-orbit-paths-svg" viewBox="-320 -230 640 460" aria-hidden="true">
+            <!-- Ethereal 3D Celestial Atmosphere (Revealed strictly on hover, matching reference image) -->
+            <div class="hero-celestial-orbit-system" id="hero-celestial-orbit-system" aria-hidden="true">
+              <!-- Ultra-thin Elegant Dual-Tone Orbital Curve (Cyan on Left, Peach on Right) -->
+              <svg class="celestial-orbit-svg" viewBox="-320 -230 640 460" aria-hidden="true">
                 <defs>
-                  <linearGradient id="bold-orbit-stream-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#00F0FF" stop-opacity="1" />
-                    <stop offset="22%" stop-color="#38BDF8" stop-opacity="0.95" />
-                    <stop offset="42%" stop-color="#FFFFFF" stop-opacity="1" />
-                    <stop offset="65%" stop-color="#FF2E93" stop-opacity="1" />
-                    <stop offset="85%" stop-color="#FB923C" stop-opacity="0.95" />
-                    <stop offset="100%" stop-color="#B026FF" stop-opacity="0.95" />
+                  <linearGradient id="celestial-orbit-grad" x1="0%" y1="0%" x2="100%" y2="80%">
+                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.9" />
+                    <stop offset="35%" stop-color="#E0F2FE" stop-opacity="0.95" />
+                    <stop offset="65%" stop-color="#FDE68A" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#FB7185" stop-opacity="0.85" />
                   </linearGradient>
-                  <filter id="bold-orbit-glow-filter" x="-40%" y="-40%" width="180%" height="180%">
-                    <feGaussianBlur stdDeviation="6" result="blurWide" />
-                    <feGaussianBlur stdDeviation="2.5" result="blurSharp" />
+                  <filter id="celestial-soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur" />
                     <feMerge>
-                      <feMergeNode in="blurWide" />
-                      <feMergeNode in="blurSharp" />
+                      <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                 </defs>
-                <g transform="rotate(-7 0 15)">
-                  <!-- Outer Wide Neon Bloom Halo -->
-                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-neon-bloom" stroke="url(#bold-orbit-stream-gradient)" stroke-width="12" fill="none" opacity="0.45" filter="url(#bold-orbit-glow-filter)" />
-                  <!-- Main Bold Glowing Light Ribbon -->
-                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-main-beam" stroke="url(#bold-orbit-stream-gradient)" stroke-width="4.5" fill="none" filter="url(#bold-orbit-glow-filter)" />
-                  <!-- Core Brilliant White Specular Stream -->
-                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-core-light" stroke="#FFFFFF" stroke-width="2.2" fill="none" opacity="0.95" />
-                  <!-- Fine Luminous Glass Edge Streak -->
-                  <ellipse cx="0" cy="15" rx="249" ry="144" class="orbit-fiber-streak" stroke="#38BDF8" stroke-width="1.2" fill="none" opacity="0.65" stroke-dasharray="14 18" />
-                  <!-- Cinematic Orbit Energy Ripple (Triggers on meaningful cursor movement) -->
-                  <ellipse cx="0" cy="15" rx="246" ry="142" class="orbit-energy-ripple" id="orbit-energy-ripple" stroke="#FFFFFF" stroke-width="5" fill="none" opacity="0" filter="url(#bold-orbit-glow-filter)" />
+                <g transform="rotate(-6 0 10)">
+                  <!-- Soft diffused outer aura ring -->
+                  <ellipse cx="0" cy="12" rx="248" ry="142" class="orbit-filament-halo" stroke="url(#celestial-orbit-grad)" stroke-width="4" fill="none" opacity="0.32" filter="url(#celestial-soft-glow)" />
+                  <!-- Ultra-thin elegant filament line -->
+                  <ellipse cx="0" cy="12" rx="248" ry="142" class="orbit-filament-core" stroke="url(#celestial-orbit-grad)" stroke-width="1.3" fill="none" opacity="0.9" />
+                  <!-- Delicate white starlight highlight arc -->
+                  <path d="M -140 135 A 248 142 0 0 0 160 115" class="orbit-filament-highlight" stroke="#FFFFFF" stroke-width="1.8" fill="none" opacity="0.92" filter="url(#celestial-soft-glow)" />
                 </g>
               </svg>
 
-              <!-- Controlled subtle stardust sparkles on hover -->
-              <div class="tech-orbit-stardust" aria-hidden="true">
-                <span class="stardust-spark s-1">✦</span>
-                <span class="stardust-spark s-2">✦</span>
-                <span class="stardust-spark s-3">✦</span>
-                <span class="stardust-spark s-4">✦</span>
-                <span class="stardust-dot d-1"></span>
-                <span class="stardust-dot d-2"></span>
-                <span class="stardust-dot d-3"></span>
-                <span class="stardust-dot d-4"></span>
+              <!-- Restrained Floating Celestial Spheres & Dust (Matches Reference Image) -->
+              <div class="celestial-pearls-layer" id="celestial-pearls-layer">
+                <!-- 1. Soft Cyan Glass Pearl (Upper Left) -->
+                <div class="celestial-pearl pearl-cyan" data-depth="0.75">
+                  <div class="pearl-specular"></div>
+                  <div class="pearl-glow"></div>
+                </div>
+                <!-- 2. Warm Pearlescent Glass Pearl (Upper Right) -->
+                <div class="celestial-pearl pearl-peach" data-depth="0.85">
+                  <div class="pearl-specular"></div>
+                  <div class="pearl-glow"></div>
+                </div>
+                <!-- 3. Front Lower Orbit Pearl (Right) -->
+                <div class="celestial-pearl pearl-amber" data-depth="1.15">
+                  <div class="pearl-specular"></div>
+                  <div class="pearl-glow"></div>
+                </div>
+                <!-- 4. Tiny Floating Blue Pearl (Far Right) -->
+                <div class="celestial-pearl pearl-mini-blue" data-depth="0.95"></div>
+                <!-- 5. Tiny Floating Pearl (Far Left) -->
+                <div class="celestial-pearl pearl-mini-coral" data-depth="0.65"></div>
+
+                <!-- Subtle Starlight Twinkle Points (✦) -->
+                <span class="celestial-twinkle twinkle-left" data-depth="0.7">✦</span>
+                <span class="celestial-twinkle twinkle-right" data-depth="0.9">✦</span>
+
+                <!-- Faint floating glowing dust specks -->
+                <span class="celestial-dust dust-1" data-depth="0.5"></span>
+                <span class="celestial-dust dust-2" data-depth="0.8"></span>
+                <span class="celestial-dust dust-3" data-depth="1.1"></span>
               </div>
             </div>
 
             <!-- Cinematic Cursor Lens Light (Subtle Camera Lens Illumination Following Cursor) -->
             <div class="hero-cinematic-cursor-light" id="hero-cinematic-cursor-light" aria-hidden="true"></div>
 
-            <!-- Interactive 3D Cutout Frame (Click to Focus, Smooth Parallax on Hover) -->
-            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="button" tabindex="0" aria-label="Interactive Portrait of Arfa Munam. Click to enter focus state, click again or press Escape to return.">
+            <!-- Interactive 3D Cutout Frame (Smooth Parallax on Hover) -->
+            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
                 <!-- Soft Luminous Silhouette Backlight (Behind Image, Keeps Face Razor-Sharp) -->
                 <div class="hero-portrait-silhouette-glow" aria-hidden="true"></div>
@@ -286,99 +360,12 @@
                      onerror="this.onerror=null; this.src='me.png.png';">
                 <!-- Subtle Glossy Specular Highlight Following Cursor -->
                 <div class="hero-portrait-gloss-highlight" id="hero-portrait-gloss-highlight" aria-hidden="true"></div>
+                <!-- Soft Rim Light Glow along the silhouette on hover -->
+                <div class="hero-portrait-rim-light" id="hero-portrait-rim-light" aria-hidden="true"></div>
               </div>
 
               <!-- Soft Grounding Ambient Shadow -->
               <div class="hero-subject-ground-shadow"></div>
-
-              <!-- Refined Focus State Indicator Badge -->
-              <div class="hero-portrait-focus-badge" id="hero-focus-badge" aria-hidden="true">
-                <span class="focus-badge-pulse"></span>
-                <span class="focus-badge-text" id="hero-focus-badge-text">Interactive Portrait</span>
-              </div>
-            </div>
-
-            <!-- 6 Foreground 3D Glass Technology Orbs (ALWAYS ABOVE PORTRAIT, SHOWN ON HOVER) -->
-            <div class="tech-orbit-nodes-layer" id="tech-orbit-nodes-layer" aria-label="Featured Core Technologies">
-              <!-- 1. HTML -->
-              <div class="tech-orbit-node tech-node-html" data-index="0" data-tech="HTML">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" aria-hidden="true">
-                    <path fill="#E44D26" d="M3 2l1.8 18.2L12 22l7.2-1.8L21 2H3z"/>
-                    <path fill="#F16529" d="M12 3.8v16.4l5.5-1.4L18.9 3.8H12z"/>
-                    <path fill="#FFFFFF" d="M12 7.6h4.8l-.2 2.4H12v2.3h4.3l-.4 4.6-3.9 1.1v-2.3l2-.6.2-1.7H12V7.6zm0 0H7.2l.2 2.4H12v-2.4z"/>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">HTML</span>
-              </div>
-
-              <!-- 2. CSS -->
-              <div class="tech-orbit-node tech-node-css" data-index="1" data-tech="CSS">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" aria-hidden="true">
-                    <path fill="#264DE4" d="M3 2l1.8 18.2L12 22l7.2-1.8L21 2H3z"/>
-                    <path fill="#2965F1" d="M12 3.8v16.4l5.5-1.4L18.9 3.8H12z"/>
-                    <path fill="#FFFFFF" d="M12 7.6h4.8l-.2 2.4H12v2.3h4.3l-.4 4.6-3.9 1.1v-2.3l2-.6.2-1.7H12V7.6zm0 0H7.2l.2 2.4H12v-2.4z"/>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">CSS</span>
-              </div>
-
-              <!-- 3. JavaScript -->
-              <div class="tech-orbit-node tech-node-js" data-index="2" data-tech="JavaScript">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg js-icon-svg" aria-hidden="true">
-                    <rect width="24" height="24" rx="4.5" fill="#F7DF1E"/>
-                    <text x="12" y="17.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="900" fill="#000000" text-anchor="middle" letter-spacing="-0.4">JS</text>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">JavaScript</span>
-              </div>
-
-              <!-- 4. React -->
-              <div class="tech-orbit-node tech-node-react" data-index="3" data-tech="React">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="32" height="32" class="tech-icon-svg react-icon-svg" fill="none" aria-hidden="true">
-                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8"/>
-                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8" transform="rotate(60 12 12)"/>
-                    <ellipse cx="12" cy="12" rx="9.6" ry="3.8" stroke="#06B6D4" stroke-width="1.8" transform="rotate(120 12 12)"/>
-                    <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">React</span>
-              </div>
-
-              <!-- 5. Git -->
-              <div class="tech-orbit-node tech-node-git" data-index="4" data-tech="Git">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" fill="#F05032" aria-hidden="true">
-                    <path d="M21.6 10.9L13.1 2.4a1.7 1.7 0 0 0-2.4 0L8.3 4.8l3 3a2 2 0 0 1 2.5 2.5l2.9 2.9a2 2 0 1 1-1.2 1.2l-2.7-2.7v4a2 2 0 1 1-1.7 0v-4.3a2 2 0 0 1-1-2.6L7.1 6.1 2.4 10.8a1.7 1.7 0 0 0 0 2.4l8.5 8.5a1.7 1.7 0 0 0 2.4 0l8.3-8.3a1.7 1.7 0 0 0 0-2.5z"/>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">Git</span>
-              </div>
-
-              <!-- 6. GitHub -->
-              <div class="tech-orbit-node tech-node-github" data-index="5" data-tech="GitHub">
-                <div class="tech-orb-sphere">
-                  <div class="tech-orb-specular"></div>
-                  <svg viewBox="0 0 24 24" width="28" height="28" class="tech-icon-svg" fill="#181717" aria-hidden="true">
-                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
-                  </svg>
-                  <div class="tech-orb-glow"></div>
-                </div>
-                <span class="tech-orb-label-pill">GitHub</span>
-              </div>
             </div>
 
           </div>

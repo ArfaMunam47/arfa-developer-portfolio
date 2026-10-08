@@ -1313,18 +1313,12 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
-   INTERACTIVE TECHNOLOGY ORBITAL SYSTEM (Revealed on Hover only)
-   Contains HTML, CSS, JavaScript, React, Git, GitHub
-   3D depth, soft glass containers, gentle specular glow, strictly contained.
+   ETHEREAL 3D CELESTIAL ORBIT SYSTEM (Revealed strictly on Hover)
+   Inspired by Reference Image: Ultra-thin glowing filament, soft pearls,
+   delicate starlight sparkles, ethereal dual-tone lighting.
+   HIDDEN completely in idle/default state.
    ========================================================================== */
-/* ==========================================================================
-   INTERACTIVE TECHNOLOGY ORBITAL SYSTEM
-   HIDDEN by default (when no cursor over picture)
-   REVEALED ONLY on Portrait Picture Hover
-   Contains HTML, CSS, JavaScript, React, Git, GitHub
-   Bold glowing light stream + compact circular glass orbs
-   ========================================================================== */
-.hero-tech-orbit-system {
+.hero-celestial-orbit-system {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1333,22 +1327,231 @@ nav.floating-nav.scrolled {
   max-width: 620px;
   height: 480px;
   pointer-events: none;
-  z-index: 4;
+  z-index: 5;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+  transition: 
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.65s ease,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
+  overflow: visible;
+  will-change: opacity, transform;
+}
+
+/* Revealed strictly on hover */
+.hero-creative-visual-stage.has-hover .hero-celestial-orbit-system,
+.hero-subject-cutout-frame:hover ~ .hero-celestial-orbit-system,
+.hero-creative-visual-stage:hover .hero-celestial-orbit-system,
+.hero-celestial-orbit-system.is-revealed {
+  opacity: 1;
+  visibility: visible;
+}
+
+.celestial-orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
   overflow: visible;
 }
 
-/* REVEALED STRICTLY WHEN MOVING CURSOR OVER PICTURE OR ACTIVE */
-.hero-creative-visual-stage.has-hover .hero-tech-orbit-system,
-.hero-subject-cutout-frame:hover ~ .hero-tech-orbit-system,
-.hero-creative-visual-stage:hover .hero-tech-orbit-system,
-.hero-tech-orbit-system.is-revealed {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+.orbit-filament-halo {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4)) drop-shadow(0 0 18px rgba(251, 113, 133, 0.3));
+}
+
+.orbit-filament-core {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.orbit-filament-highlight {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95));
+}
+
+/* Layer containing floating pearls and dust */
+.celestial-pearls-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+/* 3D Glass / Pearlescent Spheres (Realistic Lighting & Specular Highlights) */
+.celestial-pearl {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Specular light highlight on pearl */
+.pearl-specular {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 32%;
+  height: 32%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 45%, transparent 80%);
+  filter: blur(0.5px);
+}
+
+.pearl-glow {
+  position: absolute;
+  inset: -35%;
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* 1. Soft Cyan Glass Pearl (Upper Left, like reference) */
+.pearl-cyan {
+  top: 30%;
+  left: 19%;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 35% 30%, #BAE6FD 0%, #38BDF8 35%, #0284C7 70%, #0369A1 100%);
+  box-shadow: 
+    0 8px 18px rgba(2, 132, 199, 0.35),
+    inset -2px -2px 6px rgba(3, 105, 161, 0.6),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+.pearl-cyan .pearl-glow {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.7) 0%, transparent 70%);
+}
+
+/* 2. Warm Pearlescent Glass Pearl (Upper Right, on orbit) */
+.pearl-peach {
+  top: 24%;
+  right: 17%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 35% 30%, #FFFBEB 0%, #FED7AA 35%, #FB923C 75%, #EA580C 100%);
+  box-shadow: 
+    0 8px 18px rgba(251, 146, 60, 0.35),
+    inset -2px -2px 5px rgba(194, 65, 12, 0.5),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.9);
+}
+.pearl-peach .pearl-glow {
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.65) 0%, transparent 70%);
+}
+
+/* 3. Front Lower Orbit Pearl (Right, like reference) */
+.pearl-amber {
+  bottom: 34%;
+  right: 15%;
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at 35% 30%, #FFE4E6 0%, #FDA4AF 35%, #F43F5E 75%, #BE123C 100%);
+  box-shadow: 
+    0 10px 22px rgba(244, 63, 94, 0.35),
+    inset -3px -3px 7px rgba(159, 18, 57, 0.6),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.85);
+}
+.pearl-amber .pearl-glow {
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.65) 0%, transparent 70%);
+}
+
+/* 4. Tiny Floating Blue Pearl (Far Right, like reference) */
+.pearl-mini-blue {
+  bottom: 23%;
+  right: 6%;
+  width: 13px;
+  height: 13px;
+  background: radial-gradient(circle at 35% 30%, #BFDBFE 0%, #60A5FA 45%, #2563EB 100%);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35), inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* 5. Tiny Floating Pearl (Far Left, like reference) */
+.pearl-mini-coral {
+  bottom: 26%;
+  left: 7%;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 30%, #FFEDD5 0%, #FB923C 50%, #C2410C 100%);
+  box-shadow: 0 4px 10px rgba(194, 65, 12, 0.35), inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* Delicate Starlight Twinkle Points (✦) */
+.celestial-twinkle {
+  position: absolute;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 1.15rem;
+  line-height: 1;
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 16px rgba(254, 215, 170, 0.6);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: celestialTwinkleGlint 4s ease-in-out infinite alternate;
+}
+.twinkle-left {
+  bottom: 24%;
+  left: 16%;
+  animation-delay: 0.5s;
+}
+.twinkle-right {
+  top: 38%;
+  right: 23%;
+  animation-delay: 2s;
+}
+
+@keyframes celestialTwinkleGlint {
+  0%   { transform: scale(0.9) rotate(0deg); opacity: 0.7; }
+  50%  { transform: scale(1.15) rotate(8deg); opacity: 1; }
+  100% { transform: scale(0.95) rotate(-6deg); opacity: 0.75; }
+}
+
+/* Faint Floating Glowing Dust Specks */
+.celestial-dust {
+  position: absolute;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  opacity: 0.75;
+}
+.dust-1 {
+  width: 3.5px;
+  height: 3.5px;
+  top: 48%;
+  left: 13%;
+}
+.dust-2 {
+  width: 4px;
+  height: 4px;
+  top: 22%;
+  left: 28%;
+}
+.dust-3 {
+  width: 3px;
+  height: 3px;
+  bottom: 18%;
+  right: 28%;
+}
+
+@media (max-width: 1024px) {
+  .hero-celestial-orbit-system {
+    max-width: 520px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-celestial-orbit-system {
+    max-width: 380px;
+    height: 310px;
+  }
+}
+
+/* Legacy suppression */
+.hero-tech-orbit-system,
+.tech-orbit-nodes-layer {
+  display: none !important;
 }
 
 /* Bold Luminous Multi-Tone 3D Light Stream (Exactly like reference image) */
@@ -1643,6 +1846,27 @@ nav.floating-nav.scrolled {
 .hero-creative-visual-stage.has-hover .hero-portrait-gloss-highlight,
 .hero-subject-cutout-frame.is-hovered .hero-portrait-gloss-highlight {
   opacity: 0.72;
+}
+
+/* Soft Delicate Rim Light along Hair & Edges on Hover */
+.hero-portrait-rim-light {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  background: radial-gradient(circle 320px at 70% 30%, rgba(254, 215, 170, 0.45) 0%, rgba(56, 189, 248, 0.25) 45%, transparent 70%);
+  mix-blend-mode: color-dodge;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.hero-creative-visual-stage.has-hover .hero-portrait-rim-light,
+.hero-subject-cutout-frame.is-hovered .hero-portrait-rim-light,
+.hero-subject-cutout-frame:hover .hero-portrait-rim-light {
+  opacity: 0.75;
 }
 
 /* Cinematic Luminous Energy Ripple along the Circular Orbit */
@@ -26050,4 +26274,454 @@ nav.floating-nav.scrolled {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   CINEMATIC MINIATURE ROPE WORLD INTRO (ISOLATED OPENING SCENE)
+   Miniature Studio Stage • Real Braided Colorful Rope • Tiny 3D Worker Figures
+   Physical Construction of "WELCOME" • Interactive Keyboard Entry
+   ========================================================================== */
+
+body.cwe-active {
+  overflow: hidden !important;
+}
+
+.cwe-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999999 !important;
+  background: #F7F5EE !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+  transition: 
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cwe-overlay.cwe-exiting {
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.cwe-overlay.cwe-hidden {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   STUDIO ENVIRONMENT & TABLETOP LIGHTING
+   -------------------------------------------------------------------------- */
+.cwe-studio-environment {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cwe-studio-spotlight {
+  position: absolute;
+  top: -15%;
+  left: 30%;
+  width: clamp(500px, 80vw, 1200px);
+  height: clamp(500px, 80vh, 1000px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 250, 242, 0.65) 40%,
+    rgba(247, 245, 238, 0.1) 75%,
+    transparent 100%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.cwe-tabletop-surface {
+  position: absolute;
+  inset: 0;
+  background-size: 50px 50px;
+  background-image: 
+    radial-gradient(circle, rgba(20, 30, 45, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(235, 230, 220, 0.2) 100%);
+  pointer-events: none;
+}
+
+.cwe-studio-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 50%,
+    rgba(215, 208, 195, 0.35) 90%,
+    rgba(195, 185, 170, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER CONTROLS BAR (MINIMAL & SECONDARY)
+   -------------------------------------------------------------------------- */
+.cwe-controls-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1.5rem, 4vw, 3.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.cwe-studio-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #78716C;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(20, 35, 63, 0.08);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.cwe-skip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(20, 35, 63, 0.12);
+  color: #475569;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 3px 12px rgba(16, 28, 53, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cwe-skip-btn:hover {
+  background: #FFFFFF;
+  border-color: #FA5538;
+  color: #FA5538;
+  box-shadow: 0 6px 18px rgba(250, 85, 56, 0.18);
+  transform: translateY(-1px);
+}
+
+.cwe-skip-btn:active {
+  transform: translateY(0);
+}
+
+.cwe-skip-key {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  background: rgba(16, 28, 53, 0.06);
+  border-radius: 4px;
+  color: #64748B;
+}
+
+.cwe-skip-btn:hover .cwe-skip-key {
+  background: rgba(250, 85, 56, 0.1);
+  color: #FA5538;
+}
+
+/* --------------------------------------------------------------------------
+   MINIATURE ROPE STAGE & CANVAS
+   -------------------------------------------------------------------------- */
+.cwe-miniature-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: clamp(1rem, 2vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.cwe-canvas-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 75vh;
+  max-height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.cwe-rope-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+  filter: drop-shadow(0 20px 35px rgba(20, 20, 25, 0.08));
+  transition: transform 0.15s ease-out;
+  touch-action: none;
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE KEYBOARD ACTION PROMPT
+   Appears when rope construction finishes; waits for user's keypress
+   -------------------------------------------------------------------------- */
+.cwe-enter-prompt {
+  position: absolute;
+  bottom: clamp(1.8rem, 4vw, 3rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px) scale(0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cwe-overlay.step-hold .cwe-enter-prompt {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Handcrafted Miniature Studio Plaque (Arfa Munam Reveal) */
+.cwe-creator-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+  pointer-events: none;
+  text-align: center;
+}
+
+.cwe-overlay.step-hold .cwe-creator-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cwe-creator-eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #FA5538;
+  text-transform: uppercase;
+}
+
+.cwe-creator-name {
+  font-family: var(--font-heading, "Outfit", sans-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #101C35;
+  margin: 0;
+  line-height: 1.15;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #101C35 0%, #2A3C5F 50%, #101C35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cwe-creator-sub {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #64748B;
+}
+
+.cwe-enter-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px 10px 14px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(250, 85, 56, 0.35);
+  box-shadow: 
+    0 12px 30px -4px rgba(250, 85, 56, 0.2),
+    0 2px 10px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: cweEnterPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes cweEnterPulse {
+  0% { transform: scale(1); box-shadow: 0 12px 30px -4px rgba(250, 85, 56, 0.2), 0 2px 10px rgba(0, 0, 0, 0.06); }
+  100% { transform: scale(1.035); box-shadow: 0 16px 38px -4px rgba(250, 85, 56, 0.32), 0 4px 16px rgba(250, 85, 56, 0.15); }
+}
+
+.cwe-enter-pill-btn:hover,
+.cwe-enter-pill-btn:focus-visible {
+  border-color: #FA5538;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 18px 40px -4px rgba(250, 85, 56, 0.35);
+}
+
+.cwe-key-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #101C35;
+  color: #FFFFFF;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cwe-enter-main-label {
+  font-family: var(--font-heading, "Outfit", sans-serif);
+  font-size: clamp(0.85rem, 1.2vw, 1.02rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #101C35;
+  text-transform: uppercase;
+}
+
+.cwe-inline-kbd {
+  color: #FA5538;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.cwe-enter-chevron {
+  color: #FA5538;
+  transition: transform 0.25s ease;
+}
+
+.cwe-enter-pill-btn:hover .cwe-enter-chevron {
+  transform: translateX(3px);
+}
+
+.cwe-enter-hint-keys {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #78716C;
+  text-transform: uppercase;
+}
+
+.cwe-enter-hint-keys kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(20, 35, 63, 0.12);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* --------------------------------------------------------------------------
+   TELEMETRY PROGRESS FOOTER RAIL
+   -------------------------------------------------------------------------- */
+.cwe-telemetry-rail {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(16, 28, 53, 0.05);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.cwe-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #FA5538 0%, #F59E0B 35%, #10B981 70%, #2563EB 100%);
+  box-shadow: 0 0 10px rgba(250, 85, 56, 0.6);
+  transition: width 0.15s linear;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .cwe-controls-bar {
+    padding: 1.2rem 1.4rem;
+  }
+  .cwe-studio-tag {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+  .cwe-canvas-wrap {
+    height: 70vh;
+  }
+  .cwe-enter-main-label {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cwe-skip-key {
+    display: none;
+  }
+  .cwe-canvas-wrap {
+    height: 65vh;
+  }
+  .cwe-enter-hint-keys {
+    font-size: 0.6rem;
+  }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .cwe-overlay {
+    transition: opacity 0.5s ease !important;
+  }
+  .cwe-enter-prompt {
+    transition: opacity 0.3s ease !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+}
+
 
