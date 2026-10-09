@@ -83,19 +83,20 @@
        CREATIVE INTRODUCTION PAGE (Portfolio Showcase Bridge)
        Minimalist Background with Large Centralized Portfolio Artwork
        ======================================================================= -->
-  <aside id="creative-intro-cover" class="cip-overlay cip-hidden" aria-label="Portfolio Introduction" role="region" aria-hidden="true">
+  <aside id="creative-intro-cover" class="cip-overlay" aria-label="Portfolio Introduction" role="region" aria-hidden="true">
     <!-- Clean Minimalist Center Display for Large Portfolio Image -->
     <div class="cip-center-container" id="cip-center-container">
       <img 
         src="portfolio.png" 
-        alt="Portfolio"
+        alt="Arfa Munam - Portfolio"
         class="cip-portfolio-img"
         id="cip-portfolio-img"
         loading="eager"
         decoding="sync"
         fetchpriority="high"
-        width="2140"
-        height="1864"
+        width="1600"
+        height="901"
+        onerror="if(this.src.indexOf('portfolio.png.jpeg')===-1){this.src='portfolio.png.jpeg';}"
       >
     </div>
   </aside>
@@ -262,96 +263,22 @@
 
         </div>
 
-        <!-- RIGHT / INTERACTIVE HERO PORTRAIT STAGE WITH MAGICAL AURA -->
+        <!-- RIGHT / INTERACTIVE HERO PORTRAIT STAGE -->
         <div class="hero-visual-column reveal" id="hero-portrait-stage">
           <div class="hero-creative-visual-stage" id="hero-portrait-showcase">
-            
-            <!-- Top Kicker Pill (BUILDING • LEARNING • EXPLORING) -->
-            <div class="hero-creative-kicker-pill" id="hero-kicker-badge">
-              <span class="hero-kicker-dot"></span>
-              <span>BUILDING • LEARNING • EXPLORING</span>
-            </div>
 
-            <!-- Clean Magical Studio Lighting Atmosphere Behind Portrait (Subtle, Soft Ambient Glows) -->
-            <div class="hero-stage-backdrop-art" id="hero-stage-backdrop-art" aria-hidden="true">
-              <div class="hero-light-ambient"></div>
-              <div class="hero-light-coral"></div>
-              <div class="hero-light-cyan"></div>
-              <div class="hero-light-pink"></div>
-              <div class="hero-light-violet"></div>
-              <div class="hero-light-bloom"></div>
-            </div>
+            <!-- SVG Filter for Dynamic Directional Motion Blur (High-End & Smooth) -->
+            <svg class="portrait-motion-blur-svg" style="position: absolute; width: 0; height: 0; pointer-events: none; opacity: 0;" aria-hidden="true">
+              <defs>
+                <filter id="portrait-motion-blur-filter" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur id="portrait-motion-blur-fe" stdDeviation="0 0" />
+                </filter>
+              </defs>
+            </svg>
 
-            <!-- Ethereal 3D Celestial Atmosphere (Revealed strictly on hover, matching reference image) -->
-            <div class="hero-celestial-orbit-system" id="hero-celestial-orbit-system" aria-hidden="true">
-              <!-- Ultra-thin Elegant Dual-Tone Orbital Curve (Cyan on Left, Peach on Right) -->
-              <svg class="celestial-orbit-svg" viewBox="-320 -230 640 460" aria-hidden="true">
-                <defs>
-                  <linearGradient id="celestial-orbit-grad" x1="0%" y1="0%" x2="100%" y2="80%">
-                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.9" />
-                    <stop offset="35%" stop-color="#E0F2FE" stop-opacity="0.95" />
-                    <stop offset="65%" stop-color="#FDE68A" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#FB7185" stop-opacity="0.85" />
-                  </linearGradient>
-                  <filter id="celestial-soft-glow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="3.5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                <g transform="rotate(-6 0 10)">
-                  <!-- Soft diffused outer aura ring -->
-                  <ellipse cx="0" cy="12" rx="248" ry="142" class="orbit-filament-halo" stroke="url(#celestial-orbit-grad)" stroke-width="4" fill="none" opacity="0.32" filter="url(#celestial-soft-glow)" />
-                  <!-- Ultra-thin elegant filament line -->
-                  <ellipse cx="0" cy="12" rx="248" ry="142" class="orbit-filament-core" stroke="url(#celestial-orbit-grad)" stroke-width="1.3" fill="none" opacity="0.9" />
-                  <!-- Delicate white starlight highlight arc -->
-                  <path d="M -140 135 A 248 142 0 0 0 160 115" class="orbit-filament-highlight" stroke="#FFFFFF" stroke-width="1.8" fill="none" opacity="0.92" filter="url(#celestial-soft-glow)" />
-                </g>
-              </svg>
-
-              <!-- Restrained Floating Celestial Spheres & Dust (Matches Reference Image) -->
-              <div class="celestial-pearls-layer" id="celestial-pearls-layer">
-                <!-- 1. Soft Cyan Glass Pearl (Upper Left) -->
-                <div class="celestial-pearl pearl-cyan" data-depth="0.75">
-                  <div class="pearl-specular"></div>
-                  <div class="pearl-glow"></div>
-                </div>
-                <!-- 2. Warm Pearlescent Glass Pearl (Upper Right) -->
-                <div class="celestial-pearl pearl-peach" data-depth="0.85">
-                  <div class="pearl-specular"></div>
-                  <div class="pearl-glow"></div>
-                </div>
-                <!-- 3. Front Lower Orbit Pearl (Right) -->
-                <div class="celestial-pearl pearl-amber" data-depth="1.15">
-                  <div class="pearl-specular"></div>
-                  <div class="pearl-glow"></div>
-                </div>
-                <!-- 4. Tiny Floating Blue Pearl (Far Right) -->
-                <div class="celestial-pearl pearl-mini-blue" data-depth="0.95"></div>
-                <!-- 5. Tiny Floating Pearl (Far Left) -->
-                <div class="celestial-pearl pearl-mini-coral" data-depth="0.65"></div>
-
-                <!-- Subtle Starlight Twinkle Points (✦) -->
-                <span class="celestial-twinkle twinkle-left" data-depth="0.7">✦</span>
-                <span class="celestial-twinkle twinkle-right" data-depth="0.9">✦</span>
-
-                <!-- Faint floating glowing dust specks -->
-                <span class="celestial-dust dust-1" data-depth="0.5"></span>
-                <span class="celestial-dust dust-2" data-depth="0.8"></span>
-                <span class="celestial-dust dust-3" data-depth="1.1"></span>
-              </div>
-            </div>
-
-            <!-- Cinematic Cursor Lens Light (Subtle Camera Lens Illumination Following Cursor) -->
-            <div class="hero-cinematic-cursor-light" id="hero-cinematic-cursor-light" aria-hidden="true"></div>
-
-            <!-- Interactive 3D Cutout Frame (Smooth Parallax on Hover) -->
-            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam">
+            <!-- Portrait Frame (Stands Cleanly On Its Own) -->
+            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam" tabindex="0">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
-                <!-- Soft Luminous Silhouette Backlight (Behind Image, Keeps Face Razor-Sharp) -->
-                <div class="hero-portrait-silhouette-glow" aria-hidden="true"></div>
                 <img src="me.png" 
                      alt="Arfa Munam — Creative Developer" 
                      class="hero-portrait-cutout-img" 
@@ -359,14 +286,7 @@
                      loading="eager"
                      fetchpriority="high"
                      onerror="this.onerror=null; this.src='me.png.png';">
-                <!-- Subtle Glossy Specular Highlight Following Cursor -->
-                <div class="hero-portrait-gloss-highlight" id="hero-portrait-gloss-highlight" aria-hidden="true"></div>
-                <!-- Soft Rim Light Glow along the silhouette on hover -->
-                <div class="hero-portrait-rim-light" id="hero-portrait-rim-light" aria-hidden="true"></div>
               </div>
-
-              <!-- Soft Grounding Ambient Shadow -->
-              <div class="hero-subject-ground-shadow"></div>
             </div>
 
           </div>
@@ -819,133 +739,158 @@
 
         <div class="motion-hero-grid">
           
-          <!-- LEFT SIDE: Sophisticated 3D Creative Developer Workspace (Cohesive Desktop Studio Scene) -->
+          <!-- LEFT SIDE: Recreated Miniature 3D Futuristic Developer Workspace (Matching Image 1 Reference) -->
           <div class="motion-stage-left" id="motion-character-stage" tabindex="0" role="region" aria-label="Interactive 3D Creative Developer Workspace">
             
-            <!-- Soft Atmospheric Ambient Halo (Warm blush, cream, pastel peach & lavender) -->
-            <div class="portal-ambient-halo workspace-ambient-halo" aria-hidden="true"></div>
+            <!-- Soft Diffused Cursor Responsive Ambient Lighting (Warm Peach / Coral Glow) -->
+            <div class="studio-cursor-light" id="studio-cursor-light" aria-hidden="true"></div>
+            <div class="studio-ambient-bloom" aria-hidden="true"></div>
 
-            <!-- 3D Perspective Workspace Anchor -->
-            <div class="portal-3d-anchor workspace-3d-anchor" id="portal-3d-anchor">
-              
-              <!-- Refined Luxury Glass & Metallic Frame Chassis (Curved Studio Stage Foundation) -->
-              <div class="portal-frame-chassis workspace-stage-platform" id="portal-frame-chassis">
-                <!-- Inner Living Radiant Canvas (Rich warm ambient sunset & champagne studio wash) -->
-                <div class="frame-interior-stage">
-                  <div class="frame-ambient-spotlight workspace-spotlight"></div>
-                  <div class="frame-sheen-wash"></div>
-                </div>
-                <!-- Prismatic Glass Frame Edge Glow -->
-                <div class="frame-prismatic-border" aria-hidden="true"></div>
-                <!-- Sleek Top Edge Specular Reflection -->
-                <div class="frame-bevel-glare" aria-hidden="true"></div>
-              </div><!-- /.portal-frame-chassis -->
+            <!-- 3D Perspective Workspace Scene Assembly (Zero Enclosing Rectangular Borders) -->
+            <div class="studio-3d-scene" id="studio-3d-scene">
 
-              <!-- THE 3D WORKSPACE COMPOSITION ENTITY (Central Focal Point) -->
-              <div class="portal-character-entity workspace-composition-entity" id="motion-character-entity">
-                <div class="character-grounding-shadow workspace-base-shadow" aria-hidden="true"></div>
+              <!-- BASE FOUNDATION & PHYSICAL STAGE: Authentic 3D Rendered Studio Workspace -->
+              <div class="studio-physical-stage" id="studio-physical-stage" data-depth="0.45">
+                <!-- Large Soft Peach Cast Shadow Beneath Platform -->
+                <div class="platform-peach-shadow" aria-hidden="true"></div>
                 
-                <!-- Main 3D Creative Developer Workspace Render -->
-                <div class="character-breakout-frame workspace-render-wrap">
-                  <img 
-                    src="developer-workspace-3d.jpg" 
-                    alt="3D Creative Developer Workspace — Modern Laptop with Frontend React Code, Books, Coffee, Succulent Plant & Interface Cards" 
-                    class="portal-breakout-img workspace-scene-img"
-                    id="motion-character-img"
-                    onerror="this.onerror=null; this.src='creative-workspace-3d.jpg';"
-                    loading="eager"
-                  />
-                  <!-- Contact Rim Light -->
-                  <div class="character-rim-light workspace-rim-light" aria-hidden="true"></div>
+                <!-- Authentic 3D Rendered Stage: Solid Platform, Aluminum Laptop, Architecture, Books, Succulent, Coffee & Notebook -->
+                <img 
+                  src="developer-workspace-3d.jpg" 
+                  alt="3D Miniature Developer Workspace on Floating Satin Platform" 
+                  class="studio-stage-render" 
+                  id="studio-stage-render"
+                  loading="eager"
+                  decoding="async"
+                />
+
+                <!-- Interactive Laptop Screen Specular Light Sheen (Hover Responsive) -->
+                <div class="laptop-screen-hover-sheen" id="laptop-screen-hover-sheen" aria-hidden="true"></div>
+              </div><!-- /.studio-physical-stage -->
+
+              <!-- DELICATE ARCHITECTURAL WIREFRAME ACCENT (Behind Laptop, Minimalist & Low Opacity) -->
+              <div class="arch-subtle-interface" data-depth="0.32" aria-hidden="true">
+                <div class="arch-wireframe-bar">
+                  <div class="arch-wireframe-dots"><span></span><span></span><span></span></div>
+                  <span class="arch-wireframe-pill">app.dev</span>
                 </div>
-
-                <!-- FLOATING 3D INTERACTIVE CARDS & BADGES IN STEREOSCOPIC SPACE -->
-                <!-- 1. Floating UI Card Behind & Above Laptop (Glassmorphism Web Mockup) -->
-                <div class="floating-ui-card" data-depth="1.2" aria-hidden="true">
-                  <div class="f-ui-header">
-                    <div class="f-ui-dots"><span></span><span></span><span></span></div>
-                    <div class="f-ui-address">betterweb.dev</div>
-                  </div>
-                  <div class="f-ui-body">
-                    <div class="f-ui-sidebar">
-                      <span class="f-ui-side-bar"></span>
-                      <span class="f-ui-side-bar short"></span>
-                    </div>
-                    <div class="f-ui-canvas">
-                      <div class="f-ui-banner"></div>
-                      <div class="f-ui-row">
-                        <span class="f-ui-block"></span>
-                        <span class="f-ui-block"></span>
-                      </div>
-                      <div class="f-ui-btn"></div>
-                    </div>
-                  </div>
+                <div class="arch-wireframe-lines">
+                  <span class="wire-l l-70"></span>
+                  <span class="wire-l l-45"></span>
                 </div>
-
-                <!-- 2. Floating Code Card </> (Upper Left) -->
-                <div class="floating-code-card" data-depth="1.45" aria-label="Frontend Code Symbol">
-                  <div class="code-card-inner">
-                    <span class="code-icon-sym">&lt;/&gt;</span>
-                  </div>
-                </div>
-
-                <!-- 3. Floating AI Card (Upper Right) -->
-                <div class="floating-ai-card" data-depth="1.35" aria-label="AI Exploration">
-                  <div class="ai-card-inner">
-                    <span class="ai-sparkle-dot">✦</span>
-                    <span class="ai-card-label">AI</span>
-                  </div>
-                </div>
-
-                <!-- 4. Floating Sparkle / Creativity Card (Top Right Flank) -->
-                <div class="floating-sparkle-card" data-depth="1.2" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
-                  </svg>
-                </div>
-
-                <!-- 5. Floating Brain / AI Intelligence Icon (Mid Right) -->
-                <div class="floating-brain-card" data-depth="1.15" aria-label="Creative Intelligence">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 .7.16 1.37.45 1.96A4.5 4.5 0 0 0 4 12.5 4.5 4.5 0 0 0 8.5 17h7a4.5 4.5 0 0 0 4.5-4.5 4.5 4.5 0 0 0-3.95-4.04c.29-.59.45-1.26.45-1.96A4.5 4.5 0 0 0 12 2Z"/>
-                    <path d="M12 12v5"/>
-                    <path d="M9.5 14.5 12 12l2.5 2.5"/>
-                  </svg>
-                </div>
-
-                <!-- 6. Left Task / Checklist Card (3D Angled Glass) -->
-                <div class="floating-task-card" data-depth="1.3" aria-label="Development Workflow Pipeline">
-                  <div class="task-card-header">
-                    <span class="task-status-light"></span>
-                    <span class="task-card-title">PIPELINE</span>
-                  </div>
-                  <ul class="task-checklist">
-                    <li class="task-item is-checked">
-                      <span class="task-check-icon">✓</span>
-                      <span class="task-name">Design</span>
-                    </li>
-                    <li class="task-item is-checked">
-                      <span class="task-check-icon">✓</span>
-                      <span class="task-name">Develop</span>
-                    </li>
-                    <li class="task-item is-checked">
-                      <span class="task-check-icon">✓</span>
-                      <span class="task-name">Launch</span>
-                    </li>
-                  </ul>
-                </div>
-
-              </div><!-- /.portal-character-entity -->
-
-              <!-- Floating Ambient Micro-Gems & Luminous Particles -->
-              <div class="portal-floating-gems workspace-gems" aria-hidden="true">
-                <div class="portal-gem gem-rose" data-depth="1.5"></div>
-                <div class="portal-gem gem-lilac" data-depth="0.9"></div>
-                <div class="portal-gem gem-peach" data-depth="1.3"></div>
-                <div class="portal-gem gem-sparkle" data-depth="1.6">✦</div>
               </div>
 
-            </div><!-- /.portal-3d-anchor -->
+              <!-- DELICATE GLOWING ORBITAL CURVES & SMALL GLOSSY SPHERES -->
+              <div class="studio-orbit-system" aria-hidden="true">
+                <svg class="studio-orbit-svg" viewBox="0 0 500 500" fill="none">
+                  <defs>
+                    <linearGradient id="orbitGradPeach" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFD7C7" stop-opacity="0.85" />
+                      <stop offset="50%" stop-color="#FF8D78" stop-opacity="0.65" />
+                      <stop offset="100%" stop-color="#C98594" stop-opacity="0.35" />
+                    </linearGradient>
+                    <linearGradient id="orbitGradCoral" x1="100%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#FFA08C" stop-opacity="0.75" />
+                      <stop offset="60%" stop-color="#D9C4F1" stop-opacity="0.5" />
+                      <stop offset="100%" stop-color="#FFD7C7" stop-opacity="0.25" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Delicate Elliptical Orbit Paths wrapping around architecture -->
+                  <path d="M 270,95 C 360,95 440,140 445,210 C 450,280 380,310 320,315" stroke="url(#orbitGradPeach)" stroke-width="1.1" stroke-linecap="round" class="orbit-path path-1" />
+                  <path d="M 60,120 C 85,80 180,75 220,110 C 255,140 240,195 180,210" stroke="url(#orbitGradCoral)" stroke-width="1.0" stroke-linecap="round" class="orbit-path path-2" />
+                </svg>
+
+                <!-- Small Glossy 3D Spheres along orbital paths -->
+                <div class="orbit-sphere sphere-coral" data-depth="0.9" title="Ambient Sphere"></div>
+                <div class="orbit-sphere sphere-pink" data-depth="1.25" title="Ambient Sphere"></div>
+                <div class="orbit-sphere sphere-pearl" data-depth="1.4" title="Ambient Sphere"></div>
+
+                <!-- Subtle Micro Sparkles -->
+                <span class="orbit-sparkle sp-1" data-depth="0.6">✦</span>
+                <span class="orbit-sparkle sp-2" data-depth="1.1">✦</span>
+              </div><!-- /.studio-orbit-system -->
+
+              <!-- FLOATING INTERACTIVE GLASS INTERFACE CARDS (Exact Target Alignment matching Image 1) -->
+              <div class="studio-floating-cards" aria-hidden="true">
+                
+                <!-- CARD 1: Browser Preview (X: 64%, Y: 18%) -->
+                <div class="floating-glass-card card-browser-preview" data-depth="1.2">
+                  <div class="card-inner-glass">
+                    <div class="browser-mini-header">
+                      <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                      </div>
+                      <span class="browser-address-pill">betterweb.dev</span>
+                    </div>
+                    <div class="browser-mini-body">
+                      <div class="browser-hero-wire"></div>
+                      <div class="browser-wire-lines">
+                        <span class="b-line l-long"></span>
+                        <span class="b-line l-med"></span>
+                      </div>
+                      <span class="browser-coral-btn">VIEW</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 2: Development Pipeline (X: 23%, Y: 40%) -->
+                <div class="floating-glass-card card-pipeline-panel" data-depth="1.3">
+                  <div class="card-inner-glass">
+                    <div class="pipeline-header">
+                      <span class="pipe-live-dot"></span>
+                      <span class="pipeline-title">PIPELINE</span>
+                    </div>
+                    <ul class="pipeline-checklist">
+                      <li class="pipe-item done"><span class="check-mark">✓</span> Design</li>
+                      <li class="pipe-item done"><span class="check-mark">✓</span> Develop</li>
+                      <li class="pipe-item done"><span class="check-mark">✓</span> Launch</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- CARD 3: Task Card (X: 22%, Y: 58%) -->
+                <div class="floating-glass-card card-task-panel" data-depth="1.05">
+                  <div class="card-inner-glass">
+                    <div class="task-mini-header">
+                      <span class="task-title-text">Task</span>
+                    </div>
+                    <div class="task-checklist-body">
+                      <div class="task-check-row"><span class="task-checkbox checked"></span> Design</div>
+                      <div class="task-check-row"><span class="task-checkbox checked"></span> Develop</div>
+                      <div class="task-check-row"><span class="task-checkbox checked"></span> Launch</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 4: AI Badge (X: 78%, Y: 37%) -->
+                <div class="floating-glass-card card-ai-tile" data-depth="1.35">
+                  <div class="card-inner-lavender">
+                    <span class="ai-spark-glyph">✦</span>
+                    <span class="ai-embossed-text">AI</span>
+                  </div>
+                </div>
+
+                <!-- CARD 5: Code Icon Tile (Upper Left: X: 14%, Y: 22%) -->
+                <div class="floating-glass-card card-code-tile" data-depth="1.45">
+                  <div class="card-inner-glass tile-compact">
+                    <span class="code-bracket-sym">&lt;/&gt;</span>
+                  </div>
+                </div>
+
+                <!-- CARD 6: Creative Intelligence Tile (Right Flank: X: 88%, Y: 48%) -->
+                <div class="floating-glass-card card-creative-tile" data-depth="1.15">
+                  <div class="card-inner-glass tile-compact">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 .7.16 1.37.45 1.96A4.5 4.5 0 0 0 4 12.5 4.5 4.5 0 0 0 8.5 17h7a4.5 4.5 0 0 0 4.5-4.5 4.5 4.5 0 0 0-3.95-4.04c.29-.59.45-1.26.45-1.96A4.5 4.5 0 0 0 12 2Z"/>
+                      <path d="M12 12v5"/>
+                      <path d="M9.5 14.5 12 12l2.5 2.5"/>
+                    </svg>
+                  </div>
+                </div>
+
+              </div><!-- /.studio-floating-cards -->
+
+            </div><!-- /.studio-3d-scene -->
 
           </div><!-- /.motion-stage-left -->
 
@@ -2799,1130 +2744,414 @@
   </section>
 
   <!-- =======================================================================
-       MY LEARNING JOURNEY — 3D ART-DIRECTED INTERACTIVE LEARNING EXPERIENCE
-       "Learning. Growing. Becoming."
-       Completely Redesigned Top: Luxury 3D Architectural Knowledge Engine
-       Cohesive Light Luxury Palette matching the Portfolio (Ivory, Pearl, Coral & Gold)
-       Zero Fake Pictures • High Visual Craft & Interactive Dynamic Telemetry
+       MY LEARNING JOURNEY — 3D WINDING TURQUOISE ROAD & FLOATING PLATFORMS
+       Inspired by the 3D Winding Turquoise Path, Floating White Circular Pedestals,
+       Minimalist Dark Icons, and Soft 3D Dimensional Shadows
        ======================================================================= -->
   <section id="experience" class="futuristic-journey-section" aria-label="Learning Journey" data-section="learning-journey">
     <span id="learning-journey" class="section-hash-anchor" aria-hidden="true"></span>
     
-    <!-- Atmospheric Luminous Studio Lighting (Warm Ivory & Soft Ambient Blooms of Coral, Gold & Lavender) -->
+    <!-- Atmospheric Ambient Blooms (Warm Ivory, Soft Turquoise & Radiant Peach) -->
     <div class="lj-atmosphere" aria-hidden="true">
-      <div class="lj-ambient-glow glow-rose"></div>
+      <div class="lj-ambient-glow glow-turquoise"></div>
       <div class="lj-ambient-glow glow-coral"></div>
-      <div class="lj-ambient-glow glow-lavender"></div>
-      <div class="lj-ambient-glow glow-peach"></div>
-      <div class="lj-studio-spotlight" id="lj-studio-spotlight"></div>
-      
-      <!-- Luminous Ambient Depth Particles -->
-      <span class="lj-dust-particle dust-pos-1">·</span>
-      <span class="lj-dust-particle dust-pos-2">✦</span>
-      <span class="lj-dust-particle dust-pos-3">·</span>
-      <span class="lj-dust-particle dust-pos-4">✦</span>
-
-      <!-- 3D Geometric Crystal Prisms & Frosted Pearl Glass Plaques (Light Luxury) -->
-      <!-- 1. Floating Frosted Pearl Code Plaque -->
-      <div class="lj-3d-floating-object obj-code-plaque" data-depth="0.75" aria-hidden="true">
-        <div class="obj-glass-tile">
-          <div class="tile-specular-edge"></div>
-          <span class="tile-code-glyph">&lt;/&gt;</span>
-        </div>
-      </div>
-
-      <!-- 2. Floating Luminous Crystal Prism -->
-      <div class="lj-3d-floating-object obj-crystal-prism" data-depth="1.2" aria-hidden="true">
-        <div class="obj-crystal-body">
-          <div class="crystal-facet facet-front"></div>
-          <div class="crystal-facet facet-sheen"></div>
-          <div class="crystal-core-glow"></div>
-        </div>
-      </div>
-
-      <!-- 3. Floating Translucent Pearl Sphere -->
-      <div class="lj-3d-floating-object obj-glass-sphere" data-depth="0.6" aria-hidden="true">
-        <div class="obj-sphere-body">
-          <div class="sphere-specular-rim"></div>
-          <div class="sphere-internal-glow"></div>
-        </div>
-      </div>
-
-      <!-- 4. Floating Minimal Geometric Isometric Tile -->
-      <div class="lj-3d-floating-object obj-minimal-cube" data-depth="0.85" aria-hidden="true">
-        <div class="obj-cube-assembly">
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-        </div>
-      </div>
+      <div class="lj-ambient-glow glow-mint"></div>
     </div>
 
-    <div class="container lj-container">
+    <div class="lj-container">
       
-      <!-- CINEMATIC EDITORIAL HERO AREA: ARCHITECTURAL KNOWLEDGE SHOWCASE -->
-      <div class="lj-hero-showcase reveal" id="lj-hero-showcase">
+      <!-- SECTION HEADER -->
+      <div class="lj-roadmap-header-block reveal">
+        <div class="lj-eyebrow-pill">
+          <span class="eyebrow-spark" aria-hidden="true">✦</span>
+          <span class="eyebrow-text">DEVELOPER EVOLUTION • CONTINUOUS GROWTH</span>
+        </div>
+        <h2 class="lj-roadmap-heading">My Learning Journey</h2>
+        <p class="lj-roadmap-subheading">
+          A continuous 3D winding progression connecting web fundamentals and kinetic UI to full-stack architecture and applied AI systems into one flowing roadmap.
+        </p>
+        <div class="lj-roadmap-meta-pills">
+          <span class="meta-pill"><span class="meta-dot"></span> 08 Milestones</span>
+          <span class="meta-pill"><span class="meta-dot dot-teal"></span> Continuous Winding Highway</span>
+          <span class="meta-pill"><span class="meta-dot dot-emerald"></span> 2026 Active Focus</span>
+        </div>
+      </div>
+
+      <!-- 3D WINDING TURQUOISE JOURNEY STAGE -->
+      <div class="lj-winding-stage reveal" id="lj-winding-stage">
         
-        <!-- LEFT COLUMN: Monumental Editorial Typography & Craft Pillars (45%) -->
-        <div class="lj-hero-content">
-          <!-- Top Slim Luxury Chapter Badge -->
-          <div class="lj-chapter-badge">
-            <span class="badge-spark" aria-hidden="true">✦</span>
-            <span class="badge-text">CHAPTER 02 · KNOWLEDGE &amp; INTELLECTUAL EVOLUTION</span>
-            <span class="badge-divider" aria-hidden="true">/</span>
-            <span class="badge-year">2026 — PRESENT</span>
-          </div>
-
-          <!-- Editorial Monumental Headline (3 Sculptural Lines) -->
-          <h2 class="lj-editorial-title">
-            <span class="title-word word-1">Learning.</span>
-            <span class="title-word word-2">Growing.</span>
-            <span class="title-word word-3">Becoming.</span>
-          </h2>
-
-          <!-- Inspiring Philosophical Narrative -->
-          <p class="lj-editorial-desc">
-            My tech journey in 2026 began with an insatiable appetite for mastery. Every web standard mastered, every physical interaction engineered, and every complex system built compounds into front-end depth, pixel-pristine craftsmanship, and full-stack readiness.
-          </p>
-
-          <!-- 3 Architectural Value Tablets (Zero Empty Space, Rich Tactile Depth) -->
-          <div class="lj-craft-matrices">
-            <div class="craft-matrix-tablet">
-              <div class="tablet-header">
-                <span class="tablet-index">01</span>
-                <span class="tablet-tag">FOUNDATION</span>
-              </div>
-              <h3 class="tablet-title">Architectural Rigor</h3>
-              <p class="tablet-desc">Deep semantic DOM, native JavaScript standards &amp; zero-shortcut principles.</p>
-            </div>
-            
-            <div class="craft-matrix-tablet">
-              <div class="tablet-header">
-                <span class="tablet-index">02</span>
-                <span class="tablet-tag">SPATIAL CRAFT</span>
-              </div>
-              <h3 class="tablet-title">Tactile Interaction</h3>
-              <p class="tablet-desc">Fluid CSS 3D perspective engines, spring physics &amp; responsive kinetic motion.</p>
-            </div>
-            
-            <div class="craft-matrix-tablet">
-              <div class="tablet-header">
-                <span class="tablet-index">03</span>
-                <span class="tablet-tag">HORIZON</span>
-              </div>
-              <h3 class="tablet-title">Autonomous Velocity</h3>
-              <p class="tablet-desc">Modern component systems, fullstack APIs &amp; applied AI-assisted workflows.</p>
-            </div>
-          </div>
-
-          <!-- Direct Explore Timeline Link Pill -->
-          <a href="#lj-timeline-universe" class="lj-explore-roadmap-btn" id="lj-explore-journey-btn" aria-label="Explore the 8 chapter progression roadmap below">
-            <span class="btn-dot" aria-hidden="true"></span>
-            <span class="btn-text">EXPLORE 08 CHRONOLOGICAL MILESTONES</span>
-            <span class="btn-arrow" aria-hidden="true">↓</span>
-          </a>
-        </div><!-- /.lj-hero-content -->
-
-        <!-- RIGHT COLUMN: 100% Code-Rendered 3D Architectural Knowledge & Mastery Engine (55%) -->
-        <div class="lj-hero-visual" id="lj-engine-visual-wrap">
-          <div class="lj-engine-stage" id="lj-engine-stage">
-            
-            <!-- Radiant Atmospheric Halo (Warm Coral, Violet & Champagne) -->
-            <div class="lj-engine-ambient-halo" aria-hidden="true"></div>
-
-            <!-- Master Luminous 3D Console (Light Luxury Pearl Glass) -->
-            <div class="lj-engine-console" id="lj-engine-console">
+        <!-- Winding Turquoise Road SVG Track Background -->
+        <div class="lj-road-svg-wrap" aria-hidden="true">
+          <svg class="lj-winding-road-svg" viewBox="0 0 1100 2100" fill="none" preserveAspectRatio="none">
+            <defs>
+              <!-- 3D Drop Shadow Filter for Road -->
+              <filter id="road-soft-shadow" x="-20%" y="-10%" width="140%" height="130%" filterUnits="userSpaceOnUse">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="14" />
+                <feOffset dx="0" dy="16" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.14" /></feComponentTransfer>
+                <feMerge>
+                  <feMergeNode />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
               
-              <!-- Console Header Bar with Colorful Micro-Gems & Interactive Tabs -->
-              <div class="lj-console-header">
-                <div class="console-jewel-trio" aria-hidden="true">
-                  <span class="console-jewel jewel-coral" title="Active Core"></span>
-                  <span class="console-jewel jewel-amber" title="Velocity Loop"></span>
-                  <span class="console-jewel jewel-violet" title="Precision State"></span>
-                </div>
+              <!-- Vibrant Turquoise 3D Gradient -->
+              <linearGradient id="roadTurquoiseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#2DD4BF" />
+                <stop offset="16%" stop-color="#14B8A6" />
+                <stop offset="35%" stop-color="#06B6D4" />
+                <stop offset="55%" stop-color="#0EA5E9" />
+                <stop offset="72%" stop-color="#14B8A6" />
+                <stop offset="88%" stop-color="#2DD4BF" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
 
-                <!-- Interactive Switcher Tabs -->
-                <div class="console-tab-strip" role="tablist" aria-label="Knowledge Engine Perspectives">
-                  <button type="button" class="console-tab is-active" data-tab="radar" role="tab" aria-selected="true" id="tab-btn-radar">
-                    <span class="tab-spark">✦</span>
-                    <span class="tab-name">GROWTH RADAR</span>
-                  </button>
-                  <button type="button" class="console-tab" data-tab="horizons" role="tab" aria-selected="false" id="tab-btn-horizons">
-                    <span class="tab-spark">⚡</span>
-                    <span class="tab-name">MASTERY PILLARS</span>
-                  </button>
-                  <button type="button" class="console-tab" data-tab="manifesto" role="tab" aria-selected="false" id="tab-btn-manifesto">
-                    <span class="tab-spark">★</span>
-                    <span class="tab-name">CRAFT MANIFESTO</span>
-                  </button>
-                </div>
+              <!-- Road Bevel Edge Gradient -->
+              <linearGradient id="roadEdgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0F766E" />
+                <stop offset="50%" stop-color="#0E7490" />
+                <stop offset="100%" stop-color="#115E59" />
+              </linearGradient>
+            </defs>
 
-                <!-- Live Engine Telemetry Chip -->
-                <div class="console-live-chip">
-                  <span class="live-pulse-dot" aria-hidden="true"></span>
-                  <span>VELOCITY · 2026</span>
-                </div>
-              </div><!-- /.lj-console-header -->
+            <!-- 1. Deep 3D Drop Shadow Under Road -->
+            <path class="road-path-shadow" d="M 220 100 C 220 230, 880 230, 880 360 C 880 490, 220 490, 220 620 C 220 750, 880 750, 880 880 C 880 1010, 220 1010, 220 1140 C 220 1270, 880 1270, 880 1400 C 880 1530, 220 1530, 220 1660 C 220 1790, 880 1790, 880 1920" />
 
-              <!-- Console Dynamic Body -->
-              <div class="lj-console-body">
-                
-                <!-- PANE 1: Growth Radar & Progress Vectors (Default Active) -->
-                <div class="console-pane is-active" id="pane-radar" role="tabpanel" aria-labelledby="tab-btn-radar">
-                  
-                  <!-- Top 3D Kinetic Gyroscopic Compass -->
-                  <div class="radar-compass-showcase">
-                    <div class="kinetic-gyroscope" aria-hidden="true">
-                      <div class="gyro-ring gyro-outer"></div>
-                      <div class="gyro-ring gyro-middle"></div>
-                      <div class="gyro-ring gyro-inner"></div>
-                      <div class="gyro-core">
-                        <span class="gyro-core-pulse"></span>
-                        <span class="gyro-core-txt">2026</span>
-                      </div>
-                    </div>
-                    <div class="compass-caption">
-                      <span class="compass-label">CONTINUOUS VELOCITY VECTOR</span>
-                      <span class="compass-val">Accelerating Exponentially</span>
-                    </div>
-                  </div>
+            <!-- 2. Road 3D Extrusion Bevel (Thickness Layer) -->
+            <path class="road-path-bevel" d="M 220 100 C 220 230, 880 230, 880 360 C 880 490, 220 490, 220 620 C 220 750, 880 750, 880 880 C 880 1010, 220 1010, 220 1140 C 220 1270, 880 1270, 880 1400 C 880 1530, 220 1530, 220 1660 C 220 1790, 880 1790, 880 1920" />
 
-                  <!-- 4 Precision Technical Mastery Meters with Animated Gradient Bars -->
-                  <div class="mastery-vectors-grid">
-                    
-                    <div class="vector-meter-row">
-                      <div class="meter-info">
-                        <span class="meter-name">Frontend Architecture &amp; Semantic Web</span>
-                        <span class="meter-percent">98% Fluency</span>
-                      </div>
-                      <div class="meter-track">
-                        <div class="meter-bar bar-coral" style="width: 98%;"></div>
-                      </div>
-                    </div>
+            <!-- 3. Main Turquoise Road Surface Ribbon -->
+            <path id="winding-main-track" class="road-path-surface" d="M 220 100 C 220 230, 880 230, 880 360 C 880 490, 220 490, 220 620 C 220 750, 880 750, 880 880 C 880 1010, 220 1010, 220 1140 C 220 1270, 880 1270, 880 1400 C 880 1530, 220 1530, 220 1660 C 220 1790, 880 1790, 880 1920" />
 
-                    <div class="vector-meter-row">
-                      <div class="meter-info">
-                        <span class="meter-name">CSS 3D Perspective Engines &amp; Physics Springs</span>
-                        <span class="meter-percent">95% Spatial Depth</span>
-                      </div>
-                      <div class="meter-track">
-                        <div class="meter-bar bar-violet" style="width: 95%;"></div>
-                      </div>
-                    </div>
+            <!-- 4. Subtle Center Lane Track Markings -->
+            <path class="road-center-track" d="M 220 100 C 220 230, 880 230, 880 360 C 880 490, 220 490, 220 620 C 220 750, 880 750, 880 880 C 880 1010, 220 1010, 220 1140 C 220 1270, 880 1270, 880 1400 C 880 1530, 220 1530, 220 1660 C 220 1790, 880 1790, 880 1920" />
 
-                    <div class="vector-meter-row">
-                      <div class="meter-info">
-                        <span class="meter-name">React.js &amp; Modern Reactive State Systems</span>
-                        <span class="meter-percent">92% Production Precision</span>
-                      </div>
-                      <div class="meter-track">
-                        <div class="meter-bar bar-amber" style="width: 92%;"></div>
-                      </div>
-                    </div>
-
-                    <div class="vector-meter-row">
-                      <div class="meter-info">
-                        <span class="meter-name">Full-Stack Systems &amp; AI Prompt Engineering</span>
-                        <span class="meter-percent">88% Expanding Horizons</span>
-                      </div>
-                      <div class="meter-track">
-                        <div class="meter-bar bar-teal" style="width: 88%;"></div>
-                      </div>
-                    </div>
-
-                  </div><!-- /.mastery-vectors-grid -->
-
-                  <!-- Live Metrics Badges Strip -->
-                  <div class="console-metrics-row">
-                    <div class="metric-pill-item">
-                      <span class="metric-icon">✦</span>
-                      <span class="metric-text">35+ Repositories Built</span>
-                    </div>
-                    <div class="metric-pill-item">
-                      <span class="metric-icon">★</span>
-                      <span class="metric-text">100% Focused Daily Craft</span>
-                    </div>
-                    <div class="metric-pill-item">
-                      <span class="metric-icon">⚡</span>
-                      <span class="metric-text">Zero-Shortcut Mindset</span>
-                    </div>
-                  </div>
-                </div><!-- /#pane-radar -->
-
-                <!-- PANE 2: Mastery Pillars & Architectural Dimensions -->
-                <div class="console-pane" id="pane-horizons" role="tabpanel" aria-labelledby="tab-btn-horizons">
-                  <div class="horizons-pillars-grid">
-                    
-                    <div class="horizon-card">
-                      <div class="horizon-badge">PILLAR 01</div>
-                      <h4 class="horizon-title">Native Foundations First</h4>
-                      <p class="horizon-text">Mastering semantic HTML5, modern CSS3 layout algorithms, and native JavaScript closures before relying on abstraction layers.</p>
-                    </div>
-
-                    <div class="horizon-card">
-                      <div class="horizon-badge">PILLAR 02</div>
-                      <h4 class="horizon-title">Kinetic &amp; Sensory UI</h4>
-                      <p class="horizon-text">Engineering interfaces that react to pointer dynamics, spatial lighting, and physical inertia — transforming flat pages into living environments.</p>
-                    </div>
-
-                    <div class="horizon-card">
-                      <div class="horizon-badge">PILLAR 03</div>
-                      <h4 class="horizon-title">Architectural Scalability</h4>
-                      <p class="horizon-text">Component composition, strict modularity, and reusable design systems engineered for maintainable, production-grade applications.</p>
-                    </div>
-
-                    <div class="horizon-card">
-                      <div class="horizon-badge">PILLAR 04</div>
-                      <h4 class="horizon-title">Applied Intelligence</h4>
-                      <p class="horizon-text">Leveraging state-of-the-art LLMs, multi-turn reasoning loops, and prompt engineering to dramatically accelerate problem-solving velocity.</p>
-                    </div>
-
-                  </div>
-                </div><!-- /#pane-horizons -->
-
-                <!-- PANE 3: Craft Manifesto & Standards -->
-                <div class="console-pane" id="pane-manifesto" role="tabpanel" aria-labelledby="tab-btn-manifesto">
-                  <div class="manifesto-card-wrap">
-                    <div class="manifesto-quote-mark" aria-hidden="true">“</div>
-                    <blockquote class="manifesto-text">
-                      Craft is never accidental. It is the relentless obsession with every detail — the tension in an easing curve, the harmony in typography, and the pride taken in clean, maintainable architecture.
-                    </blockquote>
-                    <div class="manifesto-author-row">
-                      <div class="author-avatar-chip">
-                        <span class="author-initials">AM</span>
-                      </div>
-                      <div class="author-meta">
-                        <span class="author-name">Arfa Munam</span>
-                        <span class="author-title">Frontend Developer &amp; AI Prompt Engineer · 2026</span>
-                      </div>
-                    </div>
-                    <div class="manifesto-tags">
-                      <span class="m-tag">Pixel-Pristine</span>
-                      <span class="m-tag">Performance First</span>
-                      <span class="m-tag">Continuous Evolution</span>
-                    </div>
-                  </div>
-                </div><!-- /#pane-manifesto -->
-
-              </div><!-- /.lj-console-body -->
-
-              <!-- Console Telemetry Footer Rail -->
-              <div class="lj-console-footer">
-                <div class="console-footer-item">
-                  <span class="cf-dot dot-coral" aria-hidden="true"></span>
-                  <span class="cf-text">08 CHRONOLOGICAL MILESTONES</span>
-                </div>
-                <div class="console-footer-item">
-                  <span class="cf-dot dot-violet" aria-hidden="true"></span>
-                  <span class="cf-text">100% PURE FRONTEND CRAFT</span>
-                </div>
-                <div class="console-footer-item">
-                  <span class="cf-dot dot-amber" aria-hidden="true"></span>
-                  <span class="cf-text">STATUS: ADVANCING</span>
-                </div>
-              </div><!-- /.lj-console-footer -->
-
-            </div><!-- /.lj-engine-console -->
-
-            <!-- Floating 3D Geometric Crystal Jewel Satellites (Pure CSS) -->
-            <div class="lj-engine-satellites" aria-hidden="true">
-              <div class="engine-satellite sat-coral"></div>
-              <div class="engine-satellite sat-violet"></div>
-              <div class="engine-satellite sat-amber"></div>
-            </div>
-
-          </div><!-- /.lj-engine-stage -->
-        </div><!-- /.lj-hero-visual -->
-
-      </div><!-- /.lj-hero-showcase -->
-
-      <!-- INTERACTIVE JOURNEY TIMELINE (8 3D MILESTONES + ILLUMINATED FLOWING RIBBON PATH) -->
-      <div class="lj-timeline-universe reveal" id="lj-timeline-universe">
-        
-        <!-- Refined Section Header Block: Continuous Growth & 3D Interactive Roadmap -->
-        <div class="lj-roadmap-header-block">
-          <div class="lj-eyebrow-pill">
-            <span class="eyebrow-spark" aria-hidden="true">✦</span>
-            <span class="eyebrow-text">DEVELOPER EVOLUTION &bull; CONTINUOUS GROWTH</span>
-          </div>
-          <h3 class="lj-roadmap-heading">Learning Journey</h3>
-          <p class="lj-roadmap-subheading">An interactive 3D roadmap tracing technical progression from web fundamentals and tactile kinetic UI to full-stack architecture and applied AI systems.</p>
-          <div class="lj-roadmap-heading-accent" aria-hidden="true">
-            <span class="accent-bar-lead"></span>
-            <span class="accent-diamond">✦</span>
-            <span class="accent-bar-trail"></span>
-          </div>
+            <!-- 5. Pulsing Stream of Energy Flow Particle -->
+            <circle class="road-pulse-energy" r="6" fill="#FFFFFF">
+              <animateMotion repeatCount="indefinite" dur="16s" path="M 220 100 C 220 230, 880 230, 880 360 C 880 490, 220 490, 220 620 C 220 750, 880 750, 880 880 C 880 1010, 220 1010, 220 1140 C 220 1270, 880 1270, 880 1400 C 880 1530, 220 1530, 220 1660 C 220 1790, 880 1790, 880 1920" />
+            </circle>
+          </svg>
         </div>
 
-        <!-- Timeline Navigation Header Bar -->
-        <div class="lj-timeline-meta-bar">
-          <div class="timeline-meta-left">
-            <span class="timeline-meta-label">✦ PROGRESSION PATH</span>
-            <span class="timeline-meta-hint">Select any milestone to inspect technical architecture</span>
-          </div>
-          <div class="timeline-meta-right">
-            <span class="timeline-counter-display" id="lj-active-counter">
-              <span class="counter-num" id="lj-counter-current">01</span>
-              <span class="counter-sep">/</span>
-              <span class="counter-total">08</span>
-            </span>
-          </div>
-        </div>
-
-        <!-- 3D Track & Nodes Canvas -->
-        <div class="lj-timeline-stage" id="lj-timeline-stage">
+        <!-- 8 CHRONOLOGICAL MILESTONE ROWS (SERPENTINE ALTERNATING) -->
+        <div class="lj-milestones-stream">
           
-          <!-- Subtle Technological Roadmap Blueprint Grid -->
-          <div class="lj-roadmap-grid-backdrop" aria-hidden="true"></div>
-
-          <!-- Flowing Illuminated Roadmap Connectors (SVG: S-Curve Journey Flow 01->02->03->04 ↓ 05->06->07->08) -->
-          <div class="lj-track-svg-container" aria-hidden="true">
-            <svg class="lj-roadmap-flow-svg" viewBox="0 0 1200 440" fill="none" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="roadmapGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#FA5538" stop-opacity="0.95" />
-                  <stop offset="33%" stop-color="#2563EB" stop-opacity="0.95" />
-                  <stop offset="66%" stop-color="#06B6D4" stop-opacity="0.95" />
-                  <stop offset="100%" stop-color="#EC4899" stop-opacity="0.95" />
-                </linearGradient>
-
-                <!-- Row 2 Gradient: Flows smoothly from right (05: #8B5CF6) to left (08: #6366F1) -->
-                <linearGradient id="roadmapGrad2" x1="100%" y1="0%" x2="0%" y2="0%">
-                  <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.95" />
-                  <stop offset="33%" stop-color="#10B981" stop-opacity="0.95" />
-                  <stop offset="66%" stop-color="#F59E0B" stop-opacity="0.95" />
-                  <stop offset="100%" stop-color="#6366F1" stop-opacity="0.95" />
-                </linearGradient>
-
-                <linearGradient id="roadmapCurveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#EC4899" stop-opacity="0.95" />
-                  <stop offset="50%" stop-color="#A855F7" stop-opacity="0.9" />
-                  <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.95" />
-                </linearGradient>
-
-                <filter id="roadmapBloom" x="-20%" y="-40%" width="140%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <!-- Row 1 Illuminated Path: 01 -> 02 -> 03 -> 04 -->
-              <path d="M 140,88 L 430,88 L 720,88 L 1010,88" stroke="rgba(255,255,255,0.08)" stroke-width="8" stroke-linecap="round" />
-              <path d="M 140,88 L 430,88 L 720,88 L 1010,88" stroke="url(#roadmapGrad1)" stroke-width="3" stroke-linecap="round" filter="url(#roadmapBloom)" class="roadmap-active-glow-1" />
-              <path d="M 140,88 L 430,88 L 720,88 L 1010,88" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-dasharray="6 14" stroke-linecap="round" class="roadmap-flowing-dots" />
-
-              <!-- Serpentine Loop Connector from Row 1 to Row 2: 04 -> 05 -->
-              <path d="M 1010,88 C 1140,88 1140,310 1010,310" stroke="rgba(255,255,255,0.08)" stroke-width="8" stroke-linecap="round" />
-              <path d="M 1010,88 C 1140,88 1140,310 1010,310" stroke="url(#roadmapCurveGrad)" stroke-width="3" stroke-linecap="round" filter="url(#roadmapBloom)" />
-              <path d="M 1010,88 C 1140,88 1140,310 1010,310" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-dasharray="6 14" stroke-linecap="round" class="roadmap-flowing-dots-loop" />
-
-              <!-- Row 2 Illuminated Path: 05 -> 06 -> 07 -> 08 (Flows leftwards from 1010 to 140) -->
-              <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="rgba(255,255,255,0.08)" stroke-width="8" stroke-linecap="round" />
-              <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="url(#roadmapGrad2)" stroke-width="3" stroke-linecap="round" filter="url(#roadmapBloom)" class="roadmap-active-glow-2" />
-              <path d="M 1010,310 L 720,310 L 430,310 L 140,310" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-dasharray="6 14" stroke-linecap="round" class="roadmap-flowing-dots" />
-
-              <!-- 8 Glowing Waypoint Milestone Nodes on Path (Illuminate on Card Hover/Active) -->
-              <g class="roadmap-waypoint-nodes" id="roadmap-waypoint-nodes">
-                <!-- 01 Web Fundamentals (140, 88) -->
-                <circle cx="140" cy="88" r="11" class="waypoint-glow-halo halo-0" fill="rgba(250, 85, 56, 0.25)" />
-                <circle cx="140" cy="88" r="8" class="waypoint-ring ring-0" stroke="#FA5538" stroke-width="2.2" fill="#FFFFFF" data-waypoint="0" />
-                <circle cx="140" cy="88" r="4" class="waypoint-core core-0" fill="#FA5538" data-waypoint="0" />
-                <!-- 02 Frontend Dev (430, 88) -->
-                <circle cx="430" cy="88" r="11" class="waypoint-glow-halo halo-1" fill="rgba(37, 99, 235, 0.25)" />
-                <circle cx="430" cy="88" r="8" class="waypoint-ring ring-1" stroke="#2563EB" stroke-width="2.2" fill="#FFFFFF" data-waypoint="1" />
-                <circle cx="430" cy="88" r="4" class="waypoint-core core-1" fill="#2563EB" data-waypoint="1" />
-                <!-- 03 Motion UI (720, 88) -->
-                <circle cx="720" cy="88" r="11" class="waypoint-glow-halo halo-2" fill="rgba(6, 182, 212, 0.25)" />
-                <circle cx="720" cy="88" r="8" class="waypoint-ring ring-2" stroke="#06B6D4" stroke-width="2.2" fill="#FFFFFF" data-waypoint="2" />
-                <circle cx="720" cy="88" r="4" class="waypoint-core core-2" fill="#06B6D4" data-waypoint="2" />
-                <!-- 04 Prompt Engineering (1010, 88) -->
-                <circle cx="1010" cy="88" r="11" class="waypoint-glow-halo halo-3" fill="rgba(236, 72, 153, 0.25)" />
-                <circle cx="1010" cy="88" r="8" class="waypoint-ring ring-3" stroke="#EC4899" stroke-width="2.2" fill="#FFFFFF" data-waypoint="3" />
-                <circle cx="1010" cy="88" r="4" class="waypoint-core core-3" fill="#EC4899" data-waypoint="3" />
-                <!-- 05 Exploring AI (1010, 310) -->
-                <circle cx="1010" cy="310" r="11" class="waypoint-glow-halo halo-4" fill="rgba(139, 92, 246, 0.25)" />
-                <circle cx="1010" cy="310" r="8" class="waypoint-ring ring-4" stroke="#8B5CF6" stroke-width="2.2" fill="#FFFFFF" data-waypoint="4" />
-                <circle cx="1010" cy="310" r="4" class="waypoint-core core-4" fill="#8B5CF6" data-waypoint="4" />
-                <!-- 06 Backend Core (720, 310) - Current Focus -->
-                <circle cx="720" cy="310" r="13" class="waypoint-glow-halo halo-5 waypoint-focus-halo" fill="rgba(16, 185, 129, 0.35)" />
-                <circle cx="720" cy="310" r="9" class="waypoint-ring ring-5 waypoint-current-focus" stroke="#10B981" stroke-width="2.6" fill="#FFFFFF" data-waypoint="5" />
-                <circle cx="720" cy="310" r="4.5" class="waypoint-core core-5" fill="#10B981" data-waypoint="5" />
-                <!-- 07 Data & Cloud (430, 310) -->
-                <circle cx="430" cy="310" r="11" class="waypoint-glow-halo halo-6" fill="rgba(245, 158, 11, 0.25)" />
-                <circle cx="430" cy="310" r="8" class="waypoint-ring ring-6" stroke="#F59E0B" stroke-width="2.2" fill="#FFFFFF" data-waypoint="6" />
-                <circle cx="430" cy="310" r="4" class="waypoint-core core-6" fill="#F59E0B" data-waypoint="6" />
-                <!-- 08 Future Goals (140, 310) -->
-                <circle cx="140" cy="310" r="11" class="waypoint-glow-halo halo-7" fill="rgba(99, 102, 241, 0.25)" />
-                <circle cx="140" cy="310" r="8" class="waypoint-ring ring-7" stroke="#6366F1" stroke-width="2.2" fill="#FFFFFF" data-waypoint="7" />
-                <circle cx="140" cy="310" r="4" class="waypoint-core core-7" fill="#6366F1" data-waypoint="7" />
-              </g>
-            </svg>
-          </div>
-
-          <!-- 8 Tactile 3D Milestone Cards Universe (Serpentine Journey Route 01->04 ↓ 08<-05) -->
-          <div class="lj-cards-universe" id="lj-nodes-container" role="tablist" aria-label="Learning Milestones">
-            
-            <!-- TIER 1: FRONTEND MASTERY & INTERACTIVE CRAFT (01, 02, 03, 04) -->
-            <div class="lj-cards-tier tier-foundations">
-              
-              <!-- Card 01 — Web Fundamentals -->
-              <button type="button" class="lj-card-3d is-active card-stage-01" data-index="0" role="tab" aria-selected="true" aria-controls="lj-single-detail-card" id="milestone-tab-0" aria-label="Milestone 01: Web Fundamentals — HTML, CSS, JavaScript, responsive design" style="--step-accent:#FA5538; --step-glow:rgba(250,85,56,0.40); --step-border:rgba(250,85,56,0.45); --step-inner-glow:rgba(250,85,56,0.14); --card-rot-x:1.2deg; --card-rot-y:2.2deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">01</span>
-                      <span class="card-status-label">FOUNDATIONS</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 01: Glowing Code Studio Window & Bracket Prism -->
-                    <div class="card-3d-mini-object obj-code-window" aria-hidden="true">
-                      <div class="mini-window-frame">
-                        <div class="mini-window-dots">
-                          <span class="mw-dot r"></span>
-                          <span class="mw-dot y"></span>
-                          <span class="mw-dot g"></span>
-                        </div>
-                        <div class="mini-window-code">
-                          <span class="code-bracket">&lt;/&gt;</span>
-                          <div class="code-line-bars">
-                            <span class="c-bar bar-1"></span>
-                            <span class="c-bar bar-2"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <span class="mini-obj-badge">HTML5</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
+          <!-- MILESTONE 01: Left Platform -> Right Card -->
+          <div class="lj-milestone-station station-left" data-step="1">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 01: Web Fundamentals">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">01</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
                   </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Web Fundamentals</h4>
-                    <p class="card-stage-sub">HTML, CSS, JavaScript, responsive design</p>
-                  </div>
-
-                  <!-- Clean Unboxed Skills Row with High Visibility -->
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">HTML5</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">CSS3</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">JavaScript ES6+</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Responsive UI</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 01 OF 08 · 2026</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 01 -> 02 -->
-              <div class="lj-step-connector connector-step-1" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 02 — Frontend Development -->
-              <button type="button" class="lj-card-3d card-stage-02" data-index="1" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-1" aria-label="Milestone 02: Frontend Development — React, Tailwind CSS, component architecture, modern UI" style="--step-accent:#2563EB; --step-glow:rgba(37,99,235,0.40); --step-border:rgba(37,99,235,0.45); --step-inner-glow:rgba(37,99,235,0.14); --card-rot-x:1.4deg; --card-rot-y:0.8deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">02</span>
-                      <span class="card-status-label">COMPONENTS</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 02: Layered UI Component Stack & React Orbit -->
-                    <div class="card-3d-mini-object obj-ui-stack" aria-hidden="true">
-                      <div class="ui-layer layer-base"></div>
-                      <div class="ui-layer layer-mid">
-                        <span class="react-mini-orbit"></span>
-                      </div>
-                      <div class="ui-layer layer-front">
-                        <span class="ui-pill-btn"></span>
-                      </div>
-                      <span class="mini-obj-badge">REACT</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Frontend Development</h4>
-                    <p class="card-stage-sub">React, Tailwind CSS, component architecture, modern UI</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">React.js</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Tailwind CSS</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Components</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">State Flow</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 02 OF 08 · MODULAR</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 02 -> 03 -->
-              <div class="lj-step-connector connector-step-2" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 03 — Animation & Interactive UI -->
-              <button type="button" class="lj-card-3d card-stage-03" data-index="2" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-2" aria-label="Milestone 03: Animation & Interactive UI — GSAP, motion, micro-interactions, scroll animation, tactile interfaces" style="--step-accent:#06B6D4; --step-glow:rgba(6,182,212,0.40); --step-border:rgba(6,182,212,0.45); --step-inner-glow:rgba(6,182,212,0.14); --card-rot-x:1.4deg; --card-rot-y:-0.8deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">03</span>
-                      <span class="card-status-label">TACTILE MOTION</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 03: Kinetic Motion & Bezier Orbit -->
-                    <div class="card-3d-mini-object obj-kinetic-motion" aria-hidden="true">
-                      <div class="kinetic-orbit-ring">
-                        <span class="kinetic-satellite"></span>
-                      </div>
-                      <div class="kinetic-timeline-rail">
-                        <span class="k-dot kd-1"></span>
-                        <span class="k-dot kd-2"></span>
-                      </div>
-                      <div class="kinetic-cursor-pill">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
-                      </div>
-                      <span class="mini-obj-badge">60 FPS</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Animation &amp; Interactive UI</h4>
-                    <p class="card-stage-sub">GSAP, motion, micro-interactions, scroll animation, tactile interfaces</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">GSAP</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">ScrollTrigger</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">3D Physics</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Tactile UI</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 03 OF 08 · KINETIC</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 03 -> 04 -->
-              <div class="lj-step-connector connector-step-3" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 04 — Prompt Engineering -->
-              <button type="button" class="lj-card-3d card-stage-04" data-index="3" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-3" aria-label="Milestone 04: Prompt Engineering — Prompt design, AI workflows, creative problem solving, AI-assisted development" style="--step-accent:#EC4899; --step-glow:rgba(236,72,153,0.40); --step-border:rgba(236,72,153,0.45); --step-inner-glow:rgba(236,72,153,0.14); --card-rot-x:1.2deg; --card-rot-y:-2.2deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">04</span>
-                      <span class="card-status-label">AI WORKFLOWS</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 04: Intelligent Prompt Bubble & Sparkle -->
-                    <div class="card-3d-mini-object obj-prompt-bubble" aria-hidden="true">
-                      <div class="prompt-chat-capsule">
-                        <span class="prompt-sigil">&gt;</span>
-                        <span class="prompt-spark-flare">✦</span>
-                      </div>
-                      <div class="prompt-token-beads">
-                        <span class="p-bead b-1"></span>
-                        <span class="p-bead b-2"></span>
-                      </div>
-                      <span class="mini-obj-badge">PROMPT</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Prompt Engineering</h4>
-                    <p class="card-stage-sub">Prompt design, AI workflows, creative problem solving, AI-assisted development</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">Prompt Architecture</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">LLM Workflows</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Vibe Coding</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 04 OF 08 · AMPLIFY</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-            </div><!-- /.tier-foundations -->
-
-            <!-- ROADMAP TIER BRIDGE CONNECTOR (Sequential S-Curve Bridge: 01->04 ↴ 08<-05) -->
-            <div class="lj-roadmap-tier-bridge" aria-hidden="true">
-              <div class="bridge-rail-glow"></div>
-              
-              <!-- Right Flank Serpentine 04 ↓ 05 Turn Conduit -->
-              <div class="bridge-serpentine-conduit-right" title="Serpentine Route: 04 flows directly into 05">
-                <span class="turn-pipe-line"></span>
-                <span class="turn-flowing-particle"></span>
-                <div class="turn-arrow-badge">
-                  <span class="turn-label">04 ↓ 05</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="bridge-milestone-pill">
-                <span class="bridge-spark">✦</span>
-                <span class="bridge-text">CONTINUOUS CHRONOLOGICAL ROUTE · 01 → 02 → 03 → 04 &nbsp;↴&nbsp; 08 ← 07 ← 06 ← 05</span>
-                <div class="bridge-flow-arrow-wrap">
-                  <svg class="bridge-flow-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                  <span class="bridge-pulse-ring"></span>
                 </div>
               </div>
             </div>
-
-            <!-- TIER 2: INTELLIGENT AI & FULL-STACK SCALING (Serpentine Desktop Flow: 08 <- 07 <- 06 <- 05) -->
-            <div class="lj-cards-tier tier-frontier s-curve-row-reverse">
-              
-              <!-- Card 05 — Exploring AI (Desktop Column 4: Directly below Card 04) -->
-              <button type="button" class="lj-card-3d card-stage-05" data-index="4" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-4" aria-label="Milestone 05: Exploring AI — Generative AI, LLMs, AI integrations, AI-powered experiences" style="--step-accent:#8B5CF6; --step-glow:rgba(139,92,246,0.40); --step-border:rgba(139,92,246,0.45); --step-inner-glow:rgba(139,92,246,0.14); --card-rot-x:-1.2deg; --card-rot-y:-2.2deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">05</span>
-                      <span class="card-status-label">INTELLIGENCE</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 05: Glowing Neural Brain Node Network & Gemini Core -->
-                    <div class="card-3d-mini-object obj-neural-brain" aria-hidden="true">
-                      <div class="neural-cluster">
-                        <span class="n-node center"></span>
-                        <span class="n-node n-1"></span>
-                        <span class="n-node n-2"></span>
-                        <span class="n-node n-3"></span>
-                        <svg class="neural-svg-lines" width="38" height="38" viewBox="0 0 38 38">
-                          <line x1="19" y1="19" x2="8" y2="10" stroke="currentColor" stroke-width="1.6" opacity="0.7" />
-                          <line x1="19" y1="19" x2="30" y2="10" stroke="currentColor" stroke-width="1.6" opacity="0.7" />
-                          <line x1="19" y1="19" x2="19" y2="30" stroke="currentColor" stroke-width="1.6" opacity="0.7" />
-                        </svg>
-                      </div>
-                      <span class="mini-obj-badge">GEMINI</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Exploring AI</h4>
-                    <p class="card-stage-sub">Generative AI, LLMs, AI integrations, AI-powered experiences</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">Generative AI</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Gemini API</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">LLM Runtimes</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">AI UX</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 05 OF 08 · FRONTIER</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 01 · FOUNDATIONS</span>
+                  <span class="card-year-tag">2026 START</span>
                 </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 05 -> 06 (Points LEFT on desktop serpentine) -->
-              <div class="lj-step-connector connector-step-5" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 06 — Backend Core (CURRENT ACTIVE FOCUS: Desktop Column 3) -->
-              <button type="button" class="lj-card-3d is-current-focus card-stage-06" data-index="5" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-5" aria-label="Milestone 06: Backend Core — Node.js, Express, REST APIs, server-side architecture (Current Focus)" style="--step-accent:#10B981; --step-glow:rgba(16,185,129,0.50); --step-border:rgba(16,185,129,0.55); --step-inner-glow:rgba(16,185,129,0.18); --card-rot-x:-1.4deg; --card-rot-y:-0.8deg;">
-                <div class="card-floating-focus-badge" aria-hidden="true">
-                  <span class="focus-live-dot"></span>
-                  <span class="focus-badge-text">CURRENT FOCUS</span>
-                </div>
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">06</span>
-                      <span class="card-status-label status-active-focus">
-                        <span class="focus-live-dot"></span>
-                        CURRENT FOCUS
-                      </span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 06: Server Stack & API Pipeline Conduits -->
-                    <div class="card-3d-mini-object obj-server-stack" aria-hidden="true">
-                      <div class="server-rack-box">
-                        <div class="rack-unit u-1">
-                          <span class="unit-led on"></span>
-                          <span class="unit-slot"></span>
-                        </div>
-                        <div class="rack-unit u-2">
-                          <span class="unit-led on pulse"></span>
-                          <span class="unit-slot"></span>
-                        </div>
-                        <div class="rack-unit u-3">
-                          <span class="unit-led on"></span>
-                          <span class="unit-slot"></span>
-                        </div>
-                      </div>
-                      <span class="mini-obj-badge">REST API</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Backend Core</h4>
-                    <p class="card-stage-sub">Node.js, Express, REST APIs, server-side architecture</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">Node.js</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Express</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">RESTful APIs</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Middleware</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 06 OF 08 · ACTIVE</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 06 -> 07 (Points LEFT on desktop serpentine) -->
-              <div class="lj-step-connector connector-step-6" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 07 — Data & Cloud (Desktop Column 2) -->
-              <button type="button" class="lj-card-3d card-stage-07" data-index="6" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-6" aria-label="Milestone 07: Data & Cloud — PostgreSQL, Supabase, databases, deployment, cloud infrastructure" style="--step-accent:#F59E0B; --step-glow:rgba(245,158,11,0.40); --step-border:rgba(245,158,11,0.45); --step-inner-glow:rgba(245,158,11,0.14); --card-rot-x:-1.4deg; --card-rot-y:0.8deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">07</span>
-                      <span class="card-status-label">PERSISTENCE</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 07: Database Cylinder & Cloud Connection -->
-                    <div class="card-3d-mini-object obj-database-cylinder" aria-hidden="true">
-                      <div class="db-disc-stack">
-                        <span class="db-disc d-top"></span>
-                        <span class="db-disc d-mid"></span>
-                        <span class="db-disc d-bot"></span>
-                      </div>
-                      <div class="db-cloud-halo">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path></svg>
-                      </div>
-                      <span class="mini-obj-badge">SQL</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Data &amp; Cloud</h4>
-                    <p class="card-stage-sub">PostgreSQL, Supabase, databases, deployment, cloud infrastructure</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">PostgreSQL</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Supabase</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Cloud Deploy</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Data Schemas</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 07 OF 08 · DURABLE</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-              <!-- In-Grid Directional Conduit Connector 07 -> 08 (Points LEFT on desktop serpentine) -->
-              <div class="lj-step-connector connector-step-7" aria-hidden="true">
-                <div class="connector-pipe">
-                  <span class="pipe-glow-packet"></span>
-                </div>
-                <div class="connector-arrow-head">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </div>
-              </div>
-
-              <!-- Card 08 — Future Goals (Desktop Column 1: Grand Destination) -->
-              <button type="button" class="lj-card-3d card-stage-08" data-index="7" role="tab" aria-selected="false" aria-controls="lj-single-detail-card" id="milestone-tab-7" aria-label="Milestone 08: Future Goals — Full-stack AI products, AI agents, advanced interfaces, ambitious product building" style="--step-accent:#6366F1; --step-glow:rgba(99,102,241,0.40); --step-border:rgba(99,102,241,0.45); --step-inner-glow:rgba(99,102,241,0.14); --card-rot-x:-1.2deg; --card-rot-y:2.2deg;">
-                <div class="card-depth-layer-back" aria-hidden="true"></div>
-                <div class="card-depth-layer-mid" aria-hidden="true"></div>
-                <div class="card-cursor-spotlight" aria-hidden="true"></div>
-                <div class="card-3d-ambient" aria-hidden="true"></div>
-                <div class="card-glass-specular" aria-hidden="true"></div>
-                <div class="card-prismatic-rim" aria-hidden="true"></div>
-                <div class="card-3d-inner">
-                  
-                  <div class="card-top-rail">
-                    <div class="card-milestone-lead">
-                      <span class="card-num-large">08</span>
-                      <span class="card-status-label">HORIZON</span>
-                    </div>
-                    
-                    <!-- 3D Mini Object 08: Ascending Launch Capsule & Target Starlight -->
-                    <div class="card-3d-mini-object obj-launch-capsule" aria-hidden="true">
-                      <div class="capsule-vector">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                          <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                        </svg>
-                      </div>
-                      <div class="capsule-spark-trail"></div>
-                      <span class="mini-obj-badge">AGENTS</span>
-                      <div class="mini-obj-halo"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="card-body-content">
-                    <h4 class="card-stage-title">Future Goals</h4>
-                    <p class="card-stage-sub">Full-stack AI products, AI agents, advanced interfaces, ambitious product building</p>
-                  </div>
-
-                  <div class="card-skills-row" aria-label="Core Competencies">
-                    <span class="skill-unboxed">Full-Stack AI</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Autonomous Agents</span>
-                    <span class="skill-sep" aria-hidden="true">·</span>
-                    <span class="skill-unboxed">Next-Gen UI</span>
-                  </div>
-
-                  <div class="card-bottom-rail">
-                    <span class="card-step-kicker">STEP 08 OF 08 · HORIZON</span>
-                    <span class="card-action-cue" aria-hidden="true">
-                      <span class="cue-label">INSPECT</span>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-                <div class="card-layered-edge" aria-hidden="true"></div>
-                <div class="card-extrusion-bevel" aria-hidden="true"></div>
-              </button>
-
-            </div><!-- /.tier-frontier -->
-
-          </div><!-- /.lj-cards-universe -->
-
-        </div><!-- /.lj-timeline-stage -->
-
-        <!-- MAIN FEATURE DETAIL PANEL (FLOATING PHYSICAL GLASS OBJECT WITH 3 BALANCED ZONES) -->
-        <div class="lj-detail-panel-viewport">
-          <div class="lj-cinematic-feature-panel" id="lj-single-detail-card" role="tabpanel" aria-labelledby="milestone-tab-0">
-            <div class="panel-rose-spotlight" aria-hidden="true"></div>
-            <div class="panel-specular-top-edge" aria-hidden="true"></div>
-
-            <div class="panel-three-zones">
-              
-              <!-- ZONE 1 (LEFT): 3D Visual Stage Artifact -->
-              <div class="panel-zone-left">
-                <div class="artifact-3d-assembly" id="lj-stage-artifact">
-                  <div class="artifact-ambient-glow" id="lj-artifact-glow"></div>
-                  <div class="artifact-floating-body">
-                    <div class="artifact-icon-canvas" id="lj-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                    </div>
-                    <div class="artifact-reflection-sheen"></div>
-                  </div>
-                  <span class="artifact-badge-text" id="lj-artifact-num">STAGE 01</span>
-                </div>
-              </div>
-
-              <!-- ZONE 2 (CENTER): Title, Description & Refined Skill Chips -->
-              <div class="panel-zone-center">
-                <div class="panel-kicker-row">
-                  <span class="panel-chapter-tag" id="lj-card-kicker">01 · THE GENESIS</span>
-                  <div class="panel-status-tag" id="lj-card-status-indicator">
-                    <span class="status-pulse-dot" id="lj-status-dot"></span>
-                    <span class="status-text" id="lj-card-status">Completed Foundations</span>
-                  </div>
-                </div>
-
-                <h3 class="panel-stage-title" id="lj-card-title">Stepping Into Web Engineering</h3>
-
-                <p class="panel-stage-desc" id="lj-card-description">
-                  Began my focused tech journey in 2026. Prioritized understanding fundamental web architecture, programming paradigms, and turning creative visual imagination into clean, semantic code.
+                <h3 class="card-title">Web Fundamentals</h3>
+                <p class="card-subtitle">HTML5, CSS3, JavaScript ES6+, Responsive Design</p>
+                <p class="card-narrative">
+                  Mastered fundamental web architecture, semantic markup in HTML5, modern flex/grid layouts with CSS3, DOM programming in JavaScript (ES6+), and resilient responsive layouts.
                 </p>
-
-                <!-- Refined Skill Chips -->
-                <div class="panel-technologies-group">
-                  <span class="tech-group-label">VALIDATED TOOLS &amp; ARCHITECTURAL PRINTS</span>
-                  <div class="panel-skill-chips-row" id="lj-card-skills-row"></div>
+                <div class="card-skills-list">
+                  <span class="skill-tag">HTML5</span>
+                  <span class="skill-tag">CSS3</span>
+                  <span class="skill-tag">JavaScript ES6+</span>
+                  <span class="skill-tag">Responsive UI</span>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- ZONE 3 (RIGHT): Editorial Quote & Takeaway -->
-              <div class="panel-zone-right">
-                <div class="panel-quote-card">
-                  <div class="quote-mark-glyph" aria-hidden="true">“</div>
-                  <p class="quote-text-body" id="lj-card-quote">
-                    Mastering the primitives before abstractions. Semantic structure is the foundation of digital longevity.
-                  </p>
-                  <div class="quote-footer-meta">
-                    <span class="quote-signee">Arfa Munam</span>
-                    <span class="quote-context">Engineering Philosophy</span>
+          <!-- MILESTONE 02: Right Platform -> Left Card -->
+          <div class="lj-milestone-station station-right" data-step="2">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 02: Frontend Development">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">02</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="3" y1="9" x2="21" y2="9"></line>
+                      <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 02 · COMPONENTS</span>
+                  <span class="card-year-tag">MODULAR UI</span>
+                </div>
+                <h3 class="card-title">Frontend Development</h3>
+                <p class="card-subtitle">React, Tailwind CSS, Component Architecture, Modern UI</p>
+                <p class="card-narrative">
+                  Component-driven architecture in React, declarative state flows, rapid responsive styling with Tailwind CSS, and engineering reusable design systems with clean state boundaries.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">React.js</span>
+                  <span class="skill-tag">Tailwind CSS</span>
+                  <span class="skill-tag">Component Systems</span>
+                  <span class="skill-tag">State Flow</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            </div><!-- /.panel-three-zones -->
+          <!-- MILESTONE 03: Left Platform -> Right Card -->
+          <div class="lj-milestone-station station-left" data-step="3">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 03: Animation & Interactive UI">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">03</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 03 · TACTILE MOTION</span>
+                  <span class="card-year-tag">60 FPS</span>
+                </div>
+                <h3 class="card-title">Animation &amp; Interactive UI</h3>
+                <p class="card-subtitle">GSAP, ScrollTrigger, Micro-interactions, Tactile Interfaces</p>
+                <p class="card-narrative">
+                  Engineered tactile web experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and micro-interactions that make applications feel tangible and responsive.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">GSAP Motion</span>
+                  <span class="skill-tag">ScrollTrigger</span>
+                  <span class="skill-tag">3D Physics</span>
+                  <span class="skill-tag">Tactile UI</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <!-- Bottom Luminous Accent Rail -->
-            <div class="panel-bottom-luminous-rail" id="lj-card-accent-strip"></div>
-          </div><!-- /.lj-cinematic-feature-panel -->
-        </div><!-- /.lj-detail-panel-viewport -->
+          <!-- MILESTONE 04: Right Platform -> Left Card -->
+          <div class="lj-milestone-station station-right" data-step="4">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 04: Prompt Engineering">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">04</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      <line x1="9" y1="10" x2="15" y2="10"></line>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 04 · AI WORKFLOWS</span>
+                  <span class="card-year-tag">AMPLIFY</span>
+                </div>
+                <h3 class="card-title">Prompt Engineering</h3>
+                <p class="card-subtitle">Prompt Design, LLM Reasoning Chains, Vibe Coding</p>
+                <p class="card-narrative">
+                  Structured prompt design, system directives, reasoning chains, few-shot prompting, and AI-assisted vibe coding workflows for rapid prototyping and production code generation.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">Prompt Design</span>
+                  <span class="skill-tag">LLM Workflows</span>
+                  <span class="skill-tag">Chain-of-Thought</span>
+                  <span class="skill-tag">Vibe Coding</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      </div><!-- /.lj-timeline-universe -->
+          <!-- MILESTONE 05: Left Platform -> Right Card -->
+          <div class="lj-milestone-station station-left" data-step="5">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 05: Exploring AI">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">05</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                      <path d="M2 12h20"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 05 · INTELLIGENCE</span>
+                  <span class="card-year-tag">FRONTIER</span>
+                </div>
+                <h3 class="card-title">Exploring AI</h3>
+                <p class="card-subtitle">Generative AI, Gemini API, LLM Integrations</p>
+                <p class="card-narrative">
+                  Integrating Gemini API and LLM models, streaming multimodal interactions, structured function calling, and building ambient intelligent web experiences.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">Generative AI</span>
+                  <span class="skill-tag">Gemini API</span>
+                  <span class="skill-tag">LLM Integrations</span>
+                  <span class="skill-tag">AI UX</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <!-- MILESTONE 06: Right Platform -> Left Card (CURRENT FOCUS) -->
+          <div class="lj-milestone-station station-right is-active-focus" data-step="6">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform platform-focus-beacon" tabindex="0" role="button" aria-label="Milestone 06: Backend Core (Current Focus)">
+                <div class="platform-focus-pulse" aria-hidden="true"></div>
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge badge-active">06</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card card-focus-highlight">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-emerald">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    STEP 06 · CURRENT FOCUS
+                  </span>
+                  <span class="card-year-tag tag-now">2026 ACTIVE</span>
+                </div>
+                <h3 class="card-title">Backend Core</h3>
+                <p class="card-subtitle">Node.js, Express, REST APIs, Server Architecture</p>
+                <p class="card-narrative">
+                  Currently expanding horizontally into server-side development with Node.js and Express, API design, middleware pipelines, authentication patterns, and building robust server infrastructure.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">Node.js</span>
+                  <span class="skill-tag">Express.js</span>
+                  <span class="skill-tag">RESTful APIs</span>
+                  <span class="skill-tag">Server Architecture</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <!-- BOTTOM: "WHAT DRIVES ME" VALUE PILLARS (CINEMATIC DARK GLASS) -->
+          <!-- MILESTONE 07: Left Platform -> Right Card -->
+          <div class="lj-milestone-station station-left" data-step="7">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 07: Data & Cloud">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">07</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 07 · PERSISTENCE</span>
+                  <span class="card-year-tag">DURABLE</span>
+                </div>
+                <h3 class="card-title">Data &amp; Cloud</h3>
+                <p class="card-subtitle">PostgreSQL, Supabase, Databases, Cloud Deployment</p>
+                <p class="card-narrative">
+                  Relational database modeling in PostgreSQL, real-time events and auth with Supabase, cloud infrastructure deployment, and durable persistence.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">PostgreSQL</span>
+                  <span class="skill-tag">Supabase</span>
+                  <span class="skill-tag">Cloud Deploy</span>
+                  <span class="skill-tag">Data Schemas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MILESTONE 08: Right Platform -> Left Card -->
+          <div class="lj-milestone-station station-right" data-step="8">
+            <div class="lj-platform-column">
+              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 08: Future Goals">
+                <div class="platform-shadow-base" aria-hidden="true"></div>
+                <div class="platform-bevel-rim" aria-hidden="true"></div>
+                <div class="platform-top-disc">
+                  <div class="platform-num-badge">08</div>
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lj-card-column">
+              <div class="lj-milestone-card">
+                <div class="card-header-meta">
+                  <span class="card-tag-pill tag-teal">STEP 08 · HORIZON</span>
+                  <span class="card-year-tag">DESTINATION</span>
+                </div>
+                <h3 class="card-title">Future Goals</h3>
+                <p class="card-subtitle">Full-Stack AI Products, AI Agents, Advanced Interfaces</p>
+                <p class="card-narrative">
+                  Architecting end-to-end full-stack AI products, autonomous agents, and high-impact web software with aesthetic discipline and production-grade engineering.
+                </p>
+                <div class="card-skills-list">
+                  <span class="skill-tag">Full-Stack AI</span>
+                  <span class="skill-tag">Autonomous Agents</span>
+                  <span class="skill-tag">Next-Gen UI</span>
+                  <span class="skill-tag">Ambitious Products</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.lj-milestones-stream -->
+
+      </div><!-- /.lj-winding-stage -->
+
+      <!-- BOTTOM: "WHAT DRIVES ME" VALUE PILLARS (LIGHT LUXURY 3D EDITORIAL) -->
       <div class="lj-drives-me-strip reveal" id="lj-drives-me-strip">
         <div class="drives-strip-header">
           <span class="drives-spark" aria-hidden="true">✦</span>

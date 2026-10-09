@@ -817,8 +817,9 @@ function setupExploringRadar() {
 /**
  * =========================================================================
  * 2026 PREMIUM "WORK, IN MOTION" 3D HERO INTERACTION
- * Physically emerging 3D character with multi-layer spring parallax,
- * cursor tracking, smooth hover depth lift, and editorial entrance reveal.
+ * Recreated Miniature Futuristic Developer Workspace
+ * Fluid cursor parallax across architectural background, 3D floating platform,
+ * realistic laptop, desk objects, and floating glass cards.
  * =========================================================================
  */
 function setupWorkInMotionIntro() {
@@ -857,13 +858,14 @@ function setupWorkInMotionIntro() {
   if (prefersReduced) return;
 
   const stage = document.getElementById('motion-character-stage');
-  const frame = document.getElementById('portal-frame-chassis');
-  const character = document.getElementById('motion-character-entity');
-  const halo = stage ? stage.querySelector('.portal-ambient-halo') : null;
-  const spotlight = stage ? stage.querySelector('.frame-ambient-spotlight') : null;
-  const gemEls = stage ? Array.from(stage.querySelectorAll('.portal-gem')) : [];
+  const scene = document.getElementById('studio-3d-scene');
+  const cursorLight = document.getElementById('studio-cursor-light');
+  const physicalStage = document.getElementById('studio-physical-stage');
+  const archSubtle = stage ? stage.querySelector('.arch-subtle-interface') : null;
+  const floatingCards = stage ? Array.from(stage.querySelectorAll('.floating-glass-card')) : [];
+  const spheres = stage ? Array.from(stage.querySelectorAll('.orbit-sphere')) : [];
 
-  if (!stage || !frame || !character) return;
+  if (!stage || !scene) return;
 
   let targetRotX = 0, targetRotY = 0;
   let currRotX = 0, currRotY = 0;
@@ -873,50 +875,52 @@ function setupWorkInMotionIntro() {
   let rafId = null;
 
   function updatePhysics() {
-    currRotX += (targetRotX - currRotX) * 0.08;
-    currRotY += (targetRotY - currRotY) * 0.08;
-    currTransX += (targetTransX - currTransX) * 0.08;
-    currTransY += (targetTransY - currTransY) * 0.08;
+    currRotX += (targetRotX - currRotX) * 0.075;
+    currRotY += (targetRotY - currRotY) * 0.075;
+    currTransX += (targetTransX - currTransX) * 0.075;
+    currTransY += (targetTransY - currTransY) * 0.075;
 
-    const zDepth = isHovered ? 56 : 46;
-    const charScale = isHovered ? 1.03 : 1.0;
+    // 1. Scene main perspective tilt (subtle and controlled: 2 to 3.5 deg)
+    scene.style.transform = `rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg)`;
 
-    // 1. Frame chassis: physical 3D tilt with subtle translation
-    frame.style.transform = `translateX(calc(-50% + ${(currTransX * 0.45).toFixed(2)}px)) translateY(${(currTransY * 0.45).toFixed(2)}px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg)`;
-
-    // 2. Character entity: foreground 3D breakout at higher depth & parallax disparity
-    character.style.transform = `translateX(calc(-50% + ${(currTransX * 0.85).toFixed(2)}px)) translateY(${(currTransY * 0.85).toFixed(2)}px) translateZ(${zDepth}px) rotateX(${(currRotX * 1.15).toFixed(2)}deg) rotateY(${(currRotY * 1.15).toFixed(2)}deg) scale(${charScale})`;
-
-    // 3. Interior spotlight: counter-shift for deep interior volume
-    if (spotlight) {
-      spotlight.style.transform = `translate(${(-currTransX * 0.55).toFixed(1)}px, ${(-currTransY * 0.55).toFixed(1)}px)`;
+    // 2. Physical 3D workspace stage (Core depth: 2-4px translation)
+    if (physicalStage) {
+      physicalStage.style.transform = `translate3d(${(currTransX * 0.35).toFixed(1)}px, ${(currTransY * 0.35).toFixed(1)}px, 15px)`;
     }
 
-    // 4. Floating 3D Prismatic Gems parallax
-    gemEls.forEach((gem) => {
-      const depth = parseFloat(gem.getAttribute('data-depth')) || 1.0;
-      const gx = currTransX * 0.9 * depth;
-      const gy = currTransY * 0.9 * depth;
-      const gz = 46 * depth;
-      gem.style.transform = `translate3d(${gx.toFixed(1)}px, ${gy.toFixed(1)}px, ${gz.toFixed(1)}px)`;
+    // 3. Subtle background wireframe (Back depth parallax: 3-5px)
+    if (archSubtle) {
+      archSubtle.style.transform = `translate(-50%, -50%) translate3d(${(-currTransX * 0.3).toFixed(1)}px, ${(-currTransY * 0.3).toFixed(1)}px, -15px)`;
+    }
+
+    // 4. Floating Glass Cards (Layered depth response: 5-8px based on depth)
+    floatingCards.forEach((card) => {
+      const depth = parseFloat(card.getAttribute('data-depth')) || 1.0;
+      const cx = currTransX * 0.7 * depth;
+      const cy = currTransY * 0.7 * depth;
+      const cz = 55 * depth;
+      card.style.transform = `translate(-50%, -50%) translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, ${cz.toFixed(1)}px)`;
     });
 
-    // 5. Ambient halo
-    if (halo) {
-      halo.style.transform = `translate(${(currTransX * 0.25).toFixed(1)}px, ${(currTransY * 0.25).toFixed(1)}px) scale(${isHovered ? 1.08 : 1})`;
-    }
+    // 5. Orbiting Spheres Parallax (5-10px)
+    spheres.forEach((sphere) => {
+      const depth = parseFloat(sphere.getAttribute('data-depth')) || 1.0;
+      const sx = currTransX * 0.6 * depth;
+      const sy = currTransY * 0.6 * depth;
+      sphere.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 20px)`;
+    });
 
-    // Continue loop if active or still decelerating
+    // Continue animation loop until fully settled
     if (isHovered || Math.abs(currRotX - targetRotX) > 0.01 || Math.abs(currRotY - targetRotY) > 0.01 || Math.abs(currTransX - targetTransX) > 0.01) {
       rafId = requestAnimationFrame(updatePhysics);
     } else {
       rafId = null;
       if (!isHovered) {
-        frame.style.transform = '';
-        character.style.transform = '';
-        if (spotlight) spotlight.style.transform = '';
-        gemEls.forEach(gem => { gem.style.transform = ''; });
-        if (halo) halo.style.transform = '';
+        scene.style.transform = '';
+        if (physicalStage) physicalStage.style.transform = '';
+        if (archSubtle) archSubtle.style.transform = '';
+        floatingCards.forEach(card => { card.style.transform = ''; });
+        spheres.forEach(sphere => { sphere.style.transform = ''; });
       }
     }
   }
@@ -927,7 +931,7 @@ function setupWorkInMotionIntro() {
     }
   }
 
-  // Pointer tracking across the 3D portal stage
+  // Pointer tracking across the 3D studio stage
   stage.addEventListener('pointerenter', () => {
     isHovered = true;
     startPhysicsLoop();
@@ -935,13 +939,22 @@ function setupWorkInMotionIntro() {
 
   stage.addEventListener('pointermove', (e) => {
     const rect = stage.getBoundingClientRect();
-    const normX = Math.max(-1, Math.min(1, ((e.clientX - rect.left) / rect.width - 0.5) * 2)); // -1 to 1
-    const normY = Math.max(-1, Math.min(1, ((e.clientY - rect.top) / rect.height - 0.5) * 2)); // -1 to 1
+    const relX = e.clientX - rect.left;
+    const relY = e.clientY - rect.top;
 
-    targetRotX = -normY * 4.5;
-    targetRotY = normX * 5.0;
-    targetTransX = normX * 12;
-    targetTransY = normY * 10;
+    // Move cursor responsive warm light
+    if (cursorLight) {
+      cursorLight.style.left = `${relX}px`;
+      cursorLight.style.top = `${relY}px`;
+    }
+
+    const normX = Math.max(-1, Math.min(1, (relX / rect.width - 0.5) * 2)); // -1 to +1
+    const normY = Math.max(-1, Math.min(1, (relY / rect.height - 0.5) * 2)); // -1 to +1
+
+    targetRotX = -normY * 3.5;
+    targetRotY = normX * 4.0;
+    targetTransX = normX * 10;
+    targetTransY = normY * 8;
 
     startPhysicsLoop();
   });
@@ -2584,159 +2597,156 @@ function setupHero3DPortraitParallax() {
   const stage = visualZone ? (visualZone.querySelector('.hero-creative-visual-stage') || visualZone.querySelector('.hero-portrait-showcase')) : null;
   const cutoutFrame = visualZone ? visualZone.querySelector('#hero-portrait-cutout-frame') : null;
   const portrait = visualZone ? visualZone.querySelector('.hero-portrait-cutout-img') : null;
-  const kickerBadge = visualZone ? visualZone.querySelector('.hero-creative-kicker-pill') : null;
-
-  // Celestial atmosphere elements (matches reference image)
-  const celestialSystem = visualZone ? visualZone.querySelector('#hero-celestial-orbit-system') : null;
-  const pearls = visualZone ? Array.from(visualZone.querySelectorAll('.celestial-pearl, .celestial-twinkle, .celestial-dust')) : [];
-  const cursorLensLight = visualZone ? visualZone.querySelector('#hero-cinematic-cursor-light') : null;
-  const glossHighlight = visualZone ? visualZone.querySelector('#hero-portrait-gloss-highlight') : null;
-  const rimLight = visualZone ? visualZone.querySelector('#hero-portrait-rim-light') : null;
-
-  // Background atmospheric studio lighting nodes
-  const ambientLight = visualZone ? visualZone.querySelector('.hero-light-ambient') : null;
-  const coralLight = visualZone ? (visualZone.querySelector('.hero-light-coral') || visualZone.querySelector('.hero-disc-coral')) : null;
-  const cyanLight = visualZone ? (visualZone.querySelector('.hero-light-cyan') || visualZone.querySelector('.hero-disc-cyan')) : null;
-  const pinkLight = visualZone ? visualZone.querySelector('.hero-light-pink') : null;
-  const violetLight = visualZone ? (visualZone.querySelector('.hero-light-violet') || visualZone.querySelector('.hero-disc-purple')) : null;
-  const bloomLight = visualZone ? (visualZone.querySelector('.hero-light-bloom') || visualZone.querySelector('.hero-backdrop-glow-aura')) : null;
+  const motionBlurFe = document.getElementById('portrait-motion-blur-fe');
 
   const cursorRing = document.getElementById('cursor-follower');
   const cursorDot = document.getElementById('cursor-dot');
 
-  if (!visualZone || !stage || !cutoutFrame) return;
+  if (!visualZone || !stage || !cutoutFrame || !portrait) return;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let bounds = cutoutFrame.getBoundingClientRect();
-  let stageBounds = stage.getBoundingClientRect();
   let rafId = null;
 
-  // 3D Parallax & subtle physical floating physics (Restrained to max 2.2 deg)
+  // Velocity & Direction Tracking for Slow, Beautiful Motion Blur
+  let lastX = 0;
+  let lastY = 0;
+  let lastTime = 0;
+  let velX = 0;
+  let velY = 0;
+
+  let targetBlurX = 0;
+  let targetBlurY = 0;
+  let currentBlurX = 0;
+  let currentBlurY = 0;
+
+  // Organic, restrained 3D float & momentum (2.2° max tilt, 5px physical shift)
   let targetRotX = 0;
   let targetRotY = 0;
   let currentRotX = 0;
   let currentRotY = 0;
 
-  let targetGirlX = 0;
-  let targetGirlY = 0;
-  let currentGirlX = 0;
-  let currentGirlY = 0;
+  let targetShiftX = 0;
+  let targetShiftY = 0;
+  let currentShiftX = 0;
+  let currentShiftY = 0;
 
   let targetScale = 1.0;
   let currentScale = 1.0;
-  let targetTranslateZ = 0;
-  let currentTranslateZ = 0;
 
-  // Soft cinematic lens light & specular highlight
-  let targetLensX = 0;
-  let targetLensY = 0;
-  let currentLensX = 0;
-  let currentLensY = 0;
-  let targetLensOpacity = 0;
-  let currentLensOpacity = 0;
-
-  let targetGlossX = 50;
-  let targetGlossY = 40;
-  let currentGlossX = 50;
-  let currentGlossY = 40;
-  let targetGlossOpacity = 0;
-  let currentGlossOpacity = 0;
-
-  let pearlFloatAngle = 0;
   let isHovered = false;
+  let motionDecayTimer = null;
 
   function updateBounds() {
     bounds = cutoutFrame.getBoundingClientRect();
-    stageBounds = stage.getBoundingClientRect();
   }
 
   window.addEventListener('resize', updateBounds, { passive: true });
   window.addEventListener('scroll', updateBounds, { passive: true });
 
-  // Handle pointer movement across hero portrait stage
+  // Handle smooth cursor interaction
   function handlePointerMove(e) {
     if (prefersReduced) return;
     updateBounds();
 
-    const stageCenterX = stageBounds.left + stageBounds.width / 2;
-    const stageCenterY = stageBounds.top + stageBounds.height / 2;
-    const relCursorX = e.clientX - stageCenterX;
-    const relCursorY = e.clientY - stageCenterY;
+    const now = performance.now();
+    const dt = Math.max(16, now - (lastTime || now));
 
-    // 1. Soft Invisible Keylight: Follows cursor across portrait stage
-    targetLensX = e.clientX - stageBounds.left - 170;
-    targetLensY = e.clientY - stageBounds.top - 170;
-    targetLensOpacity = 0.85;
+    if (lastTime > 0) {
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      const instVx = (dx / dt) * 16.67;
+      const instVy = (dy / dt) * 16.67;
 
-    // 2. Portrait Specular Gloss Reflection: Normalized coordinates across cutout
-    const glossRelX = ((e.clientX - bounds.left) / (bounds.width || 1)) * 100;
-    const glossRelY = ((e.clientY - bounds.top) / (bounds.height || 1)) * 100;
-    targetGlossX = Math.max(10, Math.min(90, glossRelX));
-    targetGlossY = Math.max(10, Math.min(90, glossRelY));
-    targetGlossOpacity = 0.68;
+      // Smooth velocity interpolation for rich, slow, fluid response
+      velX += (instVx - velX) * 0.35;
+      velY += (instVy - velY) * 0.35;
 
-    // 3. Subtle 3D Parallax: strictly 1.8 to 2.2 degrees max (no exaggeration, completely stable face)
-    const halfW = stageBounds.width / 2 || 1;
-    const halfH = stageBounds.height / 2 || 1;
-    const normX = Math.max(-1, Math.min(1, relCursorX / halfW));
-    const normY = Math.max(-1, Math.min(1, relCursorY / halfH));
+      const speed = Math.hypot(velX, velY);
+      const dirX = velX / (speed || 1);
+      const dirY = velY / (speed || 1);
 
-    targetRotY = normX * 2.2;   // ~2.2 deg max horizontal tilt
-    targetRotX = -normY * 2.2;  // ~2.2 deg max vertical tilt
+      // Slow, beautiful motion-blur transformation:
+      // Controlled, elegant directional elongation in the path of motion
+      const blurMag = Math.min(8.5, speed * 0.38 + 1.2);
+      targetBlurX = Math.abs(dirX) * blurMag;
+      targetBlurY = Math.abs(dirY) * blurMag;
+    }
 
-    // Physical lift: image floats slightly above page (~2.6px max shift)
-    targetGirlX = normX * 2.6;
-    targetGirlY = normY * 2.6;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lastTime = now;
+
+    // Relative cursor coordinates for organic, weighted physical tilt & shift
+    const centerX = bounds.left + bounds.width / 2;
+    const centerY = bounds.top + bounds.height / 2;
+    const normX = Math.max(-1, Math.min(1, (e.clientX - centerX) / (bounds.width / 2 || 1)));
+    const normY = Math.max(-1, Math.min(1, (e.clientY - centerY) / (bounds.height / 2 || 1)));
+
+    targetRotY = normX * 2.2;
+    targetRotX = -normY * 1.8;
+    targetShiftX = normX * 5.0;
+    targetShiftY = normY * 5.0;
+
+    // When the cursor slows down or pauses inside the portrait,
+    // the motion blur gently resolves back to pure crisp sharpness
+    clearTimeout(motionDecayTimer);
+    motionDecayTimer = setTimeout(() => {
+      targetBlurX = 0;
+      targetBlurY = 0;
+      velX = 0;
+      velY = 0;
+    }, 140);
 
     if (!rafId) {
-      rafId = requestAnimationFrame(renderParallax);
+      rafId = requestAnimationFrame(renderMotionBlur);
     }
   }
 
   function activateHoverState(e) {
     isHovered = true;
     updateBounds();
-    const w = window.innerWidth;
-    targetScale = prefersReduced ? 1.0 : (w > 1024 ? 1.018 : 1.012);
-    targetTranslateZ = prefersReduced ? 0 : 8;
-    targetLensOpacity = 0.85;
-    targetGlossOpacity = 0.68;
+    targetScale = prefersReduced ? 1.0 : 1.018;
 
     cutoutFrame.classList.add('is-hovered');
-    stage.classList.add('has-hover');
-    if (celestialSystem) celestialSystem.classList.add('is-revealed');
     if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
 
     if (e && e.clientX) {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastTime = performance.now();
       handlePointerMove(e);
     }
 
     if (!rafId) {
-      rafId = requestAnimationFrame(renderParallax);
+      rafId = requestAnimationFrame(renderMotionBlur);
     }
   }
 
   function deactivateHoverState() {
     isHovered = false;
+    clearTimeout(motionDecayTimer);
+    lastTime = 0;
+    velX = 0;
+    velY = 0;
+
+    // Graceful, slow decay back to rest
+    targetBlurX = 0;
+    targetBlurY = 0;
     targetRotX = 0;
     targetRotY = 0;
-    targetGirlX = 0;
-    targetGirlY = 0;
+    targetShiftX = 0;
+    targetShiftY = 0;
     targetScale = 1.0;
-    targetTranslateZ = 0;
-    targetLensOpacity = 0;
-    targetGlossOpacity = 0;
 
     cutoutFrame.classList.remove('is-hovered');
-    stage.classList.remove('has-hover');
-    if (celestialSystem) celestialSystem.classList.remove('is-revealed');
     if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
     if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
 
     if (!rafId) {
-      rafId = requestAnimationFrame(renderParallax);
+      rafId = requestAnimationFrame(renderMotionBlur);
     }
   }
 
@@ -2749,18 +2759,28 @@ function setupHero3DPortraitParallax() {
   cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
   cutoutFrame.addEventListener('pointerleave', deactivateHoverState);
 
-  // Touch device support
+  // Touch device support (Slow, luxurious tap motion-blur glide that gently settles)
   let touchActive = false;
+  let touchTimeout = null;
   cutoutFrame.addEventListener('touchstart', (e) => {
-    if (!touchActive) {
-      touchActive = true;
-      activateHoverState(e);
-    }
+    touchActive = true;
+    activateHoverState(e);
+    targetBlurX = 3.6;
+    targetBlurY = 1.2;
+    targetShiftX = 3.0;
+    targetShiftY = 2.0;
+
+    clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(() => {
+      touchActive = false;
+      deactivateHoverState();
+    }, 1800);
   }, { passive: true });
 
   document.addEventListener('touchstart', (e) => {
     if (touchActive && !visualZone.contains(e.target)) {
       touchActive = false;
+      clearTimeout(touchTimeout);
       deactivateHoverState();
     }
   }, { passive: true });
@@ -2825,109 +2845,55 @@ function setupHero3DPortraitParallax() {
     }
   });
 
-  // 60FPS Physics animation loop using smooth linear interpolation (lerp)
-  function renderParallax() {
-    const lerpRot = 0.085;
-    const lerpGirl = 0.085;
-    const lerpLens = 0.08;
+  // 60FPS Physics Loop with Slow, Velvety Interpolation
+  function renderMotionBlur() {
+    // Gentle easing factors for slow, beautiful, high-end feel
+    const lerpBlur = 0.065;
+    const lerpMotion = 0.075;
 
-    currentRotX += (targetRotX - currentRotX) * lerpRot;
-    currentRotY += (targetRotY - currentRotY) * lerpRot;
-    currentGirlX += (targetGirlX - currentGirlX) * lerpGirl;
-    currentGirlY += (targetGirlY - currentGirlY) * lerpGirl;
-    currentScale += (targetScale - currentScale) * 0.09;
-    currentTranslateZ += (targetTranslateZ - currentTranslateZ) * lerpRot;
+    currentBlurX += (targetBlurX - currentBlurX) * lerpBlur;
+    currentBlurY += (targetBlurY - currentBlurY) * lerpBlur;
 
-    // 1. Invisible Keylight Lens: Smooth tracking with natural delay
-    currentLensX += (targetLensX - currentLensX) * lerpLens;
-    currentLensY += (targetLensY - currentLensY) * lerpLens;
-    currentLensOpacity += (targetLensOpacity - currentLensOpacity) * lerpLens;
+    currentRotX += (targetRotX - currentRotX) * lerpMotion;
+    currentRotY += (targetRotY - currentRotY) * lerpMotion;
+    currentShiftX += (targetShiftX - currentShiftX) * lerpMotion;
+    currentShiftY += (targetShiftY - currentShiftY) * lerpMotion;
+    currentScale += (targetScale - currentScale) * lerpMotion;
 
-    if (cursorLensLight) {
-      cursorLensLight.style.transform = `translate3d(${currentLensX.toFixed(1)}px, ${currentLensY.toFixed(1)}px, 0)`;
-      cursorLensLight.style.opacity = currentLensOpacity.toFixed(3);
+    // Apply directional SVG motion blur
+    if (motionBlurFe) {
+      motionBlurFe.setAttribute('stdDeviation', `${currentBlurX.toFixed(2)} ${currentBlurY.toFixed(2)}`);
     }
 
-    // 2. Portrait Specular Gloss: Soft glass-like sheen moving with cursor
-    currentGlossX += (targetGlossX - currentGlossX) * lerpLens;
-    currentGlossY += (targetGlossY - currentGlossY) * lerpLens;
-    currentGlossOpacity += (targetGlossOpacity - currentGlossOpacity) * lerpLens;
-
-    if (glossHighlight) {
-      glossHighlight.style.background = `radial-gradient(circle 260px at ${currentGlossX.toFixed(1)}% ${currentGlossY.toFixed(1)}%, rgba(255, 255, 255, 0.44) 0%, rgba(254, 215, 170, 0.16) 35%, transparent 68%)`;
-      glossHighlight.style.opacity = currentGlossOpacity.toFixed(3);
+    if (currentBlurX > 0.08 || currentBlurY > 0.08) {
+      portrait.style.filter = `url(#portrait-motion-blur-filter) drop-shadow(0 18px 34px rgba(20, 24, 38, 0.14))`;
+    } else if (!isHovered && currentBlurX <= 0.08 && currentBlurY <= 0.08) {
+      portrait.style.filter = '';
     }
 
-    // 3. Portrait Cutout Frame: Physical subtle 3D tilt (stable face, no deformation)
+    // Apply organic physical transform
     if (prefersReduced) {
-      cutoutFrame.style.transform = `scale(${currentScale.toFixed(3)})`;
+      cutoutFrame.style.transform = '';
     } else {
-      cutoutFrame.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translate3d(${currentGirlX.toFixed(1)}px, ${currentGirlY.toFixed(1)}px, ${currentTranslateZ.toFixed(1)}px) scale(${currentScale.toFixed(3)})`;
+      cutoutFrame.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translate3d(${currentShiftX.toFixed(1)}px, ${currentShiftY.toFixed(1)}px, 0) scale(${currentScale.toFixed(3)})`;
     }
 
-    // 4. Background Atmospheric Studio Lights: Soft differential depth
-    const bgFactorX = currentRotY * 1.3;
-    const bgFactorY = -currentRotX * 1.3;
-    if (coralLight) coralLight.style.transform = `translate(${(bgFactorX * 0.9).toFixed(1)}px, ${(bgFactorY * 0.9).toFixed(1)}px)`;
-    if (cyanLight) cyanLight.style.transform = `translate(${(bgFactorX * 1.15).toFixed(1)}px, ${(bgFactorY * 1.15).toFixed(1)}px)`;
-    if (pinkLight) pinkLight.style.transform = `translate(${(bgFactorX * 1.25).toFixed(1)}px, ${(bgFactorY * 1.25).toFixed(1)}px)`;
-    if (violetLight) violetLight.style.transform = `translate(${(bgFactorX * 0.75).toFixed(1)}px, ${(bgFactorY * 0.75).toFixed(1)}px)`;
-    if (bloomLight) bloomLight.style.transform = `translate(${(bgFactorX * 0.85).toFixed(1)}px, ${(bgFactorY * 0.85).toFixed(1)}px)`;
-    if (ambientLight) ambientLight.style.transform = `translate(${(bgFactorX * 0.5).toFixed(1)}px, ${(bgFactorY * 0.5).toFixed(1)}px)`;
-
-    // 5. Celestial Orbital Curve: Subtle 3D spatial alignment
-    if (celestialSystem && !prefersReduced) {
-      const orbX = (currentRotY * 1.5).toFixed(1);
-      const orbY = (-currentRotX * 1.5).toFixed(1);
-      celestialSystem.style.transform = `translate(-50%, -50%) translate3d(${orbX}px, ${orbY}px, 0)`;
-    }
-
-    // 6. Floating Celestial Pearls & Stardust (3D spatial depth & gentle breathing)
-    if (pearls.length > 0) {
-      if (isHovered && !prefersReduced) {
-        pearlFloatAngle += 0.015;
-      }
-      pearls.forEach((p, idx) => {
-        const depth = parseFloat(p.getAttribute('data-depth')) || 0.8;
-        const px = (currentRotY * 1.8 * depth + (isHovered ? Math.sin(pearlFloatAngle + idx * 1.1) * 2.2 : 0)).toFixed(1);
-        const py = (-currentRotX * 1.8 * depth + (isHovered ? Math.cos(pearlFloatAngle + idx * 1.1) * 1.8 : 0)).toFixed(1);
-        p.style.transform = `translate3d(${px}px, ${py}px, 0)`;
-      });
-    }
-
-    if (kickerBadge) {
-      kickerBadge.style.transform = `translate(${(-currentRotY * 0.15).toFixed(1)}px, ${(-currentRotX * 0.15).toFixed(1)}px)`;
-    }
-
-    // Convergence check: Continue RAF loop until motion is at rest
+    // Convergence check
+    const blurDiff = Math.abs(targetBlurX - currentBlurX) + Math.abs(targetBlurY - currentBlurY);
     const rotDiff = Math.abs(targetRotX - currentRotX) + Math.abs(targetRotY - currentRotY);
-    const girlDiff = Math.abs(targetGirlX - currentGirlX) + Math.abs(targetGirlY - currentGirlY);
+    const shiftDiff = Math.abs(targetShiftX - currentShiftX) + Math.abs(targetShiftY - currentShiftY);
     const scaleDiff = Math.abs(targetScale - currentScale);
-    const lensDiff = Math.abs(targetLensOpacity - currentLensOpacity);
 
-    if (isHovered || rotDiff > 0.005 || girlDiff > 0.005 || scaleDiff > 0.0005 || lensDiff > 0.005) {
-      rafId = requestAnimationFrame(renderParallax);
+    if (isHovered || blurDiff > 0.01 || rotDiff > 0.005 || shiftDiff > 0.01 || scaleDiff > 0.0005) {
+      rafId = requestAnimationFrame(renderMotionBlur);
     } else {
-      // Cleanly return to resting position when cursor is outside scene
+      // Clean, pristine return to rest state
       if (!isHovered) {
         cutoutFrame.style.transform = '';
-        if (coralLight) coralLight.style.transform = '';
-        if (cyanLight) cyanLight.style.transform = '';
-        if (pinkLight) pinkLight.style.transform = '';
-        if (violetLight) violetLight.style.transform = '';
-        if (bloomLight) bloomLight.style.transform = '';
-        if (ambientLight) ambientLight.style.transform = '';
-        if (kickerBadge) kickerBadge.style.transform = '';
-        if (celestialSystem) celestialSystem.style.transform = '';
-        if (cursorLensLight) {
-          cursorLensLight.style.opacity = '0';
-          cursorLensLight.style.transform = '';
+        portrait.style.filter = '';
+        if (motionBlurFe) {
+          motionBlurFe.setAttribute('stdDeviation', '0 0');
         }
-        if (glossHighlight) {
-          glossHighlight.style.opacity = '0';
-        }
-        pearls.forEach(p => p.style.transform = '');
-        pearlFloatAngle = 0;
       }
       rafId = null;
     }
@@ -4187,478 +4153,57 @@ function setupLearningEcosystem() {
 
 /**
  * =========================================================================
- * 23. MY LEARNING JOURNEY — 3D ART-DIRECTED INTERACTIVE LEARNING EXPERIENCE
- * "Learning. Growing. Becoming."
- * 6 Interactive 3D Milestones • Single Compact Active Detail Card
- * 3D Orbital Portrait Parallax Tilt • Keyboard Accessibility (Enter, Space, Arrows)
+ * 23. MY LEARNING JOURNEY — 3D WINDING TURQUOISE ROAD & FLOATING PLATFORMS
+ * Interactive Platforms with 3D tilt, tactile click, keyboard accessibility,
+ * and seamless connection between the 8 milestones along the road.
  * =========================================================================
  */
 function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const timelineUniverse = document.getElementById('lj-timeline-universe') || section;
-  const nodes = Array.from(section.querySelectorAll('.lj-card-3d, .lj-node-item'));
-  const detailCard = document.getElementById('lj-single-detail-card');
-  const cardKicker = document.getElementById('lj-card-kicker');
-  const cardTitle = document.getElementById('lj-card-title');
-  const cardDesc = document.getElementById('lj-card-description');
-  const cardSkillsRow = document.getElementById('lj-card-skills-row');
-  const cardIcon = document.getElementById('lj-card-icon');
-  const cardAccentStrip = document.getElementById('lj-card-accent-strip');
-  const activeCounter = document.getElementById('lj-active-counter');
-  const artifactNum = document.getElementById('lj-artifact-num');
-  const artifactGlow = document.getElementById('lj-artifact-glow');
-  const cardStatus = document.getElementById('lj-card-status');
-  const statusDot = document.getElementById('lj-status-dot');
-  const cardQuote = document.getElementById('lj-card-quote');
-  const studioSpotlight = document.getElementById('lj-studio-spotlight');
-  const floatingObjects = Array.from(section.querySelectorAll('.lj-3d-floating-object'));
-  const stageArtifact = document.getElementById('lj-stage-artifact');
-  const ribbonCore = section.querySelector('.lj-ribbon-core');
-  const portalAssembly = document.getElementById('portal-assembly');
-  const deskPlatform = document.getElementById('desk-platform');
+  const platforms = Array.from(section.querySelectorAll('.lj-circular-platform'));
+  const cards = Array.from(section.querySelectorAll('.lj-milestone-card'));
 
-  // 3D Architectural Knowledge Engine Interactive Tabs & Parallax
-  const consoleTabs = Array.from(section.querySelectorAll('.console-tab'));
-  const consolePanes = Array.from(section.querySelectorAll('.console-pane'));
-  const engineConsole = document.getElementById('lj-engine-console');
-  const engineStage = document.getElementById('lj-engine-stage');
+  // Synchronize hover state between platform and card
+  platforms.forEach((platform, index) => {
+    const card = cards[index];
 
-  if (consoleTabs.length > 0) {
-    consoleTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetTab = btn.getAttribute('data-tab');
-        consoleTabs.forEach(t => {
-          const isActive = t === btn;
-          t.classList.toggle('is-active', isActive);
-          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-        consolePanes.forEach(pane => {
-          const isTarget = pane.id === `pane-${targetTab}`;
-          pane.classList.toggle('is-active', isTarget);
-        });
-      });
-    });
-  }
-
-  // Interactive 3D Perspective Tilt on Mouse Movement over the Engine Console
-  if (engineStage && engineConsole) {
-    engineStage.addEventListener('mousemove', (e) => {
-      const rect = engineStage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      engineConsole.style.transform = `rotateX(${-y * 12}deg) rotateY(${x * 14}deg) translateZ(8px)`;
+    platform.addEventListener('mouseenter', () => {
+      if (card) card.classList.add('is-linked-hover');
     });
 
-    engineStage.addEventListener('mouseleave', () => {
-      engineConsole.style.transform = 'rotateX(2deg) rotateY(-2.5deg)';
+    platform.addEventListener('mouseleave', () => {
+      if (card) card.classList.remove('is-linked-hover');
     });
-  }
 
-  // The 8 Authentic Milestones faithfully representing Arfa Munam's learning roadmap
-  const milestones = [
-    {
-      num: "01",
-      stepNum: "01",
-      year: "2026",
-      shortTitle: "Web Fundamentals",
-      stageTitle: "Web Fundamentals",
-      subtitle: "HTML, CSS, JavaScript, responsive design",
-      kicker: "01 · THE GENESIS",
-      title: "Web Fundamentals",
-      desc: "Mastered fundamental web architecture, semantic markup in HTML5, modern styling with CSS3, DOM programming in JavaScript (ES6+), and resilient responsive layouts.",
-      skills: ["HTML5", "CSS3", "JavaScript ES6+", "Responsive UI"],
-      status: "Foundations Mastered",
-      quote: "Mastering the primitives before abstractions. Semantic structure is the foundation of digital longevity.",
-      color: "#FA5538",
-      accentGrad: "linear-gradient(135deg, #FA5538, #FF8A65)",
-      borderColor: "rgba(250, 85, 56, 0.48)",
-      glowColor: "rgba(250, 85, 56, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
-    },
-    {
-      num: "02",
-      stepNum: "02",
-      year: "Frontend",
-      shortTitle: "Frontend Dev",
-      stageTitle: "Frontend Development",
-      subtitle: "React, Tailwind CSS, component architecture",
-      kicker: "02 · COMPONENT ARCHITECTURE",
-      title: "Frontend Development",
-      desc: "Component-driven architecture in React, declarative state flows, rapid responsive styling with Tailwind CSS, and engineering modular design systems.",
-      skills: ["React.js", "Tailwind CSS", "Component Systems", "State Flow"],
-      status: "Production Ready",
-      quote: "Component architecture and fluid interfaces bridge the divide between engineering utility and human delight.",
-      color: "#2563EB",
-      accentGrad: "linear-gradient(135deg, #2563EB, #60A5FA)",
-      borderColor: "rgba(37, 99, 235, 0.48)",
-      glowColor: "rgba(37, 99, 235, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
-    },
-    {
-      num: "03",
-      stepNum: "03",
-      year: "Motion",
-      shortTitle: "Animation & UI",
-      stageTitle: "Animation & Interactive UI",
-      subtitle: "GSAP, motion, micro-interactions, scroll animation",
-      kicker: "03 · TACTILE INTERACTION",
-      title: "Animation & Interactive UI",
-      desc: "Engineered rich visual experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and tactile micro-interactions that make web applications feel physical and alive.",
-      skills: ["GSAP Motion", "CSS 3D Transforms", "ScrollTrigger", "Tactile Physics"],
-      status: "High Polish Craft",
-      quote: "Great software feels tangible. Motion should clarify spatial relationships rather than merely decorate.",
-      color: "#06B6D4",
-      accentGrad: "linear-gradient(135deg, #0891B2, #06B6D4)",
-      borderColor: "rgba(6, 182, 212, 0.48)",
-      glowColor: "rgba(6, 182, 212, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`
-    },
-    {
-      num: "04",
-      stepNum: "04",
-      year: "Prompt",
-      shortTitle: "Prompt Craft",
-      stageTitle: "Prompt Engineering",
-      subtitle: "Prompt design, AI workflows, creative problem solving",
-      kicker: "04 · AI WORKFLOWS & PROMPTING",
-      title: "Prompt Engineering",
-      desc: "Structured prompt design, system directives, reasoning chains, few-shot prompting, and AI-assisted vibe coding workflows for exponential development speed.",
-      skills: ["Prompt Design", "AI Workflows", "Context Windows", "Vibe Coding"],
-      status: "Integrated Speed",
-      quote: "AI is the ultimate amplifier. Pairing intelligent models with clean engineering produces exceptional velocity.",
-      color: "#EC4899",
-      accentGrad: "linear-gradient(135deg, #DB2777, #EC4899)",
-      borderColor: "rgba(236, 72, 153, 0.48)",
-      glowColor: "rgba(236, 72, 153, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>`
-    },
-    {
-      num: "05",
-      stepNum: "05",
-      year: "AI",
-      shortTitle: "Exploring AI",
-      stageTitle: "Exploring AI",
-      subtitle: "Generative AI, LLMs, AI integrations",
-      kicker: "05 · FRONTIER INTELLIGENCE",
-      title: "Exploring AI",
-      desc: "Integrating Gemini API and LLM models, streaming multimodal interactions, structured function calling, and building ambient intelligent web experiences.",
-      skills: ["Generative AI", "Gemini API", "LLM Integrations", "AI Interfaces"],
-      status: "Frontier Explorer",
-      quote: "Merging creative frontend with frontier models to engineer software that anticipates user intent.",
-      color: "#8B5CF6",
-      accentGrad: "linear-gradient(135deg, #7C3AED, #8B5CF6)",
-      borderColor: "rgba(139, 92, 246, 0.48)",
-      glowColor: "rgba(139, 92, 246, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>`
-    },
-    {
-      num: "06",
-      stepNum: "06",
-      year: "Backend",
-      shortTitle: "Backend Core",
-      stageTitle: "Backend Core",
-      subtitle: "Node.js, Express, REST APIs, server architecture",
-      kicker: "06 · BACKEND ARCHITECTURE (CURRENT FOCUS)",
-      title: "Backend Core",
-      desc: "Currently expanding horizontally into server-side development with Node.js and Express, API design, middleware pipelines, authentication patterns, and building robust server infrastructure.",
-      skills: ["Node.js", "Express.js", "RESTful APIs", "Server Architecture"],
-      status: "Current Focus",
-      quote: "A frontend engineer becomes truly formidable when they master server-side logic and deterministic data flow.",
-      color: "#10B981",
-      accentGrad: "linear-gradient(135deg, #059669, #10B981)",
-      borderColor: "rgba(16, 185, 129, 0.48)",
-      glowColor: "rgba(16, 185, 129, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`
-    },
-    {
-      num: "07",
-      stepNum: "07",
-      year: "Cloud",
-      shortTitle: "Data & Cloud",
-      stageTitle: "Data & Cloud",
-      subtitle: "PostgreSQL, Supabase, databases, deployment",
-      kicker: "07 · DATA PERSISTENCE & CLOUD",
-      title: "Data & Cloud",
-      desc: "Relational database modeling in PostgreSQL, real-time events and auth with Supabase, cloud infrastructure deployment, and durable persistence.",
-      skills: ["PostgreSQL", "Supabase", "Cloud Deploy", "Data Schemas"],
-      status: "Persistent Systems",
-      quote: "Clean schemas create clean codebases. Resilient data architecture guarantees long-term application integrity.",
-      color: "#F59E0B",
-      accentGrad: "linear-gradient(135deg, #D97706, #F59E0B)",
-      borderColor: "rgba(245, 158, 11, 0.48)",
-      glowColor: "rgba(245, 158, 11, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M12 12v9"></path><path d="m8 17 4 4 4-4"></path></svg>`
-    },
-    {
-      num: "08",
-      stepNum: "08",
-      year: "Horizon",
-      shortTitle: "Future Goals",
-      stageTitle: "Future Goals",
-      subtitle: "Full-stack AI products, AI agents, advanced interfaces",
-      kicker: "08 · FUTURE GOALS",
-      title: "Future Goals",
-      desc: "Architecting end-to-end full-stack AI products, autonomous agents, and high-impact web software with aesthetic discipline and production-grade engineering.",
-      skills: ["Full-Stack AI", "AI Agents", "Advanced UI", "Ambitious Software"],
-      status: "Horizon Objective",
-      quote: "Building software that leaves an imprint. High polish, genuine utility, and relentless dedication to user craft.",
-      color: "#6366F1",
-      accentGrad: "linear-gradient(135deg, #4F46E5, #6366F1)",
-      borderColor: "rgba(99, 102, 241, 0.48)",
-      glowColor: "rgba(99, 102, 241, 0.35)",
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
-    }
-  ];
-
-  // Sequential Entrance Stagger on Scroll (80-120ms Staggered Reveal)
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-    const universeContainer = document.getElementById('lj-timeline-universe');
-    if (universeContainer) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            universeContainer.classList.add('is-revealed');
-            nodes.forEach((node, i) => {
-              node.style.transitionDelay = `${(i * 95)}ms`;
-              node.classList.add('is-revealed');
-            });
-            // Clear transitionDelay after entrance so hover responses are instant
-            setTimeout(() => {
-              nodes.forEach(node => {
-                node.style.transitionDelay = '';
-              });
-            }, 1400);
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.12 });
-      observer.observe(universeContainer);
-    }
-  } else {
-    const universeContainer = document.getElementById('lj-timeline-universe');
-    if (universeContainer) universeContainer.classList.add('is-revealed');
-    nodes.forEach(node => node.classList.add('is-revealed'));
-  }
-
-  let currentMilestoneIndex = 0;
-
-  function setActiveMilestone(index, animate = true) {
-    if (index < 0 || index >= milestones.length) return;
-    currentMilestoneIndex = index;
-    const m = milestones[index];
-
-    // 1. Update node classes & ARIA attributes on all 8 buttons
-    nodes.forEach((node, i) => {
-      const isActive = i === index;
-      node.classList.toggle('is-active', isActive);
-      node.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      if (isActive) {
-        node.style.setProperty('--card-active-glow', m.glowColor);
+    platform.addEventListener('click', () => {
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        card.classList.add('is-card-tapped');
+        setTimeout(() => card.classList.remove('is-card-tapped'), 800);
       }
     });
 
-    // 1b. Update active state on SVG roadmap waypoints
-    const allWaypointRings = section.querySelectorAll('.waypoint-ring');
-    const allWaypointHalos = section.querySelectorAll('.waypoint-glow-halo');
-    allWaypointRings.forEach((ring, i) => {
-      ring.classList.toggle('is-active', i === index);
-    });
-    allWaypointHalos.forEach((halo, i) => {
-      halo.classList.toggle('is-active', i === index);
-    });
-
-    // 2. Update counter display
-    if (activeCounter) {
-      activeCounter.innerHTML = `<span class="counter-num" id="lj-counter-current">${m.num}</span> <span class="counter-sep">/</span> <span class="counter-total">08</span>`;
-    }
-
-    // 3. Update single compact active detail card with smooth glass transition
-    if (detailCard) {
-      if (animate) {
-        detailCard.style.opacity = '0';
-        detailCard.style.transform = 'translateY(8px) scale(0.985)';
-      }
-
-      setTimeout(() => {
-        if (cardKicker) cardKicker.textContent = m.kicker;
-        if (cardTitle) cardTitle.textContent = m.title;
-        if (cardDesc) cardDesc.textContent = m.desc;
-        if (cardStatus) cardStatus.textContent = m.status;
-        if (statusDot) {
-          statusDot.style.background = m.color;
-          statusDot.style.boxShadow = `0 0 10px ${m.color}`;
-        }
-        if (cardQuote) cardQuote.textContent = m.quote;
-        if (artifactNum) artifactNum.textContent = `STAGE ${m.num}`;
-        if (artifactGlow) {
-          artifactGlow.style.background = `radial-gradient(circle, ${m.glowColor} 0%, transparent 70%)`;
-        }
-        if (cardIcon) {
-          cardIcon.innerHTML = m.icon;
-          cardIcon.style.color = m.color;
-        }
-        if (cardAccentStrip) {
-          cardAccentStrip.style.background = m.accentGrad;
-        }
-        if (cardSkillsRow && Array.isArray(m.skills)) {
-          cardSkillsRow.innerHTML = m.skills.map(s => 
-            `<span class="panel-skill-pill-3d" style="--chip-accent:${m.color};">
-              <span class="chip-star">✦</span>
-              <span class="chip-label">${s}</span>
-            </span>`
-          ).join('');
-        }
-
-        detailCard.style.borderColor = m.borderColor;
-        detailCard.style.boxShadow = `0 35px 80px -15px rgba(0, 0, 0, 0.9), 0 0 45px -10px ${m.glowColor}, inset 0 1px 1px rgba(255, 255, 255, 0.18)`;
-
-        if (animate) {
-          detailCard.style.opacity = '1';
-          detailCard.style.transform = 'translateY(0) scale(1)';
-        }
-      }, animate ? 120 : 0);
-    }
-  }
-
-  // Bind clicks, hover, and keyboard on 8 milestone cards with 3D tactile tilt
-  nodes.forEach((node, idx) => {
-    const dataIdx = parseInt(node.getAttribute('data-index'), 10);
-    const targetIdx = !isNaN(dataIdx) ? dataIdx : idx;
-
-    node.addEventListener('click', (e) => {
-      e.preventDefault();
-      setActiveMilestone(targetIdx, true);
-    });
-
-    node.addEventListener('mouseenter', () => {
-      if (ribbonCore && milestones[targetIdx]) {
-        ribbonCore.style.filter = `drop-shadow(0 0 22px ${milestones[targetIdx].glowColor})`;
-      }
-      const ring = section.querySelector(`.waypoint-ring[data-waypoint="${targetIdx}"]`);
-      const halo = section.querySelector(`.waypoint-glow-halo.halo-${targetIdx}`);
-      if (ring) ring.classList.add('is-illuminated');
-      if (halo) halo.classList.add('is-illuminated');
-    });
-
-    node.addEventListener('mouseleave', () => {
-      if (ribbonCore) {
-        ribbonCore.style.filter = '';
-      }
-      node.style.transform = '';
-      node.style.removeProperty('--mouse-x');
-      node.style.removeProperty('--mouse-y');
-      const ring = section.querySelector(`.waypoint-ring[data-waypoint="${targetIdx}"]`);
-      const halo = section.querySelector(`.waypoint-glow-halo.halo-${targetIdx}`);
-      if (ring) ring.classList.remove('is-illuminated');
-      if (halo) halo.classList.remove('is-illuminated');
-    });
-
-    // Tactile 3D perspective tilt (subtle ±3.5deg max) and dynamic cursor light-follow
-    node.addEventListener('mousemove', (e) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const rect = node.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      
-      const rotX = Math.max(-3.5, Math.min(3.5, -y * 7));
-      const rotY = Math.max(-3.5, Math.min(3.5, x * 7));
-      const elev = node.classList.contains('is-active') ? -8 : -6;
-      
-      node.style.transform = `perspective(900px) translateY(${elev}px) translateZ(24px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.025)`;
-      
-      const mouseX = (e.clientX - rect.left).toFixed(1);
-      const mouseY = (e.clientY - rect.top).toFixed(1);
-      node.style.setProperty('--mouse-x', `${mouseX}px`);
-      node.style.setProperty('--mouse-y', `${mouseY}px`);
-    });
-
-    node.addEventListener('keydown', (e) => {
+    platform.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        setActiveMilestone(targetIdx, true);
-      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        const nextIdx = (targetIdx + 1) % milestones.length;
-        setActiveMilestone(nextIdx, true);
-        const nextNode = nodes.find(n => parseInt(n.getAttribute('data-index'), 10) === nextIdx) || nodes[nextIdx];
-        if (nextNode) nextNode.focus();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const prevIdx = (targetIdx - 1 + milestones.length) % milestones.length;
-        setActiveMilestone(prevIdx, true);
-        const prevNode = nodes.find(n => parseInt(n.getAttribute('data-index'), 10) === prevIdx) || nodes[prevIdx];
-        if (prevNode) prevNode.focus();
+        platform.click();
       }
     });
   });
 
-  // Tasteful Studio Depth & 3D Object Parallax Tracking
-  section.addEventListener('pointermove', (e) => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const rect = section.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width - 0.5;
-    const relY = (e.clientY - rect.top) / rect.height - 0.5;
+  cards.forEach((card, index) => {
+    const platform = platforms[index];
 
-    // 1. Move 3D floating background objects according to depth
-    floatingObjects.forEach((obj) => {
-      const depth = parseFloat(obj.getAttribute('data-depth')) || 0.8;
-      const moveX = relX * 26 * depth;
-      const moveY = relY * 22 * depth;
-      obj.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0px)`;
+    card.addEventListener('mouseenter', () => {
+      if (platform) platform.classList.add('is-linked-hover');
     });
 
-    // 2. Subtle perspective tilt on stage artifact
-    if (stageArtifact) {
-      const artBody = stageArtifact.querySelector('.artifact-floating-body');
-      if (artBody) {
-        const tiltX = -relY * 14;
-        const tiltY = relX * 14;
-        artBody.style.transform = `perspective(500px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
-      }
-    }
-
-    // 3. Subtle perspective tilt on portal and desk platform
-    if (portalAssembly) {
-      const pTiltX = -relY * 8;
-      const pTiltY = relX * 8;
-      portalAssembly.style.transform = `perspective(1000px) rotateX(${pTiltX.toFixed(2)}deg) rotateY(${pTiltY.toFixed(2)}deg)`;
-    }
-    if (deskPlatform) {
-      const dTiltX = -relY * 5;
-      const dTiltY = relX * 5;
-      deskPlatform.style.transform = `perspective(1000px) rotateX(${dTiltX.toFixed(2)}deg) rotateY(${dTiltY.toFixed(2)}deg)`;
-    }
-
-    // 4. Subtle studio spotlight follow
-    if (studioSpotlight) {
-      const posX = ((e.clientX - rect.left) / rect.width) * 100;
-      const posY = ((e.clientY - rect.top) / rect.height) * 100;
-      studioSpotlight.style.background = `radial-gradient(circle at ${posX.toFixed(1)}% ${posY.toFixed(1)}%, rgba(251, 113, 133, 0.08) 0%, transparent 60%)`;
-    }
-  }, { passive: true });
-
-  section.addEventListener('pointerleave', () => {
-    floatingObjects.forEach((obj) => {
-      obj.style.transform = '';
+    card.addEventListener('mouseleave', () => {
+      if (platform) platform.classList.remove('is-linked-hover');
     });
-    if (stageArtifact) {
-      const artBody = stageArtifact.querySelector('.artifact-floating-body');
-      if (artBody) {
-        artBody.style.transform = '';
-      }
-    }
-    if (portalAssembly) {
-      portalAssembly.style.transform = '';
-    }
-    if (deskPlatform) {
-      deskPlatform.style.transform = '';
-    }
   });
-
-  // Initialize milestone 01 on load
-  setActiveMilestone(0, false);
 }
 
 /**
@@ -4844,9 +4389,17 @@ function initWelcomeVideoIntro() {
   const video = document.getElementById('welcome-intro-video');
   const skipBtn = document.getElementById('wvi-skip-btn');
   const progressBar = document.getElementById('wvi-progress-bar');
+  const cipOverlay = document.getElementById('creative-intro-cover');
 
-  // Always active on every page load / reload (no storage tracking)
+  // Both overlays are active in opening sequence to lock down the viewport
+  // and guarantee that the actual portfolio is NEVER revealed before the
+  // portfolio image page
   document.body.classList.add('wvi-active');
+  if (cipOverlay) {
+    document.body.classList.add('cip-active');
+    cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
+    cipOverlay.setAttribute('aria-hidden', 'false');
+  }
   overlay.classList.remove('wvi-hidden', 'wvi-exiting');
   overlay.setAttribute('aria-hidden', 'false');
 
@@ -4892,7 +4445,7 @@ function initWelcomeVideoIntro() {
       }
     });
 
-    // When video completes, seamlessly transition into portfolio
+    // When video completes, seamlessly transition into creative introduction page
     video.addEventListener('ended', () => {
       exitIntro();
     });
@@ -4905,6 +4458,12 @@ function initWelcomeVideoIntro() {
 
     window.removeEventListener('keydown', handleKeyDown);
 
+    // Ensure cipOverlay is ready and solid right underneath before video fades
+    if (cipOverlay) {
+      cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
+      cipOverlay.setAttribute('aria-hidden', 'false');
+    }
+
     overlay.classList.add('wvi-exiting');
 
     setTimeout(() => {
@@ -4916,9 +4475,9 @@ function initWelcomeVideoIntro() {
       overlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('wvi-active');
 
-      // Seamlessly transition to Step 3: The Creative Introduction Cover Page
+      // Now activate Step 2: The Creative Introduction Cover Page
       transitionToCreativeIntroPage();
-    }, 750);
+    }, 650);
   }
 
   // Keyboard controls: ESCAPE, ENTER, SPACE, TAB to skip/enter
@@ -4941,7 +4500,7 @@ function initWelcomeVideoIntro() {
     });
   }
 
-  // Clicking on overlay/video also skips to next step
+  // Clicking on overlay/video also advances to next step
   overlay.addEventListener('click', (e) => {
     if (e.target.closest('#wvi-skip-btn')) return;
     exitIntro();
@@ -4949,8 +4508,9 @@ function initWelcomeVideoIntro() {
 }
 
 // =========================================================================
-// CREATIVE INTRODUCTION COVER CONTROLLER (STEP 3)
+// CREATIVE INTRODUCTION COVER CONTROLLER (STEP 2 OF SEQUENCE)
 // Clean Page with Large Centralized Portfolio Image between Video & Portfolio
+// Sequence: Welcoming Video -> Page with Portfolio Image -> Actual Portfolio
 // =========================================================================
 function transitionToCreativeIntroPage() {
   const cipOverlay = document.getElementById('creative-intro-cover');
@@ -4964,19 +4524,24 @@ function transitionToCreativeIntroPage() {
   document.body.classList.add('cip-active');
 
   cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
-  cipOverlay.classList.add('cip-entering');
   cipOverlay.setAttribute('aria-hidden', 'false');
 
   let cipExiting = false;
+  let autoAdvanceTimer = null;
 
   function finishIntoPortfolio() {
     if (cipExiting) return;
     cipExiting = true;
 
+    if (autoAdvanceTimer) {
+      clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
+    }
+
     window.removeEventListener('keydown', handleCipKeyDown);
     window.removeEventListener('wheel', handleCipWheel);
+    cipOverlay.removeEventListener('click', handleCipClick);
 
-    cipOverlay.classList.remove('cip-entering');
     cipOverlay.classList.add('cip-exiting');
 
     setTimeout(() => {
@@ -5003,10 +4568,11 @@ function transitionToCreativeIntroPage() {
 
   window.addEventListener('keydown', handleCipKeyDown);
 
-  // Clicking anywhere on the page or the central image advances into the portfolio
-  cipOverlay.addEventListener('click', () => {
+  // Clicking anywhere advances into the portfolio
+  const handleCipClick = () => {
     finishIntoPortfolio();
-  });
+  };
+  cipOverlay.addEventListener('click', handleCipClick);
 
   // Subtle scroll wheel gesture triggers transition into portfolio
   const handleCipWheel = (e) => {
@@ -5015,6 +4581,11 @@ function transitionToCreativeIntroPage() {
     }
   };
   window.addEventListener('wheel', handleCipWheel, { passive: true });
+
+  // Auto-advance after 4 seconds if the user does not click, ensuring smooth progression
+  autoAdvanceTimer = setTimeout(() => {
+    finishIntoPortfolio();
+  }, 4000);
 
   // Subtle interactive floating tilt on the central portfolio image
   const portfolioImg = document.getElementById('cip-portfolio-img');
