@@ -2184,10 +2184,9 @@ function setupCertificatePhotoUploads() {
 
 /**
  * =========================================================================
- * CERTIFICATES SHOWCASE — 3-STEP ALTERNATING 3D FOLDED RIBBON JOURNEY
- * Step 01: Emerald Green (01 STEP)
- * Step 02: Vivid Orange (02 STEP)
- * Step 03: Rich Sky Blue (03 STEP)
+ * CERTIFICATES SHOWCASE — HANGING CERTIFICATE GALLERY
+ * Verified Google specializations suspended from gallery cable with realistic
+ * clips, natural tilts, tactile hover physics, and fallback image handling.
  * =========================================================================
  */
 function setupCertificatesGallery() {
@@ -2195,7 +2194,7 @@ function setupCertificatesGallery() {
   if (!section) return;
 
   // Gracefully handles image load fallback for the three verified certificates
-  const certImgs = section.querySelectorAll('.cert-journey-img');
+  const certImgs = section.querySelectorAll('.cert-journey-img, .cert-hanging-img');
   const fallbacks = ['1--.jpg', '2--.jpg', '3--.jpg'];
   certImgs.forEach((img, idx) => {
     img.addEventListener('error', () => {
@@ -2203,18 +2202,13 @@ function setupCertificatesGallery() {
     });
   });
 
-  // Coordinated tactile hover interaction between ribbon and overlapping card
-  const rows = section.querySelectorAll('.cert-step-row');
-  rows.forEach(row => {
-    const card = row.querySelector('.cert-card-shell');
-    if (!card) return;
-
-    row.addEventListener('mouseenter', () => {
-      card.style.borderColor = 'rgba(24, 20, 35, 0.16)';
-    });
-
-    row.addEventListener('mouseleave', () => {
-      card.style.borderColor = '';
+  // Tactile physics and subtle audio feedback on hanging certificate hover
+  const items = section.querySelectorAll('.hanging-cert-item');
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      if (typeof playTactileClick === 'function') {
+        playTactileClick(580, 'sine');
+      }
     });
   });
 }
@@ -3816,22 +3810,22 @@ function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const platforms = Array.from(section.querySelectorAll('.lj-circular-platform'));
+  const stepBlocks = Array.from(section.querySelectorAll('.lj-3d-step-block, .lj-circular-platform'));
   const cards = Array.from(section.querySelectorAll('.lj-milestone-card'));
 
-  // Synchronize hover state between platform and card
-  platforms.forEach((platform, index) => {
+  // Synchronize hover state between step block and card
+  stepBlocks.forEach((block, index) => {
     const card = cards[index];
 
-    platform.addEventListener('mouseenter', () => {
+    block.addEventListener('mouseenter', () => {
       if (card) card.classList.add('is-linked-hover');
     });
 
-    platform.addEventListener('mouseleave', () => {
+    block.addEventListener('mouseleave', () => {
       if (card) card.classList.remove('is-linked-hover');
     });
 
-    platform.addEventListener('click', () => {
+    block.addEventListener('click', () => {
       if (card) {
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         card.classList.add('is-card-tapped');
@@ -3839,23 +3833,23 @@ function setupLearningJourneyStory() {
       }
     });
 
-    platform.addEventListener('keydown', (e) => {
+    block.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        platform.click();
+        block.click();
       }
     });
   });
 
   cards.forEach((card, index) => {
-    const platform = platforms[index];
+    const block = stepBlocks[index];
 
     card.addEventListener('mouseenter', () => {
-      if (platform) platform.classList.add('is-linked-hover');
+      if (block) block.classList.add('is-linked-hover');
     });
 
     card.addEventListener('mouseleave', () => {
-      if (platform) platform.classList.remove('is-linked-hover');
+      if (block) block.classList.remove('is-linked-hover');
     });
   });
 }
@@ -4162,9 +4156,10 @@ function initWelcomeVideoIntro() {
 }
 
 // =========================================================================
+// =========================================================================
 // CREATIVE INTRODUCTION COVER CONTROLLER (STEP 2 OF SEQUENCE)
-// Clean Page with Large Centralized Portfolio Image between Video & Portfolio
-// Sequence: Welcoming Video -> Page with Portfolio Image -> Actual Portfolio
+// Recreated Creative Portfolio Gallery Middle Page:
+// Welcome.mp4 -> Layered Portfolio Image -> Curved Orange Arrow -> Floating Cinematic Video -> Explore Portfolio
 // =========================================================================
 function transitionToCreativeIntroPage() {
   const cipOverlay = document.getElementById('creative-intro-cover');
@@ -4173,28 +4168,265 @@ function transitionToCreativeIntroPage() {
     return;
   }
 
-  // Keep body scroll-locked during creative intro
+  // Lock body scrolling during middle introduction page
   document.body.classList.remove('wvi-active');
   document.body.classList.add('cip-active');
 
   cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
   cipOverlay.setAttribute('aria-hidden', 'false');
 
-  let cipExiting = false;
-  let autoAdvanceTimer = null;
+  const compRow = document.getElementById('cip-composition-row');
+  const imgStack = document.getElementById('cip-image-stack');
+  const mainImgWrap = document.getElementById('cip-main-image-wrap');
+  const storyVideo = document.getElementById('cip-story-video');
+  const videoFrame = document.getElementById('cip-video-player-frame');
+  const playBtn = document.getElementById('cip-play-btn');
+  const ctrlPlayBtn = document.getElementById('cip-ctrl-play');
+  const ctrlMuteBtn = document.getElementById('cip-ctrl-mute');
+  const ctrlFsBtn = document.getElementById('cip-ctrl-fs');
+  const seekTrack = document.getElementById('cip-seek-track');
+  const seekFill = document.getElementById('cip-seek-fill');
+  const seekThumb = document.getElementById('cip-seek-thumb');
+  const timeDisplay = document.getElementById('cip-time-display');
+  const exploreBtn = document.getElementById('cip-explore-btn');
 
+  let cipExiting = false;
+  let isStoryRevealed = false;
+
+  // 1. Initial Soft Entrance Animation for Portfolio Image (0.2s - 1.2s)
+  if (imgStack) {
+    imgStack.style.opacity = '0';
+    imgStack.style.transform = 'scale(0.94) translateY(12px)';
+    setTimeout(() => {
+      imgStack.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+      imgStack.style.opacity = '1';
+      imgStack.style.transform = 'scale(1) translateY(0)';
+    }, 200);
+  }
+
+  // 2. Controlled 3D Hover & Cursor Tilt on Portfolio Image
+  if (imgStack && mainImgWrap) {
+    imgStack.addEventListener('pointermove', (e) => {
+      const rect = imgStack.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) - 0.5;
+      const y = ((e.clientY - rect.top) / rect.height) - 0.5;
+      const baseRotation = -5; // Base angle from reference design
+      mainImgWrap.style.transform = `rotate(${baseRotation + (x * 4)}deg) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(10px)`;
+    });
+
+    imgStack.addEventListener('pointerleave', () => {
+      mainImgWrap.style.transform = '';
+    });
+  }
+
+  // 3. User Click on Portfolio Image: Trigger the Arrow & Video Reveal
+  function revealStoryVideo() {
+    if (isStoryRevealed) return;
+    isStoryRevealed = true;
+
+    if (compRow) {
+      compRow.classList.add('is-revealed');
+    }
+
+    // Play video upon deliberate user action
+    if (storyVideo) {
+      setTimeout(() => {
+        storyVideo.muted = false;
+        storyVideo.volume = 1.0;
+        const playPromise = storyVideo.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              if (videoFrame) {
+                videoFrame.classList.add('is-playing');
+                videoFrame.classList.remove('is-paused');
+              }
+              updatePlayIcons(true);
+            })
+            .catch(() => {
+              // Browser policy fallback: keep paused with prominent play button ready
+              if (videoFrame) {
+                videoFrame.classList.add('is-paused');
+                videoFrame.classList.remove('is-playing');
+              }
+              updatePlayIcons(false);
+            });
+        }
+      }, 750);
+    }
+  }
+
+  if (imgStack) {
+    imgStack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      revealStoryVideo();
+    });
+
+    imgStack.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        revealStoryVideo();
+      }
+    });
+  }
+
+  // 4. Video Player Controls Implementation
+  function formatTime(seconds) {
+    if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+
+  function updatePlayIcons(isPlaying) {
+    if (!ctrlPlayBtn) return;
+    const playIcon = ctrlPlayBtn.querySelector('.icon-play');
+    const pauseIcon = ctrlPlayBtn.querySelector('.icon-pause');
+    if (playIcon && pauseIcon) {
+      playIcon.style.display = isPlaying ? 'none' : 'block';
+      pauseIcon.style.display = isPlaying ? 'block' : 'none';
+    }
+  }
+
+  if (storyVideo) {
+    storyVideo.addEventListener('loadedmetadata', () => {
+      if (timeDisplay) {
+        timeDisplay.textContent = `0:00 / ${formatTime(storyVideo.duration)}`;
+      }
+    });
+
+    storyVideo.addEventListener('timeupdate', () => {
+      if (storyVideo.duration) {
+        const percent = (storyVideo.currentTime / storyVideo.duration) * 100;
+        if (seekFill) seekFill.style.width = percent + '%';
+        if (seekThumb) seekThumb.style.left = percent + '%';
+        if (seekTrack) seekTrack.setAttribute('aria-valuenow', Math.round(percent));
+        if (timeDisplay) {
+          timeDisplay.textContent = `${formatTime(storyVideo.currentTime)} / ${formatTime(storyVideo.duration)}`;
+        }
+      }
+    });
+
+    storyVideo.addEventListener('play', () => {
+      if (videoFrame) {
+        videoFrame.classList.add('is-playing');
+        videoFrame.classList.remove('is-paused');
+      }
+      updatePlayIcons(true);
+    });
+
+    storyVideo.addEventListener('pause', () => {
+      if (videoFrame) {
+        videoFrame.classList.remove('is-playing');
+        videoFrame.classList.add('is-paused');
+      }
+      updatePlayIcons(false);
+    });
+
+    storyVideo.addEventListener('ended', () => {
+      if (videoFrame) {
+        videoFrame.classList.remove('is-playing');
+        videoFrame.classList.add('is-paused');
+      }
+      updatePlayIcons(false);
+    });
+
+    // Central play button click
+    if (playBtn) {
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (storyVideo.paused) {
+          storyVideo.play().catch(() => {});
+        } else {
+          storyVideo.pause();
+        }
+      });
+    }
+
+    // Direct video click toggles play/pause
+    storyVideo.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (storyVideo.paused) {
+        storyVideo.play().catch(() => {});
+      } else {
+        storyVideo.pause();
+      }
+    });
+
+    // Bottom control bar play button
+    if (ctrlPlayBtn) {
+      ctrlPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (storyVideo.paused) {
+          storyVideo.play().catch(() => {});
+        } else {
+          storyVideo.pause();
+        }
+      });
+    }
+
+    // Mute toggle button
+    if (ctrlMuteBtn) {
+      ctrlMuteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        storyVideo.muted = !storyVideo.muted;
+        const volOn = ctrlMuteBtn.querySelector('.icon-vol-on');
+        const volMute = ctrlMuteBtn.querySelector('.icon-vol-mute');
+        if (volOn && volMute) {
+          volOn.style.display = storyVideo.muted ? 'none' : 'block';
+          volMute.style.display = storyVideo.muted ? 'block' : 'none';
+        }
+      });
+    }
+
+    // Fullscreen toggle button
+    if (ctrlFsBtn) {
+      ctrlFsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!document.fullscreenElement) {
+          if (videoFrame.requestFullscreen) {
+            videoFrame.requestFullscreen();
+          } else if (storyVideo.requestFullscreen) {
+            storyVideo.requestFullscreen();
+          } else if (storyVideo.webkitEnterFullscreen) {
+            storyVideo.webkitEnterFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
+    }
+
+    // Seek track scrub / click
+    if (seekTrack) {
+      const handleSeek = (e) => {
+        const rect = seekTrack.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        if (storyVideo.duration) {
+          storyVideo.currentTime = pos * storyVideo.duration;
+        }
+      };
+
+      seekTrack.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleSeek(e);
+      });
+    }
+  }
+
+  // 5. Exit Transition from Creative Intro into the Actual Portfolio Website
   function finishIntoPortfolio() {
     if (cipExiting) return;
     cipExiting = true;
 
-    if (autoAdvanceTimer) {
-      clearTimeout(autoAdvanceTimer);
-      autoAdvanceTimer = null;
+    // Pause video playback upon exit
+    if (storyVideo) {
+      try { storyVideo.pause(); } catch (err) {}
     }
 
     window.removeEventListener('keydown', handleCipKeyDown);
-    window.removeEventListener('wheel', handleCipWheel);
-    cipOverlay.removeEventListener('click', handleCipClick);
 
     cipOverlay.classList.add('cip-exiting');
 
@@ -4204,17 +4436,17 @@ function transitionToCreativeIntroPage() {
       cipOverlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('cip-active');
 
-      // Refresh layouts and scroll triggers in portfolio
+      // Refresh layouts, scroll listeners, and triggers in the actual portfolio
       window.dispatchEvent(new Event('scroll'));
       window.dispatchEvent(new Event('resize'));
     }, 650);
   }
 
-  // Key handlers for Creative Intro Page: ENTER, SPACE, ESC, TAB, ArrowDown
+  // Keyboard navigation for middle gallery: ENTER or SPACE on Explore button or ESCAPE
   function handleCipKeyDown(e) {
     if (cipExiting) return;
     const key = e.key;
-    if (key === 'Enter' || key === ' ' || e.code === 'Space' || key === 'Escape' || key === 'Tab' || key === 'ArrowDown') {
+    if (key === 'Escape') {
       e.preventDefault();
       finishIntoPortfolio();
     }
@@ -4222,36 +4454,11 @@ function transitionToCreativeIntroPage() {
 
   window.addEventListener('keydown', handleCipKeyDown);
 
-  // Clicking anywhere advances into the portfolio
-  const handleCipClick = () => {
-    finishIntoPortfolio();
-  };
-  cipOverlay.addEventListener('click', handleCipClick);
-
-  // Subtle scroll wheel gesture triggers transition into portfolio
-  const handleCipWheel = (e) => {
-    if (e.deltaY > 20) {
+  // Recreated "Let's Explore →" button enters portfolio smoothly
+  if (exploreBtn) {
+    exploreBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       finishIntoPortfolio();
-    }
-  };
-  window.addEventListener('wheel', handleCipWheel, { passive: true });
-
-  // Auto-advance after 4 seconds if the user does not click, ensuring smooth progression
-  autoAdvanceTimer = setTimeout(() => {
-    finishIntoPortfolio();
-  }, 4000);
-
-  // Subtle interactive floating tilt on the central portfolio image
-  const portfolioImg = document.getElementById('cip-portfolio-img');
-  if (portfolioImg) {
-    cipOverlay.addEventListener('pointermove', (e) => {
-      const rect = cipOverlay.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) - 0.5;
-      const y = ((e.clientY - rect.top) / rect.height) - 0.5;
-      portfolioImg.style.transform = `scale(1.02) translate(${x * 14}px, ${y * 14}px)`;
-    });
-    cipOverlay.addEventListener('pointerleave', () => {
-      portfolioImg.style.transform = '';
     });
   }
 }

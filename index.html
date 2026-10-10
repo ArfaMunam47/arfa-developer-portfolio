@@ -80,25 +80,190 @@
   </aside>
 
   <!-- =======================================================================
-       CREATIVE INTRODUCTION PAGE (Portfolio Showcase Bridge)
-       Minimalist Background with Large Centralized Portfolio Artwork
+       CREATIVE INTRODUCTION MIDDLE PAGE (Creative Portfolio Gallery Bridge)
+       Layered Paper Portfolio Image (Left) • Handwritten Orange Arrow (Center) •
+       Floating Cinematic Video Display (Right) • Let's Explore Pill Button (Bottom)
        ======================================================================= -->
-  <aside id="creative-intro-cover" class="cip-overlay" aria-label="Portfolio Introduction" role="region" aria-hidden="true">
-    <!-- Clean Minimalist Center Display for Large Portfolio Image -->
-    <div class="cip-center-container" id="cip-center-container">
-      <img 
-        src="portfolio.png" 
-        alt="Arfa Munam - Portfolio"
-        class="cip-portfolio-img"
-        id="cip-portfolio-img"
-        loading="eager"
-        decoding="sync"
-        fetchpriority="high"
-        width="1600"
-        height="901"
-        onerror="if(this.src.indexOf('portfolio.png.jpeg')===-1){this.src='portfolio.png.jpeg';}"
-      >
-    </div>
+  <aside id="creative-intro-cover" class="cip-overlay" aria-label="Portfolio Introduction Gallery" role="region" aria-hidden="true">
+    <div class="cip-gallery-stage" id="cip-gallery-stage">
+      
+      <!-- MAIN TWO-COLUMN COMPOSITION: IMAGE (LEFT) + ARROW (CENTER) + VIDEO (RIGHT) -->
+      <div class="cip-composition-row" id="cip-composition-row">
+        
+        <!-- LEFT: LAYERED CREATIVE PORTFOLIO IMAGE -->
+        <div class="cip-image-column" id="cip-image-column">
+          <!-- Small Cream Note Card with Paperclip -->
+          <div class="cip-note-card" id="cip-note-card" aria-hidden="true">
+            <svg class="cip-paperclip-icon" width="18" height="26" viewBox="0 0 24 36" fill="none" stroke="#D97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 4v22a5 5 0 0 0 10 0V11a8 8 0 0 0-16 0v17a10 10 0 0 0 20 0V9" />
+            </svg>
+            <p class="cip-note-text">
+              A small preview<br>of my world ♡
+            </p>
+          </div>
+
+          <!-- Interactive Layered Stack -->
+          <div class="cip-image-stack" id="cip-image-stack" role="button" tabindex="0" aria-label="Click to reveal story video">
+            <!-- Decorative Back Paper Layers -->
+            <div class="cip-paper-layer layer-peach" aria-hidden="true"></div>
+            <div class="cip-paper-layer layer-ivory" aria-hidden="true"></div>
+            <div class="cip-paper-layer layer-beige" aria-hidden="true"></div>
+
+            <!-- Main Portfolio Artwork Sheet -->
+            <div class="cip-main-image-wrap" id="cip-main-image-wrap">
+              <img 
+                src="portfolio.png" 
+                alt="Arfa Munam - Creative Portfolio"
+                class="cip-portfolio-img"
+                id="cip-portfolio-img"
+                loading="eager"
+                decoding="sync"
+                fetchpriority="high"
+                width="1600"
+                height="901"
+                onerror="if(this.src.indexOf('portfolio.png.jpeg')===-1){this.src='portfolio.png.jpeg';}"
+              >
+              <!-- Click Affordance Hint Pill (Disappears upon reveal) -->
+              <div class="cip-click-hint" id="cip-click-hint" aria-hidden="true">
+                <span>Click image to watch story</span>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.cip-image-column -->
+
+        <!-- CENTER: CREATIVE HANDWRITTEN ORANGE ARROW & INSTRUCTION -->
+        <div class="cip-arrow-column" id="cip-arrow-column" aria-hidden="true">
+          <div class="cip-arrow-caption">
+            <span class="cip-caption-line-1">Click to</span>
+            <span class="cip-caption-line-2">Watch My Story</span>
+          </div>
+
+          <!-- Curved Orange Editorial SVG Arrow -->
+          <svg class="cip-curved-arrow-svg" id="cip-curved-arrow-svg" viewBox="0 0 220 120" fill="none">
+            <defs>
+              <marker id="cip-arrowhead" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 8 4 L 0 8 Z" fill="#FA5538" />
+              </marker>
+            </defs>
+            <!-- Gracefully arched dynamic path pointing to video display -->
+            <path 
+              id="cip-arrow-path"
+              class="cip-arrow-path"
+              d="M 25 25 C 75 10, 125 35, 155 75 C 168 92, 185 96, 202 85" 
+              stroke="#FA5538" 
+              stroke-width="3.5" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+              marker-end="url(#cip-arrowhead)"
+            />
+          </svg>
+        </div><!-- /.cip-arrow-column -->
+
+        <!-- RIGHT: FLOATING CINEMATIC VIDEO DISPLAY -->
+        <div class="cip-video-column" id="cip-video-column">
+          <div class="cip-video-screen-stack" id="cip-video-screen-stack">
+            <!-- Offset Depth Background Layers -->
+            <div class="cip-video-back-layer v-layer-charcoal" aria-hidden="true"></div>
+            <div class="cip-video-back-layer v-layer-peach" aria-hidden="true"></div>
+
+            <!-- Main Modern Screen Display Frame -->
+            <div class="cip-video-player-frame" id="cip-video-player-frame">
+              <video 
+                id="cip-story-video"
+                class="cip-story-video"
+                playsinline
+                preload="metadata"
+                tabindex="0"
+                aria-label="Arfa Munam Story Video"
+              >
+                <source src="portfolio.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+
+              <!-- Central Ambient Play Button Overlay -->
+              <button type="button" class="cip-play-btn" id="cip-play-btn" aria-label="Play story video">
+                <span class="cip-play-icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="#0F172A">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </span>
+              </button>
+
+              <!-- Elegant Minimalist Video Control Bar -->
+              <div class="cip-video-controls" id="cip-video-controls" aria-label="Video Controls">
+                <!-- Play/Pause Toggle -->
+                <button type="button" class="cip-ctrl-btn" id="cip-ctrl-play" aria-label="Play/Pause">
+                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+
+                <!-- Seek Bar Track -->
+                <div class="cip-seek-track" id="cip-seek-track" role="slider" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                  <div class="cip-seek-fill" id="cip-seek-fill"></div>
+                  <div class="cip-seek-thumb" id="cip-seek-thumb"></div>
+                </div>
+
+                <!-- Time Readout -->
+                <span class="cip-time-display" id="cip-time-display">0:00 / 0:00</span>
+
+                <!-- Volume Button -->
+                <button type="button" class="cip-ctrl-btn" id="cip-ctrl-mute" aria-label="Mute/Unmute">
+                  <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                  </svg>
+                  <svg class="icon-vol-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                </button>
+
+                <!-- Fullscreen Button -->
+                <button type="button" class="cip-ctrl-btn" id="cip-ctrl-fs" aria-label="Toggle Fullscreen">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                </button>
+              </div><!-- /.cip-video-controls -->
+
+            </div><!-- /.cip-video-player-frame -->
+          </div><!-- /.cip-video-screen-stack -->
+        </div><!-- /.cip-video-column -->
+
+      </div><!-- /.cip-composition-row -->
+
+      <!-- BOTTOM CENTER: LET'S EXPLORE BUTTON & SUBTLE DECORATIONS -->
+      <div class="cip-bottom-controls" id="cip-bottom-controls">
+        <!-- Tiny Sparkle with Delicate Hairline Wings -->
+        <div class="cip-sparkle-decor" aria-hidden="true">
+          <span class="cip-wing-line"></span>
+          <span class="cip-sparkle-star">✦</span>
+          <span class="cip-wing-line"></span>
+        </div>
+
+        <!-- Recreated "Let's Explore →" Rounded Pill Button -->
+        <button type="button" class="cip-explore-btn" id="cip-explore-btn" aria-label="Enter portfolio website">
+          <span class="cip-explore-text">Let's Explore</span>
+          <span class="cip-explore-arrow" aria-hidden="true">→</span>
+        </button>
+
+        <!-- Uppercase Subtitle with Generous Tracking -->
+        <span class="cip-explore-kicker" aria-hidden="true">PORTFOLIO AWAITS</span>
+      </div><!-- /.cip-bottom-controls -->
+
+      <!-- Subtle Delicate Bottom Curved Line -->
+      <svg class="cip-bottom-curve-svg" viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 0 55 C 380 20, 860 70, 1440 35" stroke="#FA5538" stroke-width="1.2" stroke-opacity="0.28" stroke-linecap="round" />
+      </svg>
+
+    </div><!-- /.cip-gallery-stage -->
   </aside>
 
   <!-- Sleek Fluid Precision Cursor (Desktop only, hidden on touch & reduced motion) -->
@@ -2613,14 +2778,13 @@
   </section>
 
     <!-- =======================================================================
-       OFFICIAL CREDENTIALS — 3-STEP ALTERNATING 3D FOLDED RIBBON JOURNEY
-       Step 01: Emerald Green (Ribbon Left, Certificate Right)
-       Step 02: Vivid Orange (Certificate Left, Ribbon Right)
-       Step 03: Rich Sky Blue (Ribbon Left, Certificate Right)
-       Connected 3D Folded Ribbon Path • Direct Card Overlap • Zero Gaps
+       OFFICIAL CREDENTIALS — HANGING CERTIFICATE GALLERY
+       Physical verified credentials suspended from a gallery cable with realistic
+       brass/wooden clips, delicate twin suspension cords, organic natural rotations,
+       and tactile hover physics.
        ======================================================================= -->
-  <section id="certifications" class="cert-showcase-section" aria-label="Official Credentials Showcase">
-    <div class="cert-journey-container">
+  <section id="certifications" class="cert-hanging-gallery-section" aria-label="Official Credentials Gallery">
+    <div class="cert-hanging-container">
       
       <!-- Section Header -->
       <div class="cert-section-header">
@@ -2632,57 +2796,64 @@
           Proof of Learning, <span class="cert-heading-gradient">Fuel for Growth.</span>
         </h2>
         <p class="cert-section-subhead">
-          Three verified Google specializations structured in a continuous, folded 3D ribbon journey.
+          Verified Google specializations displayed in an editorial hanging gallery.
         </p>
       </div>
 
-      <!-- 3-Step Alternating 3D Folded Ribbon Infographic -->
-      <div class="cert-infographic-track">
+      <!-- Clean Gallery Display -->
+      <div class="cert-hanging-gallery">
         
-        <!-- STEP 01 — GREEN — Ribbon on LEFT, Certificate on RIGHT -->
-        <div class="cert-step-row step-green row-align-left" data-step="1">
-          <!-- 3D Ribbon Unit (Front Layer) -->
-          <div class="cert-ribbon-unit">
-            <div class="ribbon-origami-wrapper">
-              <!-- Top Folded Tab (Origami fold behind) -->
-              <div class="ribbon-fold-top" aria-hidden="true"></div>
-              
-              <!-- 3D Extruded Left Bevel -->
-              <div class="ribbon-side-face ribbon-side-left" aria-hidden="true"></div>
-              
-              <!-- Main Numbered Ribbon Front Face -->
-              <div class="ribbon-front-face">
-                <span class="ribbon-step-label">STEP</span>
-                <span class="ribbon-step-number">01</span>
-                <div class="ribbon-shine-sheen" aria-hidden="true"></div>
-                <div class="ribbon-bottom-notch" aria-hidden="true"></div>
+        <!-- Subtle Horizontal Clothesline / Wire (ultra-thin line with delicate natural drape) -->
+        <div class="hanging-line-wrapper" aria-hidden="true">
+          <svg class="hanging-line-svg" viewBox="0 0 1000 24" preserveAspectRatio="none">
+            <!-- Gentle realistic catenary drape -->
+            <path d="M 0,6 Q 250,14 500,16 Q 750,14 1000,6" class="hanging-string-path" />
+          </svg>
+        </div>
+
+        <!-- 3 Hanging Certificate Cards -->
+        <div class="cert-hanging-cards-grid">
+          
+          <!-- CERTIFICATE 01: Google AI Professional -->
+          <div class="hanging-cert-item cert-item-1" data-cert="1">
+            <!-- Suspension Clips (Minimal wooden / paper peg clothespins) -->
+            <div class="hanging-pegs-row" aria-hidden="true">
+              <div class="hanging-peg peg-left">
+                <span class="peg-body"></span>
               </div>
-
-              <!-- Overlapping Clasp / Fold Tab that projects over the certificate card -->
-              <div class="ribbon-card-clasp clasp-right" aria-hidden="true"></div>
-              
-              <!-- Origami Bottom Fold that leads into vertical transition ribbon -->
-              <div class="ribbon-fold-bottom" aria-hidden="true"></div>
-              
-              <!-- Ambient Depth Shadow -->
-              <div class="ribbon-ambient-shadow" aria-hidden="true"></div>
+              <div class="hanging-peg peg-right">
+                <span class="peg-body"></span>
+              </div>
             </div>
-          </div>
 
-          <!-- Integrated Certificate Card (Tucked Behind Ribbon) -->
-          <div class="cert-content-card">
-            <div class="cert-card-shell">
+            <!-- Hanging Certificate Sheet Card -->
+            <article class="hanging-cert-card">
+              <!-- Header info: Badge & Year -->
               <div class="cert-card-header">
-                <div class="cert-card-meta">
-                  <span class="cert-issuer-badge">Google / Grow with Google</span>
-                  <span class="cert-meta-dot" aria-hidden="true">·</span>
+                <div class="cert-meta-row">
+                  <div class="cert-badge-verified badge-emerald">
+                    <span class="badge-check-icon">✓</span>
+                    <span>VERIFIED CREDENTIAL</span>
+                  </div>
                   <span class="cert-year-tag">2024</span>
+                </div>
+                <div class="cert-issuer-row">
+                  <span class="cert-issuer-dot dot-emerald"></span>
+                  <span class="cert-issuer-name">Google / Grow with Google</span>
                 </div>
                 <h3 class="cert-card-title">Google AI Professional Certificate</h3>
               </div>
+
+              <!-- Certificate Image Display -->
               <div class="cert-visual-frame">
-                <img src="1.jpg" alt="Official Google AI Professional Certificate" class="cert-journey-img" loading="eager" onerror="this.onerror=null; this.src='1--.jpg';">
+                <img src="1.jpg" 
+                     alt="Official Google AI Professional Certificate" 
+                     class="cert-journey-img cert-hanging-img" 
+                     loading="eager" 
+                     onerror="this.onerror=null; this.src='1--.jpg';">
               </div>
+
+              <!-- Footer skills -->
               <div class="cert-card-footer">
                 <span class="cert-tag">Generative AI Architecture</span>
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
@@ -2690,52 +2861,44 @@
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
                 <span class="cert-tag">Responsible AI</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
 
-        <!-- 3D FOLDED RIBBON CONNECTOR (Step 01 Green -> Step 02 Orange) -->
-        <div class="cert-connector-bridge bridge-1-to-2" aria-hidden="true">
-          <svg class="cert-connector-svg" viewBox="0 0 680 90" fill="none" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="ribbonPath12" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#059669" />
-                <stop offset="35%" stop-color="#047857" />
-                <stop offset="70%" stop-color="#EA580C" />
-                <stop offset="100%" stop-color="#F97316" />
-              </linearGradient>
-              <filter id="ribbonDrop12" x="-10%" y="-20%" width="120%" height="160%">
-                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.18" />
-              </filter>
-            </defs>
-            <!-- 3D Shadow -->
-            <path d="M 90,8 C 160,8 520,82 590,82" stroke="rgba(0,0,0,0.12)" stroke-width="32" stroke-linecap="round" filter="url(#ribbonDrop12)" />
-            <!-- Underside Fold Facets -->
-            <path d="M 80,0 L 105,20 L 80,24 Z" fill="#064E3B" />
-            <path d="M 575,66 L 600,70 L 575,90 Z" fill="#7C2D12" />
-            <!-- Main Diagonal 3D Folded Ribbon Spine -->
-            <path d="M 85,8 C 170,8 510,82 595,82" stroke="url(#ribbonPath12)" stroke-width="26" stroke-linecap="round" />
-            <!-- Top Light Highlight Stripe -->
-            <path d="M 88,3 C 170,3 510,77 592,77" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" fill="none" />
-          </svg>
-        </div>
+          <!-- CERTIFICATE 02: Google AI Essentials -->
+          <div class="hanging-cert-item cert-item-2" data-cert="2">
+            <div class="hanging-pegs-row" aria-hidden="true">
+              <div class="hanging-peg peg-left">
+                <span class="peg-body"></span>
+              </div>
+              <div class="hanging-peg peg-right">
+                <span class="peg-body"></span>
+              </div>
+            </div>
 
-        <!-- STEP 02 — ORANGE — Certificate on LEFT, Ribbon on RIGHT -->
-        <div class="cert-step-row step-orange row-align-right" data-step="2">
-          <!-- Integrated Certificate Card (Tucked Behind Ribbon) -->
-          <div class="cert-content-card">
-            <div class="cert-card-shell">
+            <article class="hanging-cert-card">
               <div class="cert-card-header">
-                <div class="cert-card-meta">
-                  <span class="cert-issuer-badge">Google / Coursera</span>
-                  <span class="cert-meta-dot" aria-hidden="true">·</span>
+                <div class="cert-meta-row">
+                  <div class="cert-badge-verified badge-orange">
+                    <span class="badge-check-icon">✓</span>
+                    <span>VERIFIED CREDENTIAL</span>
+                  </div>
                   <span class="cert-year-tag">2024</span>
+                </div>
+                <div class="cert-issuer-row">
+                  <span class="cert-issuer-dot dot-orange"></span>
+                  <span class="cert-issuer-name">Google / Coursera</span>
                 </div>
                 <h3 class="cert-card-title">Google AI Essentials Specialization</h3>
               </div>
+
               <div class="cert-visual-frame">
-                <img src="2.jpg" alt="Official Google AI Essentials Specialization Certificate" class="cert-journey-img" loading="lazy" onerror="this.onerror=null; this.src='2--.jpg';">
+                <img src="2.jpg" 
+                     alt="Official Google AI Essentials Specialization Certificate" 
+                     class="cert-journey-img cert-hanging-img" 
+                     loading="lazy" 
+                     onerror="this.onerror=null; this.src='2--.jpg';">
               </div>
+
               <div class="cert-card-footer">
                 <span class="cert-tag">Applied Generative AI</span>
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
@@ -2743,108 +2906,44 @@
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
                 <span class="cert-tag">AI Safety &amp; Ethics</span>
               </div>
-            </div>
+            </article>
           </div>
 
-          <!-- 3D Ribbon Unit (Front Layer on Right) -->
-          <div class="cert-ribbon-unit">
-            <div class="ribbon-origami-wrapper">
-              <!-- Top Folded Tab (Origami fold behind) -->
-              <div class="ribbon-fold-top" aria-hidden="true"></div>
-              
-              <!-- 3D Extruded Right Bevel -->
-              <div class="ribbon-side-face ribbon-side-right" aria-hidden="true"></div>
-              
-              <!-- Main Numbered Ribbon Front Face -->
-              <div class="ribbon-front-face">
-                <span class="ribbon-step-label">STEP</span>
-                <span class="ribbon-step-number">02</span>
-                <div class="ribbon-shine-sheen" aria-hidden="true"></div>
-                <div class="ribbon-bottom-notch" aria-hidden="true"></div>
+          <!-- CERTIFICATE 03: Google Prompting Essentials -->
+          <div class="hanging-cert-item cert-item-3" data-cert="3">
+            <div class="hanging-pegs-row" aria-hidden="true">
+              <div class="hanging-peg peg-left">
+                <span class="peg-body"></span>
               </div>
-
-              <!-- Overlapping Clasp / Fold Tab that projects over the certificate card -->
-              <div class="ribbon-card-clasp clasp-left" aria-hidden="true"></div>
-              
-              <!-- Origami Bottom Fold that leads into vertical transition ribbon -->
-              <div class="ribbon-fold-bottom" aria-hidden="true"></div>
-              
-              <!-- Ambient Depth Shadow -->
-              <div class="ribbon-ambient-shadow" aria-hidden="true"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3D FOLDED RIBBON CONNECTOR (Step 02 Orange -> Step 03 Blue) -->
-        <div class="cert-connector-bridge bridge-2-to-3" aria-hidden="true">
-          <svg class="cert-connector-svg" viewBox="0 0 680 90" fill="none" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="ribbonPath23" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#EA580C" />
-                <stop offset="35%" stop-color="#C2410C" />
-                <stop offset="70%" stop-color="#0284C7" />
-                <stop offset="100%" stop-color="#0EA5E9" />
-              </linearGradient>
-              <filter id="ribbonDrop23" x="-10%" y="-20%" width="120%" height="160%">
-                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.18" />
-              </filter>
-            </defs>
-            <!-- 3D Shadow -->
-            <path d="M 590,8 C 520,8 160,82 90,82" stroke="rgba(0,0,0,0.12)" stroke-width="32" stroke-linecap="round" filter="url(#ribbonDrop23)" />
-            <!-- Underside Fold Facets -->
-            <path d="M 600,0 L 575,20 L 600,24 Z" fill="#7C2D12" />
-            <path d="M 105,66 L 80,70 L 105,90 Z" fill="#0C4A6E" />
-            <!-- Main Diagonal 3D Folded Ribbon Spine -->
-            <path d="M 595,8 C 510,8 170,82 85,82" stroke="url(#ribbonPath23)" stroke-width="26" stroke-linecap="round" />
-            <!-- Top Light Highlight Stripe -->
-            <path d="M 592,3 C 510,3 170,77 88,77" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" fill="none" />
-          </svg>
-        </div>
-
-        <!-- STEP 03 — BLUE — Ribbon on LEFT, Certificate on RIGHT -->
-        <div class="cert-step-row step-blue row-align-left" data-step="3">
-          <!-- 3D Ribbon Unit (Front Layer on Left) -->
-          <div class="cert-ribbon-unit">
-            <div class="ribbon-origami-wrapper">
-              <!-- Top Folded Tab (Origami fold behind) -->
-              <div class="ribbon-fold-top" aria-hidden="true"></div>
-              
-              <!-- 3D Extruded Left Bevel -->
-              <div class="ribbon-side-face ribbon-side-left" aria-hidden="true"></div>
-              
-              <!-- Main Numbered Ribbon Front Face -->
-              <div class="ribbon-front-face">
-                <span class="ribbon-step-label">STEP</span>
-                <span class="ribbon-step-number">03</span>
-                <div class="ribbon-shine-sheen" aria-hidden="true"></div>
-                <div class="ribbon-bottom-notch" aria-hidden="true"></div>
+              <div class="hanging-peg peg-right">
+                <span class="peg-body"></span>
               </div>
-
-              <!-- Overlapping Clasp / Fold Tab that projects over the certificate card -->
-              <div class="ribbon-card-clasp clasp-right" aria-hidden="true"></div>
-              
-              <!-- Origami Bottom Fold -->
-              <div class="ribbon-fold-bottom" aria-hidden="true"></div>
-              
-              <!-- Ambient Depth Shadow -->
-              <div class="ribbon-ambient-shadow" aria-hidden="true"></div>
             </div>
-          </div>
 
-          <!-- Integrated Certificate Card (Tucked Behind Ribbon) -->
-          <div class="cert-content-card">
-            <div class="cert-card-shell">
+            <article class="hanging-cert-card">
               <div class="cert-card-header">
-                <div class="cert-card-meta">
-                  <span class="cert-issuer-badge">Google / Coursera</span>
-                  <span class="cert-meta-dot" aria-hidden="true">·</span>
+                <div class="cert-meta-row">
+                  <div class="cert-badge-verified badge-blue">
+                    <span class="badge-check-icon">✓</span>
+                    <span>VERIFIED CREDENTIAL</span>
+                  </div>
                   <span class="cert-year-tag">2025</span>
+                </div>
+                <div class="cert-issuer-row">
+                  <span class="cert-issuer-dot dot-blue"></span>
+                  <span class="cert-issuer-name">Google / Coursera</span>
                 </div>
                 <h3 class="cert-card-title">Google Prompting Essentials Specialization</h3>
               </div>
+
               <div class="cert-visual-frame">
-                <img src="3.jpg" alt="Official Google Prompting Essentials Specialization Certificate" class="cert-journey-img" loading="lazy" onerror="this.onerror=null; this.src='3--.jpg';">
+                <img src="3.jpg" 
+                     alt="Official Google Prompting Essentials Specialization Certificate" 
+                     class="cert-journey-img cert-hanging-img" 
+                     loading="lazy" 
+                     onerror="this.onerror=null; this.src='3--.jpg';">
               </div>
+
               <div class="cert-card-footer">
                 <span class="cert-tag">Prompt Architecture</span>
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
@@ -2852,13 +2951,14 @@
                 <span class="cert-tag-sep" aria-hidden="true">·</span>
                 <span class="cert-tag">LLM Orchestration</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
 
-      </div><!-- /.cert-infographic-track -->
+        </div><!-- /.cert-hanging-cards-grid -->
 
-    </div><!-- /.cert-journey-container -->
+      </div><!-- /.cert-hanging-gallery -->
+
+    </div><!-- /.cert-hanging-container -->
   </section>
 
   <!-- =======================================================================
@@ -2897,83 +2997,94 @@
         </div>
       </div>
 
-      <!-- 3D SERPENTINE WINDING ROAD STAGE -->
-      <div class="lj-winding-stage reveal" id="lj-winding-stage">
-        
-        <!-- Precision Scaled 3D Serpentine Roadway SVG Track -->
-        <div class="lj-road-svg-wrap" aria-hidden="true">
-          <svg class="lj-winding-road-svg" viewBox="0 0 1000 2200" fill="none" preserveAspectRatio="none">
+      <!-- 3D INFOGRAPHIC RIBBON JOURNEY STAGE -->
+      <div class="lj-ribbon-stage reveal" id="lj-ribbon-stage">
+
+        <!-- Precision 3D Continuous Alternating Ribbon Track (SVG) -->
+        <div class="lj-ribbon-svg-wrap" aria-hidden="true">
+          <svg class="lj-ribbon-svg" viewBox="0 0 1000 2200" fill="none" preserveAspectRatio="none">
             <defs>
-              <!-- 3D Road Base Drop Shadow -->
-              <filter id="road-dimensional-shadow" x="-30%" y="-15%" width="160%" height="140%">
-                <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#0F172A" flood-opacity="0.14" />
+              <!-- Ambient dimensional shadow for the ribbon -->
+              <filter id="ribbon-depth-shadow" x="-30%" y="-15%" width="160%" height="140%">
+                <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.12" />
               </filter>
 
-              <!-- Main Gradient for Roadway Ribbon -->
-              <linearGradient id="roadTurquoiseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#14B8A6" />
-                <stop offset="18%" stop-color="#0D9488" />
-                <stop offset="38%" stop-color="#06B6D4" />
-                <stop offset="58%" stop-color="#0284C7" />
-                <stop offset="78%" stop-color="#0D9488" />
-                <stop offset="90%" stop-color="#10B981" />
-                <stop offset="100%" stop-color="#059669" />
+              <!-- Continuous vibrant 3D gradient matching the reference -->
+              <linearGradient id="ribbonMainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FF5A36" />
+                <stop offset="14%" stop-color="#F97316" />
+                <stop offset="28%" stop-color="#F59E0B" />
+                <stop offset="44%" stop-color="#10B981" />
+                <stop offset="60%" stop-color="#06B6D4" />
+                <stop offset="74%" stop-color="#3B82F6" />
+                <stop offset="88%" stop-color="#8B5CF6" />
+                <stop offset="100%" stop-color="#EC4899" />
               </linearGradient>
 
-              <!-- Bevel Underside Shadow Gradient -->
-              <linearGradient id="roadEdgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#0F766E" />
-                <stop offset="50%" stop-color="#0369A1" />
-                <stop offset="100%" stop-color="#047857" />
+              <!-- Ribbon 3D Bevel/Extrusion Darker Lip -->
+              <linearGradient id="ribbonBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#D9401E" />
+                <stop offset="14%" stop-color="#C2410C" />
+                <stop offset="28%" stop-color="#B45309" />
+                <stop offset="44%" stop-color="#047857" />
+                <stop offset="60%" stop-color="#0891B2" />
+                <stop offset="74%" stop-color="#1D4ED8" />
+                <stop offset="88%" stop-color="#6D28D9" />
+                <stop offset="100%" stop-color="#BE185D" />
               </linearGradient>
             </defs>
 
-            <!-- 1. Deep 3D Ambient Drop Shadow under Road -->
-            <path class="road-path-shadow" filter="url(#road-dimensional-shadow)"
+            <!-- 1. Ambient Drop Shadow underneath ribbon folds -->
+            <path class="ribbon-path-shadow" filter="url(#ribbon-depth-shadow)"
                   d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
 
-            <!-- 2. Lower 3D Extrusion Bevel (Physical Thickness Lip) -->
-            <path class="road-path-bevel"
+            <!-- 2. Lower 3D Thickness Extrusion Lip (Physical Depth) -->
+            <path class="ribbon-path-bevel"
                   d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
 
-            <!-- 3. Top Illuminated Road Surface Ribbon -->
-            <path id="winding-main-track" class="road-path-surface"
+            <!-- 3. Top Illuminated 3D Ribbon Surface -->
+            <path id="ribbon-main-spine" class="ribbon-path-surface"
                   d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
 
-            <!-- 4. Crisp High-Contrast Center Lane Markings -->
-            <path class="road-center-track"
+            <!-- 4. Delicate Crisp Center Guide Track -->
+            <path class="ribbon-center-crease"
                   d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
 
-            <!-- 5. Flowing Luminous Particle of Continuous Learning -->
-            <circle class="road-pulse-energy" r="7" fill="#FFFFFF">
+            <!-- 5. Continuous Luminous Traveling Energy Beacon -->
+            <circle class="ribbon-pulse-energy" r="7.5" fill="#FFFFFF">
               <animateMotion repeatCount="indefinite" dur="18s"
                 path="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
             </circle>
           </svg>
         </div>
 
-        <!-- 8 CHRONOLOGICAL MILESTONE STATIONS (ALTERNATING SERPENTINE) -->
+        <!-- 8 CHRONOLOGICAL MILESTONE STATIONS (ALTERNATING 3D RIBBON INFOGRAPHIC) -->
         <div class="lj-milestones-stream">
-          
-          <!-- MILESTONE 01: Left Pedestal -> Right Card -->
-          <div class="lj-milestone-station station-left" data-step="1">
+
+          <!-- MILESTONE 01: Left Number Block -> Right Card (Coral Theme) -->
+          <div class="lj-milestone-station station-left theme-coral" data-step="1">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 01: Web Fundamentals">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">01</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="16 18 22 12 16 6"></polyline>
-                      <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 01: Web Fundamentals">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">01</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-coral">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">01 &middot; Foundations</span>
                   <span class="card-timeline-date">2026 Inception</span>
@@ -2993,26 +3104,31 @@
             </div>
           </div>
 
-          <!-- MILESTONE 02: Right Pedestal -> Left Card -->
-          <div class="lj-milestone-station station-right" data-step="2">
+          <!-- MILESTONE 02: Right Number Block -> Left Card (Amber/Orange Theme) -->
+          <div class="lj-milestone-station station-right theme-orange" data-step="2">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 02: Frontend Development">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">02</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      <line x1="3" y1="9" x2="21" y2="9"></line>
-                      <line x1="9" y1="21" x2="9" y2="9"></line>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 02: Frontend Development">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">02</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-orange">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">02 &middot; Architecture</span>
                   <span class="card-timeline-date">Modular UI</span>
@@ -3032,24 +3148,29 @@
             </div>
           </div>
 
-          <!-- MILESTONE 03: Left Pedestal -> Right Card -->
-          <div class="lj-milestone-station station-left" data-step="3">
+          <!-- MILESTONE 03: Left Number Block -> Right Card (Gold Theme) -->
+          <div class="lj-milestone-station station-left theme-gold" data-step="3">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 03: Animation & Interactive UI">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">03</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 03: Animation & Interactive UI">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">03</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-gold">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">03 &middot; Kinetic Craft</span>
                   <span class="card-timeline-date">60 FPS Fluidity</span>
@@ -3069,25 +3190,30 @@
             </div>
           </div>
 
-          <!-- MILESTONE 04: Right Pedestal -> Left Card -->
-          <div class="lj-milestone-station station-right" data-step="4">
+          <!-- MILESTONE 04: Right Number Block -> Left Card (Emerald Theme) -->
+          <div class="lj-milestone-station station-right theme-emerald" data-step="4">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 04: Prompt Engineering">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">04</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      <line x1="9" y1="10" x2="15" y2="10"></line>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 04: Prompt Engineering">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">04</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <line x1="9" y1="10" x2="15" y2="10"></line>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-emerald">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">04 &middot; AI Orchestration</span>
                   <span class="card-timeline-date">Prompt Architecture</span>
@@ -3107,26 +3233,31 @@
             </div>
           </div>
 
-          <!-- MILESTONE 05: Left Pedestal -> Right Card -->
-          <div class="lj-milestone-station station-left" data-step="5">
+          <!-- MILESTONE 05: Left Number Block -> Right Card (Teal/Cyan Theme) -->
+          <div class="lj-milestone-station station-left theme-cyan" data-step="5">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 05: Exploring AI">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">05</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 05: Exploring AI">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">05</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-cyan">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">05 &middot; Frontier AI</span>
                   <span class="card-timeline-date">Multimodal SDKs</span>
@@ -3146,28 +3277,33 @@
             </div>
           </div>
 
-          <!-- MILESTONE 06: Right Pedestal -> Left Card (CURRENT ACTIVE FOCUS) -->
-          <div class="lj-milestone-station station-right is-active-focus" data-step="6">
+          <!-- MILESTONE 06: Right Number Block -> Left Card (Blue Theme - CURRENT ACTIVE FOCUS) -->
+          <div class="lj-milestone-station station-right theme-blue is-active-focus" data-step="6">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform platform-focus-beacon" tabindex="0" role="button" aria-label="Milestone 06: Backend Core (Current Active Focus)">
-                <div class="platform-focus-pulse" aria-hidden="true"></div>
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge badge-active">06</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                      <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                      <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                    </svg>
+              <div class="lj-3d-step-block step-active-pulse" tabindex="0" role="button" aria-label="Step 06: Backend Core (Current Active Focus)">
+                <div class="step-focus-pulse" aria-hidden="true"></div>
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">06</span>
+                    <span class="step-tag-mini active-tag">ACTIVE</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card card-focus-highlight">
+              <div class="lj-milestone-card card-theme-blue card-focus-highlight">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title card-step-active">
                     <span class="live-dot" aria-hidden="true"></span>
@@ -3184,35 +3320,40 @@
                   <span class="skill-pill">Node.js</span>
                   <span class="skill-pill">Express.js</span>
                   <span class="skill-pill">RESTful Architecture</span>
-                  <span class="skill-pill">Middleware & Auth</span>
+                  <span class="skill-pill">Middleware &amp; Auth</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- MILESTONE 07: Left Pedestal -> Right Card -->
-          <div class="lj-milestone-station station-left" data-step="7">
+          <!-- MILESTONE 07: Left Number Block -> Right Card (Purple Theme) -->
+          <div class="lj-milestone-station station-left theme-purple" data-step="7">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 07: Data & Cloud">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">07</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 07: Data & Cloud">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">07</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-purple">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">07 &middot; Infrastructure</span>
-                  <span class="card-timeline-date">Persistence & Deployment</span>
+                  <span class="card-timeline-date">Persistence &amp; Deployment</span>
                 </div>
                 <h3 class="card-title">Data &amp; Cloud</h3>
                 <p class="card-subtitle">PostgreSQL &bull; Supabase &bull; Relational Schemas &bull; Cloud Ops</p>
@@ -3229,24 +3370,29 @@
             </div>
           </div>
 
-          <!-- MILESTONE 08: Right Pedestal -> Left Card -->
-          <div class="lj-milestone-station station-right" data-step="8">
+          <!-- MILESTONE 08: Right Number Block -> Left Card (Pink/Magenta Theme) -->
+          <div class="lj-milestone-station station-right theme-pink" data-step="8">
             <div class="lj-platform-column">
-              <div class="lj-circular-platform" tabindex="0" role="button" aria-label="Milestone 08: Future Goals">
-                <div class="platform-shadow-base" aria-hidden="true"></div>
-                <div class="platform-bevel-rim" aria-hidden="true"></div>
-                <div class="platform-top-disc">
-                  <span class="platform-num-badge">08</span>
-                  <div class="platform-icon-wrap" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
+              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 08: Future Goals">
+                <div class="step-3d-shadow" aria-hidden="true"></div>
+                <div class="step-3d-cube">
+                  <div class="step-cube-face cube-front">
+                    <span class="step-num-display">08</span>
+                    <span class="step-tag-mini">STEP</span>
                   </div>
+                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
+                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
+                </div>
+                <div class="step-icon-dock" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
                 </div>
               </div>
             </div>
             <div class="lj-card-column">
-              <div class="lj-milestone-card">
+              <div class="lj-milestone-card card-theme-pink">
+                <div class="card-ribbon-accent" aria-hidden="true"></div>
                 <div class="card-meta-row">
                   <span class="card-step-title">08 &middot; Horizon Vision</span>
                   <span class="card-timeline-date">Next-Gen Frontier</span>
@@ -3268,7 +3414,7 @@
 
         </div><!-- /.lj-milestones-stream -->
 
-      </div><!-- /.lj-winding-stage -->
+      </div><!-- /.lj-ribbon-stage -->
 
       <!-- BOTTOM: "WHAT DRIVES ME" VALUE PILLARS (LIGHT LUXURY 3D EDITORIAL) -->
       <div class="lj-drives-me-strip reveal" id="lj-drives-me-strip">
