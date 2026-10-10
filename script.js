@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCertificatePhotoUploads();
   setupCertificatesGallery();
 
-  // 14. Tactile Elastic Spring Buttons & 3D Hero Parallax (Refined, Non-Childish)
+  // 14. Tactile Elastic Spring Buttons & 3D Hero Shattered Reality Effect
   setupTactileButtonInteractions();
-  setupHero3DPortraitParallax();
+  setupHeroShatteredRealityEffect();
 
   // 15. Let's Talk Section (Topic pills, Copy Email, Form feedback)
   setupLetsTalkSection();
@@ -2184,372 +2184,39 @@ function setupCertificatePhotoUploads() {
 
 /**
  * =========================================================================
- * CREATIVE HORIZONTAL CERTIFICATES GALLERY (One by one exhibition)
+ * CERTIFICATES SHOWCASE — 3-STEP ALTERNATING 3D FOLDED RIBBON JOURNEY
+ * Step 01: Emerald Green (01 STEP)
+ * Step 02: Vivid Orange (02 STEP)
+ * Step 03: Rich Sky Blue (03 STEP)
  * =========================================================================
  */
 function setupCertificatesGallery() {
   const section = document.getElementById('certifications');
   if (!section) return;
 
-  const stageViewport = document.getElementById('cert-wall-stage-viewport');
-  const stage3D = document.getElementById('cert-wall-3d-stage');
-  const cards = Array.from(document.querySelectorAll('.cert-wall-card'));
-  const tabs = Array.from(document.querySelectorAll('.cert-selector-btn'));
-  const prevBtn = document.getElementById('cert-wall-prev-btn');
-  const nextBtn = document.getElementById('cert-wall-next-btn');
-  const counterCurr = document.getElementById('cert-wall-counter-curr');
-
-  // Dossier elements
-  const dossierTitle = document.getElementById('dossier-title');
-  const dossierDesc = document.getElementById('dossier-desc');
-  const dossierIssuer = document.getElementById('dossier-issuer');
-  const dossierLevel = document.getElementById('dossier-level');
-  const dossierYear = document.getElementById('dossier-year');
-  const dossierTags = document.getElementById('dossier-tags');
-  const btnDossierExpand = document.getElementById('btn-dossier-expand');
-
-  // Expansion modal elements
-  const expandOverlay = document.getElementById('cert-expand-overlay');
-  const expandBackdrop = document.getElementById('cert-expand-backdrop');
-  const expandCloseBtn = document.getElementById('cert-expand-close-btn');
-  const expandImg = document.getElementById('cert-expand-img');
-  const expandModalTitle = document.getElementById('expand-modal-title');
-  const expandModalSub = document.getElementById('expand-modal-sub');
-  const expandModalCounter = document.getElementById('expand-modal-counter');
-  const expandPrevBtn = document.getElementById('expand-prev-btn');
-  const expandNextBtn = document.getElementById('expand-next-btn');
-
-  if (!stage3D || cards.length === 0) return;
-
-  // The 3 Authentic Google Credentials
-  const certificatesData = [
-    {
-      id: "cert-1",
-      number: "01",
-      title: "Google AI Professional Certificate",
-      issuer: "Google & Grow with Google",
-      level: "Advanced Professional Certification",
-      date: "Issued 2024",
-      image: "1.jpg",
-      fallbackImage: "1--.jpg",
-      sealBadge: "GOOGLE CERTIFIED",
-      description: "Comprehensive Google professional credential verifying advanced mastery in generative artificial intelligence architectures, machine learning foundation models, Vertex AI integration, and production-level prompt engineering workflows.",
-      skills: ["Generative AI Systems", "Foundation Models", "Vertex AI Studio", "System Architectures", "Responsible AI Governance"]
-    },
-    {
-      id: "cert-2",
-      number: "02",
-      title: "Google AI Essentials Specialization",
-      issuer: "Google / Coursera",
-      level: "Applied AI Foundations",
-      date: "Issued 2024",
-      image: "2.jpg",
-      fallbackImage: "2--.jpg",
-      sealBadge: "GOOGLE SPECIALIZATION",
-      description: "Official credential focusing on cross-disciplinary AI integration, conversational workflows, automating digital routines, productivity acceleration, and leveraging modern AI toolsets with ethical guidelines and risk mitigation.",
-      skills: ["Cross-Functional AI", "Workflow Automation", "Productivity Optimization", "Prompt Techniques", "Ethical AI Integration"]
-    },
-    {
-      id: "cert-3",
-      number: "03",
-      title: "Google Prompting Essentials Specialization",
-      issuer: "Google / Coursera",
-      level: "Expert Prompt Engineering",
-      date: "Issued 2025",
-      image: "3.jpg",
-      fallbackImage: "3--.jpg",
-      sealBadge: "GOOGLE SPECIALIZATION",
-      description: "Specialized training in architecting high-precision prompt pipelines, structured system instructions, multi-turn context retention, few-shot conditioning, Chain-of-Thought reasoning, and eliminating LLM hallucinations.",
-      skills: ["Few-Shot Prompting", "Multi-Turn Chains", "System Context Framing", "Deliberate Reasoning", "Output Parsing & Schemas"]
-    }
-  ];
-
-  let activeIndex = 0;
-  let isAnimating = false;
-
-  // 1. Update 3D Arrangement of the 3 Floating Certificates
-  function updateGallery(newIndex, playSound = false) {
-    activeIndex = (newIndex + certificatesData.length) % certificatesData.length;
-    isAnimating = true;
-
-    cards.forEach((card, i) => {
-      let diff = (i - activeIndex) % 3;
-      if (diff < 0) diff += 3;
-
-      card.classList.remove('is-active', 'is-side-right', 'is-side-left');
-
-      if (diff === 0) {
-        // Active Center Card (Focal Point)
-        card.classList.add('is-active');
-        card.setAttribute('aria-selected', 'true');
-        card.setAttribute('tabindex', '0');
-      } else if (diff === 1) {
-        // Top-Right Side Card (Layered Behind)
-        card.classList.add('is-side-right');
-        card.setAttribute('aria-selected', 'false');
-        card.setAttribute('tabindex', '0');
-      } else {
-        // Bottom-Left Side Card (Layered Behind)
-        card.classList.add('is-side-left');
-        card.setAttribute('aria-selected', 'false');
-        card.setAttribute('tabindex', '0');
-      }
-    });
-
-    // Update Counter
-    if (counterCurr) {
-      counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
-    }
-
-    // Update Tabs
-    tabs.forEach((tab, i) => {
-      const isCur = i === activeIndex;
-      tab.classList.toggle('active', isCur);
-      tab.setAttribute('aria-selected', isCur ? 'true' : 'false');
-    });
-
-    // Update Dossier Deck with smooth micro-fade
-    const activeData = certificatesData[activeIndex];
-    if (activeData) {
-      if (dossierTitle) dossierTitle.textContent = activeData.title;
-      if (dossierDesc) dossierDesc.textContent = activeData.description;
-      if (dossierIssuer) dossierIssuer.textContent = activeData.issuer;
-      if (dossierLevel) dossierLevel.textContent = activeData.level;
-      if (dossierYear) dossierYear.textContent = activeData.date;
-
-      if (dossierTags) {
-        dossierTags.innerHTML = activeData.skills
-          .map(skill => `<span class="dossier-tag">${skill}</span>`)
-          .join('');
-      }
-    }
-
-    if (playSound && typeof playTactileClick === 'function') {
-      playTactileClick(620 + activeIndex * 60, 'sine');
-    }
-
-    setTimeout(() => {
-      isAnimating = false;
-    }, 550);
-  }
-
-  // 2. Card Click & Keyboard Handlers
-  cards.forEach((card, idx) => {
-    card.addEventListener('click', (e) => {
-      if (idx !== activeIndex) {
-        // Clicking a side card selects it and brings it to the active spot!
-        updateGallery(idx, true);
-      } else {
-        // Clicking the active card expands it into detailed inspection mode!
-        openExpandModal(activeIndex);
-      }
-    });
-
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (idx !== activeIndex) {
-          updateGallery(idx, true);
-        } else {
-          openExpandModal(activeIndex);
-        }
-      }
-    });
-
-    // Specular Reflection / Glare Movement on Individual Card
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const pctX = ((e.clientX - rect.left) / rect.width) * 100;
-      const pctY = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${pctX.toFixed(1)}%`);
-      card.style.setProperty('--mouse-y', `${pctY.toFixed(1)}%`);
+  // Gracefully handles image load fallback for the three verified certificates
+  const certImgs = section.querySelectorAll('.cert-journey-img');
+  const fallbacks = ['1--.jpg', '2--.jpg', '3--.jpg'];
+  certImgs.forEach((img, idx) => {
+    img.addEventListener('error', () => {
+      if (fallbacks[idx]) img.src = fallbacks[idx];
     });
   });
 
-  // 3. Tab Buttons Click Handlers
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const idx = parseInt(tab.getAttribute('data-index') || '0', 10);
-      updateGallery(idx, true);
+  // Coordinated tactile hover interaction between ribbon and overlapping card
+  const rows = section.querySelectorAll('.cert-step-row');
+  rows.forEach(row => {
+    const card = row.querySelector('.cert-card-shell');
+    if (!card) return;
+
+    row.addEventListener('mouseenter', () => {
+      card.style.borderColor = 'rgba(24, 20, 35, 0.16)';
+    });
+
+    row.addEventListener('mouseleave', () => {
+      card.style.borderColor = '';
     });
   });
-
-  // 4. Arrow Navigation Buttons
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (!isAnimating) updateGallery(activeIndex - 1, true);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (!isAnimating) updateGallery(activeIndex + 1, true);
-    });
-  }
-
-  if (btnDossierExpand) {
-    btnDossierExpand.addEventListener('click', () => {
-      openExpandModal(activeIndex);
-    });
-  }
-
-  // 5. Desktop Cursor Parallax Environment with Smooth Lerping
-  let targetRotX = 0;
-  let targetRotY = 0;
-  let currentRotX = 0;
-  let currentRotY = 0;
-  let isHoveringStage = false;
-  let rafId = null;
-
-  function renderParallax() {
-    // Linear interpolation for silky organic motion
-    currentRotX += (targetRotX - currentRotX) * 0.08;
-    currentRotY += (targetRotY - currentRotY) * 0.08;
-
-    if (stage3D) {
-      stage3D.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
-    }
-
-    if (isHoveringStage || Math.abs(currentRotX) > 0.05 || Math.abs(currentRotY) > 0.05) {
-      rafId = requestAnimationFrame(renderParallax);
-    } else {
-      rafId = null;
-      if (stage3D) stage3D.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    }
-  }
-
-  if (stageViewport && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    stageViewport.addEventListener('mouseenter', () => {
-      isHoveringStage = true;
-      if (!rafId) rafId = requestAnimationFrame(renderParallax);
-    });
-
-    stageViewport.addEventListener('mousemove', (e) => {
-      const rect = stageViewport.getBoundingClientRect();
-      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-
-      targetRotY = normX * 6.5; // subtle tilt left/right
-      targetRotX = -normY * 4.5; // subtle tilt up/down
-
-      if (!rafId) rafId = requestAnimationFrame(renderParallax);
-    });
-
-    stageViewport.addEventListener('mouseleave', () => {
-      isHoveringStage = false;
-      targetRotX = 0;
-      targetRotY = 0;
-    });
-  }
-
-  // 6. Smooth In-Place Focused Expansion Lightbox Modal
-  function openExpandModal(idx) {
-    const data = certificatesData[idx];
-    if (!data || !expandOverlay) return;
-
-    if (expandImg) {
-      expandImg.src = data.image;
-      expandImg.alt = data.title;
-      expandImg.onerror = () => {
-        expandImg.src = data.fallbackImage;
-      };
-    }
-
-    if (expandModalTitle) expandModalTitle.textContent = data.title;
-    if (expandModalSub) expandModalSub.textContent = `${data.issuer} · ${data.date}`;
-    if (expandModalCounter) expandModalCounter.textContent = `${data.number} of 03`;
-
-    expandOverlay.classList.add('is-open');
-    expandOverlay.setAttribute('aria-hidden', 'false');
-
-    if (typeof playTactileClick === 'function') {
-      playTactileClick(740, 'sine');
-    }
-  }
-
-  function closeExpandModal() {
-    if (!expandOverlay) return;
-    expandOverlay.classList.remove('is-open');
-    expandOverlay.setAttribute('aria-hidden', 'true');
-
-    if (typeof playTactileClick === 'function') {
-      playTactileClick(480, 'triangle');
-    }
-  }
-
-  if (expandCloseBtn) expandCloseBtn.addEventListener('click', closeExpandModal);
-  if (expandBackdrop) expandBackdrop.addEventListener('click', closeExpandModal);
-
-  if (expandPrevBtn) {
-    expandPrevBtn.addEventListener('click', () => {
-      const prevIdx = (activeIndex - 1 + certificatesData.length) % certificatesData.length;
-      updateGallery(prevIdx);
-      openExpandModal(prevIdx);
-    });
-  }
-
-  if (expandNextBtn) {
-    expandNextBtn.addEventListener('click', () => {
-      const nextIdx = (activeIndex + 1) % certificatesData.length;
-      updateGallery(nextIdx);
-      openExpandModal(nextIdx);
-    });
-  }
-
-  // 7. Global Keyboard Navigation
-  window.addEventListener('keydown', (e) => {
-    if (expandOverlay && expandOverlay.classList.contains('is-open')) {
-      if (e.key === 'Escape') {
-        closeExpandModal();
-      } else if (e.key === 'ArrowLeft') {
-        const prevIdx = (activeIndex - 1 + certificatesData.length) % certificatesData.length;
-        updateGallery(prevIdx);
-        openExpandModal(prevIdx);
-      } else if (e.key === 'ArrowRight') {
-        const nextIdx = (activeIndex + 1) % certificatesData.length;
-        updateGallery(nextIdx);
-        openExpandModal(nextIdx);
-      }
-      return;
-    }
-
-    const rect = section.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
-    if (!inView) return;
-
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      if (!isAnimating) updateGallery(activeIndex - 1, true);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      if (!isAnimating) updateGallery(activeIndex + 1, true);
-    }
-  });
-
-  // 8. Mobile Touch Swipe Support
-  if (stageViewport) {
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    stageViewport.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    stageViewport.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 40 && !isAnimating) {
-        if (diff > 0) {
-          updateGallery(activeIndex + 1, true);
-        } else {
-          updateGallery(activeIndex - 1, true);
-        }
-      }
-    }, { passive: true });
-  }
-
-  // Initialize Gallery at Index 0
-  updateGallery(0, false);
 }
 
 /**
@@ -2588,202 +2255,24 @@ function setupTactileButtonInteractions() {
  * and a smooth spring return with zero layout overlap or scrollbars.
  */
 /**
- * 14. DEDICATED 3D HERO PORTRAIT HOVER INTERACTION
- * Magical lighting, ultra-thin orbital curve, floating celestial pearls,
- * delicate specular sheen, subtle 3D parallax, and smooth spring decay.
+ * 14. CINEMATIC SHATTERED REALITY PORTRAIT EFFECT
+ * Soft champagne point of light & glass ripple at cursor entry (Stage 1) ->
+ * Hairline fracture cleavages spreading along perimeter (Stage 2) ->
+ * 8 Floating 3D translucent glass fragments surrounding silhouette (Stage 3) ->
+ * Physically responsive 3D cursor interaction with spring inertia (Stage 4) ->
+ * Smooth 750ms restoration returning portrait to 100% pristine appearance (Stage 5).
+ * Strictly confined to #hero-portrait-cutout-frame.
  */
-function setupHero3DPortraitParallax() {
-  const visualZone = document.getElementById('hero-portrait-stage') || document.querySelector('.hero-visual-column');
-  const stage = visualZone ? (visualZone.querySelector('.hero-creative-visual-stage') || visualZone.querySelector('.hero-portrait-showcase')) : null;
-  const cutoutFrame = visualZone ? visualZone.querySelector('#hero-portrait-cutout-frame') : null;
-  const portrait = visualZone ? visualZone.querySelector('.hero-portrait-cutout-img') : null;
-  const motionBlurFe = document.getElementById('portrait-motion-blur-fe');
+function setupHeroShatteredRealityEffect() {
+  const cutoutFrame = document.getElementById('hero-portrait-cutout-frame');
+  const portrait = cutoutFrame ? cutoutFrame.querySelector('.hero-portrait-cutout-img') : null;
+  const shatteredStage = document.getElementById('shattered-reality-stage');
+  const awakenPoint = document.getElementById('shattered-awaken-point');
+  const fragmentsAssembly = document.getElementById('shattered-fragments-assembly');
+  const fragments = fragmentsAssembly ? Array.from(fragmentsAssembly.querySelectorAll('.glass-fragment')) : [];
 
   const cursorRing = document.getElementById('cursor-follower');
   const cursorDot = document.getElementById('cursor-dot');
-
-  if (!visualZone || !stage || !cutoutFrame || !portrait) return;
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  let bounds = cutoutFrame.getBoundingClientRect();
-  let rafId = null;
-
-  // Velocity & Direction Tracking for Slow, Beautiful Motion Blur
-  let lastX = 0;
-  let lastY = 0;
-  let lastTime = 0;
-  let velX = 0;
-  let velY = 0;
-
-  let targetBlurX = 0;
-  let targetBlurY = 0;
-  let currentBlurX = 0;
-  let currentBlurY = 0;
-
-  // Organic, restrained 3D float & momentum (2.2° max tilt, 5px physical shift)
-  let targetRotX = 0;
-  let targetRotY = 0;
-  let currentRotX = 0;
-  let currentRotY = 0;
-
-  let targetShiftX = 0;
-  let targetShiftY = 0;
-  let currentShiftX = 0;
-  let currentShiftY = 0;
-
-  let targetScale = 1.0;
-  let currentScale = 1.0;
-
-  let isHovered = false;
-  let motionDecayTimer = null;
-
-  function updateBounds() {
-    bounds = cutoutFrame.getBoundingClientRect();
-  }
-
-  window.addEventListener('resize', updateBounds, { passive: true });
-  window.addEventListener('scroll', updateBounds, { passive: true });
-
-  // Handle smooth cursor interaction
-  function handlePointerMove(e) {
-    if (prefersReduced) return;
-    updateBounds();
-
-    const now = performance.now();
-    const dt = Math.max(16, now - (lastTime || now));
-
-    if (lastTime > 0) {
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      const instVx = (dx / dt) * 16.67;
-      const instVy = (dy / dt) * 16.67;
-
-      // Smooth velocity interpolation for rich, slow, fluid response
-      velX += (instVx - velX) * 0.35;
-      velY += (instVy - velY) * 0.35;
-
-      const speed = Math.hypot(velX, velY);
-      const dirX = velX / (speed || 1);
-      const dirY = velY / (speed || 1);
-
-      // Slow, beautiful motion-blur transformation:
-      // Controlled, elegant directional elongation in the path of motion
-      const blurMag = Math.min(8.5, speed * 0.38 + 1.2);
-      targetBlurX = Math.abs(dirX) * blurMag;
-      targetBlurY = Math.abs(dirY) * blurMag;
-    }
-
-    lastX = e.clientX;
-    lastY = e.clientY;
-    lastTime = now;
-
-    // Relative cursor coordinates for organic, weighted physical tilt & shift
-    const centerX = bounds.left + bounds.width / 2;
-    const centerY = bounds.top + bounds.height / 2;
-    const normX = Math.max(-1, Math.min(1, (e.clientX - centerX) / (bounds.width / 2 || 1)));
-    const normY = Math.max(-1, Math.min(1, (e.clientY - centerY) / (bounds.height / 2 || 1)));
-
-    targetRotY = normX * 2.2;
-    targetRotX = -normY * 1.8;
-    targetShiftX = normX * 5.0;
-    targetShiftY = normY * 5.0;
-
-    // When the cursor slows down or pauses inside the portrait,
-    // the motion blur gently resolves back to pure crisp sharpness
-    clearTimeout(motionDecayTimer);
-    motionDecayTimer = setTimeout(() => {
-      targetBlurX = 0;
-      targetBlurY = 0;
-      velX = 0;
-      velY = 0;
-    }, 140);
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderMotionBlur);
-    }
-  }
-
-  function activateHoverState(e) {
-    isHovered = true;
-    updateBounds();
-    targetScale = prefersReduced ? 1.0 : 1.018;
-
-    cutoutFrame.classList.add('is-hovered');
-    if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
-    if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
-
-    if (e && e.clientX) {
-      lastX = e.clientX;
-      lastY = e.clientY;
-      lastTime = performance.now();
-      handlePointerMove(e);
-    }
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderMotionBlur);
-    }
-  }
-
-  function deactivateHoverState() {
-    isHovered = false;
-    clearTimeout(motionDecayTimer);
-    lastTime = 0;
-    velX = 0;
-    velY = 0;
-
-    // Graceful, slow decay back to rest
-    targetBlurX = 0;
-    targetBlurY = 0;
-    targetRotX = 0;
-    targetRotY = 0;
-    targetShiftX = 0;
-    targetShiftY = 0;
-    targetScale = 1.0;
-
-    cutoutFrame.classList.remove('is-hovered');
-    if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
-    if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderMotionBlur);
-    }
-  }
-
-  // Event Listeners on Stage and Cutout Frame
-  stage.addEventListener('pointerenter', activateHoverState);
-  stage.addEventListener('pointermove', handlePointerMove, { passive: true });
-  stage.addEventListener('pointerleave', deactivateHoverState);
-
-  cutoutFrame.addEventListener('pointerenter', activateHoverState);
-  cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
-  cutoutFrame.addEventListener('pointerleave', deactivateHoverState);
-
-  // Touch device support (Slow, luxurious tap motion-blur glide that gently settles)
-  let touchActive = false;
-  let touchTimeout = null;
-  cutoutFrame.addEventListener('touchstart', (e) => {
-    touchActive = true;
-    activateHoverState(e);
-    targetBlurX = 3.6;
-    targetBlurY = 1.2;
-    targetShiftX = 3.0;
-    targetShiftY = 2.0;
-
-    clearTimeout(touchTimeout);
-    touchTimeout = setTimeout(() => {
-      touchActive = false;
-      deactivateHoverState();
-    }, 1800);
-  }, { passive: true });
-
-  document.addEventListener('touchstart', (e) => {
-    if (touchActive && !visualZone.contains(e.target)) {
-      touchActive = false;
-      clearTimeout(touchTimeout);
-      deactivateHoverState();
-    }
-  }, { passive: true });
 
   // Dedicated Cinematic Portrait Enlarge Modal
   const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
@@ -2820,7 +2309,15 @@ function setupHero3DPortraitParallax() {
     }
   }
 
-  cutoutFrame.addEventListener('dblclick', openEnlargedModal);
+  if (cutoutFrame) {
+    cutoutFrame.addEventListener('dblclick', openEnlargedModal);
+    cutoutFrame.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        openEnlargedModal(e);
+      }
+    });
+  }
+
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeEnlargedModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeEnlargedModal);
   const enlargeImg = document.getElementById('enlarge-portrait-img');
@@ -2833,71 +2330,228 @@ function setupHero3DPortraitParallax() {
     });
   }
 
-  cutoutFrame.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      openEnlargedModal(e);
-    }
-  });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && enlargeModal && enlargeModal.classList.contains('is-open')) {
       closeEnlargedModal(e);
     }
   });
 
-  // 60FPS Physics Loop with Slow, Velvety Interpolation
-  function renderMotionBlur() {
-    // Gentle easing factors for slow, beautiful, high-end feel
-    const lerpBlur = 0.065;
-    const lerpMotion = 0.075;
+  if (!cutoutFrame || !portrait || !shatteredStage) return;
 
-    currentBlurX += (targetBlurX - currentBlurX) * lerpBlur;
-    currentBlurY += (targetBlurY - currentBlurY) * lerpBlur;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
 
-    currentRotX += (targetRotX - currentRotX) * lerpMotion;
-    currentRotY += (targetRotY - currentRotY) * lerpMotion;
-    currentShiftX += (targetShiftX - currentShiftX) * lerpMotion;
-    currentShiftY += (targetShiftY - currentShiftY) * lerpMotion;
-    currentScale += (targetScale - currentScale) * lerpMotion;
+  let bounds = cutoutFrame.getBoundingClientRect();
+  let rafId = null;
+  let isHovered = false;
 
-    // Apply directional SVG motion blur
-    if (motionBlurFe) {
-      motionBlurFe.setAttribute('stdDeviation', `${currentBlurX.toFixed(2)} ${currentBlurY.toFixed(2)}`);
+  // Timers for staged progression
+  let crackTimer = null;
+  let shatterTimer = null;
+  let restoreTimer = null;
+
+  // Normalized cursor coordinates (-1 to +1)
+  let targetNormX = 0;
+  let targetNormY = 0;
+  let currentNormX = 0;
+  let currentNormY = 0;
+
+  // 3D Tilt angles (controlled, luxurious)
+  let targetTiltX = 0;
+  let targetTiltY = 0;
+  let currentTiltX = 0;
+  let currentTiltY = 0;
+
+  // Portrait subtle anchor offset
+  let targetPortraitX = 0;
+  let targetPortraitY = 0;
+  let currentPortraitX = 0;
+  let currentPortraitY = 0;
+
+  function updateBounds() {
+    bounds = cutoutFrame.getBoundingClientRect();
+  }
+
+  window.addEventListener('resize', updateBounds, { passive: true });
+  window.addEventListener('scroll', updateBounds, { passive: true });
+
+  function updatePointerTarget(clientX, clientY) {
+    updateBounds();
+    const centerX = bounds.left + bounds.width / 2;
+    const centerY = bounds.top + bounds.height / 2;
+
+    targetNormX = Math.max(-1, Math.min(1, (clientX - centerX) / (bounds.width / 2 || 1)));
+    targetNormY = Math.max(-1, Math.min(1, (clientY - centerY) / (bounds.height / 2 || 1)));
+
+    targetTiltY = targetNormX * 10;
+    targetTiltX = -targetNormY * 8;
+
+    // Very subtle anchor tilt for the portrait (girl stays grounded and sharp)
+    targetPortraitX = targetNormX * 2.2;
+    targetPortraitY = targetNormY * 1.8;
+  }
+
+  function handlePointerEnter(e) {
+    isHovered = true;
+    updateBounds();
+
+    clearTimeout(restoreTimer);
+    clearTimeout(crackTimer);
+    clearTimeout(shatterTimer);
+
+    // Calculate exact point of cursor entrance on portrait
+    const entryX = Math.max(12, Math.min(bounds.width - 12, e.clientX - bounds.left));
+    const entryY = Math.max(12, Math.min(bounds.height - 12, e.clientY - bounds.top));
+    const pctX = (entryX / bounds.width) * 100;
+    const pctY = (entryY / bounds.height) * 100;
+
+    if (awakenPoint) {
+      awakenPoint.style.left = `${pctX.toFixed(1)}%`;
+      awakenPoint.style.top = `${pctY.toFixed(1)}%`;
     }
 
-    if (currentBlurX > 0.08 || currentBlurY > 0.08) {
-      portrait.style.filter = `url(#portrait-motion-blur-filter) drop-shadow(0 18px 34px rgba(20, 24, 38, 0.14))`;
-    } else if (!isHovered && currentBlurX <= 0.08 && currentBlurY <= 0.08) {
-      portrait.style.filter = '';
-    }
+    updatePointerTarget(e.clientX, e.clientY);
 
-    // Apply organic physical transform
-    if (prefersReduced) {
-      cutoutFrame.style.transform = '';
-    } else {
-      cutoutFrame.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translate3d(${currentShiftX.toFixed(1)}px, ${currentShiftY.toFixed(1)}px, 0) scale(${currentScale.toFixed(3)})`;
+    // STAGE 1: Glass Awakens (Subtle champagne light & tiny circular ripple)
+    shatteredStage.classList.add('is-active', 'is-awakened');
+    cutoutFrame.classList.add('is-hovered');
+
+    if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
+    if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
+
+    // STAGE 2: Delicate fracture lines spread outward from entry point (220ms)
+    crackTimer = setTimeout(() => {
+      if (!isHovered) return;
+      shatteredStage.classList.add('is-cracked');
+    }, 220);
+
+    // STAGE 3: Glass breaks into 8 floating 3D fragments (380ms)
+    shatterTimer = setTimeout(() => {
+      if (!isHovered) return;
+      shatteredStage.classList.add('is-shattered');
+    }, 380);
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderShatteredPhysics);
+    }
+  }
+
+  function handlePointerMove(e) {
+    if (!isHovered) return;
+    updatePointerTarget(e.clientX, e.clientY);
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderShatteredPhysics);
+    }
+  }
+
+  function handlePointerLeave() {
+    isHovered = false;
+
+    clearTimeout(crackTimer);
+    clearTimeout(shatterTimer);
+    clearTimeout(restoreTimer);
+
+    targetNormX = 0;
+    targetNormY = 0;
+    targetTiltX = 0;
+    targetTiltY = 0;
+    targetPortraitX = 0;
+    targetPortraitY = 0;
+
+    cutoutFrame.classList.remove('is-hovered');
+    if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
+    if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
+
+    // STAGE 5: Gentle restoration (Reverse fragments, fade cracks and light)
+    shatteredStage.classList.remove('is-shattered', 'is-cracked', 'is-awakened');
+
+    // Reset fragment inline transforms so CSS transition smoothly glides them home
+    fragments.forEach((f) => {
+      f.style.transform = '';
+    });
+
+    restoreTimer = setTimeout(() => {
+      if (!isHovered) {
+        shatteredStage.classList.remove('is-active');
+        cutoutFrame.style.transform = '';
+      }
+    }, 750);
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderShatteredPhysics);
+    }
+  }
+
+  // 60FPS Physics Loop with Smooth Spring Inertia
+  function renderShatteredPhysics() {
+    const lerp = 0.078;
+
+    currentNormX += (targetNormX - currentNormX) * lerp;
+    currentNormY += (targetNormY - currentNormY) * lerp;
+    currentTiltX += (targetTiltX - currentTiltX) * lerp;
+    currentTiltY += (targetTiltY - currentTiltY) * lerp;
+    currentPortraitX += (targetPortraitX - currentPortraitX) * lerp;
+    currentPortraitY += (targetPortraitY - currentPortraitY) * lerp;
+
+    // 1. Subtle, grounded 3D depth movement for the girl's portrait
+    // Keeps her face, hair, and clothing crisp and perfectly centered
+    cutoutFrame.style.transform = `perspective(1200px) rotateX(${(-currentPortraitY * 0.9).toFixed(2)}deg) rotateY(${(currentPortraitX * 1.1).toFixed(2)}deg) translate3d(${(currentPortraitX * 1.6).toFixed(1)}px, ${(currentPortraitY * 1.6).toFixed(1)}px, 0)`;
+
+    // 2. Interactive 3D physical response for floating glass fragments
+    if (shatteredStage.classList.contains('is-shattered')) {
+      fragments.forEach((f) => {
+        const depth = parseFloat(f.getAttribute('data-depth')) || 1.0;
+        const z = parseFloat(f.getAttribute('data-z')) || 25;
+        const vx = parseFloat(f.getAttribute('data-vx')) || 0;
+        const vy = parseFloat(f.getAttribute('data-vy')) || 0;
+        const vr = parseFloat(f.getAttribute('data-vr')) || 0;
+
+        // Vector displacement: outward shatter base + cursor tilt response
+        const shiftX = vx * 10 + (currentNormX * 14 * depth);
+        const shiftY = vy * 10 + (currentNormY * 14 * depth);
+        const rotZ = vr * 2.2 + (currentNormX * 3.2 * depth);
+        const rotX = currentTiltX * depth * 0.75;
+        const rotY = currentTiltY * depth * 0.75;
+
+        f.style.transform = `perspective(1100px) translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, ${z.toFixed(1)}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg)`;
+
+        // Traveling champagne specular reflections across facet edges
+        f.style.setProperty('--specular-x', `${50 + currentNormX * 35}%`);
+        f.style.setProperty('--specular-y', `${50 + currentNormY * 35}%`);
+      });
     }
 
     // Convergence check
-    const blurDiff = Math.abs(targetBlurX - currentBlurX) + Math.abs(targetBlurY - currentBlurY);
-    const rotDiff = Math.abs(targetRotX - currentRotX) + Math.abs(targetRotY - currentRotY);
-    const shiftDiff = Math.abs(targetShiftX - currentShiftX) + Math.abs(targetShiftY - currentShiftY);
-    const scaleDiff = Math.abs(targetScale - currentScale);
+    const normDiff = Math.abs(targetNormX - currentNormX) + Math.abs(targetNormY - currentNormY);
+    const tiltDiff = Math.abs(targetTiltX - currentTiltX) + Math.abs(targetTiltY - currentTiltY);
 
-    if (isHovered || blurDiff > 0.01 || rotDiff > 0.005 || shiftDiff > 0.01 || scaleDiff > 0.0005) {
-      rafId = requestAnimationFrame(renderMotionBlur);
+    if (isHovered || normDiff > 0.005 || tiltDiff > 0.005) {
+      rafId = requestAnimationFrame(renderShatteredPhysics);
     } else {
-      // Clean, pristine return to rest state
       if (!isHovered) {
         cutoutFrame.style.transform = '';
-        portrait.style.filter = '';
-        if (motionBlurFe) {
-          motionBlurFe.setAttribute('stdDeviation', '0 0');
-        }
       }
       rafId = null;
     }
   }
+
+  // Pointer interaction strictly attached to portrait container
+  cutoutFrame.addEventListener('pointerenter', handlePointerEnter);
+  cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
+  cutoutFrame.addEventListener('pointerleave', handlePointerLeave);
+
+  // Touch device support (Graceful non-interfering tap activation)
+  let touchTimeout = null;
+  cutoutFrame.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      handlePointerEnter(e.touches[0]);
+      clearTimeout(touchTimeout);
+      touchTimeout = setTimeout(() => {
+        handlePointerLeave();
+      }, 1600);
+    }
+  }, { passive: true });
 }
 
 /**
