@@ -9,8 +9,16 @@ const app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
-// Serve static assets from project root
-app.use(express.static(__dirname));
+// Serve static assets with optimal caching for videos and images
+app.use(express.static(__dirname, {
+  maxAge: '1h',
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.mp4')) {
+      res.setHeader('Accept-Ranges', 'bytes');
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
+}));
 
 // Fallback to index.html
 app.get('*', (req, res) => {

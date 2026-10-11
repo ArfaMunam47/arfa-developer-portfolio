@@ -29,7 +29,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Calistoga&family=Caveat:wght@600;700&family=Cinzel:wght@600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,700..900&family=Lilita+One&family=Outfit:wght@700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=Titan+One&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Preload Portrait Cutout Image -->
+  <!-- Preload Welcome Video & Portrait Image for instant startup -->
+  <link rel="preload" as="video" href="Welcome.mp4" type="video/mp4">
   <link rel="preload" as="image" href="new.png">
 
   <!-- Design System Stylesheet -->
@@ -39,8 +40,8 @@
 
   <!-- =======================================================================
        FULLSCREEN CINEMATIC WELCOME VIDEO INTRO (Welcome.mp4)
-       Isolated Full-Screen Opening Scene • Zero Session Storage Skip
-       Interactive Keyboard Entry • Real Video Playback • Clean Exit
+       Zero-Delay Instant Playback • High-Craft Redesigned Skip & Audio Controls
+       Interactive Keyboard Entry • Resilient Buffer State • Clean Exit
        ======================================================================= -->
   <aside id="welcome-video-intro" class="wvi-overlay" aria-label="Welcome Intro Video" role="region">
     <!-- Fullscreen Video Element -->
@@ -48,7 +49,10 @@
       <video
         id="welcome-intro-video"
         class="wvi-video"
+        autoplay
+        muted
         playsinline
+        webkit-playsinline
         preload="auto"
         tabindex="-1"
       >
@@ -57,19 +61,46 @@
         Your browser does not support HTML5 video.
       </video>
       <div class="wvi-vignette" aria-hidden="true"></div>
+
+      <!-- Non-intrusive Ambient Buffer Spinner (shown only on network lag) -->
+      <div class="wvi-buffer-spinner" id="wvi-buffer-spinner" aria-hidden="true">
+        <div class="wvi-spinner-ring"></div>
+      </div>
     </div>
 
-    <!-- Top Right Skip Button (Orange Bento Grid Style) -->
-    <div class="wvi-top-bar">
-      <button type="button" id="wvi-skip-btn" class="wvi-bento-skip-btn" aria-label="Skip intro to portfolio">
-        <span class="wvi-bento-icon-box" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 4 15 12 5 20 5 4"></polygon>
-            <line x1="19" y1="5" x2="19" y2="19"></line>
+    <!-- Top Right Controls (Redesigned Minimalist Sound & Skip Pill Controls) -->
+    <div class="wvi-top-bar" id="wvi-top-bar">
+      <!-- Quick Sound Toggle Pill -->
+      <button type="button" id="wvi-sound-btn" class="wvi-sound-toggle-btn" aria-label="Toggle sound">
+        <span class="wvi-sound-icon" aria-hidden="true">
+          <svg class="icon-sound-on" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg class="icon-sound-off" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
           </svg>
         </span>
-        <span class="wvi-bento-text">Skip</span>
-        <span class="wvi-bento-kbd" aria-hidden="true">ESC</span>
+        <span class="wvi-sound-label" id="wvi-sound-label">Sound on</span>
+      </button>
+
+      <!-- Redesigned High-Craft Skip Button with Ring Progress & Key Indicator -->
+      <button type="button" id="wvi-skip-btn" class="wvi-skip-btn-redesigned" aria-label="Skip welcome intro (Esc or Space)">
+        <span class="wvi-skip-progress-ring" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <circle class="wvi-ring-bg" cx="12" cy="12" r="9" />
+            <circle class="wvi-ring-bar" id="wvi-ring-bar" cx="12" cy="12" r="9" />
+          </svg>
+          <svg class="wvi-ring-icon" width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+          </svg>
+        </span>
+        <span class="wvi-skip-label">Skip Intro</span>
+        <kbd class="wvi-kbd-hint" aria-hidden="true">Esc</kbd>
       </button>
     </div>
 
@@ -432,15 +463,6 @@
         <div class="hero-visual-column reveal" id="hero-portrait-stage">
           <div class="hero-creative-visual-stage" id="hero-portrait-showcase">
 
-            <!-- SVG Filter for Dynamic Directional Motion Blur (High-End & Smooth) -->
-            <svg class="portrait-motion-blur-svg" style="position: absolute; width: 0; height: 0; pointer-events: none; opacity: 0;" aria-hidden="true">
-              <defs>
-                <filter id="portrait-motion-blur-filter" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur id="portrait-motion-blur-fe" stdDeviation="0 0" />
-                </filter>
-              </defs>
-            </svg>
-
             <!-- Portrait Frame (Stands Cleanly On Its Own) -->
             <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam" tabindex="0">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
@@ -452,133 +474,22 @@
                      fetchpriority="high"
                      onerror="this.onerror=null; this.src='me.png.png';">
 
-                <!-- CINEMATIC SHATTERED REALITY EFFECT (Active Strictly On Direct Portrait Hover) -->
-                <div class="shattered-reality-stage" id="shattered-reality-stage" aria-hidden="true">
-                  
-                  <!-- Stage 1: Point of Awakening & Champagne Glass Ripple -->
-                  <div class="shattered-awaken-point" id="shattered-awaken-point">
-                    <div class="awaken-core-spark"></div>
-                    <div class="awaken-ripple ripple-1"></div>
-                    <div class="awaken-ripple ripple-2"></div>
+                <!-- REALITY LENS EFFECT (Active Exclusively On Direct Portrait Hover) -->
+                <div class="reality-lens-stage" id="reality-lens-stage" aria-hidden="true">
+                  <div class="reality-lens-disc" id="reality-lens-disc">
+                    <!-- Zoomed/Refracted Mirror Replica of Portrait Image -->
+                    <div class="reality-lens-mirror-wrap">
+                      <img src="me.png"
+                           alt=""
+                           class="reality-lens-mirror-img"
+                           id="reality-lens-mirror-img"
+                           loading="eager"
+                           onerror="this.onerror=null; this.src='me.png.png';">
+                    </div>
+                    <div class="reality-lens-ring-border"></div>
+                    <div class="reality-lens-sheen"></div>
                   </div>
-
-                  <!-- Stage 2: Hairline Glass Fracture Lines (Perimeter Cracks, Face Stays Crystal Clear) -->
-                  <svg class="shattered-cracks-svg" id="shattered-cracks-svg" viewBox="0 0 500 500" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="crackGleam" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-                        <stop offset="35%" stop-color="#FFF8EE" stop-opacity="0.85" />
-                        <stop offset="70%" stop-color="#F5E8D3" stop-opacity="0.55" />
-                        <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2" />
-                      </linearGradient>
-                      <filter id="crackSpecularGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="0" stdDeviation="0.8" flood-color="#FFFDF7" flood-opacity="0.8" />
-                      </filter>
-                    </defs>
-                    <g class="crack-network" filter="url(#crackSpecularGlow)">
-                      <!-- Top Left Shard Boundaries -->
-                      <path class="crack-line" d="M 220,110 L 155,75 L 85,45 L 15,25" stroke="url(#crackGleam)" stroke-width="0.95" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 155,75 L 115,120 L 55,145 L 0,160" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 85,45 Q 110,80 115,120" stroke="url(#crackGleam)" stroke-width="0.75" fill="none" stroke-linecap="round" />
-
-                      <!-- Top Apex & Upper Hairline Perimeter -->
-                      <path class="crack-line" d="M 245,95 L 255,42 L 260,0" stroke="url(#crackGleam)" stroke-width="0.9" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 255,42 L 205,22 L 175,0" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 255,42 L 315,18 L 350,0" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-
-                      <!-- Top Right Shard Boundaries -->
-                      <path class="crack-line" d="M 280,110 L 350,70 L 425,38 L 485,18" stroke="url(#crackGleam)" stroke-width="0.95" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 350,70 L 395,115 L 455,135 L 500,145" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 425,38 Q 400,75 395,115" stroke="url(#crackGleam)" stroke-width="0.75" fill="none" stroke-linecap="round" />
-
-                      <!-- Mid-Left Outer Flank (Beside Hair/Ear) -->
-                      <path class="crack-line" d="M 165,170 L 105,205 L 40,235 L 0,255" stroke="url(#crackGleam)" stroke-width="0.9" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 105,205 L 80,275 L 20,315 L 0,335" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-
-                      <!-- Mid-Right Outer Flank (Beside Right Hair Flank) -->
-                      <path class="crack-line" d="M 340,170 L 400,210 L 460,240 L 500,260" stroke="url(#crackGleam)" stroke-width="0.9" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 400,210 L 430,280 L 485,315 L 500,330" stroke="url(#crackGleam)" stroke-width="0.8" fill="none" stroke-linecap="round" />
-
-                      <!-- Lower Left Shoulder Perimeter -->
-                      <path class="crack-line" d="M 125,290 L 70,360 L 15,415 L 0,440" stroke="url(#crackGleam)" stroke-width="0.85" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 80,275 Q 90,320 70,360" stroke="url(#crackGleam)" stroke-width="0.75" fill="none" stroke-linecap="round" />
-
-                      <!-- Lower Right Shoulder Perimeter -->
-                      <path class="crack-line" d="M 375,290 L 435,360 L 490,415 L 500,435" stroke="url(#crackGleam)" stroke-width="0.85" fill="none" stroke-linecap="round" />
-                      <path class="crack-line" d="M 430,280 Q 420,320 435,360" stroke="url(#crackGleam)" stroke-width="0.75" fill="none" stroke-linecap="round" />
-                    </g>
-                  </svg>
-
-                  <!-- Stage 3 & 4: Floating 3D Translucent Glass Fragments (8 Shards Around Silhouette) -->
-                  <div class="shattered-fragments-assembly" id="shattered-fragments-assembly">
-                    
-                    <!-- Fragment 1: Top-Left Upper Crest -->
-                    <div class="glass-fragment fragment-1" data-id="1" data-depth="1.3" data-z="34" data-vx="-1.2" data-vy="-1.1" data-vr="-2.5">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 2: Top-Right Upper Flank -->
-                    <div class="glass-fragment fragment-2" data-id="2" data-depth="1.45" data-z="40" data-vx="1.4" data-vy="-1.2" data-vr="2.8">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 3: Mid-Left Outer Perimeter -->
-                    <div class="glass-fragment fragment-3" data-id="3" data-depth="1.1" data-z="24" data-vx="-1.5" data-vy="0.2" data-vr="-1.8">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 4: Mid-Right Outer Perimeter -->
-                    <div class="glass-fragment fragment-4" data-id="4" data-depth="1.2" data-z="28" data-vx="1.5" data-vy="0.3" data-vr="2.0">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 5: Lower-Left Shoulder Shard -->
-                    <div class="glass-fragment fragment-5" data-id="5" data-depth="0.9" data-z="18" data-vx="-1.1" data-vy="1.2" data-vr="-1.4">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 6: Lower-Right Shoulder Shard -->
-                    <div class="glass-fragment fragment-6" data-id="6" data-depth="1.05" data-z="22" data-vx="1.2" data-vy="1.3" data-vr="1.6">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 7: Upper Apex Crown Shard -->
-                    <div class="glass-fragment fragment-7" data-id="7" data-depth="1.55" data-z="44" data-vx="0.2" data-vy="-1.6" data-vr="0.8">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                    <!-- Fragment 8: Base Ground Facet -->
-                    <div class="glass-fragment fragment-8" data-id="8" data-depth="0.8" data-z="15" data-vx="-0.8" data-vy="1.5" data-vr="-1.1">
-                      <div class="fragment-facet">
-                        <div class="facet-specular-edge"></div>
-                        <div class="facet-refraction-sheen"></div>
-                      </div>
-                    </div>
-
-                  </div><!-- /.shattered-fragments-assembly -->
-
-                </div><!-- /.shattered-reality-stage -->
+                </div>
               </div>
             </div>
 
@@ -2801,156 +2712,115 @@
       </div>
 
       <!-- Clean Gallery Display -->
+      <!-- Clean Hanging Gallery Display with Full-Width Wire & Orange Clips -->
       <div class="cert-hanging-gallery">
         
-        <!-- Subtle Horizontal Clothesline / Wire (ultra-thin line with delicate natural drape) -->
-        <div class="hanging-line-wrapper" aria-hidden="true">
-          <svg class="hanging-line-svg" viewBox="0 0 1000 24" preserveAspectRatio="none">
-            <!-- Gentle realistic catenary drape -->
-            <path d="M 0,6 Q 250,14 500,16 Q 750,14 1000,6" class="hanging-string-path" />
+        <!-- Continuous Full-Width Hanging Wire Rig across entire section width -->
+        <div class="cert-hanging-wire-rig" aria-hidden="true">
+          <!-- Left Mounting Wall Anchor Bracket -->
+          <div class="wire-wall-anchor anchor-left">
+            <span class="anchor-plate"></span>
+            <span class="anchor-pin"></span>
+          </div>
+
+          <!-- Continuous Tensioned Wire SVG with Realistic Downward Sag -->
+          <svg class="cert-fullwidth-wire-svg" viewBox="0 0 1200 44" preserveAspectRatio="none">
+            <!-- Wire Soft Drop Shadow -->
+            <path d="M 0,14 Q 300,32 600,36 Q 900,32 1200,14" class="wire-shadow-stroke" />
+            <!-- Main Metallic Wire Line (Soft Warm Gray / Muted Metallic) -->
+            <path d="M 0,12 Q 300,30 600,34 Q 900,30 1200,12" class="wire-main-stroke" />
+            <!-- Specular Wire Top Edge Highlight -->
+            <path d="M 0,11.5 Q 300,29.5 600,33.5 Q 900,29.5 1200,11.5" class="wire-highlight-stroke" />
           </svg>
+
+          <!-- Right Mounting Wall Anchor Bracket -->
+          <div class="wire-wall-anchor anchor-right">
+            <span class="anchor-plate"></span>
+            <span class="anchor-pin"></span>
+          </div>
         </div>
 
-        <!-- 3 Hanging Certificate Cards -->
+        <!-- 3 Hanging Certificate Physical Prints -->
         <div class="cert-hanging-cards-grid">
           
-          <!-- CERTIFICATE 01: Google AI Professional -->
+          <!-- CERTIFICATE 01: Google AI Professional Certificate -->
           <div class="hanging-cert-item cert-item-1" data-cert="1">
-            <!-- Suspension Clips (Minimal wooden / paper peg clothespins) -->
-            <div class="hanging-pegs-row" aria-hidden="true">
-              <div class="hanging-peg peg-left">
-                <span class="peg-body"></span>
-              </div>
-              <div class="hanging-peg peg-right">
-                <span class="peg-body"></span>
+            <!-- Refined Top-Center Orange Hanging Clip -->
+            <div class="cert-orange-clip" aria-hidden="true">
+              <div class="clip-loop"></div>
+              <div class="clip-jaw">
+                <span class="clip-jaw-body"></span>
+                <span class="clip-pin"></span>
               </div>
             </div>
 
-            <!-- Hanging Certificate Sheet Card -->
+            <!-- Physical Certificate Print -->
             <article class="hanging-cert-card">
-              <!-- Header info: Badge & Year -->
-              <div class="cert-card-header">
-                <div class="cert-meta-row">
-                  <div class="cert-badge-verified badge-emerald">
-                    <span class="badge-check-icon">✓</span>
-                    <span>VERIFIED CREDENTIAL</span>
-                  </div>
-                  <span class="cert-year-tag">2024</span>
-                </div>
-                <div class="cert-issuer-row">
-                  <span class="cert-issuer-dot dot-emerald"></span>
-                  <span class="cert-issuer-name">Google / Grow with Google</span>
-                </div>
-                <h3 class="cert-card-title">Google AI Professional Certificate</h3>
-              </div>
-
               <!-- Certificate Image Display -->
-              <div class="cert-visual-frame">
+              <div class="cert-print-frame">
                 <img src="1.jpg" 
-                     alt="Official Google AI Professional Certificate" 
+                     alt="Google AI Professional Certificate" 
                      class="cert-journey-img cert-hanging-img" 
                      loading="eager" 
                      onerror="this.onerror=null; this.src='1--.jpg';">
               </div>
 
-              <!-- Footer skills -->
-              <div class="cert-card-footer">
-                <span class="cert-tag">Generative AI Architecture</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">Deep Learning Foundations</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">Responsible AI</span>
-              </div>
+              <!-- Certificate Name Only -->
+              <h3 class="cert-hanging-title">Google AI Professional Certificate</h3>
             </article>
           </div>
 
           <!-- CERTIFICATE 02: Google AI Essentials -->
           <div class="hanging-cert-item cert-item-2" data-cert="2">
-            <div class="hanging-pegs-row" aria-hidden="true">
-              <div class="hanging-peg peg-left">
-                <span class="peg-body"></span>
-              </div>
-              <div class="hanging-peg peg-right">
-                <span class="peg-body"></span>
+            <!-- Refined Top-Center Orange Hanging Clip -->
+            <div class="cert-orange-clip" aria-hidden="true">
+              <div class="clip-loop"></div>
+              <div class="clip-jaw">
+                <span class="clip-jaw-body"></span>
+                <span class="clip-pin"></span>
               </div>
             </div>
 
+            <!-- Physical Certificate Print -->
             <article class="hanging-cert-card">
-              <div class="cert-card-header">
-                <div class="cert-meta-row">
-                  <div class="cert-badge-verified badge-orange">
-                    <span class="badge-check-icon">✓</span>
-                    <span>VERIFIED CREDENTIAL</span>
-                  </div>
-                  <span class="cert-year-tag">2024</span>
-                </div>
-                <div class="cert-issuer-row">
-                  <span class="cert-issuer-dot dot-orange"></span>
-                  <span class="cert-issuer-name">Google / Coursera</span>
-                </div>
-                <h3 class="cert-card-title">Google AI Essentials Specialization</h3>
-              </div>
-
-              <div class="cert-visual-frame">
+              <!-- Certificate Image Display -->
+              <div class="cert-print-frame">
                 <img src="2.jpg" 
-                     alt="Official Google AI Essentials Specialization Certificate" 
+                     alt="Google AI Essentials" 
                      class="cert-journey-img cert-hanging-img" 
                      loading="lazy" 
                      onerror="this.onerror=null; this.src='2--.jpg';">
               </div>
 
-              <div class="cert-card-footer">
-                <span class="cert-tag">Applied Generative AI</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">Workflow Automation</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">AI Safety &amp; Ethics</span>
-              </div>
+              <!-- Certificate Name Only -->
+              <h3 class="cert-hanging-title">Google AI Essentials</h3>
             </article>
           </div>
 
           <!-- CERTIFICATE 03: Google Prompting Essentials -->
           <div class="hanging-cert-item cert-item-3" data-cert="3">
-            <div class="hanging-pegs-row" aria-hidden="true">
-              <div class="hanging-peg peg-left">
-                <span class="peg-body"></span>
-              </div>
-              <div class="hanging-peg peg-right">
-                <span class="peg-body"></span>
+            <!-- Refined Top-Center Orange Hanging Clip -->
+            <div class="cert-orange-clip" aria-hidden="true">
+              <div class="clip-loop"></div>
+              <div class="clip-jaw">
+                <span class="clip-jaw-body"></span>
+                <span class="clip-pin"></span>
               </div>
             </div>
 
+            <!-- Physical Certificate Print -->
             <article class="hanging-cert-card">
-              <div class="cert-card-header">
-                <div class="cert-meta-row">
-                  <div class="cert-badge-verified badge-blue">
-                    <span class="badge-check-icon">✓</span>
-                    <span>VERIFIED CREDENTIAL</span>
-                  </div>
-                  <span class="cert-year-tag">2025</span>
-                </div>
-                <div class="cert-issuer-row">
-                  <span class="cert-issuer-dot dot-blue"></span>
-                  <span class="cert-issuer-name">Google / Coursera</span>
-                </div>
-                <h3 class="cert-card-title">Google Prompting Essentials Specialization</h3>
-              </div>
-
-              <div class="cert-visual-frame">
+              <!-- Certificate Image Display -->
+              <div class="cert-print-frame">
                 <img src="3.jpg" 
-                     alt="Official Google Prompting Essentials Specialization Certificate" 
+                     alt="Google Prompting Essentials" 
                      class="cert-journey-img cert-hanging-img" 
                      loading="lazy" 
                      onerror="this.onerror=null; this.src='3--.jpg';">
               </div>
 
-              <div class="cert-card-footer">
-                <span class="cert-tag">Prompt Architecture</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">Chain-of-Thought Reasoning</span>
-                <span class="cert-tag-sep" aria-hidden="true">·</span>
-                <span class="cert-tag">LLM Orchestration</span>
-              </div>
+              <!-- Certificate Name Only -->
+              <h3 class="cert-hanging-title">Google Prompting Essentials</h3>
             </article>
           </div>
 

@@ -5,89 +5,50 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Setup Resume Download Links from Base64 or PDF file
-  setupResumeDownload();
-
-  // 2. Navigation Scroll Effect & Mobile Drawer
-  setupNavigation();
-
-  // 3. Vibrant High-Visibility Project Showcase Exhibition
-  setupProjectsShowcase();
-
-  // 4. Who I Am 3D Interactive Parallax & Spatial Universe
-  setupWhoIAmParallax();
-
-  // 5. Certificate Lightbox Modal (Disabled per user requirement)
-  setupCertificateModal();
-
-  // 6. Animated Number Counters
-  setupStatsCounter();
-
-  // 7. Scroll Reveal Observer
-  setupScrollReveal();
-
-  // 8. Contact Form Handler
-  setupContactForm();
-
-  // 9. Back to Top Button (Strictly footer/bottom only)
-  setupBackToTop();
-
-  // 9. Premium Micro-Interactions (Cursor, Magnetic buttons, FounderOS tabs & 3D tilt, Exploring radar)
-  setupBespokeCursor();
-  setupMagneticButtons();
-  setupExploringRadar();
-
-  // 10. Tactile Sound FX & Interactive Feedback System
-  setupTactileAudioAndFeedback();
-
-  // 11. Hero Live HUD Clock & Dynamic 3-Headings Rotator
-  setupHeroLiveClockAndHeadings();
-
-  // 12. Interactive Compact Skill Ecosystem & Constellation
-  setupSkillEcosystem();
-
-  // 13. Certificate Picture Slots & Horizontal Exhibition Gallery
-  setupCertificatePhotoUploads();
-  setupCertificatesGallery();
-
-  // 14. Tactile Elastic Spring Buttons & 3D Hero Shattered Reality Effect
-  setupTactileButtonInteractions();
-  setupHeroShatteredRealityEffect();
-
-  // 15. Let's Talk Section (Topic pills, Copy Email, Form feedback)
-  setupLetsTalkSection();
-
-  // 16. Hero Portrait & Contact 3D Image Insert/Uploads
-  setupHeroPhotoUpload();
-  setupContact3DUpload();
-
-  // 17. Full Page Project Immersive Experience Modal
-  setupProjectFullPageExperience();
-
-  // 18. Refined About Me Perspective Tabs, Copy Bio & Focus Skills
-  setupAboutMeRefinement();
-
-  // 19. Skills Compiler Loading Simulation & Category Filters
-  setupSkillsCompiler();
-  setupSkeuomorphicServices();
-
-  // 20. Cinematic Exploring Frontier Labs & Telemetry Terminal
-  setupCinematicFrontierLabs();
-
-  // 21. Futuristic 2026 3D Dark Glass Footer Interactions
-  setupFuturisticFooter();
-
-  // 22. Currently Learning 3D Interactive Ecosystem
-  setupLearningEcosystem();
-
-  // 23. My Learning Journey Cinematic Interactive Storybook & Phone
-  setupLearningJourneyStory();
-
-  // 24. Dedicated GitHub Showcase & Interactive Activity Visualization
-  setupGitHubShowcaseSection();
-
-  // 25. Cinematic Welcome Intro Opening Experience (Isolated Overlay)
+  // 1. Instantly launch Welcome Intro Video for zero-delay instant playback
   initWelcomeVideoIntro();
+
+  // 2. Schedule portfolio interactive systems to prevent main thread congestion
+  const initPortfolioSystems = () => {
+    setupResumeDownload();
+    setupNavigation();
+    setupProjectsShowcase();
+    setupWhoIAmParallax();
+    setupCertificateModal();
+    setupStatsCounter();
+    setupScrollReveal();
+    setupContactForm();
+    setupBackToTop();
+    setupBespokeCursor();
+    setupMagneticButtons();
+    setupExploringRadar();
+    setupTactileAudioAndFeedback();
+    setupHeroLiveClockAndHeadings();
+    setupSkillEcosystem();
+    setupCertificatePhotoUploads();
+    setupCertificatesGallery();
+    setupTactileButtonInteractions();
+    setupHeroShatteredRealityEffect();
+    setupLetsTalkSection();
+    setupHeroPhotoUpload();
+    setupContact3DUpload();
+    setupProjectFullPageExperience();
+    setupAboutMeRefinement();
+    setupSkillsCompiler();
+    setupSkeuomorphicServices();
+    setupCinematicFrontierLabs();
+    setupFuturisticFooter();
+    setupLearningEcosystem();
+    setupLearningJourneyStory();
+    setupGitHubShowcaseSection();
+  };
+
+  // Run in next animation frame / microtask to ensure zero frame drops on video launch
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(initPortfolioSystems, { timeout: 150 });
+  } else {
+    setTimeout(initPortfolioSystems, 40);
+  }
 });
 
 /**
@@ -207,13 +168,86 @@ function setupProjectFilters() {
 
 /**
  * Certificate Lightbox Modal:
- * Completely disabled per user requirement ("i dont want any option like view full certificate").
+ * Allows user to click on any hanging certificate to view a high-resolution lightbox preview,
+ * keeping the cards completely minimal without unwanted visible buttons or tags.
  */
 function setupCertificateModal() {
   const modal = document.getElementById('cert-modal');
-  if (modal) {
-    modal.style.display = 'none';
+  const closeBtn = document.getElementById('close-modal-btn');
+  const contentArea = modal ? modal.querySelector('.modal-content-area') : null;
+  const certItems = document.querySelectorAll('.hanging-cert-item');
+
+  if (!modal || !contentArea) return;
+
+  function openModal(item) {
+    const imgEl = item.querySelector('.cert-hanging-img');
+    const titleEl = item.querySelector('.cert-hanging-title');
+    const src = imgEl ? (imgEl.currentSrc || imgEl.getAttribute('src')) : '';
+    const alt = imgEl ? imgEl.getAttribute('alt') : 'Certificate';
+    const title = titleEl ? titleEl.textContent : 'Verified Certificate';
+
+    contentArea.innerHTML = `
+      <div class="cert-modal-preview-stage">
+        <div class="cert-modal-image-wrapper">
+          <img src="${src}" alt="${alt}" class="cert-modal-full-img" />
+        </div>
+        <div class="cert-modal-caption">
+          <h3 id="modal-title" class="cert-modal-title">${title}</h3>
+          <p class="cert-modal-sub">Verified Google Credential — Official Physical Record</p>
+        </div>
+      </div>
+    `;
+
+    modal.classList.add('is-open');
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
   }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+      if (!modal.classList.contains('is-open')) {
+        modal.style.display = 'none';
+      }
+    }, 280);
+    document.body.style.overflow = '';
+  }
+
+  certItems.forEach(item => {
+    item.addEventListener('click', () => openModal(item));
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    const titleEl = item.querySelector('.cert-hanging-title');
+    item.setAttribute('aria-label', titleEl ? `View ${titleEl.textContent}` : 'View Certificate');
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(item);
+      }
+    });
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || !e.target.closest('.cert-modal-box')) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
 }
 
 /**
@@ -2257,18 +2291,29 @@ function setupTactileButtonInteractions() {
  * Smooth 750ms restoration returning portrait to 100% pristine appearance (Stage 5).
  * Strictly confined to #hero-portrait-cutout-frame.
  */
+/**
+ * =========================================================================
+ * 14. HERO PORTRAIT "REALITY LENS" INTERACTIVE EFFECT
+ * Task 3: When the cursor enters the portrait area:
+ * 1. A soft circular lens appears near the cursor.
+ * 2. The lens smoothly follows cursor movement within the portrait area (lerped rAF).
+ * 3. Inside the lens, reveal a subtly refracted/magnified mirror replica of the portrait.
+ * 4. Add a delicate luminous edge around the lens.
+ * 5. Introduce a very subtle sense of depth to the portrait.
+ * 6. Smooth interpolation so the lens follows naturally without jitter.
+ * 7. Face stays sharp, readable, and recognizable.
+ * 8. When cursor leaves: lens softly disappears, portrait returns to exact original appearance,
+ *    and no animation continues in background.
+ * 9. On touch devices: preserve clean original portrait.
+ * =========================================================================
+ */
 function setupHeroShatteredRealityEffect() {
   const cutoutFrame = document.getElementById('hero-portrait-cutout-frame');
-  const portrait = cutoutFrame ? cutoutFrame.querySelector('.hero-portrait-cutout-img') : null;
-  const shatteredStage = document.getElementById('shattered-reality-stage');
-  const awakenPoint = document.getElementById('shattered-awaken-point');
-  const fragmentsAssembly = document.getElementById('shattered-fragments-assembly');
-  const fragments = fragmentsAssembly ? Array.from(fragmentsAssembly.querySelectorAll('.glass-fragment')) : [];
+  const lensStage = document.getElementById('reality-lens-stage');
+  const lensDisc = document.getElementById('reality-lens-disc');
+  const mirrorWrap = lensDisc ? lensDisc.querySelector('.reality-lens-mirror-wrap') : null;
 
-  const cursorRing = document.getElementById('cursor-follower');
-  const cursorDot = document.getElementById('cursor-dot');
-
-  // Dedicated Cinematic Portrait Enlarge Modal
+  // Dedicated Cinematic Portrait Enlarge Modal support
   const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
   const modalCloseBtn = document.getElementById('enlarge-modal-close-btn');
   const modalBackdrop = document.getElementById('enlarge-modal-backdrop');
@@ -2330,222 +2375,180 @@ function setupHeroShatteredRealityEffect() {
     }
   });
 
-  if (!cutoutFrame || !portrait || !shatteredStage) return;
+  if (!cutoutFrame || !lensStage || !lensDisc) return;
 
+  // Reduced motion: preserve clean original portrait without interactive lens
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
 
-  let bounds = cutoutFrame.getBoundingClientRect();
+  // Touch devices: preserve clean original portrait (hover should not stick or force touch interaction)
+  const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouchDevice) return;
+
+  const LENS_RADIUS = 75; // 150px / 2
+  const MAGNIFY_SCALE = 1.25; // Crystal-clear optical magnification
+  const LERP_FACTOR = 0.18; // Cinematic fluid interpolation damping
+  const EXPANSION_SCALE = 1.06; // Exact match to CSS portrait enlargement
+
+  let bounds = null;
   let rafId = null;
   let isHovered = false;
 
-  // Timers for staged progression
-  let crackTimer = null;
-  let shatterTimer = null;
-  let restoreTimer = null;
+  // Target and current interpolated coordinates within the portrait coordinate space
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
 
-  // Normalized cursor coordinates (-1 to +1)
-  let targetNormX = 0;
-  let targetNormY = 0;
-  let currentNormX = 0;
-  let currentNormY = 0;
-
-  // 3D Tilt angles (controlled, luxurious)
-  let targetTiltX = 0;
-  let targetTiltY = 0;
-  let currentTiltX = 0;
-  let currentTiltY = 0;
-
-  // Portrait subtle anchor offset
-  let targetPortraitX = 0;
-  let targetPortraitY = 0;
-  let currentPortraitX = 0;
-  let currentPortraitY = 0;
-
-  function updateBounds() {
+  function measureBounds() {
     bounds = cutoutFrame.getBoundingClientRect();
+    if (mirrorWrap && bounds.width > 0 && bounds.height > 0) {
+      mirrorWrap.style.width = `${bounds.width}px`;
+      mirrorWrap.style.height = `${bounds.height}px`;
+    }
   }
 
-  window.addEventListener('resize', updateBounds, { passive: true });
-  window.addEventListener('scroll', updateBounds, { passive: true });
+  // Initial measurement
+  measureBounds();
+  targetX = bounds.width / 2;
+  targetY = bounds.height / 2;
+  currentX = targetX;
+  currentY = targetY;
 
-  function updatePointerTarget(clientX, clientY) {
-    updateBounds();
+  window.addEventListener('resize', measureBounds, { passive: true });
+  window.addEventListener('scroll', measureBounds, { passive: true });
+
+  function setPointerTarget(clientX, clientY) {
+    if (!bounds || bounds.width === 0) measureBounds();
+
+    // Stable center of the portrait in viewport coordinates
     const centerX = bounds.left + bounds.width / 2;
     const centerY = bounds.top + bounds.height / 2;
 
-    targetNormX = Math.max(-1, Math.min(1, (clientX - centerX) / (bounds.width / 2 || 1)));
-    targetNormY = Math.max(-1, Math.min(1, (clientY - centerY) / (bounds.height / 2 || 1)));
+    // Calculate position relative to the expanded portrait coordinate system.
+    // The mask expands by EXPANSION_SCALE from its center (centerX, centerY).
+    // Mapping back precisely aligns the lens with clientX and clientY across all points:
+    const relX = (clientX - centerX) / EXPANSION_SCALE + bounds.width / 2;
+    const relY = (clientY - centerY) / EXPANSION_SCALE + bounds.height / 2;
 
-    targetTiltY = targetNormX * 10;
-    targetTiltX = -targetNormY * 8;
-
-    // Very subtle anchor tilt for the portrait (girl stays grounded and sharp)
-    targetPortraitX = targetNormX * 2.2;
-    targetPortraitY = targetNormY * 1.8;
+    // Allow the lens to follow the cursor across the entire visible portrait:
+    // top hair, forehead, entire face, shoulders, clothing, and outer edges.
+    targetX = Math.max(0, Math.min(bounds.width, relX));
+    targetY = Math.max(0, Math.min(bounds.height, relY));
   }
 
-  function handlePointerEnter(e) {
-    isHovered = true;
-    updateBounds();
+  function applyLensTransforms() {
+    // 1. Position lens disc centered on interpolated cursor
+    lensDisc.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0) translate3d(-50%, -50%, 0)`;
 
-    clearTimeout(restoreTimer);
-    clearTimeout(crackTimer);
-    clearTimeout(shatterTimer);
-
-    // Calculate exact point of cursor entrance on portrait
-    const entryX = Math.max(12, Math.min(bounds.width - 12, e.clientX - bounds.left));
-    const entryY = Math.max(12, Math.min(bounds.height - 12, e.clientY - bounds.top));
-    const pctX = (entryX / bounds.width) * 100;
-    const pctY = (entryY / bounds.height) * 100;
-
-    if (awakenPoint) {
-      awakenPoint.style.left = `${pctX.toFixed(1)}%`;
-      awakenPoint.style.top = `${pctY.toFixed(1)}%`;
-    }
-
-    updatePointerTarget(e.clientX, e.clientY);
-
-    // STAGE 1: Glass Awakens (Subtle champagne light & tiny circular ripple)
-    shatteredStage.classList.add('is-active', 'is-awakened');
-    cutoutFrame.classList.add('is-hovered');
-
-    if (cursorRing) cursorRing.classList.add('cursor-portrait-hover');
-    if (cursorDot) cursorDot.classList.add('cursor-portrait-hover');
-
-    // STAGE 2: Delicate fracture lines spread outward from entry point (220ms)
-    crackTimer = setTimeout(() => {
-      if (!isHovered) return;
-      shatteredStage.classList.add('is-cracked');
-    }, 220);
-
-    // STAGE 3: Glass breaks into 8 floating 3D fragments (380ms)
-    shatterTimer = setTimeout(() => {
-      if (!isHovered) return;
-      shatteredStage.classList.add('is-shattered');
-    }, 380);
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderShatteredPhysics);
+    // 2. Optical mirror image counter-translation inside the lens
+    if (mirrorWrap) {
+      const mirrorX = -currentX * MAGNIFY_SCALE + LENS_RADIUS;
+      const mirrorY = -currentY * MAGNIFY_SCALE + LENS_RADIUS;
+      mirrorWrap.style.transform = `translate3d(${mirrorX.toFixed(1)}px, ${mirrorY.toFixed(1)}px, 0) scale(${MAGNIFY_SCALE})`;
     }
   }
 
-  function handlePointerMove(e) {
-    if (!isHovered) return;
-    updatePointerTarget(e.clientX, e.clientY);
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderShatteredPhysics);
-    }
-  }
-
-  function handlePointerLeave() {
-    isHovered = false;
-
-    clearTimeout(crackTimer);
-    clearTimeout(shatterTimer);
-    clearTimeout(restoreTimer);
-
-    targetNormX = 0;
-    targetNormY = 0;
-    targetTiltX = 0;
-    targetTiltY = 0;
-    targetPortraitX = 0;
-    targetPortraitY = 0;
-
-    cutoutFrame.classList.remove('is-hovered');
-    if (cursorRing) cursorRing.classList.remove('cursor-portrait-hover');
-    if (cursorDot) cursorDot.classList.remove('cursor-portrait-hover');
-
-    // STAGE 5: Gentle restoration (Reverse fragments, fade cracks and light)
-    shatteredStage.classList.remove('is-shattered', 'is-cracked', 'is-awakened');
-
-    // Reset fragment inline transforms so CSS transition smoothly glides them home
-    fragments.forEach((f) => {
-      f.style.transform = '';
-    });
-
-    restoreTimer = setTimeout(() => {
-      if (!isHovered) {
-        shatteredStage.classList.remove('is-active');
-        cutoutFrame.style.transform = '';
-      }
-    }, 750);
-
-    if (!rafId) {
-      rafId = requestAnimationFrame(renderShatteredPhysics);
-    }
-  }
-
-  // 60FPS Physics Loop with Smooth Spring Inertia
-  function renderShatteredPhysics() {
-    const lerp = 0.078;
-
-    currentNormX += (targetNormX - currentNormX) * lerp;
-    currentNormY += (targetNormY - currentNormY) * lerp;
-    currentTiltX += (targetTiltX - currentTiltX) * lerp;
-    currentTiltY += (targetTiltY - currentTiltY) * lerp;
-    currentPortraitX += (targetPortraitX - currentPortraitX) * lerp;
-    currentPortraitY += (targetPortraitY - currentPortraitY) * lerp;
-
-    // 1. Subtle, grounded 3D depth movement for the girl's portrait
-    // Keeps her face, hair, and clothing crisp and perfectly centered
-    cutoutFrame.style.transform = `perspective(1200px) rotateX(${(-currentPortraitY * 0.9).toFixed(2)}deg) rotateY(${(currentPortraitX * 1.1).toFixed(2)}deg) translate3d(${(currentPortraitX * 1.6).toFixed(1)}px, ${(currentPortraitY * 1.6).toFixed(1)}px, 0)`;
-
-    // 2. Interactive 3D physical response for floating glass fragments
-    if (shatteredStage.classList.contains('is-shattered')) {
-      fragments.forEach((f) => {
-        const depth = parseFloat(f.getAttribute('data-depth')) || 1.0;
-        const z = parseFloat(f.getAttribute('data-z')) || 25;
-        const vx = parseFloat(f.getAttribute('data-vx')) || 0;
-        const vy = parseFloat(f.getAttribute('data-vy')) || 0;
-        const vr = parseFloat(f.getAttribute('data-vr')) || 0;
-
-        // Vector displacement: outward shatter base + cursor tilt response
-        const shiftX = vx * 10 + (currentNormX * 14 * depth);
-        const shiftY = vy * 10 + (currentNormY * 14 * depth);
-        const rotZ = vr * 2.2 + (currentNormX * 3.2 * depth);
-        const rotX = currentTiltX * depth * 0.75;
-        const rotY = currentTiltY * depth * 0.75;
-
-        f.style.transform = `perspective(1100px) translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, ${z.toFixed(1)}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg)`;
-
-        // Traveling champagne specular reflections across facet edges
-        f.style.setProperty('--specular-x', `${50 + currentNormX * 35}%`);
-        f.style.setProperty('--specular-y', `${50 + currentNormY * 35}%`);
-      });
+  // 60FPS Fluid Interpolation Loop (Sleeps when mouse stops moving to prevent any lag/hanging)
+  function renderLensPhysics() {
+    if (!isHovered) {
+      rafId = null;
+      return;
     }
 
-    // Convergence check
-    const normDiff = Math.abs(targetNormX - currentNormX) + Math.abs(targetNormY - currentNormY);
-    const tiltDiff = Math.abs(targetTiltX - currentTiltX) + Math.abs(targetTiltY - currentTiltY);
+    currentX += (targetX - currentX) * LERP_FACTOR;
+    currentY += (targetY - currentY) * LERP_FACTOR;
 
-    if (isHovered || normDiff > 0.005 || tiltDiff > 0.005) {
-      rafId = requestAnimationFrame(renderShatteredPhysics);
+    applyLensTransforms();
+
+    const dist = Math.hypot(targetX - currentX, targetY - currentY);
+
+    if (dist > 0.2) {
+      rafId = requestAnimationFrame(renderLensPhysics);
     } else {
-      if (!isHovered) {
-        cutoutFrame.style.transform = '';
-      }
+      // Settle smoothly exactly on target and sleep until next pointer move
+      currentX = targetX;
+      currentY = targetY;
+      applyLensTransforms();
       rafId = null;
     }
   }
 
-  // Pointer interaction strictly attached to portrait container
+  function handlePointerEnter(e) {
+    if (e.pointerType === 'touch') return;
+    measureBounds();
+    isHovered = true;
+
+    // Immediately snap starting coordinate to cursor position (no jump)
+    setPointerTarget(e.clientX, e.clientY);
+    currentX = targetX;
+    currentY = targetY;
+
+    // Synchronously activate portrait expansion and orange glass lens
+    cutoutFrame.classList.add('is-hovered');
+    lensStage.classList.add('is-active');
+
+    // Initial render
+    applyLensTransforms();
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderLensPhysics);
+    }
+  }
+
+  function handlePointerMove(e) {
+    if (e.pointerType === 'touch') return;
+
+    if (!isHovered) {
+      handlePointerEnter(e);
+      return;
+    }
+
+    // Safety boundary check with generous margin to accommodate the 1.06x enlargement
+    // without ever triggering false exit/enter oscillations
+    if (bounds) {
+      const pad = 36;
+      if (
+        e.clientX < bounds.left - pad ||
+        e.clientX > bounds.right + pad ||
+        e.clientY < bounds.top - pad ||
+        e.clientY > bounds.bottom + pad
+      ) {
+        handlePointerLeave();
+        return;
+      }
+    }
+
+    setPointerTarget(e.clientX, e.clientY);
+
+    // Wake up physics loop if it went to sleep while cursor was stationary
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderLensPhysics);
+    }
+  }
+
+  function handlePointerLeave(e) {
+    if (e && e.relatedTarget && cutoutFrame.contains(e.relatedTarget)) {
+      // Moving to a child element inside cutoutFrame — do NOT leave!
+      return;
+    }
+
+    isHovered = false;
+
+    // Smoothly fade out the orange glass lens and return portrait to normal scale
+    lensStage.classList.remove('is-active');
+    cutoutFrame.classList.remove('is-hovered');
+
+    // Stop animation loop cleanly to conserve 100% CPU/GPU cycles
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
   cutoutFrame.addEventListener('pointerenter', handlePointerEnter);
   cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
   cutoutFrame.addEventListener('pointerleave', handlePointerLeave);
-
-  // Touch device support (Graceful non-interfering tap activation)
-  let touchTimeout = null;
-  cutoutFrame.addEventListener('touchstart', (e) => {
-    if (e.touches && e.touches[0]) {
-      handlePointerEnter(e.touches[0]);
-      clearTimeout(touchTimeout);
-      touchTimeout = setTimeout(() => {
-        handlePointerLeave();
-      }, 1600);
-    }
-  }, { passive: true });
 }
 
 /**
@@ -4028,20 +4031,24 @@ function setupGitHubShowcaseSection() {
 
 /* ==========================================================================
    25. CINEMATIC FULLSCREEN WELCOME VIDEO INTRO (Welcome.mp4)
-   Isolated Opening Scene • Zero Session Storage Skip • Keyboard Entry
+   Zero-Delay Instant Playback • High-Craft Redesigned Skip & Audio Controls
+   Interactive Keyboard Entry • Resilient Buffer State • Clean Exit
    ========================================================================== */
 function initWelcomeVideoIntro() {
   const overlay = document.getElementById('welcome-video-intro');
   if (!overlay) return;
 
   const video = document.getElementById('welcome-intro-video');
+  const videoContainer = overlay.querySelector('.wvi-video-container');
   const skipBtn = document.getElementById('wvi-skip-btn');
+  const soundBtn = document.getElementById('wvi-sound-btn');
+  const soundLabel = document.getElementById('wvi-sound-label');
+  const ringBar = document.getElementById('wvi-ring-bar');
   const progressBar = document.getElementById('wvi-progress-bar');
+  const bufferSpinner = document.getElementById('wvi-buffer-spinner');
   const cipOverlay = document.getElementById('creative-intro-cover');
 
-  // Both overlays are active in opening sequence to lock down the viewport
-  // and guarantee that the actual portfolio is NEVER revealed before the
-  // portfolio image page
+  // Lock body scrolling and guarantee portfolio remains hidden
   document.body.classList.add('wvi-active');
   if (cipOverlay) {
     document.body.classList.add('cip-active');
@@ -4052,51 +4059,23 @@ function initWelcomeVideoIntro() {
   overlay.setAttribute('aria-hidden', 'false');
 
   let isExiting = false;
+  let isSoundActive = true;
+  const RING_PERIMETER = 56.55; // 2 * PI * 9
 
-  if (video) {
-    // Sound is automatically ON
-    video.muted = false;
-    video.volume = 1.0;
-    video.currentTime = 0;
-
-    // Start playback with audio automatically
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Fallback for strict browser autoplay policies:
-        // Begin playback muted immediately to avoid visual stall,
-        // and instantly auto-unmute on the very first user interaction anywhere
-        video.muted = true;
-        video.play().catch(() => {});
-
-        const autoUnmute = () => {
-          if (video) {
-            video.muted = false;
-            video.volume = 1.0;
-          }
-          ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'wheel'].forEach((evt) => {
-            window.removeEventListener(evt, autoUnmute);
-          });
-        };
-
-        ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'wheel'].forEach((evt) => {
-          window.addEventListener(evt, autoUnmute, { once: true, passive: true });
-        });
-      });
+  // Helper to sync Sound button UI
+  function updateSoundUI(hasSound) {
+    isSoundActive = hasSound;
+    if (!soundBtn) return;
+    const iconOn = soundBtn.querySelector('.icon-sound-on');
+    const iconOff = soundBtn.querySelector('.icon-sound-off');
+    if (iconOn && iconOff) {
+      iconOn.style.display = hasSound ? 'block' : 'none';
+      iconOff.style.display = hasSound ? 'none' : 'block';
     }
-
-    // Telemetry Progress Bar
-    video.addEventListener('timeupdate', () => {
-      if (video.duration && progressBar) {
-        const percent = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
-        progressBar.style.width = percent + '%';
-      }
-    });
-
-    // When video completes, seamlessly transition into creative introduction page
-    video.addEventListener('ended', () => {
-      exitIntro();
-    });
+    if (soundLabel) {
+      soundLabel.textContent = hasSound ? 'Sound on' : 'Sound off';
+    }
+    soundBtn.setAttribute('aria-label', hasSound ? 'Mute sound' : 'Unmute sound');
   }
 
   // Smooth Exit Transition from Welcome Video into Creative Introduction Page
@@ -4106,7 +4085,7 @@ function initWelcomeVideoIntro() {
 
     window.removeEventListener('keydown', handleKeyDown);
 
-    // Ensure cipOverlay is ready and solid right underneath before video fades
+    // Pre-prepare Creative Introduction cover before video fades
     if (cipOverlay) {
       cipOverlay.classList.remove('cip-hidden', 'cip-exiting');
       cipOverlay.setAttribute('aria-hidden', 'false');
@@ -4125,14 +4104,14 @@ function initWelcomeVideoIntro() {
 
       // Now activate Step 2: The Creative Introduction Cover Page
       transitionToCreativeIntroPage();
-    }, 650);
+    }, 600);
   }
 
-  // Keyboard controls: ESCAPE, ENTER, SPACE, TAB to skip/enter
+  // Keyboard controls: ESCAPE, SPACE, ENTER to skip intro
   function handleKeyDown(e) {
     if (isExiting) return;
     const key = e.key;
-    if (key === 'Escape' || key === 'Enter' || key === ' ' || e.code === 'Space' || key === 'Tab') {
+    if (key === 'Escape' || key === ' ' || e.code === 'Space' || key === 'Enter') {
       e.preventDefault();
       exitIntro();
     }
@@ -4140,7 +4119,7 @@ function initWelcomeVideoIntro() {
 
   window.addEventListener('keydown', handleKeyDown);
 
-  // Skip button click (Orange Bento Grid style button)
+  // Redesigned Skip Button click
   if (skipBtn) {
     skipBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -4148,11 +4127,115 @@ function initWelcomeVideoIntro() {
     });
   }
 
-  // Clicking on overlay/video also advances to next step
-  overlay.addEventListener('click', (e) => {
-    if (e.target.closest('#wvi-skip-btn')) return;
-    exitIntro();
-  });
+  // Sound Toggle Button click
+  if (soundBtn) {
+    soundBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!video) return;
+      video.muted = !video.muted;
+      if (!video.muted) video.volume = 1.0;
+      updateSoundUI(!video.muted);
+    });
+  }
+
+  // Arm auto-unmute on user's first natural interaction if autoplay started muted
+  function armAutoUnmute() {
+    const tryUnmute = (e) => {
+      if (e.target && (e.target.closest('#wvi-skip-btn') || e.target.closest('#wvi-sound-btn'))) return;
+      if (video && video.muted) {
+        video.muted = false;
+        video.volume = 1.0;
+        updateSoundUI(true);
+      }
+      cleanupAutoUnmute();
+    };
+
+    const gestures = ['pointerdown', 'touchstart', 'mousedown', 'keydown'];
+    gestures.forEach(evt => window.addEventListener(evt, tryUnmute, { passive: true }));
+
+    function cleanupAutoUnmute() {
+      gestures.forEach(evt => window.removeEventListener(evt, tryUnmute));
+    }
+  }
+
+  if (video) {
+    // Resilience: buffer & stall indicators
+    video.addEventListener('waiting', () => {
+      if (videoContainer) videoContainer.classList.add('is-buffering');
+    });
+    video.addEventListener('playing', () => {
+      if (videoContainer) videoContainer.classList.remove('is-buffering');
+    });
+    video.addEventListener('canplay', () => {
+      if (videoContainer) videoContainer.classList.remove('is-buffering');
+    });
+    video.addEventListener('error', () => {
+      if (videoContainer) videoContainer.classList.remove('is-buffering');
+      // If video file cannot be loaded, safely proceed so visitor is never trapped
+      setTimeout(exitIntro, 1200);
+    });
+
+    // Zero-Delay Playback Launch
+    video.muted = false;
+    video.volume = 1.0;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          updateSoundUI(true);
+        })
+        .catch(() => {
+          // Autoplay with sound restricted by browser policy:
+          // Immediately start playback muted so there is ZERO delay, lag, or stall
+          video.muted = true;
+          updateSoundUI(false);
+          video.play().catch(() => {});
+          armAutoUnmute();
+        });
+    }
+
+    // Telemetry Progress Bar & Circular Ring Progress
+    video.addEventListener('timeupdate', () => {
+      if (video.duration && isFinite(video.duration)) {
+        const percent = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
+        if (progressBar) progressBar.style.width = percent + '%';
+        if (ringBar) {
+          const ringOffset = RING_PERIMETER - (RING_PERIMETER * (percent / 100));
+          ringBar.style.strokeDashoffset = ringOffset;
+        }
+      }
+    });
+
+    // Directly tapping/clicking the video toggles play/pause or un-mutes
+    video.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (video.muted) {
+        video.muted = false;
+        video.volume = 1.0;
+        updateSoundUI(true);
+        if (video.paused) video.play().catch(() => {});
+        return;
+      }
+      if (video.paused) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    // When video completes, seamlessly transition into creative introduction page
+    video.addEventListener('ended', () => {
+      exitIntro();
+    });
+
+    // Safety watchdog: If playback hasn't started after 8s due to any device lock, fail-safe advance
+    setTimeout(() => {
+      if (video.currentTime === 0 && video.paused && !isExiting) {
+        video.play().catch(() => {});
+      }
+    }, 2500);
+  }
 }
 
 // =========================================================================
@@ -4436,10 +4519,16 @@ function transitionToCreativeIntroPage() {
       cipOverlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('cip-active');
 
+      // Seamlessly scroll to top so the visitor meets the hero section cleanly
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Trigger Experience 3: Choreographed entrance into the Actual Portfolio
+      triggerHeroOpeningSequence();
+
       // Refresh layouts, scroll listeners, and triggers in the actual portfolio
       window.dispatchEvent(new Event('scroll'));
       window.dispatchEvent(new Event('resize'));
-    }, 650);
+    }, 600);
   }
 
   // Keyboard navigation for middle gallery: ENTER or SPACE on Explore button or ESCAPE
@@ -4461,6 +4550,37 @@ function transitionToCreativeIntroPage() {
       finishIntoPortfolio();
     });
   }
+}
+
+/**
+ * =========================================================================
+ * EXPERIENCE 3: ACTUAL PORTFOLIO HERO OPENING EXPERIENCE
+ * Choreographed arrival of Arfa Munam brand name, credentials, and 3D portrait
+ * =========================================================================
+ */
+function triggerHeroOpeningSequence() {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+
+  // Add activation class for synchronized CSS transition
+  hero.classList.add('hero-opened');
+
+  // Activate all immediate hero reveal elements
+  const reveals = hero.querySelectorAll('.reveal');
+  reveals.forEach(el => el.classList.add('visible'));
+
+  // Ensure portrait reality lens is aligned
+  const portraitCutout = document.getElementById('hero-portrait-cutout-frame');
+  if (portraitCutout) {
+    portraitCutout.style.transform = 'translateY(0) scale(1)';
+  }
+
+  // Ambient glows gentle arrival
+  const glows = hero.querySelectorAll('.ambient-glow');
+  glows.forEach(g => {
+    g.style.transition = 'opacity 1.2s ease';
+    g.style.opacity = '0.32';
+  });
 }
 
 
