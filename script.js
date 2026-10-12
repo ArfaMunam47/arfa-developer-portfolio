@@ -2385,9 +2385,9 @@ function setupHeroShatteredRealityEffect() {
   const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
   if (isTouchDevice) return;
 
-  const LENS_RADIUS = 75; // 150px / 2
-  const MAGNIFY_SCALE = 1.25; // Crystal-clear optical magnification
-  const LERP_FACTOR = 0.18; // Cinematic fluid interpolation damping
+  const LENS_RADIUS = 65; // 130px / 2 (diameter reduced by ~13.3% from 150px to 130px)
+  const MAGNIFY_SCALE = 1.0; // 1:1 alignment for seamless dress color transformation
+  const LERP_FACTOR = 0.22; // Responsive, silky smooth physics easing
   const EXPANSION_SCALE = 1.06; // Exact match to CSS portrait enlargement
 
   let bounds = null;
@@ -2402,9 +2402,12 @@ function setupHeroShatteredRealityEffect() {
 
   function measureBounds() {
     bounds = cutoutFrame.getBoundingClientRect();
-    if (mirrorWrap && bounds.width > 0 && bounds.height > 0) {
-      mirrorWrap.style.width = `${bounds.width}px`;
-      mirrorWrap.style.height = `${bounds.height}px`;
+    const viewport = document.getElementById('hero-portrait-viewport');
+    const w = viewport && viewport.offsetWidth > 0 ? viewport.offsetWidth : (bounds ? bounds.width : 0);
+    const h = viewport && viewport.offsetHeight > 0 ? viewport.offsetHeight : (bounds ? bounds.height : 0);
+    if (mirrorWrap && w > 0 && h > 0) {
+      mirrorWrap.style.width = `${w}px`;
+      mirrorWrap.style.height = `${h}px`;
     }
   }
 
@@ -2439,13 +2442,13 @@ function setupHeroShatteredRealityEffect() {
 
   function applyLensTransforms() {
     // 1. Position lens disc centered on interpolated cursor
-    lensDisc.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0) translate3d(-50%, -50%, 0)`;
+    lensDisc.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0) translate3d(-50%, -50%, 0)`;
 
-    // 2. Optical mirror image counter-translation inside the lens
+    // 2. Optical mirror image counter-translation inside the lens (1:1 alignment)
     if (mirrorWrap) {
-      const mirrorX = -currentX * MAGNIFY_SCALE + LENS_RADIUS;
-      const mirrorY = -currentY * MAGNIFY_SCALE + LENS_RADIUS;
-      mirrorWrap.style.transform = `translate3d(${mirrorX.toFixed(1)}px, ${mirrorY.toFixed(1)}px, 0) scale(${MAGNIFY_SCALE})`;
+      const mirrorX = -currentX + LENS_RADIUS;
+      const mirrorY = -currentY + LENS_RADIUS;
+      mirrorWrap.style.transform = `translate3d(${mirrorX.toFixed(2)}px, ${mirrorY.toFixed(2)}px, 0)`;
     }
   }
 
@@ -3813,48 +3816,114 @@ function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const stepBlocks = Array.from(section.querySelectorAll('.lj-3d-step-block, .lj-circular-platform'));
-  const cards = Array.from(section.querySelectorAll('.lj-milestone-card'));
+  const rows = Array.from(section.querySelectorAll('.lj-infographic-row'));
+  const stage = document.getElementById('lj-timeline-stage');
+  const mainRibbon = document.getElementById('lj-main-serpentine-path');
+  const shadowRibbon = stage ? stage.querySelector('.lj-svg-shadow-path') : null;
 
-  // Synchronize hover state between step block and card
-  stepBlocks.forEach((block, index) => {
-    const card = cards[index];
+  // 1. Dynamic Serpentine Path Alignment
+  function alignRibbonPath() {
+    if (!stage || !mainRibbon || window.innerWidth < 900) return;
+    const stageRect = stage.getBoundingClientRect();
+    if (stageRect.width === 0 || stageRect.height === 0) return;
 
-    block.addEventListener('mouseenter', () => {
-      if (card) card.classList.add('is-linked-hover');
-    });
-
-    block.addEventListener('mouseleave', () => {
-      if (card) card.classList.remove('is-linked-hover');
-    });
-
-    block.addEventListener('click', () => {
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        card.classList.add('is-card-tapped');
-        setTimeout(() => card.classList.remove('is-card-tapped'), 800);
+    const centers = [];
+    rows.forEach((row) => {
+      const icon = row.querySelector('.lj-circular-3d-icon');
+      if (icon) {
+        const r = icon.getBoundingClientRect();
+        centers.push({
+          x: Math.round(r.left + r.width / 2 - stageRect.left),
+          y: Math.round(r.top + r.height / 2 - stageRect.top),
+          isLeft: row.classList.contains('icon-left')
+        });
       }
     });
 
-    block.addEventListener('keydown', (e) => {
+    if (centers.length >= 8) {
+      // Calculate smooth serpentine path through the centers
+      const svg = stage.querySelector('.lj-serpentine-svg');
+      if (svg) {
+        svg.setAttribute('viewBox', `0 0 ${Math.round(stageRect.width)} ${Math.round(stageRect.height)}`);
+      }
+
+      let d = `M ${centers[0].x} ${centers[0].y}`;
+      for (let i = 0; i < centers.length; i++) {
+        const curr = centers[i];
+        if (i < centers.length - 1) {
+          const next = centers[i + 1];
+          if (curr.isLeft && !next.isLeft) {
+            // Left to Right row: line goes from left to right, then curves around right side to next row
+            const rightTurnX = Math.round(next.x + 36);
+            d += ` L ${next.x} ${curr.y}`;
+            d += ` C ${rightTurnX} ${curr.y}, ${rightTurnX} ${next.y}, ${next.x} ${next.y}`;
+          } else {
+            // Right to Left row: line goes from right to left, then curves around left side to next row
+            const leftTurnX = Math.round(next.x - 36);
+            d += ` L ${next.x} ${curr.y}`;
+            d += ` C ${leftTurnX} ${curr.y}, ${leftTurnX} ${next.y}, ${next.x} ${next.y}`;
+          }
+        }
+      }
+
+      mainRibbon.setAttribute('d', d);
+      if (shadowRibbon) shadowRibbon.setAttribute('d', d);
+    }
+  }
+
+  // 2. Interactive Row & Icon Event Listeners
+  rows.forEach((row) => {
+    const icon = row.querySelector('.lj-circular-3d-icon');
+    if (!icon) return;
+
+    const activate = () => {
+      rows.forEach(r => r.classList.remove('is-row-active'));
+      row.classList.add('is-row-active');
+    };
+
+    const deactivate = () => {
+      row.classList.remove('is-row-active');
+    };
+
+    icon.addEventListener('mouseenter', activate);
+    icon.addEventListener('mouseleave', deactivate);
+    row.addEventListener('mouseenter', activate);
+    row.addEventListener('mouseleave', deactivate);
+
+    icon.addEventListener('click', () => {
+      activate();
+      row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    icon.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        block.click();
+        activate();
       }
     });
   });
 
-  cards.forEach((card, index) => {
-    const block = stepBlocks[index];
+  // 3. Scroll Reveal for Ribbon Drawing
+  if ('IntersectionObserver' in window && mainRibbon) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          mainRibbon.style.strokeDashoffset = '0';
+          alignRibbonPath();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  }
 
-    card.addEventListener('mouseenter', () => {
-      if (block) block.classList.add('is-linked-hover');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (block) block.classList.remove('is-linked-hover');
-    });
+  // Run initial alignment and bind resize
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(alignRibbonPath, 150);
   });
+  setTimeout(alignRibbonPath, 300);
 }
 
 /**

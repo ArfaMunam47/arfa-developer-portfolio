@@ -2049,11 +2049,11 @@ nav.floating-nav.scrolled {
   visibility: visible;
 }
 
-/* Floating Soft Circular Lens Disc (150px diameter, perfectly within 130-160px) */
+/* Floating Soft Circular Lens Disc (130px diameter, reduced by ~13.3% from 150px) */
 .reality-lens-disc {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   top: 0;
   left: 0;
@@ -2062,16 +2062,12 @@ nav.floating-nav.scrolled {
   overflow: hidden;
   border: 1.8px solid rgba(242, 140, 40, 0.85);
   box-shadow: 
-    0 18px 40px -4px rgba(16, 28, 53, 0.28),
-    0 0 24px 3px rgba(255, 179, 71, 0.44),
-    0 0 46px 6px rgba(242, 140, 40, 0.22),
+    0 16px 36px -4px rgba(16, 28, 53, 0.28),
+    0 0 20px 2px rgba(255, 179, 71, 0.40),
+    0 0 38px 4px rgba(242, 140, 40, 0.20),
     inset 0 1.5px 3.5px rgba(255, 214, 160, 0.75),
-    inset 0 0 22px rgba(242, 140, 40, 0.24);
-  background: radial-gradient(circle at 35% 32%, 
-    rgba(255, 214, 160, 0.14) 0%, 
-    rgba(255, 179, 71, 0.09) 45%, 
-    rgba(242, 140, 40, 0.22) 80%, 
-    rgba(242, 140, 40, 0.32) 100%);
+    inset 0 0 16px rgba(242, 140, 40, 0.20);
+  background: transparent;
   will-change: transform;
 }
 
@@ -2083,7 +2079,7 @@ nav.floating-nav.scrolled {
   border: 1px solid rgba(255, 214, 160, 0.6);
   box-shadow: 
     inset 0 0 0 1px rgba(242, 140, 40, 0.5),
-    0 0 16px rgba(255, 179, 71, 0.4);
+    0 0 14px rgba(255, 179, 71, 0.35);
   pointer-events: none;
 }
 
@@ -2093,14 +2089,14 @@ nav.floating-nav.scrolled {
   inset: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 28% 26%, 
-    rgba(255, 214, 160, 0.45) 0%, 
-    rgba(255, 255, 255, 0.18) 35%, 
-    transparent 65%);
+    rgba(255, 255, 255, 0.26) 0%, 
+    rgba(255, 255, 255, 0.08) 30%, 
+    transparent 60%);
   pointer-events: none;
-  mix-blend-mode: overlay;
+  mix-blend-mode: screen;
 }
 
-/* Mirror Image Wrapper for Refracted/Magnified Portrait inside Lens */
+/* Mirror Image Wrapper for Dress Recoloring inside Lens */
 .reality-lens-mirror-wrap {
   position: absolute;
   top: 0;
@@ -2119,7 +2115,7 @@ nav.floating-nav.scrolled {
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
-  filter: contrast(1.03) brightness(1.01);
+  filter: none;
 }
 
 /* Individual Irregular Polygon Geometry & Placement (Leaving Face Completely Open) */
@@ -5115,8 +5111,8 @@ nav.floating-nav.scrolled {
 .serv-composition-primary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.4rem, 2.2vw, 2.2rem);
-  margin-bottom: clamp(2.4rem, 3.8vw, 3.2rem);
+  gap: clamp(1.8rem, 2.8vw, 2.8rem);
+  margin-bottom: clamp(2.6rem, 4vw, 3.5rem);
   align-items: stretch;
 }
 
@@ -5129,125 +5125,146 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
+/* ==========================================================================
    PREMIUM SKEUOMORPHIC SERVICE BOX (Manufactured Physical Interface Object)
    ========================================================================== */
 .serv-item {
   position: relative;
-  background: linear-gradient(175deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 253, 249, 0.94) 40%, rgba(250, 247, 242, 0.92) 100%);
+  background: linear-gradient(175deg, #FFFFFF 0%, #FDFEFE 45%, #F8FAFC 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 28px;
-  padding: clamp(1.5rem, 2.2vw, 2.1rem);
+  border-radius: 20px;
+  padding: clamp(1.65rem, 2.3vw, 2.25rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* Controlled physical thickness: complete outline */
-  border: 1.5px solid rgba(16, 28, 53, 0.1);
+  border: 1.25px solid rgba(16, 28, 53, 0.12);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.02),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 28px 60px -12px rgba(16, 28, 53, 0.08),
-    inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 -2px 4px rgba(16, 28, 53, 0.025);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+    0 1px 2px rgba(16, 28, 53, 0.03),
+    0 4px 12px -2px rgba(16, 28, 53, 0.05),
+    0 16px 36px -8px rgba(16, 28, 53, 0.08),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 1),
+    inset 0 -1.5px 2px rgba(16, 28, 53, 0.02);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
   overflow: hidden;
   outline: none;
 }
 
-/* Card 01: Frontend Development — Coral 3D Border & Glow */
+/* Subtle architectural top accent highlight line */
+.serv-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--card-edge-accent, rgba(16, 28, 53, 0.15)) 50%, transparent 100%);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, left 0.35s ease, right 0.35s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.serv-item:hover::before {
+  opacity: 1;
+  left: 6%;
+  right: 6%;
+}
+
+/* Card 01: Frontend Development — Refined Coral/Orange Accent */
 .serv-item.serv-item-01 {
-  border: 1.5px solid rgba(250, 85, 56, 0.42);
-  border-top-color: rgba(255, 140, 115, 0.68);
-  border-left-color: rgba(255, 140, 115, 0.58);
-  border-right-color: rgba(220, 50, 25, 0.46);
-  border-bottom-color: rgba(200, 40, 18, 0.56);
+  --card-edge-accent: #FA5538;
+  border: 1.25px solid rgba(250, 85, 56, 0.35);
+  border-top-color: rgba(255, 138, 101, 0.65);
+  border-left-color: rgba(250, 85, 56, 0.4);
+  border-right-color: rgba(235, 75, 45, 0.35);
+  border-bottom-color: rgba(220, 60, 30, 0.42);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(250, 85, 56, 0.18),
-    0 24px 50px -12px rgba(250, 85, 56, 0.12),
+    0 1px 3px rgba(16, 28, 53, 0.03),
+    0 6px 16px -3px rgba(16, 28, 53, 0.06),
+    0 20px 44px -8px rgba(16, 28, 53, 0.07),
+    0 0 20px -4px rgba(250, 85, 56, 0.14),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(250, 85, 56, 0.12),
-    inset 0 -2px 4px rgba(250, 85, 56, 0.06);
+    inset 0 0 0 1px rgba(250, 85, 56, 0.08),
+    inset 0 -2px 4px rgba(250, 85, 56, 0.04);
 }
 
 .serv-item.serv-item-01:hover,
 .serv-item.serv-item-01:focus-within {
-  transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(250, 85, 56, 0.75);
-  border-top-color: rgba(255, 160, 140, 0.95);
-  border-left-color: rgba(255, 150, 130, 0.85);
-  box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 20px 42px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(250, 85, 56, 0.32),
-    0 28px 60px -10px rgba(250, 85, 56, 0.22),
-    inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(250, 85, 56, 0.2);
-}
-
-/* Card 02: Responsive Web Design — Purple 3D Border & Glow */
-.serv-item.serv-item-02 {
-  border: 1.5px solid rgba(139, 92, 246, 0.44);
-  border-top-color: rgba(192, 132, 252, 0.72);
-  border-left-color: rgba(192, 132, 252, 0.62);
-  border-right-color: rgba(124, 58, 237, 0.48);
-  border-bottom-color: rgba(109, 40, 217, 0.58);
+  transform: translateY(-5px);
+  border-color: rgba(250, 85, 56, 0.65);
+  border-top-color: rgba(255, 145, 120, 0.9);
   box-shadow: 
     0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(139, 92, 246, 0.18),
-    0 24px 50px -12px rgba(139, 92, 246, 0.12),
+    0 12px 28px -4px rgba(16, 28, 53, 0.08),
+    0 28px 56px -10px rgba(16, 28, 53, 0.1),
+    0 0 28px -2px rgba(250, 85, 56, 0.28),
+    inset 0 2px 1px #FFFFFF,
+    inset 0 0 0 1px rgba(250, 85, 56, 0.16);
+}
+
+/* Card 02: Responsive Web Design — Refined Violet/Purple Accent */
+.serv-item.serv-item-02 {
+  --card-edge-accent: #8B5CF6;
+  border: 1.25px solid rgba(139, 92, 246, 0.35);
+  border-top-color: rgba(192, 132, 252, 0.65);
+  border-left-color: rgba(139, 92, 246, 0.4);
+  border-right-color: rgba(124, 58, 237, 0.35);
+  border-bottom-color: rgba(109, 40, 217, 0.42);
+  box-shadow: 
+    0 1px 3px rgba(16, 28, 53, 0.03),
+    0 6px 16px -3px rgba(16, 28, 53, 0.06),
+    0 20px 44px -8px rgba(16, 28, 53, 0.07),
+    0 0 20px -4px rgba(139, 92, 246, 0.14),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(139, 92, 246, 0.12),
-    inset 0 -2px 4px rgba(139, 92, 246, 0.06);
+    inset 0 0 0 1px rgba(139, 92, 246, 0.08),
+    inset 0 -2px 4px rgba(139, 92, 246, 0.04);
 }
 
 .serv-item.serv-item-02:hover,
 .serv-item.serv-item-02:focus-within {
-  transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(139, 92, 246, 0.78);
-  border-top-color: rgba(216, 180, 254, 0.95);
-  border-left-color: rgba(192, 132, 252, 0.88);
-  box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 20px 42px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(139, 92, 246, 0.32),
-    0 28px 60px -10px rgba(139, 92, 246, 0.22),
-    inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(139, 92, 246, 0.24);
-}
-
-/* Card 03: Landing Pages & Portfolios — Cyan 3D Border & Glow */
-.serv-item.serv-item-03 {
-  border: 1.5px solid rgba(6, 182, 212, 0.44);
-  border-top-color: rgba(103, 232, 249, 0.72);
-  border-left-color: rgba(103, 232, 249, 0.62);
-  border-right-color: rgba(8, 145, 178, 0.48);
-  border-bottom-color: rgba(14, 116, 144, 0.58);
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.68);
+  border-top-color: rgba(216, 180, 254, 0.9);
   box-shadow: 
     0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(6, 182, 212, 0.18),
-    0 24px 50px -12px rgba(6, 182, 212, 0.12),
+    0 12px 28px -4px rgba(16, 28, 53, 0.08),
+    0 28px 56px -10px rgba(16, 28, 53, 0.1),
+    0 0 28px -2px rgba(139, 92, 246, 0.28),
+    inset 0 2px 1px #FFFFFF,
+    inset 0 0 0 1px rgba(139, 92, 246, 0.18);
+}
+
+/* Card 03: Landing Pages & Portfolios — Refined Cyan/Blue Accent */
+.serv-item.serv-item-03 {
+  --card-edge-accent: #0891B2;
+  border: 1.25px solid rgba(8, 145, 178, 0.35);
+  border-top-color: rgba(103, 232, 249, 0.65);
+  border-left-color: rgba(8, 145, 178, 0.4);
+  border-right-color: rgba(14, 116, 144, 0.35);
+  border-bottom-color: rgba(21, 94, 117, 0.42);
+  box-shadow: 
+    0 1px 3px rgba(16, 28, 53, 0.03),
+    0 6px 16px -3px rgba(16, 28, 53, 0.06),
+    0 20px 44px -8px rgba(16, 28, 53, 0.07),
+    0 0 20px -4px rgba(8, 145, 178, 0.14),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(6, 182, 212, 0.12),
-    inset 0 -2px 4px rgba(6, 182, 212, 0.06);
+    inset 0 0 0 1px rgba(8, 145, 178, 0.08),
+    inset 0 -2px 4px rgba(8, 145, 178, 0.04);
 }
 
 .serv-item.serv-item-03:hover,
 .serv-item.serv-item-03:focus-within {
-  transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(6, 182, 212, 0.78);
-  border-top-color: rgba(165, 243, 252, 0.95);
-  border-left-color: rgba(103, 232, 249, 0.88);
+  transform: translateY(-5px);
+  border-color: rgba(8, 145, 178, 0.68);
+  border-top-color: rgba(165, 243, 252, 0.9);
   box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 20px 42px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(6, 182, 212, 0.32),
-    0 28px 60px -10px rgba(6, 182, 212, 0.22),
+    0 3px 6px rgba(16, 28, 53, 0.03),
+    0 12px 28px -4px rgba(16, 28, 53, 0.08),
+    0 28px 56px -10px rgba(16, 28, 53, 0.1),
+    0 0 28px -2px rgba(8, 145, 178, 0.28),
     inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(6, 182, 212, 0.22);
+    inset 0 0 0 1px rgba(8, 145, 178, 0.18);
 }
 
 /* Card 04: Performance Optimization — Teal 3D Border & Glow */
@@ -5369,7 +5386,7 @@ nav.floating-nav.scrolled {
 .aura-amber  { background: radial-gradient(ellipse at 50% 20%, #F59E0B, transparent 75%); }
 .aura-pink   { background: radial-gradient(ellipse at 50% 20%, #EC4899, transparent 75%); }
 
-/* 3D Visual Stage */
+/* 3D Visual Stage & Contained Image Panel */
 .serv-item-visual {
   position: relative;
   width: 100%;
@@ -5377,16 +5394,47 @@ nav.floating-nav.scrolled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .serv-3d-stage {
   position: relative;
   width: 100%;
-  height: clamp(190px, 20vw, 230px);
+  height: clamp(195px, 20vw, 235px);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.55) 75%, transparent 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(16, 28, 53, 0.05);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 4px 12px -4px rgba(16, 28, 53, 0.03);
+  padding: 0.65rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.serv-item.serv-item-01 .serv-3d-stage {
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 4px 16px -4px rgba(250, 85, 56, 0.08);
+}
+.serv-item.serv-item-01:hover .serv-3d-stage {
+  border-color: rgba(250, 85, 56, 0.22);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 8px 24px -4px rgba(250, 85, 56, 0.16);
+}
+
+.serv-item.serv-item-02 .serv-3d-stage {
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 4px 16px -4px rgba(139, 92, 246, 0.08);
+}
+.serv-item.serv-item-02:hover .serv-3d-stage {
+  border-color: rgba(139, 92, 246, 0.22);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 8px 24px -4px rgba(139, 92, 246, 0.16);
+}
+
+.serv-item.serv-item-03 .serv-3d-stage {
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 4px 16px -4px rgba(8, 145, 178, 0.08);
+}
+.serv-item.serv-item-03:hover .serv-3d-stage {
+  border-color: rgba(8, 145, 178, 0.22);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 8px 24px -4px rgba(8, 145, 178, 0.16);
 }
 
 .serv-item-visual.visual-compact .serv-3d-stage {
@@ -5399,14 +5447,14 @@ nav.floating-nav.scrolled {
   object-fit: contain;
   display: block;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 14px 28px rgba(16, 28, 53, 0.14)) drop-shadow(0 4px 10px rgba(16, 28, 53, 0.06));
+  filter: drop-shadow(0 12px 24px rgba(16, 28, 53, 0.12)) drop-shadow(0 3px 8px rgba(16, 28, 53, 0.05));
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
   user-select: none;
 }
 
 .serv-item:hover .serv-3d-img {
-  transform: translateY(-5px) scale(1.03);
-  filter: drop-shadow(0 20px 38px rgba(16, 28, 53, 0.18)) drop-shadow(0 6px 14px rgba(16, 28, 53, 0.08));
+  transform: translateY(-4px) scale(1.025);
+  filter: drop-shadow(0 18px 32px rgba(16, 28, 53, 0.15)) drop-shadow(0 5px 12px rgba(16, 28, 53, 0.07));
 }
 
 .serv-orbit-ring {
@@ -5535,27 +5583,33 @@ nav.floating-nav.scrolled {
   border-bottom-width: 1px;
 }
 
-/* Card Content */
+/* Card Content & Unified Typography Hierarchy */
 .serv-item-text {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
+  padding-top: 0.25rem;
 }
 
 .serv-num-header {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.85rem;
 }
 
 .serv-num {
   font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.serv-item:hover .serv-num {
+  transform: translateX(1px);
 }
 
 .num-coral  { color: #FA5538; }
@@ -5567,11 +5621,16 @@ nav.floating-nav.scrolled {
 
 .serv-num-underline {
   display: block;
-  width: 24px;
-  height: 3px;
+  width: 28px;
+  height: 2.5px;
   border-radius: 2px;
-  margin-top: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-top: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serv-item:hover .serv-num-underline {
+  width: 38px;
 }
 
 .bar-coral  { background: #FA5538; }
@@ -5583,20 +5642,21 @@ nav.floating-nav.scrolled {
 
 .serv-card-title {
   font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
-  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  font-size: clamp(1.2rem, 1.45vw, 1.4rem);
   font-weight: 800;
-  line-height: 1.25;
-  color: #101C35;
-  margin: 0 0 0.55rem;
-  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: #0F172A;
+  margin: 0 0 0.65rem;
+  letter-spacing: -0.02em;
 }
 
 .serv-card-desc {
   font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: #475569;
+  font-size: 0.925rem;
+  line-height: 1.62;
+  color: #334155;
   margin: 0 0 0.85rem;
+  letter-spacing: -0.005em;
 }
 
 /* Action Arrow Buttons (Tactile Physical Button) */
@@ -5917,16 +5977,16 @@ nav.floating-nav.scrolled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 14px;
+  padding-top: 10px;
 }
 
-/* Continuous Full-Width Hanging Wire Rig across entire section usable width */
+/* Continuous Full-Width Hanging Wire Rig occupying ~96-98% of viewport width */
 .cert-hanging-wire-rig {
   position: relative;
-  width: 100%;
-  max-width: 1180px;
-  height: 44px;
-  margin-bottom: -20px;
+  width: 97%;
+  max-width: 98vw;
+  height: 38px;
+  margin: 0 auto;
   z-index: 10;
   pointer-events: none;
   display: flex;
@@ -5940,53 +6000,53 @@ nav.floating-nav.scrolled {
   overflow: visible;
 }
 
-/* Realistic Multi-Layer Wire Rendering */
+/* Thin, elegant, realistic multi-layer wire rendering */
 .wire-shadow-stroke {
   fill: none;
-  stroke: rgba(24, 20, 35, 0.14);
-  stroke-width: 2.2px;
+  stroke: rgba(24, 20, 35, 0.12);
+  stroke-width: 2px;
   filter: blur(1.5px);
 }
 
 .wire-main-stroke {
   fill: none;
   stroke: #8A8580;
-  stroke-width: 1.6px;
+  stroke-width: 1.5px;
   stroke-linecap: round;
 }
 
 .wire-highlight-stroke {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.75);
-  stroke-width: 0.75px;
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 0.65px;
   stroke-linecap: round;
 }
 
-/* Wall Mounting Anchor Brackets on Left & Right Boundaries */
+/* Small metallic attachment points at both wire ends */
 .wire-wall-anchor {
   position: absolute;
-  top: 10px;
+  top: 6px;
   width: 14px;
   height: 14px;
   z-index: 12;
 }
 
 .wire-wall-anchor.anchor-left {
-  left: -2px;
+  left: 0;
 }
 
 .wire-wall-anchor.anchor-right {
-  right: -2px;
+  right: 0;
 }
 
 .wire-wall-anchor .anchor-plate {
   display: block;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #A8A29E 0%, #78716C 100%);
-  border: 1px solid rgba(68, 64, 60, 0.4);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background: radial-gradient(circle at 35% 35%, #D6D3D1 0%, #A8A29E 45%, #78716C 100%);
+  border: 1px solid rgba(68, 64, 60, 0.45);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .wire-wall-anchor .anchor-pin {
@@ -5997,26 +6057,26 @@ nav.floating-nav.scrolled {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #F5F5F4;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.35);
+  background: #FAFAF9;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
-   CARDS GRID & NATURAL HANGING CERTIFICATES
+   CARDS GRID & PERFECTLY ALIGNED HANGING CERTIFICATES
    ========================================================================== */
 .cert-hanging-cards-grid {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: clamp(1.2rem, 3.2vw, 2.5rem);
+  gap: clamp(1.4rem, 3.2vw, 2.6rem);
   width: 100%;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: -14px auto 0;
   position: relative;
   z-index: 5;
 }
 
-/* Individual Hanging Item */
+/* Individual Hanging Item - Perfectly Aligned */
 .hanging-cert-item {
   flex: 1 1 320px;
   max-width: 350px;
@@ -6027,102 +6087,91 @@ nav.floating-nav.scrolled {
   align-items: center;
   cursor: pointer;
   perspective: 900px;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
-/* Natural Subtle Suspension Tilts & Sag Coordinates */
-.cert-item-1 {
-  transform: rotate(-1.5deg);
-}
-
-.cert-item-2 {
-  transform: rotate(0.8deg) translateY(7px);
-}
-
+/* Symmetrical gallery baseline & top alignment */
+.cert-item-1,
+.cert-item-2,
 .cert-item-3 {
-  transform: rotate(-1.0deg) translateY(2px);
+  transform: none;
 }
 
-/* Subtle Interactive Hover Physics: Gentle Lift & Calmed Tilt */
+/* Subtle Interactive Hover Physics: Gentle Vertical Lift */
 .hanging-cert-item:hover {
   z-index: 15;
-}
-
-.hanging-cert-item.cert-item-1:hover {
-  transform: translateY(-8px) rotate(-0.4deg) scale(1.02);
-}
-
-.hanging-cert-item.cert-item-2:hover {
-  transform: translateY(-2px) rotate(0deg) scale(1.02);
-}
-
-.hanging-cert-item.cert-item-3:hover {
-  transform: translateY(-7px) rotate(-0.2deg) scale(1.02);
+  transform: translateY(-8px);
 }
 
 /* ==========================================================================
-   REFINED ORANGE HANGING CLIPS
-   Warm Orange: #F28C28 | Soft Amber: #FFB347 | Muted Shadow: #C96B22
+   REALISTIC TRANSLUCENT ORANGE STATIONERY ADHESIVE TAPE
+   Primary Orange: #F28C28 | Highlight Orange: #FFA447 | Shadow Orange: #D76B16
+   Translucent stationery washi tape visually connecting certificate to hanging wire
    ========================================================================== */
-.cert-orange-clip {
-  position: relative;
-  width: 22px;
-  height: 32px;
-  margin-bottom: -15px;
+.cert-orange-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 24px;
   z-index: 20;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   pointer-events: none;
-  filter: drop-shadow(0 3px 5px rgba(201, 107, 34, 0.28)) drop-shadow(0 1px 2px rgba(24, 20, 35, 0.15));
-  transition: transform 0.4s ease;
+  filter: drop-shadow(0 2px 3px rgba(215, 107, 22, 0.28)) drop-shadow(0 1px 2px rgba(24, 20, 35, 0.12));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Upper Loop Hooked Over Wire */
-.cert-orange-clip .clip-loop {
-  width: 14px;
-  height: 12px;
-  border-radius: 7px 7px 3px 3px;
-  background: linear-gradient(180deg, #FFB347 0%, #F28C28 100%);
-  border: 1.5px solid #C96B22;
-  border-bottom: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65);
-  position: relative;
-}
-
-/* Lower Clamping Jaw Holding Card Top Edge */
-.cert-orange-clip .clip-jaw {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  margin-top: -2px;
-}
-
-.cert-orange-clip .clip-jaw-body {
+.cert-orange-tape .tape-surface {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(135deg, #FFB347 0%, #F28C28 55%, #C96B22 100%);
-  border: 1px solid rgba(201, 107, 34, 0.85);
-  box-shadow: 
-    0 2px 4px rgba(201, 107, 34, 0.32),
-    inset 0 1px 1px rgba(255, 255, 255, 0.6),
-    inset 0 -1px 2px rgba(150, 70, 15, 0.4);
+  /* Soft translucent orange stationery adhesive tape material */
+  background: linear-gradient(
+    175deg,
+    rgba(255, 164, 71, 0.9) 0%,
+    rgba(242, 140, 40, 0.84) 48%,
+    rgba(215, 107, 22, 0.88) 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  /* Slightly irregular rectangular shape with soft natural stationery edges */
+  border-radius: 1px;
+  clip-path: polygon(
+    0% 2%,
+    2% 0%,
+    98% 1%,
+    100% 3%,
+    99.5% 97%,
+    98% 100%,
+    2% 99%,
+    0% 97%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(215, 107, 22, 0.45);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.55),
+    inset 0 -1px 2px rgba(180, 80, 10, 0.35);
   position: relative;
 }
 
-.cert-orange-clip .clip-pin {
+/* Subtle realistic adhesive sheen across tape surface */
+.cert-orange-tape .tape-surface::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFF1D6 0%, #C96B22 100%);
-  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.35);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 42%,
+    rgba(255, 255, 255, 0.12) 54%,
+    transparent 72%
+  );
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -6130,6 +6179,9 @@ nav.floating-nav.scrolled {
    ========================================================================== */
 .hanging-cert-card {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: #FFFFFF;
   border-radius: 12px;
   padding: 14px 14px 18px;
@@ -6140,7 +6192,7 @@ nav.floating-nav.scrolled {
     0 20px 40px -10px rgba(24, 20, 35, 0.05);
   position: relative;
   z-index: 5;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
   will-change: transform, box-shadow;
 }
 
@@ -6149,7 +6201,7 @@ nav.floating-nav.scrolled {
     0 6px 14px rgba(24, 20, 35, 0.04),
     0 20px 38px -6px rgba(24, 20, 35, 0.12),
     0 32px 56px -12px rgba(24, 20, 35, 0.07);
-  border-color: rgba(242, 140, 40, 0.3);
+  border-color: rgba(242, 140, 40, 0.35);
 }
 
 /* Clean Certificate Print Mat Frame */
@@ -6162,6 +6214,7 @@ nav.floating-nav.scrolled {
   border: 1px solid rgba(24, 20, 35, 0.07);
   box-shadow: inset 0 1px 3px rgba(24, 20, 35, 0.04);
   aspect-ratio: 1649 / 1275;
+  flex-shrink: 0;
 }
 
 .cert-hanging-img {
@@ -6170,7 +6223,7 @@ nav.floating-nav.scrolled {
   object-fit: contain;
   display: block;
   background: #FFFFFF;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hanging-cert-item:hover .cert-hanging-img {
@@ -6180,22 +6233,23 @@ nav.floating-nav.scrolled {
 /* Certificate Name Only (Clean, Elegant, Dedicated Typography) */
 .cert-hanging-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.04rem, 1.3vw, 1.18rem);
+  font-size: clamp(1.04rem, 1.25vw, 1.15rem);
   font-weight: 700;
   color: #101C35;
   line-height: 1.35;
   letter-spacing: -0.018em;
   text-align: center;
-  margin: 14px 4px 2px;
-  min-height: 2.7em;
+  margin: 14px 4px 0;
+  min-height: 2.8em;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
   transition: color 0.3s ease;
 }
 
 .hanging-cert-item:hover .cert-hanging-title {
-  color: #C96B22;
+  color: #D76B16;
 }
 
 /* ==========================================================================
@@ -6224,8 +6278,9 @@ nav.floating-nav.scrolled {
   .cert-hanging-cards-grid {
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2.2rem;
     max-width: 420px;
+    margin-top: 10px;
   }
   
   .cert-hanging-wire-rig {
@@ -6239,11 +6294,11 @@ nav.floating-nav.scrolled {
   }
 
   .hanging-cert-item:hover {
-    transform: translateY(-6px) scale(1.01) !important;
+    transform: translateY(-6px) !important;
   }
 
-  .cert-orange-clip {
-    margin-bottom: -13px;
+  .cert-orange-tape {
+    top: -11px;
   }
 
   .cert-hanging-title {
@@ -6377,176 +6432,115 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
-   MY LEARNING JOURNEY — PREMIUM DARK CINEMATIC STUDIO EXPERIENCE
-   "Learning. Growing. Becoming."
-   Deep Charcoal & Near-Black Studio Atmosphere
-   Controlled Muted Rose, Warm Coral & Subtle Peach Lighting
-   3D Illuminated Flowing Ribbon Path with 6 Physical Milestone Objects
-   Floating Glass Feature Panel with 3 Balanced Visual Zones
-   Refined "What Drives Me" Value Pillars Strip
+   MY LEARNING JOURNEY — PREMIUM HORIZONTAL INFOGRAPHIC (REFERENCE ACCURACY)
+   26% Left Editorial Intro • 74% Right 8-Milestone Infographic
+   Clean 6px Serpentine Ribbon • 3D Embossed Circular Icons • Open Airy Grid
    ========================================================================== */
-
-:root {
-  --lj-studio-black: #090B10;
-  --lj-studio-deep: #0D1017;
-  --lj-studio-surface: #121622;
-  --lj-studio-glass: rgba(18, 22, 34, 0.82);
-  --lj-studio-border: rgba(255, 255, 255, 0.08);
-  --lj-rose-glow: #FB7185;
-  --lj-rose-light: #FDA4AF;
-  --lj-coral-glow: #FA5538;
-  --lj-peach-glow: #FED7AA;
-  --lj-lavender-glow: #A78BFA;
-  --lj-cyan-glow: #38BDF8;
-  --lj-emerald-glow: #34D399;
-}
 
 #experience.futuristic-journey-section,
 .futuristic-journey-section {
   position: relative;
-  background-color: var(--canvas, #FAF8F5);
+  /* Preserve original background and atmosphere exactly as instructed */
+  background-color: #FAF8F5;
   background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(20, 184, 166, 0.09) 0%, transparent 60%),
-    radial-gradient(ellipse at 10% 40%, rgba(6, 182, 212, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 90% 65%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(254, 215, 170, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 0%, rgba(192, 132, 252, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 8% 30%, rgba(255, 107, 82, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 92% 45%, rgba(56, 189, 248, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 12% 70%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 88% 85%, rgba(244, 114, 182, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(254, 215, 170, 0.12) 0%, transparent 60%);
   color: #0F172A;
   overflow: hidden;
-  border-top: 1px solid rgba(15, 23, 42, 0.06);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-  padding: clamp(5.5rem, 8vw, 8rem) 0 clamp(4.5rem, 7vw, 7rem);
+  border-top: 1px solid rgba(192, 132, 252, 0.12);
+  border-bottom: 1px solid rgba(192, 132, 252, 0.12);
+  padding: clamp(5.0rem, 7.5vw, 7.5rem) 0;
 }
 
-/* Atmospheric Ambient Blooms */
-.lj-atmosphere {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.lj-ambient-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.45;
-}
-
-.glow-turquoise {
-  width: 580px;
-  height: 580px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.18) 0%, rgba(20, 184, 166, 0) 70%);
-  top: 12%;
-  left: -120px;
-}
-
-.glow-coral {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(250, 85, 56, 0.12) 0%, rgba(250, 85, 56, 0) 70%);
-  top: 48%;
-  right: -100px;
-}
-
-.glow-mint {
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, rgba(16, 185, 129, 0) 70%);
-  bottom: 8%;
-  left: 22%;
-}
-
-.lj-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+.lj-infographic-container {
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  padding: 0 clamp(1.25rem, 3.5vw, 3rem);
 }
 
-/* ==========================================================================
-   SECTION HEADER BLOCK (CLEAN EDITORIAL LUXURY)
-   ========================================================================== */
-.lj-roadmap-header-block {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto clamp(4.0rem, 6vw, 5.5rem);
+/* Two-Column Master Layout: Left Intro (~26%) + Right Timeline (~74%) */
+.lj-infographic-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(2.5rem, 4.5vw, 4.5rem);
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT AREA: EDITORIAL INTRODUCTION (~26%)
+   -------------------------------------------------------------------------- */
+.lj-intro-sidebar {
+  position: relative;
+}
+
+.lj-intro-sticky {
+  position: sticky;
+  top: 120px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.15rem;
+  align-items: flex-start;
+  padding-top: 1.5rem;
 }
 
-.lj-eyebrow-line {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: #0F766E;
-  text-transform: uppercase;
-}
-
-.eyebrow-spark {
-  color: #0D9488;
-  font-size: 0.85rem;
-}
-
-.lj-roadmap-heading {
-  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+.lj-eyebrow-badge {
+  display: inline-block;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  color: #0F172A;
+  letter-spacing: 0.22em;
+  color: #FF6B81;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.lj-main-heading {
+  font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
+  font-size: clamp(3.0rem, 4.2vw, 4.0rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #0F172A; /* Dark navy */
+  margin: 0 0 1.25rem;
+}
+
+.heading-gradient-pink {
+  background: linear-gradient(135deg, #FF6B81 0%, #FA5538 50%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lj-heading-accent-line {
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6B81 0%, #EC4899 100%);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.lj-intro-narrative {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: #475569; /* Muted slate blue */
+  max-width: 250px;
   margin: 0;
 }
 
-.lj-roadmap-subheading {
-  font-size: clamp(1.02rem, 1.4vw, 1.16rem);
-  line-height: 1.65;
-  color: #475569;
-  margin: 0;
-  max-width: 660px;
-}
-
-.lj-header-summary-meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #64748B;
-  margin-top: 0.25rem;
-}
-
-.summary-sep {
-  color: #CBD5E1;
-  font-size: 0.75rem;
-}
-
-.summary-active-tag {
-  color: #059669;
-  font-weight: 700;
-}
-
-/* ==========================================================================
-   3D CONTINUOUS ALTERNATING RIBBON INFOGRAPHIC STAGE
-   Inspired by Reference Image: Smooth flowing winding ribbon spine,
-   dimensional folded 3D numbered step markers, and clean information cards
-   placed alternately along the journey with generous breathing room.
-   ========================================================================== */
-.lj-ribbon-stage {
+/* --------------------------------------------------------------------------
+   RIGHT AREA: EIGHT CONNECTED MILESTONES INFOGRAPHIC (~74%)
+   -------------------------------------------------------------------------- */
+.lj-timeline-stage {
   position: relative;
   width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  min-height: 2200px;
 }
 
-/* Precision Scaled SVG Ribbon Spine */
-.lj-ribbon-svg-wrap {
+/* Serpentine SVG Layer (Exact 5-7px Continuous Ribbon Running Behind Icons) */
+.lj-serpentine-svg-wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -6556,659 +6550,470 @@ nav.floating-nav.scrolled {
   z-index: 1;
 }
 
-.lj-ribbon-svg {
+.lj-serpentine-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-/* 1. Deep 3D Ambient Drop Shadow under Ribbon Spine */
-.ribbon-path-shadow {
-  stroke: rgba(15, 23, 42, 0.12);
-  stroke-width: 76;
+.lj-svg-shadow-path {
+  stroke: rgba(15, 23, 42, 0.08);
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transform: translateY(18px);
+  fill: none;
+  transform: translateY(3px);
 }
 
-/* 2. Lower 3D Extrusion Bevel (Folded Depth Edge) */
-.ribbon-path-bevel {
-  stroke: url(#ribbonBevelGrad);
-  stroke-width: 66;
+.lj-svg-ribbon-path {
+  stroke: url(#ljSerpentineGrad);
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transform: translateY(7px);
+  fill: none;
+  /* Smooth SVG path drawing animation on load */
+  stroke-dasharray: 6000;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 3. Top Illuminated 3D Ribbon Surface */
-.ribbon-path-surface {
-  stroke: url(#ribbonMainGrad);
-  stroke-width: 58;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.lj-svg-tri-accent {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
-/* 4. Delicate Crisp Center Guide Track / Subtle Fold Crease */
-.ribbon-center-crease {
-  stroke: rgba(255, 255, 255, 0.9);
-  stroke-width: 2.8;
-  stroke-dasharray: 10 14;
-  stroke-linecap: round;
-}
-
-/* 5. Continuous Luminous Traveling Energy Beacon */
-.ribbon-pulse-energy {
-  filter: drop-shadow(0 0 10px #FFFFFF) drop-shadow(0 0 16px rgba(255, 90, 54, 0.85));
-}
-
-/* ==========================================================================
-   8 CHRONOLOGICAL MILESTONE STATIONS (ALTERNATING 3D RIBBON INFOGRAPHIC)
-   ========================================================================== */
-.lj-milestones-stream {
+/* --------------------------------------------------------------------------
+   THE EIGHT MILESTONE ROWS (OPEN AIRY GRID, EXACT HIERARCHY)
+   -------------------------------------------------------------------------- */
+.lj-rows-container {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: clamp(6.2rem, 9.8vw, 9.2rem);
-  padding: 1.8rem 0;
+  gap: 0; /* Rows provide their own vertical spacing via min-height and padding */
 }
 
-.lj-milestone-station {
+.lj-infographic-row {
   position: relative;
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: center;
-  gap: clamp(2.4rem, 4.2vw, 4.2rem);
-  width: 100%;
-}
-
-/* Station Left: Number Marker at Col 1, Card at Col 2 */
-.lj-milestone-station.station-left {
-  padding-left: clamp(1.2rem, 5.5vw, 5.0rem);
-  padding-right: clamp(1.0rem, 3.0vw, 2.5rem);
-}
-
-/* Station Right: Card at Col 1, Number Marker at Col 2 */
-.lj-milestone-station.station-right {
-  grid-template-columns: 1fr 140px;
-  padding-right: clamp(1.2rem, 5.5vw, 5.0rem);
-  padding-left: clamp(1.0rem, 3.0vw, 2.5rem);
-}
-
-.lj-milestone-station.station-right .lj-platform-column {
-  order: 2;
-}
-
-.lj-milestone-station.station-right .lj-card-column {
-  order: 1;
-}
-
-/* ==========================================================================
-   DIMENSIONAL 3D NUMBERED STEP BLOCKS (INSPIRED BY REFERENCE)
-   Folded isometric appearance, vibrant colored face, extruded top/side,
-   and clean floating indicator icon.
-   ========================================================================== */
-.lj-platform-column {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.lj-3d-step-block {
-  position: relative;
-  width: 118px;
-  height: 118px;
-  cursor: pointer;
-  outline: none;
-  perspective: 600px;
+  min-height: 138px; /* 125px to 145px vertical space per row */
+  padding: 1.25rem 0;
+  box-sizing: border-box;
+  opacity: 1;
+  transform: translateY(0);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  -webkit-tap-highlight-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Soft 3D Ambient Drop Shadow under Block */
-.step-3d-shadow {
-  position: absolute;
-  inset: -8px;
-  border-radius: 26px;
-  background: radial-gradient(circle, rgba(15, 23, 42, 0.22) 0%, rgba(15, 23, 42, 0.05) 60%, transparent 75%);
-  transform: translateY(22px) rotateX(45deg);
-  filter: blur(10px);
-  z-index: 0;
-  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+/* Alternating Row Alignment: 
+   Row 01, 03, 05, 07: icon on LEFT (flex-direction: row)
+   Row 02, 04, 06, 08: icon on RIGHT (flex-direction: row-reverse) */
+.lj-infographic-row.icon-left {
+  flex-direction: row;
 }
 
-/* 3D Folded Cube Structure */
-.step-3d-cube {
-  position: relative;
-  width: 96px;
-  height: 96px;
-  border-radius: 22px;
-  transform-style: preserve-3d;
-  transform: rotateX(8deg) rotateY(-8deg);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-  z-index: 2;
+.lj-infographic-row.icon-right {
+  flex-direction: row-reverse;
 }
 
-/* Front Main Face of 3D Block */
-.step-cube-face.cube-front {
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  box-shadow: 
-    inset 0 2px 2px rgba(255, 255, 255, 0.7),
-    inset 0 -3px 4px rgba(0, 0, 0, 0.22),
-    0 12px 28px rgba(15, 23, 42, 0.14);
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-}
-
-/* Number display inside 3D Block */
-.step-num-display {
-  font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
-  font-size: 1.85rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.step-tag-mini {
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-top: 2px;
-  opacity: 0.9;
-}
-
-.step-tag-mini.active-tag {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 1px 6px;
-  border-radius: 999px;
-  color: #FFFFFF;
-}
-
-/* Subtle Top Extruded Depth Lip */
-.step-cube-face.cube-top {
-  position: absolute;
-  top: -9px;
-  left: 6px;
-  right: 6px;
-  height: 10px;
-  border-radius: 12px 12px 4px 4px;
-  background: rgba(255, 255, 255, 0.38);
-  transform: rotateX(55deg);
-  pointer-events: none;
-}
-
-/* Subtle Side Extruded Depth Lip */
-.step-cube-face.cube-side {
-  position: absolute;
-  right: -9px;
-  top: 6px;
-  bottom: 6px;
-  width: 10px;
-  border-radius: 4px 12px 12px 4px;
-  background: rgba(0, 0, 0, 0.18);
-  transform: rotateY(55deg);
-  pointer-events: none;
-}
-
-/* Floating Icon Dock connected to block */
-.step-icon-dock {
-  position: absolute;
-  bottom: -6px;
-  right: -6px;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: #FFFFFF;
-  border: 1.5px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+/* --------------------------------------------------------------------------
+   CIRCULAR 3D EMBOSSED ICONS (100–115px DESKTOP)
+   Soft ivory surface • Gentle inner lighting • Thin pastel outer ring
+   -------------------------------------------------------------------------- */
+.lj-icon-anchor {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Individual Themes for the 8 Steps matching ribbon fold palette */
-.theme-coral .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #FF6B4A 0%, #FA5538 55%, #E03E22 100%);
-}
-.theme-coral .step-icon-dock { color: #FA5538; }
-
-.theme-orange .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #FB923C 0%, #F97316 55%, #EA580C 100%);
-}
-.theme-orange .step-icon-dock { color: #F97316; }
-
-.theme-gold .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 55%, #D97706 100%);
-}
-.theme-gold .step-icon-dock { color: #D97706; }
-
-.theme-emerald .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #34D399 0%, #10B981 55%, #059669 100%);
-}
-.theme-emerald .step-icon-dock { color: #059669; }
-
-.theme-cyan .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #22D3EE 0%, #06B6D4 55%, #0891B2 100%);
-}
-.theme-cyan .step-icon-dock { color: #0891B2; }
-
-.theme-blue .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 55%, #2563EB 100%);
-}
-.theme-blue .step-icon-dock { color: #2563EB; }
-
-.theme-purple .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 55%, #7C3AED 100%);
-}
-.theme-purple .step-icon-dock { color: #7C3AED; }
-
-.theme-pink .step-cube-face.cube-front {
-  background: linear-gradient(135deg, #F472B6 0%, #EC4899 55%, #DB2777 100%);
-}
-.theme-pink .step-icon-dock { color: #DB2777; }
-
-/* Interactive Hover Feedback on 3D Blocks */
-.lj-3d-step-block:hover,
-.lj-3d-step-block:focus-visible,
-.lj-3d-step-block.is-linked-hover {
-  transform: translateY(-8px) scale(1.06);
-}
-
-.lj-3d-step-block:hover .step-3d-shadow,
-.lj-3d-step-block:focus-visible .step-3d-shadow,
-.lj-3d-step-block.is-linked-hover .step-3d-shadow {
-  transform: translateY(28px) scale(1.15) rotateX(45deg);
-  filter: blur(14px);
-  opacity: 0.95;
-}
-
-.lj-3d-step-block:hover .step-icon-dock,
-.lj-3d-step-block:focus-visible .step-icon-dock,
-.lj-3d-step-block.is-linked-hover .step-icon-dock {
-  transform: translateY(-3px) scale(1.12);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16);
-}
-
-/* Step 06 Active Glow Beacon */
-.step-active-pulse .step-focus-pulse {
-  position: absolute;
-  inset: -14px;
-  border-radius: 30px;
-  border: 2px solid rgba(59, 130, 246, 0.65);
-  animation: beaconPulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes beaconPulse {
-  0% { transform: scale(0.92); opacity: 0.95; }
-  70% { transform: scale(1.36); opacity: 0; }
-  100% { transform: scale(1.36); opacity: 0; }
-}
-
-/* ==========================================================================
-   MILESTONE EDITORIAL CARDS (CLEAN 3D PANELS EXTENDING FROM RIBBON)
-   ========================================================================== */
-.lj-card-column {
-  width: 100%;
-}
-
-.lj-milestone-card {
+.lj-circular-3d-icon {
   position: relative;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  border-radius: 22px;
-  padding: clamp(1.6rem, 2.8vw, 2.2rem);
-  box-shadow: 
-    0 20px 42px -12px rgba(15, 23, 42, 0.08),
-    0 4px 14px rgba(15, 23, 42, 0.03);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-  overflow: hidden;
-}
-
-/* Vibrant Decorative Ribbon Tab Accent on Left of Card */
-.card-ribbon-accent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  border-radius: 22px 0 0 22px;
-}
-
-.card-theme-coral .card-ribbon-accent { background: linear-gradient(180deg, #FF6B4A, #FA5538); }
-.card-theme-orange .card-ribbon-accent { background: linear-gradient(180deg, #FB923C, #F97316); }
-.card-theme-gold .card-ribbon-accent { background: linear-gradient(180deg, #FBBF24, #F59E0B); }
-.card-theme-emerald .card-ribbon-accent { background: linear-gradient(180deg, #34D399, #10B981); }
-.card-theme-cyan .card-ribbon-accent { background: linear-gradient(180deg, #22D3EE, #06B6D4); }
-.card-theme-blue .card-ribbon-accent { background: linear-gradient(180deg, #60A5FA, #3B82F6); }
-.card-theme-purple .card-ribbon-accent { background: linear-gradient(180deg, #A78BFA, #8B5CF6); }
-.card-theme-pink .card-ribbon-accent { background: linear-gradient(180deg, #F472B6, #EC4899); }
-
-.lj-milestone-card:hover,
-.lj-milestone-card.is-linked-hover {
-  transform: translateY(-5px);
-  box-shadow: 
-    0 26px 52px -12px rgba(15, 23, 42, 0.12),
-    0 6px 20px rgba(15, 23, 42, 0.04);
-}
-
-.card-theme-coral:hover, .card-theme-coral.is-linked-hover { border-color: rgba(250, 85, 56, 0.4); }
-.card-theme-orange:hover, .card-theme-orange.is-linked-hover { border-color: rgba(249, 115, 22, 0.4); }
-.card-theme-gold:hover, .card-theme-gold.is-linked-hover { border-color: rgba(245, 158, 11, 0.4); }
-.card-theme-emerald:hover, .card-theme-emerald.is-linked-hover { border-color: rgba(16, 185, 129, 0.4); }
-.card-theme-cyan:hover, .card-theme-cyan.is-linked-hover { border-color: rgba(6, 182, 212, 0.4); }
-.card-theme-blue:hover, .card-theme-blue.is-linked-hover { border-color: rgba(59, 130, 246, 0.4); }
-.card-theme-purple:hover, .card-theme-purple.is-linked-hover { border-color: rgba(139, 92, 246, 0.4); }
-.card-theme-pink:hover, .card-theme-pink.is-linked-hover { border-color: rgba(236, 72, 153, 0.4); }
-
-.lj-milestone-card.is-card-tapped {
-  animation: cardTapGlow 0.8s ease;
-}
-
-@keyframes cardTapGlow {
-  0%, 100% { transform: translateY(-5px); }
-  50% { transform: translateY(-8px) scale(1.01); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); }
-}
-
-/* Card Metadata Row */
-.card-meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.card-theme-coral .card-step-title { color: #E03E22; }
-.card-theme-orange .card-step-title { color: #EA580C; }
-.card-theme-gold .card-step-title { color: #D97706; }
-.card-theme-emerald .card-step-title { color: #059669; }
-.card-theme-cyan .card-step-title { color: #0891B2; }
-.card-theme-blue .card-step-title { color: #2563EB; }
-.card-theme-purple .card-step-title { color: #7C3AED; }
-.card-theme-pink .card-step-title { color: #DB2777; }
-
-.card-step-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.live-dot {
-  width: 6.5px;
-  height: 6.5px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
-  background: #3B82F6;
-  display: inline-block;
-  animation: pulseLiveDot 1.8s infinite;
-}
-
-@keyframes pulseLiveDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-.card-timeline-date {
-  color: #64748B;
-  font-weight: 600;
-}
-
-.card-timeline-date.tag-active-now {
-  color: #2563EB;
-  font-weight: 800;
-}
-
-/* Typography Hierarchy */
-.card-title {
-  font-size: clamp(1.35rem, 2.1vw, 1.7rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-  color: #0F172A;
-  margin: 0 0 0.4rem;
-}
-
-.card-subtitle {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #475569;
-  margin: 0 0 0.95rem;
-  line-height: 1.45;
-}
-
-.card-theme-coral .card-subtitle { color: #EA580C; }
-.card-theme-orange .card-subtitle { color: #D97706; }
-.card-theme-gold .card-subtitle { color: #B45309; }
-.card-theme-emerald .card-subtitle { color: #059669; }
-.card-theme-cyan .card-subtitle { color: #0891B2; }
-.card-theme-blue .card-subtitle { color: #2563EB; }
-.card-theme-purple .card-subtitle { color: #7C3AED; }
-.card-theme-pink .card-subtitle { color: #DB2777; }
-
-.card-narrative {
-  font-size: 0.93rem;
-  line-height: 1.65;
-  color: #475569;
-  margin: 0 0 1.2rem;
-}
-
-/* Clean Editorial Skill Tags */
-.card-skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.skill-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.24rem 0.68rem;
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 6px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #334155;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.skill-pill:hover {
-  background: #F1F5F9;
-  border-color: #CBD5E1;
-  color: #0F172A;
-}
-
-/* Step 06 Active Highlight */
-.card-focus-highlight {
-  border-color: rgba(59, 130, 246, 0.45);
-  box-shadow: 
-    0 22px 46px -10px rgba(59, 130, 246, 0.16),
-    0 4px 14px rgba(15, 23, 42, 0.04);
-}
-
-/* ==========================================================================
-   WHAT DRIVES ME SECTION (LIGHT LUXURY 3D STRIP)
-   ========================================================================== */
-.lj-drives-me-strip {
-  margin-top: clamp(5.0rem, 7.5vw, 7.0rem);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 24px;
-  padding: clamp(2.4rem, 3.8vw, 3.2rem);
-  box-shadow: 0 18px 44px -12px rgba(15, 23, 42, 0.06);
-}
-
-.drives-strip-header {
+  cursor: pointer;
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2.2rem;
-  font-size: 0.84rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #0F172A;
-  text-transform: uppercase;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  user-select: none;
 }
 
-.drives-spark {
-  color: #FA5538;
+/* Thin Pastel Outer Ring */
+.icon-ring-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--row-border, rgba(255, 107, 129, 0.35));
+  box-shadow: 
+    0 12px 28px -6px rgba(15, 23, 42, 0.08),
+    0 4px 10px rgba(15, 23, 42, 0.04),
+    inset 0 2px 4px #FFFFFF;
+  pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.drives-values-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  align-items: stretch;
+/* Soft Ivory / Very Pale Pastel Disc Surface with Neumorphic Depth */
+.icon-disc-surface {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #FAF8F5 65%, #F4EFEB 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 6px 16px -2px rgba(15, 23, 42, 0.07),
+    inset 0 3px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 4px rgba(15, 23, 42, 0.04);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.drives-value-card {
+/* Hover Interaction: Lift by 4px, deeper shadow, subtle accent glow */
+.lj-circular-3d-icon:hover,
+.lj-circular-3d-icon:focus-visible {
+  transform: translateY(-4px);
+}
+
+.lj-circular-3d-icon:hover .icon-ring-highlight,
+.lj-circular-3d-icon:focus-visible .icon-ring-highlight {
+  border-color: var(--row-accent, #FF6B81);
+  box-shadow: 
+    0 16px 36px -6px rgba(15, 23, 42, 0.12),
+    0 0 24px -2px var(--row-accent, #FF6B81),
+    inset 0 2px 4px #FFFFFF;
+}
+
+.lj-infographic-row:hover .lj-circular-3d-icon {
+  transform: translateY(-4px);
+}
+
+.lj-infographic-row:hover .icon-ring-highlight {
+  border-color: var(--row-accent, #FF6B81);
+  box-shadow: 
+    0 16px 36px -6px rgba(15, 23, 42, 0.12),
+    0 0 20px -3px var(--row-accent, #FF6B81),
+    inset 0 2px 4px #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   MILESTONE CONTENT BLOCK (OPEN AIRY TEXT, CRISP HIERARCHY)
+   -------------------------------------------------------------------------- */
+.lj-row-content {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
-  padding: 1.35rem;
-  border-radius: 16px;
-  background: rgba(248, 250, 252, 0.8);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.drives-value-card:hover {
-  transform: translateY(-4px);
-  background: #FFFFFF;
-  border-color: rgba(20, 184, 166, 0.35);
-  box-shadow: 0 14px 30px -8px rgba(15, 23, 42, 0.09);
+/* Generous breathing room between icon and text */
+.icon-left .lj-row-content {
+  padding-left: clamp(1.8rem, 3.2vw, 3.2rem);
+  padding-right: 1.5rem;
+  text-align: left;
 }
 
-.val-icon-3d {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
+.icon-right .lj-row-content {
+  padding-right: clamp(1.8rem, 3.2vw, 3.2rem);
+  padding-left: 1.5rem;
+  text-align: left; /* Keep text left-aligned for optimal readability */
+}
+
+/* Header Row: Number + Divider + Title + Status */
+.lj-row-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
+  margin-bottom: 0.45rem;
 }
 
-.val-icon-3d.icon-coral {
-  background: rgba(250, 85, 56, 0.12);
-  color: #FA5538;
-}
-
-.val-icon-3d.icon-orange {
-  background: rgba(245, 158, 11, 0.12);
-  color: #D97706;
-}
-
-.val-icon-3d.icon-rose {
-  background: rgba(236, 72, 153, 0.12);
-  color: #DB2777;
-}
-
-.val-icon-3d.icon-cyan {
-  background: rgba(6, 182, 212, 0.12);
-  color: #0891B2;
-}
-
-.val-title {
-  font-size: 1.12rem;
-  font-weight: 700;
+.lj-row-num {
+  font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
+  font-size: clamp(1.8rem, 2.3vw, 2.2rem); /* 30 to 36px */
+  font-weight: 800;
+  line-height: 1;
   color: #0F172A;
-  margin: 0 0 0.25rem;
+  letter-spacing: -0.03em;
 }
 
-.val-caption {
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: #64748B;
+.lj-row-divider {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #CBD5E1;
+  line-height: 1;
+}
+
+.lj-row-title {
+  font-family: var(--font-hero, 'Unbounded', 'Syne', sans-serif);
+  font-size: clamp(1.18rem, 1.45vw, 1.38rem); /* 19 to 22px */
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0F172A;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (TABLET & MOBILE)
-   ========================================================================== */
-@media (max-width: 980px) {
-  .lj-ribbon-stage {
-    min-height: auto;
-  }
+/* Description (13 to 15px) */
+.lj-row-desc {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.85rem, 1.0vw, 0.94rem);
+  line-height: 1.55;
+  color: #64748B; /* Muted blue gray */
+  margin: 0 0 0.75rem;
+  max-width: 580px;
+}
 
-  .lj-ribbon-svg-wrap {
-    display: none;
-  }
+/* Skill Labels Row */
+.lj-row-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  align-items: center;
+}
 
-  .lj-milestones-stream {
-    gap: 2.6rem;
-  }
+/* Small Rounded Pill Labels */
+.lj-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.7rem;
+  background: #FAF8F5;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 9999px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.74rem; /* 11 to 12px */
+  font-weight: 600;
+  color: #475569;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
 
-  .lj-milestone-station,
-  .lj-milestone-station.station-left,
-  .lj-milestone-station.station-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    gap: 1.25rem;
-  }
+.lj-infographic-row:hover .lj-skill-pill {
+  background: var(--row-soft-bg, rgba(255, 107, 129, 0.08));
+  border-color: var(--row-border, rgba(255, 107, 129, 0.35));
+  color: #0F172A;
+}
 
-  .lj-milestone-station.station-right .lj-platform-column {
-    order: 1;
-  }
+.lj-skill-pill:hover {
+  background: #FFFFFF !important;
+  border-color: var(--row-accent, #0F172A) !important;
+  color: #0F172A !important;
+  transform: translateY(-1px);
+}
 
-  .lj-milestone-station.station-right .lj-card-column {
-    order: 2;
-  }
+/* --------------------------------------------------------------------------
+   REFINED COMPACT STATUS BADGES (STEP 7)
+   -------------------------------------------------------------------------- */
+.lj-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.68rem; /* 11 to 12px */
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
 
-  .lj-platform-column {
-    justify-content: flex-start;
-  }
+/* COMPLETED: Very light mint background with tiny green check */
+.status-completed {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+}
 
-  .lj-3d-step-block {
-    width: 98px;
-    height: 98px;
-  }
+/* IN PROGRESS: Very light peach background with tiny orange indicator */
+.status-inprogress {
+  background: rgba(251, 146, 60, 0.12);
+  border: 1px solid rgba(251, 146, 60, 0.35);
+  color: #D97706;
+}
 
-  .step-3d-cube {
-    width: 82px;
-    height: 82px;
-  }
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #F97316;
+  display: inline-block;
+  animation: inProgressPulse 1.8s infinite;
+}
 
-  .step-num-display {
-    font-size: 1.55rem;
-  }
+@keyframes inProgressPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+}
 
-  .drives-values-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* UPCOMING: Light gray lavender background with small outlined circle */
+.status-upcoming {
+  background: rgba(139, 92, 246, 0.10);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: #7C3AED;
+}
+
+.status-outline-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid #8B5CF6;
+  display: inline-block;
+}
+
+/* FUTURE GOAL: Subtle neutral lavender label */
+.status-future {
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #64748B;
+}
+
+.status-diamond-dot {
+  font-size: 0.65rem;
+  line-height: 1;
+  color: #8B5CF6;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (STEP 11)
+   Desktop: 26% / 74% layout with 8 alternating rows & serpentine SVG
+   Medium: Scaled icon & typography
+   Mobile: Intro on top, clean single-column vertical timeline
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .lj-infographic-layout {
+    grid-template-columns: 240px 1fr;
+    gap: 2rem;
+  }
+  .lj-icon-anchor {
+    width: 95px;
+    height: 95px;
+  }
+  .lj-circular-3d-icon {
+    width: 90px;
+    height: 90px;
+  }
+  .icon-disc-surface {
+    width: 78px;
+    height: 78px;
+  }
+  .icon-disc-surface svg {
+    width: 28px;
+    height: 28px;
   }
 }
 
-@media (max-width: 600px) {
-  .drives-values-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 860px) {
+  .lj-infographic-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
   }
+  .lj-intro-sidebar {
+    width: 100%;
+  }
+  .lj-intro-sticky {
+    position: static;
+    max-width: 620px;
+    padding-top: 0;
+  }
+  .lj-intro-narrative {
+    max-width: 100%;
+  }
+  /* On medium/mobile, SVG ribbon can adapt to clean vertical ribbon line */
+  .lj-serpentine-svg-wrap {
+    display: none;
+  }
+  .lj-rows-container {
+    position: relative;
+    padding-left: 20px;
+    border-left: 5px solid #FF6B81;
+    border-image: linear-gradient(to bottom, #FF6B81, #FB923C, #10B981, #0284C7, #8B5CF6, #F43F5E, #FB7185) 1 100%;
+    gap: 2.2rem;
+  }
+  .lj-infographic-row,
+  .lj-infographic-row.icon-left,
+  .lj-infographic-row.icon-right {
+    flex-direction: row !important;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 0;
+  }
+  .lj-icon-anchor {
+    width: 76px;
+    height: 76px;
+    margin-right: 1.25rem;
+  }
+  .lj-circular-3d-icon {
+    width: 70px;
+    height: 70px;
+  }
+  .icon-disc-surface {
+    width: 60px;
+    height: 60px;
+  }
+  .icon-disc-surface svg {
+    width: 24px;
+    height: 24px;
+  }
+  .icon-left .lj-row-content,
+  .icon-right .lj-row-content {
+    padding: 0 !important;
+  }
+}
 
-  .lj-drives-me-strip {
-    padding: 1.6rem 1.25rem;
+@media (max-width: 480px) {
+  .lj-rows-container {
+    padding-left: 12px;
+    gap: 1.8rem;
+  }
+  .lj-icon-anchor {
+    width: 60px;
+    height: 60px;
+    margin-right: 0.85rem;
+  }
+  .lj-circular-3d-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .icon-disc-surface {
+    width: 48px;
+    height: 48px;
+  }
+  .icon-disc-surface svg {
+    width: 20px;
+    height: 20px;
+  }
+  .lj-row-num {
+    font-size: 1.45rem;
+  }
+  .lj-row-title {
+    font-size: 1.05rem;
+  }
+  .lj-main-heading {
+    font-size: 2.6rem;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .lj-svg-ribbon-path {
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .lj-circular-3d-icon,
+  .lj-infographic-row,
+  .lj-skill-pill,
+  .status-pulse-dot {
+    transition: none !important;
+    animation: none !important;
   }
 }
 

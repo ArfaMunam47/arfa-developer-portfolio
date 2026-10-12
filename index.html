@@ -32,6 +32,7 @@
   <!-- Preload Welcome Video & Portrait Image for instant startup -->
   <link rel="preload" as="video" href="Welcome.mp4" type="video/mp4">
   <link rel="preload" as="image" href="new.png">
+  <link rel="preload" as="image" href="me-gradient.png">
 
   <!-- Design System Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -479,12 +480,12 @@
                   <div class="reality-lens-disc" id="reality-lens-disc">
                     <!-- Zoomed/Refracted Mirror Replica of Portrait Image -->
                     <div class="reality-lens-mirror-wrap">
-                      <img src="me.png"
+                      <img src="me-gradient.png"
                            alt=""
                            class="reality-lens-mirror-img"
                            id="reality-lens-mirror-img"
                            loading="eager"
-                           onerror="this.onerror=null; this.src='me.png.png';">
+                           onerror="this.onerror=null; this.src='me.png';">
                     </div>
                     <div class="reality-lens-ring-border"></div>
                     <div class="reality-lens-sheen"></div>
@@ -2711,124 +2712,111 @@
         </p>
       </div>
 
-      <!-- Clean Gallery Display -->
-      <!-- Clean Hanging Gallery Display with Full-Width Wire & Orange Clips -->
-      <div class="cert-hanging-gallery">
-        
-        <!-- Continuous Full-Width Hanging Wire Rig across entire section width -->
-        <div class="cert-hanging-wire-rig" aria-hidden="true">
-          <!-- Left Mounting Wall Anchor Bracket -->
-          <div class="wire-wall-anchor anchor-left">
-            <span class="anchor-plate"></span>
-            <span class="anchor-pin"></span>
-          </div>
+    </div><!-- /.cert-hanging-container -->
 
-          <!-- Continuous Tensioned Wire SVG with Realistic Downward Sag -->
-          <svg class="cert-fullwidth-wire-svg" viewBox="0 0 1200 44" preserveAspectRatio="none">
-            <!-- Wire Soft Drop Shadow -->
-            <path d="M 0,14 Q 300,32 600,36 Q 900,32 1200,14" class="wire-shadow-stroke" />
-            <!-- Main Metallic Wire Line (Soft Warm Gray / Muted Metallic) -->
-            <path d="M 0,12 Q 300,30 600,34 Q 900,30 1200,12" class="wire-main-stroke" />
-            <!-- Specular Wire Top Edge Highlight -->
-            <path d="M 0,11.5 Q 300,29.5 600,33.5 Q 900,29.5 1200,11.5" class="wire-highlight-stroke" />
-          </svg>
-
-          <!-- Right Mounting Wall Anchor Bracket -->
-          <div class="wire-wall-anchor anchor-right">
-            <span class="anchor-plate"></span>
-            <span class="anchor-pin"></span>
-          </div>
+    <!-- Full-Width Clean Hanging Gallery Display -->
+    <div class="cert-hanging-gallery">
+      
+      <!-- Continuous Full-Width Hanging Wire Rig across entire webpage width (96-98%) -->
+      <div class="cert-hanging-wire-rig" aria-hidden="true">
+        <!-- Left Mounting Wall Anchor Bracket -->
+        <div class="wire-wall-anchor anchor-left">
+          <span class="anchor-plate"></span>
+          <span class="anchor-pin"></span>
         </div>
 
-        <!-- 3 Hanging Certificate Physical Prints -->
-        <div class="cert-hanging-cards-grid">
-          
-          <!-- CERTIFICATE 01: Google AI Professional Certificate -->
-          <div class="hanging-cert-item cert-item-1" data-cert="1">
-            <!-- Refined Top-Center Orange Hanging Clip -->
-            <div class="cert-orange-clip" aria-hidden="true">
-              <div class="clip-loop"></div>
-              <div class="clip-jaw">
-                <span class="clip-jaw-body"></span>
-                <span class="clip-pin"></span>
-              </div>
-            </div>
+        <!-- Continuous Tensioned Wire SVG with Subtle, Realistic Downward Sag -->
+        <svg class="cert-fullwidth-wire-svg" viewBox="0 0 1600 36" preserveAspectRatio="none">
+          <!-- Wire Soft Drop Shadow -->
+          <path d="M 0,13 Q 800,27 1600,13" class="wire-shadow-stroke" />
+          <!-- Main Metallic Wire Line (Thin, elegant, realistic muted metallic) -->
+          <path d="M 0,11 Q 800,25 1600,11" class="wire-main-stroke" />
+          <!-- Specular Wire Top Edge Highlight -->
+          <path d="M 0,10.5 Q 800,24.5 1600,10.5" class="wire-highlight-stroke" />
+        </svg>
 
-            <!-- Physical Certificate Print -->
-            <article class="hanging-cert-card">
-              <!-- Certificate Image Display -->
-              <div class="cert-print-frame">
-                <img src="1.jpg" 
-                     alt="Google AI Professional Certificate" 
-                     class="cert-journey-img cert-hanging-img" 
-                     loading="eager" 
-                     onerror="this.onerror=null; this.src='1--.jpg';">
-              </div>
+        <!-- Right Mounting Wall Anchor Bracket -->
+        <div class="wire-wall-anchor anchor-right">
+          <span class="anchor-plate"></span>
+          <span class="anchor-pin"></span>
+        </div>
+      </div>
 
-              <!-- Certificate Name Only -->
-              <h3 class="cert-hanging-title">Google AI Professional Certificate</h3>
-            </article>
+      <!-- 3 Hanging Certificate Physical Prints - Perfectly Aligned -->
+      <div class="cert-hanging-cards-grid">
+        
+        <!-- CERTIFICATE 01: Google AI Professional Certificate -->
+        <div class="hanging-cert-item cert-item-1" data-cert="1">
+          <!-- Realistic Translucent Orange Stationery Adhesive Tape -->
+          <div class="cert-orange-tape" aria-hidden="true">
+            <span class="tape-surface"></span>
           </div>
 
-          <!-- CERTIFICATE 02: Google AI Essentials -->
-          <div class="hanging-cert-item cert-item-2" data-cert="2">
-            <!-- Refined Top-Center Orange Hanging Clip -->
-            <div class="cert-orange-clip" aria-hidden="true">
-              <div class="clip-loop"></div>
-              <div class="clip-jaw">
-                <span class="clip-jaw-body"></span>
-                <span class="clip-pin"></span>
-              </div>
+          <!-- Physical Certificate Print -->
+          <article class="hanging-cert-card">
+            <!-- Certificate Image Display -->
+            <div class="cert-print-frame">
+              <img src="1.jpg" 
+                   alt="Google AI Professional Certificate" 
+                   class="cert-journey-img cert-hanging-img" 
+                   loading="eager" 
+                   onerror="this.onerror=null; this.src='1--.jpg';">
             </div>
 
-            <!-- Physical Certificate Print -->
-            <article class="hanging-cert-card">
-              <!-- Certificate Image Display -->
-              <div class="cert-print-frame">
-                <img src="2.jpg" 
-                     alt="Google AI Essentials" 
-                     class="cert-journey-img cert-hanging-img" 
-                     loading="lazy" 
-                     onerror="this.onerror=null; this.src='2--.jpg';">
-              </div>
+            <!-- Certificate Name Only -->
+            <h3 class="cert-hanging-title">Google AI Professional Certificate</h3>
+          </article>
+        </div>
 
-              <!-- Certificate Name Only -->
-              <h3 class="cert-hanging-title">Google AI Essentials</h3>
-            </article>
+        <!-- CERTIFICATE 02: Google AI Essentials -->
+        <div class="hanging-cert-item cert-item-2" data-cert="2">
+          <!-- Realistic Translucent Orange Stationery Adhesive Tape -->
+          <div class="cert-orange-tape" aria-hidden="true">
+            <span class="tape-surface"></span>
           </div>
 
-          <!-- CERTIFICATE 03: Google Prompting Essentials -->
-          <div class="hanging-cert-item cert-item-3" data-cert="3">
-            <!-- Refined Top-Center Orange Hanging Clip -->
-            <div class="cert-orange-clip" aria-hidden="true">
-              <div class="clip-loop"></div>
-              <div class="clip-jaw">
-                <span class="clip-jaw-body"></span>
-                <span class="clip-pin"></span>
-              </div>
+          <!-- Physical Certificate Print -->
+          <article class="hanging-cert-card">
+            <!-- Certificate Image Display -->
+            <div class="cert-print-frame">
+              <img src="2.jpg" 
+                   alt="Google AI Essentials" 
+                   class="cert-journey-img cert-hanging-img" 
+                   loading="lazy" 
+                   onerror="this.onerror=null; this.src='2--.jpg';">
             </div>
 
-            <!-- Physical Certificate Print -->
-            <article class="hanging-cert-card">
-              <!-- Certificate Image Display -->
-              <div class="cert-print-frame">
-                <img src="3.jpg" 
-                     alt="Google Prompting Essentials" 
-                     class="cert-journey-img cert-hanging-img" 
-                     loading="lazy" 
-                     onerror="this.onerror=null; this.src='3--.jpg';">
-              </div>
+            <!-- Certificate Name Only -->
+            <h3 class="cert-hanging-title">Google AI Essentials</h3>
+          </article>
+        </div>
 
-              <!-- Certificate Name Only -->
-              <h3 class="cert-hanging-title">Google Prompting Essentials</h3>
-            </article>
+        <!-- CERTIFICATE 03: Google Prompting Essentials -->
+        <div class="hanging-cert-item cert-item-3" data-cert="3">
+          <!-- Realistic Translucent Orange Stationery Adhesive Tape -->
+          <div class="cert-orange-tape" aria-hidden="true">
+            <span class="tape-surface"></span>
           </div>
 
-        </div><!-- /.cert-hanging-cards-grid -->
+          <!-- Physical Certificate Print -->
+          <article class="hanging-cert-card">
+            <!-- Certificate Image Display -->
+            <div class="cert-print-frame">
+              <img src="3.jpg" 
+                   alt="Google Prompting Essentials" 
+                   class="cert-journey-img cert-hanging-img" 
+                   loading="lazy" 
+                   onerror="this.onerror=null; this.src='3--.jpg';">
+            </div>
 
-      </div><!-- /.cert-hanging-gallery -->
+            <!-- Certificate Name Only -->
+            <h3 class="cert-hanging-title">Google Prompting Essentials</h3>
+          </article>
+        </div>
 
-    </div><!-- /.cert-hanging-container -->
+      </div><!-- /.cert-hanging-cards-grid -->
+
+    </div><!-- /.cert-hanging-gallery -->
   </section>
 
   <!-- =======================================================================
@@ -2836,521 +2824,393 @@
        8 Milestones along a luminous contoured 3D pathway with floating dimensional
        milestone nodes and balanced luxury editorial narrative cards
        ======================================================================= -->
-  <section id="experience" class="futuristic-journey-section" aria-label="Learning Journey" data-section="learning-journey">
+    <section id="experience" class="futuristic-journey-section" aria-label="Learning Journey" data-section="learning-journey">
     <span id="learning-journey" class="section-hash-anchor" aria-hidden="true"></span>
     
-    <!-- Ambient Depth Lighting -->
-    <div class="lj-atmosphere" aria-hidden="true">
-      <div class="lj-ambient-glow glow-turquoise"></div>
-      <div class="lj-ambient-glow glow-coral"></div>
-      <div class="lj-ambient-glow glow-mint"></div>
-    </div>
-
-    <div class="lj-container">
+    <div class="lj-container lj-infographic-container">
       
-      <!-- SECTION HEADER -->
-      <div class="lj-roadmap-header-block reveal">
-        <div class="lj-eyebrow-line">
-          <span class="eyebrow-spark" aria-hidden="true">✦</span>
-          <span class="eyebrow-text">Developer Evolution &middot; Continuous Growth</span>
-        </div>
-        <h2 class="lj-roadmap-heading">My Learning Journey</h2>
-        <p class="lj-roadmap-subheading">
-          A continuous, tactile progression from core web architectures to applied artificial intelligence systems and autonomous agents.
-        </p>
-        <div class="lj-header-summary-meta">
-          <span>8 Milestones</span>
-          <span class="summary-sep" aria-hidden="true">&bull;</span>
-          <span>Serpentine Progression</span>
-          <span class="summary-sep" aria-hidden="true">&bull;</span>
-          <span class="summary-active-tag">Active 2026 Focus</span>
-        </div>
-      </div>
+      <!-- TWO MAIN AREAS: LEFT EDITORIAL INTRO (26%) + RIGHT 8-MILESTONE INFOGRAPHIC (74%) -->
+      <div class="lj-infographic-layout">
+        
+        <!-- LEFT AREA: EDITORIAL INTRODUCTION (~26%) -->
+        <aside class="lj-intro-sidebar">
+          <div class="lj-intro-sticky">
+            <span class="lj-eyebrow-badge">MY PATH</span>
+            <h2 class="lj-main-heading">
+              Learning<br>
+              <span class="heading-gradient-pink">Journey</span>
+            </h2>
+            <div class="lj-heading-accent-line" aria-hidden="true"></div>
+            <p class="lj-intro-narrative">
+              A visual story of the skills I've mastered, the technologies I'm exploring, and the journey toward becoming a Full Stack Developer and AI Creator.
+            </p>
+          </div>
+        </aside>
 
-      <!-- 3D INFOGRAPHIC RIBBON JOURNEY STAGE -->
-      <div class="lj-ribbon-stage reveal" id="lj-ribbon-stage">
+        <!-- RIGHT AREA: EIGHT CONNECTED MILESTONES (~74%) -->
+        <main class="lj-timeline-stage" id="lj-timeline-stage">
+          
+          <!-- Precise SVG Serpentine Ribbon (5-7px Continuous Gradient Path) -->
+          <div class="lj-serpentine-svg-wrap" aria-hidden="true">
+            <svg class="lj-serpentine-svg" viewBox="0 0 800 1100" fill="none" preserveAspectRatio="none">
+              <defs>
+                <!-- Multi-stop smooth continuous gradient -->
+                <linearGradient id="ljSerpentineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FF6B81" />
+                  <stop offset="18%" stop-color="#FB923C" />
+                  <stop offset="36%" stop-color="#10B981" />
+                  <stop offset="52%" stop-color="#0284C7" />
+                  <stop offset="68%" stop-color="#8B5CF6" />
+                  <stop offset="84%" stop-color="#F43F5E" />
+                  <stop offset="100%" stop-color="#FB7185" />
+                </linearGradient>
+                <!-- Subtle drop shadow beneath the line for realistic depth -->
+                <filter id="ljLineShadow" x="-20%" y="-10%" width="140%" height="130%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0F172A" flood-opacity="0.10" />
+                </filter>
+              </defs>
 
-        <!-- Precision 3D Continuous Alternating Ribbon Track (SVG) -->
-        <div class="lj-ribbon-svg-wrap" aria-hidden="true">
-          <svg class="lj-ribbon-svg" viewBox="0 0 1000 2200" fill="none" preserveAspectRatio="none">
-            <defs>
-              <!-- Ambient dimensional shadow for the ribbon -->
-              <filter id="ribbon-depth-shadow" x="-30%" y="-15%" width="160%" height="140%">
-                <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.12" />
-              </filter>
+              <!-- Ambient shadow path -->
+              <path class="lj-svg-shadow-path" filter="url(#ljLineShadow)"
+                d="M 58 70 
+                   L 742 70 
+                   C 786 70, 786 210, 742 210 
+                   L 58 210 
+                   C 14 210, 14 350, 58 350 
+                   L 742 350 
+                   C 786 350, 786 490, 742 490 
+                   L 58 490 
+                   C 14 490, 14 630, 58 630 
+                   L 742 630 
+                   C 786 630, 786 770, 742 770 
+                   L 58 770 
+                   C 14 770, 14 910, 58 910 
+                   L 742 910 
+                   C 786 910, 786 1040, 742 1040 
+                   L 400 1040" />
 
-              <!-- Continuous vibrant 3D gradient matching the reference -->
-              <linearGradient id="ribbonMainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#FF5A36" />
-                <stop offset="14%" stop-color="#F97316" />
-                <stop offset="28%" stop-color="#F59E0B" />
-                <stop offset="44%" stop-color="#10B981" />
-                <stop offset="60%" stop-color="#06B6D4" />
-                <stop offset="74%" stop-color="#3B82F6" />
-                <stop offset="88%" stop-color="#8B5CF6" />
-                <stop offset="100%" stop-color="#EC4899" />
-              </linearGradient>
+              <!-- Main crisp 6px gradient path -->
+              <path class="lj-svg-ribbon-path" id="lj-main-serpentine-path"
+                d="M 58 70 
+                   L 742 70 
+                   C 786 70, 786 210, 742 210 
+                   L 58 210 
+                   C 14 210, 14 350, 58 350 
+                   L 742 350 
+                   C 786 350, 786 490, 742 490 
+                   L 58 490 
+                   C 14 490, 14 630, 58 630 
+                   L 742 630 
+                   C 786 630, 786 770, 742 770 
+                   L 58 770 
+                   C 14 770, 14 910, 58 910 
+                   L 742 910 
+                   C 786 910, 786 1040, 742 1040 
+                   L 400 1040" />
 
-              <!-- Ribbon 3D Bevel/Extrusion Darker Lip -->
-              <linearGradient id="ribbonBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#D9401E" />
-                <stop offset="14%" stop-color="#C2410C" />
-                <stop offset="28%" stop-color="#B45309" />
-                <stop offset="44%" stop-color="#047857" />
-                <stop offset="60%" stop-color="#0891B2" />
-                <stop offset="74%" stop-color="#1D4ED8" />
-                <stop offset="88%" stop-color="#6D28D9" />
-                <stop offset="100%" stop-color="#BE185D" />
-              </linearGradient>
-            </defs>
-
-            <!-- 1. Ambient Drop Shadow underneath ribbon folds -->
-            <path class="ribbon-path-shadow" filter="url(#ribbon-depth-shadow)"
-                  d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
-
-            <!-- 2. Lower 3D Thickness Extrusion Lip (Physical Depth) -->
-            <path class="ribbon-path-bevel"
-                  d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
-
-            <!-- 3. Top Illuminated 3D Ribbon Surface -->
-            <path id="ribbon-main-spine" class="ribbon-path-surface"
-                  d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
-
-            <!-- 4. Delicate Crisp Center Guide Track -->
-            <path class="ribbon-center-crease"
-                  d="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
-
-            <!-- 5. Continuous Luminous Traveling Energy Beacon -->
-            <circle class="ribbon-pulse-energy" r="7.5" fill="#FFFFFF">
-              <animateMotion repeatCount="indefinite" dur="18s"
-                path="M 180 80 C 180 210, 820 210, 820 340 C 820 470, 180 470, 180 600 C 180 730, 820 730, 820 860 C 820 990, 180 990, 180 1120 C 180 1250, 820 1250, 820 1380 C 820 1510, 180 1510, 180 1640 C 180 1770, 820 1770, 820 1900 C 820 2030, 500 2070, 500 2140" />
-            </circle>
-          </svg>
-        </div>
-
-        <!-- 8 CHRONOLOGICAL MILESTONE STATIONS (ALTERNATING 3D RIBBON INFOGRAPHIC) -->
-        <div class="lj-milestones-stream">
-
-          <!-- MILESTONE 01: Left Number Block -> Right Card (Coral Theme) -->
-          <div class="lj-milestone-station station-left theme-coral" data-step="1">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 01: Web Fundamentals">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">01</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-coral">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">01 &middot; Foundations</span>
-                  <span class="card-timeline-date">2026 Inception</span>
-                </div>
-                <h3 class="card-title">Web Fundamentals</h3>
-                <p class="card-subtitle">HTML5 &bull; CSS3 &bull; JavaScript ES6+ &bull; Semantic Structure</p>
-                <p class="card-narrative">
-                  Mastered core web architecture, semantic markup in HTML5, modern flexbox and grid layouts, DOM programming with ES6+, and responsive mobile-first typography.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">HTML5</span>
-                  <span class="skill-pill">CSS3</span>
-                  <span class="skill-pill">JavaScript ES6+</span>
-                  <span class="skill-pill">Responsive Design</span>
-                </div>
-              </div>
-            </div>
+              <!-- Tiny tasteful pastel triangular accents at selected curve apexes -->
+              <polygon points="768,135 776,145 760,145" fill="rgba(251, 146, 60, 0.45)" class="lj-svg-tri-accent" />
+              <polygon points="32,275 40,285 24,285" fill="rgba(16, 185, 129, 0.45)" class="lj-svg-tri-accent" />
+              <polygon points="768,415 776,425 760,425" fill="rgba(2, 132, 199, 0.45)" class="lj-svg-tri-accent" />
+              <polygon points="32,555 40,565 24,565" fill="rgba(139, 92, 246, 0.45)" class="lj-svg-tri-accent" />
+              <polygon points="768,695 776,705 760,705" fill="rgba(244, 63, 94, 0.45)" class="lj-svg-tri-accent" />
+              <polygon points="32,835 40,845 24,845" fill="rgba(167, 139, 250, 0.45)" class="lj-svg-tri-accent" />
+            </svg>
           </div>
 
-          <!-- MILESTONE 02: Right Number Block -> Left Card (Amber/Orange Theme) -->
-          <div class="lj-milestone-station station-right theme-orange" data-step="2">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 02: Frontend Development">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">02</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="3" y1="9" x2="21" y2="9"></line>
-                    <line x1="9" y1="21" x2="9" y2="9"></line>
-                  </svg>
+          <!-- The Eight Continuous Infographic Milestone Rows -->
+          <div class="lj-rows-container">
+
+          <!-- MILESTONE 01: Frontend Development -->
+          <div class="lj-infographic-row icon-left milestone-01" data-step="1" style="--row-accent: #FF6B81; --row-soft-bg: rgba(255, 107, 129, 0.08); --row-border: rgba(255, 107, 129, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="01: Frontend Development">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FF6B81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="7 9 10 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg>
                 </div>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-orange">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">02 &middot; Architecture</span>
-                  <span class="card-timeline-date">Modular UI</span>
-                </div>
-                <h3 class="card-title">Frontend Development</h3>
-                <p class="card-subtitle">React &bull; Tailwind CSS &bull; Component Design &bull; Clean State</p>
-                <p class="card-narrative">
-                  Component-driven architecture in React, unidirectional state patterns, rapid utility-first styling with Tailwind CSS, and engineering cohesive, reusable design systems.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">React.js</span>
-                  <span class="skill-pill">Tailwind CSS</span>
-                  <span class="skill-pill">Component Architecture</span>
-                  <span class="skill-pill">Declarative State</span>
-                </div>
+
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">01</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">Frontend Development</h3>
+                <span class="lj-status-badge status-completed">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>COMPLETED</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Building beautiful, responsive, and interactive web experiences with modern frontend technologies.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">HTML5</span>
+                <span class="lj-skill-pill">CSS3</span>
+                <span class="lj-skill-pill">JavaScript</span>
+                <span class="lj-skill-pill">React</span>
+                <span class="lj-skill-pill">Tailwind CSS</span>
+                <span class="lj-skill-pill">Bootstrap</span>
+                <span class="lj-skill-pill">Vite</span>
               </div>
             </div>
+
           </div>
+  
+          <!-- MILESTONE 02: Prompt Engineering -->
+          <div class="lj-infographic-row icon-right milestone-02" data-step="2" style="--row-accent: #FB923C; --row-soft-bg: rgba(251, 146, 60, 0.08); --row-border: rgba(251, 146, 60, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="02: Prompt Engineering">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FB923C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a6 6 0 0 0-6 6c0 2.2 1.2 4.1 3 5.2V16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.8c1.8-1.1 3-3 3-5.2a6 6 0 0 0-6-6z"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
+                </div>
+              </div>
+            </div>
 
-          <!-- MILESTONE 03: Left Number Block -> Right Card (Gold Theme) -->
-          <div class="lj-milestone-station station-left theme-gold" data-step="3">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 03: Animation & Interactive UI">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">03</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
-                  </svg>
-                </div>
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">02</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">Prompt Engineering</h3>
+                <span class="lj-status-badge status-completed">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>COMPLETED</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Designing effective AI prompts through structured thinking, experimentation, and creative problem solving.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">Prompt Design</span>
+                <span class="lj-skill-pill">ChatGPT</span>
+                <span class="lj-skill-pill">Gemini</span>
+                <span class="lj-skill-pill">Claude</span>
+                <span class="lj-skill-pill">AI Prompting</span>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-gold">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">03 &middot; Kinetic Craft</span>
-                  <span class="card-timeline-date">60 FPS Fluidity</span>
-                </div>
-                <h3 class="card-title">Animation &amp; Interactive UI</h3>
-                <p class="card-subtitle">GSAP &bull; ScrollTrigger &bull; Micro-Interactions &bull; 3D Physics</p>
-                <p class="card-narrative">
-                  Engineered tactile web experiences utilizing GSAP ScrollTrigger, CSS 3D transforms, perspective physics, and micro-interactions that make applications feel tangible and responsive.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">GSAP Motion</span>
-                  <span class="skill-pill">ScrollTrigger</span>
-                  <span class="skill-pill">3D Transforms</span>
-                  <span class="skill-pill">Micro-Interactions</span>
-                </div>
-              </div>
-            </div>
+
           </div>
+  
+          <!-- MILESTONE 03: AI Fundamentals -->
+          <div class="lj-infographic-row icon-left milestone-03" data-step="3" style="--row-accent: #10B981; --row-soft-bg: rgba(16, 185, 129, 0.08); --row-border: rgba(16, 185, 129, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="03: AI Fundamentals">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-5.04z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-5.04z"/></svg>
+                </div>
+              </div>
+            </div>
 
-          <!-- MILESTONE 04: Right Number Block -> Left Card (Emerald Theme) -->
-          <div class="lj-milestone-station station-right theme-emerald" data-step="4">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 04: Prompt Engineering">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">04</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    <line x1="9" y1="10" x2="15" y2="10"></line>
-                  </svg>
-                </div>
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">03</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">AI Fundamentals</h3>
+                <span class="lj-status-badge status-completed">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>COMPLETED</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Understanding generative AI, practical AI tools, and how artificial intelligence can enhance creative work.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">Generative AI</span>
+                <span class="lj-skill-pill">Google AI</span>
+                <span class="lj-skill-pill">AI Concepts</span>
+                <span class="lj-skill-pill">AI Tools</span>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-emerald">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">04 &middot; AI Orchestration</span>
-                  <span class="card-timeline-date">Prompt Architecture</span>
-                </div>
-                <h3 class="card-title">Prompt Engineering</h3>
-                <p class="card-subtitle">System Directives &bull; Chain-of-Thought &bull; Few-Shot Patterns</p>
-                <p class="card-narrative">
-                  Structured prompt design, cognitive decomposition, reasoning chains, few-shot prompting, and AI-assisted vibe coding workflows for rapid prototyping and production code generation.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">Prompt Design</span>
-                  <span class="skill-pill">Chain-of-Thought</span>
-                  <span class="skill-pill">Reasoning Chains</span>
-                  <span class="skill-pill">Vibe Coding</span>
-                </div>
-              </div>
-            </div>
+
           </div>
-
-          <!-- MILESTONE 05: Left Number Block -> Right Card (Teal/Cyan Theme) -->
-          <div class="lj-milestone-station station-left theme-cyan" data-step="5">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 05: Exploring AI">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">05</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                    <path d="M2 12h20"></path>
-                  </svg>
+  
+          <!-- MILESTONE 04: Backend Development -->
+          <div class="lj-infographic-row icon-right milestone-04" data-step="4" style="--row-accent: #0284C7; --row-soft-bg: rgba(2, 132, 199, 0.08); --row-border: rgba(2, 132, 199, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="04: Backend Development">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
                 </div>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-cyan">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">05 &middot; Frontier AI</span>
-                  <span class="card-timeline-date">Multimodal SDKs</span>
-                </div>
-                <h3 class="card-title">Exploring AI</h3>
-                <p class="card-subtitle">Generative AI &bull; Gemini API &bull; Streaming &bull; Function Calling</p>
-                <p class="card-narrative">
-                  Integrating Gemini API and LLM models, streaming multimodal interactions, structured function calling, and building ambient intelligent web experiences.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">Generative AI</span>
-                  <span class="skill-pill">Gemini 2.5/3.8 API</span>
-                  <span class="skill-pill">Function Calling</span>
-                  <span class="skill-pill">Multimodal Streaming</span>
+
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">04</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">Backend Development</h3>
+                <span class="lj-status-badge status-inprogress">
+      <span class="status-pulse-dot"></span>
+      <span>IN PROGRESS</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Expanding into server development, databases, authentication, and building complete applications.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">Node.js</span>
+                <span class="lj-skill-pill">Express.js</span>
+                <span class="lj-skill-pill">MongoDB</span>
+                <span class="lj-skill-pill">REST APIs</span>
+                <span class="lj-skill-pill">Authentication</span>
+              </div>
+            </div>
+
+          </div>
+  
+          <!-- MILESTONE 05: DevOps and Deployment -->
+          <div class="lj-infographic-row icon-left milestone-05" data-step="5" style="--row-accent: #8B5CF6; --row-soft-bg: rgba(139, 92, 246, 0.08); --row-border: rgba(139, 92, 246, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="05: DevOps and Deployment">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><polyline points="12 13 12 9 10 11"/><polyline points="12 9 14 11"/></svg>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- MILESTONE 06: Right Number Block -> Left Card (Blue Theme - CURRENT ACTIVE FOCUS) -->
-          <div class="lj-milestone-station station-right theme-blue is-active-focus" data-step="6">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block step-active-pulse" tabindex="0" role="button" aria-label="Step 06: Backend Core (Current Active Focus)">
-                <div class="step-focus-pulse" aria-hidden="true"></div>
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">06</span>
-                    <span class="step-tag-mini active-tag">ACTIVE</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                  </svg>
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">05</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">DevOps and Deployment</h3>
+                <span class="lj-status-badge status-upcoming">
+      <span class="status-outline-dot"></span>
+      <span>UPCOMING</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Exploring deployment workflows, cloud infrastructure, and the tools behind reliable applications.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">Git</span>
+                <span class="lj-skill-pill">GitHub</span>
+                <span class="lj-skill-pill">Docker</span>
+                <span class="lj-skill-pill">CI/CD</span>
+                <span class="lj-skill-pill">Vercel</span>
+              </div>
+            </div>
+
+          </div>
+  
+          <!-- MILESTONE 06: AI Automation and Agents -->
+          <div class="lj-infographic-row icon-right milestone-06" data-step="6" style="--row-accent: #F43F5E; --row-soft-bg: rgba(244, 63, 94, 0.08); --row-border: rgba(244, 63, 94, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="06: AI Automation and Agents">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>
                 </div>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-blue card-focus-highlight">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title card-step-active">
-                    <span class="live-dot" aria-hidden="true"></span>
-                    06 &middot; Current Focus
-                  </span>
-                  <span class="card-timeline-date tag-active-now">2026 Active Build</span>
-                </div>
-                <h3 class="card-title">Backend Core</h3>
-                <p class="card-subtitle">Node.js &bull; Express &bull; RESTful APIs &bull; Server Pipelines</p>
-                <p class="card-narrative">
-                  Currently expanding horizontally into server-side development with Node.js and Express, API design, middleware pipelines, authentication patterns, and building robust server infrastructure.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">Node.js</span>
-                  <span class="skill-pill">Express.js</span>
-                  <span class="skill-pill">RESTful Architecture</span>
-                  <span class="skill-pill">Middleware &amp; Auth</span>
+
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">06</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">AI Automation and Agents</h3>
+                <span class="lj-status-badge status-upcoming">
+      <span class="status-outline-dot"></span>
+      <span>UPCOMING</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Connecting AI with automation to create intelligent systems and practical digital solutions.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">n8n</span>
+                <span class="lj-skill-pill">AI Agents</span>
+                <span class="lj-skill-pill">Automation</span>
+                <span class="lj-skill-pill">APIs</span>
+              </div>
+            </div>
+
+          </div>
+  
+          <!-- MILESTONE 07: Mobile App Development -->
+          <div class="lj-infographic-row icon-left milestone-07" data-step="7" style="--row-accent: #A78BFA; --row-soft-bg: rgba(167, 139, 250, 0.08); --row-border: rgba(167, 139, 250, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="07: Mobile App Development">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- MILESTONE 07: Left Number Block -> Right Card (Purple Theme) -->
-          <div class="lj-milestone-station station-left theme-purple" data-step="7">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 07: Data & Cloud">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">07</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                  </svg>
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">07</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">Mobile App Development</h3>
+                <span class="lj-status-badge status-upcoming">
+      <span class="status-outline-dot"></span>
+      <span>UPCOMING</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Exploring cross platform mobile experiences using modern React based technologies.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">React Native</span>
+                <span class="lj-skill-pill">Expo</span>
+                <span class="lj-skill-pill">Mobile UI</span>
+              </div>
+            </div>
+
+          </div>
+  
+          <!-- MILESTONE 08: Advanced Development -->
+          <div class="lj-infographic-row icon-right milestone-08" data-step="8" style="--row-accent: #FB7185; --row-soft-bg: rgba(251, 113, 133, 0.08); --row-border: rgba(251, 113, 133, 0.35);">
+            
+            <!-- Circular 3D Embossed Icon Attached to Timeline -->
+            <div class="lj-icon-anchor">
+              <div class="lj-circular-3d-icon" role="button" tabindex="0" aria-label="08: Advanced Development">
+                <div class="icon-ring-highlight" aria-hidden="true"></div>
+                <div class="icon-disc-surface">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4 15h16"/><line x1="12" y1="3" x2="15" y2="1"/></svg>
                 </div>
               </div>
             </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-purple">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">07 &middot; Infrastructure</span>
-                  <span class="card-timeline-date">Persistence &amp; Deployment</span>
-                </div>
-                <h3 class="card-title">Data &amp; Cloud</h3>
-                <p class="card-subtitle">PostgreSQL &bull; Supabase &bull; Relational Schemas &bull; Cloud Ops</p>
-                <p class="card-narrative">
-                  Relational database modeling in PostgreSQL, real-time events and auth with Supabase, cloud infrastructure deployment, and durable persistence.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">PostgreSQL</span>
-                  <span class="skill-pill">Supabase</span>
-                  <span class="skill-pill">Database Schemas</span>
-                  <span class="skill-pill">Cloud Deployment</span>
-                </div>
+
+            <!-- Milestone Content Block (Open, Airy, Crisp Type Hierarchy) -->
+            <div class="lj-row-content">
+              <div class="lj-row-header">
+                <span class="lj-row-num">08</span>
+                <span class="lj-row-divider">|</span>
+                <h3 class="lj-row-title">Advanced Development</h3>
+                <span class="lj-status-badge status-future">
+      <span class="status-diamond-dot">◆</span>
+      <span>FUTURE GOAL</span>
+    </span>
+              </div>
+              <p class="lj-row-desc">Growing toward advanced application architecture, scalable systems, and more ambitious projects.</p>
+              <div class="lj-row-skills">
+                <span class="lj-skill-pill">Next.js</span>
+                <span class="lj-skill-pill">TypeScript</span>
+                <span class="lj-skill-pill">System Design</span>
+                <span class="lj-skill-pill">Full Stack Projects</span>
               </div>
             </div>
+
           </div>
+  
+          </div><!-- /.lj-rows-container -->
 
-          <!-- MILESTONE 08: Right Number Block -> Left Card (Pink/Magenta Theme) -->
-          <div class="lj-milestone-station station-right theme-pink" data-step="8">
-            <div class="lj-platform-column">
-              <div class="lj-3d-step-block" tabindex="0" role="button" aria-label="Step 08: Future Goals">
-                <div class="step-3d-shadow" aria-hidden="true"></div>
-                <div class="step-3d-cube">
-                  <div class="step-cube-face cube-front">
-                    <span class="step-num-display">08</span>
-                    <span class="step-tag-mini">STEP</span>
-                  </div>
-                  <div class="step-cube-face cube-top" aria-hidden="true"></div>
-                  <div class="step-cube-face cube-side" aria-hidden="true"></div>
-                </div>
-                <div class="step-icon-dock" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="lj-card-column">
-              <div class="lj-milestone-card card-theme-pink">
-                <div class="card-ribbon-accent" aria-hidden="true"></div>
-                <div class="card-meta-row">
-                  <span class="card-step-title">08 &middot; Horizon Vision</span>
-                  <span class="card-timeline-date">Next-Gen Frontier</span>
-                </div>
-                <h3 class="card-title">Future Goals</h3>
-                <p class="card-subtitle">Full-Stack AI Products &bull; Autonomous Agents &bull; Kinetic Systems</p>
-                <p class="card-narrative">
-                  Architecting end-to-end full-stack AI products, autonomous agents, and high-impact web software with aesthetic discipline and production-grade engineering.
-                </p>
-                <div class="card-skills-row">
-                  <span class="skill-pill">Full-Stack AI</span>
-                  <span class="skill-pill">Autonomous Agents</span>
-                  <span class="skill-pill">Kinetic UI Systems</span>
-                  <span class="skill-pill">Impact Products</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        </main><!-- /.lj-timeline-stage -->
 
-        </div><!-- /.lj-milestones-stream -->
-
-      </div><!-- /.lj-ribbon-stage -->
-
-      <!-- BOTTOM: "WHAT DRIVES ME" VALUE PILLARS (LIGHT LUXURY 3D EDITORIAL) -->
-      <div class="lj-drives-me-strip reveal" id="lj-drives-me-strip">
-        <div class="drives-strip-header">
-          <span class="drives-spark" aria-hidden="true">✦</span>
-          <span class="drives-heading-text">What Drives Me</span>
-          <span class="drives-spark" aria-hidden="true">✦</span>
-        </div>
-
-        <div class="drives-values-grid">
-          <!-- Value 1: Curiosity -->
-          <div class="drives-value-card val-curiosity">
-            <div class="val-icon-3d icon-coral">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-              </svg>
-            </div>
-            <div class="val-info-block">
-              <h4 class="val-title">Curiosity</h4>
-              <p class="val-caption">I love exploring how things work from first principles.</p>
-            </div>
-          </div>
-
-          <!-- Value 2: Consistency -->
-          <div class="drives-value-card val-consistency">
-            <div class="val-icon-3d icon-orange">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-            </div>
-            <div class="val-info-block">
-              <h4 class="val-title">Consistency</h4>
-              <p class="val-caption">Showing up every day, writing code, and refining skills.</p>
-            </div>
-          </div>
-
-          <!-- Value 3: Creativity -->
-          <div class="drives-value-card val-creativity">
-            <div class="val-icon-3d icon-rose">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            </div>
-            <div class="val-info-block">
-              <h4 class="val-title">Creativity</h4>
-              <p class="val-caption">Crafting tactile, memorable, and human digital interfaces.</p>
-            </div>
-          </div>
-
-          <!-- Value 4: Impact -->
-          <div class="drives-value-card val-impact">
-            <div class="val-icon-3d icon-cyan">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="6" r="6"/>
-                <circle cx="12" cy="2" r="2"/>
-              </svg>
-            </div>
-            <div class="val-info-block">
-              <h4 class="val-title">Impact</h4>
-              <p class="val-caption">Building reliable solutions that deliver real-world utility.</p>
-            </div>
-          </div>
-
-        </div><!-- /.drives-values-grid -->
-      </div><!-- /.lj-drives-me-strip -->
+      </div><!-- /.lj-infographic-layout -->
 
     </div><!-- /.lj-container -->
   </section>
