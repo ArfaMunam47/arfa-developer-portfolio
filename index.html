@@ -35,7 +35,7 @@
   <link rel="preload" as="image" href="me-gradient.png">
 
   <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=scrapbook-v3">
 </head>
 <body>
 
@@ -321,6 +321,7 @@
         <li><a href="#skills" class="nav-link" id="link-skills">Skills</a></li>
         <li><a href="#exploring" class="nav-link" id="link-exploring">Learning</a></li>
         <li><a href="#certifications" class="nav-link" id="link-certifications">Certificates</a></li>
+        <li><a href="#hobbies" class="nav-link" id="link-hobbies">Hobbies</a></li>
         <li><a href="#contact" class="nav-link" id="link-contact">Contact</a></li>
       </ul>
 
@@ -347,6 +348,7 @@
     <a href="#skills">Skills</a>
     <a href="#exploring">Exploring</a>
     <a href="#certifications">Certificates</a>
+    <a href="#hobbies">Hobbies</a>
     <a href="#contact">Let's Connect</a>
   </div>
 
@@ -467,28 +469,33 @@
             <!-- Portrait Frame (Stands Cleanly On Its Own) -->
             <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam" tabindex="0">
               <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
+                <!-- Reality 1: Original Portrait (White Dress - Pristine Default State) -->
                 <img src="me.png" 
                      alt="Arfa Munam — Creative Developer" 
-                     class="hero-portrait-cutout-img" 
+                     class="hero-portrait-cutout-img reality-1-portrait-img" 
                      id="profile-placeholder-img"
                      loading="eager"
                      fetchpriority="high"
                      onerror="this.onerror=null; this.src='me.png.png';">
 
-                <!-- REALITY LENS EFFECT (Active Exclusively On Direct Portrait Hover) -->
+                <!-- LIVING SPOTLIGHT: ALTERNATE REALITY REVEAL LAYER -->
+                <div class="reality-2-reveal-stage" id="reality-2-reveal-stage" aria-hidden="true">
+                  <!-- Reality 2: Alternate Portrait (Orange, Coral, Pink & Purple Gradient Frock) -->
+                  <img src="new.png"
+                       alt=""
+                       class="hero-portrait-cutout-img reality-2-portrait-img"
+                       id="reality-2-portrait-img"
+                       loading="eager"
+                       fetchpriority="high"
+                       onerror="this.onerror=null; this.src='me.png';">
+                </div>
+
+                <!-- LIVING SPOTLIGHT: LUMINOUS CORAL & ORANGE REFRACTIVE RING -->
                 <div class="reality-lens-stage" id="reality-lens-stage" aria-hidden="true">
                   <div class="reality-lens-disc" id="reality-lens-disc">
-                    <!-- Zoomed/Refracted Mirror Replica of Portrait Image -->
-                    <div class="reality-lens-mirror-wrap">
-                      <img src="me-gradient.png"
-                           alt=""
-                           class="reality-lens-mirror-img"
-                           id="reality-lens-mirror-img"
-                           loading="eager"
-                           onerror="this.onerror=null; this.src='me.png';">
-                    </div>
                     <div class="reality-lens-ring-border"></div>
                     <div class="reality-lens-sheen"></div>
+                    <div class="reality-lens-aura"></div>
                   </div>
                 </div>
               </div>
@@ -496,7 +503,6 @@
 
           </div>
         </div>
-
       </div>
     </div>
 
@@ -3210,11 +3216,373 @@
 
         </main><!-- /.lj-timeline-stage -->
 
+        <!-- Dedicated Visual Bridge into Chapter 09: My Creative Scrapbook & Hobbies -->
+        <div class="lj-bridge-to-hobbies" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 3.5rem; padding: 2.25rem 1.5rem; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-radius: 20px; border: 1.5px dashed rgba(255, 90, 54, 0.35); box-shadow: 0 10px 30px rgba(255, 90, 54, 0.06); text-align: center;">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.9rem; background: rgba(255, 90, 54, 0.1); border-radius: 9999px; font-family: 'Caveat', cursive; font-size: 1.25rem; font-weight: 700; color: #FF5A36; margin-bottom: 0.75rem;">
+            <span>📌 Next Chapter</span>
+            <span style="font-size: 0.9rem; font-family: sans-serif; color: #64748B;">•</span>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Creative Life</span>
+          </div>
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 800; color: #0F172A; margin: 0 0 0.5rem 0;">
+            Beyond The Code: The Scrapbook &amp; Hobbies
+          </h3>
+          <p style="font-size: 0.95rem; color: #64748B; max-width: 520px; margin: 0 0 1.25rem 0; line-height: 1.6;">
+            Take a wander through my physical mood board — 35mm photos, cafe rituals, blender art, playlists, and aesthetic polaroids.
+          </p>
+          <a href="#hobbies" style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.85rem; background: linear-gradient(135deg, #FF5A36 0%, #FF8A50 100%); color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 700; border-radius: 9999px; text-decoration: none; box-shadow: 0 6px 20px rgba(255, 90, 54, 0.35); transition: all 0.25s ease;">
+            <span>Explore My Hobbies &amp; Creative Scrapbook</span>
+            <span style="font-size: 1.15rem; line-height: 1;">↓</span>
+          </a>
+        </div>
+
       </div><!-- /.lj-infographic-layout -->
 
     </div><!-- /.lj-container -->
   </section>
 
+
+<!-- =======================================================================
+       CREATIVE HOBBIES & PINTEREST SCRAPBOOK SECTION
+       Physical Mood Board • Polaroids • Washi Tape • Doodles • Personal Life
+       ======================================================================= -->
+  <section id="hobbies" class="creative-scrapbook-section" aria-label="My Hobbies — Creative Scrapbook" data-section="hobbies">
+    <span id="my-hobbies" class="section-hash-anchor" aria-hidden="true"></span>
+    <span id="scrapbook" class="section-hash-anchor" aria-hidden="true"></span>
+
+    <!-- Ambient Canvas Glow & Paper Grain Texture Backdrop -->
+    <div class="scrapbook-canvas-backdrop" aria-hidden="true">
+      <div class="scrapbook-ambient-blob blob-warm-peach"></div>
+      <div class="scrapbook-ambient-blob blob-soft-sage"></div>
+      <div class="scrapbook-ambient-blob blob-cozy-cream"></div>
+      <div class="scrapbook-grid-pattern"></div>
+    </div>
+
+    <div class="scrapbook-container">
+      
+      <!-- Top Pinboard Editorial Header -->
+      <header class="scrapbook-header">
+        <div class="scrapbook-stamp-tag" aria-label="Scrapbook Tag">
+          <span class="stamp-icon">✦</span>
+          <span class="stamp-text">COLLECTED MOMENTS • BEYOND THE SCREEN</span>
+          <span class="stamp-code">NO. 08 // ARCHIVE</span>
+        </div>
+
+        <h2 class="scrapbook-main-title">
+          My <span class="title-highlight">Hobbies</span>
+        </h2>
+
+        <p class="scrapbook-handwritten-subtitle">
+          photographs, coffee rituals & little curiosities that keep my mind wandering ✧
+        </p>
+
+        <p class="scrapbook-editorial-bio">
+          Great interfaces aren’t built in a vacuum. When I’m not refining CSS animations or prompt loops, 
+          you’ll find me exploring quiet coffee shops, collecting 35mm film tones, curating lo-fi playlists, 
+          and sketching little visual experiments. Here’s a peek into my physical mood board.
+        </p>
+
+        <!-- Washi Tape Category Filters -->
+        <div class="scrapbook-filters" role="tablist" aria-label="Filter scrapbook memories">
+          <button type="button" class="scrapbook-filter-tab active" data-filter="all" role="tab" aria-selected="true">
+            <span class="tab-tape-tape"></span>
+            <span class="tab-label">★ All Scraps</span>
+          </button>
+          <button type="button" class="scrapbook-filter-tab" data-filter="photo" role="tab" aria-selected="false">
+            <span class="tab-tape-tape"></span>
+            <span class="tab-label">📷 35mm & Visuals</span>
+          </button>
+          <button type="button" class="scrapbook-filter-tab" data-filter="cafe" role="tab" aria-selected="false">
+            <span class="tab-tape-tape"></span>
+            <span class="tab-label">☕ Cafe & Rituals</span>
+          </button>
+          <button type="button" class="scrapbook-filter-tab" data-filter="art" role="tab" aria-selected="false">
+            <span class="tab-tape-tape"></span>
+            <span class="tab-label">🎨 Art & 3D Space</span>
+          </button>
+          <button type="button" class="scrapbook-filter-tab" data-filter="sound" role="tab" aria-selected="false">
+            <span class="tab-tape-tape"></span>
+            <span class="tab-label">🎧 Sound & Obsessions</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrapbook Collage Mood Board Grid -->
+      <div class="scrapbook-board" id="scrapbook-board">
+
+        <!-- 1. DIE-CUT AUTHOR PORTRAIT STICKER (Untitled.jpg) -->
+        <div class="scrapbook-item item-portrait-sticker" data-category="all art" tabindex="0" role="article" aria-label="Author Portrait Die-Cut Sticker">
+          <div class="scrapbook-tape tape-corner-left tape-coral"></div>
+          <div class="sticker-card-inner">
+            <div class="sticker-image-wrapper">
+              <img src="Untitled.jpg" alt="Arfa Munam die-cut cutout sticker portrait" class="sticker-diecut-img" loading="lazy">
+              <div class="sticker-shine-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="sticker-note-wrap">
+              <svg class="doodle-arrow-curved" width="48" height="42" viewBox="0 0 48 42" fill="none" aria-hidden="true">
+                <path d="M6 34C18 36 34 28 38 10" stroke="#FF5A36" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 3"/>
+                <path d="M30 12L38 9L40 18" stroke="#FF5A36" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="handwritten-annotation">
+                hey that’s me! <span class="highlight-inline">vibe coding</span> & sipping iced matcha 🍵
+              </p>
+              <div class="sticker-mini-badge">
+                <span>VIBE CODER</span>
+                <span class="badge-dot">●</span>
+                <span>CURATOR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. POLAROID: 35MM GOLDEN HOUR & WANDERLUST (portal-landscape.jpg) -->
+        <div class="scrapbook-item item-polaroid polaroid-landscape" data-category="all photo" tabindex="0" role="article" aria-label="Polaroid: Golden Hour Photography">
+          <div class="scrapbook-tape tape-top-center tape-kraft"></div>
+          <div class="scrapbook-pin pin-top-right" aria-hidden="true"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo-container">
+              <img src="portal-landscape.jpg" alt="Dreamy golden hour scenic landscape photography" class="polaroid-photo-img" loading="lazy">
+              <div class="photo-grain-filter" aria-hidden="true"></div>
+            </div>
+            <div class="polaroid-caption-box">
+              <p class="polaroid-handwriting">chasing golden hour & quiet horizons ✦</p>
+              <div class="polaroid-meta-row">
+                <span class="polaroid-date">OCT // 35MM ARCHIVE</span>
+                <span class="polaroid-tag">#StreetFilm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. LINED NOTEPAD: CAFE & COFFEE FIELD NOTES -->
+        <div class="scrapbook-item item-memo memo-cafe" data-category="all cafe" tabindex="0" role="article" aria-label="Cafe & Coffee Field Notes">
+          <div class="scrapbook-clip clip-brass" aria-hidden="true"></div>
+          <div class="scrapbook-tape tape-top-left tape-mint"></div>
+          <div class="memo-paper-sheet">
+            <div class="coffee-ring-stain" aria-hidden="true"></div>
+            <div class="memo-header-line">
+              <span class="memo-badge">FIELD NOTES</span>
+              <span class="memo-date">VOL. 04</span>
+            </div>
+            <h3 class="memo-title">☕ Cafe Rituals Checklist</h3>
+            <ul class="memo-checklist">
+              <li>
+                <span class="check-box checked">✓</span>
+                <span class="check-text">Iced oat milk latte or strawberry matcha</span>
+              </li>
+              <li>
+                <span class="check-box checked">✓</span>
+                <span class="check-text">Corner table bathed in natural window light</span>
+              </li>
+              <li>
+                <span class="check-box checked">✓</span>
+                <span class="check-text">Over-ear headphones playing lo-fi beats</span>
+              </li>
+              <li>
+                <span class="check-box checked">✓</span>
+                <span class="check-text">16 browser tabs of CSS & animation tests</span>
+              </li>
+            </ul>
+            <p class="memo-footer-quote">
+              "Life is entirely too short for bad coffee or sterile, boring interfaces."
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. POLAROID: COZY 3D ISOMETRIC STUDIO (creative-workspace-3d.jpg) -->
+        <div class="scrapbook-item item-polaroid polaroid-workspace" data-category="all art photo" tabindex="0" role="article" aria-label="Polaroid: Cozy 3D Studio Setup">
+          <div class="scrapbook-tape tape-top-center tape-peach"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo-container">
+              <img src="creative-workspace-3d.jpg" alt="Cozy 3D designer and developer workspace" class="polaroid-photo-img" loading="lazy">
+              <div class="photo-warm-glow" aria-hidden="true"></div>
+            </div>
+            <div class="polaroid-caption-box">
+              <p class="polaroid-handwriting">2:45 AM flow state • mechanical keys & warm tea 🕯️</p>
+              <div class="polaroid-meta-row">
+                <span class="polaroid-date">STUDIO // NIGHT</span>
+                <span class="polaroid-tag">#FlowState</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. RETRO LO-FI CASSETTE & SOUND PLAYER CARD -->
+        <div class="scrapbook-item item-cassette" data-category="all sound" tabindex="0" role="article" aria-label="Interactive Retro Lo-Fi Cassette Player">
+          <div class="scrapbook-tape tape-corner-right tape-lavender"></div>
+          <div class="cassette-card-inner">
+            <div class="cassette-chassis">
+              <div class="cassette-screws" aria-hidden="true">
+                <span class="screw top-left"></span>
+                <span class="screw top-right"></span>
+                <span class="screw btm-left"></span>
+                <span class="screw btm-right"></span>
+              </div>
+              <div class="cassette-label-sticker">
+                <div class="label-header">
+                  <span class="label-side">SIDE A</span>
+                  <span class="label-format">STEREO C-90</span>
+                </div>
+                <div class="cassette-track-title">
+                  Late Night Coding Loops
+                </div>
+                <div class="cassette-artist-name">
+                  Chillhop Beats & Midnight Synths
+                </div>
+              </div>
+              <div class="cassette-window-cutout">
+                <div class="tape-spool spool-left">
+                  <div class="spool-cog"></div>
+                </div>
+                <div class="tape-ribbon-bridge">
+                  <div class="magnetic-tape-fill"></div>
+                </div>
+                <div class="tape-spool spool-right">
+                  <div class="spool-cog"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Equalizer Sound Wave & Play Controller -->
+            <div class="cassette-controls-row">
+              <button type="button" class="cassette-play-btn" id="cassette-play-btn" aria-label="Toggle cassette audio visualizer">
+                <span class="play-icon">▶</span>
+                <span class="pause-icon" style="display: none;">❚❚</span>
+                <span class="btn-text">Spin Tape</span>
+              </button>
+              <div class="sound-wave-bars" id="sound-wave-bars" aria-hidden="true">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </div>
+            </div>
+            <p class="cassette-handwritten-note">
+              "headphones on, noise cancelled, world muted 🎧"
+            </p>
+          </div>
+        </div>
+
+        <!-- 6. POLAROID: DIGITAL ART & ANIME CHARACTER DESIGN (anime-avatar.jpg) -->
+        <div class="scrapbook-item item-polaroid polaroid-anime" data-category="all art" tabindex="0" role="article" aria-label="Polaroid: Digital Art and Anime Character Sketches">
+          <div class="scrapbook-tape tape-top-left tape-yellow"></div>
+          <div class="scrapbook-pin pin-top-center" aria-hidden="true"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo-container">
+              <img src="anime-avatar.jpg" alt="Artistic anime character illustration" class="polaroid-photo-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption-box">
+              <p class="polaroid-handwriting">character sketches & color theory doodles ♡</p>
+              <div class="polaroid-meta-row">
+                <span class="polaroid-date">SKETCHBOOK // V2</span>
+                <span class="polaroid-tag">#DigitalArt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. POLAROID & COLOR SWATCHES: LIGHT PRISM & REFRACTION (Prism.jpeg) -->
+        <div class="scrapbook-item item-polaroid polaroid-prism" data-category="all photo art" tabindex="0" role="article" aria-label="Polaroid: Prismatic Light Refraction and Color Palettes">
+          <div class="scrapbook-tape tape-top-center tape-coral"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo-container">
+              <img src="Prism.jpeg" alt="Crystal glass prism dispersing rainbow light refraction" class="polaroid-photo-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption-box">
+              <p class="polaroid-handwriting">prismatic dispersion • forever studying light & hue</p>
+              <!-- Cute Mini Color Swatches -->
+              <div class="polaroid-swatches-row" aria-label="Extracted color palette">
+                <div class="swatch-chip" style="background: #FF5A36;" title="#FF5A36 Vibrant Coral">
+                  <span class="swatch-code">#FF5A</span>
+                </div>
+                <div class="swatch-chip" style="background: #FFCB45;" title="#FFCB45 Warm Yellow">
+                  <span class="swatch-code">#FFCB</span>
+                </div>
+                <div class="swatch-chip" style="background: #31B7B0;" title="#31B7B0 Turquoise">
+                  <span class="swatch-code">#31B7</span>
+                </div>
+                <div class="swatch-chip" style="background: #8C7CF6;" title="#8C7CF6 Soft Lavender">
+                  <span class="swatch-code">#8C7C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. POST-IT STICKY NOTE: CURRENT OBSESSIONS & READS -->
+        <div class="scrapbook-item item-sticky sticky-obsessions" data-category="all sound cafe" tabindex="0" role="article" aria-label="Post-it: Current Obsessions and Reads">
+          <div class="scrapbook-pin pin-center-top" aria-hidden="true"></div>
+          <div class="sticky-paper-body">
+            <div class="sticky-curl-shadow" aria-hidden="true"></div>
+            <div class="sticky-header">
+              <span class="sticky-icon">📌</span>
+              <span class="sticky-title">Current Obsessions:</span>
+            </div>
+            <ul class="sticky-list">
+              <li>✦ Lubed creamy mechanical keyboard switches (Boba U4T)</li>
+              <li>✦ Speculative sci-fi novels & human-AI design essays</li>
+              <li>✦ Studio Ghibli artbooks & watercolor clouds</li>
+              <li>✦ Hunting for rare typography specimens on Pinterest</li>
+              <li>✦ Tactile micro-interactions that spark unexpected joy</li>
+            </ul>
+            <div class="sticky-footer-stamp">
+              <span>★ CURATED 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. VINTAGE EPHEMERA, AIR MAIL STAMPS & TICKET STUBS CLUSTER -->
+        <div class="scrapbook-item item-ephemera" data-category="all art photo" tabindex="0" role="article" aria-label="Vintage Memorabilia and Air Mail Stamp Cluster">
+          <div class="scrapbook-tape tape-top-right tape-kraft"></div>
+          <div class="ephemera-cluster-inner">
+            
+            <!-- Postage Stamp -->
+            <div class="vintage-airmail-stamp">
+              <div class="stamp-perforations"></div>
+              <div class="stamp-inner-art">
+                <div class="stamp-top-text">PAR AVION • AIR MAIL</div>
+                <div class="stamp-center-symbol">★ 1999 ★</div>
+                <div class="stamp-bottom-text">ARFA MUNAM // DEV</div>
+              </div>
+              <div class="postmark-circle" aria-hidden="true">
+                <span class="postmark-text">SPECIAL DELIVERY</span>
+              </div>
+            </div>
+
+            <!-- Museum / Cinema Ticket Stub -->
+            <div class="vintage-ticket-stub">
+              <div class="ticket-notch notch-left"></div>
+              <div class="ticket-notch notch-right"></div>
+              <div class="ticket-header">ADMIT ONE</div>
+              <div class="ticket-main-title">EXHIBITION OF CURIOSITY</div>
+              <div class="ticket-barcode">|||| | ||||| || |||||| | ||</div>
+              <div class="ticket-date">NO EXPIRATION // ALWAYS LEARNING</div>
+            </div>
+
+            <!-- Playful Die-Cut Badge -->
+            <div class="organic-sticker-badge">
+              <span class="flower-icon">✿</span>
+              <span class="badge-text">100% ORGANIC CREATIVITY</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /.scrapbook-board -->
+
+      <!-- Bottom Handwritten Sign-off / Postcard -->
+      <footer class="scrapbook-footer-note">
+        <div class="scrapbook-washi-tape tape-center tape-coral"></div>
+        <p class="footer-note-text">
+          <span class="footer-note-handwritten">"Stay curious, drink good coffee, and build interfaces that feel alive."</span>
+          <span class="footer-note-author">— Arfa Munam (Creative Developer & Explorer)</span>
+        </p>
+      </footer>
+
+    </div><!-- /.scrapbook-container -->
+  </section>
 
   <!-- =======================================================================
        DEDICATED GITHUB SHOWCASE SECTION
@@ -3993,6 +4361,12 @@
                   </a>
                 </li>
                 <li>
+                  <a href="#hobbies" class="cgf-nav-anchor">
+                    <span class="cgf-arrow-chevron" aria-hidden="true">›</span>
+                    <span>My Hobbies</span>
+                  </a>
+                </li>
+                <li>
                   <a href="#contact" class="cgf-nav-anchor">
                     <span class="cgf-arrow-chevron" aria-hidden="true">›</span>
                     <span>Contact Me</span>
@@ -4324,6 +4698,6 @@
   <!-- Scripts: Base64 Resume Data -> Centralized Data Source -> Main Interactions -->
   <script src="resume-data.js"></script>
   <script src="portfolio-data.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=scrapbook-v3"></script>
 </body>
 </html>

@@ -2027,10 +2027,67 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
-   CINEMATIC ORANGE GLASS LENS (Active on direct portrait hover)
-   Optical Lens Aesthetic • Smooth Interpolated Tracking • Crystal Clarity
-   Colors: Warm Amber (#FFB347), Rich Orange (#F28C28), Soft Highlight (#FFD6A0)
+   LIVING SPOTLIGHT: ALTERNATE REALITY (Active Exclusively on Direct Portrait Hover)
+   Precision Photographic Reveal • Silky Interpolated Tracking • Crystal Clarity
+   Colors: Radiant Coral (#FA5538), Solar Orange (#FF8A00), Magenta/Plum (#D946EF)
    ========================================================================== */
+
+/* Reality 1 Base Portrait: Clean, Natural, Modest Default State */
+.reality-1-portrait-img {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* Reality 2 Reveal Layer: Pinned 1:1 on Top of Reality 1, Clipped by Living Spotlight */
+.reality-2-reveal-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 6;
+  border-radius: inherit;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+  will-change: clip-path, opacity;
+  clip-path: circle(78px at 50% 50%);
+  -webkit-clip-path: circle(78px at 50% 50%);
+}
+
+.reality-2-reveal-stage.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reality-2-portrait-img {
+  width: 100%;
+  height: auto;
+  max-height: clamp(390px, 64vh, 550px);
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: none;
+}
+
+@media (max-width: 991px) {
+  .reality-2-portrait-img {
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 767px) {
+  .reality-2-portrait-img {
+    max-height: 380px;
+  }
+}
+
+/* Living Spotlight Stage & Luminous Portal Disc */
 .reality-lens-stage {
   position: absolute;
   inset: 0;
@@ -2040,7 +2097,7 @@ nav.floating-nav.scrolled {
   visibility: hidden;
   z-index: 10;
   border-radius: inherit;
-  transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.38s ease;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
   will-change: opacity;
 }
 
@@ -2049,37 +2106,38 @@ nav.floating-nav.scrolled {
   visibility: visible;
 }
 
-/* Floating Soft Circular Lens Disc (130px diameter, reduced by ~13.3% from 150px) */
+/* Floating Precision Circular Spotlight Disc (156px Diameter) */
 .reality-lens-disc {
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 156px;
+  height: 156px;
   border-radius: 50%;
   top: 0;
   left: 0;
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0);
   overflow: hidden;
-  border: 1.8px solid rgba(242, 140, 40, 0.85);
+  border: 2px solid rgba(255, 138, 0, 0.92);
   box-shadow: 
-    0 16px 36px -4px rgba(16, 28, 53, 0.28),
-    0 0 20px 2px rgba(255, 179, 71, 0.40),
-    0 0 38px 4px rgba(242, 140, 40, 0.20),
-    inset 0 1.5px 3.5px rgba(255, 214, 160, 0.75),
-    inset 0 0 16px rgba(242, 140, 40, 0.20);
+    0 16px 36px -4px rgba(16, 28, 53, 0.32),
+    0 0 20px 3px rgba(250, 85, 56, 0.55),
+    0 0 38px 6px rgba(255, 138, 0, 0.35),
+    0 0 54px 8px rgba(217, 70, 239, 0.22),
+    inset 0 1.5px 3.5px rgba(255, 235, 205, 0.85),
+    inset 0 0 16px rgba(255, 179, 71, 0.45);
   background: transparent;
   will-change: transform;
 }
 
-/* Luminous Orange Refractive Edge Highlight */
+/* Luminous Refractive Edge Highlight */
 .reality-lens-ring-border {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(255, 214, 160, 0.6);
+  border: 1px solid rgba(255, 230, 190, 0.75);
   box-shadow: 
-    inset 0 0 0 1px rgba(242, 140, 40, 0.5),
-    0 0 14px rgba(255, 179, 71, 0.35);
+    inset 0 0 0 1px rgba(250, 85, 56, 0.45),
+    0 0 14px rgba(255, 179, 71, 0.4);
   pointer-events: none;
 }
 
@@ -2088,112 +2146,31 @@ nav.floating-nav.scrolled {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 28% 26%, 
-    rgba(255, 255, 255, 0.26) 0%, 
-    rgba(255, 255, 255, 0.08) 30%, 
-    transparent 60%);
+  background: radial-gradient(circle at 30% 28%, 
+    rgba(255, 255, 255, 0.28) 0%, 
+    rgba(255, 255, 255, 0.08) 32%, 
+    transparent 65%);
   pointer-events: none;
   mix-blend-mode: screen;
 }
 
-/* Mirror Image Wrapper for Dress Recoloring inside Lens */
-.reality-lens-mirror-wrap {
+/* Ambient Radial Aura for Living Spotlight Depth */
+.reality-lens-aura {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(250, 85, 56, 0.18) 0%,
+    rgba(217, 70, 239, 0.12) 45%,
+    transparent 70%);
   pointer-events: none;
-  transform-origin: 0 0;
-  will-change: transform;
+  mix-blend-mode: screen;
 }
 
-.reality-lens-mirror-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: bottom center;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  filter: none;
-}
-
-/* Individual Irregular Polygon Geometry & Placement (Leaving Face Completely Open) */
-/* Shard 1: Top-Left Upper Crest */
-.fragment-1 {
-  top: 2%;
-  left: 2%;
-  width: 34%;
-  height: 26%;
-  clip-path: polygon(0% 15%, 58% 2%, 96% 45%, 72% 98%, 18% 85%, 0% 52%);
-}
-
-/* Shard 2: Top-Right Upper Flank */
-.fragment-2 {
-  top: 1%;
-  right: 2%;
-  width: 36%;
-  height: 27%;
-  clip-path: polygon(26% 2%, 98% 10%, 100% 64%, 66% 98%, 12% 80%, 0% 30%);
-}
-
-/* Shard 3: Mid-Left Outer Perimeter */
-.fragment-3 {
-  top: 26%;
-  left: 0%;
-  width: 30%;
-  height: 32%;
-  clip-path: polygon(12% 0%, 82% 14%, 98% 68%, 62% 100%, 0% 90%, 4% 34%);
-}
-
-/* Shard 4: Mid-Right Outer Perimeter */
-.fragment-4 {
-  top: 25%;
-  right: 0%;
-  width: 32%;
-  height: 34%;
-  clip-path: polygon(24% 10%, 96% 0%, 100% 56%, 74% 98%, 14% 86%, 0% 40%);
-}
-
-/* Shard 5: Lower-Left Shoulder Facet */
-.fragment-5 {
-  top: 58%;
-  left: 1%;
-  width: 28%;
-  height: 32%;
-  clip-path: polygon(18% 0%, 88% 20%, 98% 74%, 60% 100%, 0% 84%, 6% 28%);
-}
-
-/* Shard 6: Lower-Right Shoulder Facet */
-.fragment-6 {
-  top: 59%;
-  right: 2%;
-  width: 30%;
-  height: 30%;
-  clip-path: polygon(26% 16%, 98% 0%, 86% 84%, 42% 100%, 0% 70%, 12% 26%);
-}
-
-/* Shard 7: Upper Apex Crown Shard */
-.fragment-7 {
-  top: 0%;
-  left: 34%;
-  width: 32%;
-  height: 18%;
-  clip-path: polygon(48% 0%, 100% 40%, 76% 100%, 22% 95%, 0% 44%);
-}
-
-/* Shard 8: Base Ground Facet */
-.fragment-8 {
-  top: 80%;
-  left: 14%;
-  width: 25%;
-  height: 17%;
-  clip-path: polygon(14% 0%, 94% 22%, 80% 100%, 0% 86%);
-}
-
-/* Reduced Motion Override */
+/* Reduced Motion Override: Clean Original Portrait Only */
 @media (prefers-reduced-motion: reduce) {
-  .shattered-reality-stage {
+  .reality-2-reveal-stage,
+  .reality-lens-stage {
     display: none !important;
   }
 }
@@ -7017,6 +6994,1246 @@ nav.floating-nav.scrolled {
   }
 }
 
+
+/* ==========================================================================
+   CREATIVE HOBBIES & PINTEREST SCRAPBOOK SECTION
+   Aesthetic Physical Mood Board • Polaroids • Washi Tape • Handwritten Notes
+   ========================================================================== */
+
+#hobbies.creative-scrapbook-section,
+.creative-scrapbook-section {
+  position: relative;
+  background-color: #FAF7F2;
+  color: #1E293B;
+  padding: clamp(5rem, 7.5vw, 7.5rem) 0;
+  border-top: 1px solid rgba(226, 218, 205, 0.7);
+  border-bottom: 1px solid rgba(226, 218, 205, 0.7);
+  overflow: hidden;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  scroll-margin-top: 85px;
+}
+
+/* Ambient Canvas Backdrop with Soft Warm Glows & Paper Dot Grid */
+.scrapbook-canvas-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.scrapbook-ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+}
+
+.blob-warm-peach {
+  top: 5%;
+  left: 8%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 90, 54, 0.15) 0%, transparent 70%);
+}
+
+.blob-soft-sage {
+  top: 45%;
+  right: 5%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(49, 183, 176, 0.12) 0%, transparent 70%);
+}
+
+.blob-cozy-cream {
+  bottom: 10%;
+  left: 20%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(255, 203, 69, 0.14) 0%, transparent 70%);
+}
+
+.scrapbook-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(180, 165, 145, 0.22) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+}
+
+/* Container */
+.scrapbook-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+}
+
+/* --------------------------------------------------------------------------
+   Scrapbook Header: Vintage Tag, Editorial Title, Script Subtitle & Filters
+   -------------------------------------------------------------------------- */
+.scrapbook-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(3rem, 5vw, 4.5rem) auto;
+  position: relative;
+}
+
+/* Vintage Postage / Archive Tag */
+.scrapbook-stamp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFFDF9;
+  border: 1.5px dashed rgba(180, 165, 145, 0.7);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #786C5E;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.scrapbook-stamp-tag .stamp-icon {
+  color: #FF5A36;
+  font-size: 0.95rem;
+}
+
+.scrapbook-stamp-tag .stamp-code {
+  color: #A39686;
+  font-size: 0.72rem;
+  padding-left: 0.35rem;
+  border-left: 1px solid rgba(180, 165, 145, 0.4);
+}
+
+/* Main Title */
+.scrapbook-main-title {
+  font-family: var(--font-brand, 'Cinzel', 'Playfair Display', serif);
+  font-size: clamp(2.3rem, 4.8vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin-bottom: 0.65rem;
+}
+
+.scrapbook-main-title .title-highlight {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-style: italic;
+  font-weight: 600;
+  background: linear-gradient(135deg, #FF5A36 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 0.15em;
+}
+
+/* Handwritten Cursive Subtitle */
+.scrapbook-handwritten-subtitle {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+  color: #FF5A36;
+  font-weight: 700;
+  margin-bottom: 1.15rem;
+  transform: rotate(-0.8deg);
+  display: inline-block;
+}
+
+/* Editorial Bio */
+.scrapbook-editorial-bio {
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  line-height: 1.68;
+  color: #556276;
+  max-width: 680px;
+  margin: 0 auto clamp(1.75rem, 2.5vw, 2.25rem) auto;
+}
+
+/* Washi Tape Filter Tabs */
+.scrapbook-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.scrapbook-filter-tab {
+  position: relative;
+  background: #FFFDF9;
+  border: 1px solid rgba(200, 185, 165, 0.5);
+  border-radius: 6px;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #556276;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(70, 50, 30, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.scrapbook-filter-tab:hover {
+  transform: translateY(-2px);
+  color: #0F172A;
+  box-shadow: 0 6px 16px rgba(70, 50, 30, 0.09);
+  border-color: rgba(255, 90, 54, 0.4);
+}
+
+.scrapbook-filter-tab.active {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+  transform: translateY(-2px);
+}
+
+.scrapbook-filter-tab .tab-tape-tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 12px;
+  background: rgba(246, 230, 205, 0.75);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  clip-path: polygon(0% 15%, 5% 0%, 95% 0%, 100% 15%, 98% 85%, 100% 100%, 0% 100%, 2% 85%);
+}
+
+.scrapbook-filter-tab.active .tab-tape-tape {
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   Scrapbook Mood Board Grid & Collage Layout
+   -------------------------------------------------------------------------- */
+.scrapbook-board {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(1.5rem, 2.8vw, 2.5rem);
+  align-items: start;
+  margin-bottom: clamp(3.5rem, 6vw, 5rem);
+}
+
+/* Individual Scrapbook Item Card Baseline */
+.scrapbook-item {
+  position: relative;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              filter 0.35s ease;
+  will-change: transform;
+  outline: none;
+}
+
+.scrapbook-item:focus-visible {
+  outline: 2px dashed #FF5A36;
+  outline-offset: 6px;
+}
+
+/* Filter Dimming / Hiding */
+.scrapbook-item.filtered-out {
+  display: none !important;
+}
+
+/* Tactile Hover Lift & Straighten */
+.scrapbook-item:hover,
+.scrapbook-item:focus {
+  z-index: 15 !important;
+  transform: translateY(-8px) scale(1.02) rotate(0deg) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Washi Tape & Pin Decorations (Realistic Physical Paper Stationery)
+   -------------------------------------------------------------------------- */
+.scrapbook-tape {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  opacity: 0.92;
+}
+
+.tape-corner-left {
+  top: -12px;
+  left: 18px;
+  width: 90px;
+  height: 26px;
+  transform: rotate(-14deg);
+  clip-path: polygon(0 8%, 96% 0, 100% 92%, 4% 100%);
+}
+
+.tape-corner-right {
+  top: -12px;
+  right: 18px;
+  width: 90px;
+  height: 26px;
+  transform: rotate(12deg);
+  clip-path: polygon(4% 0, 100% 8%, 96% 100%, 0 92%);
+}
+
+.tape-top-center {
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 105px;
+  height: 28px;
+  clip-path: polygon(0 6%, 100% 2%, 98% 96%, 2% 100%);
+}
+
+.tape-top-left {
+  top: -10px;
+  left: 20px;
+  width: 78px;
+  height: 24px;
+  transform: rotate(-6deg);
+  clip-path: polygon(2% 0%, 98% 4%, 96% 98%, 0% 94%);
+}
+
+.tape-top-right {
+  top: -10px;
+  right: 20px;
+  width: 82px;
+  height: 25px;
+  transform: rotate(7deg);
+  clip-path: polygon(0% 4%, 98% 0%, 100% 96%, 2% 100%);
+}
+
+.tape-center {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0.8deg);
+  width: 130px;
+  height: 28px;
+  clip-path: polygon(0 4%, 100% 0, 98% 98%, 2% 100%);
+}
+
+/* Washi Tape Colors */
+.tape-coral {
+  background: rgba(255, 140, 115, 0.82);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255, 255, 255, 0.3) 6px, rgba(255, 255, 255, 0.3) 12px);
+}
+
+.tape-kraft {
+  background: rgba(238, 222, 196, 0.85);
+  background-image: linear-gradient(to right, rgba(220, 200, 170, 0.4), rgba(245, 235, 215, 0.6));
+}
+
+.tape-mint {
+  background: rgba(175, 228, 222, 0.82);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(255, 255, 255, 0.35) 8px, rgba(255, 255, 255, 0.35) 10px);
+}
+
+.tape-peach {
+  background: rgba(255, 195, 170, 0.85);
+}
+
+.tape-lavender {
+  background: rgba(215, 205, 245, 0.82);
+}
+
+.tape-yellow {
+  background: rgba(255, 235, 160, 0.84);
+}
+
+/* Pushpin (Realistic 3D pushpin) */
+.scrapbook-pin {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FF7A5C 0%, #D43916 65%, #8A1E07 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  z-index: 12;
+}
+
+.pin-top-right {
+  top: 12px;
+  right: 18px;
+}
+
+.pin-top-center {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pin-center-top {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Brass Paperclip */
+.scrapbook-clip {
+  position: absolute;
+  top: -14px;
+  right: 28px;
+  width: 22px;
+  height: 48px;
+  border: 3px solid #C49842;
+  border-radius: 12px 12px 6px 6px;
+  background: transparent;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.18);
+  z-index: 12;
+  transform: rotate(5deg);
+}
+
+/* --------------------------------------------------------------------------
+   ITEM 1: DIE-CUT CUTOUT STICKER (Untitled.jpg)
+   -------------------------------------------------------------------------- */
+.item-portrait-sticker {
+  grid-column: 5 / 9;
+  grid-row: 1 / 3;
+  transform: rotate(-0.8deg);
+  z-index: 6;
+}
+
+.sticker-card-inner {
+  background: #FFFDF9;
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem 1.75rem 1.5rem;
+  border: 1px solid rgba(220, 208, 192, 0.7);
+  box-shadow: 0 20px 48px -8px rgba(50, 35, 20, 0.14), 0 6px 16px -2px rgba(50, 35, 20, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.sticker-image-wrapper {
+  position: relative;
+  background: linear-gradient(145deg, #FFF5EB 0%, #FFEBE0 100%);
+  border-radius: 14px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px dashed rgba(255, 90, 54, 0.3);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.sticker-diecut-img {
+  width: 100%;
+  max-width: 340px;
+  height: 380px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 10px;
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(40, 25, 15, 0.18));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.item-portrait-sticker:hover .sticker-diecut-img {
+  transform: scale(1.05) rotate(1deg);
+}
+
+.sticker-note-wrap {
+  margin-top: 1.25rem;
+  position: relative;
+}
+
+.doodle-arrow-curved {
+  position: absolute;
+  top: -24px;
+  left: 12px;
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+.handwritten-annotation {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1E293B;
+  padding-left: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.handwritten-annotation .highlight-inline {
+  color: #FF5A36;
+  text-decoration: underline wavy #FF5A36 1.5px;
+}
+
+.sticker-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #0F172A;
+  color: #FFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  margin-left: 2.2rem;
+}
+
+.sticker-mini-badge .badge-dot {
+  color: #FF5A36;
+  font-size: 0.6rem;
+}
+
+/* --------------------------------------------------------------------------
+   POLAROIDS (Items 2, 4, 6, 7)
+   -------------------------------------------------------------------------- */
+.item-polaroid {
+  background: transparent;
+}
+
+.polaroid-frame {
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 14px 14px 22px 14px;
+  box-shadow: 0 16px 36px -6px rgba(45, 30, 18, 0.12), 0 4px 12px -2px rgba(45, 30, 18, 0.06);
+  border: 1px solid rgba(230, 220, 205, 0.65);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.polaroid-photo-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #EAE6DF;
+  border-radius: 2px;
+}
+
+.polaroid-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.item-polaroid:hover .polaroid-photo-img {
+  transform: scale(1.04);
+}
+
+.photo-grain-filter {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 60%, rgba(30, 15, 5, 0.15) 100%);
+  pointer-events: none;
+}
+
+.photo-warm-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(255, 140, 50, 0.15) 100%);
+  pointer-events: none;
+}
+
+.polaroid-caption-box {
+  margin-top: 14px;
+  padding: 0 4px;
+}
+
+.polaroid-handwriting {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1E293B;
+  margin-bottom: 0.4rem;
+}
+
+.polaroid-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #94A3B8;
+}
+
+.polaroid-tag {
+  color: #FF5A36;
+}
+
+/* Individual Polaroid Orientations & Grid Placement */
+.polaroid-landscape {
+  grid-column: 1 / 5;
+  grid-row: 1;
+  transform: rotate(2deg);
+  z-index: 3;
+}
+
+.polaroid-workspace {
+  grid-column: 9 / 13;
+  grid-row: 2;
+  transform: rotate(-2deg);
+  z-index: 3;
+}
+
+.polaroid-anime {
+  grid-column: 1 / 5;
+  grid-row: 3;
+  transform: rotate(2.2deg);
+  z-index: 3;
+}
+
+.polaroid-prism {
+  grid-column: 9 / 13;
+  grid-row: 3;
+  transform: rotate(1.8deg);
+  z-index: 3;
+}
+
+/* Swatches inside Prism Polaroid */
+.polaroid-swatches-row {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(220, 208, 192, 0.6);
+}
+
+.swatch-chip {
+  flex: 1;
+  height: 24px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.swatch-code {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   ITEM 3: LINED NOTEPAD (Cafe & Coffee Field Notes)
+   -------------------------------------------------------------------------- */
+.item-memo {
+  grid-column: 9 / 13;
+  grid-row: 1;
+  transform: rotate(-1.5deg);
+  z-index: 4;
+}
+
+.memo-paper-sheet {
+  background: #FFFDF4;
+  /* Realistic ruled notebook lines */
+  background-image: 
+    linear-gradient(90deg, transparent 42px, rgba(255, 120, 140, 0.35) 43px, transparent 44px),
+    linear-gradient(#E8E2D2 1px, transparent 1px);
+  background-size: 100% 100%, 100% 28px;
+  border-radius: 4px;
+  padding: 2.2rem 1.6rem 2rem 2.8rem;
+  box-shadow: 0 16px 36px -6px rgba(45, 30, 15, 0.1), 0 4px 12px -2px rgba(45, 30, 15, 0.05);
+  border: 1px solid rgba(225, 215, 195, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.coffee-ring-stain {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  border: 6px solid rgba(160, 100, 50, 0.14);
+  box-shadow: 0 0 10px rgba(160, 100, 50, 0.08), inset 0 0 8px rgba(160, 100, 50, 0.08);
+  pointer-events: none;
+  transform: rotate(35deg) scale(0.95);
+}
+
+.memo-header-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #94A3B8;
+  margin-bottom: 0.5rem;
+}
+
+.memo-title {
+  font-family: var(--font-brand, 'Cinzel', serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.85rem;
+}
+
+.memo-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.memo-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: #334155;
+}
+
+.memo-checklist .check-box {
+  color: #10B981;
+  font-weight: 900;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.memo-footer-quote {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FF5A36;
+  line-height: 1.25;
+  margin-top: 0.5rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(200, 185, 165, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   ITEM 5: RETRO CASSETTE & AUDIO VISUALIZER CARD
+   -------------------------------------------------------------------------- */
+.item-cassette {
+  grid-column: 1 / 5;
+  grid-row: 2;
+  transform: rotate(1.2deg);
+  z-index: 4;
+}
+
+.cassette-card-inner {
+  background: #FFFDF9;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(220, 208, 192, 0.6);
+  box-shadow: 0 16px 36px -6px rgba(45, 30, 18, 0.1), 0 4px 12px -2px rgba(45, 30, 18, 0.05);
+}
+
+.cassette-chassis {
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  border-radius: 10px;
+  padding: 1rem 1rem 0.85rem 1rem;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15), 0 8px 20px rgba(0, 0, 0, 0.25);
+  border: 2px solid #334155;
+}
+
+.cassette-screws .screw {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64748B;
+  box-shadow: inset 0 1px 1px #000;
+}
+.screw.top-left { top: 6px; left: 6px; }
+.screw.top-right { top: 6px; right: 6px; }
+.screw.btm-left { bottom: 6px; left: 6px; }
+.screw.btm-right { bottom: 6px; right: 6px; }
+
+.cassette-label-sticker {
+  background: #FFFDF0;
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #CBD5E1;
+  margin-bottom: 0.75rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.label-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FF5A36;
+  margin-bottom: 0.2rem;
+}
+
+.cassette-track-title {
+  font-family: var(--font-brand, 'Cinzel', serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.2;
+}
+
+.cassette-artist-name {
+  font-size: 0.75rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.cassette-window-cutout {
+  background: #020617;
+  border-radius: 6px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 1rem;
+  border: 1.5px solid #1E293B;
+  position: relative;
+  overflow: hidden;
+}
+
+.tape-spool {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+.spool-cog {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #020617;
+  border: 2px dashed #94A3B8;
+  animation: spoolSpin 4s linear infinite paused;
+}
+
+.item-cassette.playing .spool-cog {
+  animation-play-state: running;
+}
+
+@keyframes spoolSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.tape-ribbon-bridge {
+  flex: 1;
+  height: 8px;
+  margin: 0 0.5rem;
+  background: #18120C;
+  border-radius: 2px;
+}
+
+.cassette-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 0.75rem;
+}
+
+.cassette-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #FF5A36;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 90, 54, 0.35);
+  transition: all 0.2s ease;
+}
+
+.cassette-play-btn:hover {
+  transform: translateY(-2px);
+  background: #E04422;
+  box-shadow: 0 6px 16px rgba(255, 90, 54, 0.45);
+}
+
+.sound-wave-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+}
+
+.sound-wave-bars .bar {
+  width: 4px;
+  height: 6px;
+  background: #94A3B8;
+  border-radius: 2px;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.item-cassette.playing .sound-wave-bars .bar {
+  background: #FF5A36;
+  animation: soundBounce 0.8s ease-in-out infinite alternate;
+}
+
+.item-cassette.playing .sound-wave-bars .bar:nth-child(1) { animation-delay: 0.1s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(2) { animation-delay: 0.3s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(3) { animation-delay: 0.5s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(4) { animation-delay: 0.2s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(5) { animation-delay: 0.4s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(6) { animation-delay: 0.6s; }
+.item-cassette.playing .sound-wave-bars .bar:nth-child(7) { animation-delay: 0.15s; }
+
+@keyframes soundBounce {
+  from { height: 4px; }
+  to { height: 22px; }
+}
+
+.cassette-handwritten-note {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-top: 0.85rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   ITEM 8: POST-IT STICKY NOTE (Current Obsessions)
+   -------------------------------------------------------------------------- */
+.item-sticky {
+  grid-column: 5 / 9;
+  grid-row: 3;
+  transform: rotate(-1.6deg);
+  z-index: 4;
+}
+
+.sticky-paper-body {
+  background: #FFE8D6;
+  border-radius: 2px 2px 18px 2px;
+  padding: 1.75rem 1.6rem 2rem 1.6rem;
+  box-shadow: 0 16px 36px -6px rgba(50, 30, 15, 0.12), 0 4px 12px -2px rgba(50, 30, 15, 0.06);
+  border: 1px solid rgba(245, 210, 185, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.sticky-curl-shadow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, transparent 50%, rgba(50, 25, 10, 0.15) 100%);
+  pointer-events: none;
+}
+
+.sticky-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.sticky-icon {
+  font-size: 1.15rem;
+}
+
+.sticky-title {
+  font-family: var(--font-brand, 'Cinzel', serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.sticky-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #334155;
+  font-weight: 500;
+}
+
+.sticky-footer-stamp {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #FF5A36;
+  letter-spacing: 0.08em;
+  text-align: right;
+  border-top: 1px dashed rgba(220, 175, 145, 0.6);
+  padding-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   ITEM 9: VINTAGE EPHEMERA, AIR MAIL & TICKET STUBS CLUSTER
+   -------------------------------------------------------------------------- */
+.item-ephemera {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  transform: rotate(0deg);
+  z-index: 2;
+}
+
+.ephemera-cluster-inner {
+  background: #FFFDF9;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(220, 208, 192, 0.6);
+  box-shadow: 0 16px 36px -6px rgba(45, 30, 18, 0.1), 0 4px 12px -2px rgba(45, 30, 18, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* Postage Stamp */
+.vintage-airmail-stamp {
+  background: #FFF5EB;
+  border: 2px dashed #FF5A36;
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(255, 90, 54, 0.08);
+}
+
+.stamp-top-text {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #FF5A36;
+}
+
+.stamp-center-symbol {
+  font-family: var(--font-brand, 'Cinzel', serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin: 0.25rem 0;
+}
+
+.stamp-bottom-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.06em;
+}
+
+.postmark-circle {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%) rotate(-15deg);
+  width: 58px;
+  height: 58px;
+  border: 1.5px solid rgba(15, 23, 42, 0.45);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.postmark-text {
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.55);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+/* Ticket Stub */
+.vintage-ticket-stub {
+  background: #101C35;
+  color: #FFF;
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  position: relative;
+  box-shadow: 0 8px 18px rgba(16, 28, 53, 0.2);
+}
+
+.ticket-notch {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFFDF9;
+  transform: translateY(-50%);
+}
+
+.ticket-notch.notch-left { left: -7px; }
+.ticket-notch.notch-right { right: -7px; }
+
+.ticket-header {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #FFCB45;
+  margin-bottom: 0.2rem;
+}
+
+.ticket-main-title {
+  font-family: var(--font-brand, 'Cinzel', serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.ticket-barcode {
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: #94A3B8;
+  margin-bottom: 0.2rem;
+}
+
+.ticket-date {
+  font-size: 0.65rem;
+  color: #CBD5E1;
+  font-weight: 600;
+}
+
+/* Organic Sticker */
+.organic-sticker-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: #FDF4E3;
+  border: 1.5px solid #F59E0B;
+  border-radius: 9999px;
+  padding: 0.45rem 1rem;
+  color: #B45309;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   Scrapbook Footer Note (Postcard Sign-off)
+   -------------------------------------------------------------------------- */
+.scrapbook-footer-note {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  background: #FFFDF9;
+  border: 1px dashed rgba(200, 185, 165, 0.7);
+  border-radius: 12px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 8px 24px rgba(60, 40, 20, 0.04);
+  position: relative;
+}
+
+.footer-note-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-note-handwritten {
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.25;
+}
+
+.footer-note-author {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #FF5A36;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .scrapbook-board {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.75rem;
+  }
+
+  .item-portrait-sticker {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    max-width: 460px;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .polaroid-landscape,
+  .item-memo,
+  .polaroid-workspace,
+  .item-cassette,
+  .polaroid-anime,
+  .polaroid-prism,
+  .item-sticky {
+    grid-column: span 3;
+    grid-row: auto;
+  }
+
+  .item-ephemera {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrapbook-board {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .item-portrait-sticker,
+  .polaroid-landscape,
+  .item-memo,
+  .polaroid-workspace,
+  .item-cassette,
+  .polaroid-anime,
+  .polaroid-prism,
+  .item-sticky,
+  .item-ephemera {
+    grid-column: 1 / -1;
+    transform: rotate(0deg) !important;
+  }
+
+  .scrapbook-filters {
+    gap: 0.5rem;
+  }
+
+  .scrapbook-filter-tab {
+    font-size: 0.82rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .footer-note-handwritten {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrapbook-item,
+  .spool-cog,
+  .sound-wave-bars .bar {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 
 /* ==========================================================================
    GITHUB SHOWCASE SECTION (Premium Light Editorial & Interactive Visualization)

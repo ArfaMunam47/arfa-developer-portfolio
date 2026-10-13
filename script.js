@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFuturisticFooter();
     setupLearningEcosystem();
     setupLearningJourneyStory();
+    setupCreativeHobbiesSection();
     setupGitHubShowcaseSection();
   };
 
@@ -2309,9 +2310,10 @@ function setupTactileButtonInteractions() {
  */
 function setupHeroShatteredRealityEffect() {
   const cutoutFrame = document.getElementById('hero-portrait-cutout-frame');
+  const viewport = document.getElementById('hero-portrait-viewport');
   const lensStage = document.getElementById('reality-lens-stage');
   const lensDisc = document.getElementById('reality-lens-disc');
-  const mirrorWrap = lensDisc ? lensDisc.querySelector('.reality-lens-mirror-wrap') : null;
+  const revealStage = document.getElementById('reality-2-reveal-stage');
 
   // Dedicated Cinematic Portrait Enlarge Modal support
   const enlargeModal = document.getElementById('hero-portrait-enlarge-modal');
@@ -2359,11 +2361,18 @@ function setupHeroShatteredRealityEffect() {
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeEnlargedModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeEnlargedModal);
+
   const enlargeImg = document.getElementById('enlarge-portrait-img');
   if (enlargeImg) enlargeImg.addEventListener('click', closeEnlargedModal);
+
   if (enlargeModal) {
     enlargeModal.addEventListener('click', (e) => {
-      if (e.target === enlargeModal || e.target === modalBackdrop || e.target.classList.contains('enlarge-modal-dialog') || e.target.classList.contains('enlarge-portrait-stage')) {
+      if (
+        e.target === enlargeModal ||
+        e.target === modalBackdrop ||
+        e.target.classList.contains('enlarge-modal-dialog') ||
+        e.target.classList.contains('enlarge-portrait-stage')
+      ) {
         closeEnlargedModal(e);
       }
     });
@@ -2375,46 +2384,39 @@ function setupHeroShatteredRealityEffect() {
     }
   });
 
-  if (!cutoutFrame || !lensStage || !lensDisc) return;
+  if (!cutoutFrame || !viewport || !lensStage || !lensDisc) return;
 
   // Reduced motion: preserve clean original portrait without interactive lens
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
 
-  // Touch devices: preserve clean original portrait (hover should not stick or force touch interaction)
+  // Touch devices: preserve clean original portrait without sticky hover states
   const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
   if (isTouchDevice) return;
-
-  const LENS_RADIUS = 65; // 130px / 2 (diameter reduced by ~13.3% from 150px to 130px)
-  const MAGNIFY_SCALE = 1.0; // 1:1 alignment for seamless dress color transformation
-  const LERP_FACTOR = 0.22; // Responsive, silky smooth physics easing
-  const EXPANSION_SCALE = 1.06; // Exact match to CSS portrait enlargement
 
   let bounds = null;
   let rafId = null;
   let isHovered = false;
 
-  // Target and current interpolated coordinates within the portrait coordinate space
   let targetX = 0;
   let targetY = 0;
   let currentX = 0;
   let currentY = 0;
+  let lensRadius = 78;
 
   function measureBounds() {
-    bounds = cutoutFrame.getBoundingClientRect();
-    const viewport = document.getElementById('hero-portrait-viewport');
-    const w = viewport && viewport.offsetWidth > 0 ? viewport.offsetWidth : (bounds ? bounds.width : 0);
-    const h = viewport && viewport.offsetHeight > 0 ? viewport.offsetHeight : (bounds ? bounds.height : 0);
-    if (mirrorWrap && w > 0 && h > 0) {
-      mirrorWrap.style.width = `${w}px`;
-      mirrorWrap.style.height = `${h}px`;
+    if (!viewport) return;
+    bounds = viewport.getBoundingClientRect();
+    lensRadius = bounds.width < 450 ? 68 : 78;
+    if (lensDisc) {
+      lensDisc.style.width = `${lensRadius * 2}px`;
+      lensDisc.style.height = `${lensRadius * 2}px`;
     }
   }
 
-  // Initial measurement
   measureBounds();
-  targetX = bounds.width / 2;
-  targetY = bounds.height / 2;
+  targetX = (bounds && bounds.width) ? bounds.width / 2 : 200;
+  targetY = (bounds && bounds.height) ? bounds.height / 2 : 250;
   currentX = targetX;
   currentY = targetY;
 
@@ -2423,37 +2425,36 @@ function setupHeroShatteredRealityEffect() {
 
   function setPointerTarget(clientX, clientY) {
     if (!bounds || bounds.width === 0) measureBounds();
+    const vWidth = viewport.offsetWidth || (bounds ? bounds.width : 400);
+    const vHeight = viewport.offsetHeight || (bounds ? bounds.height : 500);
+    const scaleX = (bounds && bounds.width ? bounds.width / vWidth : 1) || 1;
+    const scaleY = (bounds && bounds.height ? bounds.height / vHeight : 1) || 1;
 
-    // Stable center of the portrait in viewport coordinates
-    const centerX = bounds.left + bounds.width / 2;
-    const centerY = bounds.top + bounds.height / 2;
+    const relX = (clientX - bounds.left) / scaleX;
+    const relY = (clientY - bounds.top) / scaleY;
 
-    // Calculate position relative to the expanded portrait coordinate system.
-    // The mask expands by EXPANSION_SCALE from its center (centerX, centerY).
-    // Mapping back precisely aligns the lens with clientX and clientY across all points:
-    const relX = (clientX - centerX) / EXPANSION_SCALE + bounds.width / 2;
-    const relY = (clientY - centerY) / EXPANSION_SCALE + bounds.height / 2;
-
-    // Allow the lens to follow the cursor across the entire visible portrait:
-    // top hair, forehead, entire face, shoulders, clothing, and outer edges.
-    targetX = Math.max(0, Math.min(bounds.width, relX));
-    targetY = Math.max(0, Math.min(bounds.height, relY));
+    targetX = Math.max(0, Math.min(vWidth, relX));
+    targetY = Math.max(0, Math.min(vHeight, relY));
   }
 
-  function applyLensTransforms() {
-    // 1. Position lens disc centered on interpolated cursor
-    lensDisc.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0) translate3d(-50%, -50%, 0)`;
+  function applySpotlightTransforms() {
+    const rx = currentX.toFixed(2);
+    const ry = currentY.toFixed(2);
 
-    // 2. Optical mirror image counter-translation inside the lens (1:1 alignment)
-    if (mirrorWrap) {
-      const mirrorX = -currentX + LENS_RADIUS;
-      const mirrorY = -currentY + LENS_RADIUS;
-      mirrorWrap.style.transform = `translate3d(${mirrorX.toFixed(2)}px, ${mirrorY.toFixed(2)}px, 0)`;
+    // 1. Position luminous lens disc centered on interpolated cursor
+    lensDisc.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate3d(-50%, -50%, 0)`;
+
+    // 2. Hardware-accelerated clip-path reveals Reality 2 (Alternate Portrait)
+    if (revealStage) {
+      const clipVal = `circle(${lensRadius}px at ${rx}px ${ry}px)`;
+      revealStage.style.clipPath = clipVal;
+      revealStage.style.webkitClipPath = clipVal;
     }
   }
 
-  // 60FPS Fluid Interpolation Loop (Sleeps when mouse stops moving to prevent any lag/hanging)
-  function renderLensPhysics() {
+  const LERP_FACTOR = 0.20; // Silky smooth, lag-free easing
+
+  function renderSpotlightPhysics() {
     if (!isHovered) {
       rafId = null;
       return;
@@ -2462,17 +2463,15 @@ function setupHeroShatteredRealityEffect() {
     currentX += (targetX - currentX) * LERP_FACTOR;
     currentY += (targetY - currentY) * LERP_FACTOR;
 
-    applyLensTransforms();
+    applySpotlightTransforms();
 
     const dist = Math.hypot(targetX - currentX, targetY - currentY);
-
-    if (dist > 0.2) {
-      rafId = requestAnimationFrame(renderLensPhysics);
+    if (dist > 0.15) {
+      rafId = requestAnimationFrame(renderSpotlightPhysics);
     } else {
-      // Settle smoothly exactly on target and sleep until next pointer move
       currentX = targetX;
       currentY = targetY;
-      applyLensTransforms();
+      applySpotlightTransforms();
       rafId = null;
     }
   }
@@ -2482,35 +2481,30 @@ function setupHeroShatteredRealityEffect() {
     measureBounds();
     isHovered = true;
 
-    // Immediately snap starting coordinate to cursor position (no jump)
     setPointerTarget(e.clientX, e.clientY);
     currentX = targetX;
     currentY = targetY;
 
-    // Synchronously activate portrait expansion and orange glass lens
     cutoutFrame.classList.add('is-hovered');
     lensStage.classList.add('is-active');
+    if (revealStage) revealStage.classList.add('is-active');
 
-    // Initial render
-    applyLensTransforms();
+    applySpotlightTransforms();
 
     if (!rafId) {
-      rafId = requestAnimationFrame(renderLensPhysics);
+      rafId = requestAnimationFrame(renderSpotlightPhysics);
     }
   }
 
   function handlePointerMove(e) {
     if (e.pointerType === 'touch') return;
-
     if (!isHovered) {
       handlePointerEnter(e);
       return;
     }
 
-    // Safety boundary check with generous margin to accommodate the 1.06x enlargement
-    // without ever triggering false exit/enter oscillations
     if (bounds) {
-      const pad = 36;
+      const pad = 42;
       if (
         e.clientX < bounds.left - pad ||
         e.clientX > bounds.right + pad ||
@@ -2524,25 +2518,17 @@ function setupHeroShatteredRealityEffect() {
 
     setPointerTarget(e.clientX, e.clientY);
 
-    // Wake up physics loop if it went to sleep while cursor was stationary
     if (!rafId) {
-      rafId = requestAnimationFrame(renderLensPhysics);
+      rafId = requestAnimationFrame(renderSpotlightPhysics);
     }
   }
 
-  function handlePointerLeave(e) {
-    if (e && e.relatedTarget && cutoutFrame.contains(e.relatedTarget)) {
-      // Moving to a child element inside cutoutFrame — do NOT leave!
-      return;
-    }
-
+  function handlePointerLeave() {
     isHovered = false;
-
-    // Smoothly fade out the orange glass lens and return portrait to normal scale
-    lensStage.classList.remove('is-active');
     cutoutFrame.classList.remove('is-hovered');
+    lensStage.classList.remove('is-active');
+    if (revealStage) revealStage.classList.remove('is-active');
 
-    // Stop animation loop cleanly to conserve 100% CPU/GPU cycles
     if (rafId) {
       cancelAnimationFrame(rafId);
       rafId = null;
@@ -2552,6 +2538,7 @@ function setupHeroShatteredRealityEffect() {
   cutoutFrame.addEventListener('pointerenter', handlePointerEnter);
   cutoutFrame.addEventListener('pointermove', handlePointerMove, { passive: true });
   cutoutFrame.addEventListener('pointerleave', handlePointerLeave);
+  window.addEventListener('blur', handlePointerLeave);
 }
 
 /**
@@ -3924,6 +3911,87 @@ function setupLearningJourneyStory() {
     resizeTimer = setTimeout(alignRibbonPath, 150);
   });
   setTimeout(alignRibbonPath, 300);
+}
+
+/**
+ * =========================================================================
+ * 23B. CREATIVE HOBBIES & PINTEREST SCRAPBOOK MOOD BOARD
+ * Physical Mood Board · Polaroids · Washi Tape · Doodles · Personal Life
+ * =========================================================================
+ */
+function setupCreativeHobbiesSection() {
+  const section = document.getElementById('hobbies');
+  if (!section) return;
+
+  // 1. Washi Tape Category Filters
+  const filterTabs = section.querySelectorAll('.scrapbook-filter-tab');
+  const items = section.querySelectorAll('.scrapbook-item');
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetFilter = tab.getAttribute('data-filter') || 'all';
+
+      // Update active tab state
+      filterTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      // Filter scrapbook items smoothly
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category') || '';
+        if (targetFilter === 'all' || cat.includes(targetFilter)) {
+          item.classList.remove('filtered-out');
+        } else {
+          item.classList.add('filtered-out');
+        }
+      });
+    });
+  });
+
+  // 2. Interactive Retro Cassette Audio Visualizer Toggle
+  const cassetteBtn = section.querySelector('#cassette-play-btn');
+  const cassetteCard = section.querySelector('.item-cassette');
+
+  if (cassetteBtn && cassetteCard) {
+    cassetteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isPlaying = cassetteCard.classList.toggle('playing');
+      const btnText = cassetteBtn.querySelector('.btn-text');
+      const playIcon = cassetteBtn.querySelector('.play-icon');
+      const pauseIcon = cassetteBtn.querySelector('.pause-icon');
+
+      if (btnText) {
+        btnText.textContent = isPlaying ? 'Pause Tape' : 'Spin Tape';
+      }
+      if (playIcon && pauseIcon) {
+        playIcon.style.display = isPlaying ? 'none' : 'inline';
+        pauseIcon.style.display = isPlaying ? 'inline' : 'none';
+      }
+    });
+  }
+
+  // 3. Tactile Card Focus / Inspection on click
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      // Don't intercept clicks on buttons or links
+      if (e.target.closest('button') || e.target.closest('a')) return;
+      const isAlreadyFocused = item.classList.contains('focused-card');
+      items.forEach(it => it.classList.remove('focused-card'));
+      if (!isAlreadyFocused) {
+        item.classList.add('focused-card');
+      }
+    });
+  });
+
+  // Clear focused card on outside click
+  document.addEventListener('click', (e) => {
+    if (!section.contains(e.target)) {
+      items.forEach(it => it.classList.remove('focused-card'));
+    }
+  });
 }
 
 /**
