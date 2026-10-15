@@ -462,43 +462,90 @@
 
         </div>
 
-        <!-- RIGHT / INTERACTIVE HERO PORTRAIT STAGE -->
+        <!-- RIGHT / HERO PORTRAIT STAGE -->
         <div class="hero-visual-column reveal" id="hero-portrait-stage">
           <div class="hero-creative-visual-stage" id="hero-portrait-showcase">
 
-            <!-- Portrait Frame (Stands Cleanly On Its Own) -->
-            <div class="hero-subject-cutout-frame" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam" tabindex="0">
-              <div class="hero-subject-cutout-mask" id="hero-portrait-viewport">
-                <!-- Reality 1: Original Portrait (White Dress - Pristine Default State) -->
-                <img src="me.png" 
+            <!-- Reference Composition: Circular Backdrop + Outline + Colorful Frock Portrait + Untitled Frame + Doodles -->
+            <div class="hero-portrait-composition-wrap" id="hero-portrait-cutout-frame" role="region" aria-label="Portrait of Arfa Munam">
+              
+              <!-- Layer 1: Soft Peach Circular Backdrop with subtle warm orange lighting -->
+              <div class="hero-portrait-circle-backdrop" aria-hidden="true">
+                <div class="hero-backdrop-soft-glow"></div>
+                <div class="hero-backdrop-circle-core"></div>
+                <!-- Layer 2: Thin White Circular Outline -->
+                <div class="hero-backdrop-circle-ring"></div>
+              </div>
+
+              <!-- Layer 3: Main Girl Portrait wearing elegant colorful gradient frock (portrait-cutout.png) -->
+              <div class="hero-portrait-main-wrapper" id="hero-portrait-viewport">
+                <img src="port.png" 
                      alt="Arfa Munam — Creative Developer" 
-                     class="hero-portrait-cutout-img reality-1-portrait-img" 
+                     class="hero-portrait-cutout-img hero-portrait-main-img" 
                      id="profile-placeholder-img"
                      loading="eager"
                      fetchpriority="high"
-                     onerror="this.onerror=null; this.src='me.png.png';">
+                     onerror="this.onerror=null; this.src='portrait-cutout.png';">
+              </div>
 
-                <!-- LIVING SPOTLIGHT: ALTERNATE REALITY REVEAL LAYER -->
-                <div class="reality-2-reveal-stage" id="reality-2-reveal-stage" aria-hidden="true">
-                  <!-- Reality 2: Alternate Portrait (Orange, Coral, Pink & Purple Gradient Frock) -->
-                  <img src="new.png"
-                       alt=""
-                       class="hero-portrait-cutout-img reality-2-portrait-img"
-                       id="reality-2-portrait-img"
-                       loading="eager"
-                       fetchpriority="high"
-                       onerror="this.onerror=null; this.src='me.png';">
-                </div>
+              <!-- Layer 4: Small Circular Frame displaying Untitled.jpg over chest area (enlarged with rich shadow) -->
+              <div class="hero-small-circle-frame" aria-hidden="true">
+                <img src="Untitled.jpg" 
+                     alt="Untitled portrait" 
+                     class="hero-small-circle-img"
+                     onerror="this.onerror=null; this.src='untitled.jpg';">
+              </div>
 
-                <!-- LIVING SPOTLIGHT: LUMINOUS CORAL & ORANGE REFRACTIVE RING -->
-                <div class="reality-lens-stage" id="reality-lens-stage" aria-hidden="true">
-                  <div class="reality-lens-disc" id="reality-lens-disc">
-                    <div class="reality-lens-ring-border"></div>
-                    <div class="reality-lens-sheen"></div>
-                    <div class="reality-lens-aura"></div>
-                  </div>
+              <!-- Layer 5: Orange Crown / Banner doodle above hair top-left -->
+              <div class="hero-decor-crown-top" aria-hidden="true">
+                <svg width="60" height="42" viewBox="0 0 60 42" fill="none">
+                  <path d="M6 32 C 16 12, 42 12, 54 26" stroke="#FF5A36" stroke-width="2.6" stroke-linecap="round"/>
+                  <path d="M10 38 C 18 20, 44 20, 56 32" stroke="#FF5A36" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M14 26 L17 35" stroke="#FF5A36" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M22 20 L25 30" stroke="#FF5A36" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M30 17 L33 27" stroke="#FF5A36" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M38 18 L41 28" stroke="#FF5A36" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M46 22 L49 31" stroke="#FF5A36" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Layer 6: Orange Radiant Spark Lines (above hair top-right) -->
+              <div class="hero-decor-sparks-top" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <path d="M8 26 L14 14" stroke="#FF5A36" stroke-width="2.4" stroke-linecap="round"/>
+                  <path d="M18 26 L20 10" stroke="#FF5A36" stroke-width="2.4" stroke-linecap="round"/>
+                  <path d="M26 24 L30 16" stroke="#FF5A36" stroke-width="2.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Layer 7: Floating Side Badge ("A different side of me ♡") -->
+              <div class="hero-floating-side-badge" aria-hidden="true">
+                <svg class="side-badge-star" width="14" height="14" viewBox="0 0 24 24" fill="#FF5A36">
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+                </svg>
+                <div class="side-badge-text">
+                  <span>A different</span>
+                  <span>side of me ♡</span>
                 </div>
               </div>
+
+              <!-- Layer 8: Small Orange Outlined Heart (right side of hair) -->
+              <div class="hero-decor-heart" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#FF5A36" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- Layer 9: Handwritten hover text in bottom area with curved arrow pointing to circle -->
+              <div class="hero-hover-magic-note" aria-hidden="true">
+                <span class="magic-note-line1">Hover to</span>
+                <span class="magic-note-line2">see the magic ✨</span>
+                <svg class="magic-note-arrow" width="46" height="34" viewBox="0 0 46 34" fill="none">
+                  <path d="M42 6 C 30 18, 16 26, 6 22" stroke="#FF5A36" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M15 15 L 6 22 L 14 28" stroke="#FF5A36" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
             </div>
 
           </div>

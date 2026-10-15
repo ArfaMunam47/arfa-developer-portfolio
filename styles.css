@@ -2027,151 +2027,283 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
-   LIVING SPOTLIGHT: ALTERNATE REALITY (Active Exclusively on Direct Portrait Hover)
-   Precision Photographic Reveal • Silky Interpolated Tracking • Crystal Clarity
-   Colors: Radiant Coral (#FA5538), Solar Orange (#FF8A00), Magenta/Plum (#D946EF)
+   REFINED RIGHT HERO PORTRAIT COMPOSITION (Reference 2 Specification)
+   - Large soft peach/blush circular backdrop with thin white outline
+   - Natural portrait wearing elegant colorful gradient frock (new.png)
+   - Small circular fabric detail over the dress with thin white border
+   - Handwritten orange illustrations (top curved arrow, small heart)
+   - Handwritten hover instruction on right ("Hover to \n see the magic ✨")
+   - Subtle, premium 500-700ms microinteraction on hover
    ========================================================================== */
 
-/* Reality 1 Base Portrait: Clean, Natural, Modest Default State */
-.reality-1-portrait-img {
+.hero-portrait-composition-wrap {
   position: relative;
-  z-index: 2;
-  display: block;
+  width: 100%;
+  max-width: 480px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: default;
+  outline: none;
+  user-select: none;
 }
 
-/* Reality 2 Reveal Layer: Pinned 1:1 on Top of Reality 1, Clipped by Living Spotlight */
-.reality-2-reveal-stage {
+/* Layer 1: Soft Peach Circular Backdrop with subtle warm orange lighting */
+.hero-portrait-circle-backdrop {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(330px, 34vw, 430px);
+  height: clamp(330px, 34vw, 430px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Core circle fill */
+.hero-backdrop-circle-core {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 42%, #FEEFE6 0%, #FDDCD0 55%, #FCCBB8 100%);
+  box-shadow: 
+    0 20px 50px -10px rgba(251, 146, 60, 0.22),
+    0 10px 25px -5px rgba(236, 72, 153, 0.12),
+    inset 0 2px 6px rgba(255, 255, 255, 0.85);
+}
+
+/* Layer 2: Thin White Circular Outline */
+.hero-backdrop-circle-ring {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.65);
   pointer-events: none;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 6;
-  border-radius: inherit;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-  will-change: clip-path, opacity;
-  clip-path: circle(78px at 50% 50%);
-  -webkit-clip-path: circle(78px at 50% 50%);
 }
 
-.reality-2-reveal-stage.is-active {
-  opacity: 1;
-  visibility: visible;
+/* Ambient warm orange soft lighting */
+.hero-backdrop-soft-glow {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 138, 0, 0.22) 0%, rgba(244, 114, 182, 0.12) 40%, transparent 70%);
+  filter: blur(28px);
+  opacity: 0.85;
+  pointer-events: none;
 }
 
-.reality-2-portrait-img {
+/* Layer 3: Main Girl Portrait wearing colorful frock (port.png) */
+.hero-portrait-main-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+.hero-portrait-main-img {
   width: 100%;
   height: auto;
-  max-height: clamp(390px, 64vh, 550px);
+  max-height: clamp(450px, 64vh, 540px);
   object-fit: contain;
   object-position: bottom center;
   display: block;
-  pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
-  filter: none;
+  filter: drop-shadow(0 14px 28px rgba(36, 19, 38, 0.12));
+}
+
+/* Layer 4: Small Circular Frame displaying Untitled.jpg over chest area (enlarged with rich shadow) */
+.hero-small-circle-frame {
+  position: absolute;
+  right: 18%;
+  top: 53%;
+  z-index: 4;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #FFFFFF;
+  box-shadow: 
+    0 16px 36px -4px rgba(0, 0, 0, 0.32),
+    0 4px 14px rgba(255, 90, 54, 0.22);
+  background: #FFFFFF;
+  pointer-events: auto;
+}
+
+.hero-small-circle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Layer 5: Orange Crown / Banner doodle above hair top-left */
+.hero-decor-crown-top {
+  position: absolute;
+  top: 1%;
+  left: 16%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Layer 6: Radiant Spark lines above hair top-right */
+.hero-decor-sparks-top {
+  position: absolute;
+  top: 1%;
+  left: 66%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Layer 7: Floating Side Badge ("A different side of me ♡") */
+.hero-floating-side-badge {
+  position: absolute;
+  top: 9%;
+  right: -2%;
+  z-index: 4;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 0.85rem;
+  background: rgba(255, 245, 240, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  box-shadow: 0 6px 20px rgba(255, 120, 80, 0.12);
+}
+
+.hero-floating-side-badge .side-badge-star {
+  color: #FF5A36;
+  flex-shrink: 0;
+}
+
+.hero-floating-side-badge .side-badge-text {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #2D2926;
+}
+
+/* Layer 8: Small heart near right side */
+.hero-decor-heart {
+  position: absolute;
+  top: 40%;
+  right: 7%;
+  z-index: 3;
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+
+/* Layer 9: Handwritten hover instruction in bottom area */
+.hero-hover-magic-note {
+  position: absolute;
+  bottom: 12%;
+  right: -13%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 4;
+  pointer-events: none;
+  font-family: var(--font-script, 'Caveat', cursive, sans-serif);
+  line-height: 1.15;
+  white-space: nowrap;
+  transform: rotate(-3deg);
+}
+
+.magic-note-line1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1E1B18;
+  letter-spacing: 0.02em;
+}
+
+.magic-note-line2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #FF5A36;
+}
+
+.magic-note-arrow {
+  margin-top: 4px;
+  margin-left: 10px;
+}
+
+/* Responsive Scaling for Right Portrait */
+@media (max-width: 1200px) {
+  .hero-hover-magic-note {
+    right: -4%;
+  }
+  .hero-floating-side-badge {
+    right: 0%;
+  }
 }
 
 @media (max-width: 991px) {
-  .reality-2-portrait-img {
-    max-height: 450px;
+  .hero-portrait-composition-wrap {
+    max-width: 420px;
+    min-height: 440px;
+  }
+  .hero-portrait-circle-backdrop {
+    width: 320px;
+    height: 320px;
+  }
+  .hero-small-circle-frame {
+    width: 104px;
+    height: 104px;
+    right: 15%;
+    top: 52%;
+  }
+  .hero-hover-magic-note {
+    right: 0%;
+    bottom: 8%;
+  }
+  .hero-floating-side-badge {
+    top: 6%;
+    right: 2%;
   }
 }
 
 @media (max-width: 767px) {
-  .reality-2-portrait-img {
-    max-height: 380px;
+  .hero-portrait-composition-wrap {
+    max-width: 340px;
+    min-height: 370px;
   }
-}
-
-/* Living Spotlight Stage & Luminous Portal Disc */
-.reality-lens-stage {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: visible;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 10;
-  border-radius: inherit;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-  will-change: opacity;
-}
-
-.reality-lens-stage.is-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Floating Precision Circular Spotlight Disc (156px Diameter) */
-.reality-lens-disc {
-  position: absolute;
-  width: 156px;
-  height: 156px;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  transform: translate3d(-50%, -50%, 0);
-  overflow: hidden;
-  border: 2px solid rgba(255, 138, 0, 0.92);
-  box-shadow: 
-    0 16px 36px -4px rgba(16, 28, 53, 0.32),
-    0 0 20px 3px rgba(250, 85, 56, 0.55),
-    0 0 38px 6px rgba(255, 138, 0, 0.35),
-    0 0 54px 8px rgba(217, 70, 239, 0.22),
-    inset 0 1.5px 3.5px rgba(255, 235, 205, 0.85),
-    inset 0 0 16px rgba(255, 179, 71, 0.45);
-  background: transparent;
-  will-change: transform;
-}
-
-/* Luminous Refractive Edge Highlight */
-.reality-lens-ring-border {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 230, 190, 0.75);
-  box-shadow: 
-    inset 0 0 0 1px rgba(250, 85, 56, 0.45),
-    0 0 14px rgba(255, 179, 71, 0.4);
-  pointer-events: none;
-}
-
-/* Delicate Specular Surface Sheen */
-.reality-lens-sheen {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 28%, 
-    rgba(255, 255, 255, 0.28) 0%, 
-    rgba(255, 255, 255, 0.08) 32%, 
-    transparent 65%);
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* Ambient Radial Aura for Living Spotlight Depth */
-.reality-lens-aura {
-  position: absolute;
-  inset: -15%;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(250, 85, 56, 0.18) 0%,
-    rgba(217, 70, 239, 0.12) 45%,
-    transparent 70%);
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* Reduced Motion Override: Clean Original Portrait Only */
-@media (prefers-reduced-motion: reduce) {
-  .reality-2-reveal-stage,
-  .reality-lens-stage {
-    display: none !important;
+  .hero-portrait-circle-backdrop {
+    width: 270px;
+    height: 270px;
+  }
+  .hero-portrait-main-img {
+    max-height: 360px;
+  }
+  .hero-small-circle-frame {
+    width: 84px;
+    height: 84px;
+    right: 14%;
+    top: 50%;
+  }
+  .hero-floating-side-badge {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.7rem;
+    top: 4%;
+    right: 2%;
+  }
+  .hero-hover-magic-note {
+    display: none;
   }
 }
 
