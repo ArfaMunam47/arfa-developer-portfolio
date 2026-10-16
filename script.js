@@ -2298,18 +2298,69 @@ function setupTactileButtonInteractions() {
  * Task 3: When the cursor enters the portrait area:
  * 1. A soft circular lens appears near the cursor.
  * 2. The lens smoothly follows cursor movement within the portrait area (lerped rAF).
- * 3. Inside the lens, reveal a subtly refracted/magnified mirror replica of the portrait.
- * 4. Add a delicate luminous edge around the lens.
- * 5. Introduce a very subtle sense of depth to the portrait.
- * 6. Smooth interpolation so the lens follows naturally without jitter.
- * 7. Face stays sharp, readable, and recognizable.
- * 8. When cursor leaves: lens softly disappears, portrait returns to exact original appearance,
- *    and no animation continues in background.
- * 9. On touch devices: preserve clean original portrait.
+/**
+ * =========================================================================
+ * 14. LIVING SPOTLIGHT HOVER EFFECT ON HERO PORTRAIT BACKDROP
+ * When cursor enters the portrait area:
+ * - A beautiful, soft coral pink glow follows the cursor smoothly across the circular backdrop.
+ * - The spotlight is strictly clipped within the circle backdrop, never spilling over the girl or other sections.
+ * - Girl portrait remains crisp, unaffected, with zero distortion.
+ * - Fades back smoothly when cursor leaves.
  * =========================================================================
  */
 function setupHeroShatteredRealityEffect() {
-  // Portrait is completely static as requested in design reference
+  const frame = document.getElementById('hero-portrait-cutout-frame');
+  const spotlight = document.getElementById('hero-living-spotlight');
+  const backdrop = document.getElementById('hero-circle-backdrop');
+  if (!frame || !spotlight) return;
+
+  // Respect reduced motion
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  let isHovered = false;
+  let rafId = null;
+  let currentX = 50;
+  let currentY = 50;
+  let targetX = 50;
+  let targetY = 50;
+
+  function updateSpotlightPhysics() {
+    if (!isHovered) return;
+    currentX += (targetX - currentX) * 0.16;
+    currentY += (targetY - currentY) * 0.16;
+    spotlight.style.setProperty('--spot-x', `${currentX.toFixed(2)}%`);
+    spotlight.style.setProperty('--spot-y', `${currentY.toFixed(2)}%`);
+    rafId = requestAnimationFrame(updateSpotlightPhysics);
+  }
+
+  frame.addEventListener('pointerenter', (e) => {
+    isHovered = true;
+    frame.classList.add('is-spotlight-active');
+    const rect = (backdrop || frame).getBoundingClientRect();
+    targetX = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    targetY = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+    currentX = targetX;
+    currentY = targetY;
+    spotlight.style.setProperty('--spot-x', `${currentX.toFixed(2)}%`);
+    spotlight.style.setProperty('--spot-y', `${currentY.toFixed(2)}%`);
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(updateSpotlightPhysics);
+  }, { passive: true });
+
+  frame.addEventListener('pointermove', (e) => {
+    if (!isHovered) return;
+    const rect = (backdrop || frame).getBoundingClientRect();
+    targetX = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    targetY = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+  }, { passive: true });
+
+  frame.addEventListener('pointerleave', () => {
+    isHovered = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    frame.classList.remove('is-spotlight-active');
+  }, { passive: true });
 }
 
 /**
@@ -3570,79 +3621,100 @@ function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const rows = Array.from(section.querySelectorAll('.lj-infographic-row'));
   const stage = document.getElementById('lj-timeline-stage');
+  const rows = Array.from(section.querySelectorAll('.learning-journey-step, .lj-infographic-row'));
   const mainRibbon = document.getElementById('lj-main-serpentine-path');
-  const shadowRibbon = stage ? stage.querySelector('.lj-svg-shadow-path') : null;
+  const shadowRibbon = document.getElementById('lj-shadow-serpentine-path');
+  const dashRibbon = document.getElementById('lj-dash-serpentine-path');
+  const svg = stage ? (stage.querySelector('.learning-journey-track-svg') || stage.querySelector('.lj-serpentine-svg')) : null;
 
   // 1. Dynamic Serpentine Path Alignment
   function alignRibbonPath() {
-    if (!stage || !mainRibbon || window.innerWidth < 900) return;
+    if (!stage || !mainRibbon) return;
     const stageRect = stage.getBoundingClientRect();
     if (stageRect.width === 0 || stageRect.height === 0) return;
 
+    const isMobile = window.innerWidth < 768;
     const centers = [];
+
     rows.forEach((row) => {
-      const icon = row.querySelector('.lj-circular-3d-icon');
+      const icon = row.querySelector('.learning-journey-icon-badge, .lj-circular-3d-icon');
       if (icon) {
         const r = icon.getBoundingClientRect();
         centers.push({
           x: Math.round(r.left + r.width / 2 - stageRect.left),
           y: Math.round(r.top + r.height / 2 - stageRect.top),
-          isLeft: row.classList.contains('icon-left')
+          isLeft: row.classList.contains('step-odd') || row.classList.contains('icon-left')
         });
       }
     });
 
-    if (centers.length >= 8) {
-      // Calculate smooth serpentine path through the centers
-      const svg = stage.querySelector('.lj-serpentine-svg');
+    if (centers.length >= 2) {
       if (svg) {
         svg.setAttribute('viewBox', `0 0 ${Math.round(stageRect.width)} ${Math.round(stageRect.height)}`);
       }
 
-      let d = `M ${centers[0].x} ${centers[0].y}`;
-      for (let i = 0; i < centers.length; i++) {
-        const curr = centers[i];
-        if (i < centers.length - 1) {
-          const next = centers[i + 1];
-          if (curr.isLeft && !next.isLeft) {
-            // Left to Right row: line goes from left to right, then curves around right side to next row
-            const rightTurnX = Math.round(next.x + 36);
-            d += ` L ${next.x} ${curr.y}`;
-            d += ` C ${rightTurnX} ${curr.y}, ${rightTurnX} ${next.y}, ${next.x} ${next.y}`;
-          } else {
-            // Right to Left row: line goes from right to left, then curves around left side to next row
-            const leftTurnX = Math.round(next.x - 36);
-            d += ` L ${next.x} ${curr.y}`;
-            d += ` C ${leftTurnX} ${curr.y}, ${leftTurnX} ${next.y}, ${next.x} ${next.y}`;
+      let d = '';
+      if (isMobile) {
+        // Clean vertical metro line connecting badges on mobile
+        d = `M ${centers[0].x} ${centers[0].y}`;
+        for (let i = 1; i < centers.length; i++) {
+          d += ` L ${centers[i].x} ${centers[i].y}`;
+        }
+      } else {
+        // Continuous Serpentine winding path
+        d = `M ${centers[0].x} ${centers[0].y}`;
+        for (let i = 0; i < centers.length; i++) {
+          const curr = centers[i];
+          if (i < centers.length - 1) {
+            const next = centers[i + 1];
+            if (curr.isLeft && !next.isLeft) {
+              // Left to Right: line across from curr.x to next.x, then sweeping curve around right side
+              const rightTurnX = Math.min(Math.round(stageRect.width - 20), Math.round(next.x + 46));
+              d += ` L ${next.x} ${curr.y}`;
+              d += ` C ${rightTurnX} ${curr.y}, ${rightTurnX} ${next.y}, ${next.x} ${next.y}`;
+            } else {
+              // Right to Left: line across from right to left, then sweeping curve around left side
+              const leftTurnX = Math.max(20, Math.round(next.x - 46));
+              d += ` L ${next.x} ${curr.y}`;
+              d += ` C ${leftTurnX} ${curr.y}, ${leftTurnX} ${next.y}, ${next.x} ${next.y}`;
+            }
           }
         }
       }
 
       mainRibbon.setAttribute('d', d);
       if (shadowRibbon) shadowRibbon.setAttribute('d', d);
+      if (dashRibbon) dashRibbon.setAttribute('d', d);
     }
   }
 
-  // 2. Interactive Row & Icon Event Listeners
+  // 2. Interactive Step Event Listeners
   rows.forEach((row) => {
-    const icon = row.querySelector('.lj-circular-3d-icon');
+    const icon = row.querySelector('.learning-journey-icon-badge, .lj-circular-3d-icon');
+    const pill = row.querySelector('.learning-journey-card-pill');
     if (!icon) return;
 
     const activate = () => {
-      rows.forEach(r => r.classList.remove('is-row-active'));
+      rows.forEach(r => {
+        r.classList.remove('is-step-active');
+        r.classList.remove('is-row-active');
+      });
+      row.classList.add('is-step-active');
       row.classList.add('is-row-active');
     };
 
     const deactivate = () => {
+      row.classList.remove('is-step-active');
       row.classList.remove('is-row-active');
     };
 
     icon.addEventListener('mouseenter', activate);
     icon.addEventListener('mouseleave', deactivate);
-    row.addEventListener('mouseenter', activate);
-    row.addEventListener('mouseleave', deactivate);
+    if (pill) {
+      pill.addEventListener('mouseenter', activate);
+      pill.addEventListener('mouseleave', deactivate);
+    }
 
     icon.addEventListener('click', () => {
       activate();
@@ -3671,13 +3743,21 @@ function setupLearningJourneyStory() {
     observer.observe(section);
   }
 
-  // Run initial alignment and bind resize
+  // Run alignment on load, fonts ready, and resize
+  alignRibbonPath();
+  window.addEventListener('load', alignRibbonPath);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(alignRibbonPath);
+  }
+
   let resizeTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(alignRibbonPath, 150);
+    resizeTimer = setTimeout(alignRibbonPath, 80);
   });
-  setTimeout(alignRibbonPath, 300);
+  setTimeout(alignRibbonPath, 150);
+  setTimeout(alignRibbonPath, 450);
+  setTimeout(alignRibbonPath, 1000);
 }
 
 /**
