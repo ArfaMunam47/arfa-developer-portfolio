@@ -3622,72 +3622,129 @@ function setupLearningJourneyStory() {
   if (!section) return;
 
   const stage = document.getElementById('lj-timeline-stage');
-  const rows = Array.from(section.querySelectorAll('.learning-journey-step, .lj-infographic-row'));
+  const rows = Array.from(section.querySelectorAll('.learning-journey-step'));
   const mainRibbon = document.getElementById('lj-main-serpentine-path');
   const shadowRibbon = document.getElementById('lj-shadow-serpentine-path');
   const dashRibbon = document.getElementById('lj-dash-serpentine-path');
-  const svg = stage ? (stage.querySelector('.learning-journey-track-svg') || stage.querySelector('.lj-serpentine-svg')) : null;
+  const svg = stage ? stage.querySelector('.learning-journey-track-svg') : null;
 
-  // 1. Dynamic Serpentine Path Alignment
+  // 1. Dynamic Serpentine Path Alignment (Terminates strictly at Milestone 08)
   function alignRibbonPath() {
     if (!stage || !mainRibbon) return;
     const stageRect = stage.getBoundingClientRect();
     if (stageRect.width === 0 || stageRect.height === 0) return;
 
-    const isMobile = window.innerWidth < 768;
-    const centers = [];
+    const width = Math.round(stageRect.width);
 
+    // Calculate height strictly from the last milestone row
+    const lastRow = rows[rows.length - 1];
+    let timelineHeight = Math.round(stageRect.height);
+    if (lastRow) {
+      const lastRect = lastRow.getBoundingClientRect();
+      timelineHeight = Math.max(100, Math.round(lastRect.bottom - stageRect.top));
+    }
+
+    if (svg) {
+      svg.setAttribute('viewBox', `0 0 ${width} ${timelineHeight}`);
+      svg.style.height = `${timelineHeight}px`;
+    }
+
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      // Clean vertical metro line connecting badges on mobile (ends at milestone 08)
+      const points = [];
+      rows.forEach((row) => {
+        const icon = row.querySelector('.learning-journey-icon-badge');
+        if (icon) {
+          const r = icon.getBoundingClientRect();
+          points.push({
+            x: Math.round(r.left + r.width / 2 - stageRect.left),
+            y: Math.round(r.top + r.height / 2 - stageRect.top)
+          });
+        }
+      });
+
+      if (points.length >= 2) {
+        let d = `M ${points[0].x} ${points[0].y}`;
+        for (let i = 1; i < points.length; i++) {
+          d += ` L ${points[i].x} ${points[i].y}`;
+        }
+        mainRibbon.setAttribute('d', d);
+        if (shadowRibbon) shadowRibbon.setAttribute('d', d);
+        if (dashRibbon) dashRibbon.setAttribute('d', d);
+      }
+      return;
+    }
+
+    // Desktop & Tablet: Mathematical Smooth Serpentine S-Curve
+    const stepData = [];
     rows.forEach((row) => {
-      const icon = row.querySelector('.learning-journey-icon-badge, .lj-circular-3d-icon');
-      if (icon) {
-        const r = icon.getBoundingClientRect();
-        centers.push({
-          x: Math.round(r.left + r.width / 2 - stageRect.left),
-          y: Math.round(r.top + r.height / 2 - stageRect.top),
-          isLeft: row.classList.contains('step-odd') || row.classList.contains('icon-left')
+      const card = row.querySelector('.learning-journey-card-pill');
+      const badge = row.querySelector('.learning-journey-icon-badge');
+      if (card && badge) {
+        const cRect = card.getBoundingClientRect();
+        const bRect = badge.getBoundingClientRect();
+        const isOdd = row.classList.contains('step-odd');
+        stepData.push({
+          centerY: Math.round(cRect.top + cRect.height / 2 - stageRect.top),
+          cardLeft: Math.round(cRect.left - stageRect.left),
+          cardRight: Math.round(cRect.right - stageRect.left),
+          badgeCenterX: Math.round(bRect.left + bRect.width / 2 - stageRect.left),
+          isOdd: isOdd
         });
       }
     });
 
-    if (centers.length >= 2) {
-      if (svg) {
-        svg.setAttribute('viewBox', `0 0 ${Math.round(stageRect.width)} ${Math.round(stageRect.height)}`);
-      }
+    if (stepData.length >= 2) {
+      let d = `M ${stepData[0].badgeCenterX} ${stepData[0].centerY}`;
 
-      let d = '';
-      if (isMobile) {
-        // Clean vertical metro line connecting badges on mobile
-        d = `M ${centers[0].x} ${centers[0].y}`;
-        for (let i = 1; i < centers.length; i++) {
-          d += ` L ${centers[i].x} ${centers[i].y}`;
-        }
-      } else {
-        // Continuous Serpentine winding path
-        d = `M ${centers[0].x} ${centers[0].y}`;
-        for (let i = 0; i < centers.length; i++) {
-          const curr = centers[i];
-          if (i < centers.length - 1) {
-            const next = centers[i + 1];
-            if (curr.isLeft && !next.isLeft) {
-              // Left to Right: line across from curr.x to next.x, then sweeping curve around right side
-              const rightTurnX = Math.min(Math.round(stageRect.width - 20), Math.round(next.x + 46));
-              d += ` L ${next.x} ${curr.y}`;
-              d += ` C ${rightTurnX} ${curr.y}, ${rightTurnX} ${next.y}, ${next.x} ${next.y}`;
-            } else {
-              // Right to Left: line across from right to left, then sweeping curve around left side
-              const leftTurnX = Math.max(20, Math.round(next.x - 46));
-              d += ` L ${next.x} ${curr.y}`;
-              d += ` C ${leftTurnX} ${curr.y}, ${leftTurnX} ${next.y}, ${next.x} ${next.y}`;
-            }
-          }
+      // Connect sequentially from Step 01 to Step 08
+      for (let i = 0; i < stepData.length - 1; i++) {
+        const curr = stepData[i];
+        const next = stepData[i + 1];
+
+        if (curr.isOdd) {
+          // Odd card (left): line across through the card to right edge
+          d += ` L ${curr.cardRight} ${curr.centerY}`;
+
+          // Curve into next even card's badge on the right
+          const outerRight = Math.min(width - 16, Math.max(curr.cardRight, next.badgeCenterX) + 52);
+          d += ` C ${outerRight} ${curr.centerY}, ${outerRight} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
+        } else {
+          // Even card (right): line across through the card to left edge
+          d += ` L ${curr.cardLeft} ${curr.centerY}`;
+
+          // Curve into next odd card's badge on the left
+          const outerLeft = Math.max(16, Math.min(curr.cardLeft, next.badgeCenterX) - 52);
+          d += ` C ${outerLeft} ${curr.centerY}, ${outerLeft} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
         }
       }
 
+      // STRICT TERMINATION: The path ends at Milestone 08.
+      // Absolutely no extra curve, line, or continuation extends below Milestone 08.
       mainRibbon.setAttribute('d', d);
       if (shadowRibbon) shadowRibbon.setAttribute('d', d);
       if (dashRibbon) dashRibbon.setAttribute('d', d);
     }
   }
+
+  // Set up ResizeObserver and Window Listeners for guaranteed real-time responsiveness
+  if (window.ResizeObserver && stage) {
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(alignRibbonPath);
+    });
+    ro.observe(stage);
+  }
+
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(alignRibbonPath);
+  }, { passive: true });
+
+  // Initial alignments
+  requestAnimationFrame(alignRibbonPath);
+  setTimeout(alignRibbonPath, 150);
+  setTimeout(alignRibbonPath, 600);
 
   // 2. Interactive Step Event Listeners
   rows.forEach((row) => {
