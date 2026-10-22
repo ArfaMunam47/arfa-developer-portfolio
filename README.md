@@ -1,80 +1,61 @@
-# 🎈🎀 ARFA MUNAM
+# 🎈🎀 ARFA MUNAM — Creative Developer & AI Explorer
 
-### Front-End Developer · Prompt Engineer · AI Enthusiast
+### Frontend Developer · Prompt Engineer · AI Enthusiast
 
-> A creative 3D portfolio website exploring the space where **Design × Code × AI** come together.
+> A creative React portfolio website exploring the space where **Design × Code × AI** come together.
 
-🟢 **STATUS — ACTIVELY BUILDING**
-
----
-
-## ◉ My Portfolio
-
-This is my personal **creative portfolio website** — designed and developed to showcase who I am, what I build, and how I experiment with technology.
-
-It's not meant to be another ordinary developer portfolio.
-
-The experience combines:
-
-**3D visuals · Creative UI · Motion · Interactive experiences · AI · Front-End Development**
-
-Everything is designed around a colorful, cinematic and modern visual identity while keeping the experience clean, readable and professional.
+🟢 **STATUS — ACTIVELY BUILDING & SHIPPING**
 
 ---
 
-## ✦ What I Do
+## ◉ About The Application
 
-**01 — Front-End Development**  
-Building responsive interfaces, interactive experiences and polished web experiences.
+This application is the personal **creative portfolio of Arfa Munam**, rewritten and architected as a high-performance **React 19 + TypeScript + Vite** application.
 
-**02 — Prompt Engineering**  
-Creating structured prompts and AI workflows that turn ideas into useful results.
-
-**03 — AI Enthusiast**  
-Exploring AI tools, generative technology and new possibilities for creative development.
-
----
-
-## ◇ Featured Work
-
-The portfolio showcases **4 selected projects**, presented through interactive and visually rich experiences rather than traditional project cards.
-
-Each project highlights the idea, design, technology and experience behind it.
-
-→ **Explore my work through the portfolio**
+It combines:
+- **Cinematic Fullscreen Welcome Video Intro** with responsive ring progress and instant audio toggle
+- **Creative Portfolio Gallery Bridge** with layered paper artwork, curved editorial arrow, and story showcase
+- **Dynamic Role Switcher** (Frontend Developer · Prompt Engineer · AI Enthusiast) with live Lahore / Pakistan Time (PKT) clock
+- **Exhibition Projects Gallery** (Prism 3D Spatial AR, StudyPilot-AI, Velora Store, Kumo Ramen Showcase, PastelForm) with deep-dive modal case studies
+- **Technical Skills Ecosystem** with live real-time filtering across Frontend, Backend, Prompt Engineering, and AI Automation
+- **2026 Expansion Radar** detailing active deep dives into Node.js, Express, PostgreSQL, Supabase, and Autonomous Agents
+- **Google AI & Prompting Credentials Gallery** with interactive verification modals
+- **Growth Roadmap / Timeline (2022 — 2026)**
+- **Creative Scrapbook Collage (Hobbies)** highlighting sports, book reading, cinema, cafes, and writing
+- **GitHub Showcase** with repo cards, clone command copy triggers, and real commit highlights
+- **Interactive Contact Scene** with validation, quick email copy, and direct reach-out options
 
 ---
 
-## ✧ Certifications
+## ✦ Tech Stack
 
-🏆 Google AI Professional Certificate  
-🏆 Google AI Essentials Specialization  
-🏆 Google Prompting Essentials Specialization
-
----
-
-## ⚡ Built With
-
-`HTML` `CSS` `JavaScript` `SVG` `Git` `GitHub` `AI` `Prompt Engineering`
+- **Framework**: React 19 (TypeScript)
+- **Bundler & Dev Server**: Vite (`0.0.0.0:3000`)
+- **Icons**: Lucide React + Bespoke Brand SVGs
+- **Styling**: Tailored Editorial Design System (`styles.css`)
+- **Assets**: High-fidelity 3D assets, videos (`Welcome.mp4`, `portfolio.mp4`), and portfolio photography
 
 ---
 
-## 🟢 Currently Building
+## 🛠️ Local Development
 
-**My Premium 3D Portfolio**
+```bash
+# Install dependencies
+npm install
 
-I'm actively designing, experimenting and refining this portfolio to create a more immersive way of presenting my work.
+# Start Vite development server on port 3000
+npm run dev
 
-New ideas, interactions, animations and experiments are constantly being added.
+# Run TypeScript type check
+npm run lint
 
-**Status: In Progress · Always Evolving**
+# Production build
+npm run build
+```
 
 ---
 
 ### ARFA MUNAM
-
-**Front-End Developer**  
-**Prompt Engineer**  
-**AI Enthusiast**
-
-> *Building interfaces. Exploring AI. Creating experiences.*
+- **Email**: arfamunam01@gmail.com
+- **GitHub**: [@ArfaMunam47](https://github.com/ArfaMunam47)
+- **LinkedIn**: [Arfa Munam](https://www.linkedin.com/in/arfa-munam-a823573a1)

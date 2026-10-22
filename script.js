@@ -2246,6 +2246,57 @@ function setupCertificatesGallery() {
       }
     });
   });
+
+  // Dynamic Wire Curve Alignment to Orange Tapes
+  const wireRig = document.getElementById('cert-wire-rig');
+  const wireSvg = document.getElementById('cert-wire-svg');
+  const wireMain = document.getElementById('cert-wire-main');
+  const wireShadow = document.getElementById('cert-wire-shadow');
+  const wireHighlight = document.getElementById('cert-wire-highlight');
+  const tapes = section.querySelectorAll('.cert-orange-tape');
+
+  function updateHangingWire() {
+    if (!wireRig || !wireSvg || !wireMain || tapes.length < 3) return;
+    if (window.innerWidth <= 820) return;
+
+    const rigRect = wireRig.getBoundingClientRect();
+    if (rigRect.width <= 0) return;
+
+    const w = Math.round(rigRect.width);
+    const h = 90;
+
+    const t1 = tapes[0].getBoundingClientRect();
+    const t2 = tapes[1].getBoundingClientRect();
+    const t3 = tapes[2].getBoundingClientRect();
+
+    // Center coordinates of each tape relative to wire rig
+    const p1 = { x: Math.round(t1.left + t1.width / 2 - rigRect.left), y: Math.round(t1.top + t1.height * 0.42 - rigRect.top) };
+    const p2 = { x: Math.round(t2.left + t2.width / 2 - rigRect.left), y: Math.round(t2.top + t2.height * 0.42 - rigRect.top) };
+    const p3 = { x: Math.round(t3.left + t3.width / 2 - rigRect.left), y: Math.round(t3.top + t3.height * 0.42 - rigRect.top) };
+
+    const anchorY = 16;
+    // Smooth natural catenary curve through left anchor, tape 1, tape 2 (lowest trough), tape 3, right anchor
+    const pathD = `M 0,${anchorY} ` +
+      `C ${p1.x * 0.45},${anchorY + (p1.y - anchorY) * 0.3} ${p1.x * 0.75},${p1.y} ${p1.x},${p1.y} ` +
+      `C ${(p1.x + p2.x) / 2},${(p1.y + p2.y) / 2 + 3} ${p2.x - (p2.x - p1.x) * 0.25},${p2.y} ${p2.x},${p2.y} ` +
+      `C ${p2.x + (p3.x - p2.x) * 0.25},${p2.y} ${(p2.x + p3.x) / 2},${(p2.y + p3.y) / 2 + 3} ${p3.x},${p3.y} ` +
+      `C ${p3.x + (w - p3.x) * 0.25},${p3.y} ${w - (w - p3.x) * 0.45},${anchorY + (p3.y - anchorY) * 0.3} ${w},${anchorY}`;
+
+    wireSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    wireMain.setAttribute('d', pathD);
+
+    const shadowD = pathD.replace(/M 0,(\d+)/, `M 0,${anchorY + 2}`);
+    wireShadow.setAttribute('d', shadowD);
+
+    const highlightD = pathD.replace(/M 0,(\d+)/, `M 0,${anchorY - 0.5}`);
+    wireHighlight.setAttribute('d', highlightD);
+  }
+
+  // Update on initial render and window resize
+  setTimeout(updateHangingWire, 100);
+  window.addEventListener('resize', () => {
+    window.requestAnimationFrame(updateHangingWire);
+  }, { passive: true });
 }
 
 /**
@@ -3625,7 +3676,10 @@ function setupLearningJourneyStory() {
   const rows = Array.from(section.querySelectorAll('.learning-journey-step'));
   const mainRibbon = document.getElementById('lj-main-serpentine-path');
   const shadowRibbon = document.getElementById('lj-shadow-serpentine-path');
+  const baseRibbon = document.getElementById('lj-base-serpentine-path');
+  const highlightRibbon = document.getElementById('lj-highlight-serpentine-path');
   const dashRibbon = document.getElementById('lj-dash-serpentine-path');
+  const waypointsGroup = document.getElementById('lj-waypoints-group');
   const svg = stage ? stage.querySelector('.learning-journey-track-svg') : null;
 
   // 1. Dynamic Serpentine Path Alignment (Terminates strictly at Milestone 08)
@@ -3672,6 +3726,8 @@ function setupLearningJourneyStory() {
         }
         mainRibbon.setAttribute('d', d);
         if (shadowRibbon) shadowRibbon.setAttribute('d', d);
+        if (baseRibbon) baseRibbon.setAttribute('d', d);
+        if (highlightRibbon) highlightRibbon.setAttribute('d', d);
         if (dashRibbon) dashRibbon.setAttribute('d', d);
       }
       return;
@@ -3698,6 +3754,8 @@ function setupLearningJourneyStory() {
 
     if (stepData.length >= 2) {
       let d = `M ${stepData[0].badgeCenterX} ${stepData[0].centerY}`;
+      const bendColors = ['#8B5CF6', '#EC4899', '#F97316', '#F59E0B', '#10B981', '#3B82F6', '#9333EA'];
+      const bendPoints = [];
 
       // Connect sequentially from Step 01 to Step 08
       for (let i = 0; i < stepData.length - 1; i++) {
@@ -3711,6 +3769,7 @@ function setupLearningJourneyStory() {
           // Curve into next even card's badge on the right
           const outerRight = Math.min(width - 16, Math.max(curr.cardRight, next.badgeCenterX) + 52);
           d += ` C ${outerRight} ${curr.centerY}, ${outerRight} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
+          bendPoints.push({ x: outerRight, y: Math.round((curr.centerY + next.centerY) / 2), color: bendColors[i] || '#8B5CF6' });
         } else {
           // Even card (right): line across through the card to left edge
           d += ` L ${curr.cardLeft} ${curr.centerY}`;
@@ -3718,6 +3777,7 @@ function setupLearningJourneyStory() {
           // Curve into next odd card's badge on the left
           const outerLeft = Math.max(16, Math.min(curr.cardLeft, next.badgeCenterX) - 52);
           d += ` C ${outerLeft} ${curr.centerY}, ${outerLeft} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
+          bendPoints.push({ x: outerLeft, y: Math.round((curr.centerY + next.centerY) / 2), color: bendColors[i] || '#8B5CF6' });
         }
       }
 
@@ -3725,7 +3785,25 @@ function setupLearningJourneyStory() {
       // Absolutely no extra curve, line, or continuation extends below Milestone 08.
       mainRibbon.setAttribute('d', d);
       if (shadowRibbon) shadowRibbon.setAttribute('d', d);
+      if (baseRibbon) baseRibbon.setAttribute('d', d);
+      if (highlightRibbon) highlightRibbon.setAttribute('d', d);
       if (dashRibbon) dashRibbon.setAttribute('d', d);
+
+      // Update waypoint markers dynamically
+      if (waypointsGroup && bendPoints.length) {
+        waypointsGroup.innerHTML = '';
+        bendPoints.forEach((pt) => {
+          const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          g.setAttribute('class', 'lj-waypoint-marker');
+          g.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
+          g.innerHTML = `
+            <circle r="14" fill="${pt.color}" fill-opacity="0.22"/>
+            <circle r="8" fill="#FFFFFF" stroke="${pt.color}" stroke-width="3"/>
+            <circle r="3" fill="${pt.color}"/>
+          `;
+          waypointsGroup.appendChild(g);
+        });
+      }
     }
   }
 

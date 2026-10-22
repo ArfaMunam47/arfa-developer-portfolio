@@ -702,11 +702,7 @@ nav.floating-nav.scrolled {
 }
 
 .glow-peach {
-  top: 10%;
-  right: 5%;
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, #E77356 0%, rgba(231, 115, 86, 0) 70%);
+  display: none !important;
 }
 
 .glow-teal {
@@ -2071,8 +2067,7 @@ nav.floating-nav.scrolled {
   overflow: hidden;
   background: radial-gradient(circle at 45% 42%, #FEEFE6 0%, #FDDCD0 55%, #FCCBB8 100%);
   box-shadow: 
-    0 20px 50px -10px rgba(251, 146, 60, 0.22),
-    0 10px 25px -5px rgba(236, 72, 153, 0.12),
+    0 12px 28px -6px rgba(36, 19, 38, 0.08),
     inset 0 2px 6px rgba(255, 255, 255, 0.85);
   transition: background 0.5s ease, box-shadow 0.5s ease;
 }
@@ -2101,68 +2096,60 @@ nav.floating-nav.scrolled {
   opacity: 1;
 }
 
-/* Layer 2: Circular Outline (Default Unhovered State — Clean, Crisp & Preserved) */
+/* Layer 2: Premium Orange Circular Lighting Border (Glows vibrantly without spreading) */
 .hero-backdrop-circle-ring {
   position: absolute;
-  inset: -1.5px;
+  inset: -2px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.65);
+  border: 2.5px solid #FF951A;
+  box-shadow: 
+    0 0 1px 0.5px #FFFDF8,
+    0 0 3px 1px #FFA834,
+    0 0 6px 1px rgba(255, 115, 0, 0.7),
+    inset 0 0 1px 0.5px #FFFDF8,
+    inset 0 0 3px 1px #FFA834,
+    inset 0 0 6px 1px rgba(255, 115, 0, 0.7);
   pointer-events: none;
-  transition: border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Ambient Warm Orange Soft Lighting Halo */
+/* Ambient lighting: deactivated spreading cloud so lighting stays strictly on the border */
 .hero-backdrop-soft-glow {
-  position: absolute;
-  inset: -14%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 138, 0, 0.22) 0%, rgba(244, 114, 182, 0.12) 40%, transparent 70%);
-  filter: blur(28px);
-  opacity: 0.85;
-  pointer-events: none;
-  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease, background 0.45s ease;
+  display: none !important;
 }
 
 /* =========================================================================
-   ON CURSOR HOVER: ARCHITECTURAL NEON COVE BACKLIGHT (Exact Reference Match)
-   Clean, luminous warm amber-orange neon edge with multi-tiered radiant cove glow
+   ON CURSOR HOVER: INTENSIFIED ORANGE LIGHTING BORDER
+   Vibrant illuminated neon tube edge hugging strictly the circle border without spreading outward
    ========================================================================= */
 .hero-portrait-composition-wrap:hover .hero-backdrop-circle-ring,
 .hero-portrait-composition-wrap.is-spotlight-active .hero-backdrop-circle-ring {
-  border-color: #FFA54F;
+  border-color: #FF8500;
   box-shadow: 
-    0 0 2px #FFFFFF,
-    0 0 8px #FF8E2B,
-    0 0 18px rgba(255, 115, 25, 0.9),
-    0 0 35px rgba(255, 100, 15, 0.7),
-    0 0 65px rgba(255, 90, 10, 0.45),
-    0 0 95px rgba(255, 80, 0, 0.25),
-    inset 0 0 8px rgba(255, 140, 40, 0.8),
-    inset 0 0 24px rgba(255, 110, 20, 0.45);
+    0 0 1.5px 1px #FFFFFF,
+    0 0 4.5px 1.5px #FFA834,
+    0 0 8px 1px rgba(255, 100, 0, 0.9),
+    inset 0 0 1.5px 1px #FFFFFF,
+    inset 0 0 4.5px 1.5px #FFA834,
+    inset 0 0 8px 1px rgba(255, 100, 0, 0.9);
+  filter: none;
 }
 
 .hero-portrait-composition-wrap:hover .hero-backdrop-soft-glow,
 .hero-portrait-composition-wrap.is-spotlight-active .hero-backdrop-soft-glow {
-  opacity: 1;
-  background: radial-gradient(circle, rgba(255, 125, 30, 0.45) 0%, rgba(255, 95, 20, 0.22) 45%, transparent 72%);
-  filter: blur(32px);
-  transform: scale(1.08);
+  display: none !important;
 }
 
 .hero-portrait-composition-wrap:hover .hero-backdrop-circle-core,
 .hero-portrait-composition-wrap.is-spotlight-active .hero-backdrop-circle-core {
-  background: radial-gradient(circle at 48% 44%, #FFF6F0 0%, #FEDBCF 45%, #FCAE90 100%);
+  background: radial-gradient(circle at 48% 44%, #FFF6F0 0%, #FEDBCF 55%, #FCC7B3 100%);
   box-shadow: 
-    0 26px 65px -10px rgba(255, 90, 30, 0.32),
-    0 12px 32px -5px rgba(244, 114, 182, 0.18),
-    inset 0 0 20px rgba(255, 120, 30, 0.25),
-    inset 0 2px 8px rgba(255, 255, 255, 0.95);
+    0 12px 28px -6px rgba(36, 19, 38, 0.08),
+    inset 0 2px 6px rgba(255, 255, 255, 0.9);
 }
 
-/* Layer 3: Main Girl Portrait wearing colorful frock (port.png) */
+/* Layer 3: Main Girl Portrait wearing colorful frock (port.png) — top padding prevents collision with border */
 .hero-portrait-main-wrapper {
   position: relative;
   z-index: 2;
@@ -2171,21 +2158,26 @@ nav.floating-nav.scrolled {
   justify-content: center;
   align-items: flex-end;
   pointer-events: auto;
+  padding-top: clamp(26px, 3.5vw, 38px);
+  padding-bottom: 0;
+  box-sizing: border-box;
 }
 
 .hero-portrait-main-img {
   width: 100%;
   height: auto;
-  max-height: clamp(450px, 64vh, 540px);
+  max-height: clamp(430px, 61vh, 510px);
   object-fit: contain;
   object-position: bottom center;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
   filter: drop-shadow(0 14px 28px rgba(36, 19, 38, 0.12));
+  margin-top: 12px;
+  margin-bottom: 0;
 }
 
-/* Layer 4: Small Circular Frame displaying Untitled.jpg over front dress area */
+/* Layer 4: Small Circular Frame with border matching Munam text gradient */
 .hero-small-circle-frame {
   position: absolute;
   right: 13%;
@@ -2195,24 +2187,33 @@ nav.floating-nav.scrolled {
   height: 128px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3.5px solid #FF5A36;
+  padding: 3.5px;
+  background: linear-gradient(135deg, #FA5538 0%, #FF5A36 22%, #F43F5E 50%, #EC4899 76%, #8B5CF6 100%);
   box-shadow: 
     0 16px 36px -4px rgba(0, 0, 0, 0.32),
-    0 0 0 1px rgba(255, 90, 54, 0.4),
-    0 6px 18px rgba(255, 90, 54, 0.28);
-  background: #FFFFFF;
+    0 4px 18px rgba(244, 63, 94, 0.38);
+  box-sizing: border-box;
   pointer-events: auto;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-small-circle-frame:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 20px 42px -4px rgba(0, 0, 0, 0.36),
+    0 6px 24px rgba(244, 63, 94, 0.5);
 }
 
 .hero-small-circle-img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
   object-position: center 25%;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
+  background: #FFFFFF;
 }
 
 /* Layer 5: Top spark lines removed as requested */
@@ -2254,14 +2255,9 @@ nav.floating-nav.scrolled {
   color: #2D2926;
 }
 
-/* Layer 7: Small heart near right side */
+/* Layer 7: Small heart removed as requested */
 .hero-decor-heart {
-  position: absolute;
-  top: 40%;
-  right: 7%;
-  z-index: 3;
-  pointer-events: none;
-  transform: rotate(-10deg);
+  display: none !important;
 }
 
 /* Layer 8: Hover text removed as requested */
@@ -2293,7 +2289,8 @@ nav.floating-nav.scrolled {
     height: 112px;
     right: 12%;
     top: 65%;
-    border: 3px solid #FF5A36;
+    border: none;
+    padding: 3px;
   }
   .hero-hover-magic-note {
     display: none !important;
@@ -2321,7 +2318,8 @@ nav.floating-nav.scrolled {
     height: 92px;
     right: 11%;
     top: 63%;
-    border: 2.5px solid #FF5A36;
+    border: none;
+    padding: 2.5px;
   }
   .hero-floating-side-badge {
     padding: 0.35rem 0.7rem;
@@ -6107,6 +6105,9 @@ nav.floating-nav.scrolled {
 /* ==========================================================================
    EDITORIAL HANGING RIG & FULL-WIDTH CONTINUOUS WIRE
    ========================================================================== */
+/* ==========================================================================
+   EDITORIAL HANGING RIG & FULL-WIDTH LOOSE SUSPENDED WIRE
+   ========================================================================== */
 .cert-hanging-gallery {
   width: 100%;
   position: relative;
@@ -6114,19 +6115,22 @@ nav.floating-nav.scrolled {
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+  padding-bottom: 24px;
+  overflow: visible;
 }
 
-/* Continuous Full-Width Hanging Wire Rig occupying ~96-98% of viewport width */
+/* Continuous Loose Suspended Wire Rig across entire gallery width */
 .cert-hanging-wire-rig {
-  position: relative;
-  width: 97%;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  width: 98%;
   max-width: 98vw;
-  height: 38px;
+  height: 90px;
   margin: 0 auto;
-  z-index: 10;
+  z-index: 2; /* Sits behind orange tape (z-index: 10) and cards (z-index: 5) */
   pointer-events: none;
-  display: flex;
-  align-items: center;
 }
 
 .cert-fullwidth-wire-svg {
@@ -6136,43 +6140,43 @@ nav.floating-nav.scrolled {
   overflow: visible;
 }
 
-/* Thin, elegant, realistic multi-layer wire rendering */
+/* Thin, elegant, realistic multi-layer physical steel wire */
 .wire-shadow-stroke {
   fill: none;
-  stroke: rgba(24, 20, 35, 0.12);
-  stroke-width: 2px;
+  stroke: rgba(15, 23, 42, 0.08);
+  stroke-width: 2.2px;
   filter: blur(1.5px);
 }
 
 .wire-main-stroke {
   fill: none;
-  stroke: #8A8580;
-  stroke-width: 1.5px;
+  stroke: #64748B;
+  stroke-width: 1.4px;
   stroke-linecap: round;
 }
 
 .wire-highlight-stroke {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.85);
-  stroke-width: 0.65px;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 0.6px;
   stroke-linecap: round;
 }
 
 /* Small metallic attachment points at both wire ends */
 .wire-wall-anchor {
   position: absolute;
-  top: 6px;
+  top: 11px;
   width: 14px;
   height: 14px;
-  z-index: 12;
+  z-index: 3;
 }
 
 .wire-wall-anchor.anchor-left {
-  left: 0;
+  left: clamp(4px, 1.5vw, 18px);
 }
 
 .wire-wall-anchor.anchor-right {
-  right: 0;
+  right: clamp(4px, 1.5vw, 18px);
 }
 
 .wire-wall-anchor .anchor-plate {
@@ -6180,9 +6184,9 @@ nav.floating-nav.scrolled {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #D6D3D1 0%, #A8A29E 45%, #78716C 100%);
-  border: 1px solid rgba(68, 64, 60, 0.45);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  background: radial-gradient(circle at 35% 35%, #CBD5E1 0%, #94A3B8 50%, #64748B 100%);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .wire-wall-anchor .anchor-pin {
@@ -6193,12 +6197,16 @@ nav.floating-nav.scrolled {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #FAFAF9;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
+  background: #F8FAFC;
+  box-shadow: inset 0 1px 1px rgba(15, 23, 42, 0.4);
 }
 
 /* ==========================================================================
-   CARDS GRID & PERFECTLY ALIGNED HANGING CERTIFICATES
+   CARDS GRID & PHYSICALLY SUSPENDED HANGING CERTIFICATES
+   Cards follow the natural catenary sag of the wire:
+   - Left Card (01): Higher, natural slight counter-clockwise tilt (-1.5deg)
+   - Center Card (02): Lower (28px drop in sag trough), almost straight (+0.2deg)
+   - Right Card (03): Higher on rising wire, natural slight clockwise tilt (+1.5deg)
    ========================================================================== */
 .cert-hanging-cards-grid {
   display: flex;
@@ -6207,12 +6215,12 @@ nav.floating-nav.scrolled {
   gap: clamp(1.4rem, 3.2vw, 2.6rem);
   width: 100%;
   max-width: 1140px;
-  margin: -14px auto 0;
+  margin: 28px auto 0;
   position: relative;
   z-index: 5;
 }
 
-/* Individual Hanging Item - Perfectly Aligned */
+/* Individual Hanging Item - Physically Suspended from Top Center */
 .hanging-cert-item {
   flex: 1 1 320px;
   max-width: 350px;
@@ -6222,41 +6230,84 @@ nav.floating-nav.scrolled {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  perspective: 900px;
-  transform: none;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 1000px;
+  transform-origin: 50% 0; /* Pivot strictly at top attachment point */
   will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Symmetrical gallery baseline & top alignment */
-.cert-item-1,
-.cert-item-2,
+/* Left Certificate: Higher on wire, natural tilt */
+.cert-item-1 {
+  transform: translateY(0px) rotate(-1.5deg);
+}
+
+/* Center Certificate: Lower in the sag trough of the wire, almost straight */
+.cert-item-2 {
+  transform: translateY(28px) rotate(0.2deg);
+}
+
+/* Right Certificate: Higher on rising wire, opposite natural tilt */
 .cert-item-3 {
-  transform: none;
+  transform: translateY(0px) rotate(1.5deg);
 }
 
-/* Subtle Interactive Hover Physics: Gentle Vertical Lift */
-.hanging-cert-item:hover {
+/* Subtle Natural Pendulum Sway Physics on Hover (1-2 degrees, settles naturally) */
+@keyframes cert-sway-left {
+  0% { transform: translateY(0px) rotate(-1.5deg); }
+  25% { transform: translateY(-1px) rotate(-2.8deg); }
+  60% { transform: translateY(0px) rotate(-0.6deg); }
+  85% { transform: translateY(0px) rotate(-1.8deg); }
+  100% { transform: translateY(0px) rotate(-1.5deg); }
+}
+
+@keyframes cert-sway-center {
+  0% { transform: translateY(28px) rotate(0.2deg); }
+  25% { transform: translateY(27px) rotate(1.5deg); }
+  60% { transform: translateY(28px) rotate(-0.9deg); }
+  85% { transform: translateY(28px) rotate(0.6deg); }
+  100% { transform: translateY(28px) rotate(0.2deg); }
+}
+
+@keyframes cert-sway-right {
+  0% { transform: translateY(0px) rotate(1.5deg); }
+  25% { transform: translateY(-1px) rotate(2.8deg); }
+  60% { transform: translateY(0px) rotate(0.6deg); }
+  85% { transform: translateY(0px) rotate(1.8deg); }
+  100% { transform: translateY(0px) rotate(1.5deg); }
+}
+
+.cert-item-1:hover {
+  animation: cert-sway-left 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   z-index: 15;
-  transform: translateY(-8px);
+}
+
+.cert-item-2:hover {
+  animation: cert-sway-center 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 15;
+}
+
+.cert-item-3:hover {
+  animation: cert-sway-right 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 15;
 }
 
 /* ==========================================================================
    REALISTIC TRANSLUCENT ORANGE STATIONERY ADHESIVE TAPE
    Primary Orange: #F28C28 | Highlight Orange: #FFA447 | Shadow Orange: #D76B16
-   Translucent stationery washi tape visually connecting certificate to hanging wire
+   Physically attaches certificate to wire: wire passes behind upper half,
+   lower half grips the certificate card, with subtle wire ridge highlight
    ========================================================================== */
 .cert-orange-tape {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 24px;
-  z-index: 20;
+  width: 52px;
+  height: 28px;
+  z-index: 10; /* In front of wire (z-index: 2) and card (z-index: 5) */
   pointer-events: none;
-  filter: drop-shadow(0 2px 3px rgba(215, 107, 22, 0.28)) drop-shadow(0 1px 2px rgba(24, 20, 35, 0.12));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 2px 4px rgba(215, 95, 16, 0.28)) drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+  transition: transform 0.3s ease;
 }
 
 .cert-orange-tape .tape-surface {
@@ -6266,46 +6317,51 @@ nav.floating-nav.scrolled {
   /* Soft translucent orange stationery adhesive tape material */
   background: linear-gradient(
     175deg,
-    rgba(255, 164, 71, 0.9) 0%,
-    rgba(242, 140, 40, 0.84) 48%,
-    rgba(215, 107, 22, 0.88) 100%
+    rgba(255, 164, 71, 0.94) 0%,
+    rgba(242, 140, 40, 0.90) 48%,
+    rgba(215, 95, 16, 0.94) 100%
   );
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  /* Slightly irregular rectangular shape with soft natural stationery edges */
-  border-radius: 1px;
-  clip-path: polygon(
-    0% 2%,
-    2% 0%,
-    98% 1%,
-    100% 3%,
-    99.5% 97%,
-    98% 100%,
-    2% 99%,
-    0% 97%
-  );
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
-  border-bottom: 1px solid rgba(215, 107, 22, 0.45);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(180, 70, 10, 0.35);
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.55),
-    inset 0 -1px 2px rgba(180, 80, 10, 0.35);
+    inset 0 -1px 2px rgba(180, 70, 10, 0.35);
   position: relative;
+}
+
+/* Wire pressing ridge highlight across middle of tape where wire runs behind */
+.cert-orange-tape .tape-surface::before {
+  content: '';
+  position: absolute;
+  top: 13px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  box-shadow: 0 1px 2px rgba(180, 70, 10, 0.4);
+  pointer-events: none;
 }
 
 /* Subtle realistic adhesive sheen across tape surface */
 .cert-orange-tape .tape-surface::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     115deg,
     transparent 20%,
-    rgba(255, 255, 255, 0.35) 42%,
-    rgba(255, 255, 255, 0.12) 54%,
-    transparent 72%
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(255, 255, 255, 0.1) 58%,
+    transparent 75%
   );
   pointer-events: none;
 }
@@ -6420,17 +6476,22 @@ nav.floating-nav.scrolled {
   }
   
   .cert-hanging-wire-rig {
-    display: none;
+    display: none !important;
   }
   
-  .hanging-cert-item {
+  .hanging-cert-item,
+  .cert-item-1,
+  .cert-item-2,
+  .cert-item-3 {
     width: 100%;
     max-width: 380px;
     transform: none !important;
+    animation: none !important;
   }
 
   .hanging-cert-item:hover {
     transform: translateY(-6px) !important;
+    animation: none !important;
   }
 
   .cert-orange-tape {
@@ -6441,6 +6502,17 @@ nav.floating-nav.scrolled {
     min-height: auto;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .hanging-cert-item,
+  .hanging-cert-item:hover,
+  .cert-item-1,
+  .cert-item-2,
+  .cert-item-3 {
+    animation: none !important;
+  }
+}
+
 
 @media (max-width: 480px) {
   .hanging-cert-card {
@@ -6734,15 +6806,28 @@ nav.floating-nav.scrolled {
 }
 
 .learning-journey-path-shadow {
-  filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.08));
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.08));
+}
+
+.learning-journey-path-base {
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.08));
 }
 
 .learning-journey-path-main {
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.06));
+}
+
+.learning-journey-path-highlight {
+  pointer-events: none;
+}
+
+.learning-journey-path-dash {
+  pointer-events: none;
 }
 
 .lj-waypoint-marker {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.08));
 }
 
 /* Individual Milestone Row */
@@ -6751,8 +6836,8 @@ nav.floating-nav.scrolled {
   width: 100%;
   display: flex;
   align-items: center;
-  min-height: 140px;
-  height: 140px;
+  min-height: 144px;
+  height: 144px;
   z-index: 2;
   box-sizing: border-box;
 }
@@ -6773,17 +6858,31 @@ nav.floating-nav.scrolled {
   z-index: 3;
   display: flex;
   align-items: center;
-  width: min(72%, 700px);
+  width: min(68%, 680px);
   background: #FFFFFF;
   border-radius: 9999px;
-  padding: clamp(1rem, 1.6vw, 1.35rem) clamp(1.4rem, 2vw, 1.85rem);
+  padding: clamp(1.05rem, 1.5vw, 1.3rem) clamp(1.35rem, 2vw, 1.85rem);
   box-sizing: border-box;
-  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.95);
   box-shadow: 
-    0 10px 28px -4px rgba(15, 23, 42, 0.05),
-    0 2px 6px rgba(15, 23, 42, 0.02),
-    0 0 0 1px rgba(255, 255, 255, 0.9);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    0 12px 32px -4px rgba(15, 23, 42, 0.06),
+    0 4px 12px rgba(15, 23, 42, 0.03),
+    0 0 0 1px rgba(226, 232, 240, 0.7);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Track cradle backing glow */
+.learning-journey-card-pill::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--step-accent) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.16;
+  z-index: -1;
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.35s ease, filter 0.35s ease;
 }
 
 .learning-journey-step.step-odd .learning-journey-card-pill {
@@ -6799,12 +6898,17 @@ nav.floating-nav.scrolled {
 }
 
 .learning-journey-card-pill:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: var(--step-accent, #06B6D4);
   box-shadow: 
-    0 16px 36px -4px var(--step-glow, rgba(6, 182, 212, 0.28)),
-    0 4px 12px rgba(15, 23, 42, 0.05),
+    0 20px 42px -6px var(--step-glow, rgba(6, 182, 212, 0.32)),
+    0 6px 16px rgba(15, 23, 42, 0.06),
     0 0 0 1.5px var(--step-accent, #06B6D4);
+}
+
+.learning-journey-card-pill:hover::before {
+  opacity: 0.32;
+  filter: blur(12px);
 }
 
 /* --------------------------------------------------------------------------
@@ -6812,31 +6916,31 @@ nav.floating-nav.scrolled {
    -------------------------------------------------------------------------- */
 .learning-journey-icon-badge {
   flex-shrink: 0;
-  width: 76px;
-  height: 76px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, var(--step-soft-bg, rgba(6, 182, 212, 0.08)) 70%, #F1F5F9 100%);
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #F8FAFC 55%, #E2E8F0 100%);
   border: 3.5px solid var(--step-accent, #06B6D4);
   box-shadow: 
-    0 8px 20px -2px var(--step-glow, rgba(6, 182, 212, 0.3)),
-    0 2px 6px rgba(15, 23, 42, 0.08),
-    inset 0 3px 4px rgba(255, 255, 255, 0.95),
-    inset 0 -2px 4px rgba(15, 23, 42, 0.05);
+    0 10px 24px -2px var(--step-glow, rgba(6, 182, 212, 0.32)),
+    0 3px 8px rgba(15, 23, 42, 0.08),
+    inset 0 3px 5px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 5px rgba(15, 23, 42, 0.06);
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
   user-select: none;
 }
 
 .learning-journey-card-pill:hover .learning-journey-icon-badge {
-  transform: scale(1.05);
+  transform: scale(1.06);
   box-shadow: 
-    0 12px 26px -2px var(--step-glow, rgba(6, 182, 212, 0.4)),
-    0 4px 10px rgba(15, 23, 42, 0.1),
-    inset 0 3px 4px rgba(255, 255, 255, 0.95);
+    0 14px 30px -2px var(--step-glow, rgba(6, 182, 212, 0.45)),
+    0 6px 14px rgba(15, 23, 42, 0.12),
+    inset 0 3px 5px rgba(255, 255, 255, 0.95);
 }
 
 .icon-disc-surface {
@@ -6856,17 +6960,35 @@ nav.floating-nav.scrolled {
   border-radius: 50%;
   background: #FFFFFF;
   border: 3.5px solid var(--step-accent, #06B6D4);
-  box-shadow: 0 0 10px var(--step-accent, #06B6D4), 0 0 16px var(--step-glow, rgba(6, 182, 212, 0.4));
+  box-shadow: 
+    0 0 0 4px rgba(255, 255, 255, 0.85),
+    0 0 12px var(--step-accent, #06B6D4),
+    0 0 22px var(--step-glow, rgba(6, 182, 212, 0.5));
   z-index: 6;
   pointer-events: none;
 }
 
+.learning-journey-node-pin::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--step-accent, #06B6D4);
+  opacity: 0.22;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
 .learning-journey-node-pin.pin-left {
-  left: -7px;
+  left: -8px;
 }
 
 .learning-journey-node-pin.pin-right {
-  right: -7px;
+  right: -8px;
 }
 
 /* --------------------------------------------------------------------------
@@ -6896,7 +7018,7 @@ nav.floating-nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .card-step-num {
@@ -6911,7 +7033,7 @@ nav.floating-nav.scrolled {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.22rem 0.65rem;
+  padding: 0.25rem 0.7rem;
   border-radius: 9999px;
   font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
   font-size: 0.68rem;
@@ -6923,20 +7045,26 @@ nav.floating-nav.scrolled {
 
 .card-status-badge.status-completed {
   background: #ECFDF5;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   color: #059669;
 }
 
 .card-status-badge.status-progress {
-  background: #FFFBEB;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: #D97706;
+  background: #FFF7ED;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  color: #EA580C;
 }
 
 .card-status-badge.status-planned {
   background: #EFF6FF;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   color: #2563EB;
+}
+
+.step-08 .card-status-badge.status-planned {
+  background: #FAF5FF;
+  border: 1px solid rgba(147, 51, 234, 0.35);
+  color: #9333EA;
 }
 
 .card-title {
@@ -6944,7 +7072,7 @@ nav.floating-nav.scrolled {
   font-size: clamp(1.08rem, 1.35vw, 1.25rem);
   font-weight: 800;
   color: #0F172A;
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.25rem;
   letter-spacing: -0.015em;
 }
 
@@ -6952,7 +7080,7 @@ nav.floating-nav.scrolled {
   font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(0.82rem, 0.94vw, 0.9rem);
   color: #64748B;
-  line-height: 1.45;
+  line-height: 1.48;
   margin: 0 0 0.55rem;
   max-width: 500px;
 }
@@ -6993,29 +7121,29 @@ nav.floating-nav.scrolled {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(100px, 13vw, 130px);
-  height: 65px;
+  width: clamp(110px, 13vw, 136px);
+  height: 68px;
   pointer-events: none;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .learning-journey-decor-shape.decor-right {
-  right: clamp(12px, 3.5%, 36px);
+  right: clamp(16px, 4%, 48px);
 }
 
 .learning-journey-decor-shape.decor-left {
-  left: clamp(12px, 3.5%, 36px);
+  left: clamp(16px, 4%, 48px);
 }
 
 .learning-journey-decor-shape svg {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 4px 10px rgba(15, 23, 42, 0.04));
+  filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.06));
 }
 
 /* --------------------------------------------------------------------------
@@ -7030,17 +7158,20 @@ nav.floating-nav.scrolled {
 }
 
 .learning-journey-bottom-motif .motif-line {
-  width: 48px;
+  width: 56px;
   height: 2px;
   background: #FA5538;
-  opacity: 0.8;
+  opacity: 0.75;
   border-radius: 2px;
 }
 
-.learning-journey-bottom-motif .motif-dot {
-  font-size: 1.1rem;
-  color: #FA5538;
-  line-height: 1;
+.learning-journey-bottom-motif .motif-ring {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #FA5538;
+  background: #FFFDF9;
+  box-sizing: border-box;
 }
 
 /* --------------------------------------------------------------------------
