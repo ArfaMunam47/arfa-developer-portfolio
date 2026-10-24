@@ -2066,10 +2066,8 @@ nav.floating-nav.scrolled {
   border-radius: 50%;
   overflow: hidden;
   background: radial-gradient(circle at 45% 42%, #FEEFE6 0%, #FDDCD0 55%, #FCCBB8 100%);
-  box-shadow: 
-    0 12px 28px -6px rgba(36, 19, 38, 0.08),
-    inset 0 2px 6px rgba(255, 255, 255, 0.85);
-  transition: background 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 12px 28px -6px rgba(36, 19, 38, 0.08);
+  transition: background 0.5s ease;
 }
 
 /* Living Spotlight interactive illumination layer (strictly clipped within circle) */
@@ -2096,22 +2094,15 @@ nav.floating-nav.scrolled {
   opacity: 1;
 }
 
-/* Layer 2: Premium Orange Circular Lighting Border (Glows vibrantly without spreading) */
+/* Layer 2: Circular Outline (Default Unhovered State: Clean subtle white ring, NO orange border without cursor) */
 .hero-backdrop-circle-ring {
   position: absolute;
-  inset: -2px;
+  inset: -1.5px;
   border-radius: 50%;
-  border: 2.5px solid #FF951A;
-  box-shadow: 
-    0 0 1px 0.5px #FFFDF8,
-    0 0 3px 1px #FFA834,
-    0 0 6px 1px rgba(255, 115, 0, 0.7),
-    inset 0 0 1px 0.5px #FFFDF8,
-    inset 0 0 3px 1px #FFA834,
-    inset 0 0 6px 1px rgba(255, 115, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
   pointer-events: none;
-  transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Ambient lighting: deactivated spreading cloud so lighting stays strictly on the border */
@@ -2120,19 +2111,16 @@ nav.floating-nav.scrolled {
 }
 
 /* =========================================================================
-   ON CURSOR HOVER: INTENSIFIED ORANGE LIGHTING BORDER
-   Vibrant illuminated neon tube edge hugging strictly the circle border without spreading outward
+   ON CURSOR HOVER: ORANGE LIGHTING BORDER
+   Vibrant glowing orange lighting border that stays rich and never collapses into a line
    ========================================================================= */
 .hero-portrait-composition-wrap:hover .hero-backdrop-circle-ring,
 .hero-portrait-composition-wrap.is-spotlight-active .hero-backdrop-circle-ring {
-  border-color: #FF8500;
+  border-color: #FFA52E;
   box-shadow: 
-    0 0 1.5px 1px #FFFFFF,
-    0 0 4.5px 1.5px #FFA834,
-    0 0 8px 1px rgba(255, 100, 0, 0.9),
-    inset 0 0 1.5px 1px #FFFFFF,
-    inset 0 0 4.5px 1.5px #FFA834,
-    inset 0 0 8px 1px rgba(255, 100, 0, 0.9);
+    0 0 4px 2px #FFA834,
+    0 0 16px 4px #FF7500,
+    0 0 28px 6px rgba(255, 110, 0, 0.55);
   filter: none;
 }
 
@@ -2144,12 +2132,10 @@ nav.floating-nav.scrolled {
 .hero-portrait-composition-wrap:hover .hero-backdrop-circle-core,
 .hero-portrait-composition-wrap.is-spotlight-active .hero-backdrop-circle-core {
   background: radial-gradient(circle at 48% 44%, #FFF6F0 0%, #FEDBCF 55%, #FCC7B3 100%);
-  box-shadow: 
-    0 12px 28px -6px rgba(36, 19, 38, 0.08),
-    inset 0 2px 6px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px -6px rgba(36, 19, 38, 0.08);
 }
 
-/* Layer 3: Main Girl Portrait wearing colorful frock (port.png) — top padding prevents collision with border */
+/* Layer 3: Main Girl Portrait wearing colorful frock (port.png) — shifted right for text clearance */
 .hero-portrait-main-wrapper {
   position: relative;
   z-index: 2;
@@ -2158,7 +2144,7 @@ nav.floating-nav.scrolled {
   justify-content: center;
   align-items: flex-end;
   pointer-events: auto;
-  padding-top: clamp(26px, 3.5vw, 38px);
+  padding-top: clamp(20px, 2.8vw, 30px);
   padding-bottom: 0;
   box-sizing: border-box;
 }
@@ -2166,21 +2152,22 @@ nav.floating-nav.scrolled {
 .hero-portrait-main-img {
   width: 100%;
   height: auto;
-  max-height: clamp(430px, 61vh, 510px);
+  max-height: clamp(435px, 62vh, 520px);
   object-fit: contain;
   object-position: bottom center;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
   filter: drop-shadow(0 14px 28px rgba(36, 19, 38, 0.12));
-  margin-top: 12px;
+  margin-top: 6px;
   margin-bottom: 0;
+  transform: translateX(30px);
 }
 
-/* Layer 4: Small Circular Frame with border matching Munam text gradient */
+/* Layer 4: Small Circular Frame with border matching Munam text gradient — shifted right with portrait */
 .hero-small-circle-frame {
   position: absolute;
-  right: 13%;
+  right: 6%;
   top: 67%;
   z-index: 4;
   width: 128px;
@@ -2216,43 +2203,77 @@ nav.floating-nav.scrolled {
   background: #FFFFFF;
 }
 
-/* Layer 5: Top spark lines removed as requested */
-.hero-decor-sparks-top {
-  display: none !important;
-}
-
-/* Layer 6: Floating Side Badge ("A different side of me ♡") */
-.hero-floating-side-badge {
+/* Layer 5: Cursor-Activated Creative Message Group (Left side inside the circle, revealed on hover) */
+.hero-hover-creative-group {
   position: absolute;
-  top: 9%;
-  right: -2%;
-  z-index: 4;
+  left: calc(50% - clamp(330px, 34vw, 430px) / 2 + 18px);
+  top: 36%;
+  z-index: 5;
   pointer-events: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.42rem 0.85rem;
-  background: rgba(255, 245, 240, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 9999px;
-  box-shadow: 0 6px 20px rgba(255, 120, 80, 0.12);
-}
-
-.hero-floating-side-badge .side-badge-star {
-  color: #FF5A36;
-  flex-shrink: 0;
-}
-
-.hero-floating-side-badge .side-badge-text {
+  user-select: none;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 140px;
+}
+
+.hero-portrait-composition-wrap:hover .hero-hover-creative-group,
+.hero-portrait-composition-wrap.is-spotlight-active .hero-hover-creative-group {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.creative-script-headline {
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(1.4rem, 1.9vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #FF6A00;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.015em;
+  filter: drop-shadow(0 1px 2px rgba(255, 106, 0, 0.22));
+}
+
+.creative-script-headline .script-line-1 {
+  display: block;
+}
+
+.creative-script-headline .script-line-2 {
+  display: block;
+  margin-left: 0.15rem;
+}
+
+.creative-supporting-sub {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.76rem;
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
   font-weight: 600;
+  color: #342823;
+  margin: 5px 0 0 0;
   line-height: 1.25;
-  color: #2D2926;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.creative-sparkle-symbol {
+  margin-top: 5px;
+  display: inline-flex;
+  align-items: center;
+  filter: drop-shadow(0 0 4px rgba(255, 122, 26, 0.65));
+  animation: sparkle-subtle-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes sparkle-subtle-glow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Layer 6: Floating Side Badge ("A different side of me ♡") - Completely removed as requested */
+.hero-floating-side-badge {
+  display: none !important;
 }
 
 /* Layer 7: Small heart removed as requested */
@@ -2271,7 +2292,7 @@ nav.floating-nav.scrolled {
     right: -4%;
   }
   .hero-floating-side-badge {
-    right: 0%;
+    display: none !important;
   }
 }
 
@@ -2283,6 +2304,10 @@ nav.floating-nav.scrolled {
   .hero-portrait-circle-backdrop {
     width: 320px;
     height: 320px;
+  }
+  .hero-hover-creative-group {
+    left: calc(50% - 160px + 14px);
+    top: 34%;
   }
   .hero-small-circle-frame {
     width: 112px;
@@ -2296,8 +2321,7 @@ nav.floating-nav.scrolled {
     display: none !important;
   }
   .hero-floating-side-badge {
-    top: 6%;
-    right: 2%;
+    display: none !important;
   }
 }
 
@@ -2309,6 +2333,17 @@ nav.floating-nav.scrolled {
   .hero-portrait-circle-backdrop {
     width: 270px;
     height: 270px;
+  }
+  .hero-hover-creative-group {
+    left: calc(50% - 135px + 10px);
+    top: 32%;
+    max-width: 115px;
+  }
+  .creative-script-headline {
+    font-size: 1.25rem;
+  }
+  .creative-supporting-sub {
+    font-size: 0.65rem;
   }
   .hero-portrait-main-img {
     max-height: 360px;
@@ -2322,10 +2357,7 @@ nav.floating-nav.scrolled {
     padding: 2.5px;
   }
   .hero-floating-side-badge {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.7rem;
-    top: 4%;
-    right: 2%;
+    display: none !important;
   }
   .hero-hover-magic-note {
     display: none !important;
