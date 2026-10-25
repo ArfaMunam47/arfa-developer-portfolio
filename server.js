@@ -9,7 +9,8 @@ const app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
-// Serve static assets with no-cache for HTML, CSS, JS to ensure browser immediately reflects updates
+// Serve static assets from both public directory and root directory
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname, {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html') || filePath.endsWith('.css') || filePath.endsWith('.js')) {
