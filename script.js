@@ -1031,7 +1031,7 @@ function setupProjectsShowcase() {
 
   if (!track) return;
 
-  // Authentic 5 Projects Data with User's Uploaded Screenshots
+  // Authentic 5 Projects Data with Verified Screenshots and Links
   const projects = [
     {
       id: "prism",
@@ -1045,7 +1045,8 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
       codeUrl: "https://github.com/ArfaMunam47/prism-one-3d",
       accent: "#8B5CF6",
-      image: "Prism.jpeg"
+      image: "Prism.jpeg",
+      browserUrl: "prism.dev"
     },
     {
       id: "studypilot",
@@ -1059,7 +1060,8 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
       accent: "#6366F1",
-      image: "studypilot.png"
+      image: "studypilot.png",
+      browserUrl: "studypilotai.dev"
     },
     {
       id: "velora",
@@ -1073,7 +1075,8 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
       codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
       accent: "#FA5538",
-      image: "veloraa.png"
+      image: "veloraa.png",
+      browserUrl: "velorastore.dev"
     },
     {
       id: "kumo",
@@ -1087,7 +1090,8 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       codeUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
       accent: "#F59E0B",
-      image: "kumo.png"
+      image: "kumo.png",
+      browserUrl: "kumoramen.jp"
     },
     {
       id: "pastelform",
@@ -1101,38 +1105,37 @@ function setupProjectsShowcase() {
       liveUrl: "https://github.com/ArfaMunam47/pastelform",
       codeUrl: "https://github.com/ArfaMunam47/pastelform",
       accent: "#EC4899",
-      image: "pastel.png"
+      image: "pastel.png",
+      browserUrl: "pastelform.dev"
     }
   ];
 
   const totalCount = projects.length;
   if (counterTotal) counterTotal.textContent = String(totalCount).padStart(2, '0');
 
+  // Spotlight bar references
+  const spotlightNum = document.getElementById('spotlight-proj-num');
+  const spotlightTitle = document.getElementById('spotlight-proj-title');
+  const spotlightCat = document.getElementById('spotlight-proj-cat');
+  const spotlightDesc = document.getElementById('spotlight-proj-desc');
+  const spotlightExploreBtn = document.getElementById('spotlight-explore-btn');
+
   let activeIndex = 0;
-  let isAnimating = false;
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragCurrentX = 0;
-  let dragHasMoved = false;
-
-  // Build the 5 cards into DOM once with clean unified structure
   track.innerHTML = '';
-  const cardElements = [];
 
-  projects.forEach((proj, idx) => {
+  // Create the 5 Curved Cylindrical Project Cards
+  const cardElements = projects.map((proj, idx) => {
     const card = document.createElement('article');
-    card.className = `cinematic-project-card proj-card-${proj.id}`;
+    card.className = `curved-gallery-card proj-card-${proj.id}`;
     card.setAttribute('data-index', idx);
-    card.setAttribute('data-project', proj.id);
-    card.setAttribute('data-accent', proj.accent);
-    card.style.setProperty('--card-accent', proj.accent);
-    card.setAttribute('role', 'group');
+    card.setAttribute('data-project', proj.key);
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-roledescription', 'slide');
-    card.setAttribute('aria-label', `${proj.number} of ${totalCount}: ${proj.title}`);
+    card.setAttribute('role', 'group');
+    card.setAttribute('aria-label', `${proj.title} project showcase`);
+    card.style.setProperty('--card-accent', proj.accent);
 
     card.innerHTML = `
-      <!-- TOP: Clean Horizontal Project Header (01 Prism) -->
+      <!-- Card Window Bar: Project identity & Number -->
       <div class="card-window-bar">
         <div class="card-project-identity">
           <span class="card-project-num">${proj.number}</span>
@@ -1141,7 +1144,7 @@ function setupProjectsShowcase() {
         <span class="card-category-pill">${proj.category}</span>
       </div>
 
-      <!-- MAIN HERO: Contained Framed Device Mockup Inset -->
+      <!-- Inset Browser Mockup Canvas -->
       <div class="card-preview-viewport">
         <div class="mockup-project-image-wrap">
           <div class="mockup-frame-bar" aria-hidden="true">
@@ -1151,434 +1154,299 @@ function setupProjectsShowcase() {
               <span class="f-dot dot-green"></span>
             </div>
             <div class="frame-browser-address">
-              <span class="frame-secure-icon">🔒</span>
-              <span class="frame-browser-url">${proj.title.toLowerCase().replace(/\s+/g, '')}.dev</span>
+              <span class="lock-icon">🔒</span>
+              <span class="address-url">${proj.browserUrl}</span>
             </div>
-            <div class="frame-bar-spacer"></div>
           </div>
-          <div class="mockup-frame-canvas">
+          <div class="mockup-img-surface">
             <img 
               src="${proj.image}" 
-              alt="${proj.title} — Authentic Project Screenshot" 
-              class="project-screenshot-img" 
-              loading="lazy" 
+              alt="${proj.title} production interface" 
+              class="card-screenshot-img" 
+              loading="eager"
+              onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/${proj.image}';}"
             />
           </div>
         </div>
-        <div class="card-flank-cue" aria-hidden="true">
-          <span>Click to View</span>
-        </div>
       </div>
 
-      <!-- BOTTOM: Clean Compact Action Buttons -->
+      <!-- Card Action Footer -->
       <div class="card-actions-bar">
-        <button type="button" class="btn-card-explore tactile-btn" data-project-key="${proj.key}">
+        <button type="button" class="btn-card-explore tactile-btn" data-project="${proj.key}" aria-label="Explore ${proj.title} case study">
           <span>Explore Project</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+          <span class="btn-icon-arrow" aria-hidden="true">↗</span>
         </button>
-
-        <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-secondary tactile-btn" aria-label="${proj.title} Live Demo">
+        <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-demo tactile-btn" aria-label="View ${proj.title} live demo">
           <span>Live Demo</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+          <span class="btn-icon-arrow" aria-hidden="true">↗</span>
         </a>
+        <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-github tactile-btn" aria-label="View ${proj.title} source code on GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
 
-        <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-secondary btn-card-github tactile-btn" aria-label="${proj.title} GitHub Repository">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          <span class="btn-text-github">GitHub</span>
-        </a>
+      <!-- Subtle Side Hover Cue -->
+      <div class="card-flank-cue" aria-hidden="true">
+        <span>Click to Focus ✦</span>
       </div>
     `;
 
-    // Click handler for card
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;
-
-      const exploreBtn = e.target.closest('.btn-card-explore');
-      if (exploreBtn) {
-        e.preventDefault();
+    // Wire explore button inside card
+    const exploreBtn = card.querySelector('.btn-card-explore');
+    if (exploreBtn) {
+      exploreBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const pKey = exploreBtn.getAttribute('data-project-key');
         if (typeof window.openProjectModal === 'function') {
-          window.openProjectModal(pKey);
-        } else {
-          const tabBtn = document.querySelector(`#fullpage-nav-tabs [data-project="${pKey}"]`);
-          if (tabBtn) tabBtn.click();
+          window.openProjectModal(proj.key);
         }
-        return;
-      }
+      });
+    }
 
-      if (idx !== activeIndex && !isAnimating && !dragHasMoved) {
+    // Card click behavior:
+    // If side card, smooth glide to center; if center card, open modal
+    card.addEventListener('click', (e) => {
+      if (isDragging) return;
+      if (idx !== activeIndex) {
         e.preventDefault();
-        switchProject(idx);
-      } else if (idx === activeIndex && !dragHasMoved) {
-        // Clicking the active center card opens the detailed project modal
-        if (typeof window.openProjectModal === 'function') {
+        goToProject(idx);
+      }
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (idx !== activeIndex) {
+          goToProject(idx);
+        } else if (typeof window.openProjectModal === 'function') {
           window.openProjectModal(proj.key);
         }
       }
     });
 
-    // Keyboard navigation on individual card
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        if (idx !== activeIndex) {
-          e.preventDefault();
-          switchProject(idx);
-        } else {
-          if (typeof window.openProjectModal === 'function') {
-            e.preventDefault();
-            window.openProjectModal(proj.key);
-          }
-        }
-      }
-    });
-
-    // Desktop cursor hover 3D tilt on active center card
-    card.addEventListener('mousemove', (e) => {
-      if (idx !== activeIndex || isDragging || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-      const rect = card.getBoundingClientRect();
-      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-      const tiltX = -normY * 4.5;
-      const tiltY = normX * 4.5;
-      card.style.transform = `translate3d(0, 0, 100px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale(1)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (idx === activeIndex) {
-        card.style.transform = 'translate3d(0, 0, 95px) rotateX(0deg) rotateY(0deg) scale(1)';
-      }
-    });
-
     track.appendChild(card);
-    cardElements.push(card);
+    return card;
   });
 
-  // Responsive Carousel Geometry Provider for Symmetrical 5-Card Layout with Distinct Separation
-  function getCarouselGeometry() {
-    const w = window.innerWidth;
-    if (w <= 480) {
-      return {
-        nearX: Math.min(w * 0.40, 140),
-        farX: Math.min(w * 0.72, 240),
-        scaleCenter: 1.0,
-        scaleNear: 0.81,
-        scaleFar: 0.63,
-        rotNear: 6,
-        rotFar: 12,
-        nearZ: -30,
-        farZ: -95
-      };
-    }
-    if (w <= 768) {
-      return {
-        nearX: Math.min(w * 0.38, 195),
-        farX: Math.min(w * 0.68, 330),
-        scaleCenter: 1.0,
-        scaleNear: 0.83,
-        scaleFar: 0.67,
-        rotNear: 8,
-        rotFar: 15,
-        nearZ: -35,
-        farZ: -105
-      };
-    }
-    if (w <= 1080) {
-      return {
-        nearX: 270,
-        farX: 480,
-        scaleCenter: 1.0,
-        scaleNear: 0.85,
-        scaleFar: 0.71,
-        rotNear: 10,
-        rotFar: 18,
-        nearZ: -35,
-        farZ: -115
-      };
-    }
-    if (w <= 1380) {
-      return {
-        nearX: 335,
-        farX: 580,
-        scaleCenter: 1.0,
-        scaleNear: 0.86,
-        scaleFar: 0.73,
-        rotNear: 12,
-        rotFar: 20,
-        nearZ: -35,
-        farZ: -120
-      };
-    }
-    // Large Desktop screens (> 1380px): Generous separation so 3 cards don't visually clump
-    return {
-      nearX: 380,
-      farX: 670,
-      scaleCenter: 1.0,
-      scaleNear: 0.87,
-      scaleFar: 0.74,
-      rotNear: 13,
-      rotFar: 22,
-      nearZ: -30,
-      farZ: -115
-    };
-  }
+  // Calculate and apply 3D curved cylinder transforms
+  function updateGalleryPositions() {
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
 
-  function updateGallery(newIndex, immediate = false) {
-    activeIndex = ((newIndex % totalCount) + totalCount) % totalCount;
-    isAnimating = true;
-
-    const geo = getCarouselGeometry();
-    const isMobile = window.innerWidth <= 768;
-
-    projects.forEach((_, i) => {
-      const card = cardElements[i];
-      if (immediate) {
-        card.style.transition = 'none';
-      } else {
-        card.style.transition = '';
-      }
-
-      // Compute relative distance in circular 5-slot space: [-2, -1, 0, 1, 2]
-      let diff = (i - activeIndex) % totalCount;
+    cardElements.forEach((card, idx) => {
+      // Calculate wrapped shortest relative distance to activeIndex (-2, -1, 0, 1, 2)
+      let diff = idx - activeIndex;
       if (diff > 2) diff -= totalCount;
       if (diff < -2) diff += totalCount;
 
-      card.classList.remove('is-active', 'is-near-left', 'is-near-right', 'is-far-left', 'is-far-right', 'is-left', 'is-right', 'is-hidden');
+      card.classList.remove('is-active', 'is-near-left', 'is-near-right', 'is-far-left', 'is-far-right', 'is-hidden');
+
+      let translateX = 0;
+      let translateZ = 0;
+      let rotateY = 0;
+      let scale = 1;
+      let opacity = 1;
+      let zIndex = 10;
+      let blur = 0;
 
       if (diff === 0) {
-        // Prominent Center Card
+        // Active Center Card (Facing forward, elevated, sharp focus)
         card.classList.add('is-active');
-        card.setAttribute('aria-hidden', 'false');
-        card.setAttribute('tabindex', '0');
-        card.style.transform = `translate3d(0, 0, 95px) rotateY(0deg) scale(${geo.scaleCenter})`;
-        card.style.opacity = '1';
-        card.style.filter = 'blur(0px)';
-        card.style.zIndex = '25';
-        card.style.pointerEvents = 'auto';
+        translateX = 0;
+        translateZ = isMobile ? 30 : 75;
+        rotateY = 0;
+        scale = isMobile ? 1.02 : 1.04;
+        opacity = 1;
+        zIndex = 25;
+        blur = 0;
       } else if (diff === -1) {
-        // Symmetrical Near Left Card
-        card.classList.add('is-near-left', 'is-left');
-        card.setAttribute('aria-hidden', 'false');
-        card.setAttribute('tabindex', '0');
-        card.style.transform = `translate3d(-${geo.nearX}px, 0, ${geo.nearZ}px) rotateY(${geo.rotNear}deg) scale(${geo.scaleNear})`;
-        card.style.opacity = isMobile ? '0.75' : '0.92';
-        card.style.filter = 'blur(0px)';
-        card.style.zIndex = '18';
-        card.style.pointerEvents = 'auto';
+        // Immediate Left (Curving away)
+        card.classList.add('is-near-left');
+        const offset = isMobile ? -230 : (isTablet ? -320 : -390);
+        translateX = offset;
+        translateZ = isMobile ? -15 : -35;
+        rotateY = 16;
+        scale = isMobile ? 0.86 : 0.89;
+        opacity = 0.92;
+        zIndex = 18;
+        blur = 0;
       } else if (diff === 1) {
-        // Symmetrical Near Right Card
-        card.classList.add('is-near-right', 'is-right');
-        card.setAttribute('aria-hidden', 'false');
-        card.setAttribute('tabindex', '0');
-        card.style.transform = `translate3d(${geo.nearX}px, 0, ${geo.nearZ}px) rotateY(-${geo.rotNear}deg) scale(${geo.scaleNear})`;
-        card.style.opacity = isMobile ? '0.75' : '0.92';
-        card.style.filter = 'blur(0px)';
-        card.style.zIndex = '18';
-        card.style.pointerEvents = 'auto';
+        // Immediate Right (Curving away)
+        card.classList.add('is-near-right');
+        const offset = isMobile ? 230 : (isTablet ? 320 : 390);
+        translateX = offset;
+        translateZ = isMobile ? -15 : -35;
+        rotateY = -16;
+        scale = isMobile ? 0.86 : 0.89;
+        opacity = 0.92;
+        zIndex = 18;
+        blur = 0;
       } else if (diff === -2) {
-        // Symmetrical Far Left Card
-        card.classList.add('is-far-left', 'is-left');
-        card.setAttribute('aria-hidden', isMobile ? 'true' : 'false');
-        card.setAttribute('tabindex', isMobile ? '-1' : '0');
-        card.style.transform = `translate3d(-${geo.farX}px, 0, ${geo.farZ}px) rotateY(${geo.rotFar}deg) scale(${geo.scaleFar})`;
-        card.style.opacity = isMobile ? '0' : '0.74';
-        card.style.filter = isMobile ? 'blur(2px)' : 'blur(0.4px)';
-        card.style.zIndex = '10';
-        card.style.pointerEvents = isMobile ? 'none' : 'auto';
+        // Far Left
+        card.classList.add('is-far-left');
+        const offset = isMobile ? -420 : (isTablet ? -580 : -720);
+        translateX = offset;
+        translateZ = isMobile ? -70 : -130;
+        rotateY = 28;
+        scale = isMobile ? 0.72 : 0.76;
+        opacity = 0.65;
+        zIndex = 10;
+        blur = 0.4;
       } else if (diff === 2) {
-        // Symmetrical Far Right Card
-        card.classList.add('is-far-right', 'is-right');
-        card.setAttribute('aria-hidden', isMobile ? 'true' : 'false');
-        card.setAttribute('tabindex', isMobile ? '-1' : '0');
-        card.style.transform = `translate3d(${geo.farX}px, 0, ${geo.farZ}px) rotateY(-${geo.rotFar}deg) scale(${geo.scaleFar})`;
-        card.style.opacity = isMobile ? '0' : '0.74';
-        card.style.filter = isMobile ? 'blur(2px)' : 'blur(0.4px)';
-        card.style.zIndex = '10';
-        card.style.pointerEvents = isMobile ? 'none' : 'auto';
+        // Far Right
+        card.classList.add('is-far-right');
+        const offset = isMobile ? 420 : (isTablet ? 580 : 720);
+        translateX = offset;
+        translateZ = isMobile ? -70 : -130;
+        rotateY = -28;
+        scale = isMobile ? 0.72 : 0.76;
+        opacity = 0.65;
+        zIndex = 10;
+        blur = 0.4;
+      } else {
+        card.classList.add('is-hidden');
+        opacity = 0;
+        zIndex = 1;
       }
+
+      card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.zIndex = zIndex;
+      card.style.opacity = opacity;
+      card.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
     });
 
+    // Update Counter & Indicator Capsule
     if (counterCurr) counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
-
-    // Synchronize bottom pill indicator tabs
-    const freshIndicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
-    freshIndicatorBtns.forEach((btn, idx) => {
-      const isCur = idx === activeIndex;
-      btn.classList.toggle('active', isCur);
-      btn.setAttribute('aria-selected', isCur ? 'true' : 'false');
+    indicatorBtns.forEach((btn, bIdx) => {
+      const isActive = bIdx === activeIndex;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
-    setTimeout(() => {
-      isAnimating = false;
-    }, immediate ? 40 : 650);
+    // Update Spotlight Information Bar
+    const currProj = projects[activeIndex];
+    if (currProj) {
+      if (spotlightNum) spotlightNum.textContent = currProj.number;
+      if (spotlightTitle) spotlightTitle.textContent = currProj.title;
+      if (spotlightCat) spotlightCat.textContent = currProj.category;
+      if (spotlightDesc) spotlightDesc.textContent = currProj.description;
+      if (spotlightExploreBtn) {
+        spotlightExploreBtn.onclick = () => {
+          if (typeof window.openProjectModal === 'function') {
+            window.openProjectModal(currProj.key);
+          }
+        };
+      }
+    }
   }
 
-  function switchProject(idx) {
-    if (idx === activeIndex || isAnimating) return;
-    updateGallery(idx);
+  function goToProject(idx) {
+    activeIndex = ((idx % totalCount) + totalCount) % totalCount;
+    updateGalleryPositions();
   }
 
+  function stepProject(direction) {
+    goToProject(activeIndex + direction);
+  }
+
+  // Navigation Arrow Controls
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!isAnimating) {
-        switchProject(activeIndex - 1);
-      }
+      stepProject(-1);
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!isAnimating) {
-        switchProject(activeIndex + 1);
-      }
+      stepProject(1);
     });
   }
 
-  const liveIndicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
-  liveIndicatorBtns.forEach((btn) => {
+  // Bottom Quick Selector Indicator clicks
+  indicatorBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const idx = parseInt(btn.getAttribute('data-project-idx') || '0', 10);
-      switchProject(idx);
+      const targetIdx = parseInt(btn.getAttribute('data-project-idx') || '0', 10);
+      goToProject(targetIdx);
     });
   });
 
-  window.addEventListener('keydown', (e) => {
-    const rect = section.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!inView) return;
+  // Touch and Drag Interaction
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragCurrentX = 0;
 
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      if (!isAnimating) switchProject(activeIndex - 1);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      if (!isAnimating) switchProject(activeIndex + 1);
-    }
-  });
-
-  track.addEventListener('mousedown', (e) => {
-    if (e.target.closest('a, button, input')) return;
-    isDragging = true;
-    dragHasMoved = false;
+  viewport.addEventListener('mousedown', (e) => {
+    if (e.target.closest('button') || e.target.closest('a')) return;
+    isDragging = false;
     dragStartX = e.clientX;
     dragCurrentX = e.clientX;
-    track.classList.add('is-dragging');
   });
 
-  window.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
+  viewport.addEventListener('mousemove', (e) => {
+    if (e.buttons !== 1) return;
+    if (Math.abs(e.clientX - dragStartX) > 8) {
+      isDragging = true;
+    }
     dragCurrentX = e.clientX;
-    const deltaX = dragCurrentX - dragStartX;
-    if (Math.abs(deltaX) > 6) dragHasMoved = true;
-
-    const geo = getCarouselGeometry();
-
-    projects.forEach((_, i) => {
-      const card = cardElements[i];
-      card.style.transition = 'none';
-
-      let diff = (i - activeIndex) % totalCount;
-      if (diff > 2) diff -= totalCount;
-      if (diff < -2) diff += totalCount;
-
-      if (diff === 0) {
-        const moveX = deltaX * 0.9;
-        const rotY = -deltaX * 0.025;
-        const scaleVal = Math.max(0.85, geo.scaleCenter - Math.abs(deltaX) * 0.0003);
-        card.style.transform = `translate3d(${moveX}px, 0, ${95 - Math.abs(deltaX) * 0.15}px) rotateY(${rotY}deg) scale(${scaleVal})`;
-      } else if (diff === -1) {
-        const moveX = -geo.nearX + deltaX * 0.85;
-        const rotY = geo.rotNear - deltaX * 0.03;
-        card.style.transform = `translate3d(${moveX}px, 0, ${geo.nearZ}px) rotateY(${rotY}deg) scale(${geo.scaleNear})`;
-      } else if (diff === 1) {
-        const moveX = geo.nearX + deltaX * 0.85;
-        const rotY = -geo.rotNear - deltaX * 0.03;
-        card.style.transform = `translate3d(${moveX}px, 0, ${geo.nearZ}px) rotateY(${rotY}deg) scale(${geo.scaleNear})`;
-      } else if (diff === -2) {
-        const moveX = -geo.farX + deltaX * 0.75;
-        const rotY = geo.rotFar - deltaX * 0.02;
-        card.style.transform = `translate3d(${moveX}px, 0, ${geo.farZ}px) rotateY(${rotY}deg) scale(${geo.scaleFar})`;
-      } else if (diff === 2) {
-        const moveX = geo.farX + deltaX * 0.75;
-        const rotY = -geo.rotFar - deltaX * 0.02;
-        card.style.transform = `translate3d(${moveX}px, 0, ${geo.farZ}px) rotateY(${rotY}deg) scale(${geo.scaleFar})`;
-      }
-    });
   });
 
-  window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
-    track.classList.remove('is-dragging');
-
-    const deltaX = dragCurrentX - dragStartX;
-    if (dragHasMoved) {
-      if (deltaX < -45) {
-        switchProject(activeIndex + 1);
-      } else if (deltaX > 45) {
-        switchProject(activeIndex - 1);
-      } else {
-        updateGallery(activeIndex);
+  viewport.addEventListener('mouseup', () => {
+    if (isDragging) {
+      const delta = dragCurrentX - dragStartX;
+      if (delta > 50) {
+        stepProject(-1);
+      } else if (delta < -50) {
+        stepProject(1);
       }
-    } else {
-      updateGallery(activeIndex);
+      setTimeout(() => { isDragging = false; }, 50);
     }
   });
 
+  // Mobile Touch Support
   let touchStartX = 0;
-  let touchStartY = 0;
   let touchCurrentX = 0;
-  let touchHasMoved = false;
 
-  track.addEventListener('touchstart', (e) => {
+  viewport.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
     touchCurrentX = touchStartX;
-    touchHasMoved = false;
   }, { passive: true });
 
-  track.addEventListener('touchmove', (e) => {
+  viewport.addEventListener('touchmove', (e) => {
     touchCurrentX = e.touches[0].clientX;
-    const dx = touchCurrentX - touchStartX;
-    const dy = e.touches[0].clientY - touchStartY;
+  }, { passive: true });
 
-    if (Math.abs(dx) > Math.abs(dy) + 4) {
-      touchHasMoved = true;
-      if (e.cancelable) e.preventDefault();
-    }
-  }, { passive: false });
-
-  track.addEventListener('touchend', () => {
-    if (touchHasMoved) {
-      const dx = touchCurrentX - touchStartX;
-      if (dx < -40) {
-        switchProject(activeIndex + 1);
-      } else if (dx > 40) {
-        switchProject(activeIndex - 1);
-      } else {
-        updateGallery(activeIndex);
-      }
-    } else {
-      updateGallery(activeIndex);
+  viewport.addEventListener('touchend', () => {
+    const delta = touchCurrentX - touchStartX;
+    if (delta > 45) {
+      stepProject(-1);
+    } else if (delta < -45) {
+      stepProject(1);
     }
   });
 
+  // Keyboard navigation when viewport has focus
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stepProject(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepProject(1);
+    }
+  });
+
+  // Window resize handler to maintain proper 3D cylindrical perspective clamp
   window.addEventListener('resize', () => {
-    updateGallery(activeIndex, true);
+    updateGalleryPositions();
   });
 
-  updateGallery(0, true);
+  // Initial position render
+  updateGalleryPositions();
 }
 
 

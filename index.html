@@ -1013,6 +1013,10 @@
             <!-- Soft Diffused Cursor Responsive Ambient Lighting (Warm Peach / Coral Glow) -->
             <div class="studio-cursor-light" id="studio-cursor-light" aria-hidden="true"></div>
             <div class="studio-ambient-bloom" aria-hidden="true"></div>
+            <!-- Rich Peach and Coral Core Backlight behind laptop -->
+            <div class="workstation-backlight-core" aria-hidden="true"></div>
+            <!-- Defined Silhouette & Soft Dimensional Depth Aura -->
+            <div class="workstation-depth-aura" aria-hidden="true"></div>
 
             <!-- 3D Perspective Workspace Scene Assembly -->
             <div class="studio-3d-scene" id="studio-3d-scene">
@@ -1033,6 +1037,10 @@
 
                 <!-- Interactive Laptop Screen Specular Light Sheen (Hover Responsive) -->
                 <div class="laptop-screen-hover-sheen" id="laptop-screen-hover-sheen" aria-hidden="true"></div>
+                <!-- Interactive Floating Elements Highlights -->
+                <div class="floating-highlight-code" aria-hidden="true"></div>
+                <div class="floating-highlight-ai" aria-hidden="true"></div>
+                <div class="floating-highlight-window" aria-hidden="true"></div>
               </div>
             </div>
 
@@ -1164,26 +1172,69 @@
 
       </div><!-- /.work-in-motion-hero -->
 
-      <!-- 3D Cinematic Gallery Stage (Horizontal Carousel Track) -->
-      <div class="gallery-stage-viewport" id="gallery-stage-viewport" tabindex="0" role="region" aria-roledescription="carousel" aria-label="3D Projects Carousel">
+      <!-- CINEMATIC 3D CURVED GALLERY HEADER (Matching Reference Video) -->
+      <div class="gallery-cinematic-header" id="gallery-cinematic-header">
+        <div class="gallery-curation-badge">
+          <span class="badge-sparkle" aria-hidden="true">✦</span>
+          <span class="badge-text">CURATED CASE STUDIES</span>
+          <span class="badge-sep" aria-hidden="true">/</span>
+          <span class="badge-year">2026</span>
+        </div>
+        <h2 class="gallery-focus-title">
+          <span class="focus-title-line">Every frame,</span>
+          <span class="focus-title-line">brought into focus.</span>
+        </h2>
+        <p class="gallery-focus-sub">
+          Images curve in from one edge, flatten out at the center, then fade away round the other.
+        </p>
+      </div>
+
+      <!-- 3D Cylindrical Curved Gallery Stage (Cylindrical Perspective Arc matching Reference Video) -->
+      <div class="gallery-stage-viewport" id="gallery-stage-viewport" tabindex="0" role="region" aria-roledescription="carousel" aria-label="3D Cylindrical Projects Showcase">
+        <!-- Curved Edge Ambient Vignette Fade Masks matching Tilted Grid Hero -->
+        <div class="cylinder-fade-mask mask-left" aria-hidden="true"></div>
+        <div class="cylinder-fade-mask mask-right" aria-hidden="true"></div>
+
         <!-- Floating Navigation Arrow: Previous -->
         <button type="button" class="gallery-arrow-btn arrow-prev" id="gallery-prev-btn" aria-label="Previous project">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
 
-        <!-- The 3D Track containing the 5 Project Cards -->
+        <!-- The 3D Track containing the 5 Project Cards in Curved Cylindrical Ribbon -->
         <div class="gallery-track-3d" id="gallery-track-3d" aria-live="polite">
           <!-- Populated and dynamically managed by script.js -->
         </div>
 
         <!-- Floating Navigation Arrow: Next -->
         <button type="button" class="gallery-arrow-btn arrow-next" id="gallery-next-btn" aria-label="Next project">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
+      </div>
+
+      <!-- Active Project Spotlight Information Bar -->
+      <div class="gallery-spotlight-bar" id="gallery-spotlight-bar">
+        <div class="spotlight-bar-inner">
+          <div class="spotlight-meta-left">
+            <span class="spotlight-num" id="spotlight-proj-num">01</span>
+            <div class="spotlight-title-group">
+              <h3 class="spotlight-title" id="spotlight-proj-title">Prism</h3>
+              <span class="spotlight-cat" id="spotlight-proj-cat">3D WebGL &amp; Spatial AR</span>
+            </div>
+          </div>
+          <p class="spotlight-desc" id="spotlight-proj-desc">
+            An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders and reactive refraction physics.
+          </p>
+          <div class="spotlight-actions" id="spotlight-proj-actions">
+            <button type="button" class="btn-spotlight-primary" id="spotlight-explore-btn">
+              <span>EXPLORE CASE STUDY</span>
+              <span class="action-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Bottom Minimal Pill Navigation Indicator (01 / 05 & 01 — 02 — 03 — 04 — 05) -->
@@ -1273,6 +1324,32 @@
           <div class="value-badge-text">
             <strong>Real Impact</strong>
             <p>Solutions that solve problems and create value</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAYGROUND FOR CREATIVITY — CLOSING ETHOS STATEMENT (Direct User Requirement) -->
+      <div class="portfolio-playground-statement" id="portfolio-playground-statement">
+        <div class="playground-statement-card">
+          <div class="playground-statement-header">
+            <span class="playground-sparkle-star" aria-hidden="true">✦</span>
+            <span class="playground-kicker">PERSONAL ETHOS</span>
+          </div>
+          <h3 class="playground-quote">“More than a portfolio. A playground for creativity.”</h3>
+          <p class="playground-sub">Every interaction, every detail, and every experiment is part of my journey to build more thoughtful digital experiences.</p>
+          <div class="playground-tags-row" aria-hidden="true">
+            <span class="playground-tag-chip">
+              <span class="tag-dot dot-coral"></span>
+              <span>CREATIVE EXPERIMENTATION</span>
+            </span>
+            <span class="playground-tag-chip">
+              <span class="tag-dot dot-cyan"></span>
+              <span>SPATIAL FRONTEND</span>
+            </span>
+            <span class="playground-tag-chip">
+              <span class="tag-dot dot-purple"></span>
+              <span>INTENTIONAL CRAFT</span>
+            </span>
           </div>
         </div>
       </div>
