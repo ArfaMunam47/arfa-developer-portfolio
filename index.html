@@ -308,9 +308,16 @@
        ======================================================================= -->
   <div class="nav-wrapper" id="nav-wrapper">
     <nav class="floating-nav" id="floating-nav" aria-label="Main Navigation">
-      <a href="#hero" class="nav-brand" id="brand-link">
-        <div class="brand-badge" id="brand-badge" aria-label="Arfa Munam Monogram">
-          <span class="monogram-text">AM</span>
+      <a href="#hero" class="nav-brand" id="brand-link" aria-label="Arfa Munam">
+        <div class="brand-badge" id="brand-badge">
+          <img 
+            src="logo.jpg" 
+            alt="Arfa Munam" 
+            class="brand-logo-img" 
+            loading="eager" 
+            decoding="async" 
+            onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/logo.jpg';}"
+          />
         </div>
         <span class="brand-name">ARFA MUNAM</span>
       </a>
@@ -984,8 +991,6 @@
           <div class="prism-face face-bottom"></div>
         </div>
       </div>
-      <div class="scene-ribbon-path ribbon-coral" aria-hidden="true"></div>
-      <div class="scene-ribbon-path ribbon-lavender" aria-hidden="true"></div>
       <div class="scene-terrazzo-arch" aria-hidden="true"></div>
       <div class="scene-plant-accent" aria-hidden="true"></div>
     </div>
@@ -1146,24 +1151,13 @@
 
             </div>
 
-            <!-- Tactile Exploration Bridge: CTA Button & Project Index -->
+            <!-- Tactile Exploration Bridge: CTA Button -->
             <div class="breakout-gallery-bridge">
-              <a href="#gallery-stage-viewport" class="gallery-bridge-link" id="bridge-to-projects-link" aria-label="Scroll to Project Gallery">
+              <a href="#projects-showcase-gallery" class="gallery-bridge-link" id="bridge-to-projects-link" aria-label="Scroll to Project Gallery">
                 <span class="bridge-pulse-dot" aria-hidden="true"></span>
-                <span class="bridge-text">EXPLORE 05 FEATURED CASE STUDIES</span>
+                <span class="bridge-text">EXPLORE 06 FEATURED CASE STUDIES</span>
                 <span class="bridge-arrow" aria-hidden="true">→</span>
               </a>
-              <div class="bridge-signals" aria-hidden="true">
-                <span class="bridge-signal-chip">01 PRISM</span>
-                <span class="bridge-signal-sep">·</span>
-                <span class="bridge-signal-chip">02 STUDYPILOT-AI</span>
-                <span class="bridge-signal-sep">·</span>
-                <span class="bridge-signal-chip">03 VELORA</span>
-                <span class="bridge-signal-sep">·</span>
-                <span class="bridge-signal-chip">04 KUMO</span>
-                <span class="bridge-signal-sep">·</span>
-                <span class="bridge-signal-chip">05 PASTELFORM</span>
-              </div>
             </div>
 
           </div><!-- /.motion-stage-right -->
@@ -1172,186 +1166,26 @@
 
       </div><!-- /.work-in-motion-hero -->
 
-      <!-- CINEMATIC 3D CURVED GALLERY HEADER (Matching Reference Video) -->
-      <div class="gallery-cinematic-header" id="gallery-cinematic-header">
-        <div class="gallery-curation-badge">
-          <span class="badge-sparkle" aria-hidden="true">✦</span>
-          <span class="badge-text">CURATED CASE STUDIES</span>
-          <span class="badge-sep" aria-hidden="true">/</span>
-          <span class="badge-year">2026</span>
+      <!-- Consistent Equal-Treatment Project Showcase Gallery -->
+      <div class="projects-showcase-gallery" id="projects-showcase-gallery" role="region" aria-label="Featured Projects Showcase">
+        <!-- Subtle Ambient Background Particles (Layered strictly behind cards) -->
+        <div class="gallery-ambient-particles" aria-hidden="true">
+          <span class="ambient-mote mote-gold"></span>
+          <span class="ambient-mote mote-cyan"></span>
+          <span class="ambient-mote mote-indigo"></span>
+          <span class="ambient-mote mote-sage"></span>
+          <span class="ambient-mote mote-green"></span>
         </div>
-        <h2 class="gallery-focus-title">
-          <span class="focus-title-line">Every frame,</span>
-          <span class="focus-title-line">brought into focus.</span>
-        </h2>
-        <p class="gallery-focus-sub">
-          Images curve in from one edge, flatten out at the center, then fade away round the other.
+        <div class="projects-equal-grid" id="projects-equal-grid" role="list">
+          <!-- Populated by script.js with the 6 authentic projects in equal-treatment frames -->
+        </div>
+      </div>
+
+      <!-- Single Elegant Italic Closing Line (Direct User Requirement) -->
+      <div class="portfolio-closing-note-container" id="portfolio-closing-note">
+        <p class="portfolio-closing-note-text">
+          Thank you for stopping by my little corner of the internet. 💗
         </p>
-      </div>
-
-      <!-- 3D Cylindrical Curved Gallery Stage (Cylindrical Perspective Arc matching Reference Video) -->
-      <div class="gallery-stage-viewport" id="gallery-stage-viewport" tabindex="0" role="region" aria-roledescription="carousel" aria-label="3D Cylindrical Projects Showcase">
-        <!-- Curved Edge Ambient Vignette Fade Masks matching Tilted Grid Hero -->
-        <div class="cylinder-fade-mask mask-left" aria-hidden="true"></div>
-        <div class="cylinder-fade-mask mask-right" aria-hidden="true"></div>
-
-        <!-- Floating Navigation Arrow: Previous -->
-        <button type="button" class="gallery-arrow-btn arrow-prev" id="gallery-prev-btn" aria-label="Previous project">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-
-        <!-- The 3D Track containing the 5 Project Cards in Curved Cylindrical Ribbon -->
-        <div class="gallery-track-3d" id="gallery-track-3d" aria-live="polite">
-          <!-- Populated and dynamically managed by script.js -->
-        </div>
-
-        <!-- Floating Navigation Arrow: Next -->
-        <button type="button" class="gallery-arrow-btn arrow-next" id="gallery-next-btn" aria-label="Next project">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Active Project Spotlight Information Bar -->
-      <div class="gallery-spotlight-bar" id="gallery-spotlight-bar">
-        <div class="spotlight-bar-inner">
-          <div class="spotlight-meta-left">
-            <span class="spotlight-num" id="spotlight-proj-num">01</span>
-            <div class="spotlight-title-group">
-              <h3 class="spotlight-title" id="spotlight-proj-title">Prism</h3>
-              <span class="spotlight-cat" id="spotlight-proj-cat">3D WebGL &amp; Spatial AR</span>
-            </div>
-          </div>
-          <p class="spotlight-desc" id="spotlight-proj-desc">
-            An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders and reactive refraction physics.
-          </p>
-          <div class="spotlight-actions" id="spotlight-proj-actions">
-            <button type="button" class="btn-spotlight-primary" id="spotlight-explore-btn">
-              <span>EXPLORE CASE STUDY</span>
-              <span class="action-arrow" aria-hidden="true">↗</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Minimal Pill Navigation Indicator (01 / 05 & 01 — 02 — 03 — 04 — 05) -->
-      <div class="gallery-bottom-nav">
-        <div class="gallery-indicator-capsule" id="gallery-indicator-capsule" role="tablist" aria-label="Project Quick Selector">
-          <div class="gallery-counter-pill" id="gallery-counter-pill" aria-label="Current project counter">
-            <span class="counter-curr" id="gallery-counter-curr">01</span>
-            <span class="counter-sep">/</span>
-            <span class="counter-total" id="gallery-counter-total">05</span>
-          </div>
-          <span class="indicator-track-line"></span>
-          <button type="button" class="indicator-step active" data-project-idx="0" role="tab" aria-selected="true" aria-label="01 Prism">
-            <span class="step-num">01</span>
-            <span class="step-dot"></span>
-          </button>
-          <span class="indicator-track-line"></span>
-          <button type="button" class="indicator-step" data-project-idx="1" role="tab" aria-selected="false" aria-label="02 StudyPilot-AI">
-            <span class="step-num">02</span>
-            <span class="step-dot"></span>
-          </button>
-          <span class="indicator-track-line"></span>
-          <button type="button" class="indicator-step" data-project-idx="2" role="tab" aria-selected="false" aria-label="03 Velora Store">
-            <span class="step-num">03</span>
-            <span class="step-dot"></span>
-          </button>
-          <span class="indicator-track-line"></span>
-          <button type="button" class="indicator-step" data-project-idx="3" role="tab" aria-selected="false" aria-label="04 Kumo Ramen">
-            <span class="step-num">04</span>
-            <span class="step-dot"></span>
-          </button>
-          <span class="indicator-track-line"></span>
-          <button type="button" class="indicator-step" data-project-idx="4" role="tab" aria-selected="false" aria-label="05 PastelForm">
-            <span class="step-num">05</span>
-            <span class="step-dot"></span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 4 Value / Craft Badges (Direct from reference image) -->
-      <div class="gallery-value-badges">
-        <div class="value-badge-card">
-          <div class="value-badge-icon icon-pencil">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-            </svg>
-          </div>
-          <div class="value-badge-text">
-            <strong>Thoughtful Design</strong>
-            <p>Designs that communicate clearly and beautifully</p>
-          </div>
-        </div>
-
-        <div class="value-badge-card">
-          <div class="value-badge-icon icon-code">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <div class="value-badge-text">
-            <strong>Clean Code</strong>
-            <p>Well structured, scalable and maintainable</p>
-          </div>
-        </div>
-
-        <div class="value-badge-card">
-          <div class="value-badge-icon icon-lightning">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-          </div>
-          <div class="value-badge-text">
-            <strong>Seamless Experience</strong>
-            <p>Smooth interactions that engage and delight</p>
-          </div>
-        </div>
-
-        <div class="value-badge-card">
-          <div class="value-badge-icon icon-target">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg>
-          </div>
-          <div class="value-badge-text">
-            <strong>Real Impact</strong>
-            <p>Solutions that solve problems and create value</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PLAYGROUND FOR CREATIVITY — CLOSING ETHOS STATEMENT (Direct User Requirement) -->
-      <div class="portfolio-playground-statement" id="portfolio-playground-statement">
-        <div class="playground-statement-card">
-          <div class="playground-statement-header">
-            <span class="playground-sparkle-star" aria-hidden="true">✦</span>
-            <span class="playground-kicker">PERSONAL ETHOS</span>
-          </div>
-          <h3 class="playground-quote">“More than a portfolio. A playground for creativity.”</h3>
-          <p class="playground-sub">Every interaction, every detail, and every experiment is part of my journey to build more thoughtful digital experiences.</p>
-          <div class="playground-tags-row" aria-hidden="true">
-            <span class="playground-tag-chip">
-              <span class="tag-dot dot-coral"></span>
-              <span>CREATIVE EXPERIMENTATION</span>
-            </span>
-            <span class="playground-tag-chip">
-              <span class="tag-dot dot-cyan"></span>
-              <span>SPATIAL FRONTEND</span>
-            </span>
-            <span class="playground-tag-chip">
-              <span class="tag-dot dot-purple"></span>
-              <span>INTENTIONAL CRAFT</span>
-            </span>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -4851,13 +4685,14 @@
           <span class="fullpage-counter" id="fullpage-counter">PROJECT 01 / 04</span>
         </div>
 
-        <!-- 5-Project Switcher Tabs inside Full Page View -->
+        <!-- 6-Project Switcher Tabs inside Full Page View -->
         <div class="fullpage-nav-tabs" id="fullpage-nav-tabs">
-          <button type="button" class="fullpage-tab-btn active tactile-btn" data-project="prism">1. Prism</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="studypilot">2. StudyPilot-AI</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="velora">3. Velora Store</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="kumo">4. Kumo Ramen</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="pastelform">5. PastelForm</button>
+          <button type="button" class="fullpage-tab-btn active tactile-btn" data-project="pastelform">1. Pastel & Form</button>
+          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="icapital">2. iCapital</button>
+          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="studypilot">3. StudyPilot-AI</button>
+          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="prism">4. Prism</button>
+          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="kumo">5. Kumo Ramen</button>
+          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="velora">6. Velora</button>
         </div>
 
         <div class="fullpage-header-actions">

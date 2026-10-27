@@ -1020,433 +1020,135 @@ function setupProjectsShowcase() {
   // Initialize the 2026 Premium "Work, in Motion" 3D Hero Introduction
   setupWorkInMotionIntro();
 
-  const track = document.getElementById('gallery-track-3d');
-  const viewport = document.getElementById('gallery-stage-viewport');
-  const prevBtn = document.getElementById('gallery-prev-btn');
-  const nextBtn = document.getElementById('gallery-next-btn');
-  const counterCurr = document.getElementById('gallery-counter-curr');
-  const counterTotal = document.getElementById('gallery-counter-total');
-  const indicatorCapsule = document.getElementById('gallery-indicator-capsule');
-  const indicatorBtns = indicatorCapsule ? indicatorCapsule.querySelectorAll('.indicator-step') : [];
+  const grid = document.getElementById('projects-equal-grid');
+  if (!grid) return;
 
-  if (!track) return;
-
-  // Authentic 5 Projects Data with Verified Screenshots and Links
+  // The 6 Authentic Projects in Exact 2-Row / 3-Column Exhibition Order:
+  // Row 1: 01 Pastel & Form, 02 iCapital, 03 StudyPilot AI
+  // Row 2: 04 Prism, 05 Kumo Ramen, 06 Velora
   const projects = [
     {
-      id: "prism",
-      key: "prism",
-      number: "01",
-      title: "Prism",
-      category: "3D WebGL & Spatial AR",
-      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
-      description: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
-      tags: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion"],
-      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
-      codeUrl: "https://github.com/ArfaMunam47/prism-one-3d",
-      accent: "#8B5CF6",
-      image: "Prism.jpeg",
-      browserUrl: "prism.dev"
+      id: "pastelform",
+      key: "pastelform",
+      index: "01",
+      title: "Pastel & Form",
+      category: "Aesthetic Form Flow",
+      image: "pastel.png",
+      accent: "#E0AC76"
+    },
+    {
+      id: "icapital",
+      key: "icapital",
+      index: "02",
+      title: "iCapital",
+      category: "Wealth Advisory Platform",
+      image: "icapital.png",
+      accent: "#38BDF8"
     },
     {
       id: "studypilot",
       key: "studypilot",
-      number: "02",
+      index: "03",
       title: "StudyPilot AI",
       category: "AI Academic Copilot",
-      tagline: "Intelligent Academic Workspace with Adaptive Flashcards & Study Planner",
-      description: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
-      tags: ["Claude 3.7 AI", "React", "Tailwind CSS", "FastAPI", "Spaced Repetition"],
-      liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
-      codeUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
-      accent: "#6366F1",
       image: "studypilot.png",
-      browserUrl: "studypilotai.dev"
+      accent: "#818CF8"
     },
     {
-      id: "velora",
-      key: "velora",
-      number: "03",
-      title: "Velora",
-      category: "Minimalist E-Commerce",
-      tagline: "Minimalist High-Conversion Fashion & Lifestyle Storefront",
-      description: "A chic modern e-commerce storefront designed with editorial typography, ultra-responsive grid layouts, instant faceted filtering, slide-out micro-cart drawer, and dynamic voucher calculations for a frictionless retail journey.",
-      tags: ["JavaScript ES6+", "React", "Tailwind CSS", "Stripe Checkout", "State Engine"],
-      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      codeUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      accent: "#FA5538",
-      image: "veloraa.png",
-      browserUrl: "velorastore.dev"
+      id: "prism",
+      key: "prism",
+      index: "04",
+      title: "Prism",
+      category: "3D WebGL & Spatial AR",
+      image: "Prism.jpeg",
+      accent: "#60A5FA"
     },
     {
       id: "kumo",
       key: "kumo",
-      number: "04",
+      index: "05",
       title: "Kumo Ramen",
-      category: "Artisan Culinary Experience",
-      tagline: "Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion",
-      description: "An evocative culinary showcase for an artisan Tokyo ramen bar. Features an interactive bowl builder (broth richness, noodle firmness, chashu pork, ajitsuke tamago), ambient kitchen soundscapes, reservation table picker, and sensory editorial dark aesthetics.",
-      tags: ["JavaScript ES6+", "CSS3 Motion", "Interactive State", "Order Calculator", "Audio Ambiance"],
-      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
-      codeUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
-      accent: "#F59E0B",
+      category: "Artisan Japanese Culinary",
       image: "kumo.png",
-      browserUrl: "kumoramen.jp"
+      accent: "#D4B882"
     },
     {
-      id: "pastelform",
-      key: "pastelform",
-      number: "05",
-      title: "Pastel Form",
-      category: "Aesthetic Form Engine",
-      tagline: "Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes",
-      description: "A fluid, human-centered form and questionnaire experience crafted with soothing pastel palettes, micro-interactions, real-time validation, dynamic branch logic, and instant feedback loops that make data collection an absolute joy.",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "Accessible Forms", "State Engine"],
-      liveUrl: "https://github.com/ArfaMunam47/pastelform",
-      codeUrl: "https://github.com/ArfaMunam47/pastelform",
-      accent: "#EC4899",
-      image: "pastel.png",
-      browserUrl: "pastelform.dev"
+      id: "velora",
+      key: "velora",
+      index: "06",
+      title: "Velora",
+      category: "Minimalist E-Commerce",
+      image: "veloraa.png",
+      accent: "#34966C"
     }
   ];
 
-  const totalCount = projects.length;
-  if (counterTotal) counterTotal.textContent = String(totalCount).padStart(2, '0');
+  grid.innerHTML = '';
 
-  // Spotlight bar references
-  const spotlightNum = document.getElementById('spotlight-proj-num');
-  const spotlightTitle = document.getElementById('spotlight-proj-title');
-  const spotlightCat = document.getElementById('spotlight-proj-cat');
-  const spotlightDesc = document.getElementById('spotlight-proj-desc');
-  const spotlightExploreBtn = document.getElementById('spotlight-explore-btn');
+  // Render the 5 Authentic Equal-Treatment Project Showcase Items
+  projects.forEach((proj) => {
+    const item = document.createElement('div');
+    item.className = `project-equal-item proj-equal-${proj.id}`;
+    item.setAttribute('data-project', proj.key);
+    item.setAttribute('role', 'listitem');
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('aria-label', `${proj.title} — ${proj.category}`);
+    item.style.setProperty('--proj-accent', proj.accent);
 
-  let activeIndex = 0;
-  track.innerHTML = '';
-
-  // Create the 5 Curved Cylindrical Project Cards
-  const cardElements = projects.map((proj, idx) => {
-    const card = document.createElement('article');
-    card.className = `curved-gallery-card proj-card-${proj.id}`;
-    card.setAttribute('data-index', idx);
-    card.setAttribute('data-project', proj.key);
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'group');
-    card.setAttribute('aria-label', `${proj.title} project showcase`);
-    card.style.setProperty('--card-accent', proj.accent);
-
-    card.innerHTML = `
-      <!-- Card Window Bar: Project identity & Number -->
-      <div class="card-window-bar">
-        <div class="card-project-identity">
-          <span class="card-project-num">${proj.number}</span>
-          <h3 class="card-project-title">${proj.title}</h3>
-        </div>
-        <span class="card-category-pill">${proj.category}</span>
+    item.innerHTML = `
+      <div class="project-equal-frame">
+        <img 
+          src="${proj.image}" 
+          alt="${proj.title} website screenshot" 
+          class="project-equal-img" 
+          loading="lazy" 
+          decoding="async"
+          onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/${proj.image}';}"
+        />
       </div>
-
-      <!-- Inset Browser Mockup Canvas -->
-      <div class="card-preview-viewport">
-        <div class="mockup-project-image-wrap">
-          <div class="mockup-frame-bar" aria-hidden="true">
-            <div class="frame-window-dots">
-              <span class="f-dot dot-red"></span>
-              <span class="f-dot dot-yellow"></span>
-              <span class="f-dot dot-green"></span>
-            </div>
-            <div class="frame-browser-address">
-              <span class="lock-icon">🔒</span>
-              <span class="address-url">${proj.browserUrl}</span>
-            </div>
+      <div class="project-equal-caption">
+        <div class="project-equal-header">
+          <div class="project-equal-title-wrap">
+            <span class="project-equal-num">${proj.index}</span>
+            <h3 class="project-equal-title">${proj.title}</h3>
           </div>
-          <div class="mockup-img-surface">
-            <img 
-              src="${proj.image}" 
-              alt="${proj.title} production interface" 
-              class="card-screenshot-img" 
-              loading="eager"
-              onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/${proj.image}';}"
-            />
-          </div>
+          <span class="project-equal-arrow" aria-hidden="true">↗</span>
         </div>
-      </div>
-
-      <!-- Card Action Footer -->
-      <div class="card-actions-bar">
-        <button type="button" class="btn-card-explore tactile-btn" data-project="${proj.key}" aria-label="Explore ${proj.title} case study">
-          <span>Explore Project</span>
-          <span class="btn-icon-arrow" aria-hidden="true">↗</span>
-        </button>
-        <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-demo tactile-btn" aria-label="View ${proj.title} live demo">
-          <span>Live Demo</span>
-          <span class="btn-icon-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-card-github tactile-btn" aria-label="View ${proj.title} source code on GitHub">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          <span>GitHub</span>
-        </a>
-      </div>
-
-      <!-- Subtle Side Hover Cue -->
-      <div class="card-flank-cue" aria-hidden="true">
-        <span>Click to Focus ✦</span>
+        <p class="project-equal-category">${proj.category}</p>
       </div>
     `;
 
-    // Wire explore button inside card
-    const exploreBtn = card.querySelector('.btn-card-explore');
-    if (exploreBtn) {
-      exploreBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+    // Click handler: opens authentic project modal
+    item.addEventListener('click', () => {
+      if (typeof window.openProjectModal === 'function') {
+        window.openProjectModal(proj.key);
+      }
+    });
+
+    // Keyboard activation
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
         if (typeof window.openProjectModal === 'function') {
           window.openProjectModal(proj.key);
         }
-      });
-    }
+      }
+    });
 
-    // Card click behavior:
-    // If side card, smooth glide to center; if center card, open modal
-    card.addEventListener('click', (e) => {
-      if (isDragging) return;
-      if (idx !== activeIndex) {
+    grid.appendChild(item);
+  });
+
+  // Smooth scroll handler for tactile exploration bridge CTA button
+  const bridgeLink = document.getElementById('bridge-to-projects-link');
+  if (bridgeLink) {
+    bridgeLink.addEventListener('click', (e) => {
+      const target = document.getElementById('projects-showcase-gallery');
+      if (target) {
         e.preventDefault();
-        goToProject(idx);
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
-
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (idx !== activeIndex) {
-          goToProject(idx);
-        } else if (typeof window.openProjectModal === 'function') {
-          window.openProjectModal(proj.key);
-        }
-      }
-    });
-
-    track.appendChild(card);
-    return card;
-  });
-
-  // Calculate and apply 3D curved cylinder transforms
-  function updateGalleryPositions() {
-    const isMobile = window.innerWidth < 640;
-    const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
-
-    cardElements.forEach((card, idx) => {
-      // Calculate wrapped shortest relative distance to activeIndex (-2, -1, 0, 1, 2)
-      let diff = idx - activeIndex;
-      if (diff > 2) diff -= totalCount;
-      if (diff < -2) diff += totalCount;
-
-      card.classList.remove('is-active', 'is-near-left', 'is-near-right', 'is-far-left', 'is-far-right', 'is-hidden');
-
-      let translateX = 0;
-      let translateZ = 0;
-      let rotateY = 0;
-      let scale = 1;
-      let opacity = 1;
-      let zIndex = 10;
-      let blur = 0;
-
-      if (diff === 0) {
-        // Active Center Card (Facing forward, elevated, sharp focus)
-        card.classList.add('is-active');
-        translateX = 0;
-        translateZ = isMobile ? 30 : 75;
-        rotateY = 0;
-        scale = isMobile ? 1.02 : 1.04;
-        opacity = 1;
-        zIndex = 25;
-        blur = 0;
-      } else if (diff === -1) {
-        // Immediate Left (Curving away)
-        card.classList.add('is-near-left');
-        const offset = isMobile ? -230 : (isTablet ? -320 : -390);
-        translateX = offset;
-        translateZ = isMobile ? -15 : -35;
-        rotateY = 16;
-        scale = isMobile ? 0.86 : 0.89;
-        opacity = 0.92;
-        zIndex = 18;
-        blur = 0;
-      } else if (diff === 1) {
-        // Immediate Right (Curving away)
-        card.classList.add('is-near-right');
-        const offset = isMobile ? 230 : (isTablet ? 320 : 390);
-        translateX = offset;
-        translateZ = isMobile ? -15 : -35;
-        rotateY = -16;
-        scale = isMobile ? 0.86 : 0.89;
-        opacity = 0.92;
-        zIndex = 18;
-        blur = 0;
-      } else if (diff === -2) {
-        // Far Left
-        card.classList.add('is-far-left');
-        const offset = isMobile ? -420 : (isTablet ? -580 : -720);
-        translateX = offset;
-        translateZ = isMobile ? -70 : -130;
-        rotateY = 28;
-        scale = isMobile ? 0.72 : 0.76;
-        opacity = 0.65;
-        zIndex = 10;
-        blur = 0.4;
-      } else if (diff === 2) {
-        // Far Right
-        card.classList.add('is-far-right');
-        const offset = isMobile ? 420 : (isTablet ? 580 : 720);
-        translateX = offset;
-        translateZ = isMobile ? -70 : -130;
-        rotateY = -28;
-        scale = isMobile ? 0.72 : 0.76;
-        opacity = 0.65;
-        zIndex = 10;
-        blur = 0.4;
-      } else {
-        card.classList.add('is-hidden');
-        opacity = 0;
-        zIndex = 1;
-      }
-
-      card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
-      card.style.zIndex = zIndex;
-      card.style.opacity = opacity;
-      card.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
-    });
-
-    // Update Counter & Indicator Capsule
-    if (counterCurr) counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
-    indicatorBtns.forEach((btn, bIdx) => {
-      const isActive = bIdx === activeIndex;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
-
-    // Update Spotlight Information Bar
-    const currProj = projects[activeIndex];
-    if (currProj) {
-      if (spotlightNum) spotlightNum.textContent = currProj.number;
-      if (spotlightTitle) spotlightTitle.textContent = currProj.title;
-      if (spotlightCat) spotlightCat.textContent = currProj.category;
-      if (spotlightDesc) spotlightDesc.textContent = currProj.description;
-      if (spotlightExploreBtn) {
-        spotlightExploreBtn.onclick = () => {
-          if (typeof window.openProjectModal === 'function') {
-            window.openProjectModal(currProj.key);
-          }
-        };
-      }
-    }
   }
-
-  function goToProject(idx) {
-    activeIndex = ((idx % totalCount) + totalCount) % totalCount;
-    updateGalleryPositions();
-  }
-
-  function stepProject(direction) {
-    goToProject(activeIndex + direction);
-  }
-
-  // Navigation Arrow Controls
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      stepProject(-1);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      stepProject(1);
-    });
-  }
-
-  // Bottom Quick Selector Indicator clicks
-  indicatorBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetIdx = parseInt(btn.getAttribute('data-project-idx') || '0', 10);
-      goToProject(targetIdx);
-    });
-  });
-
-  // Touch and Drag Interaction
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragCurrentX = 0;
-
-  viewport.addEventListener('mousedown', (e) => {
-    if (e.target.closest('button') || e.target.closest('a')) return;
-    isDragging = false;
-    dragStartX = e.clientX;
-    dragCurrentX = e.clientX;
-  });
-
-  viewport.addEventListener('mousemove', (e) => {
-    if (e.buttons !== 1) return;
-    if (Math.abs(e.clientX - dragStartX) > 8) {
-      isDragging = true;
-    }
-    dragCurrentX = e.clientX;
-  });
-
-  viewport.addEventListener('mouseup', () => {
-    if (isDragging) {
-      const delta = dragCurrentX - dragStartX;
-      if (delta > 50) {
-        stepProject(-1);
-      } else if (delta < -50) {
-        stepProject(1);
-      }
-      setTimeout(() => { isDragging = false; }, 50);
-    }
-  });
-
-  // Mobile Touch Support
-  let touchStartX = 0;
-  let touchCurrentX = 0;
-
-  viewport.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchCurrentX = touchStartX;
-  }, { passive: true });
-
-  viewport.addEventListener('touchmove', (e) => {
-    touchCurrentX = e.touches[0].clientX;
-  }, { passive: true });
-
-  viewport.addEventListener('touchend', () => {
-    const delta = touchCurrentX - touchStartX;
-    if (delta > 45) {
-      stepProject(-1);
-    } else if (delta < -45) {
-      stepProject(1);
-    }
-  });
-
-  // Keyboard navigation when viewport has focus
-  viewport.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      stepProject(-1);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      stepProject(1);
-    }
-  });
-
-  // Window resize handler to maintain proper 3D cylindrical perspective clamp
-  window.addEventListener('resize', () => {
-    updateGalleryPositions();
-  });
-
-  // Initial position render
-  updateGalleryPositions();
 }
 
 
@@ -2548,31 +2250,51 @@ function setupProjectFullPageExperience() {
   if (!modal) return;
 
   const projectCatalog = {
-    'prism': {
+    'pastelform': {
       index: 0,
-      title: "Prism — 3D Spatial AR Showcase",
-      badge: "✦ 3D WEBGL & SPATIAL UX",
-      counter: "PROJECT 01 / 05",
-      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
-      desc: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
-      problem: "Hardware and spatial computing products struggle to convey optical clarity, real-time light refraction, and tactile physical presence using static flat marketing pages.",
-      solution: "Engineered a custom Three.js WebGL scene with real-time chromatic dispersion shaders, interactive orbit constraints, and zero-jank scroll timeline synchronization.",
-      tech: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion", "Spatial UI"],
+      title: "Pastel & Form",
+      badge: "✦ DYNAMIC FORM ARCHITECTURE",
+      counter: "PROJECT 01 / 06",
+      tagline: "Accessible Multi-Step Form Builder with Schema Validation",
+      desc: "A soft-hued, high-ergonomics multi-step questionnaire and schema survey engine engineered with zero layout shift, tactile choice buttons, animated step progress meters, and immediate payload serialization.",
+      problem: "Multi-page survey forms generate high user fatigue and abandonment when questions feel disconnected and validation errors are confusingly presented.",
+      solution: "Created a focused step-flow wizard with keyboard-first navigation, progressive state persistence, clear visual hierarchy, and instant schema compilation.",
+      tech: ["TypeScript", "Dynamic Form Engine", "CSS Variables", "Schema Validation", "Keyboard Navigation", "A11y ARIA"],
       metrics: [
-        { val: "60 FPS", lbl: "WebGL Render Rate", color: "#8B5CF6" },
-        { val: "< 1.2s", lbl: "3D Asset Hydration", color: "#2DD4BF" },
-        { val: "100%", lbl: "Hardware Acceleration", color: "#F59E0B" }
+        { val: "68%", lbl: "Form Completion Rate", color: "#A78BFA" },
+        { val: "0 CLS", lbl: "Zero Cumulative Shift", color: "#2DD4BF" },
+        { val: "100%", lbl: "Accessible ARIA Compliance", color: "#F59E0B" }
       ],
-      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
-      ghUrl: "https://github.com/ArfaMunam47/prism-one-3d",
-      image: "Prism.jpeg",
-      stageSourceId: "stage-prism"
+      liveUrl: "https://github.com/ArfaMunam47/pastelform",
+      ghUrl: "https://github.com/ArfaMunam47/pastelform",
+      image: "pastel.png",
+      stageSourceId: "stage-pastelform"
+    },
+    'icapital': {
+      index: 1,
+      title: "iCapital Wealth Advisors",
+      badge: "✦ WEALTH ADVISORY PLATFORM",
+      counter: "PROJECT 02 / 06",
+      tagline: "High-Caliber Wealth Management & Digital Advisory Portal",
+      desc: "An editorial, high-trust wealth management advisor platform featuring crisp alpine panoramic art direction, multilingual consultation routing (ES/EN), ambient auditory landscapes, and institutional client portfolios.",
+      problem: "Traditional wealth management interfaces feel cold, dense, and uninspiring, failing to evoke long-term partnership, security, and independent financial stewardship.",
+      solution: "Engineered an alpine landscape-driven web platform with fluid atmospheric interactions, localized multi-region navigation, accessible audio controls, and frictionless advisor consultation funnels.",
+      tech: ["TypeScript", "Responsive Web Design", "Tailwind CSS", "Semantic HTML5", "Web Audio API", "A11y ARIA"],
+      metrics: [
+        { val: "20+", lbl: "Years Advisory Trust", color: "#38BDF8" },
+        { val: "< 650ms", lbl: "Global Page Hydration", color: "#2DD4BF" },
+        { val: "100%", lbl: "Cross-Device Parity", color: "#F59E0B" }
+      ],
+      liveUrl: "https://github.com/ArfaMunam47/icapital-wealth",
+      ghUrl: "https://github.com/ArfaMunam47/icapital-wealth",
+      image: "icapital.png",
+      stageSourceId: "stage-icapital"
     },
     'studypilot': {
-      index: 1,
+      index: 2,
       title: "StudyPilot-AI",
       badge: "✦ AI PRODUCT SUITE",
-      counter: "PROJECT 02 / 05",
+      counter: "PROJECT 03 / 06",
       tagline: "Autonomous Spaced Repetition & AI Study Operating System",
       desc: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex engineering syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
       problem: "Students face intense cognitive overload when synthesizing multi-hundred page technical lecture slides and syllabus notes into actionable, structured review cycles before critical examinations.",
@@ -2588,31 +2310,31 @@ function setupProjectFullPageExperience() {
       image: "studypilot.png",
       stageSourceId: "stage-studypilot"
     },
-    'velora': {
-      index: 2,
-      title: "Velora Luxury Store",
-      badge: "✦ HIGH-CONVERSION COMMERCE",
-      counter: "PROJECT 03 / 05",
-      tagline: "Sub-Second Micro-Interactions & Accessible Luxury E-Commerce",
-      desc: "A bespoke e-commerce boutique platform built with tactile client-side micro-interactions, real-time cart subtotal calculations, fluid currency conversions, and WCAG AA accessibility compliance across all screen sizes.",
-      problem: "Legacy online retail checkouts frequently suffer from cumbersome multi-page reload funnels, sluggish cart calculations, and poor mobile touch target ergonomics that degrade user trust.",
-      solution: "Engineered client-side reactive state machines for immediate subtotal recalculation, optimistic UI updating, and haptic audio synthesis for instantaneous cart confirmation.",
-      tech: ["JavaScript (ES6+)", "HTML5 Semantics", "CSS Grid & Flexbox", "Web Audio API", "WCAG AA", "Micro-Interactions"],
+    'prism': {
+      index: 3,
+      title: "Prism — 3D Spatial AR Showcase",
+      badge: "✦ 3D WEBGL & SPATIAL UX",
+      counter: "PROJECT 04 / 06",
+      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
+      desc: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
+      problem: "Hardware and spatial computing products struggle to convey optical clarity, real-time light refraction, and tactile physical presence using static flat marketing pages.",
+      solution: "Engineered a custom Three.js WebGL scene with real-time chromatic dispersion shaders, interactive orbit constraints, and zero-jank scroll timeline synchronization.",
+      tech: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion", "Spatial UI"],
       metrics: [
-        { val: "99.8%", lbl: "Checkout Reliability", color: "#F59E0B" },
-        { val: "100/100", lbl: "Lighthouse Performance", color: "#2DD4BF" },
-        { val: "0ms", lbl: "Layout Shift (CLS)", color: "#A78BFA" }
+        { val: "60 FPS", lbl: "WebGL Render Rate", color: "#60A5FA" },
+        { val: "< 1.2s", lbl: "3D Asset Hydration", color: "#2DD4BF" },
+        { val: "100%", lbl: "Hardware Acceleration", color: "#F59E0B" }
       ],
-      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      ghUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      image: "veloraa.png",
-      stageSourceId: "stage-velora"
+      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      ghUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      image: "Prism.jpeg",
+      stageSourceId: "stage-prism"
     },
     'kumo': {
-      index: 3,
+      index: 4,
       title: "Kumo Ramen Artisanal",
       badge: "✦ INTERACTIVE CULINARY UI",
-      counter: "PROJECT 04 / 05",
+      counter: "PROJECT 05 / 06",
       tagline: "Artisanal Ramen Builder & Real-Time Broth Customizer",
       desc: "An immersive, editorial restaurant digital experience allowing patrons to construct personalized ramen bowls in real-time, dynamically toggling slow-simmered broths, noodle firmness levels, and savory toppings with live pricing feedback.",
       problem: "Standard restaurant menus present static PDF lists that fail to communicate dish customization depth, rich culinary heritage, or allergen transparency.",
@@ -2628,29 +2350,29 @@ function setupProjectFullPageExperience() {
       image: "kumo.png",
       stageSourceId: "stage-kumo"
     },
-    'pastelform': {
-      index: 4,
-      title: "PastelForm Engine",
-      badge: "✦ DYNAMIC FORM ARCHITECTURE",
-      counter: "PROJECT 05 / 05",
-      tagline: "Accessible Multi-Step Form Builder with Schema Validation",
-      desc: "A soft-hued, high-ergonomics multi-step questionnaire and schema survey engine engineered with zero layout shift, tactile choice buttons, animated step progress meters, and immediate payload serialization.",
-      problem: "Multi-page survey forms generate high user fatigue and abandonment when questions feel disconnected and validation errors are confusingly presented.",
-      solution: "Created a focused step-flow wizard with keyboard-first navigation, progressive state persistence, clear visual hierarchy, and instant schema compilation.",
-      tech: ["TypeScript", "Dynamic Form Engine", "CSS Variables", "Schema Validation", "Keyboard Navigation", "A11y ARIA"],
+    'velora': {
+      index: 5,
+      title: "Velora Luxury Store",
+      badge: "✦ HIGH-CONVERSION COMMERCE",
+      counter: "PROJECT 06 / 06",
+      tagline: "Sub-Second Micro-Interactions & Accessible Luxury E-Commerce",
+      desc: "A bespoke e-commerce boutique platform built with tactile client-side micro-interactions, real-time cart subtotal calculations, fluid currency conversions, and WCAG AA accessibility compliance across all screen sizes.",
+      problem: "Legacy online retail checkouts frequently suffer from cumbersome multi-page reload funnels, sluggish cart calculations, and poor mobile touch target ergonomics that degrade user trust.",
+      solution: "Engineered client-side reactive state machines for immediate subtotal recalculation, optimistic UI updating, and haptic audio synthesis for instantaneous cart confirmation.",
+      tech: ["JavaScript (ES6+)", "HTML5 Semantics", "CSS Grid & Flexbox", "Web Audio API", "WCAG AA", "Micro-Interactions"],
       metrics: [
-        { val: "68%", lbl: "Form Completion Rate", color: "#A78BFA" },
-        { val: "0 CLS", lbl: "Zero Cumulative Shift", color: "#2DD4BF" },
-        { val: "100%", lbl: "Accessible ARIA Compliance", color: "#F59E0B" }
+        { val: "99.8%", lbl: "Checkout Reliability", color: "#F59E0B" },
+        { val: "100/100", lbl: "Lighthouse Performance", color: "#2DD4BF" },
+        { val: "0ms", lbl: "Layout Shift (CLS)", color: "#A78BFA" }
       ],
-      liveUrl: "https://github.com/ArfaMunam47/pastelform",
-      ghUrl: "https://github.com/ArfaMunam47/pastelform",
-      image: "pastel.png",
-      stageSourceId: "stage-pastelform"
+      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      ghUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      image: "veloraa.png",
+      stageSourceId: "stage-velora"
     }
   };
 
-  const projectKeys = ['prism', 'studypilot', 'velora', 'kumo', 'pastelform'];
+  const projectKeys = ['pastelform', 'icapital', 'studypilot', 'prism', 'kumo', 'velora'];
   let currentProjectKey = 'prism';
 
   function renderFullPageProject(key) {
