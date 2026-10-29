@@ -311,12 +311,12 @@
       <a href="#hero" class="nav-brand" id="brand-link" aria-label="Arfa Munam">
         <div class="brand-badge" id="brand-badge">
           <img 
-            src="logo.jpg" 
+            src="logo.png" 
             alt="Arfa Munam" 
             class="brand-logo-img" 
             loading="eager" 
             decoding="async" 
-            onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/logo.jpg';}"
+            onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/logo.png';}else if(this.dataset.retry==='1'){this.dataset.retry='2';this.src='LOGO.jpg';}"
           />
         </div>
         <span class="brand-name">ARFA MUNAM</span>
@@ -328,7 +328,6 @@
         <li><a href="#skills" class="nav-link" id="link-skills">Skills</a></li>
         <li><a href="#exploring" class="nav-link" id="link-exploring">Learning</a></li>
         <li><a href="#certifications" class="nav-link" id="link-certifications">Certificates</a></li>
-        <li><a href="#hobbies" class="nav-link" id="link-hobbies">Hobbies</a></li>
         <li><a href="#contact" class="nav-link" id="link-contact">Contact</a></li>
       </ul>
 
@@ -355,7 +354,6 @@
     <a href="#skills">Skills</a>
     <a href="#exploring">Exploring</a>
     <a href="#certifications">Certificates</a>
-    <a href="#hobbies">Hobbies</a>
     <a href="#contact">Let's Connect</a>
   </div>
 
@@ -1166,25 +1164,42 @@
 
       </div><!-- /.work-in-motion-hero -->
 
-      <!-- Consistent Equal-Treatment Project Showcase Gallery -->
+      <!-- Scroll-Driven Stacked Project Showcase (Inspired by Reference Video) -->
       <div class="projects-showcase-gallery" id="projects-showcase-gallery" role="region" aria-label="Featured Projects Showcase">
-        <!-- Subtle Ambient Background Particles (Layered strictly behind cards) -->
-        <div class="gallery-ambient-particles" aria-hidden="true">
-          <span class="ambient-mote mote-gold"></span>
-          <span class="ambient-mote mote-cyan"></span>
-          <span class="ambient-mote mote-indigo"></span>
-          <span class="ambient-mote mote-sage"></span>
-          <span class="ambient-mote mote-green"></span>
-        </div>
-        <div class="projects-equal-grid" id="projects-equal-grid" role="list">
-          <!-- Populated by script.js with the 6 authentic projects in equal-treatment frames -->
+        
+        <!-- Top Project Selector Pill Navigation -->
+        <div class="showcase-selector-bar" id="showcase-selector-bar" role="tablist" aria-label="Featured Projects Selection">
+          <button type="button" class="showcase-tab-btn active" role="tab" aria-selected="true" data-index="0" style="--proj-accent: #D4822B;">
+            <span class="tab-btn-idx">01</span>
+            <span class="tab-btn-title">Pastel and Form</span>
+          </button>
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="1" style="--proj-accent: #2563EB;">
+            <span class="tab-btn-idx">02</span>
+            <span class="tab-btn-title">Prism</span>
+          </button>
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="2" style="--proj-accent: #0284C7;">
+            <span class="tab-btn-idx">03</span>
+            <span class="tab-btn-title">I Capital</span>
+          </button>
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="3" style="--proj-accent: #B88728;">
+            <span class="tab-btn-idx">04</span>
+            <span class="tab-btn-title">Kumo Ramen</span>
+          </button>
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="4" style="--proj-accent: #1E7E55;">
+            <span class="tab-btn-idx">05</span>
+            <span class="tab-btn-title">Velora</span>
+          </button>
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="5" style="--proj-accent: #6366F1;">
+            <span class="tab-btn-idx">06</span>
+            <span class="tab-btn-title">StudyPilot AI</span>
+          </button>
         </div>
       </div>
 
       <!-- Single Elegant Italic Closing Line (Direct User Requirement) -->
       <div class="portfolio-closing-note-container" id="portfolio-closing-note">
         <p class="portfolio-closing-note-text">
-          Thank you for stopping by my little corner of the internet. 💗
+          Thank you for stopping by my little corner of the internet. ❤️
         </p>
       </div>
 
@@ -2262,243 +2277,308 @@
         </p>
       </div>
 
-      <!-- MAIN EDITORIAL COMPOSITION (Row 1: Primary 01, 02, 03) -->
-      <div class="serv-composition-primary">
+      <!-- SIX CAPABILITY CARDS (Inspired by Pinterest Reference) -->
+      <div class="serv-cards-grid">
         
         <!-- ===============================================================
-             01 FRONTEND DEVELOPMENT (Dark Glass Code Window + Tech Badges)
+             CARD 01 — FRONTEND DEVELOPMENT (Coral Red: #E83B50)
              =============================================================== -->
-        <article class="serv-item serv-item-01 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-coral"></div>
-          
-          <div class="serv-item-visual">
-            <div class="serv-3d-stage stage-code-window">
-              <img src="src/assets/images/services_3d_code_window_1790333280428.jpg" 
-                   alt="3D Frontend Code Editor Window on Frosted Glass Pedestal" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-orbit-ring ring-gold"></div>
+        <article class="serv-item serv-pinterest-card serv-card-01 service-box reveal" tabindex="0" data-service="Frontend Development">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
             </div>
 
-            <!-- Technology Badges Row directly under the 3D window -->
-            <div class="serv-tech-badges-row" aria-label="Frontend Technologies">
-              <span class="serv-tech-chip chip-html" title="HTML5">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#E34F26"><path d="M12 2L3 5l2 14 7 3 7-3 2-14-9-3zm6 6.5h-8l.2 2.5h7.6l-.6 6.2-5.2 1.4-5.2-1.4-.4-4.2h2.5l.2 2 2.9.8 2.9-.8.3-3.4H5.8L5 6.5h13.3l-.3 2z"/></svg>
-                <span>HTML5</span>
-              </span>
-              <span class="serv-tech-chip chip-css" title="CSS3">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#1572B6"><path d="M12 2L3 5l2 14 7 3 7-3 2-14-9-3zm6 6.5h-8l.2 2.5h7.6l-.6 6.2-5.2 1.4-5.2-1.4-.4-4.2h2.5l.2 2 2.9.8 2.9-.8.3-3.4H5.8L5 6.5h13.3l-.3 2z"/></svg>
-                <span>CSS3</span>
-              </span>
-              <span class="serv-tech-chip chip-js" title="JavaScript">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#F7DF1E"><rect width="24" height="24" rx="3" fill="#F7DF1E"/><path d="M7 17.5c.8.5 1.7.7 2.6.7 1.8 0 2.8-.9 2.8-2.6v-6.8h-2.2v6.8c0 .7-.3 1.1-1 1.1-.5 0-1-.2-1.4-.5l-.8 1.3zm7.6-.1c1 .6 2.1.9 3.2.9 2.4 0 3.7-1.3 3.7-3.1 0-1.8-1.2-2.6-2.7-3.2l-.7-.3c-.8-.4-1.2-.7-1.2-1.3 0-.6.5-1.1 1.3-1.1.7 0 1.4.3 2 .7l.8-1.3c-.7-.5-1.6-.8-2.7-.8-2.2 0-3.5 1.3-3.5 3 0 1.7 1.1 2.5 2.5 3.1l.7.3c.9.4 1.4.8 1.4 1.4 0 .7-.6 1.2-1.6 1.2-.9 0-1.7-.4-2.3-.9l-.9 1.4z" fill="#000"/></svg>
-                <span>JS</span>
-              </span>
-              <span class="serv-tech-chip chip-react" title="React">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00D8FF" stroke-width="2"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill="#00D8FF"/></svg>
-                <span>React</span>
-              </span>
-              <span class="serv-tech-chip chip-tailwind" title="Tailwind CSS">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#38BDF8"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z"/></svg>
-                <span>Tailwind</span>
-              </span>
-            </div>
-          </div>
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-coral">01</span>
-              <span class="serv-num-underline bar-coral"></span>
-            </div>
+            <!-- 3. Skill title -->
             <h3 class="serv-card-title">Frontend Development</h3>
+
+            <!-- 4. Concise description -->
             <p class="serv-card-desc">
-              Building semantic, accessible and lightning-fast web interfaces using modern technologies.
+              Building semantic, accessible, and fast web interfaces using HTML5, CSS3, JavaScript, and modern frontend technologies.
             </p>
+
+            <!-- Technologies Chips -->
+            <div class="serv-card-tech-chips" aria-label="Frontend Technologies">
+              <span class="serv-tech-chip">HTML5</span>
+              <span class="serv-tech-chip">CSS3</span>
+              <span class="serv-tech-chip">JavaScript</span>
+              <span class="serv-tech-chip">React</span>
+              <span class="serv-tech-chip">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
+            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 01">
+            <span class="serv-number-text">01</span>
           </div>
         </article>
 
         <!-- ===============================================================
-             02 RESPONSIVE WEB DESIGN (Layered Glass Devices on Pedestal)
+             CARD 02 — RESPONSIVE WEB DESIGN (Royal Blue: #41459B)
              =============================================================== -->
-        <article class="serv-item serv-item-02 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-purple"></div>
-
-          <div class="serv-item-visual">
-            <div class="serv-3d-stage stage-devices">
-              <img src="src/assets/images/services_3d_responsive_devices_1790333293421.jpg" 
-                   alt="3D Translucent Responsive Glass Devices on Illuminated Pedestal" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-pedestal-glow glow-lavender"></div>
+        <article class="serv-item serv-pinterest-card serv-card-02 service-box reveal" tabindex="0" data-service="Responsive Web Design">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                  <path d="M17 9h4v6h-4z"/>
+                </svg>
+              </div>
             </div>
 
-            <!-- Minimalist Device Icons Dock -->
-            <div class="serv-devices-dock" aria-label="Responsive Devices">
-              <span class="serv-device-icon" title="Mobile Smartphone">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              </span>
-              <span class="serv-device-icon" title="Tablet Screen">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              </span>
-              <span class="serv-device-icon" title="Laptop Display">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-              </span>
-              <span class="serv-device-icon" title="Desktop Monitor">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </span>
-            </div>
-          </div>
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-purple">02</span>
-              <span class="serv-num-underline bar-purple"></span>
-            </div>
+            <!-- 3. Skill title -->
             <h3 class="serv-card-title">Responsive Web Design</h3>
+
+            <!-- 4. Concise description -->
             <p class="serv-card-desc">
-              Crafting fluid layouts that adapt seamlessly across all devices and screen sizes.
+              Creating fluid layouts and responsive interfaces that adapt beautifully to mobile phones, tablets, laptops, and desktop screens.
             </p>
+
+            <!-- Responsive Preview Elements -->
+            <div class="serv-card-tech-chips" aria-label="Device Breakpoints">
+              <span class="serv-tech-chip">Mobile</span>
+              <span class="serv-tech-chip">Tablet</span>
+              <span class="serv-tech-chip">Laptop</span>
+              <span class="serv-tech-chip">Desktop</span>
+            </div>
+          </div>
+
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
+            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 02">
+            <span class="serv-number-text">02</span>
           </div>
         </article>
 
         <!-- ===============================================================
-             03 LANDING PAGES & PORTFOLIOS (Glossy 3D Rocket Launch)
+             CARD 03 — LANDING PAGES & PORTFOLIOS (Deep Purple: #482064)
              =============================================================== -->
-        <article class="serv-item serv-item-03 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-cyan"></div>
-
-          <div class="serv-item-visual">
-            <div class="serv-3d-stage stage-rocket">
-              <img src="src/assets/images/services_3d_rocket_1790333305775.jpg" 
-                   alt="3D Space Rocket Launching on Cyan Glowing Pedestal" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-orbit-ring ring-cyan"></div>
+        <article class="serv-item serv-pinterest-card serv-card-03 service-box reveal" tabindex="0" data-service="Landing Pages & Portfolios">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+              </div>
             </div>
-          </div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-cyan">03</span>
-              <span class="serv-num-underline bar-cyan"></span>
-            </div>
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
+
+            <!-- 3. Skill title -->
             <h3 class="serv-card-title">Landing Pages &amp; Portfolios</h3>
+
+            <!-- 4. Concise description -->
             <p class="serv-card-desc">
-              High-impact pages that capture attention and convert visitors into lasting impressions.
+              Designing engaging landing pages and creative portfolios with clear visual hierarchy, polished layouts, and memorable user experiences.
             </p>
-            <div class="serv-action-wrap">
-              <a href="#projects" class="serv-action-btn action-cyan" aria-label="Explore Projects">
-                <span>↗</span>
-              </a>
-            </div>
-          </div>
-        </article>
 
-      </div>
-
-      <!-- SECONDARY EDITORIAL COMPOSITION (Row 2: Secondary 04, 05, 06) -->
-      <div class="serv-composition-secondary">
-
-        <!-- ===============================================================
-             04 PERFORMANCE OPTIMIZATION (Speedometer Gauge)
-             =============================================================== -->
-        <article class="serv-item serv-item-04 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-teal"></div>
-
-          <div class="serv-item-visual visual-compact">
-            <div class="serv-3d-stage stage-gauge">
-              <img src="src/assets/images/services_3d_speedometer_1790333317783.jpg" 
-                   alt="3D Futuristic Performance Speedometer Gauge" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-halo-ring ring-teal"></div>
+            <!-- Specialty Chips -->
+            <div class="serv-card-tech-chips" aria-label="Capabilities">
+              <span class="serv-tech-chip">Visual Hierarchy</span>
+              <span class="serv-tech-chip">Editorial UI</span>
+              <span class="serv-tech-chip">Clean Layout</span>
             </div>
           </div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-teal">04</span>
-              <span class="serv-num-underline bar-teal"></span>
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
             </div>
-            <h3 class="serv-card-title">Performance Optimization</h3>
-            <p class="serv-card-desc">
-              Speed, SEO and clean code strategies to deliver optimal performance every time.
-            </p>
-            <div class="serv-action-wrap">
-              <a href="#contact" class="serv-action-btn action-teal" aria-label="Discuss performance optimization">
-                <span>↗</span>
-              </a>
-            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 03">
+            <span class="serv-number-text">03</span>
           </div>
         </article>
 
         <!-- ===============================================================
-             05 CLEAN & SCALABLE CODE (Amber Code Hexagon)
+             CARD 04 — REACT & MODERN UI (Teal: #168FA3)
              =============================================================== -->
-        <article class="serv-item serv-item-05 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-amber"></div>
+        <article class="serv-item serv-pinterest-card serv-card-04 service-box reveal" tabindex="0" data-service="React & Modern UI">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                  <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
+                  <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
 
-          <div class="serv-item-visual visual-compact">
-            <div class="serv-3d-stage stage-hexagon">
-              <img src="src/assets/images/services_3d_code_hexagon_1790333328715.jpg" 
-                   alt="3D Amber Translucent Code Hexagon with Glowing Brackets" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-halo-ring ring-amber"></div>
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
+
+            <!-- 3. Skill title -->
+            <h3 class="serv-card-title">React &amp; Modern UI</h3>
+
+            <!-- 4. Concise description -->
+            <p class="serv-card-desc">
+              Building interactive user interfaces with reusable components, clean structure, and modern frontend development practices.
+            </p>
+
+            <!-- React Stack Chips -->
+            <div class="serv-card-tech-chips" aria-label="Modern UI Stack">
+              <span class="serv-tech-chip">Components</span>
+              <span class="serv-tech-chip">Clean Hooks</span>
+              <span class="serv-tech-chip">Modular UI</span>
             </div>
           </div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-amber">05</span>
-              <span class="serv-num-underline bar-amber"></span>
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
             </div>
-            <h3 class="serv-card-title">Clean &amp; Scalable Code</h3>
-            <p class="serv-card-desc">
-              Writing maintainable, well-structured and scalable code for long-term growth.
-            </p>
-            <div class="serv-action-wrap">
-              <a href="#contact" class="serv-action-btn action-amber" aria-label="Discuss clean frontend code">
-                <span>↗</span>
-              </a>
-            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 04">
+            <span class="serv-number-text">04</span>
           </div>
         </article>
 
         <!-- ===============================================================
-             06 SUPPORT & MAINTENANCE (Pink Chat Bubble & Lavender Gear)
+             CARD 05 — GIT & GITHUB (Warm Orange: #F08A32)
              =============================================================== -->
-        <article class="serv-item serv-item-06 service-box reveal" tabindex="0">
-          <div class="serv-card-aura aura-pink"></div>
+        <article class="serv-item serv-pinterest-card serv-card-05 service-box reveal" tabindex="0" data-service="Git & GitHub">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="6" y1="3" x2="6" y2="15"/>
+                  <circle cx="18" cy="6" r="3"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <path d="M18 9a9 9 0 0 1-9 9"/>
+                </svg>
+              </div>
+            </div>
 
-          <div class="serv-item-visual visual-compact">
-            <div class="serv-3d-stage stage-chat-gear">
-              <img src="src/assets/images/services_3d_chat_gear_1790333338963.jpg" 
-                   alt="3D Glossy Pink Chat Bubble with Interlocked Lavender Gear" 
-                   class="serv-3d-img" 
-                   loading="lazy">
-              <div class="serv-halo-ring ring-pink"></div>
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
+
+            <!-- 3. Skill title -->
+            <h3 class="serv-card-title">Git &amp; GitHub</h3>
+
+            <!-- 4. Concise description -->
+            <p class="serv-card-desc">
+              Managing code changes, tracking development progress, and organizing projects with version control and GitHub repositories.
+            </p>
+
+            <!-- Version Control Chips -->
+            <div class="serv-card-tech-chips" aria-label="Version Control">
+              <span class="serv-tech-chip">Git Branches</span>
+              <span class="serv-tech-chip">GitHub Repos</span>
+              <span class="serv-tech-chip">Clean Commits</span>
             </div>
           </div>
 
-          <div class="serv-item-text">
-            <div class="serv-num-header">
-              <span class="serv-num num-pink">06</span>
-              <span class="serv-num-underline bar-pink"></span>
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
             </div>
-            <h3 class="serv-card-title">Support &amp; Maintenance</h3>
-            <p class="serv-card-desc">
-              Reliable support and continuous updates to keep everything running smoothly.
-            </p>
-            <div class="serv-action-wrap">
-              <a href="#contact" class="serv-action-btn action-pink" aria-label="Discuss ongoing support">
-                <span>↗</span>
-              </a>
-            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 05">
+            <span class="serv-number-text">05</span>
           </div>
         </article>
 
-      </div>
+        <!-- ===============================================================
+             CARD 06 — PROMPT ENGINEERING & AI (Green: #498A68)
+             =============================================================== -->
+        <article class="serv-item serv-pinterest-card serv-card-06 service-box reveal" tabindex="0" data-service="Prompt Engineering & AI">
+          <div class="serv-card-body">
+            <!-- 1. Small icon near the top -->
+            <div class="serv-card-icon-wrap" aria-hidden="true">
+              <div class="serv-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z"/>
+                  <path d="M19 16l1.2 2.8L23 20l-2.8 1.2L19 24l-1.2-2.8L15 20l2.8-1.2z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Short decorative accent that uses the card's color -->
+            <div class="serv-card-accent-bar" aria-hidden="true"></div>
+
+            <!-- 3. Skill title -->
+            <h3 class="serv-card-title">Prompt Engineering &amp; AI</h3>
+
+            <!-- 4. Concise description -->
+            <p class="serv-card-desc">
+              Crafting clear, structured prompts to guide AI tools in generating, refining, and improving digital experiences.
+            </p>
+
+            <!-- AI Workflow Chips -->
+            <div class="serv-card-tech-chips" aria-label="AI Tools & Workflows">
+              <span class="serv-tech-chip">Context Crafting</span>
+              <span class="serv-tech-chip">Workflow Boost</span>
+              <span class="serv-tech-chip">Modern Tools</span>
+            </div>
+          </div>
+
+          <!-- 5. Colored lower section -->
+          <div class="serv-card-bottom-base" aria-hidden="true">
+            <div class="serv-base-texture">
+              <span class="serv-base-dash"></span>
+              <span class="serv-base-dash"></span>
+            </div>
+          </div>
+
+          <!-- 6. Circular number badge positioned across the transition -->
+          <div class="serv-card-number-badge" aria-label="Skill 06">
+            <span class="serv-number-text">06</span>
+          </div>
+        </article>
+
+      </div><!-- /.serv-cards-grid -->
 
       <!-- ===============================================================
            13. BOTTOM STATISTICS STRIP (Floating Glass Shelf)
@@ -3277,409 +3357,6 @@
   </section>
 
 <!-- =======================================================================
-       CREATIVE HOBBIES & PINTEREST SCRAPBOOK SECTION
-       Physical Mood Board • Polaroids • Washi Tape • Doodles • Personal Life
-       ======================================================================= -->
-    <section id="hobbies" class="creative-scrapbook-section" aria-label="My Hobbies — Creative Scrapbook Collage" data-section="hobbies">
-    <span id="my-hobbies" class="section-hash-anchor" aria-hidden="true"></span>
-    <span id="scrapbook" class="section-hash-anchor" aria-hidden="true"></span>
-
-    <!-- Ambient Subtle Paper Texture Background -->
-    <div class="scrapbook-ambient-backdrop" aria-hidden="true">
-      <div class="scrapbook-paper-base"></div>
-      <div class="scrapbook-paper-grain"></div>
-    </div>
-
-    <div class="scrapbook-main-wrapper">
-
-      <!-- Top Corner Floating Paper Scraps -->
-      <aside class="scrapbook-corner-scrap scrap-top-left" aria-hidden="true">
-        <div class="scrap-washi-tape tape-corner-left"></div>
-        <div class="scrap-paper-card">
-          <span class="scrap-doodle-rays rays-tl">\ | /</span>
-          <p class="scrap-handwritten-text">Same girl...<br>Different<br>worlds... ♡</p>
-          <span class="scrap-doodle-rays rays-br">/ | \</span>
-        </div>
-      </aside>
-
-      <aside class="scrapbook-corner-scrap scrap-top-right" aria-hidden="true">
-        <div class="scrap-washi-tape tape-corner-right"></div>
-        <div class="scrap-paper-card scrap-peach-tone">
-          <p class="scrap-handwritten-text">Collecting<br>small moments,<br>not just<br>things ♡</p>
-          <div class="scrap-camera-doodle">
-            <svg width="28" height="22" viewBox="0 0 28 22" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 7H8L10 4H18L20 7H24C25.1 7 26 7.9 26 9V19C26 20.1 25.1 21 24 21H4C2.9 21 2 20.1 2 19V9C2 7.9 2.9 7 4 7Z"/>
-              <circle cx="14" cy="14" r="4.5"/>
-              <circle cx="22" cy="10" r="1" fill="#1E293B"/>
-            </svg>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Center Scrapbook Heading -->
-      <header class="scrapbook-header">
-        <!-- Top Editorial Chapter Marker -->
-        <div class="scrapbook-chapter-tag" aria-label="Scrapbook Tag">
-          <span class="tag-sparkle">✦</span>
-          <span class="tag-text">CHAPTER 09 // SCRAPBOOK COLLAGE</span>
-          <span class="tag-sep">|</span>
-          <span class="tag-sub">MOMENTS BEYOND CODE</span>
-          <span class="tag-sparkle">✦</span>
-        </div>
-
-        <!-- Expressive Main Title -->
-        <div class="scrapbook-title-lockup">
-          <span class="scrapbook-title-pill">My</span>
-          <div class="scrapbook-title-hobbies-wrap">
-            <span class="title-doodle-burst burst-left" aria-hidden="true">\ | /</span>
-            <h2 class="scrapbook-title-hobbies">
-              Hobbies<span class="title-heart-accent">♡</span>
-            </h2>
-            <span class="title-doodle-burst burst-right" aria-hidden="true">/ | \</span>
-          </div>
-        </div>
-
-        <!-- Cursive Subtitle with Peach Brush Arc Underline -->
-        <div class="scrapbook-subtitle-wrap">
-          <p class="scrapbook-subtitle-text">Read. Write. Watch. Explore. Play. ♡</p>
-          <svg class="scrapbook-subtitle-arc" width="280" height="18" viewBox="0 0 280 18" fill="none" aria-hidden="true">
-            <path d="M4 14C60 4 220 4 276 14" stroke="#FFB69B" stroke-width="4.5" stroke-linecap="round" opacity="0.85"/>
-          </svg>
-        </div>
-      </header>
-
-      <!-- The Scrapbook Collage Canvas: 3 Columns with Tight, Intentional Overlap -->
-      <div class="scrapbook-art-board" id="scrapbook-board">
-
-        <!-- ================= LEFT COLUMN ================= -->
-        <div class="scrapbook-col col-left">
-
-          <!-- HOBBY 1: BOOK READING -->
-          <article class="scrapbook-hobby-cluster cluster-book-reading" tabindex="0" aria-label="Hobby: Book Reading">
-            <div class="washi-tape-strip tape-peach-angle"></div>
-            
-            <!-- Torn Peach Paper Label -->
-            <div class="hobby-torn-label label-peach">
-              <h3 class="hobby-label-title">Book Reading</h3>
-              <span class="hobby-doodle-icon" aria-hidden="true">
-                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 3C6 2 10 3 12 5C14 3 18 2 22 3V17C18 16 14 17 12 19C10 17 6 16 2 17V3Z" fill="#FFF9F0"/>
-                  <path d="M12 5V19"/>
-                </svg>
-              </span>
-            </div>
-
-            <!-- Photograph Stack & Coffee Mug -->
-            <div class="hobby-photo-frame photo-rotate-left">
-              <img src="/src/assets/images/scrapbook_books_1792237632072.jpg" 
-                   alt="Aesthetic stack of reading books with coffee mug on warm wooden table" 
-                   class="scrapbook-photo-img" 
-                   loading="lazy" 
-                   referrerpolicy="no-referrer">
-              <div class="photo-caption-tag">• just one more chapter... ♡</div>
-            </div>
-
-            <!-- Overlapping Lined Paper Checklist -->
-            <div class="scrapbook-checklist-card card-lined-paper checklist-book">
-              <div class="paperclip-accent" aria-hidden="true"></div>
-              <ul class="checklist-items">
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Fiction</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Self help</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Psychology</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Fantasy</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">More books please... ♡</span></li>
-              </ul>
-            </div>
-
-            <!-- Cute Handwritten Mini Note -->
-            <div class="scrapbook-mini-note note-good-books" aria-hidden="true">
-              <p>Good<br>books<br>=<br>Good<br>mood ♡</p>
-            </div>
-          </article>
-
-          <!-- HOBBY 3: MOVIES & CINEMA -->
-          <article class="scrapbook-hobby-cluster cluster-movies" tabindex="0" aria-label="Hobby: Movies and Cinema">
-            <div class="washi-tape-strip tape-kraft-center"></div>
-
-            <!-- Torn Peach Paper Label -->
-            <div class="hobby-torn-label label-peach">
-              <span class="hobby-doodle-icon" aria-hidden="true">
-                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="6" width="20" height="12" rx="2" fill="#FFF9F0"/>
-                  <path d="M2 6L6 2H10L8 6" fill="#1E293B"/>
-                  <path d="M11 6L14 2H18L16 6" fill="#1E293B"/>
-                  <path d="M19 6L22 2H23V6" fill="#1E293B"/>
-                </svg>
-              </span>
-              <h3 class="hobby-label-title">Movies</h3>
-            </div>
-
-            <!-- Photograph with Filmstrip Border Detail -->
-            <div class="hobby-photo-frame photo-rotate-slight-left frame-with-filmstrip">
-              <img src="/src/assets/images/scrapbook_movies_1792237633855.jpg" 
-                   alt="Cozy movie night scene with monitor, popcorn bucket, and film strip" 
-                   class="scrapbook-photo-img" 
-                   loading="lazy" 
-                   referrerpolicy="no-referrer">
-              <div class="filmstrip-tape-edge" aria-hidden="true">
-                <div class="sprocket-row"><span class="sprocket"></span><span class="sprocket"></span><span class="sprocket"></span><span class="sprocket"></span><span class="sprocket"></span><span class="sprocket"></span></div>
-              </div>
-              <div class="photo-caption-tag">Better Movies • Bigger Dreams ♡</div>
-            </div>
-
-            <!-- Overlapping Torn Paper Checklist -->
-            <div class="scrapbook-checklist-card card-torn-cream checklist-movies">
-              <ul class="checklist-items">
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Thrillers</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Romance</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Sci-fi</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Feel-good</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Comedy</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Everything (specifically movies!) ♡</span></li>
-              </ul>
-            </div>
-
-            <!-- Cute Handwritten Mini Note with Projector Doodle -->
-            <div class="scrapbook-mini-note note-different-stories" aria-hidden="true">
-              <p>Different<br>stories,<br>same me ♡</p>
-              <svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="6" r="3"/>
-                <circle cx="16" cy="6" r="3"/>
-                <rect x="5" y="9" width="14" height="8" rx="1"/>
-                <path d="M19 11L23 9V15L19 13"/>
-                <path d="M8 17L6 19"/>
-                <path d="M16 17L18 19"/>
-              </svg>
-            </div>
-          </article>
-
-          <!-- HOBBY 5: BADMINTON -->
-          <article class="scrapbook-hobby-cluster cluster-badminton" tabindex="0" aria-label="Hobby: Badminton">
-            <div class="washi-tape-strip tape-mint-angle"></div>
-
-            <!-- Torn Peach Paper Label -->
-            <div class="hobby-torn-label label-peach">
-              <h3 class="hobby-label-title">Badminton</h3>
-              <span class="hobby-doodle-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2C8 2 6 6 6 9C6 11 8 13 12 14C16 13 18 11 18 9C18 6 16 2 12 2Z" fill="#FFF9F0"/>
-                  <line x1="12" y1="14" x2="12" y2="22" stroke-width="2.2"/>
-                  <circle cx="12" cy="22" r="1.5" fill="#1E293B"/>
-                </svg>
-              </span>
-            </div>
-
-            <!-- Photograph of Racket & Shuttlecocks -->
-            <div class="hobby-photo-frame photo-rotate-left frame-badminton">
-              <img src="/src/assets/images/scrapbook_badminton_1792237633792.jpg" 
-                   alt="Badminton racket and white feathered shuttlecocks on green indoor court" 
-                   class="scrapbook-photo-img" 
-                   loading="lazy" 
-                   referrerpolicy="no-referrer">
-            </div>
-
-            <!-- Overlapping Cream Paper Checklist -->
-            <div class="scrapbook-checklist-card card-white-clean checklist-badminton">
-              <ul class="checklist-items">
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Focus</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Fitness</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Fun</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Stress buster</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Smash &amp; smile ♡</span></li>
-              </ul>
-            </div>
-
-            <!-- Cute Handwritten Mini Note -->
-            <div class="scrapbook-mini-note note-small-steps" aria-hidden="true">
-              <p>Small<br>steps<br>Big<br>smashes<br>♡</p>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1E293B" stroke-width="1.6">
-                <path d="M10 2L6 8H14L10 2Z" fill="#FFF5EA"/>
-                <circle cx="10" cy="10" r="2" fill="#1E293B"/>
-              </svg>
-            </div>
-          </article>
-
-        </div><!-- /.col-left -->
-
-        <!-- ================= CENTER COLUMN (PORTRAIT CENTERPIECE) ================= -->
-        <div class="scrapbook-col col-center">
-
-          <div class="scrapbook-centerpiece-anchor">
-            <!-- Little Decorative Sparkles & Doodles above portrait -->
-            <div class="portrait-doodle-halo" aria-hidden="true">
-              <span class="doodle-star star-1">★</span>
-              <span class="doodle-ray-group rays-head-left">\ | /</span>
-              <span class="doodle-sparkle sparkle-1">✦</span>
-              <span class="doodle-ray-group rays-head-right">/ | \</span>
-              <span class="doodle-star star-2">☆</span>
-            </div>
-
-            <!-- Main Portrait Cutout with crisp white paper die-cut border & lifted drop shadow -->
-            <div class="scrapbook-portrait-cutout-wrap">
-              <img src="port.png" 
-                   alt="Arfa Munam — Centerpiece Portrait on Creative Scrapbook Board" 
-                   class="scrapbook-portrait-cutout-img" 
-                   loading="eager" 
-                   onerror="this.onerror=null; this.src='portrait-cutout.png';">
-            </div>
-
-            <!-- Doodled Curved Arrow pointing toward the portrait -->
-            <div class="portrait-arrow-annotation" aria-hidden="true">
-              <svg class="annotation-curved-arrow" width="68" height="52" viewBox="0 0 68 52" fill="none">
-                <path d="M10 42C26 44 48 36 56 14" stroke="#FF5A36" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="3 3"/>
-                <path d="M44 14L56 10L59 22" stroke="#FF5A36" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <p class="annotation-note-text">that’s me! <span class="highlight-vibe">vibe coding</span> &amp; dreaming ✨</p>
-            </div>
-
-            <!-- Elegant Printed Name Ribbon Badge -->
-            <div class="portrait-identity-ribbon" aria-label="Author badge: Arfa Munam">
-              <span class="ribbon-star">★</span>
-              <span class="ribbon-name">ARFA MUNAM</span>
-              <span class="ribbon-star">★</span>
-            </div>
-
-            <!-- Little heart doodle near bottom of dress -->
-            <div class="portrait-bottom-sparkle" aria-hidden="true">
-              <span class="doodle-heart">♡</span>
-              <span class="doodle-star-small">★</span>
-            </div>
-          </div>
-
-        </div><!-- /.col-center -->
-
-        <!-- ================= RIGHT COLUMN ================= -->
-        <div class="scrapbook-col col-right">
-
-          <!-- HOBBY 2: STORY WRITING -->
-          <article class="scrapbook-hobby-cluster cluster-story-writing" tabindex="0" aria-label="Hobby: Story Writing">
-            <div class="washi-tape-strip tape-peach-right"></div>
-
-            <!-- Torn Peach Paper Label -->
-            <div class="hobby-torn-label label-peach">
-              <h3 class="hobby-label-title">Story Writing</h3>
-              <span class="hobby-doodle-icon" aria-hidden="true">
-                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 2L22 6L9 19L5 20L6 16L18 2Z" fill="#FFF9F0"/>
-                  <line x1="15" y1="5" x2="19" y2="9"/>
-                </svg>
-              </span>
-            </div>
-
-            <!-- Photograph of Notebook & Pen -->
-            <div class="hobby-photo-frame photo-rotate-right">
-              <img src="/src/assets/images/scrapbook_writing_1792237633009.jpg" 
-                   alt="Spiral bound notebook with handwritten ideas, fountain pen, and coffee mug" 
-                   class="scrapbook-photo-img" 
-                   loading="lazy" 
-                   referrerpolicy="no-referrer">
-              <div class="photo-caption-tag">Same girl... Bigger dreams ♡</div>
-            </div>
-
-            <!-- Overlapping Spiral Paper Checklist -->
-            <div class="scrapbook-checklist-card card-spiral-paper checklist-writing">
-              <ul class="checklist-items">
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Ideas</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Characters</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Plot twists</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Daydreams</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">My own universe ♡</span></li>
-              </ul>
-            </div>
-
-            <!-- Cute Handwritten Mini Note -->
-            <div class="scrapbook-mini-note note-just-a-girl" aria-hidden="true">
-              <p>Just a<br>girl with<br>big<br>stories... ♡</p>
-            </div>
-          </article>
-
-          <!-- HOBBY 4: EXPLORING -->
-          <article class="scrapbook-hobby-cluster cluster-exploring" tabindex="0" aria-label="Hobby: Exploring">
-            <div class="washi-tape-strip tape-peach-center"></div>
-
-            <!-- Torn Peach Paper Label -->
-            <div class="hobby-torn-label label-peach">
-              <h3 class="hobby-label-title">Exploring</h3>
-              <span class="hobby-doodle-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10" fill="#FFF9F0"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2A15 15 0 0 1 12 22A15 15 0 0 1 12 2Z"/>
-                </svg>
-              </span>
-            </div>
-
-            <!-- Photograph of Alpine Lake, Compass & Map -->
-            <div class="hobby-photo-frame photo-rotate-slight-right frame-exploring">
-              <img src="/src/assets/images/scrapbook_travel_1792237633862.jpg" 
-                   alt="Travel flatlay with alpine lake landscape, vintage camera, brass compass and map" 
-                   class="scrapbook-photo-img" 
-                   loading="lazy" 
-                   referrerpolicy="no-referrer">
-              <div class="photo-caption-tag">Collecting Moments • Exploring Wild Horizons</div>
-            </div>
-
-            <!-- Overlapping Travel Checklist -->
-            <div class="scrapbook-checklist-card card-passport-paper checklist-exploring">
-              <ul class="checklist-items">
-                <li><span class="check-box-icon">☑</span> <span class="check-text">New places</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">New cultures</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">New food</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">New stories</span></li>
-                <li><span class="check-box-icon">☑</span> <span class="check-text">Same curious me ♡</span></li>
-              </ul>
-            </div>
-
-            <!-- Cute Handwritten Mini Note with Airplane Doodle -->
-            <div class="scrapbook-mini-note note-maps-dreams" aria-hidden="true">
-              <p>Maps<br>&amp;<br>Dreams<br>♡</p>
-              <svg width="20" height="18" viewBox="0 0 20 18" fill="none" stroke="#1E293B" stroke-width="1.6">
-                <path d="M2 9L18 2L11 16L9 11L2 9Z" fill="#FFF9F0"/>
-              </svg>
-            </div>
-          </article>
-
-          <!-- BOTTOM-RIGHT SCRAP NOTE & BOTANICAL SPRIG -->
-          <div class="scrapbook-bottom-right-anchor">
-            <div class="scrapbook-torn-paper-card card-happier-me">
-              <div class="pushpin-brass" aria-hidden="true"></div>
-              <p class="happier-me-text">Happier<br>Me<br>=<br>More<br>Adventures<br>♡</p>
-            </div>
-
-            <!-- Delicate Wildflower Botanical Stem Doodle -->
-            <div class="botanical-wildflower-sprig" aria-hidden="true">
-              <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
-                <path d="M80 150C70 120 50 80 40 40" stroke="#8B7355" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
-                <path d="M55 90C45 80 35 85 30 75" stroke="#8B7355" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-                <path d="M68 115C80 105 85 110 92 102" stroke="#8B7355" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-                <!-- Blossom 1 -->
-                <circle cx="40" cy="35" r="8" fill="#FFD9CC" stroke="#E58B70" stroke-width="1.2"/>
-                <circle cx="40" cy="35" r="3.5" fill="#FFF2ED"/>
-                <!-- Blossom 2 -->
-                <circle cx="26" cy="72" r="6" fill="#FFE3D6" stroke="#E58B70" stroke-width="1.2"/>
-                <!-- Blossom 3 -->
-                <circle cx="95" cy="98" r="6.5" fill="#FFD9CC" stroke="#E58B70" stroke-width="1.2"/>
-              </svg>
-            </div>
-          </div>
-
-        </div><!-- /.col-right -->
-
-      </div><!-- /.scrapbook-art-board -->
-
-      <!-- Footer Sign-off Note Banner -->
-      <footer class="scrapbook-footer-signoff">
-        <div class="washi-tape-strip tape-center-footer"></div>
-        <p class="footer-signoff-quote">
-          <span class="quote-italic">“Life is a scrapbook of curiosity, code, and genuine human moments.”</span>
-          <span class="quote-author">— Arfa Munam (Creative Developer &amp; Explorer)</span>
-        </p>
-      </footer>
-
-    </div><!-- /.scrapbook-main-wrapper -->
-  </section>
-
-  <!-- =======================================================================
        DEDICATED GITHUB SHOWCASE SECTION
        Open Source & Version Control · 35+ Repositories · 900+ Commits
        ======================================================================= -->
@@ -3913,375 +3590,286 @@
   <!-- =======================================================================
        LET'S TALK / GET IN TOUCH (Featuring Animated Mascot & Creative Bento)
        ======================================================================= -->
-    <!-- =======================================================================
-       LET'S CONNECT — PREMIUM 3D INTERACTIVE CONTACT EXPERIENCE
-       Warm Peach/Pink/Violet Atmosphere • Floating 3D Headphones & Paper Plane
-       Left 2x2 Contact Cards & Opportunities Capsule • Right Dark Navy 3D Form Panel
+  <!-- =======================================================================
+       LET'S CONNECT — REFINED CREATIVE TWO-COLUMN CONTACT SECTION
+       Reference Design: Warm Orange Accents, Soft Peach Panel, Editorial Illustration
        ======================================================================= -->
   <section id="contact" class="connect-scene-section" aria-label="Let's Connect and Collaborate">
-    
-    <!-- Atmospheric Ambient Lighting & Controlled Color Depth (Light, Soft Multi-Layer Glow) -->
-    <div class="conn-atmosphere" aria-hidden="true">
-      <div class="conn-ambient-light conn-light-cream"></div>
-      <div class="conn-ambient-light conn-light-coral"></div>
-      <div class="conn-ambient-light conn-light-lavender"></div>
-      <div class="conn-ambient-light conn-light-blue"></div>
-      <div class="conn-ambient-light conn-light-centerpiece"></div>
-      
-      <!-- Subtle Floating Decorative Sparkles & Nodes -->
-      <span class="conn-particle p-1">✦</span>
-      <span class="conn-particle p-2">✦</span>
-      <span class="conn-particle p-3">✦</span>
-      <span class="conn-particle p-4">✦</span>
-      <span class="conn-particle p-dot pd-1"></span>
-      <span class="conn-particle p-dot pd-2"></span>
-      <span class="conn-particle p-dot pd-3"></span>
-    </div>
+    <div class="container conn-editorial-container">
+      <div class="conn-editorial-grid">
 
-    <div class="container conn-container">
-      
-      <!-- TOP EYEBROW BADGE (Refined Floating Pill with Directional Accent) -->
-      <div class="conn-eyebrow-wrapper reveal">
-        <div class="conn-eyebrow-pill">
-          <span class="conn-pill-sparkle" aria-hidden="true">✦</span>
-          <span class="conn-pill-text">LET'S BUILD SOMETHING AMAZING</span>
-          <span class="conn-pill-arrow" aria-hidden="true">→</span>
-        </div>
-      </div>
-
-      <!-- MAIN 2-COLUMN COMPOSITION: Left Creative Scene + Right Precision Dark Form -->
-      <div class="conn-main-grid reveal">
-        
         <!-- ===============================================================
-             LEFT COLUMN: Creative Introduction + 3D Centerpiece + Social Tiles
+             LEFT COLUMN: Label, Headline, Paragraph, Creative Illustration
              =============================================================== -->
-        <div class="conn-left-col">
+        <div class="conn-col-left reveal">
           
-          <!-- Editorial Headline & Introduction -->
-          <div class="conn-intro-block">
-            <h2 class="conn-headline">
-              <span class="conn-head-ink">LET'S</span><br>
-              <span class="conn-head-gradient">CONNECT</span>
-            </h2>
-
-            <!-- Handwritten Supporting Phrase with Shimmering Line -->
-            <div class="conn-cursive-wrapper">
-              <span class="conn-cursive-text">and create impact together!</span>
-              <div class="conn-cursive-underline" aria-hidden="true">
-                <span class="conn-shimmer-traveler"></span>
-              </div>
-            </div>
-
-            <!-- Concise Introductory Message -->
-            <p class="conn-supporting-copy">
-              I'm open to exciting opportunities, collaborations, and innovative ideas. Let's turn your vision into something <strong class="conn-accent-gradient">extraordinary.</strong>
-            </p>
-          </div>
-
-          <!-- =============================================================
-               3D HERO HEADPHONE CENTERPIECE (Clean, Focused, Product-Render Quality)
-               Spacious bounding box • No overlapping lines or elements
-               ============================================================= -->
-          <div class="conn-3d-centerpiece-stage" id="conn-centerpiece-stage" aria-label="3D Floating Headphones Centerpiece">
-            
-            <!-- BACK LAYER: Soft Framing Radial Glow, Thin Orbital Ellipse, 3 Perimeter Badges -->
-            <div class="conn-3d-layer conn-layer-back" aria-hidden="true">
-              <!-- Soft Framing Ambient Glow (Soft, frames rather than swallows) -->
-              <div class="conn-centerpiece-radial-glow"></div>
-              
-              <!-- Thin Orbital Trajectory BEHIND Headphones (Never cuts across headphone) -->
-              <svg class="conn-orbit-svg conn-orbit-back" viewBox="0 0 480 260">
-                <defs>
-                  <linearGradient id="connThinOrbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.32" />
-                    <stop offset="35%" stop-color="#F43F5E" stop-opacity="0.38" />
-                    <stop offset="70%" stop-color="#A855F7" stop-opacity="0.28" />
-                    <stop offset="100%" stop-color="#FB923C" stop-opacity="0.25" />
-                  </linearGradient>
-                </defs>
-                <ellipse cx="240" cy="130" rx="195" ry="88" stroke="url(#connThinOrbitGrad)" stroke-width="1.2" fill="none" opacity="0.6" />
-                <ellipse cx="240" cy="130" rx="215" ry="98" stroke="url(#connThinOrbitGrad)" stroke-width="0.8" stroke-dasharray="6 10" fill="none" opacity="0.3" />
+          <!-- C. Small Decorative Label with Playful Pen Strokes -->
+          <div class="conn-decorative-label-wrap">
+            <span class="conn-pen-mark mark-left" aria-hidden="true">
+              <svg viewBox="0 0 28 16" width="22" height="12" fill="none">
+                <path d="M 3 12 C 10 4, 20 6, 26 8" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 8 14 C 14 10, 22 12, 27 13" stroke="#FA5538" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
-
-              <!-- ONLY 3 Small Floating Communication Elements in a Loose Triangle Far Away -->
-              <!-- 1. Small Email Icon (Upper-Left Apex) -->
-              <div class="conn-float-element el-email-tri" data-depth="0.35">
-                <div class="conn-float-badge badge-email-small">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- 2. Small Send / Paper Plane Icon (Lower-Left Corner) -->
-              <div class="conn-float-element el-send-tri" data-depth="0.45">
-                <div class="conn-float-badge badge-send-small">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- 3. Small Chat / Message Icon (Lower-Right Corner) -->
-              <div class="conn-float-element el-chat-tri" data-depth="0.4">
-                <div class="conn-float-badge badge-chat-small">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <!-- MIDDLE HERO LAYER: 3D HEADPHONES (Hero Object, Unobstructed, Centered) -->
-            <div class="conn-3d-layer conn-layer-mid">
-              <!-- Soft Realistic Ground Shadow Beneath Headphones -->
-              <div class="conn-headphones-shadow" aria-hidden="true"></div>
-
-              <!-- Centered, Sized to 48-52% of Stage, Complete Silhouette Visible -->
-              <div class="conn-headphones-visual" data-depth="0.6">
-                <img src="src/assets/images/headphones_3d_centerpiece.png" 
-                     alt="Premium 3D Studio Headphones Floating in Mid-Air" 
-                     class="conn-headphones-hero-img" 
-                     loading="lazy">
-              </div>
-            </div>
-
-          </div><!-- /.conn-3d-centerpiece-stage -->
-
-          <!-- Section Label: Connect With Me -->
-          <div class="conn-social-header">
-            <span class="conn-sparkle-icon" aria-hidden="true">✦</span>
-            <h3 class="conn-social-title">Connect With Me</h3>
+            </span>
+            <span class="conn-decorative-label">LET'S CONNECT</span>
+            <span class="conn-pen-mark mark-right" aria-hidden="true">
+              <svg viewBox="0 0 28 16" width="22" height="12" fill="none">
+                <path d="M 2 8 C 8 6, 18 4, 25 12" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 1 13 C 6 12, 14 10, 20 14" stroke="#FA5538" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
           </div>
 
-          <!-- 2x2 Tactile Interaction Tiles -->
-          <div class="conn-contact-grid" role="list">
-            
-            <!-- Card 1: GitHub -->
-            <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="conn-card conn-card-github tactile-btn" role="listitem" aria-label="Visit Arfa's GitHub Profile">
-              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
-              <div class="conn-card-icon-wrap icon-github">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </div>
-              <div class="conn-card-body">
-                <span class="conn-card-name">GitHub</span>
-                <span class="conn-card-desc">Check out my code</span>
-              </div>
-              <span class="conn-card-arrow" aria-hidden="true">↗</span>
-            </a>
+          <!-- D. Main Headline with Peach/Orange Marker Highlight & Decorative Strokes -->
+          <h2 class="conn-editorial-headline">
+            Got an idea?<br>
+            Let's <span class="conn-highlight-stroke">bring it to life.</span>
+            <span class="conn-headline-doodles" aria-hidden="true">
+              <svg viewBox="0 0 38 32" width="32" height="26" fill="none">
+                <path d="M 6 6 C 16 3, 26 7, 34 11" stroke="#FA5538" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M 12 16 C 20 13, 28 17, 35 23" stroke="#FA5538" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 2 24 C 8 22, 16 25, 22 28" stroke="#FA5538" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h2>
 
-            <!-- Card 2: LinkedIn -->
-            <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="conn-card conn-card-linkedin tactile-btn" role="listitem" aria-label="Connect with Arfa on LinkedIn">
-              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
-              <div class="conn-card-icon-wrap icon-linkedin">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </div>
-              <div class="conn-card-body">
-                <span class="conn-card-name">LinkedIn</span>
-                <span class="conn-card-desc">Let's connect</span>
-              </div>
-              <span class="conn-card-arrow" aria-hidden="true">↗</span>
-            </a>
+          <!-- E. Introductory Paragraph -->
+          <p class="conn-intro-paragraph">
+            I'm always excited to collaborate, take on new challenges, and be part of meaningful projects. Whether it's a question, an opportunity, or just a friendly hello — I'd love to hear from you!
+          </p>
 
-            <!-- Card 3: Email Me -->
-            <a href="mailto:arfamunam01@gmail.com" class="conn-card conn-card-email tactile-btn" role="listitem" aria-label="Send an email to Arfa">
-              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
-              <div class="conn-card-icon-wrap icon-email">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </div>
-              <div class="conn-card-body">
-                <span class="conn-card-name">Email Me</span>
-                <span class="conn-card-desc">Send me an email</span>
-              </div>
-              <span class="conn-card-arrow" aria-hidden="true">↗</span>
-            </a>
-
-            <!-- Card 4: Let's Chat -->
-            <a href="#contact-form" class="conn-card conn-card-chat tactile-btn" id="conn-btn-jump-form" role="listitem" aria-label="Jump to contact form">
-              <span class="conn-card-glow-reflect" aria-hidden="true"></span>
-              <div class="conn-card-icon-wrap icon-chat">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-              </div>
-              <div class="conn-card-body">
-                <span class="conn-card-name">Let's Chat</span>
-                <span class="conn-card-desc">Have a project in mind?</span>
-              </div>
-              <span class="conn-card-arrow" aria-hidden="true">↗</span>
-            </a>
-
+          <!-- F. Large Creative Illustration of Female Developer Working on Laptop -->
+          <div class="conn-illustration-wrapper">
+            <img 
+              src="connect_illustration.jpg" 
+              alt="Friendly creative female developer sitting at a wooden desk with a laptop, potted plant, coffee mug, ideas speech bubble, and paper plane" 
+              class="conn-creative-illustration-img" 
+              loading="lazy" 
+              decoding="async"
+              onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/connect_illustration.jpg';}"
+            />
           </div>
 
-        </div><!-- /.conn-left-col -->
+        </div><!-- /.conn-col-left -->
 
         <!-- ===============================================================
-             RIGHT COLUMN: Premium Dark Navy 3D Contact Form Panel
+             RIGHT COLUMN: Soft Peach Form Panel + Social Links Area
              =============================================================== -->
-        <div class="conn-right-col">
+        <div class="conn-col-right reveal">
           
-          <div class="conn-form-card" id="conn-form-card">
-            <!-- Illuminated Border Glow Effect -->
-            <div class="conn-form-border-glow" aria-hidden="true"></div>
-
-            <!-- Form Header with Circular Message Icon -->
-            <div class="conn-form-header">
-              <div class="conn-header-icon-orb" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <!-- G. Contact Form Panel inside Soft Peach-Colored Surface -->
+          <div class="conn-form-panel" id="conn-form-card">
+            
+            <!-- Panel Heading Row: Orange circle with white envelope + Send me a message + decorative strokes -->
+            <div class="conn-panel-header">
+              <div class="conn-panel-icon-circle" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
                 </svg>
               </div>
-              <div class="conn-header-text">
-                <h3 class="conn-form-title">
-                  Send Me a <span class="conn-form-title-gradient">Message</span>
-                </h3>
-                <p class="conn-form-subtitle">I'll get back to you as soon as possible.</p>
-              </div>
+              <h3 class="conn-panel-heading">Send me a message</h3>
+              <span class="conn-heading-strokes" aria-hidden="true">
+                <svg viewBox="0 0 32 20" width="26" height="16" fill="none">
+                  <path d="M 4 5 C 12 3, 22 6, 28 9" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M 10 13 C 18 11, 26 14, 30 18" stroke="#FA5538" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </span>
             </div>
 
-            <!-- Decorative Gradient Divider Line with Soft Glow -->
-            <div class="conn-form-header-line" aria-hidden="true"></div>
-
-            <!-- Functional Contact Form -->
-            <form id="contact-form" class="conn-actual-form" novalidate>
+            <!-- The Form -->
+            <form id="contact-form" class="conn-panel-form" novalidate>
               <input type="hidden" name="subject_prefix" value="Portfolio Let's Connect">
 
-              <!-- Row 1: Name and Email -->
-              <div class="conn-form-row">
-                <div class="conn-field-group">
-                  <label for="form-name" class="conn-field-label">YOUR NAME</label>
+              <!-- H & I: Name and Email Row -->
+              <div class="conn-form-row-duo">
+                <!-- Field 1: Name -->
+                <div class="conn-field-box">
+                  <label for="form-name" class="visually-hidden">Your name *</label>
                   <div class="conn-input-shell">
-                    <span class="conn-shell-icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                    <span class="conn-field-icon" aria-hidden="true">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
                       </svg>
                     </span>
-                    <input type="text" 
-                           id="form-name" 
-                           name="name" 
-                           class="conn-text-input" 
-                           placeholder="Enter your name" 
-                           required>
+                    <input 
+                      type="text" 
+                      id="form-name" 
+                      name="name" 
+                      class="conn-input-ctrl" 
+                      placeholder="Your name *" 
+                      required
+                    />
                   </div>
                 </div>
 
-                <div class="conn-field-group">
-                  <label for="form-email" class="conn-field-label">YOUR EMAIL</label>
+                <!-- Field 2: Email -->
+                <div class="conn-field-box">
+                  <label for="form-email" class="visually-hidden">Your email *</label>
                   <div class="conn-input-shell">
-                    <span class="conn-shell-icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
+                    <span class="conn-field-icon" aria-hidden="true">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
                       </svg>
                     </span>
-                    <input type="email" 
-                           id="form-email" 
-                           name="email" 
-                           class="conn-text-input" 
-                           placeholder="Enter your email" 
-                           required>
+                    <input 
+                      type="email" 
+                      id="form-email" 
+                      name="email" 
+                      class="conn-input-ctrl" 
+                      placeholder="Your email *" 
+                      required
+                    />
+                  </div>
+                </div>
+              </div><!-- /.conn-form-row-duo -->
+
+              <!-- J: Field 3: Subject Dropdown -->
+              <div class="conn-field-box">
+                <label for="form-subject" class="visually-hidden">Subject *</label>
+                <div class="conn-input-shell select-shell">
+                  <span class="conn-field-icon" aria-hidden="true">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                  </span>
+                  <select id="form-subject" name="subject" class="conn-input-ctrl conn-select-ctrl" required>
+                    <option value="" disabled selected>Subject *</option>
+                    <option value="Freelance Project">Freelance Project</option>
+                    <option value="Website Development">Website Development</option>
+                    <option value="UI/UX Collaboration">UI/UX Collaboration</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span class="conn-select-chevron" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <!-- K: Field 4: Message Textarea with Helper and Character Counter -->
+              <div class="conn-field-box">
+                <label for="form-message" class="visually-hidden">Your message *</label>
+                <div class="conn-textarea-shell">
+                  <span class="conn-field-icon conn-textarea-icon" aria-hidden="true">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </span>
+                  <div class="conn-textarea-body">
+                    <span class="conn-textarea-helper">Tell me about your idea, project, or just say hi...</span>
+                    <textarea 
+                      id="form-message" 
+                      name="message" 
+                      class="conn-textarea-ctrl" 
+                      rows="4" 
+                      maxlength="500" 
+                      placeholder="Your message *" 
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="conn-char-counter-wrap">
+                    <span class="conn-char-counter" aria-live="polite"><span id="char-curr">0</span>/500</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Row 2: Subject Field -->
-              <div class="conn-field-group full-width">
-                <label for="form-subject" class="conn-field-label">SUBJECT</label>
-                <div class="conn-input-shell">
-                  <span class="conn-shell-icon" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                  </span>
-                  <input type="text" 
-                         id="form-subject" 
-                         name="subject" 
-                         class="conn-text-input" 
-                         placeholder="What's this about?">
-                </div>
+              <!-- L: Send Message Button -->
+              <div class="conn-submit-wrapper">
+                <button type="submit" class="conn-submit-btn" id="submit-btn">
+                  <span>Send message</span>
+                  <span class="conn-submit-arrow" aria-hidden="true">↗</span>
+                </button>
               </div>
 
-              <!-- Row 3: Message with Character Counter -->
-              <div class="conn-field-group full-width">
-                <div class="conn-label-row">
-                  <label for="form-message" class="conn-field-label">YOUR MESSAGE</label>
-                  <span class="conn-char-count" aria-live="polite"><span id="char-curr">0</span> / 500</span>
-                </div>
-                <div class="conn-input-shell textarea-shell">
-                  <span class="conn-shell-icon icon-textarea" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 20h9"></path>
-                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                    </svg>
-                  </span>
-                  <textarea id="form-message" 
-                            name="message" 
-                            class="conn-textarea-input" 
-                            rows="4" 
-                            maxlength="500" 
-                            placeholder="Tell me about your project or idea..." 
-                            required></textarea>
-                </div>
-              </div>
-
-              <!-- Large Full-Width Gradient Send Button -->
-              <button type="submit" class="conn-send-btn tactile-btn" id="submit-btn">
-                <span>Send Message</span>
-                <span class="conn-btn-plane" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                </span>
-              </button>
-
-              <!-- Form Submission Status / Feedback -->
+              <!-- Form status message -->
               <div id="form-msg" role="status" aria-live="polite" class="conn-form-status-box"></div>
 
-              <!-- Form Footer Emotional Info Card -->
-              <div class="conn-form-footer-card">
-                <div class="conn-footer-card-text">
-                  <strong>Great ideas start with a conversation.</strong>
-                  <p>Let's make something awesome together!</p>
-                </div>
-                <div class="conn-footer-card-icon" aria-hidden="true">💖</div>
-              </div>
-
             </form>
+          </div><!-- /.conn-form-panel -->
 
+          <!-- M. Social Links Area Below Form Panel -->
+          <div class="conn-social-area">
+            <div class="conn-social-label-wrap">
+              <span class="conn-social-pen-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 14" width="18" height="10" fill="none">
+                  <path d="M 2 8 C 8 4, 16 6, 22 9" stroke="#FA5538" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="conn-social-label">OR FIND ME HERE</span>
+              <span class="conn-social-pen-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 14" width="18" height="10" fill="none">
+                  <path d="M 2 9 C 8 6, 16 4, 22 8" stroke="#FA5538" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </div>
+
+            <div class="conn-social-buttons-row" role="list">
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="conn-social-btn" 
+                 role="listitem" 
+                 aria-label="Connect on LinkedIn">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/ArfaMunam47" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="conn-social-btn" 
+                 role="listitem" 
+                 aria-label="GitHub Profile">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+              </a>
+
+              <!-- Behance -->
+              <a href="https://behance.net/" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="conn-social-btn" 
+                 role="listitem" 
+                 aria-label="View on Behance">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.726 3-3.411 0-5.834-2.226-5.834-5.964 0-3.656 2.37-6.036 5.834-6.036 3.655 0 5.679 2.508 5.419 6.294h-8.243c.094 1.956 1.341 3.239 3.197 3.239 1.488 0 2.42-.693 2.871-1.533h1.482zm-4.726-7.054c-1.579 0-2.484 1.055-2.709 2.529h5.365c-.073-1.442-.988-2.529-2.656-2.529zm-13.435 9.054h-5.565v-14h6.082c3.541 0 5.176 1.706 5.176 4.318 0 1.641-.837 3.035-2.269 3.738 1.83.67 2.654 2.225 2.654 4.148 0 2.91-2.025 4.796-6.078 4.796zm-2.825-8.318h2.647c1.782 0 2.812-.767 2.812-2.147 0-1.345-.984-2.035-2.607-2.035h-2.852v4.182zm0 5.818h2.973c1.928 0 3.098-.887 3.098-2.457 0-1.597-1.258-2.42-3.146-2.42h-2.925v4.877z"/>
+                </svg>
+              </a>
+
+              <!-- Email -->
+              <a href="mailto:arfamunam01@gmail.com" 
+                 class="conn-social-btn" 
+                 role="listitem" 
+                 aria-label="Send direct email to Arfa">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+            </div>
+          </div><!-- /.conn-social-area -->
+
+          <!-- N. Decorative Hand-Drawn Heart Detail near Lower Right -->
+          <div class="conn-bottom-right-decor" aria-hidden="true">
+            <svg viewBox="0 0 100 80" width="85" height="68" fill="none">
+              <!-- Hand-drawn heart -->
+              <path d="M 72 26 C 72 20, 77 15, 83 15 C 88 15, 91 19, 91 23 C 91 30, 81 38, 72 44 C 63 38, 53 30, 53 23 C 53 19, 56 15, 61 15 C 67 15, 72 20, 72 26 Z" stroke="#101C35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(12 72 26)"/>
+            </svg>
           </div>
-        </div><!-- /.conn-right-col -->
 
-      </div><!-- /.conn-main-grid -->
+        </div><!-- /.conn-col-right -->
 
-      <!-- Subtle Flowing Abstract Ribbon Connecting Left & Right at Bottom -->
-      <div class="conn-bottom-ribbon-decor" aria-hidden="true">
-        <svg class="conn-ribbon-svg" viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path d="M 0,30 C 250,55 500,5 750,35 C 920,52 1080,18 1200,28 L 1200,60 L 0,60 Z" fill="url(#connRibbonGrad)" opacity="0.3" />
-          <defs>
-            <linearGradient id="connRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#FF6045" stop-opacity="0.35" />
-              <stop offset="35%" stop-color="#F43F5E" stop-opacity="0.45" />
-              <stop offset="70%" stop-color="#8B5CF6" stop-opacity="0.35" />
-              <stop offset="100%" stop-color="#0284C7" stop-opacity="0.2" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
+      </div><!-- /.conn-editorial-grid -->
     </div><!-- /.container -->
   </section>
 
@@ -4453,12 +4041,6 @@
                   <a href="#certifications" class="cgf-nav-anchor">
                     <span class="cgf-arrow-chevron" aria-hidden="true">›</span>
                     <span>Certificates</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#hobbies" class="cgf-nav-anchor">
-                    <span class="cgf-arrow-chevron" aria-hidden="true">›</span>
-                    <span>My Hobbies</span>
                   </a>
                 </li>
                 <li>
@@ -4669,127 +4251,6 @@
       </div>
     </div>
   </div>
-
-  <!-- =======================================================================
-       FULL PAGE PROJECT EXPERIENCE MODAL (Immersive Full Screen Workspace)
-       ======================================================================= -->
-  <div class="project-fullpage-modal" id="project-fullpage-modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="fullpage-modal-backdrop" id="fullpage-backdrop"></div>
-    <div class="fullpage-modal-container">
-      
-      <!-- Full Page Top Navigation Bar -->
-      <div class="fullpage-modal-header">
-        <div class="fullpage-header-left">
-          <div class="fullpage-project-badge" id="fullpage-project-badge">✦ AI PRODUCT SUITE</div>
-          <h2 class="fullpage-project-title" id="fullpage-project-title">StudyPilot-AI</h2>
-          <span class="fullpage-counter" id="fullpage-counter">PROJECT 01 / 04</span>
-        </div>
-
-        <!-- 6-Project Switcher Tabs inside Full Page View -->
-        <div class="fullpage-nav-tabs" id="fullpage-nav-tabs">
-          <button type="button" class="fullpage-tab-btn active tactile-btn" data-project="pastelform">1. Pastel & Form</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="icapital">2. iCapital</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="studypilot">3. StudyPilot-AI</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="prism">4. Prism</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="kumo">5. Kumo Ramen</button>
-          <button type="button" class="fullpage-tab-btn tactile-btn" data-project="velora">6. Velora</button>
-        </div>
-
-        <div class="fullpage-header-actions">
-          <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="fullpage-action-btn btn-fullpage-live tactile-btn" id="fullpage-live-link">
-            <span>Explore App</span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="fullpage-action-btn btn-fullpage-gh tactile-btn" id="fullpage-gh-link">
-            <span>GitHub</span>
-          </a>
-          <button type="button" class="btn-close-fullpage tactile-btn" id="btn-close-fullpage" aria-label="Close full page view">
-            <span class="close-symbol">✕</span>
-            <span class="esc-badge">ESC</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Full Page Content Grid -->
-      <div class="fullpage-modal-body">
-        
-        <!-- Left Column: Technical Breakdown, Problem/Solution, Metrics -->
-        <div class="fullpage-body-left">
-          <div class="fullpage-tagline" id="fullpage-tagline">Autonomous Spaced Repetition &amp; AI Study Operating System</div>
-          <p class="fullpage-description" id="fullpage-description">
-            An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.
-          </p>
-
-          <!-- Problem & Solution Architectural Grid -->
-          <div class="fullpage-cards-split">
-            <div class="fullpage-card-cell cell-problem">
-              <div class="cell-label">✦ THE CHALLENGE</div>
-              <p id="fullpage-problem-text">Students struggle with cognitive overload when synthesizing multi-hundred page lecture syllabi into actionable review cycles before critical exams.</p>
-            </div>
-            <div class="fullpage-card-cell cell-solution">
-              <div class="cell-label">★ THE ARCHITECTURE &amp; SOLUTION</div>
-              <p id="fullpage-solution-text">Engineered a multi-tier prompt pipeline that extracts hierarchical concept trees, applies Leitner spaced repetition intervals, and auto-generates diagnostic flashcards.</p>
-            </div>
-          </div>
-
-          <!-- Tech Stack Deep Dive -->
-          <div class="fullpage-stack-block">
-            <div class="cell-label">TECHNOLOGY STACK &amp; METHODOLOGY</div>
-            <div class="fullpage-tech-chips" id="fullpage-tech-chips">
-              <span class="fullpage-tech-pill">Claude 3.7 AI</span>
-              <span class="fullpage-tech-pill">React</span>
-              <span class="fullpage-tech-pill">Tailwind CSS</span>
-              <span class="fullpage-tech-pill">FastAPI</span>
-              <span class="fullpage-tech-pill">Spaced Repetition</span>
-              <span class="fullpage-tech-pill">Vector Search</span>
-            </div>
-          </div>
-
-          <!-- Key Metrics -->
-          <div class="fullpage-metrics-grid" id="fullpage-metrics-grid">
-            <div class="fullpage-metric-card">
-              <span class="metric-val" style="color: #2DD4BF;">94.2%</span>
-              <span class="metric-lbl">Mastery Retention Rate</span>
-            </div>
-            <div class="fullpage-metric-card">
-              <span class="metric-val" style="color: #F59E0B;">&lt; 450ms</span>
-              <span class="metric-lbl">Inference Latency</span>
-            </div>
-            <div class="fullpage-metric-card">
-              <span class="metric-val" style="color: #A78BFA;">14-Day</span>
-              <span class="metric-lbl">Curated Revision Sprint</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive Stage Simulator in Full View -->
-        <div class="fullpage-body-right">
-          <div class="fullpage-stage-wrapper" id="fullpage-stage-wrapper">
-            <!-- Mirrored interactive stage is populated dynamically -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Full Page Footer -->
-      <div class="fullpage-modal-footer">
-        <button type="button" class="fullpage-foot-nav-btn tactile-btn" id="fullpage-btn-prev">
-          <span>← Previous Project</span>
-          <span class="key-hint">[Left Arrow]</span>
-        </button>
-        <div class="fullpage-footer-hint">
-          <span>Tip: Press <kbd>ESC</kbd> or click ✕ to close • Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to switch projects</span>
-        </div>
-        <button type="button" class="fullpage-foot-nav-btn tactile-btn" id="fullpage-btn-next">
-          <span>Next Project →</span>
-          <span class="key-hint">[Right Arrow]</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Back to Top Button -->
 
   <!-- Scripts: Base64 Resume Data -> Centralized Data Source -> Main Interactions -->
   <script src="resume-data.js"></script>

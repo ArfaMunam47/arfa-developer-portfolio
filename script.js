@@ -437,97 +437,11 @@ function setupContactForm() {
   const submitBtn = document.getElementById('submit-btn');
   const messageTextarea = document.getElementById('form-message');
   const charCurr = document.getElementById('char-curr');
-  const jumpBtn = document.getElementById('conn-btn-jump-form');
-  const contactSection = document.getElementById('contact');
 
-  // Live character counter
+  // Live character counter (0/500 limit)
   if (messageTextarea && charCurr) {
     messageTextarea.addEventListener('input', () => {
       charCurr.textContent = messageTextarea.value.length;
-    });
-  }
-
-  // Smooth scroll and focus for "Let's Chat" button
-  if (jumpBtn) {
-    jumpBtn.addEventListener('click', () => {
-      const nameInput = document.getElementById('form-name');
-      if (nameInput) {
-        setTimeout(() => nameInput.focus(), 350);
-      }
-    });
-  }
-
-  // Desktop subtle cursor parallax for 3D centerpiece & floating depth elements
-  const centerpieceStage = document.getElementById('conn-centerpiece-stage');
-  if (centerpieceStage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const headphones = centerpieceStage.querySelector('.conn-headphones-visual');
-    const floatElems = centerpieceStage.querySelectorAll('.conn-float-element');
-    const orbitBack = centerpieceStage.querySelector('.conn-orbit-back');
-    const radialGlow = centerpieceStage.querySelector('.conn-centerpiece-radial-glow');
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let currX = 0;
-    let currY = 0;
-    let animId = null;
-    let isHovering = false;
-
-    function renderParallax() {
-      currX += (mouseX - currX) * 0.08;
-      currY += (mouseY - currY) * 0.08;
-
-      if (headphones) {
-        headphones.style.transform = `translate3d(${(currX * 8).toFixed(1)}px, ${(currY * 6 - 2).toFixed(1)}px, 15px) rotateY(${(currX * 1.8).toFixed(1)}deg) rotateX(${(-currY * 1.5).toFixed(1)}deg)`;
-      }
-
-      if (radialGlow) {
-        radialGlow.style.transform = `translate(calc(-50% + ${(currX * 4).toFixed(1)}px), calc(-50% + ${(currY * 4).toFixed(1)}px))`;
-      }
-
-      if (orbitBack) {
-        orbitBack.style.transform = `translate(calc(-50% + ${(currX * 3).toFixed(1)}px), calc(-50% + ${(currY * 3).toFixed(1)}px))`;
-      }
-
-      floatElems.forEach((el) => {
-        const depth = parseFloat(el.getAttribute('data-depth')) || 0.4;
-        const shiftX = (currX * depth * 16).toFixed(1);
-        const shiftY = (currY * depth * 14).toFixed(1);
-        el.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
-      });
-
-      const dist = Math.abs(mouseX - currX) + Math.abs(mouseY - currY);
-      if (isHovering || dist > 0.01) {
-        animId = requestAnimationFrame(renderParallax);
-      } else {
-        if (!isHovering) {
-          if (headphones) headphones.style.transform = '';
-          if (radialGlow) radialGlow.style.transform = '';
-          if (orbitBack) orbitBack.style.transform = '';
-          floatElems.forEach((el) => { el.style.transform = ''; });
-          animId = null;
-        }
-      }
-    }
-
-    centerpieceStage.addEventListener('mousemove', (e) => {
-      const rect = centerpieceStage.getBoundingClientRect();
-      const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      mouseX = Math.max(-1, Math.min(1, normX));
-      mouseY = Math.max(-1, Math.min(1, normY));
-      isHovering = true;
-      if (!animId) {
-        animId = requestAnimationFrame(renderParallax);
-      }
-    });
-
-    centerpieceStage.addEventListener('mouseleave', () => {
-      mouseX = 0;
-      mouseY = 0;
-      isHovering = false;
-      if (!animId) {
-        animId = requestAnimationFrame(renderParallax);
-      }
     });
   }
 
@@ -561,12 +475,12 @@ function setupContactForm() {
       // Create mailto link as reliable direct email dispatch
       const mailtoUrl = `mailto:arfamunam01@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`)}`;
       
-      showMessage(`Thank you, ${name}! Your message has been prepared. If your mail client didn't open automatically, feel free to email directly at arfamunam01@gmail.com.`, 'success');
+      showMessage(`Thank you, ${name}! Your message has been prepared. If your email client didn't open automatically, feel free to email directly at arfamunam01@gmail.com.`, 'success');
 
       form.reset();
       if (charCurr) charCurr.textContent = '0';
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Send Message</span><span class="conn-btn-plane" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>`;
+      submitBtn.innerHTML = `<span>Send message</span><span class="conn-submit-arrow" aria-hidden="true">↗</span>`;
 
       // Trigger mail client safely
       window.location.href = mailtoUrl;
@@ -577,14 +491,11 @@ function setupContactForm() {
     if (!msgBox) return;
     msgBox.style.display = 'block';
     msgBox.textContent = text;
+    msgBox.className = 'conn-form-status-box';
     if (type === 'error') {
-      msgBox.style.background = 'rgba(239, 68, 68, 0.15)';
-      msgBox.style.color = '#FCA5A5';
-      msgBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+      msgBox.classList.add('status-error');
     } else {
-      msgBox.style.background = 'rgba(16, 185, 129, 0.15)';
-      msgBox.style.color = '#6EE7B7';
-      msgBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+      msgBox.classList.add('status-success');
     }
   }
 }
@@ -1020,122 +931,27 @@ function setupProjectsShowcase() {
   // Initialize the 2026 Premium "Work, in Motion" 3D Hero Introduction
   setupWorkInMotionIntro();
 
-  const grid = document.getElementById('projects-equal-grid');
-  if (!grid) return;
+  const gallery = document.getElementById('projects-showcase-gallery');
+  if (!gallery) return;
 
-  // The 6 Authentic Projects in Exact 2-Row / 3-Column Exhibition Order:
-  // Row 1: 01 Pastel & Form, 02 iCapital, 03 StudyPilot AI
-  // Row 2: 04 Prism, 05 Kumo Ramen, 06 Velora
-  const projects = [
-    {
-      id: "pastelform",
-      key: "pastelform",
-      index: "01",
-      title: "Pastel & Form",
-      category: "Aesthetic Form Flow",
-      image: "pastel.png",
-      accent: "#E0AC76"
-    },
-    {
-      id: "icapital",
-      key: "icapital",
-      index: "02",
-      title: "iCapital",
-      category: "Wealth Advisory Platform",
-      image: "icapital.png",
-      accent: "#38BDF8"
-    },
-    {
-      id: "studypilot",
-      key: "studypilot",
-      index: "03",
-      title: "StudyPilot AI",
-      category: "AI Academic Copilot",
-      image: "studypilot.png",
-      accent: "#818CF8"
-    },
-    {
-      id: "prism",
-      key: "prism",
-      index: "04",
-      title: "Prism",
-      category: "3D WebGL & Spatial AR",
-      image: "Prism.jpeg",
-      accent: "#60A5FA"
-    },
-    {
-      id: "kumo",
-      key: "kumo",
-      index: "05",
-      title: "Kumo Ramen",
-      category: "Artisan Japanese Culinary",
-      image: "kumo.png",
-      accent: "#D4B882"
-    },
-    {
-      id: "velora",
-      key: "velora",
-      index: "06",
-      title: "Velora",
-      category: "Minimalist E-Commerce",
-      image: "veloraa.png",
-      accent: "#34966C"
-    }
-  ];
+  const tabs = document.querySelectorAll('.showcase-tab-btn');
 
-  grid.innerHTML = '';
+  // Prevent opening any unwanted case study pages or modals
+  window.openProjectModal = function() {};
 
-  // Render the 5 Authentic Equal-Treatment Project Showcase Items
-  projects.forEach((proj) => {
-    const item = document.createElement('div');
-    item.className = `project-equal-item proj-equal-${proj.id}`;
-    item.setAttribute('data-project', proj.key);
-    item.setAttribute('role', 'listitem');
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('aria-label', `${proj.title} — ${proj.category}`);
-    item.style.setProperty('--proj-accent', proj.accent);
-
-    item.innerHTML = `
-      <div class="project-equal-frame">
-        <img 
-          src="${proj.image}" 
-          alt="${proj.title} website screenshot" 
-          class="project-equal-img" 
-          loading="lazy" 
-          decoding="async"
-          onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='public/${proj.image}';}"
-        />
-      </div>
-      <div class="project-equal-caption">
-        <div class="project-equal-header">
-          <div class="project-equal-title-wrap">
-            <span class="project-equal-num">${proj.index}</span>
-            <h3 class="project-equal-title">${proj.title}</h3>
-          </div>
-          <span class="project-equal-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="project-equal-category">${proj.category}</p>
-      </div>
-    `;
-
-    // Click handler: opens authentic project modal
-    item.addEventListener('click', () => {
-      if (typeof window.openProjectModal === 'function') {
-        window.openProjectModal(proj.key);
+  // Preserve interactive tab selection on the navigation pills
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabs.forEach((t, i) => {
+        const isActive = (i === idx);
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      if (window.innerWidth <= 900) {
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     });
-
-    // Keyboard activation
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (typeof window.openProjectModal === 'function') {
-          window.openProjectModal(proj.key);
-        }
-      }
-    });
-
-    grid.appendChild(item);
   });
 
   // Smooth scroll handler for tactile exploration bridge CTA button
