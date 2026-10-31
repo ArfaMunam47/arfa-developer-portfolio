@@ -1,0 +1,403 @@
+export interface Project {
+  id: string;
+  number: string;
+  title: string;
+  tagline: string;
+  category: string;
+  categoryLabel: string;
+  description: string;
+  technologies: string[];
+  githubUrl: string;
+  liveUrl: string;
+  accentColor: string;
+  previewGradient: string;
+  icon: string;
+  highlights: string[];
+  image?: string;
+}
+
+export interface Certificate {
+  id: string;
+  number: string;
+  title: string;
+  issuer: string;
+  date: string;
+  badge: string;
+  image: string;
+  description: string;
+  skills: string[];
+  verifyUrl: string;
+}
+
+export interface SkillItem {
+  name: string;
+  level: string;
+  tag: string;
+  icon: string;
+}
+
+export interface SkillCategory {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: string;
+  accent: string;
+  skills: SkillItem[];
+}
+
+export interface ServiceItem {
+  num: string;
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+export interface TimelineItem {
+  year: string;
+  period: string;
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+export interface StatItem {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: string;
+}
+
+export const PORTFOLIO_DATA = {
+  personal: {
+    name: "Arfa Munam",
+    headlinePrefix: "Hello, I'm",
+    roleTitles: [
+      "Frontend Developer",
+      "Prompt Engineer",
+      "AI Enthusiast & Vibe Coder"
+    ],
+    primaryHeadings: [
+      {
+        id: "frontend",
+        title: "Frontend Developer",
+        tagline: "Crafting living, responsive web interfaces with pixel precision",
+        gradient: "linear-gradient(135deg, #FA5538 0%, #F59E0B 100%)",
+        icon: "💻",
+        accent: "#FA5538"
+      },
+      {
+        id: "prompt",
+        title: "Prompt Engineer",
+        tagline: "Architecting structured reasoning & production LLM prompts",
+        gradient: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+        icon: "⚡",
+        accent: "#6366F1"
+      },
+      {
+        id: "ai",
+        title: "AI Enthusiast",
+        tagline: "Continuously learning, experimenting & vibe coding with velocity",
+        gradient: "linear-gradient(135deg, #10B981 0%, #06B6D4 100%)",
+        icon: "🤖",
+        accent: "#10B981"
+      }
+    ],
+    heroTagline: "Frontend Developer • Prompt Engineer • AI Enthusiast (Always Learning & Building)",
+    shortBio: "I'm a Computer Science student and creative developer building high-impact web interfaces with modern frontend tech, engineering structured prompts for frontier AI, and vibe coding fast prototypes.",
+    detailedBio: [
+      "I'm Arfa Munam, a Computer Science student building at the intersection of modern frontend craft, structured prompt engineering, and rapid AI vibe coding. I believe modern websites should feel alive — animated, colorful, tactile, and engineered with craft.",
+      "My core technical foundation spans HTML5, CSS3, JavaScript, Bootstrap, React, Tailwind CSS, and fluid GSAP physics. I combine these foundational tools with modern AI-driven vibe coding to ship ambitious products in record time.",
+      "As a prompt engineer and AI enthusiast, I work daily with Claude, ChatGPT, and generative models, designing intelligent systems, automated workflows, and self-reinforcing learning loops."
+    ],
+    availability: "Available for high-impact roles & creative engineering",
+    statusBadge: "Active & Available for Work",
+    images: {
+      creativePhoto: "creative-hero-portrait.jpg",
+      realPhoto: "main.png.png",
+      profilePhotoAlt: "profile-photo.png",
+      animeAvatar: "anime-avatar.jpg",
+      mainCutout: "port.png",
+      chestBadge: "mine.png",
+      enlarged: "me.png"
+    }
+  },
+
+  contact: {
+    email: "arfamunam01@gmail.com",
+    github: "https://github.com/ArfaMunam47",
+    linkedin: "https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    resumePdf: "Arfa-Munam-Resume.pdf"
+  },
+
+  stats: [
+    { label: "Public Repositories", value: 30, suffix: "+", icon: "🐙" },
+    { label: "Skills & Technologies", value: 15, suffix: "+", icon: "🛠️" },
+    { label: "Google AI Certifications", value: 3, suffix: "", icon: "🎓" },
+    { label: "GitHub Commits", value: 500, suffix: "+", icon: "⭐" }
+  ] as StatItem[],
+
+  projects: [
+    {
+      id: "prism",
+      number: "01",
+      title: "Prism — 3D Spatial AR Showcase",
+      tagline: "AI-Powered AR Glasses Product Showcase with Three.js & GLSL Shaders",
+      category: "spatial-3d",
+      categoryLabel: "3D WebGL & Spatial Experience",
+      description: "An immersive spatial product landing experience for AI-powered AR glasses featuring custom WebGL/Three.js shaders, reactive glass refraction physics, interactive 3D model controls, and fluid scroll-triggered cinematic choreography.",
+      technologies: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript ES6+", "GSAP Motion", "Spatial UI"],
+      githubUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      liveUrl: "https://github.com/ArfaMunam47/prism-one-3d",
+      accentColor: "#8B5CF6",
+      previewGradient: "linear-gradient(135deg, #090B10 0%, #17152B 50%, #2E1A47 100%)",
+      icon: "💎",
+      highlights: ["Custom GLSL Refraction", "Three.js 3D Viewport", "Fluid Scroll Physics"],
+      image: "Prism.jpeg"
+    },
+    {
+      id: "studypilot",
+      number: "02",
+      title: "StudyPilot-AI — AI Academic Copilot",
+      tagline: "Intelligent Academic Workspace with Adaptive Flashcards & Study Planner",
+      category: "ai-study",
+      categoryLabel: "AI Academic Copilot",
+      description: "An autonomous learning operating system engineered to transform dense textbook chapters, lecture transcripts, and complex syllabi into structured revision roadmaps, spaced-repetition flashcards, and conceptual quizzes using prompt-engineered Claude 3.7 reasoning loops.",
+      technologies: ["Claude 3.7 AI", "React", "Tailwind CSS", "FastAPI", "Spaced Repetition", "Vector Search"],
+      githubUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      liveUrl: "https://github.com/ArfaMunam47/StudyPilot-AI",
+      accentColor: "#6366F1",
+      previewGradient: "linear-gradient(135deg, #0B0F19 0%, #1E1B4B 50%, #312E81 100%)",
+      icon: "🤖",
+      highlights: ["Adaptive Flashcard Engine", "Study Sprint Roadmap", "Prompt Schema Validator"],
+      image: "studypilot.png"
+    },
+    {
+      id: "velora",
+      number: "03",
+      title: "Velora Store — Minimalist E-Commerce",
+      tagline: "Minimalist High-Conversion Fashion & Lifestyle Storefront",
+      category: "e-commerce",
+      categoryLabel: "E-Commerce & Lifestyle Storefront",
+      description: "A chic modern e-commerce storefront designed with editorial typography, ultra-responsive grid layouts, instant faceted filtering, slide-out micro-cart drawer, and dynamic voucher calculations for a frictionless retail journey.",
+      technologies: ["JavaScript ES6+", "React", "Tailwind CSS", "Stripe Checkout", "State Engine", "Micro-Interactions"],
+      githubUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      accentColor: "#FA5538",
+      previewGradient: "linear-gradient(135deg, #FAF8F5 0%, #F5EDE4 50%, #EFE5D8 100%)",
+      icon: "🛍️",
+      highlights: ["Interactive Bag Drawer", "Real-Time Price Math", "Clean Editorial Layout"],
+      image: "veloraa.png"
+    },
+    {
+      id: "kumo-ramen",
+      number: "04",
+      title: "Kumo Ramen Showcase — Artisan Restaurant",
+      tagline: "Modern Artisan Japanese Ramen House with Interactive Customizer & Sensory Motion",
+      category: "culinary",
+      categoryLabel: "Artisan Culinary Experience",
+      description: "An evocative culinary showcase for an artisan Tokyo ramen bar. Features an interactive bowl builder (broth richness, noodle firmness, chashu pork, ajitsuke tamago), ambient kitchen soundscapes, reservation table picker, and sensory editorial dark aesthetics.",
+      technologies: ["JavaScript ES6+", "CSS3 Motion", "Interactive State", "Order Calculator", "Audio Ambiance", "Micro-Interactions"],
+      githubUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      liveUrl: "https://github.com/ArfaMunam47/kumo-ramen-showcase",
+      accentColor: "#F59E0B",
+      previewGradient: "linear-gradient(135deg, #181512 0%, #2A211B 50%, #1C1612 100%)",
+      icon: "🍜",
+      highlights: ["Custom Bowl Builder", "18-Hour Broth Telemetry", "Interactive Counter Booking"],
+      image: "kumo.png"
+    },
+    {
+      id: "pastelform",
+      number: "05",
+      title: "PastelForm — Aesthetic Form Engine",
+      tagline: "Delightful Multi-Step Survey & Feedback Flow with Soft Pastel Themes",
+      category: "creative-ui",
+      categoryLabel: "Aesthetic Form Engine & UI",
+      description: "A fluid, human-centered form and questionnaire experience crafted with soothing pastel palettes, micro-interactions, real-time validation, dynamic branch logic, and instant feedback loops that make data collection an absolute joy.",
+      technologies: ["React", "Tailwind CSS", "Framer Motion", "Accessible Forms", "State Engine", "LocalStorage"],
+      githubUrl: "https://github.com/ArfaMunam47/pastelform",
+      liveUrl: "https://github.com/ArfaMunam47/pastelform",
+      accentColor: "#EC4899",
+      previewGradient: "linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%)",
+      icon: "🎨",
+      highlights: ["Multi-Step Progress Stepper", "Soft Pastel Palette Switcher", "Live Schema Export"],
+      image: "pastel.png"
+    }
+  ] as Project[],
+
+  certificates: [
+    {
+      id: "cert-1",
+      number: "01",
+      title: "Google AI Professional Certificate",
+      issuer: "Google / Grow with Google",
+      date: "2024",
+      badge: "Google Certified AI Professional",
+      image: "certificate-1.jpg",
+      description: "Rigorous professional certification validating practical application of machine learning concepts, neural network foundations, generative AI architecture, model tuning, and deploying AI solutions responsibly.",
+      skills: ["Generative AI Architecture", "Machine Learning Concepts", "Responsible AI", "Model Integration"],
+      verifyUrl: ""
+    },
+    {
+      id: "cert-2",
+      number: "02",
+      title: "Google AI Essentials Specialization",
+      issuer: "Google / Coursera",
+      date: "2024",
+      badge: "Google AI Essentials",
+      image: "certificate-2.jpg",
+      description: "Comprehensive foundational mastery of artificial intelligence tools, identifying business applications, using generative AI to accelerate workflows, and evaluating AI output for safety and accuracy.",
+      skills: ["AI Foundations", "Workflow Automation", "AI Ethics & Safety", "Productivity Acceleration"],
+      verifyUrl: ""
+    },
+    {
+      id: "cert-3",
+      number: "03",
+      title: "Google Prompting Essentials Specialization",
+      issuer: "Google / Coursera",
+      date: "2025",
+      badge: "Google Prompting Specialist",
+      image: "certificate-3.jpg",
+      description: "Specialized certification in designing structured, high-precision prompts for Large Language Models. Covers role specification, context constraints, Chain-of-Thought reasoning, few-shot prompting, and iterative refinement.",
+      skills: ["Prompt Architecture", "Chain-of-Thought (CoT)", "Few-Shot Prompting", "LLM Reasoning"],
+      verifyUrl: ""
+    }
+  ] as Certificate[],
+
+  skillsCategories: [
+    {
+      id: "frontend-core",
+      title: "Core Frontend & Frameworks",
+      subtitle: "Semantic HTML5, responsive CSS3 architecture, JavaScript ES6+, Bootstrap, React & Tailwind.",
+      icon: "🌐",
+      accent: "coral",
+      skills: [
+        { name: "HTML5", level: "Semantic Architecture", tag: "HTML", icon: "🌐" },
+        { name: "CSS3", level: "Modern Flex/Grid & Variables", tag: "CSS", icon: "🎨" },
+        { name: "JavaScript (ES6+)", level: "Async, Fetch & DOM", tag: "JS", icon: "⚡" },
+        { name: "Bootstrap 5", level: "Component Systems & UX", tag: "Bootstrap", icon: "🅱️" },
+        { name: "React", level: "Components & State Management", tag: "React", icon: "⚛️" },
+        { name: "Tailwind CSS", level: "Utility Architecture", tag: "Tailwind", icon: "💨" },
+        { name: "GSAP Motion", level: "ScrollTrigger & Physics", tag: "GSAP", icon: "🎬" }
+      ]
+    },
+    {
+      id: "backend-2026",
+      title: "2026 Backend & Full-Stack Frontier",
+      subtitle: "Active deep dive into scalable server architecture, relational data, and cloud APIs.",
+      icon: "🛠️",
+      accent: "teal",
+      skills: [
+        { name: "Node.js", level: "Server-Side Runtimes & Async IO", tag: "Backend", icon: "🟢" },
+        { name: "Express.js", level: "REST API Design & Middleware", tag: "Backend", icon: "🚂" },
+        { name: "PostgreSQL", level: "Relational Modeling & Queries", tag: "Database", icon: "🐘" },
+        { name: "Supabase", level: "Auth, Realtime & Storage", tag: "Cloud", icon: "⚡" },
+        { name: "Git & GitHub", level: "Git Workflows & CI/CD", tag: "DevOps", icon: "🐙" },
+        { name: "RESTful Architecture", level: "API Security & CRUD Contracts", tag: "API", icon: "🔌" }
+      ]
+    },
+    {
+      id: "ai-prompting",
+      title: "Prompt Engineering & Frontier AI",
+      subtitle: "Structured reasoning, multi-turn system prompts, and collaborative LLM architecture.",
+      icon: "🧠",
+      accent: "gold",
+      skills: [
+        { name: "Claude 3.7 / 3.5 Sonnet", level: "Extended Thinking & Code Synthesis", tag: "LLMs", icon: "⚡" },
+        { name: "ChatGPT (o-series)", level: "Deep Reasoning & Architecture", tag: "LLMs", icon: "🤖" },
+        { name: "Chain-of-Thought (CoT)", level: "Structured Stepwise Prompts", tag: "Prompting", icon: "🔗" },
+        { name: "Few-Shot Prompting", level: "Exemplar Alignment & Guardrails", tag: "Prompting", icon: "🎯" },
+        { name: "System Prompt Design", level: "Persona & Boundary Architecture", tag: "Prompting", icon: "🛡️" }
+      ]
+    },
+    {
+      id: "ai-automation",
+      title: "AI Automation & Vibe Coding",
+      subtitle: "Autonomous agent pipelines, automated workflow orchestration, and flow-state shipping.",
+      icon: "🚀",
+      accent: "purple",
+      skills: [
+        { name: "AI Automations & n8n", level: "Multi-Step Workflow Automations", tag: "Automation", icon: "⚙️" },
+        { name: "Agentic Pipelines", level: "Autonomous Agent Orchestration", tag: "Agents", icon: "🤖" },
+        { name: "Vibe Coding", level: "Flow-State Natural Language Dev", tag: "Vibe", icon: "✨" },
+        { name: "Bolt AI & v0", level: "Rapid Full-Stack Prototyping", tag: "Prototyping", icon: "⚡" }
+      ]
+    }
+  ] as SkillCategory[],
+
+  services: [
+    {
+      num: "01",
+      title: "Frontend Development",
+      desc: "Pixel-perfect, accessible, and high-performance interfaces built with modern HTML5, CSS3, and JavaScript.",
+      icon: "💻"
+    },
+    {
+      num: "02",
+      title: "Responsive Web Design",
+      desc: "Flawless viewing experiences calibrated for smartphones, tablets, laptops, and ultra-wide desktop monitors.",
+      icon: "📱"
+    },
+    {
+      num: "03",
+      title: "Landing Pages & Portfolios",
+      desc: "High-impact, memorable web presences designed to showcase products or personal brands with distinctive personality.",
+      icon: "🚀"
+    },
+    {
+      num: "04",
+      title: "AI Prompt Engineering",
+      desc: "Precision prompts and system instructions for Claude, ChatGPT, and reasoning models to automate complex workflows.",
+      icon: "🤖"
+    },
+    {
+      num: "05",
+      title: "AI-Assisted Prototyping",
+      desc: "Accelerating the journey from wireframe to functioning digital product using modern AI dev engines like Bolt AI and v0.",
+      icon: "⚡"
+    },
+    {
+      num: "06",
+      title: "UI Polish & Optimization",
+      desc: "Refining visual hierarchy, micro-interactions, accessibility contrast, and typography balance for existing web apps.",
+      icon: "✨"
+    }
+  ] as ServiceItem[],
+
+  timeline: [
+    {
+      year: "2022",
+      period: "The Foundation",
+      title: "First Line of Code",
+      desc: "Embarked on the Computer Science journey. Discovered HTML & CSS, falling in love with the magic of bringing ideas to life on the web canvas.",
+      icon: "🌱"
+    },
+    {
+      year: "2023",
+      period: "Skill Acceleration",
+      title: "Frontend Deep Dive & Git Mastery",
+      desc: "Mastered responsive layout systems, Bootstrap, and core JavaScript. Began building real-world landing pages, interactive UIs, and maintaining Git version control on GitHub.",
+      icon: "⚡"
+    },
+    {
+      year: "2024",
+      period: "The AI Turning Point",
+      title: "AI-Assisted Development & Prompt Craft",
+      desc: "Embraced generative AI dev tools. Focused intently on Prompt Engineering with Claude and ChatGPT, turning AI into a daily collaborative partner.",
+      icon: "🤖"
+    },
+    {
+      year: "2025",
+      period: "Frontier Acceleration",
+      title: "Building at the Intersection of Code & AI",
+      desc: "Merged deep frontend engineering with modern AI engines (Bolt AI, v0, Claude 3.7). Shipped high-impact digital products and earned Google AI and Prompting specializations.",
+      icon: "🚀"
+    },
+    {
+      year: "2026",
+      period: "Active Frontier",
+      title: "Backend Engineering & AI Automation Exploration",
+      desc: "Actively mastering Node.js, Express, and PostgreSQL/Supabase to build scalable full-stack web applications. Exploring AI automation pipelines, autonomous agent workflows (n8n, LangChain), and real-time intelligent developer tooling.",
+      icon: "⚡"
+    }
+  ] as TimelineItem[]
+};

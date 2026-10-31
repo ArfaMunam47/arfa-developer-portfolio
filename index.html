@@ -1167,19 +1167,19 @@
       <!-- Scroll-Driven Stacked Project Showcase (Inspired by Reference Video) -->
       <div class="projects-showcase-gallery" id="projects-showcase-gallery" role="region" aria-label="Featured Projects Showcase">
         
-        <!-- Top Project Selector Pill Navigation -->
+        <!-- Top Project Selector Pill Navigation (Preserved Sequence & Synced) -->
         <div class="showcase-selector-bar" id="showcase-selector-bar" role="tablist" aria-label="Featured Projects Selection">
           <button type="button" class="showcase-tab-btn active" role="tab" aria-selected="true" data-index="0" style="--proj-accent: #D4822B;">
             <span class="tab-btn-idx">01</span>
-            <span class="tab-btn-title">Pastel and Form</span>
+            <span class="tab-btn-title">Pastel & Form</span>
           </button>
           <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="1" style="--proj-accent: #2563EB;">
             <span class="tab-btn-idx">02</span>
-            <span class="tab-btn-title">Prism</span>
+            <span class="tab-btn-title">Prism One</span>
           </button>
           <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="2" style="--proj-accent: #0284C7;">
             <span class="tab-btn-idx">03</span>
-            <span class="tab-btn-title">I Capital</span>
+            <span class="tab-btn-title">Icapital</span>
           </button>
           <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="3" style="--proj-accent: #B88728;">
             <span class="tab-btn-idx">04</span>
@@ -1191,9 +1191,209 @@
           </button>
           <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="5" style="--proj-accent: #6366F1;">
             <span class="tab-btn-idx">06</span>
-            <span class="tab-btn-title">StudyPilot AI</span>
+            <span class="tab-btn-title">Study Pilot AI</span>
           </button>
         </div>
+
+        <!-- Premium Horizontal Project Carousel (Exactly 3 cards visible on desktop) -->
+        <div class="project-carousel-wrapper" id="project-carousel-wrapper">
+          
+          <!-- Top Control Header: Counter Progress & Sleek Nav Arrows -->
+          <div class="carousel-header-controls">
+            <div class="carousel-meta-badge">
+              <span class="badge-pulse-dot" aria-hidden="true"></span>
+              <span class="badge-label">CURATED COLLECTION</span>
+              <span class="carousel-counter-tag" id="carousel-counter-tag" aria-live="polite">
+                <strong id="counter-current">01</strong> <span class="counter-slash">/</span> <span>06</span>
+              </span>
+            </div>
+
+            <div class="carousel-nav-arrows">
+              <button type="button" class="carousel-arrow-btn" id="carousel-arrow-prev" aria-label="Previous project" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="carousel-arrow-btn" id="carousel-arrow-next" aria-label="Next project">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Horizontal Scroll / Drag Viewport -->
+          <div class="horizontal-carousel-viewport" id="horizontal-carousel-viewport" tabindex="0" role="region" aria-label="Featured Projects Carousel">
+            <div class="horizontal-carousel-track" id="horizontal-carousel-track">
+
+              <!-- Project 01: Pastel & Form -->
+              <article class="carousel-project-card" data-index="0" style="--proj-accent: #D4822B; --proj-accent-glow: rgba(212, 130, 43, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="pastel.png" alt="Pastel & Form Project Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">01</span>
+                  <span class="card-cat-chip">Form Engine & UI</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Pastel & Form</h3>
+                    <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Pastel & Form on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Delightful multi-step survey and questionnaire flow with soothing pastel aesthetics, real-time validation, and micro-interactions.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Framer Motion</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project 02: Prism One -->
+              <article class="carousel-project-card" data-index="1" style="--proj-accent: #2563EB; --proj-accent-glow: rgba(37, 99, 235, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="Prism.jpeg" alt="Prism One 3D Spatial AR Showcase Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">02</span>
+                  <span class="card-cat-chip">3D WebGL Spatial</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Prism One</h3>
+                    <a href="https://github.com/ArfaMunam47/prism-one-3d" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Prism One on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Spatial product showcase for AI-powered AR glasses with custom Three.js GLSL shaders, glass refraction physics, and 3D choreography.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">WebGL</span>
+                    <span class="tech-tag">GLSL</span>
+                    <span class="tech-tag">GSAP</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project 03: Icapital -->
+              <article class="carousel-project-card" data-index="2" style="--proj-accent: #0284C7; --proj-accent-glow: rgba(2, 132, 199, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="icapital.png" alt="Icapital FinTech Platform Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">03</span>
+                  <span class="card-cat-chip">FinTech Advisory</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Icapital</h3>
+                    <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Icapital on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Intuitive wealth advisory and investment dashboard with responsive portfolio asset allocation, live telemetry, and financial charting.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind</span>
+                    <span class="tech-tag">Chart.js</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project 04: Kumo Ramen -->
+              <article class="carousel-project-card" data-index="3" style="--proj-accent: #B88728; --proj-accent-glow: rgba(184, 135, 40, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="kumo.png" alt="Kumo Ramen Artisan Culinary Showcase Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">04</span>
+                  <span class="card-cat-chip">Artisan Culinary</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Kumo Ramen</h3>
+                    <a href="https://github.com/ArfaMunam47/kumo-ramen-showcase" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Kumo Ramen on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Evocative artisan Tokyo ramen showcase with interactive bowl customizer, kitchen soundscape audio engine, and sensory motion aesthetics.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">JavaScript ES6+</span>
+                    <span class="tech-tag">CSS3 Motion</span>
+                    <span class="tech-tag">Audio Engine</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project 05: Velora -->
+              <article class="carousel-project-card" data-index="4" style="--proj-accent: #1E7E55; --proj-accent-glow: rgba(30, 126, 85, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="veloraa.png" alt="Velora Minimalist E-Commerce Storefront Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">05</span>
+                  <span class="card-cat-chip">Modern E-Commerce</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Velora</h3>
+                    <a href="https://github.com/ArfaMunam47/Velora-Store" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Velora on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Minimalist high-conversion fashion storefront engineered with editorial typography, instant faceted filtering, and slide-out micro-cart.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">State Engine</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project 06: Study Pilot AI -->
+              <article class="carousel-project-card" data-index="5" style="--proj-accent: #6366F1; --proj-accent-glow: rgba(99, 102, 241, 0.28);">
+                <div class="card-visual-wrapper">
+                  <img src="studypilot.png" alt="Study Pilot AI Academic Copilot Preview" class="card-cover-image" loading="eager">
+                  <div class="card-visual-sheen" aria-hidden="true"></div>
+                  <span class="card-num-chip">06</span>
+                  <span class="card-cat-chip">AI Academic Copilot</span>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-headline-row">
+                    <h3 class="card-project-name">Study Pilot AI</h3>
+                    <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Study Pilot AI on GitHub">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  <p class="card-project-summary">Autonomous learning OS transforming complex syllabus documents into spaced-repetition flashcards and conceptual roadmaps via AI reasoning loops.</p>
+                  <div class="card-tech-row">
+                    <span class="tech-tag">Claude 3.7 AI</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Vector Logic</span>
+                  </div>
+                </div>
+              </article>
+
+            </div><!-- /.horizontal-carousel-track -->
+          </div><!-- /.horizontal-carousel-viewport -->
+
+        </div><!-- /.project-carousel-wrapper -->
       </div>
 
       <!-- Single Elegant Italic Closing Line (Direct User Requirement) -->
@@ -3354,6 +3554,206 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- =======================================================================
+       KIND WORDS ABOUT WORKING WITH ME — TESTIMONIALS & REVIEWS SECTION
+       Inserted strictly between Learning Journey and Follow My Code on GitHub
+       Design: 4 Organic Orange Speech Bubble Quote Frames with Halftone Dots,
+       Dark Outlines, Bold Quote Marks, and Attribution (NO fake identities)
+       ======================================================================= -->
+  <section id="testimonials" class="testimonials-speech-section" aria-label="Kind Words About Working With Me">
+    <div class="testimonials-container">
+      
+      <!-- Section Header (Centered & Highly Readable) -->
+      <div class="testimonials-header-wrap reveal">
+        <div class="testimonials-kicker">
+          <span class="testimonials-kicker-dot" aria-hidden="true">•</span>
+          <span>TESTIMONIALS & APPRECIATION</span>
+          <span class="testimonials-kicker-dot" aria-hidden="true">•</span>
+        </div>
+        <h2 class="testimonials-main-title">
+          Kind Words About <span class="testimonials-title-accent">Working With Me</span>
+        </h2>
+        <p class="testimonials-subtitle">
+          A little appreciation from the people I've had the pleasure of working with.
+        </p>
+      </div>
+
+      <!-- 2x2 Refined Testimonial Speech Bubble Grid -->
+      <div class="testimonials-grid reveal">
+
+        <!-- CARD 01: Warm Golden Orange (Consistency and Dedication) -->
+        <article class="testimonial-card-item card-theme-golden-orange" aria-label="Testimonial: Consistency and Dedication">
+          <div class="testimonial-bubble-wrap">
+            
+            <!-- Subtle Halftone Dots (Behind Corners) -->
+            <svg class="bubble-halftone-pattern halftone-pos-bottom-left" viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <pattern id="halftone-dots-golden" width="9" height="9" patternUnits="userSpaceOnUse">
+                  <circle cx="4.5" cy="4.5" r="2" fill="#E85D04" opacity="0.32" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#halftone-dots-golden)" />
+            </svg>
+
+            <!-- Speech Bubble SVG Container -->
+            <div class="bubble-svg-container">
+              <svg class="bubble-vector-shape" viewBox="0 0 500 270" preserveAspectRatio="none" aria-hidden="true">
+                <path class="bubble-stroke-path" vector-effect="non-scaling-stroke"
+                  d="M 85,22 L 460,18 Q 485,18 485,40 L 475,220 Q 475,240 450,242 L 135,242 L 85,268 L 105,242 L 40,242 Q 18,242 18,220 L 18,52 Q 18,28 45,26 L 85,26 Z" />
+              </svg>
+
+              <!-- Bold Black Opening Quotation Mark -->
+              <div class="bubble-quote-mark-badge" aria-hidden="true">
+                <svg class="bubble-quote-svg" viewBox="0 0 54 42" fill="#171717">
+                  <path d="M 19 8 C 8 8 0 16 0 27 C 0 35 6 41 14 41 C 21 41 26 36 26 29 C 26 21 21 18 15 18 C 14 18 13 18 12 19 C 14 12 19 9 24 8 L 19 0 Z M 47 8 C 36 8 28 16 28 27 C 28 35 34 41 42 41 C 49 41 54 36 54 29 C 54 21 49 18 43 18 C 42 18 41 18 40 19 C 42 12 47 9 52 8 L 47 0 Z"/>
+                </svg>
+              </div>
+
+              <!-- Card Inner Content (Focused entirely on review text) -->
+              <div class="bubble-content-box">
+                <div class="bubble-theme-header">
+                  <span class="bubble-theme-tag">Theme 01 • Consistency & Dedication</span>
+                </div>
+                <h3 class="bubble-title">Dedicated, Consistent & Laser-Focused</h3>
+                <p class="bubble-quote-body">
+                  "Arfa brings exceptional dedication and consistency to every project sprint. Whatever the challenge, she tackles it methodically, maintains pristine code standards, and stays fully committed until the experience is polished."
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 02: Rich Vibrant Orange (Creativity and Problem Solving) -->
+        <article class="testimonial-card-item card-theme-vibrant-orange" aria-label="Testimonial: Creativity and Problem Solving">
+          <div class="testimonial-bubble-wrap">
+            
+            <!-- Subtle Halftone Dots (Behind Bottom-Right Tail) -->
+            <svg class="bubble-halftone-pattern halftone-pos-bottom-right" viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <pattern id="halftone-dots-vibrant" width="9" height="9" patternUnits="userSpaceOnUse">
+                  <circle cx="4.5" cy="4.5" r="2" fill="#C83E0B" opacity="0.32" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#halftone-dots-vibrant)" />
+            </svg>
+
+            <!-- Speech Bubble SVG Container (Tail on Bottom-Right) -->
+            <div class="bubble-svg-container">
+              <svg class="bubble-vector-shape" viewBox="0 0 500 270" preserveAspectRatio="none" aria-hidden="true">
+                <path class="bubble-stroke-path" vector-effect="non-scaling-stroke"
+                  d="M 85,22 L 460,25 Q 485,27 485,48 L 475,220 Q 475,240 450,242 L 425,242 L 405,268 L 372,242 L 38,242 Q 18,242 18,220 L 22,52 Q 24,28 50,26 L 85,26 Z" />
+              </svg>
+
+              <!-- Bold Black Opening Quotation Mark -->
+              <div class="bubble-quote-mark-badge" aria-hidden="true">
+                <svg class="bubble-quote-svg" viewBox="0 0 54 42" fill="#171717">
+                  <path d="M 19 8 C 8 8 0 16 0 27 C 0 35 6 41 14 41 C 21 41 26 36 26 29 C 26 21 21 18 15 18 C 14 18 13 18 12 19 C 14 12 19 9 24 8 L 19 0 Z M 47 8 C 36 8 28 16 28 27 C 28 35 34 41 42 41 C 49 41 54 36 54 29 C 54 21 49 18 43 18 C 42 18 41 18 40 19 C 42 12 47 9 52 8 L 47 0 Z"/>
+                </svg>
+              </div>
+
+              <!-- Card Inner Content -->
+              <div class="bubble-content-box">
+                <div class="bubble-theme-header">
+                  <span class="bubble-theme-tag">Theme 02 • Creative Vibe & Problem-Solving</span>
+                </div>
+                <h3 class="bubble-title">Creative Thinking & Ingenuity</h3>
+                <p class="bubble-quote-body">
+                  "Working with Arfa is a breath of fresh air. Her creative instinct as a vibe coder bridges design vision and technical execution effortlessly, transforming tricky UI challenges into intuitive, seamless interactions."
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 03: Soft Amber Orange (Communication and Collaboration) -->
+        <article class="testimonial-card-item card-theme-amber-orange" aria-label="Testimonial: Communication and Collaboration">
+          <div class="testimonial-bubble-wrap">
+            
+            <!-- Subtle Halftone Dots (Behind Bottom-Left) -->
+            <svg class="bubble-halftone-pattern halftone-pos-bottom-left" viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <pattern id="halftone-dots-amber" width="9" height="9" patternUnits="userSpaceOnUse">
+                  <circle cx="4.5" cy="4.5" r="2" fill="#E85D04" opacity="0.32" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#halftone-dots-amber)" />
+            </svg>
+
+            <!-- Speech Bubble SVG Container -->
+            <div class="bubble-svg-container">
+              <svg class="bubble-vector-shape" viewBox="0 0 500 270" preserveAspectRatio="none" aria-hidden="true">
+                <path class="bubble-stroke-path" vector-effect="non-scaling-stroke"
+                  d="M 85,25 L 460,18 Q 485,18 482,42 L 468,220 Q 465,240 440,242 L 145,242 L 95,268 L 115,242 L 40,242 Q 18,242 18,220 L 24,56 Q 28,28 52,26 L 85,26 Z" />
+              </svg>
+
+              <!-- Bold Black Opening Quotation Mark -->
+              <div class="bubble-quote-mark-badge" aria-hidden="true">
+                <svg class="bubble-quote-svg" viewBox="0 0 54 42" fill="#171717">
+                  <path d="M 19 8 C 8 8 0 16 0 27 C 0 35 6 41 14 41 C 21 41 26 36 26 29 C 26 21 21 18 15 18 C 14 18 13 18 12 19 C 14 12 19 9 24 8 L 19 0 Z M 47 8 C 36 8 28 16 28 27 C 28 35 34 41 42 41 C 49 41 54 36 54 29 C 54 21 49 18 43 18 C 42 18 41 18 40 19 C 42 12 47 9 52 8 L 47 0 Z"/>
+                </svg>
+              </div>
+
+              <!-- Card Inner Content -->
+              <div class="bubble-content-box">
+                <div class="bubble-theme-header">
+                  <span class="bubble-theme-tag">Theme 03 • Communication & Teamwork</span>
+                </div>
+                <h3 class="bubble-title">Clear Communication & Collaboration</h3>
+                <p class="bubble-quote-body">
+                  "Arfa’s communication and openness to feedback make collaboration effortless. She listens deeply, iterates rapidly with humility, and proactively keeps the team aligned throughout the entire product build."
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 04: Deep Burnt Orange (Reliability, Detail & Willingness to Learn) -->
+        <article class="testimonial-card-item card-theme-burnt-orange" aria-label="Testimonial: Reliability and Growth">
+          <div class="testimonial-bubble-wrap">
+            
+            <!-- Subtle Halftone Dots (Behind Bottom-Left) -->
+            <svg class="bubble-halftone-pattern halftone-pos-bottom-left" viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <pattern id="halftone-dots-burnt" width="9" height="9" patternUnits="userSpaceOnUse">
+                  <circle cx="4.5" cy="4.5" r="2" fill="#8C2503" opacity="0.32" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#halftone-dots-burnt)" />
+            </svg>
+
+            <!-- Speech Bubble SVG Container -->
+            <div class="bubble-svg-container">
+              <svg class="bubble-vector-shape" viewBox="0 0 500 270" preserveAspectRatio="none" aria-hidden="true">
+                <path class="bubble-stroke-path" vector-effect="non-scaling-stroke"
+                  d="M 85,22 L 458,20 Q 485,20 482,44 L 470,220 Q 468,240 445,242 L 170,242 L 125,268 L 142,242 L 40,242 Q 18,242 20,220 L 22,54 Q 24,28 50,26 L 85,26 Z" />
+              </svg>
+
+              <!-- Bold Black Opening Quotation Mark -->
+              <div class="bubble-quote-mark-badge" aria-hidden="true">
+                <svg class="bubble-quote-svg" viewBox="0 0 54 42" fill="#171717">
+                  <path d="M 19 8 C 8 8 0 16 0 27 C 0 35 6 41 14 41 C 21 41 26 36 26 29 C 26 21 21 18 15 18 C 14 18 13 18 12 19 C 14 12 19 9 24 8 L 19 0 Z M 47 8 C 36 8 28 16 28 27 C 28 35 34 41 42 41 C 49 41 54 36 54 29 C 54 21 49 18 43 18 C 42 18 41 18 40 19 C 42 12 47 9 52 8 L 47 0 Z"/>
+                </svg>
+              </div>
+
+              <!-- Card Inner Content -->
+              <div class="bubble-content-box">
+                <div class="bubble-theme-header">
+                  <span class="bubble-theme-tag">Theme 04 • Reliability & Growth</span>
+                </div>
+                <h3 class="bubble-title">Reliability & Continuous Growth</h3>
+                <p class="bubble-quote-body">
+                  "Arfa embodies true craftsmanship. Her eye for micro-interactions, responsive polish, and performance is outstanding, backed by an inspiring eagerness to learn and elevate any project she touches."
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /.testimonials-grid -->
+
+    </div><!-- /.testimonials-container -->
   </section>
 
 <!-- =======================================================================

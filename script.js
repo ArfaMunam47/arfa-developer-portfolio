@@ -934,24 +934,173 @@ function setupProjectsShowcase() {
   const gallery = document.getElementById('projects-showcase-gallery');
   if (!gallery) return;
 
+  const viewport = document.getElementById('horizontal-carousel-viewport');
+  const track = document.getElementById('horizontal-carousel-track');
+  const cards = document.querySelectorAll('.carousel-project-card');
   const tabs = document.querySelectorAll('.showcase-tab-btn');
+  const prevBtn = document.getElementById('carousel-arrow-prev');
+  const nextBtn = document.getElementById('carousel-arrow-next');
+  const counterCurrent = document.getElementById('counter-current');
 
   // Prevent opening any unwanted case study pages or modals
   window.openProjectModal = function() {};
 
-  // Preserve interactive tab selection on the navigation pills
-  tabs.forEach((tab, idx) => {
-    tab.addEventListener('click', (e) => {
-      e.preventDefault();
-      tabs.forEach((t, i) => {
-        const isActive = (i === idx);
-        t.classList.toggle('active', isActive);
-        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-      if (window.innerWidth <= 900) {
+  if (!viewport || !cards.length) return;
+
+  let isDragging = false;
+  let startX = 0;
+  let scrollStartLeft = 0;
+  let hasDragged = false;
+  let activeIndex = 0;
+
+  function getStepDistance() {
+    if (cards.length > 1) {
+      const firstCard = cards[0];
+      const secondCard = cards[1];
+      const distance = secondCard.offsetLeft - firstCard.offsetLeft;
+      if (distance > 0) return distance;
+    }
+    return cards[0].offsetWidth + 24; // fallback card width + gap
+  }
+
+  function updateControlsState() {
+    const scrollLeft = viewport.scrollLeft;
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const stepDist = getStepDistance();
+
+    // Calculate nearest active card
+    const computedIndex = Math.min(
+      cards.length - 1,
+      Math.max(0, Math.round(scrollLeft / (stepDist || 1)))
+    );
+    activeIndex = computedIndex;
+
+    // Update Counter (01 / 06)
+    if (counterCurrent) {
+      counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+    }
+
+    // Sync Top Tabs
+    tabs.forEach((tab, idx) => {
+      const isActive = (idx === activeIndex);
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      if (isActive && window.innerWidth <= 900) {
         tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     });
+
+    // Subtle highlight on active project card
+    cards.forEach((card, idx) => {
+      card.classList.toggle('active-tab-highlight', idx === activeIndex);
+    });
+
+    // Update Arrow Disabled States
+    if (prevBtn) {
+      prevBtn.disabled = scrollLeft <= 8;
+    }
+    if (nextBtn) {
+      nextBtn.disabled = scrollLeft >= maxScroll - 8;
+    }
+  }
+
+  // Initial update
+  updateControlsState();
+
+  // Scroll listener with requestAnimationFrame debounce
+  let scrollRaf;
+  viewport.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf = requestAnimationFrame(updateControlsState);
+  }, { passive: true });
+
+  // Arrow Prev Button
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const step = getStepDistance();
+      viewport.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+  }
+
+  // Arrow Next Button
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const step = getStepDistance();
+      viewport.scrollBy({ left: step, behavior: 'smooth' });
+    });
+  }
+
+  // Top Selector Tab Click
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (cards[idx]) {
+        viewport.scrollTo({
+          left: cards[idx].offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Mouse Drag to Scroll
+  viewport.addEventListener('mousedown', (e) => {
+    // If clicking a link directly, don't drag
+    if (e.target.closest('.card-link-icon')) return;
+    isDragging = true;
+    hasDragged = false;
+    startX = e.pageX - viewport.offsetLeft;
+    scrollStartLeft = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const x = e.pageX - viewport.offsetLeft;
+    const walk = (x - startX);
+    if (Math.abs(walk) > 5) {
+      hasDragged = true;
+    }
+    viewport.scrollLeft = scrollStartLeft - walk;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    viewport.classList.remove('is-dragging');
+  });
+
+  // Prevent link click when user was dragging
+  viewport.addEventListener('click', (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasDragged = false;
+    }
+  }, true);
+
+  // Keyboard Navigation
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const step = getStepDistance();
+      viewport.scrollBy({ left: -step, behavior: 'smooth' });
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const step = getStepDistance();
+      viewport.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  });
+
+  // Window Resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateControlsState();
+    }, 150);
   });
 
   // Smooth scroll handler for tactile exploration bridge CTA button
