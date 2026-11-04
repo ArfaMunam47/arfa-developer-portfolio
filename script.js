@@ -934,9 +934,10 @@ function setupProjectsShowcase() {
   const gallery = document.getElementById('projects-showcase-gallery');
   if (!gallery) return;
 
-  const viewport = document.getElementById('horizontal-carousel-viewport');
-  const track = document.getElementById('horizontal-carousel-track');
-  const cards = document.querySelectorAll('.carousel-project-card');
+  const wrapper = document.getElementById('project-carousel-wrapper') || document.querySelector('.art-exhibition-stage');
+  const viewport = document.getElementById('horizontal-carousel-viewport') || document.querySelector('.art-gallery-viewport');
+  const track = document.getElementById('horizontal-carousel-track') || document.querySelector('.art-gallery-track');
+  const cards = document.querySelectorAll('.exhibition-artwork-canvas, .carousel-project-card');
   const tabs = document.querySelectorAll('.showcase-tab-btn');
   const prevBtn = document.getElementById('carousel-arrow-prev');
   const nextBtn = document.getElementById('carousel-arrow-next');
@@ -947,130 +948,199 @@ function setupProjectsShowcase() {
 
   if (!viewport || !cards.length) return;
 
+  const totalCards = cards.length; // 6
+  let currentPos = 0;       // Continuous position: [0 .. totalCards - 1]
+  let targetPos = 0;        // Target position when snapping / clicking
+  let isTargeting = false;  // Smoothly interpolating toward targetPos
   let isDragging = false;
-  let startX = 0;
-  let scrollStartLeft = 0;
   let hasDragged = false;
-  let activeIndex = 0;
+  let dragStartX = 0;
+  let dragStartPos = 0;
+  let lastActiveIndex = -1;
+  let animationFrameId = null;
 
-  function getStepDistance() {
-    if (cards.length > 1) {
-      const firstCard = cards[0];
-      const secondCard = cards[1];
-      const distance = secondCard.offsetLeft - firstCard.offsetLeft;
-      if (distance > 0) return distance;
-    }
-    return cards[0].offsetWidth + 24; // fallback card width + gap
-  }
+  // Render Horizontal Exhibition Wall layout (Screenshots as Hero Artworks)
+  function renderExhibition(pos) {
+    const isMobile = window.innerWidth <= 768;
+    const canvasSpacing = isMobile ? Math.min(window.innerWidth * 0.92, 440) : Math.min(window.innerWidth * 0.88, 1440);
+    const perspectivePx = isMobile ? 950 : 1400;
 
-  function updateControlsState() {
-    const scrollLeft = viewport.scrollLeft;
-    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-    const stepDist = getStepDistance();
+    // Active project index (clamped 0 to totalCards - 1)
+    const activeIndex = Math.max(0, Math.min(totalCards - 1, Math.round(pos)));
 
-    // Calculate nearest active card
-    const computedIndex = Math.min(
-      cards.length - 1,
-      Math.max(0, Math.round(scrollLeft / (stepDist || 1)))
-    );
-    activeIndex = computedIndex;
+    cards.forEach((card, i) => {
+      const diff = i - pos;
+      const absDiff = Math.abs(diff);
 
-    // Update Counter (01 / 06)
-    if (counterCurrent) {
-      counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
-    }
+      const translateX = diff * canvasSpacing;
+      // Slight depth pushback for off-center canvases
+      const translateZ = -Math.min(120, absDiff * 55);
+      // Gentle architectural perspective angle
+      const rotateY = -Math.max(-10, Math.min(10, diff * 6));
+      // Dominant center canvas (1.0), subtle elegant scale for neighbor (0.92)
+      const scale = Math.max(0.85, 1.0 - absDiff * 0.08);
 
-    // Sync Top Tabs
-    tabs.forEach((tab, idx) => {
-      const isActive = (idx === activeIndex);
-      tab.classList.toggle('active', isActive);
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      if (isActive && window.innerWidth <= 900) {
-        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      // Opacity: center is 1.0, immediate neighbor (absDiff = 1) is 0.65 (clearly visible at the edge), beyond that fades out smoothly
+      let opacity = 0;
+      if (absDiff <= 2.2) {
+        opacity = Math.max(0, 1.0 - absDiff * 0.35);
+      }
+
+      // Layered Z-Index
+      const zIndex = Math.max(1, Math.round(50 - absDiff * 10));
+      const pointerEvents = (absDiff < 1.35) ? 'auto' : 'none';
+
+      card.style.transform = `perspective(${perspectivePx}px) translate3d(calc(-50% + ${translateX.toFixed(2)}px), -50%, ${translateZ.toFixed(2)}px) rotateY(${rotateY.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+      card.style.opacity = opacity.toFixed(3);
+      card.style.zIndex = zIndex;
+      card.style.pointerEvents = pointerEvents;
+
+      // Center state class
+      if (absDiff < 0.4) {
+        card.classList.add('is-center');
+        card.classList.remove('is-side');
+        card.setAttribute('aria-selected', 'true');
+      } else {
+        card.classList.remove('is-center');
+        if (absDiff <= 1.45) {
+          card.classList.add('is-side');
+        } else {
+          card.classList.remove('is-side');
+        }
+        card.setAttribute('aria-selected', 'false');
       }
     });
 
-    // Subtle highlight on active project card
-    cards.forEach((card, idx) => {
-      card.classList.toggle('active-tab-highlight', idx === activeIndex);
-    });
+    // Synchronize Top Tabs if active project changed
+    if (activeIndex !== lastActiveIndex) {
+      lastActiveIndex = activeIndex;
 
-    // Update Arrow Disabled States
-    if (prevBtn) {
-      prevBtn.disabled = scrollLeft <= 8;
+      // Update Counter Tag if present
+      if (counterCurrent) {
+        counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+      }
+
+      // Update Top Tabs
+      tabs.forEach((tab, idx) => {
+        const isActive = (idx === activeIndex);
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        if (isActive && window.innerWidth <= 900) {
+          tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
     }
-    if (nextBtn) {
-      nextBtn.disabled = scrollLeft >= maxScroll - 8;
+  }
+
+  // Animation Loop: smooth target snapping when settling, zero auto-drift
+  function tick() {
+    if (isTargeting) {
+      const diff = targetPos - currentPos;
+      if (Math.abs(diff) < 0.001) {
+        currentPos = targetPos;
+        isTargeting = false;
+      } else {
+        currentPos += diff * 0.14;
+      }
+      renderExhibition(currentPos);
     }
+
+    animationFrameId = requestAnimationFrame(tick);
   }
 
-  // Initial update
-  updateControlsState();
+  // Smooth navigation to a specific target index [0 .. totalCards - 1]
+  function navigateToProject(targetIndex) {
+    targetPos = Math.max(0, Math.min(totalCards - 1, targetIndex));
+    isTargeting = true;
+  }
 
-  // Scroll listener with requestAnimationFrame debounce
-  let scrollRaf;
-  viewport.addEventListener('scroll', () => {
-    cancelAnimationFrame(scrollRaf);
-    scrollRaf = requestAnimationFrame(updateControlsState);
-  }, { passive: true });
+  // Card click handler: clicking neighbor card brings it to center; clicking link opens project
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      if (hasDragged) return;
 
-  // Arrow Prev Button
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const step = getStepDistance();
-      viewport.scrollBy({ left: -step, behavior: 'smooth' });
+      const currentActive = Math.max(0, Math.min(totalCards - 1, Math.round(currentPos)));
+      if (idx !== currentActive) {
+        // Bring clicked neighbor artwork directly to center
+        e.preventDefault();
+        navigateToProject(idx);
+      } else {
+        // Active center card: if clicked "View Project" button or card body
+        const projectUrl = card.getAttribute('data-project-url');
+        if (projectUrl && (e.target.closest('.project-view-action-btn') || e.target.closest('.artwork-explore-btn') || e.target.closest('.artwork-view-link') || !e.target.closest('a'))) {
+          if (!e.target.closest('a')) {
+            window.open(projectUrl, '_blank', 'noopener,noreferrer');
+          }
+        }
+      }
     });
-  }
-
-  // Arrow Next Button
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const step = getStepDistance();
-      viewport.scrollBy({ left: step, behavior: 'smooth' });
-    });
-  }
+  });
 
   // Top Selector Tab Click
   tabs.forEach((tab, idx) => {
     tab.addEventListener('click', (e) => {
       e.preventDefault();
-      if (cards[idx]) {
-        viewport.scrollTo({
-          left: cards[idx].offsetLeft,
-          behavior: 'smooth'
-        });
-      }
+      navigateToProject(idx);
     });
   });
 
-  // Mouse Drag to Scroll
+  // Arrow buttons (if present)
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToProject(Math.round(currentPos) - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToProject(Math.round(currentPos) + 1);
+    });
+  }
+
+  // Mouse Drag Gestures
   viewport.addEventListener('mousedown', (e) => {
-    // If clicking a link directly, don't drag
-    if (e.target.closest('.card-link-icon')) return;
+    if (e.target.closest('.project-view-action-btn') || e.target.closest('.artwork-explore-btn') || e.target.closest('.artwork-view-link') || e.target.closest('.carousel-arrow-btn')) return;
     isDragging = true;
     hasDragged = false;
-    startX = e.pageX - viewport.offsetLeft;
-    scrollStartLeft = viewport.scrollLeft;
+    dragStartX = e.clientX;
+    dragStartPos = currentPos;
+    isTargeting = false;
     viewport.classList.add('is-dragging');
   });
 
   window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    const x = e.pageX - viewport.offsetLeft;
-    const walk = (x - startX);
-    if (Math.abs(walk) > 5) {
+    const deltaX = e.clientX - dragStartX;
+    if (Math.abs(deltaX) > 4) {
       hasDragged = true;
     }
-    viewport.scrollLeft = scrollStartLeft - walk;
+    const sensitivity = window.innerWidth <= 768 ? 320 : Math.min(window.innerWidth * 0.75, 1100);
+    // Calculate raw position with gentle rubber-banding
+    let newPos = dragStartPos - (deltaX / sensitivity);
+    if (newPos < -0.3) {
+      newPos = -0.3 + (newPos + 0.3) * 0.2;
+    } else if (newPos > totalCards - 0.7) {
+      const over = newPos - (totalCards - 0.7);
+      newPos = (totalCards - 0.7) + over * 0.2;
+    }
+    currentPos = newPos;
+    renderExhibition(currentPos);
   });
 
-  window.addEventListener('mouseup', () => {
+  const handleDragEnd = () => {
     if (!isDragging) return;
     isDragging = false;
     viewport.classList.remove('is-dragging');
-  });
+
+    if (hasDragged) {
+      // Settle smoothly into the nearest project card and STOP
+      targetPos = Math.max(0, Math.min(totalCards - 1, Math.round(currentPos)));
+      isTargeting = true;
+    }
+  };
+
+  window.addEventListener('mouseup', handleDragEnd);
 
   // Prevent link click when user was dragging
   viewport.addEventListener('click', (e) => {
@@ -1081,26 +1151,124 @@ function setupProjectsShowcase() {
     }
   }, true);
 
+  // Trackpad / horizontal wheel support
+  viewport.addEventListener('wheel', (e) => {
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+    if (Math.abs(delta) > 18) {
+      e.preventDefault();
+      if (!isTargeting) {
+        if (delta > 0 && Math.round(currentPos) < totalCards - 1) {
+          navigateToProject(Math.round(currentPos) + 1);
+        } else if (delta < 0 && Math.round(currentPos) > 0) {
+          navigateToProject(Math.round(currentPos) - 1);
+        }
+      }
+    }
+  }, { passive: false });
+
+  // Mobile Touch Gestures (Swiping)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isTouchHorizontal = false;
+
+  viewport.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.artwork-explore-btn') || e.target.closest('.artwork-view-link') || e.target.closest('.carousel-arrow-btn')) return;
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    dragStartPos = currentPos;
+    isDragging = true;
+    hasDragged = false;
+    isTouchHorizontal = false;
+    isTargeting = false;
+  }, { passive: true });
+
+  viewport.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+
+    if (!isTouchHorizontal) {
+      if (Math.abs(deltaX) > 8 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        isTouchHorizontal = true;
+      } else if (Math.abs(deltaY) > 8) {
+        isDragging = false;
+        return;
+      }
+    }
+
+    if (isTouchHorizontal) {
+      hasDragged = true;
+      const sensitivity = window.innerWidth <= 768 ? 300 : 450;
+      let newPos = dragStartPos - (deltaX / sensitivity);
+      if (newPos < -0.3) {
+        newPos = -0.3 + (newPos + 0.3) * 0.2;
+      } else if (newPos > totalCards - 0.7) {
+        const over = newPos - (totalCards - 0.7);
+        newPos = (totalCards - 0.7) + over * 0.2;
+      }
+      currentPos = newPos;
+      renderExhibition(currentPos);
+    }
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', () => {
+    if (!isDragging && !hasDragged) return;
+    isDragging = false;
+    if (hasDragged) {
+      targetPos = Math.max(0, Math.min(totalCards - 1, Math.round(currentPos)));
+      isTargeting = true;
+    }
+  }, { passive: true });
+
   // Keyboard Navigation
   viewport.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      const step = getStepDistance();
-      viewport.scrollBy({ left: -step, behavior: 'smooth' });
+      navigateToProject(Math.round(currentPos) - 1);
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
-      const step = getStepDistance();
-      viewport.scrollBy({ left: step, behavior: 'smooth' });
+      navigateToProject(Math.round(currentPos) + 1);
     }
   });
 
-  // Window Resize
-  let resizeTimer;
+  // Handle window resize: re-render current position
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      updateControlsState();
-    }, 150);
+    renderExhibition(currentPos);
+  });
+
+  // IntersectionObserver: Pause rAF loop when section is far outside viewport to save battery & CPU
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!animationFrameId) {
+            animationFrameId = requestAnimationFrame(tick);
+          }
+        } else {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        }
+      });
+    }, { threshold: 0, rootMargin: '350px 0px 350px 0px' });
+    observer.observe(gallery);
+  }
+
+  // Document visibility change: pause when browser tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    } else {
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(tick);
+      }
+    }
   });
 
   // Smooth scroll handler for tactile exploration bridge CTA button
@@ -1114,6 +1282,13 @@ function setupProjectsShowcase() {
       }
     });
   }
+
+  // Initial render at project 0: STATIONARY on load
+  currentPos = 0;
+  targetPos = 0;
+  isTargeting = false;
+  renderExhibition(0);
+  animationFrameId = requestAnimationFrame(tick);
 }
 
 

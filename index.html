@@ -34,8 +34,9 @@
   <link rel="preload" as="image" href="new.png">
   <link rel="preload" as="image" href="me-gradient.png">
 
-  <!-- Design System Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=lighting-v14">
+  <!-- Design System Stylesheet: Direct & Static Delivery -->
+  <link rel="stylesheet" href="/styles.css?direct">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -1195,205 +1196,124 @@
           </button>
         </div>
 
-        <!-- Premium Horizontal Project Carousel (Exactly 3 cards visible on desktop) -->
-        <div class="project-carousel-wrapper" id="project-carousel-wrapper">
-          
-          <!-- Top Control Header: Counter Progress & Sleek Nav Arrows -->
-          <div class="carousel-header-controls">
-            <div class="carousel-meta-badge">
-              <span class="badge-pulse-dot" aria-hidden="true"></span>
-              <span class="badge-label">CURATED COLLECTION</span>
-              <span class="carousel-counter-tag" id="carousel-counter-tag" aria-live="polite">
-                <strong id="counter-current">01</strong> <span class="counter-slash">/</span> <span>06</span>
-              </span>
-            </div>
+        <!-- Clean Full-Image Exhibition Stage -->
+        <div class="art-exhibition-stage" id="project-carousel-wrapper">
 
-            <div class="carousel-nav-arrows">
-              <button type="button" class="carousel-arrow-btn" id="carousel-arrow-prev" aria-label="Previous project" disabled>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-              </button>
-              <button type="button" class="carousel-arrow-btn" id="carousel-arrow-next" aria-label="Next project">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
-            </div>
-          </div>
+          <!-- Horizontal Gallery Viewport -->
+          <div class="horizontal-carousel-viewport art-gallery-viewport" id="horizontal-carousel-viewport" tabindex="0" role="region" aria-label="Digital Website Exhibition Gallery">
+            <div class="horizontal-carousel-track art-gallery-track" id="horizontal-carousel-track">
 
-          <!-- Horizontal Scroll / Drag Viewport -->
-          <div class="horizontal-carousel-viewport" id="horizontal-carousel-viewport" tabindex="0" role="region" aria-label="Featured Projects Carousel">
-            <div class="horizontal-carousel-track" id="horizontal-carousel-track">
-
-              <!-- Project 01: Pastel & Form -->
-              <article class="carousel-project-card" data-index="0" style="--proj-accent: #D4822B; --proj-accent-glow: rgba(212, 130, 43, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="pastel.png" alt="Pastel & Form Project Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">01</span>
-                  <span class="card-cat-chip">Form Engine & UI</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Pastel & Form</h3>
-                    <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Pastel & Form on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 01: Pastel & Form (Warm Terracotta Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="0" data-project-url="https://github.com/ArfaMunam47/pastelform" style="--proj-accent: #D4822B;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="pastel.png" alt="Pastel & Form Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #D4822B;" aria-label="View Pastel & Form Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Delightful multi-step survey and questionnaire flow with soothing pastel aesthetics, real-time validation, and micro-interactions.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Tailwind CSS</span>
-                    <span class="tech-tag">Framer Motion</span>
                   </div>
                 </div>
               </article>
 
-              <!-- Project 02: Prism One -->
-              <article class="carousel-project-card" data-index="1" style="--proj-accent: #2563EB; --proj-accent-glow: rgba(37, 99, 235, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="Prism.jpeg" alt="Prism One 3D Spatial AR Showcase Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">02</span>
-                  <span class="card-cat-chip">3D WebGL Spatial</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Prism One</h3>
-                    <a href="https://github.com/ArfaMunam47/prism-one-3d" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Prism One on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 02: Prism One (Vibrant Blue Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="1" data-project-url="https://github.com/ArfaMunam47/prism-one-3d" style="--proj-accent: #2563EB;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="Prism.jpeg" alt="Prism One Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/prism-one-3d" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #2563EB;" aria-label="View Prism One Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Spatial product showcase for AI-powered AR glasses with custom Three.js GLSL shaders, glass refraction physics, and 3D choreography.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">Three.js</span>
-                    <span class="tech-tag">WebGL</span>
-                    <span class="tech-tag">GLSL</span>
-                    <span class="tech-tag">GSAP</span>
                   </div>
                 </div>
               </article>
 
-              <!-- Project 03: Icapital -->
-              <article class="carousel-project-card" data-index="2" style="--proj-accent: #0284C7; --proj-accent-glow: rgba(2, 132, 199, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="icapital.png" alt="Icapital FinTech Platform Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">03</span>
-                  <span class="card-cat-chip">FinTech Advisory</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Icapital</h3>
-                    <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Icapital on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 03: Icapital (Ocean Blue Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="2" data-project-url="https://github.com/ArfaMunam47" style="--proj-accent: #0284C7;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="icapital.png" alt="Icapital Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #0284C7;" aria-label="View Icapital Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Intuitive wealth advisory and investment dashboard with responsive portfolio asset allocation, live telemetry, and financial charting.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">TypeScript</span>
-                    <span class="tech-tag">Tailwind</span>
-                    <span class="tech-tag">Chart.js</span>
                   </div>
                 </div>
               </article>
 
-              <!-- Project 04: Kumo Ramen -->
-              <article class="carousel-project-card" data-index="3" style="--proj-accent: #B88728; --proj-accent-glow: rgba(184, 135, 40, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="kumo.png" alt="Kumo Ramen Artisan Culinary Showcase Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">04</span>
-                  <span class="card-cat-chip">Artisan Culinary</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Kumo Ramen</h3>
-                    <a href="https://github.com/ArfaMunam47/kumo-ramen-showcase" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Kumo Ramen on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 04: Kumo Ramen (Artisan Warm Gold Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="3" data-project-url="https://github.com/ArfaMunam47/kumo-ramen-showcase" style="--proj-accent: #B88728;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="kumo.png" alt="Kumo Ramen Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/kumo-ramen-showcase" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #B88728;" aria-label="View Kumo Ramen Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Evocative artisan Tokyo ramen showcase with interactive bowl customizer, kitchen soundscape audio engine, and sensory motion aesthetics.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">JavaScript ES6+</span>
-                    <span class="tech-tag">CSS3 Motion</span>
-                    <span class="tech-tag">Audio Engine</span>
                   </div>
                 </div>
               </article>
 
-              <!-- Project 05: Velora -->
-              <article class="carousel-project-card" data-index="4" style="--proj-accent: #1E7E55; --proj-accent-glow: rgba(30, 126, 85, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="veloraa.png" alt="Velora Minimalist E-Commerce Storefront Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">05</span>
-                  <span class="card-cat-chip">Modern E-Commerce</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Velora</h3>
-                    <a href="https://github.com/ArfaMunam47/Velora-Store" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Velora on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 05: Velora (Emerald Green Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="4" data-project-url="https://github.com/ArfaMunam47/Velora-Store" style="--proj-accent: #1E7E55;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="veloraa.png" alt="Velora Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/Velora-Store" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #1E7E55;" aria-label="View Velora Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Minimalist high-conversion fashion storefront engineered with editorial typography, instant faceted filtering, and slide-out micro-cart.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Tailwind CSS</span>
-                    <span class="tech-tag">State Engine</span>
                   </div>
                 </div>
               </article>
 
-              <!-- Project 06: Study Pilot AI -->
-              <article class="carousel-project-card" data-index="5" style="--proj-accent: #6366F1; --proj-accent-glow: rgba(99, 102, 241, 0.28);">
-                <div class="card-visual-wrapper">
-                  <img src="studypilot.png" alt="Study Pilot AI Academic Copilot Preview" class="card-cover-image" loading="eager">
-                  <div class="card-visual-sheen" aria-hidden="true"></div>
-                  <span class="card-num-chip">06</span>
-                  <span class="card-cat-chip">AI Academic Copilot</span>
-                </div>
-                <div class="card-body-wrapper">
-                  <div class="card-headline-row">
-                    <h3 class="card-project-name">Study Pilot AI</h3>
-                    <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="card-link-icon" aria-label="Explore Study Pilot AI on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Artwork 06: Study Pilot AI (Indigo Purple Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="5" data-project-url="https://github.com/ArfaMunam47/StudyPilot-AI" style="--proj-accent: #6366F1;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <img src="studypilot.png" alt="Study Pilot AI Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" style="background-color: #6366F1;" aria-label="View Study Pilot AI Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
                       </svg>
                     </a>
-                  </div>
-                  <p class="card-project-summary">Autonomous learning OS transforming complex syllabus documents into spaced-repetition flashcards and conceptual roadmaps via AI reasoning loops.</p>
-                  <div class="card-tech-row">
-                    <span class="tech-tag">Claude 3.7 AI</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Vector Logic</span>
                   </div>
                 </div>
               </article>
 
             </div><!-- /.horizontal-carousel-track -->
           </div><!-- /.horizontal-carousel-viewport -->
-
-        </div><!-- /.project-carousel-wrapper -->
+        </div><!-- /.art-exhibition-stage -->
       </div>
 
       <!-- Single Elegant Italic Closing Line (Direct User Requirement) -->
@@ -4653,8 +4573,8 @@
   </div>
 
   <!-- Scripts: Base64 Resume Data -> Centralized Data Source -> Main Interactions -->
-  <script src="resume-data.js"></script>
-  <script src="portfolio-data.js"></script>
-  <script src="script.js?v=scrapbook-v3"></script>
+  <script src="/resume-data.js"></script>
+  <script src="/portfolio-data.js?t=2026110418"></script>
+  <script src="/script.js?t=2026110418"></script>
 </body>
 </html>

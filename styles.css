@@ -23365,371 +23365,221 @@ nav.floating-nav.scrolled {
 }
 
 /* ==========================================================================
-   PREMIUM 3-CARDS-VISIBLE HORIZONTAL PROJECT CAROUSEL
-   Work in Motion Showcase • Exactly 3 Cards on Desktop • Smooth Sliding/Drag
-   Responsive 2-Cards on Tablet • 1-Card Peek on Mobile • High-Craft Micro-Details
+   CLEAN FULL-IMAGE COLOR-COORDINATED PROJECT SHOWCASE
+   Single Clean Top Navigation • Pure Uncropped Website Screenshots • Subtle Border
+   Color-Coordinated View Project Buttons • Zero Dark Shading • Drag Physics
    ========================================================================== */
-.project-carousel-wrapper {
+
+.projects-showcase-gallery {
   position: relative;
-  width: 100%;
-  max-width: 1220px;
-  margin: 1.5rem auto 2.5rem;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 1.0rem 0 2.5rem;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
-/* Header Controls: Curated Progress Counter & Nav Buttons */
-.carousel-header-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding: 0 0.25rem;
+.art-exhibition-stage {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0.5rem auto 1.5rem;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
-.carousel-meta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  background: #FFFFFF;
-  border: 1px solid rgba(16, 28, 53, 0.08);
-  padding: 0.38rem 0.95rem;
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(16, 28, 53, 0.03);
-}
-
-.badge-pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #FA5538;
-  box-shadow: 0 0 10px #FA5538;
-  animation: pulseDot 2s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
-}
-
-.badge-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748B;
-}
-
-.carousel-counter-tag {
-  font-family: 'Space Grotesk', 'Outfit', sans-serif;
-  font-size: 0.82rem;
-  color: #101C35;
-  font-weight: 600;
-  margin-left: 0.35rem;
-  padding-left: 0.5rem;
-  border-left: 1px solid rgba(16, 28, 53, 0.1);
-}
-
-.carousel-counter-tag strong {
-  color: #FA5538;
-  font-weight: 800;
-}
-
-.counter-slash {
-  color: #CBD5E1;
-  margin: 0 2px;
-}
-
-.carousel-nav-arrows {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.carousel-arrow-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1.5px solid rgba(16, 28, 53, 0.12);
-  color: #101C35;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(16, 28, 53, 0.05);
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.carousel-arrow-btn:hover:not(:disabled) {
-  background: #101C35;
-  color: #FFFFFF;
-  border-color: #101C35;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(16, 28, 53, 0.16);
-}
-
-.carousel-arrow-btn:active:not(:disabled) {
-  transform: scale(0.95);
-}
-
-.carousel-arrow-btn:disabled {
-  opacity: 0.32;
-  cursor: not-allowed;
-  border-color: rgba(16, 28, 53, 0.08);
-  background: rgba(16, 28, 53, 0.02);
-  box-shadow: none;
-}
-
-/* Horizontal Viewport and Track */
-.horizontal-carousel-viewport {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+/* Horizontal Gallery Viewport */
+.art-gallery-viewport {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: clamp(520px, 60vw, 760px);
+  overflow: hidden;
   cursor: grab;
-  padding: 0.4rem 0.2rem 1.4rem;
   user-select: none;
   -webkit-user-select: none;
-  box-sizing: border-box;
-}
-
-.horizontal-carousel-viewport::-webkit-scrollbar {
-  display: none;
-}
-
-.horizontal-carousel-viewport.is-dragging {
-  cursor: grabbing;
-  scroll-behavior: auto;
-  scroll-snap-type: none;
-}
-
-.horizontal-carousel-track {
+  touch-action: pan-y;
   display: flex;
-  gap: 1.5rem;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  align-items: stretch;
+  padding: 0;
 }
 
-/* Individual Project Card: Exactly 3 visible at a time on desktop */
-.carousel-project-card {
-  flex: 0 0 calc((100% - 3rem) / 3);
-  width: calc((100% - 3rem) / 3);
-  max-width: calc((100% - 3rem) / 3);
-  background: #FFFFFF;
-  border: 1px solid rgba(16, 28, 53, 0.08);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.35s ease;
-  box-shadow: 0 10px 28px -10px rgba(16, 28, 53, 0.08),
-              0 2px 8px -2px rgba(16, 28, 53, 0.04);
-  scroll-snap-align: start;
-  box-sizing: border-box;
+.art-gallery-viewport.is-dragging {
+  cursor: grabbing !important;
+}
+
+.art-gallery-track {
   position: relative;
-}
-
-.carousel-project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px -14px rgba(16, 28, 53, 0.16),
-              0 0 28px -4px var(--proj-accent-glow);
-  border-color: rgba(16, 28, 53, 0.18);
-}
-
-.carousel-project-card.active-tab-highlight {
-  border-color: var(--proj-accent);
-  box-shadow: 0 14px 36px -10px var(--proj-accent-glow);
-}
-
-/* Card Visual Media */
-.card-visual-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10.2;
-  overflow: hidden;
-  background: #0B0F19;
-}
-
-.card-cover-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  display: block;
-}
-
-.carousel-project-card:hover .card-cover-image {
-  transform: scale(1.05);
-}
-
-.card-visual-sheen {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 45%, rgba(11, 15, 25, 0.42) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
 }
 
-.card-num-chip {
+/* Full-Size Exhibition Artwork Canvas */
+.exhibition-artwork-canvas {
   position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  background: rgba(16, 28, 53, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 0.22rem 0.55rem;
-  border-radius: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  letter-spacing: 0.06em;
-}
-
-.card-cat-chip {
-  position: absolute;
-  bottom: 0.85rem;
-  left: 0.85rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  background: rgba(16, 28, 53, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 0.22rem 0.65rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-/* Card Content Body */
-.card-body-wrapper {
-  padding: 1.25rem 1.35rem 1.35rem;
+  top: 50%;
+  left: 50%;
+  width: clamp(340px, 86vw, 1360px);
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
-  box-sizing: border-box;
-  background: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
-.card-headline-row {
+/* Side Canvases: Clean, crisp, original colors at subtle opacity */
+.exhibition-artwork-canvas.is-side {
+  opacity: 0.62;
+  filter: none;
+}
+
+.exhibition-artwork-canvas.is-side:hover {
+  opacity: 0.85;
+  filter: none;
+}
+
+/* Center Active Canvas */
+.exhibition-artwork-canvas.is-center {
+  opacity: 1;
+  filter: none;
+}
+
+/* Artwork Presentation Wrapper: Centers Image and Action Button */
+.artwork-presentation-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Image Container: Clean, zero black backgrounds, no scrollbars */
+.artwork-image-container {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.45rem;
+  justify-content: center;
+  max-width: 100%;
+  max-height: clamp(430px, 50vw, 640px);
+  overflow: visible;
 }
 
-.card-project-name {
-  font-family: 'Syne', 'Outfit', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #101C35;
-  margin: 0;
-  line-height: 1.22;
-  letter-spacing: -0.01em;
+/* Pure Website Screenshot: Clean, bright, complete, with elegant border */
+.artwork-pure-image {
+  max-width: 100%;
+  max-height: clamp(430px, 50vw, 640px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.13);
+  box-shadow: 0 14px 34px -10px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(15, 23, 42, 0.04);
+  background: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-link-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(16, 28, 53, 0.04);
-  border: 1px solid rgba(16, 28, 53, 0.08);
+.exhibition-artwork-canvas.is-center .artwork-pure-image {
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(15, 23, 42, 0.08);
+}
+
+/* Action Bar below Image */
+.artwork-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(12px, 1.8vw, 20px);
+  width: 100%;
+}
+
+/* Color-Coordinated "View Project" Button */
+.project-view-action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #101C35;
-  text-decoration: none;
-  transition: all 0.22s ease;
-  flex-shrink: 0;
-}
-
-.card-link-icon:hover {
-  background: var(--proj-accent);
-  color: #FFFFFF;
-  border-color: var(--proj-accent);
-  transform: translate(1px, -1px);
-  box-shadow: 0 4px 12px -2px var(--proj-accent);
-}
-
-.card-project-summary {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #475569;
-  margin: 0 0 1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.card-tech-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid rgba(16, 28, 53, 0.06);
-}
-
-.tech-tag {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.72rem;
+  gap: 0.55rem;
+  padding: 0.65rem 1.65rem;
+  border-radius: 9999px;
+  background-color: var(--proj-accent, #FA5538);
+  color: #FFFFFF !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #475569;
-  background: #F8FAFC;
-  border: 1px solid rgba(16, 28, 53, 0.07);
-  padding: 0.22rem 0.55rem;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.14);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-.carousel-project-card:hover .tech-tag {
-  background: #F1F5F9;
+.project-view-action-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 22px -4px rgba(15, 23, 42, 0.22);
+  color: #FFFFFF !important;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1024px) {
-  .carousel-project-card {
-    flex: 0 0 calc((100% - 1.25rem) / 2);
-    width: calc((100% - 1.25rem) / 2);
-    max-width: calc((100% - 1.25rem) / 2);
+.project-view-action-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.project-view-action-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .art-gallery-viewport {
+    height: clamp(480px, 66vw, 600px);
   }
-  .horizontal-carousel-track {
-    gap: 1.25rem;
+  .exhibition-artwork-canvas {
+    width: clamp(320px, 90vw, 840px);
+  }
+  .artwork-image-container {
+    max-height: clamp(380px, 54vw, 500px);
+  }
+  .artwork-pure-image {
+    max-height: clamp(380px, 54vw, 500px);
+  }
+  .project-view-action-btn {
+    padding: 0.55rem 1.35rem;
+    font-size: 0.82rem;
   }
 }
 
-@media (max-width: 680px) {
-  .carousel-project-card {
-    flex: 0 0 calc(100% - 2.8rem);
-    width: calc(100% - 2.8rem);
-    max-width: calc(100% - 2.8rem);
+@media (max-width: 600px) {
+  .art-gallery-viewport {
+    height: 460px;
   }
-  .horizontal-carousel-track {
-    gap: 1rem;
+  .exhibition-artwork-canvas {
+    width: min(92vw, 380px);
   }
-  .card-body-wrapper {
-    padding: 1.1rem 1.15rem 1.2rem;
+  .artwork-image-container {
+    max-height: 360px;
   }
-  .carousel-arrow-btn {
-    width: 38px;
-    height: 38px;
+  .artwork-pure-image {
+    max-height: 360px;
+    border-radius: 10px;
+  }
+  .project-view-action-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.78rem;
   }
 }
 
