@@ -274,8 +274,11 @@ export const ProjectsSection: React.FC = () => {
                       onClick={(e) => handleArtworkClick(e, idx, proj)}
                     >
                       <div className="artwork-presentation-wrap">
-                        {/* Pure uncropped website screenshot with subtle, elegant border */}
+                        {/* Pure uncropped website screenshot with distinctive wavy border */}
                         <div className="artwork-image-container">
+                          <svg className="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+                            <path className="wavy-border-path" vectorEffect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                          </svg>
                           <img
                             src={proj.image || 'pastel.png'}
                             alt={`${proj.title} Website Screenshot`}
@@ -284,14 +287,13 @@ export const ProjectsSection: React.FC = () => {
                           />
                         </div>
 
-                        {/* Color-coordinated View Project button */}
+                        {/* Tactile 3D Dimensional View Project button */}
                         <div className="artwork-action-bar">
                           <a
                             href={proj.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="project-view-action-btn"
-                            style={{ backgroundColor: proj.accentColor }}
                             aria-label={`View ${proj.title} Project`}
                             onClick={(e) => e.stopPropagation()}
                           >
