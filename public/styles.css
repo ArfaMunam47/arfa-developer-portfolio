@@ -5377,271 +5377,250 @@ nav.floating-nav.scrolled {
 .serv-subcaption .accent-cyan { color: #0891B2; font-weight: 700; }
 
 /* Composition Grid */
+/* ==========================================================================
+   PINTEREST-INSPIRED LAYERED INFOGRAPHIC COMPOSITION
+   Substantial Solid Colored Backing Panel + Offset Matching Outline + White Card
+   Desktop Card Size: 350-380px Width, 250-290px Height, 26-32px Padding
+   ========================================================================== */
+
+/* 3-Column, 2-Row Centered Desktop Grid */
 .serv-cards-grid,
 .serv-composition-primary,
 .serv-composition-secondary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.6rem, 2.4vw, 2.4rem);
-  margin-bottom: clamp(3rem, 4.5vw, 4.2rem);
+  grid-template-columns: repeat(3, minmax(330px, 370px));
+  justify-content: center;
+  gap: 52px 38px;
+  max-width: 1240px;
+  margin: 0 auto clamp(2.5rem, 4vw, 4.5rem);
   align-items: stretch;
 }
 
-/* ==========================================================================
-   PINTEREST-INSPIRED CAPABILITY CARDS (Compact, Layered Base, Numbered Badge)
-   ========================================================================== */
-.serv-item.serv-pinterest-card {
+/* Individual Infographic Wrapper: ~370px Landscape Container */
+.serv-item.serv-geom-card {
   position: relative;
-  background: #FFFFFF;
-  border-radius: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1.5px solid rgba(16, 28, 53, 0.08);
-  box-shadow: 
-    0 2px 4px rgba(16, 28, 53, 0.02),
-    0 8px 20px -3px rgba(16, 28, 53, 0.05),
-    0 20px 38px -10px rgba(var(--card-accent-rgb, 16, 28, 53), 0.12);
-  overflow: hidden;
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
-  min-height: 400px;
+  width: 100%;
+  max-width: 370px;
+  min-height: 270px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 18px 18px 18px 18px !important;
+  margin: 0 auto;
   outline: none;
-  padding: 0;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  overflow: visible !important;
+  box-sizing: border-box;
 }
 
-.serv-item.serv-pinterest-card:hover,
-.serv-item.serv-pinterest-card:focus-within {
-  transform: translateY(-7px);
-  border-color: rgba(var(--card-accent-rgb, 16, 28, 53), 0.38);
+.serv-item.serv-geom-card::before,
+.serv-item.serv-geom-card::after {
+  display: none !important;
+}
+
+/* Six Distinct Accent Colors */
+.serv-item.serv-geom-01 {
+  --card-color: #84CC16; /* Vibrant lime green */
+  --card-rgb: 132, 204, 22;
+}
+
+.serv-item.serv-geom-02 {
+  --card-color: #06B6D4; /* Turquoise / Cyan */
+  --card-rgb: 6, 182, 212;
+}
+
+.serv-item.serv-geom-03 {
+  --card-color: #2563EB; /* Royal blue */
+  --card-rgb: 37, 99, 235;
+}
+
+.serv-item.serv-geom-04 {
+  --card-color: #8B5CF6; /* Rich violet / Purple */
+  --card-rgb: 139, 92, 246;
+}
+
+.serv-item.serv-geom-05 {
+  --card-color: #F97316; /* Vibrant orange */
+  --card-rgb: 249, 115, 22;
+}
+
+.serv-item.serv-geom-06 {
+  --card-color: #F43F5E; /* Coral pink / Red */
+  --card-rgb: 244, 63, 94;
+}
+
+/* LAYER 1: SUBSTANTIAL SOLID COLORED BACKING PANEL
+   Positioned slightly above and to the left of the white card.
+   A real, solid geometric rectangular panel with deliberate clean edges. */
+.serv-geom-backing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 36px);
+  height: calc(100% - 36px);
+  background: var(--card-color) !important;
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 0 10px 24px -4px rgba(var(--card-rgb), 0.35);
+  pointer-events: none;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LAYER 2: SEPARATE OFFSET RECTANGULAR OUTLINE
+   Positioned slightly down and to the right of the composition.
+   A deliberate matching rectangular infographic frame. */
+.serv-geom-outline {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 36px);
+  height: calc(100% - 36px);
+  border: 2px solid var(--card-color);
+  border-radius: 8px;
+  background: transparent !important;
+  z-index: 2;
+  pointer-events: none;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LAYER 3: WHITE CONTENT CARD
+   Clean white rectangular card in the foreground, overlapping the colored layers.
+   Landscape-oriented, ~350-380px wide on desktop, 250-290px height, 26-32px padding. */
+.serv-geom-panel {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: 250px;
+  background: #FFFFFF !important;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 
-    0 4px 8px rgba(16, 28, 53, 0.03),
-    0 14px 28px -4px rgba(16, 28, 53, 0.08),
-    0 26px 48px -10px rgba(var(--card-accent-rgb, 16, 28, 53), 0.24);
-}
-
-/* Individual Color Accents (Exact Palettes requested) */
-.serv-item.serv-card-01 {
-  --card-accent: #E83B50;
-  --card-accent-rgb: 232, 59, 80;
-}
-
-.serv-item.serv-card-02 {
-  --card-accent: #41459B;
-  --card-accent-rgb: 65, 69, 155;
-}
-
-.serv-item.serv-card-03 {
-  --card-accent: #482064;
-  --card-accent-rgb: 72, 32, 100;
-}
-
-.serv-item.serv-card-04 {
-  --card-accent: #168FA3;
-  --card-accent-rgb: 22, 143, 163;
-}
-
-.serv-item.serv-card-05 {
-  --card-accent: #F08A32;
-  --card-accent-rgb: 240, 138, 50;
-}
-
-.serv-item.serv-card-06 {
-  --card-accent: #498A68;
-  --card-accent-rgb: 73, 138, 104;
-}
-
-/* Upper Card Body: Icon -> Accent Bar -> Title -> Description -> Chips */
-.serv-card-body {
-  padding: clamp(1.65rem, 2.2vw, 2.2rem) clamp(1.5rem, 2vw, 1.95rem) 3.5rem;
+    0 4px 20px -2px rgba(15, 23, 42, 0.07),
+    0 1px 3px rgba(15, 23, 42, 0.04);
+  padding: 28px 26px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-}
-
-/* 1. Small icon near the top */
-.serv-card-icon-wrap {
-  display: flex;
   align-items: center;
-  margin-bottom: 0.85rem;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.serv-card-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 15px;
-  background: rgba(var(--card-accent-rgb), 0.09);
-  color: var(--card-accent);
+/* Refined Infographic Hover Interaction */
+.serv-item.serv-geom-card:hover .serv-geom-panel,
+.serv-item.serv-geom-card:focus-within .serv-geom-panel {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    0 8px 30px -4px rgba(15, 23, 42, 0.12),
+    0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+.serv-item.serv-geom-card:hover .serv-geom-backing,
+.serv-item.serv-geom-card:focus-within .serv-geom-backing {
+  transform: translate(-3px, -3px);
+}
+
+.serv-item.serv-geom-card:hover .serv-geom-outline,
+.serv-item.serv-geom-card:focus-within .serv-geom-outline {
+  transform: translate(3px, 3px);
+}
+
+/* 1. Small Elegant Icon Inside Circular Background */
+.serv-geom-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(var(--card-rgb), 0.09);
+  color: var(--card-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(var(--card-accent-rgb), 0.16);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  border: 1.5px solid var(--card-color);
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
-.serv-item.serv-pinterest-card:hover .serv-card-icon {
+.serv-item.serv-geom-card:hover .serv-geom-icon {
   transform: scale(1.08);
-  background: var(--card-accent);
-  color: #FFFFFF;
-  box-shadow: 0 6px 16px rgba(var(--card-accent-rgb), 0.3);
+  background: rgba(var(--card-rgb), 0.15);
 }
 
-/* 2. Short decorative accent that uses the card's color */
-.serv-card-accent-bar {
-  width: 36px;
-  height: 3.5px;
-  border-radius: 2px;
-  background: var(--card-accent);
-  margin-bottom: 1.15rem;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.serv-item.serv-pinterest-card:hover .serv-card-accent-bar {
-  width: 52px;
-}
-
-/* 3. Skill title */
-.serv-pinterest-card .serv-card-title {
+/* 2. Compact Uppercase Label: CAPABILITY 01 (11-12px, bold, tracking) */
+.serv-geom-kicker {
   font-family: var(--font-heading, 'Outfit', 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1.2rem, 1.4vw, 1.35rem);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--card-color);
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+/* 3. Prominent, Readable Capability Title (18-19px, bold) */
+.serv-geom-title {
+  font-family: var(--font-heading, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  font-size: 18.5px;
   font-weight: 700;
-  color: #101C35;
-  line-height: 1.32;
-  margin: 0 0 0.8rem;
+  color: #0F172A;
+  line-height: 1.3;
+  margin: 0 0 8px;
   letter-spacing: -0.015em;
 }
 
-/* 4. Concise description */
-.serv-pinterest-card .serv-card-desc {
+/* 4. Short, Well-Spaced Description (13-14px, regular, line-height 1.5-1.6) */
+.serv-geom-desc {
   font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-  font-size: 0.93rem;
-  font-weight: 450;
-  line-height: 1.64;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.55;
   color: #475569;
-  margin: 0 0 1.25rem;
-}
-
-/* Technology and Topic Chips */
-.serv-card-tech-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: auto;
-  padding-top: 0.25rem;
-}
-
-.serv-pinterest-card .serv-tech-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.26rem 0.65rem;
-  background: #F8FAFC;
-  border: 1px solid rgba(16, 28, 53, 0.08);
-  border-radius: 9999px;
-  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #334155;
-  letter-spacing: 0.01em;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.serv-pinterest-card:hover .serv-tech-chip {
-  background: #FFFFFF;
-  border-color: rgba(var(--card-accent-rgb), 0.22);
-}
-
-/* 5. Colored lower section (Prominent colored base matching card accent) */
-.serv-card-bottom-base {
-  height: 56px;
-  width: 100%;
-  background: var(--card-accent);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.5rem;
-  margin-top: auto;
-  box-sizing: border-box;
-  transition: filter 0.25s ease;
-}
-
-.serv-pinterest-card:hover .serv-card-bottom-base {
-  filter: brightness(1.04);
-}
-
-/* Subtle decorative dashes in base */
-.serv-base-texture {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  opacity: 0.32;
-  pointer-events: none;
-}
-
-.serv-base-dash {
-  width: 30px;
-  height: 2.5px;
-  border-radius: 2px;
-  background: #FFFFFF;
-}
-
-/* 6. Circular number badge positioned across the transition into lower section */
-.serv-card-number-badge {
-  position: absolute;
-  bottom: 33px; /* Centers 48px circle on the 56px seam line */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 3.5px solid #FFFFFF;
-  box-shadow: 0 4px 14px rgba(16, 28, 53, 0.16), 0 1px 3px rgba(16, 28, 53, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  user-select: none;
-}
-
-.serv-pinterest-card:hover .serv-card-number-badge {
-  transform: translateX(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(var(--card-accent-rgb), 0.32);
-}
-
-.serv-number-text {
-  font-family: var(--font-heading, 'Outfit', 'Unbounded', sans-serif);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--card-accent);
-  letter-spacing: -0.02em;
-  line-height: 1;
+  margin: 0 auto;
+  max-width: 290px;
 }
 
 /* Responsive Grid Breakpoints */
-@media (max-width: 991px) {
+@media (max-width: 1140px) {
   .serv-cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1.6rem !important;
+    grid-template-columns: repeat(2, minmax(300px, 360px)) !important;
+    gap: 48px 32px !important;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .serv-cards-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.4rem !important;
+    grid-template-columns: minmax(280px, 350px) !important;
+    gap: 40px !important;
+    padding: 0 8px;
   }
-
-  .serv-card-body {
-    padding: 1.5rem 1.35rem 3.2rem;
+  .serv-item.serv-geom-card {
+    max-width: 350px;
+    min-height: 250px;
+    padding: 16px 16px 16px 16px !important;
+  }
+  .serv-geom-backing,
+  .serv-geom-outline {
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+  }
+  .serv-geom-panel {
+    min-height: 230px;
+    padding: 24px 20px;
+  }
+  .serv-geom-title {
+    font-size: 17px;
+  }
+  .serv-geom-desc {
+    font-size: 13px;
   }
 }
 
 /* Legacy serv-item baseline */
-.serv-item:not(.serv-pinterest-card) {
+.serv-item:not(.serv-pinterest-card):not(.serv-geom-card) {
   position: relative;
   background: linear-gradient(175deg, #FFFFFF 0%, #FDFEFE 45%, #F8FAFC 100%);
   backdrop-filter: blur(20px);
@@ -5664,7 +5643,7 @@ nav.floating-nav.scrolled {
 }
 
 /* Subtle architectural top accent highlight line */
-.serv-item::before {
+.serv-item:not(.serv-geom-card)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -5678,7 +5657,7 @@ nav.floating-nav.scrolled {
   z-index: 3;
 }
 
-.serv-item:hover::before {
+.serv-item:not(.serv-geom-card):hover::before {
   opacity: 1;
   left: 6%;
   right: 6%;
@@ -6382,7 +6361,7 @@ nav.floating-nav.scrolled {
 
 
 /* Backward compatibility for any other generic .service-box rules */
-.service-box {
+.service-box:not(.serv-geom-card) {
   background: rgba(255, 255, 255, 0.82);
 }
 
@@ -6494,22 +6473,21 @@ nav.floating-nav.scrolled {
   flex-direction: column;
   align-items: center;
   padding-top: 14px;
-  padding-bottom: 28px;
+  padding-bottom: 24px;
   overflow: visible;
 }
 
-/* Continuous Suspended Cable Rig across entire gallery width (No circular knobs) */
+/* Continuous Suspended Wire Rig across exhibition width */
 .cert-hanging-wire-rig {
   position: absolute;
   top: 10px;
   left: 0;
   right: 0;
   width: 100%;
-  max-width: 1240px;
-  height: 50px;
-  margin: 0 auto;
-  z-index: 2; /* Sits behind clips and cards */
+  height: 40px;
+  z-index: 2; /* Strict physical layering: sits behind certificates (z:5) and tape (z:10) */
   pointer-events: none;
+  overflow: visible;
 }
 
 .cert-fullwidth-wire-svg {
@@ -6519,290 +6497,215 @@ nav.floating-nav.scrolled {
   overflow: visible;
 }
 
-/* Fine, elegant physical stainless steel cable with specular highlight & depth */
+/* Thin, delicate, realistic muted slate steel hanging wire */
 .wire-shadow-stroke {
   fill: none;
-  stroke: rgba(15, 23, 42, 0.12);
-  stroke-width: 2px;
-  filter: blur(1.5px);
+  stroke: rgba(15, 23, 42, 0.10);
+  stroke-width: 1.8px;
+  filter: blur(1px);
 }
 
 .wire-main-stroke {
   fill: none;
-  stroke: #505F74;
-  stroke-width: 1.35px;
+  stroke: #5A6578;
+  stroke-width: 1.25px;
   stroke-linecap: round;
 }
 
 .wire-highlight-stroke {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.85);
-  stroke-width: 0.55px;
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 0.5px;
   stroke-linecap: round;
 }
 
-/* Sleek integrated wall-edge mounts (NO circular buttons or knobs) */
-.wire-edge-mount {
-  position: absolute;
-  top: 14px;
-  width: 5px;
-  height: 12px;
-  background: linear-gradient(180deg, #94A3B8 0%, #64748B 60%, #475569 100%);
-  border-radius: 1px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
-  z-index: 4;
-}
-
-.wire-edge-mount.mount-left {
-  left: 0;
-}
-
-.wire-edge-mount.mount-right {
-  right: 0;
-}
-
 /* ==========================================================================
-   CARDS GRID & BALANCED SUSPENDED CERTIFICATES
-   All three certificates follow one consistent arrangement:
-   - Exactly identical outer display width and height
-   - Top edges aligned at the same vertical level
-   - Middle certificate does not drop lower unnecessarily
-   - Gentle natural hand-hung orientation (-0.75deg, 0deg forward, +0.75deg)
+   CARDS GRID & STRICT HORIZONTAL ROW ALIGNMENT
+   - All three certificates share identical dimensions and aspect ratio (1649 / 1275)
+   - Strict horizontal sequence with equal spacing
+   - Identical top edge alignment (same horizontal baseline across all three)
+   - Clean, stable photography exhibition presentation
    ========================================================================== */
 .cert-hanging-cards-grid {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: clamp(1.6rem, 3.8vw, 3.2rem);
+  gap: clamp(1.4rem, 3.2vw, 2.6rem);
   width: 100%;
-  max-width: 1180px;
-  margin: 24px auto 0;
+  max-width: 1160px;
+  margin: 6px auto 0;
   position: relative;
   z-index: 5;
 }
 
-/* Individual Hanging Item - Suspended from Wire at Top Center */
+/* Individual Hanging Item: Strict equal dimensions and uniform top alignment */
 .hanging-cert-item {
-  flex: 1 1 340px;
-  max-width: 360px;
-  min-width: 270px;
+  flex: 1 1 320px;
+  max-width: 345px;
+  min-width: 260px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  perspective: 1200px;
-  transform-origin: 50% 0; /* Pivot strictly at suspension point */
-  will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-top: 18px; /* Perfectly identical baseline across all three */
+  transform: none; /* No random rotations or tilting */
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
-/* Left Certificate: Subtle hand-hung orientation (-0.75deg), aligned top edge */
-.cert-item-1 {
-  transform: translateY(0px) rotate(-0.75deg);
-}
-
-/* Center Certificate: Aligned top edge, strictly forward-facing (0deg), tiny 2px sag */
-.cert-item-2 {
-  transform: translateY(2px) rotate(0deg);
-}
-
-/* Right Certificate: Subtle hand-hung orientation (+0.75deg), aligned top edge */
+.cert-item-1,
+.cert-item-2,
 .cert-item-3 {
-  transform: translateY(0px) rotate(0.75deg);
-}
-
-/* Gentle Natural Pendulum Sway Physics on Hover */
-@keyframes cert-sway-left {
-  0% { transform: translateY(0px) rotate(-0.75deg); }
-  25% { transform: translateY(-0.5px) rotate(-1.5deg); }
-  60% { transform: translateY(0px) rotate(-0.3deg); }
-  85% { transform: translateY(0px) rotate(-0.9deg); }
-  100% { transform: translateY(0px) rotate(-0.75deg); }
-}
-
-@keyframes cert-sway-center {
-  0% { transform: translateY(2px) rotate(0deg); }
-  25% { transform: translateY(1.5px) rotate(0.75deg); }
-  60% { transform: translateY(2px) rotate(-0.5deg); }
-  85% { transform: translateY(2px) rotate(0.2deg); }
-  100% { transform: translateY(2px) rotate(0deg); }
-}
-
-@keyframes cert-sway-right {
-  0% { transform: translateY(0px) rotate(0.75deg); }
-  25% { transform: translateY(-0.5px) rotate(1.5deg); }
-  60% { transform: translateY(0px) rotate(0.3deg); }
-  85% { transform: translateY(0px) rotate(0.9deg); }
-  100% { transform: translateY(0px) rotate(0.75deg); }
-}
-
-.cert-item-1:hover {
-  animation: cert-sway-left 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  z-index: 15;
-}
-
-.cert-item-2:hover {
-  animation: cert-sway-center 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  z-index: 15;
-}
-
-.cert-item-3:hover {
-  animation: cert-sway-right 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  z-index: 15;
+  margin-top: 18px;
+  transform: none;
 }
 
 /* ==========================================================================
-   PHYSICALLY SUSPENDED HARDWARE: METALLIC CABLE CLAMP & WASHI TAPE
-   Visibly grips cable and connects securely to the top edge of each certificate
+   REALISTIC MINIATURE WOODEN CLOTHESLINE CLAMPS
+   - Inspired by miniature wooden clips used for Polaroid clothesline photos
+   - Exact horizontal center of each certificate (left: 50%; transform: translateX(-50%))
+   - Physically grips the TOP OUTER BORDER of the certificate (zero gap)
+   - Extends upward to wrap the wire passing behind it
+   - Warm amber caramel wood finish with subtle satin specular highlights & soft depth
+   - ZERO horizontal dividing line, zero seams, zero artificial stripes across the clip
    ========================================================================== */
-.cert-suspension-rig {
+.cert-hanging-clip {
   position: absolute;
-  top: -14px;
-  left: 50%;
+  top: -24px; /* Extends upward toward wire; lower 14px grips the top outer border */
+  left: 50%; /* EXACT horizontal center */
   transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 18px;
+  height: 38px;
+  z-index: 10; /* Strict physical layering: sits in front of wire (z:2) and card (z:5) */
   pointer-events: none;
-}
-
-/* Sleek Gallery Metallic Cable Clip / Clamp */
-.suspension-cable-clip {
-  display: block;
-  width: 13px;
-  height: 10px;
-  background: linear-gradient(180deg, #CBD5E1 0%, #94A3B8 50%, #64748B 100%);
-  border: 0.75px solid rgba(51, 65, 85, 0.45);
-  border-radius: 2px 2px 1px 1px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.22);
-  position: relative;
-  z-index: 1;
-}
-
-/* Cable threading groove */
-.suspension-cable-clip::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: -2px;
-  right: -2px;
-  height: 1.5px;
-  background: #475569;
-  border-radius: 1px;
-}
-
-/* Realistic Warm Orange Washi Stationery Tape */
-.cert-orange-tape {
-  position: relative;
-  width: 48px;
-  height: 22px;
-  margin-top: -5px; /* Overlaps lower part of clip and top edge of certificate */
-  z-index: 2;
-  filter: drop-shadow(0 2px 4px rgba(215, 95, 16, 0.28)) drop-shadow(0 2px 6px rgba(15, 23, 42, 0.08));
-  transition: transform 0.3s ease;
-}
-
-.cert-orange-tape .tape-surface {
-  display: block;
-  width: 100%;
-  height: 100%;
-  /* Delicate warm translucent orange washi stationery tape */
-  background: linear-gradient(
-    175deg,
-    rgba(247, 148, 51, 0.90) 0%,
-    rgba(231, 112, 30, 0.93) 50%,
-    rgba(206, 92, 15, 0.95) 100%
-  );
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  border-radius: 1.5px;
-  border-top: 1px solid rgba(255, 255, 255, 0.55);
-  border-bottom: 1px solid rgba(160, 60, 10, 0.35);
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.6),
-    inset 0 -1px 2px rgba(160, 60, 10, 0.35);
-  position: relative;
-}
-
-/* Cable / clip ridge impression across tape */
-.cert-orange-tape .tape-surface::before {
-  content: '';
-  position: absolute;
-  top: 7px;
-  left: 0;
-  right: 0;
-  height: 2px;
+  /* Beautiful warm amber, caramel & soft golden timber finish */
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.7) 30%,
-    rgba(255, 255, 255, 0.7) 70%,
-    rgba(255, 255, 255, 0.2) 100%
+    #B45309 0%,
+    #D97706 14%,
+    #F59E0B 45%,
+    #FBBF24 55%,
+    #D97706 84%,
+    #92400E 100%
   );
-  box-shadow: 0 1px 2px rgba(160, 60, 10, 0.4);
-  pointer-events: none;
+  border-radius: 3px 3px 2px 2px;
+  /* Realistic physical depth: side bevels, fine satin edge highlights, soft ambient drop shadow */
+  box-shadow: 
+    inset 1px 0 1px rgba(255, 255, 255, 0.6),
+    inset -1px 0 1px rgba(120, 53, 15, 0.45),
+    0 3px 6px rgba(15, 23, 42, 0.16),
+    0 1px 3px rgba(120, 53, 15, 0.22);
 }
 
-/* Subtle realistic adhesive sheen across washi tape surface */
-.cert-orange-tape .tape-surface::after {
+/* Subtle longitudinal timber grain specular sheen - ONE CONTINUOUS OBJECT (NO DIVIDING LINE) */
+.cert-hanging-clip::before {
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: 3px 3px 2px 2px;
   background: linear-gradient(
-    115deg,
-    transparent 18%,
-    rgba(255, 255, 255, 0.35) 44%,
-    rgba(255, 255, 255, 0.12) 58%,
-    transparent 78%
+    90deg,
+    transparent 36%,
+    rgba(255, 255, 255, 0.35) 48%,
+    rgba(255, 255, 255, 0.1) 56%,
+    transparent 66%
   );
   pointer-events: none;
 }
 
+/* Bottom clamping jaw lip: physically overlaps and grips the certificate's top outer border */
+.cert-hanging-clip::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 14px; /* Overlaps top border without touching document inner content */
+  border-radius: 0 0 2px 2px;
+  /* Soft physical clamping shadow cast downward onto the card frame */
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.20);
+  pointer-events: none;
+}
+
+/* Backward-compatible child hooks if rendered */
+.clip-wire-loop,
+.tape-wire-loop,
+.clip-front-tab,
+.tape-body {
+  display: none;
+}
+
 /* ==========================================================================
-   PHYSICAL HANGING CERTIFICATE PRINTS — GOOGLE QUAD-COLOR FINE BORDER
-   Four familiar Google colours: Blue (#4285F4), Red (#EA4335), Yellow (#FBBC05), Green (#34A853)
-   Delicate 1.5px perimeter transition border with crisp museum paper matting
+   PHYSICAL HANGING CERTIFICATE PRINTS — MULTI-LAYERED LUXURY GALLERY FRAME
+   Layer 1 (Outer Edge): Thin champagne-gold / warm silver metallic rim
+   Layer 2 (Google Gradient Accent): Refined, seamless blue, red, yellow, green accent
+   Layer 3 (Inner Border): Soft ivory archival matting with delicate champagne inner rim
    ========================================================================== */
 .hanging-cert-card {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* Google Quad-Color Fine Perimeter Border */
-  background: 
-    linear-gradient(#FFFFFF, #FFFFFF) padding-box,
-    conic-gradient(from 45deg, #4285F4 0deg, #EA4335 90deg, #FBBC05 180deg, #34A853 270deg, #4285F4 360deg) border-box;
-  border: 1.5px solid transparent;
-  border-radius: 8px;
-  padding: 8px; /* Refined museum paper matting */
-  box-shadow: 
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 6px 18px -2px rgba(15, 23, 42, 0.07),
-    0 18px 36px -6px rgba(15, 23, 42, 0.05);
   position: relative;
   z-index: 5;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, filter 0.3s ease;
+  border-radius: 9px;
+  padding: 10px; /* Soft ivory museum archival paper matting */
+  
+  /* Layer 2: Signature Google Gradient Accent Frame with subtle metallic sheen */
+  background: 
+    linear-gradient(#FAF9F6, #FAF9F6) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(217, 204, 181, 0.4) 35%, transparent 65%) border-box,
+    conic-gradient(
+      from 135deg,
+      #3B82F6 0deg,
+      #6366F1 42deg,
+      #EA4335 110deg,
+      #F97316 160deg,
+      #FBBC05 215deg,
+      #34A853 285deg,
+      #0EA5E9 335deg,
+      #3B82F6 360deg
+    ) border-box;
+  border: 2px solid transparent;
+  
+  /* Layer 1: Champagne-gold / warm silver metallic outer edge + dimensional ambient depth */
+  box-shadow: 
+    0 0 0 1px rgba(200, 185, 160, 0.75), /* Very thin champagne-gold outer metallic rim */
+    0 0 0 1.5px rgba(255, 255, 255, 0.35), /* Specular outer light reflection */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.95), /* Razor-thin inner metallic highlight */
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.8), /* Subtle top edge bevel */
+    0 1px 2px rgba(15, 23, 42, 0.04), /* Soft ground contact */
+    0 8px 24px -4px rgba(15, 23, 42, 0.08), /* Soft gallery wall shadow */
+    0 18px 40px -8px rgba(15, 23, 42, 0.05); /* Diffuse ambient depth */
+  
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, filter 0.35s ease;
   will-change: transform, box-shadow;
 }
 
 .hanging-cert-item:hover .hanging-cert-card {
+  transform: translateY(-4px);
   box-shadow: 
-    0 2px 4px rgba(15, 23, 42, 0.04),
-    0 12px 28px -4px rgba(15, 23, 42, 0.10),
-    0 26px 48px -8px rgba(15, 23, 42, 0.07);
-  filter: drop-shadow(0 4px 14px rgba(66, 133, 244, 0.16));
+    0 0 0 1px rgba(215, 198, 170, 0.95),
+    0 0 0 1.5px rgba(255, 255, 255, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    0 14px 32px -4px rgba(15, 23, 42, 0.12),
+    0 28px 50px -8px rgba(15, 23, 42, 0.07);
+  filter: drop-shadow(0 4px 18px rgba(59, 130, 246, 0.14));
 }
 
-/* Clean Certificate Print Mat Frame with identical proportions (1649 / 1275) */
+/* Layer 3: Clean Inner Border & Matting Frame around Certificate Print */
 .cert-print-frame {
   position: relative;
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
-  background: #FAF9F6;
-  border: 1px solid rgba(24, 20, 35, 0.06);
-  box-shadow: inset 0 1px 2px rgba(24, 20, 35, 0.04);
+  background: #FFFFFF;
+  /* Thin inner border in soft warm champagne neutral tone separating document from outer frame */
+  border: 1px solid rgba(210, 195, 172, 0.55);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.95), /* Crisp white separation fillet */
+    inset 0 1px 2px rgba(15, 23, 42, 0.04); /* Subtle bevel shadow */
   aspect-ratio: 1649 / 1275;
   flex-shrink: 0;
 }
@@ -6823,6 +6726,67 @@ nav.floating-nav.scrolled {
 /* Certificate Titles/Descriptions Underneath: Completely Removed as Requested */
 .cert-hanging-title {
   display: none !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN: Tablet and Mobile Viewports
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cert-hanging-cards-grid {
+    gap: 1.4rem;
+  }
+  
+  .hanging-cert-item {
+    max-width: 320px;
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 820px) {
+  .cert-hanging-gallery {
+    padding-top: 8px;
+  }
+
+  .cert-hanging-cards-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
+    max-width: 400px;
+    margin-top: 12px;
+  }
+  
+  .cert-hanging-wire-rig {
+    display: none !important;
+  }
+  
+  .hanging-cert-item,
+  .cert-item-1,
+  .cert-item-2,
+  .cert-item-3 {
+    width: 100%;
+    max-width: 380px;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hanging-cert-item:hover {
+    transform: translateY(-4px) !important;
+    animation: none !important;
+  }
+
+  .cert-hanging-clip {
+    top: -9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hanging-cert-item,
+  .hanging-cert-item:hover,
+  .cert-item-1,
+  .cert-item-2,
+  .cert-item-3 {
+    animation: none !important;
+  }
 }
 
 /* ==========================================================================

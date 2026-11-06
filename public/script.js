@@ -1957,56 +1957,43 @@ function setupCertificatesGallery() {
     });
   });
 
-  // Dynamic Wire Curve Alignment to Orange Tapes
+  // Dynamic Subtle Wire Alignment behind centered orange tape strips
   const wireRig = document.getElementById('cert-wire-rig');
   const wireSvg = document.getElementById('cert-wire-svg');
   const wireMain = document.getElementById('cert-wire-main');
   const wireShadow = document.getElementById('cert-wire-shadow');
   const wireHighlight = document.getElementById('cert-wire-highlight');
-  const tapes = section.querySelectorAll('.cert-orange-tape');
 
   function updateHangingWire() {
-    if (!wireRig || !wireSvg || !wireMain || tapes.length < 3) return;
-    if (window.innerWidth <= 820) return;
+    if (!wireRig || !wireSvg || !wireMain) return;
+    if (window.innerWidth <= 768) return;
 
     const rigRect = wireRig.getBoundingClientRect();
     if (rigRect.width <= 0) return;
 
+    const clips = section.querySelectorAll('.cert-hanging-clip');
+    if (clips.length < 3) return;
+
     const w = Math.round(rigRect.width);
-    const h = 50;
+    const h = 40;
 
-    const startX = 0;
-    const startY = 20;
-    const endX = w;
-    const endY = 20;
+    // Center clip rect to precisely anchor the wire passage behind the upper portion of the wooden clamp
+    const c2 = clips[1].getBoundingClientRect();
+    const wireY = Math.round(c2.top + 10 - rigRect.top);
+    const yEdge = Math.max(8, wireY - 4); // Subtle, natural 4px symmetrical sag across span
 
-    const rigs = section.querySelectorAll('.cert-suspension-rig');
-    const targets = rigs.length >= 3 ? rigs : tapes;
-
-    const t1 = targets[0].getBoundingClientRect();
-    const t2 = targets[1].getBoundingClientRect();
-    const t3 = targets[2].getBoundingClientRect();
-
-    // Center coordinates of each suspension attachment point relative to wire rig
-    const p1 = { x: Math.round(t1.left + t1.width / 2 - rigRect.left), y: Math.round(t1.top + 3 - rigRect.top) };
-    const p2 = { x: Math.round(t2.left + t2.width / 2 - rigRect.left), y: Math.round(t2.top + 3 - rigRect.top) };
-    const p3 = { x: Math.round(t3.left + t3.width / 2 - rigRect.left), y: Math.round(t3.top + 3 - rigRect.top) };
-
-    // Gentle, physical catenary curve from extreme left edge through attachment points to extreme right edge
-    const pathD = `M 0,${startY} ` +
-      `C ${p1.x * 0.45},${startY + (p1.y - startY) * 0.3} ${p1.x * 0.75},${p1.y} ${p1.x},${p1.y} ` +
-      `C ${(p1.x + p2.x) / 2},${(p1.y + p2.y) / 2} ${p2.x - (p2.x - p1.x) * 0.25},${p2.y} ${p2.x},${p2.y} ` +
-      `C ${p2.x + (p3.x - p2.x) * 0.25},${p2.y} ${(p2.x + p3.x) / 2},${(p2.y + p3.y) / 2} ${p3.x},${p3.y} ` +
-      `C ${p3.x + (w - p3.x) * 0.25},${p3.y} ${w - (w - p3.x) * 0.55},${startY + (p3.y - startY) * 0.3} ${w},${endY}`;
+    // Single continuous, smooth, symmetrical downward curve from left boundary to right boundary
+    const pathD = `M 0,${yEdge} Q ${Math.round(w / 2)},${wireY} ${w},${yEdge}`;
 
     wireSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
     wireMain.setAttribute('d', pathD);
 
-    const shadowD = pathD.replace(/M 0,(\d+)/, `M 0,${startY + 2}`);
-    if (wireShadow) wireShadow.setAttribute('d', shadowD);
-
-    const highlightD = pathD.replace(/M 0,(\d+)/, `M 0,${startY - 0.5}`);
-    if (wireHighlight) wireHighlight.setAttribute('d', highlightD);
+    if (wireShadow) {
+      wireShadow.setAttribute('d', `M 0,${yEdge + 1} Q ${Math.round(w / 2)},${wireY + 1} ${w},${yEdge + 1}`);
+    }
+    if (wireHighlight) {
+      wireHighlight.setAttribute('d', `M 0,${yEdge - 0.5} Q ${Math.round(w / 2)},${wireY - 0.5} ${w},${yEdge - 0.5}`);
+    }
   }
 
   // Update on initial render and window resize
