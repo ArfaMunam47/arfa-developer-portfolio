@@ -3397,6 +3397,33 @@ function setupLearningJourneyStory() {
   if (!section) return;
 
   const stage = document.getElementById('lj-timeline-stage');
+  if (!stage) {
+    const units = Array.from(section.querySelectorAll('.lj-milestone-unit, .lj-milestone-row'));
+    units.forEach((unit) => {
+      const circle = unit.querySelector('.lj-illustration-circle, .lj-glossy-disc');
+      const card = unit.querySelector('.lj-content-card');
+      const interstice = unit.nextElementSibling;
+      const bead = interstice ? interstice.querySelector('.lj-bead-marker, .lj-node-bead') : null;
+
+      const handleEnter = () => {
+        unit.classList.add('is-milestone-hovered');
+        if (bead) bead.style.transform = 'scale(1.3)';
+      };
+      const handleLeave = () => {
+        unit.classList.remove('is-milestone-hovered');
+        if (bead) bead.style.transform = '';
+      };
+      if (circle) {
+        circle.addEventListener('mouseenter', handleEnter);
+        circle.addEventListener('mouseleave', handleLeave);
+      }
+      if (card) {
+        card.addEventListener('mouseenter', handleEnter);
+        card.addEventListener('mouseleave', handleLeave);
+      }
+    });
+    return;
+  }
   const rows = Array.from(section.querySelectorAll('.learning-journey-step'));
   const mainRibbon = document.getElementById('lj-main-serpentine-path');
   const shadowRibbon = document.getElementById('lj-shadow-serpentine-path');
@@ -3703,7 +3730,7 @@ function setupCreativeHobbiesSection() {
 /**
  * =========================================================================
  * 24. DEDICATED GITHUB SHOWCASE & INTERACTIVE ACTIVITY VISUALIZATION
- * Open Source & Version Control · 35+ Repositories · 900+ Commits
+ * Open Source Journey · 50+ Repositories · 1,400+ Commits
  * =========================================================================
  */
 function setupGitHubShowcaseSection() {
@@ -3729,8 +3756,8 @@ function setupGitHubShowcaseSection() {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  // Seeded/predictable realistic activity generator matching 900+ commits
-  // High consistency, occasional high-velocity sprints
+  // Seeded/predictable realistic activity generator matching 1,400+ commits
+  // High consistency, active open-source contribution patterns
   const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < totalDays; i++) {
