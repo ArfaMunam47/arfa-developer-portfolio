@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupProjectsShowcase();
     setupWhoIAmParallax();
     setupCertificateModal();
+    setupOutroVideoModal();
     setupStatsCounter();
     setupScrollReveal();
     setupContactForm();
@@ -248,6 +249,83 @@ function setupCertificateModal() {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) {
       closeModal();
     }
+  });
+}
+
+/**
+ * Outro Full-Screen Cinematic Experience:
+ * Transitions into an edge-to-edge 100vw x 100vh full-screen video experience upon clicking 'Watch Outro'.
+ * Automatically plays the video with sound from the beginning, without controls or close buttons,
+ * and maintains the final video frame permanently on screen as the concluding scene of the portfolio.
+ */
+function setupOutroVideoModal() {
+  const openBtn = document.getElementById('open-outro-btn');
+  const stage = document.getElementById('outro-cinema-stage');
+  const video = document.getElementById('outro-video');
+
+  if (!openBtn || !stage || !video) return;
+
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Prevent background scrolling and lock viewport
+    document.body.style.overflow = 'hidden';
+
+    // Transition smoothly into full-screen cinematic stage
+    stage.classList.add('is-active');
+    stage.setAttribute('aria-hidden', 'false');
+
+    // Ensure video plays with original audio from time zero
+    video.currentTime = 0;
+    video.muted = false;
+    video.volume = 1.0;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback if browser requires muted initial play, then unmute
+        video.muted = true;
+        video.play().then(() => {
+          video.muted = false;
+        }).catch(() => {});
+      });
+    }
+  });
+
+  const backBtn = document.getElementById('outro-back-btn');
+
+  function returnToPortfolio() {
+    video.pause();
+    video.currentTime = 0;
+    stage.classList.remove('is-active');
+    stage.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    // Smoothly scroll back to the footer bottom strip
+    const targetElement = document.querySelector('.cgf-bottom-strip') || openBtn;
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  if (backBtn) {
+    backBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      returnToPortfolio();
+    });
+  }
+
+  // Keyboard accessibility: allow pressing Escape to return to portfolio
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && stage.classList.contains('is-active')) {
+      returnToPortfolio();
+    }
+  });
+
+  // When video completes, keep the final frame visible as the closing moment
+  video.addEventListener('ended', () => {
+    video.pause();
+    // Do not restart, do not hide, do not redirect
   });
 }
 
@@ -939,9 +1017,10 @@ function setupProjectsShowcase() {
   const track = document.getElementById('horizontal-carousel-track') || document.querySelector('.art-gallery-track');
   const cards = document.querySelectorAll('.exhibition-artwork-canvas, .carousel-project-card');
   const tabs = document.querySelectorAll('.showcase-tab-btn');
-  const prevBtn = document.getElementById('carousel-arrow-prev');
-  const nextBtn = document.getElementById('carousel-arrow-next');
+  const prevBtn = document.getElementById('gallery-arrow-prev') || document.getElementById('carousel-arrow-prev');
+  const nextBtn = document.getElementById('gallery-arrow-next') || document.getElementById('carousel-arrow-next');
   const counterCurrent = document.getElementById('counter-current');
+  const indicators = document.querySelectorAll('.progress-indicator-pill');
 
   // Prevent opening any unwanted case study pages or modals
   window.openProjectModal = function() {};
@@ -959,11 +1038,23 @@ function setupProjectsShowcase() {
   let lastActiveIndex = -1;
   let animationFrameId = null;
 
-  // Render Horizontal Exhibition Wall layout (Screenshots as Hero Artworks)
+  // Render Horizontal Exhibition Wall layout (Active center + visible left/right neighbors)
   function renderExhibition(pos) {
-    const isMobile = window.innerWidth <= 768;
-    const canvasSpacing = isMobile ? Math.min(window.innerWidth * 0.92, 440) : Math.min(window.innerWidth * 0.88, 1440);
-    const perspectivePx = isMobile ? 950 : 1400;
+    const isMobile = window.innerWidth <= 640;
+    const isTablet = window.innerWidth <= 1024;
+    
+    // Spacing calculated so that left & right cards are clearly visible on both sides
+    let canvasSpacing;
+    if (isMobile) {
+      canvasSpacing = window.innerWidth * 0.86;
+    } else if (isTablet) {
+      canvasSpacing = Math.min(window.innerWidth * 0.62, 540);
+    } else {
+      // Desktop: active center card (~780px wide) + clear visible peeking neighbor cards on both sides
+      canvasSpacing = Math.max(540, Math.min(window.innerWidth * 0.46, 680));
+    }
+
+    const perspectivePx = isMobile ? 950 : 1200;
 
     // Active project index (clamped 0 to totalCards - 1)
     const activeIndex = Math.max(0, Math.min(totalCards - 1, Math.round(pos)));
@@ -974,16 +1065,16 @@ function setupProjectsShowcase() {
 
       const translateX = diff * canvasSpacing;
       // Slight depth pushback for off-center canvases
-      const translateZ = -Math.min(120, absDiff * 55);
+      const translateZ = -Math.min(100, absDiff * 55);
       // Gentle architectural perspective angle
-      const rotateY = -Math.max(-10, Math.min(10, diff * 6));
-      // Dominant center canvas (1.0), subtle elegant scale for neighbor (0.92)
-      const scale = Math.max(0.85, 1.0 - absDiff * 0.08);
+      const rotateY = -Math.max(-7, Math.min(7, diff * 4.5));
+      // Dominant center canvas (1.0), recognizable ~0.84 scale for left/right neighbors
+      const scale = Math.max(0.78, 1.0 - absDiff * 0.16);
 
-      // Opacity: center is 1.0, immediate neighbor (absDiff = 1) is 0.65 (clearly visible at the edge), beyond that fades out smoothly
+      // Opacity: center is 1.0, immediate neighbors (absDiff <= 1.25) are ~0.78, fading smoothly beyond 1.8
       let opacity = 0;
-      if (absDiff <= 2.2) {
-        opacity = Math.max(0, 1.0 - absDiff * 0.35);
+      if (absDiff <= 1.9) {
+        opacity = Math.max(0, 1.0 - absDiff * 0.28);
       }
 
       // Layered Z-Index
@@ -1011,11 +1102,11 @@ function setupProjectsShowcase() {
       }
     });
 
-    // Synchronize Top Tabs if active project changed
+    // Synchronize Top Tabs, Counter, and Progress Indicators
     if (activeIndex !== lastActiveIndex) {
       lastActiveIndex = activeIndex;
 
-      // Update Counter Tag if present
+      // Update Dynamic Counter (e.g. 01 / 06)
       if (counterCurrent) {
         counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
       }
@@ -1029,6 +1120,31 @@ function setupProjectsShowcase() {
           tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
       });
+
+      // Update Bottom Progress Indicators & match active project brand color
+      const activeCard = cards[activeIndex];
+      const activeAccent = activeCard ? (activeCard.style.getPropertyValue('--proj-accent') || '#EA580C').trim() : '#EA580C';
+
+      indicators.forEach((ind, idx) => {
+        const isActive = (idx === activeIndex);
+        ind.classList.toggle('active', isActive);
+        ind.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        if (isActive) {
+          ind.style.backgroundColor = activeAccent;
+          ind.style.boxShadow = `0 2px 10px ${activeAccent}66`;
+        } else {
+          ind.style.backgroundColor = '';
+          ind.style.boxShadow = '';
+        }
+      });
+
+      // Update Navigation Arrows Disabled State
+      if (prevBtn) {
+        prevBtn.classList.toggle('is-disabled', activeIndex === 0);
+      }
+      if (nextBtn) {
+        nextBtn.classList.toggle('is-disabled', activeIndex === totalCards - 1);
+      }
     }
   }
 
@@ -1040,7 +1156,7 @@ function setupProjectsShowcase() {
         currentPos = targetPos;
         isTargeting = false;
       } else {
-        currentPos += diff * 0.14;
+        currentPos += diff * 0.16;
       }
       renderExhibition(currentPos);
     }
@@ -1084,17 +1200,31 @@ function setupProjectsShowcase() {
     });
   });
 
-  // Arrow buttons (if present)
+  // Bottom Progress Indicator Click (Direct Jumping)
+  indicators.forEach((ind, idx) => {
+    ind.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToProject(idx);
+    });
+  });
+
+  // Arrow buttons (Previous / Next)
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      navigateToProject(Math.round(currentPos) - 1);
+      const currentActive = Math.round(currentPos);
+      if (currentActive > 0) {
+        navigateToProject(currentActive - 1);
+      }
     });
   }
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      navigateToProject(Math.round(currentPos) + 1);
+      const currentActive = Math.round(currentPos);
+      if (currentActive < totalCards - 1) {
+        navigateToProject(currentActive + 1);
+      }
     });
   }
 
@@ -1115,7 +1245,7 @@ function setupProjectsShowcase() {
     if (Math.abs(deltaX) > 4) {
       hasDragged = true;
     }
-    const sensitivity = window.innerWidth <= 768 ? 320 : Math.min(window.innerWidth * 0.75, 1100);
+    const sensitivity = window.innerWidth <= 768 ? 320 : Math.max(480, Math.min(window.innerWidth * 0.46, 680));
     // Calculate raw position with gentle rubber-banding
     let newPos = dragStartPos - (deltaX / sensitivity);
     if (newPos < -0.3) {

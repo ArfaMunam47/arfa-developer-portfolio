@@ -21,8 +21,12 @@
   <title>Arfa Munam — Creative Developer & AI Explorer</title>
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-  <link rel="apple-touch-icon" href="favicon-192.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Google Fonts: Syne & Outfit (High-Impact Editorial Display) + Bricolage Grotesque + Cinzel + Calistoga + Fraunces + Playfair Display + Plus Jakarta Sans + Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1168,52 +1172,78 @@
       <!-- Scroll-Driven Stacked Project Showcase (Inspired by Reference Video) -->
       <div class="projects-showcase-gallery" id="projects-showcase-gallery" role="region" aria-label="Featured Projects Showcase">
         
-        <!-- Top Project Selector Pill Navigation (Preserved Sequence & Synced) -->
+        <!-- Section Header (Preserving Portfolio Design Language) -->
+        <div class="projects-gallery-header">
+          <div class="projects-gallery-badge">
+            <span class="gallery-badge-star" aria-hidden="true">✦</span>
+            <span>My Creative Work</span>
+          </div>
+          <h2 class="projects-gallery-heading">My Projects</h2>
+          <p class="projects-gallery-subheading">A collection of ideas, built with code and creativity.</p>
+        </div>
+
+        <!-- Top Project Selector Pill Navigation (Exact 6 Projects in Order) -->
         <div class="showcase-selector-bar" id="showcase-selector-bar" role="tablist" aria-label="Featured Projects Selection">
-          <button type="button" class="showcase-tab-btn active" role="tab" aria-selected="true" data-index="0" style="--proj-accent: #D4822B;">
+          <button type="button" class="showcase-tab-btn active" role="tab" aria-selected="true" data-index="0" style="--proj-accent: #8B5CF6;">
             <span class="tab-btn-idx">01</span>
-            <span class="tab-btn-title">Pastel & Form</span>
+            <span class="tab-btn-title">PastelForm</span>
           </button>
-          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="1" style="--proj-accent: #2563EB;">
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="1" style="--proj-accent: #0284C7;">
             <span class="tab-btn-idx">02</span>
-            <span class="tab-btn-title">Prism One</span>
+            <span class="tab-btn-title">iCapital</span>
           </button>
-          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="2" style="--proj-accent: #0284C7;">
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="2" style="--proj-accent: #4F46E5;">
             <span class="tab-btn-idx">03</span>
-            <span class="tab-btn-title">Icapital</span>
+            <span class="tab-btn-title">StudyPilot</span>
           </button>
-          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="3" style="--proj-accent: #B88728;">
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="3" style="--proj-accent: #0EA5E9;">
             <span class="tab-btn-idx">04</span>
-            <span class="tab-btn-title">Kumo Ramen</span>
+            <span class="tab-btn-title">Prism</span>
           </button>
-          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="4" style="--proj-accent: #1E7E55;">
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="4" style="--proj-accent: #D97706;">
             <span class="tab-btn-idx">05</span>
-            <span class="tab-btn-title">Velora</span>
+            <span class="tab-btn-title">Kumo</span>
           </button>
-          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="5" style="--proj-accent: #6366F1;">
+          <button type="button" class="showcase-tab-btn" role="tab" aria-selected="false" data-index="5" style="--proj-accent: #10B981;">
             <span class="tab-btn-idx">06</span>
-            <span class="tab-btn-title">Study Pilot AI</span>
+            <span class="tab-btn-title">Velora</span>
           </button>
         </div>
 
         <!-- Clean Full-Image Exhibition Stage -->
         <div class="art-exhibition-stage" id="project-carousel-wrapper">
 
+          <!-- Left Navigation Arrow -->
+          <button type="button" class="gallery-nav-arrow arrow-prev" id="gallery-arrow-prev" aria-label="Previous Project">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+
+          <!-- Right Navigation Arrow -->
+          <button type="button" class="gallery-nav-arrow arrow-next" id="gallery-arrow-next" aria-label="Next Project">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+
           <!-- Horizontal Gallery Viewport -->
           <div class="horizontal-carousel-viewport art-gallery-viewport" id="horizontal-carousel-viewport" tabindex="0" role="region" aria-label="Digital Website Exhibition Gallery">
             <div class="horizontal-carousel-track art-gallery-track" id="horizontal-carousel-track">
 
-              <!-- Artwork 01: Pastel & Form (Warm Terracotta Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="0" data-project-url="https://github.com/ArfaMunam47/pastelform" style="--proj-accent: #D4822B;">
+              <!-- Artwork 01: PastelForm (Soft Purple Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="0" data-project-url="https://github.com/ArfaMunam47/pastelform" style="--proj-accent: #8B5CF6;">
                 <div class="artwork-presentation-wrap">
                   <div class="artwork-image-container">
                     <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
                     </svg>
-                    <img src="pastel.png" alt="Pastel & Form Website Screenshot" class="artwork-pure-image" loading="eager">
+                    <img src="pastel.png" alt="PastelForm Website Screenshot" class="artwork-pure-image" loading="eager">
                   </div>
                   <div class="artwork-action-bar">
-                    <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View Pastel & Form Project">
+                    <a href="https://github.com/ArfaMunam47/pastelform" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View PastelForm Project">
                       <span>View Project</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -1224,17 +1254,17 @@
                 </div>
               </article>
 
-              <!-- Artwork 02: Prism One (Vibrant Blue Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="1" data-project-url="https://github.com/ArfaMunam47/prism-one-3d" style="--proj-accent: #2563EB;">
+              <!-- Artwork 02: iCapital (Ocean Blue Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="1" data-project-url="https://github.com/ArfaMunam47" style="--proj-accent: #0284C7;">
                 <div class="artwork-presentation-wrap">
                   <div class="artwork-image-container">
                     <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
                     </svg>
-                    <img src="Prism.jpeg" alt="Prism One Website Screenshot" class="artwork-pure-image" loading="eager">
+                    <img src="icapital.png" alt="iCapital Website Screenshot" class="artwork-pure-image" loading="eager">
                   </div>
                   <div class="artwork-action-bar">
-                    <a href="https://github.com/ArfaMunam47/prism-one-3d" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View Prism One Project">
+                    <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View iCapital Project">
                       <span>View Project</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -1245,17 +1275,17 @@
                 </div>
               </article>
 
-              <!-- Artwork 03: Icapital (Ocean Blue Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="2" data-project-url="https://github.com/ArfaMunam47" style="--proj-accent: #0284C7;">
+              <!-- Artwork 03: StudyPilot (Indigo / Blue Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="2" data-project-url="https://github.com/ArfaMunam47/StudyPilot-AI" style="--proj-accent: #4F46E5;">
                 <div class="artwork-presentation-wrap">
                   <div class="artwork-image-container">
                     <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
                     </svg>
-                    <img src="icapital.png" alt="Icapital Website Screenshot" class="artwork-pure-image" loading="eager">
+                    <img src="studypilot.png" alt="StudyPilot Website Screenshot" class="artwork-pure-image" loading="eager">
                   </div>
                   <div class="artwork-action-bar">
-                    <a href="https://github.com/ArfaMunam47" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View Icapital Project">
+                    <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View StudyPilot Project">
                       <span>View Project</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -1266,12 +1296,33 @@
                 </div>
               </article>
 
-              <!-- Artwork 04: Kumo Ramen (Artisan Warm Gold Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="3" data-project-url="https://github.com/ArfaMunam47/kumo-ramen-showcase" style="--proj-accent: #B88728;">
+              <!-- Artwork 04: Prism (Vibrant Cyan / Blue Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="3" data-project-url="https://github.com/ArfaMunam47/prism-one-3d" style="--proj-accent: #0EA5E9;">
                 <div class="artwork-presentation-wrap">
                   <div class="artwork-image-container">
                     <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
+                    </svg>
+                    <img src="Prism.jpeg" alt="Prism Website Screenshot" class="artwork-pure-image" loading="eager">
+                  </div>
+                  <div class="artwork-action-bar">
+                    <a href="https://github.com/ArfaMunam47/prism-one-3d" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View Prism Project">
+                      <span>View Project</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Artwork 05: Kumo (Warm Amber / Gold Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="4" data-project-url="https://github.com/ArfaMunam47/kumo-ramen-showcase" style="--proj-accent: #D97706;">
+                <div class="artwork-presentation-wrap">
+                  <div class="artwork-image-container">
+                    <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
                     </svg>
                     <img src="kumo.png" alt="Kumo Ramen Website Screenshot" class="artwork-pure-image" loading="eager">
                   </div>
@@ -1287,12 +1338,12 @@
                 </div>
               </article>
 
-              <!-- Artwork 05: Velora (Emerald Green Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="4" data-project-url="https://github.com/ArfaMunam47/Velora-Store" style="--proj-accent: #1E7E55;">
+              <!-- Artwork 06: Velora (Emerald Green Accent) -->
+              <article class="exhibition-artwork-canvas carousel-project-card" data-index="5" data-project-url="https://github.com/ArfaMunam47/Velora-Store" style="--proj-accent: #10B981;">
                 <div class="artwork-presentation-wrap">
                   <div class="artwork-image-container">
                     <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
+                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 90,2 155,10 220,6 C 285,2 350,10 415,6 C 480,2 545,10 610,6 C 675,2 740,10 805,6 C 870,2 935,9 972,6 C 988,4 994,12 995,28 C 998,90 992,155 996,220 C 992,285 998,350 994,415 C 998,480 993,545 995,572 C 994,588 986,595 972,594 C 910,598 845,591 780,595 C 715,599 650,591 585,595 C 520,599 455,591 390,595 C 325,599 260,591 195,595 C 130,599 65,592 28,594 C 12,595 5,588 5,572 C 2,510 8,445 4,380 C 8,315 2,250 6,185 C 2,120 7,55 5,28 C 6,12 12,4 28,6 Z" />
                     </svg>
                     <img src="veloraa.png" alt="Velora Website Screenshot" class="artwork-pure-image" loading="eager">
                   </div>
@@ -1308,29 +1359,41 @@
                 </div>
               </article>
 
-              <!-- Artwork 06: Study Pilot AI (Indigo Purple Accent) -->
-              <article class="exhibition-artwork-canvas carousel-project-card" data-index="5" data-project-url="https://github.com/ArfaMunam47/StudyPilot-AI" style="--proj-accent: #6366F1;">
-                <div class="artwork-presentation-wrap">
-                  <div class="artwork-image-container">
-                    <svg class="artwork-wavy-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="wavy-border-path" vector-effect="non-scaling-stroke" d="M 28,6 C 85,2 145,10 205,6 C 265,2 325,10 385,6 C 445,2 505,10 565,6 C 625,2 685,10 745,6 C 805,2 865,10 925,6 C 960,4 980,5 992,16 C 998,24 994,65 996,125 C 998,185 992,245 996,305 C 998,365 992,425 996,485 C 998,535 996,570 984,586 C 970,598 925,594 875,597 C 815,593 755,599 695,594 C 635,599 575,593 515,597 C 455,593 395,599 335,594 C 275,599 215,593 155,597 C 95,594 45,597 22,586 C 10,574 6,535 5,475 C 2,415 8,355 5,295 C 2,235 8,175 5,115 C 2,65 6,28 16,14 C 20,8 24,6 28,6 Z" />
-                    </svg>
-                    <img src="studypilot.png" alt="Study Pilot AI Website Screenshot" class="artwork-pure-image" loading="eager">
-                  </div>
-                  <div class="artwork-action-bar">
-                    <a href="https://github.com/ArfaMunam47/StudyPilot-AI" target="_blank" rel="noopener noreferrer" class="project-view-action-btn" aria-label="View Study Pilot AI Project">
-                      <span>View Project</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </article>
-
             </div><!-- /.horizontal-carousel-track -->
           </div><!-- /.horizontal-carousel-viewport -->
+
+          <!-- Project Progress Indicator & Counter Bar -->
+          <div class="gallery-bottom-control-bar" id="gallery-bottom-control-bar">
+            <!-- Dynamic Project Counter (e.g. 01 / 06) -->
+            <div class="gallery-counter" aria-live="polite">
+              <span class="counter-num active-num" id="counter-current">01</span>
+              <span class="counter-sep">/</span>
+              <span class="counter-total">06</span>
+            </div>
+
+            <!-- Six Clickable Progress Indicators -->
+            <div class="gallery-progress-indicators" role="tablist" aria-label="Project Selection Indicators">
+              <button type="button" class="progress-indicator-pill active" data-index="0" aria-label="Project 01: PastelForm" aria-selected="true">
+                <span class="indicator-fill"></span>
+              </button>
+              <button type="button" class="progress-indicator-pill" data-index="1" aria-label="Project 02: iCapital" aria-selected="false">
+                <span class="indicator-fill"></span>
+              </button>
+              <button type="button" class="progress-indicator-pill" data-index="2" aria-label="Project 03: StudyPilot" aria-selected="false">
+                <span class="indicator-fill"></span>
+              </button>
+              <button type="button" class="progress-indicator-pill" data-index="3" aria-label="Project 04: Prism" aria-selected="false">
+                <span class="indicator-fill"></span>
+              </button>
+              <button type="button" class="progress-indicator-pill" data-index="4" aria-label="Project 05: Kumo" aria-selected="false">
+                <span class="indicator-fill"></span>
+              </button>
+              <button type="button" class="progress-indicator-pill" data-index="5" aria-label="Project 06: Velora" aria-selected="false">
+                <span class="indicator-fill"></span>
+              </button>
+            </div>
+          </div>
+
         </div><!-- /.art-exhibition-stage -->
       </div>
 
@@ -4130,17 +4193,20 @@
       <div class="cgf-bottom-strip reveal">
         <div class="cgf-bottom-strip-inner">
           <div class="cgf-copy-left">
-            <span>© 2026 <strong class="cgf-author-accent">Arfa Munam.</strong> All rights reserved.</span>
+            <span>© 2026 All rights reserved.</span>
           </div>
 
           <div class="cgf-copy-center">
-            <span class="cgf-heart-icon">💖</span>
-            <span>Designed &amp; Developed with passion</span>
+            <span>Designed &amp; Developed by <strong class="cgf-dev-name">Arfa Munam</strong></span>
           </div>
 
           <div class="cgf-copy-right">
-            <span>Every line of code is a step toward my dream.</span>
-            <span class="cgf-gold-sparkle" aria-hidden="true">✦</span>
+            <button type="button" class="cgf-outro-btn" id="open-outro-btn" aria-label="Watch Outro Video">
+              <svg class="cgf-play-icon" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5 3l14 9-14 9V3z"/>
+              </svg>
+              <span>Watch Outro</span>
+            </button>
           </div>
         </div>
       </div><!-- /.cgf-bottom-strip -->
@@ -4148,6 +4214,26 @@
     </div><!-- /.cgf-container -->
 
   </footer>
+
+  <!-- =======================================================================
+       CINEMATIC FULL-SCREEN OUTRO VIDEO EXPERIENCE (100% VIEWPORT COVERAGE)
+       ======================================================================= -->
+  <div class="outro-cinema-stage" id="outro-cinema-stage" aria-hidden="true" role="region" aria-label="Portfolio Outro Scene">
+    <!-- Floating 3D Claymorphic "Back to Portfolio" Button at Top-Left -->
+    <button type="button" class="outro-back-btn" id="outro-back-btn" aria-label="Back to Portfolio">
+      <span class="outro-back-btn-inner">
+        <svg class="outro-back-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Portfolio</span>
+      </span>
+    </button>
+    <video id="outro-video" class="outro-cinema-video" playsinline preload="auto">
+      <source src="/gemini_generated_video_6d3d63a0.mp4" type="video/mp4">
+      <source src="/end.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- =======================================================================
        CERTIFICATE PREVIEW LIGHTBOX MODAL
