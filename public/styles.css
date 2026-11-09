@@ -5405,7 +5405,7 @@ nav.floating-nav.scrolled {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  padding: 24px 24px 24px 24px !important;
+  padding: 22px 22px 22px 22px !important;
   margin: 0 auto;
   outline: none;
   overflow: visible !important;
@@ -5450,17 +5450,17 @@ nav.floating-nav.scrolled {
 
 /* LAYER 1: SUBSTANTIAL SOLID COLORED BACKING PANEL
    Positioned at top-left behind the white card.
-   Provides a clean 24px visible backing margin above and to the left of the card. */
+   Provides a clean, balanced 22px visible backing margin above and to the left of the card. */
 .serv-geom-backing {
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% - 36px);
-  height: calc(100% - 36px);
+  width: calc(100% - 44px);
+  height: calc(100% - 44px);
   background: var(--card-color) !important;
-  border-radius: 8px;
+  border-radius: 10px;
   z-index: 1;
-  box-shadow: 0 10px 24px -4px rgba(var(--card-rgb), 0.35);
+  box-shadow: 0 8px 22px -4px rgba(var(--card-rgb), 0.32);
   pointer-events: none;
   box-sizing: border-box;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -5468,15 +5468,16 @@ nav.floating-nav.scrolled {
 
 /* LAYER 2: SEPARATE OFFSET RECTANGULAR OUTLINE
    Positioned down and to the right of the composition.
-   Provides a matching 24px visible outline margin below and to the right of the card. */
+   Provides a matching, balanced 22px visible outline margin below and to the right of the card.
+   Clean 3.5px solid stroke for distinct, refined border visibility. */
 .serv-geom-outline {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: calc(100% - 36px);
-  height: calc(100% - 36px);
-  border: 2px solid var(--card-color);
-  border-radius: 8px;
+  width: calc(100% - 44px);
+  height: calc(100% - 44px);
+  border: 3.5px solid var(--card-color);
+  border-radius: 10px;
   background: transparent !important;
   z-index: 2;
   pointer-events: none;
@@ -5485,19 +5486,20 @@ nav.floating-nav.scrolled {
 }
 
 /* LAYER 3: WHITE CONTENT CARD
-   Clean white rectangular card centered comfortably within the layered composition.
-   Moved slightly right and down with balanced 24px visible margin on all sides. */
+   Clean white rectangular card centered with exact mathematical precision over the colored backing.
+   Equidistant offsets on all sides, paired with a soft, diffused premium drop shadow for sophisticated depth. */
 .serv-geom-panel {
   position: relative;
   z-index: 3;
   width: 100%;
   min-height: 250px;
   background: #FFFFFF !important;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 
-    0 6px 24px -2px rgba(15, 23, 42, 0.08),
-    0 1px 3px rgba(15, 23, 42, 0.04);
+    0 16px 32px -8px rgba(15, 23, 42, 0.12),
+    0 8px 16px -4px rgba(15, 23, 42, 0.06),
+    0 2px 6px rgba(15, 23, 42, 0.04);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
@@ -5511,10 +5513,11 @@ nav.floating-nav.scrolled {
 /* Refined Infographic Hover Interaction */
 .serv-item.serv-geom-card:hover .serv-geom-panel,
 .serv-item.serv-geom-card:focus-within .serv-geom-panel {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 
-    0 10px 32px -4px rgba(15, 23, 42, 0.12),
-    0 2px 6px rgba(15, 23, 42, 0.05);
+    0 22px 42px -10px rgba(15, 23, 42, 0.16),
+    0 12px 22px -6px rgba(15, 23, 42, 0.08),
+    0 3px 8px rgba(15, 23, 42, 0.05);
 }
 
 .serv-item.serv-geom-card:hover .serv-geom-backing,
@@ -5600,16 +5603,25 @@ nav.floating-nav.scrolled {
   .serv-item.serv-geom-card {
     max-width: 350px;
     min-height: 250px;
-    padding: 20px 20px 20px 20px !important;
+    padding: 18px 18px 18px 18px !important;
   }
   .serv-geom-backing,
   .serv-geom-outline {
-    width: calc(100% - 30px);
-    height: calc(100% - 30px);
+    width: calc(100% - 36px);
+    height: calc(100% - 36px);
+    border-radius: 8px;
+  }
+  .serv-geom-outline {
+    border-width: 3px;
   }
   .serv-geom-panel {
     min-height: 230px;
     padding: 24px 18px;
+    border-radius: 8px;
+    box-shadow: 
+      0 12px 26px -6px rgba(15, 23, 42, 0.11),
+      0 4px 12px -2px rgba(15, 23, 42, 0.06),
+      0 1px 3px rgba(15, 23, 42, 0.04);
   }
   .serv-geom-title {
     font-size: 17px;
@@ -6985,8 +6997,15 @@ nav.floating-nav.scrolled {
    Direct Seamless Timeline Connection with Zero Extra Dots
    ========================================================================== */
 
-#experience.futuristic-journey-section,
-.futuristic-journey-section {
+/* ==========================================================================
+   MY LEARNING JOURNEY — CONNECTED INFOGRAPHIC TIMELINE
+   Based strictly on the reference design: Alternating open SVG track frames,
+   directional arrows, angular folded ribbons, minimal vector icon badges,
+   3-dot headers, and connected vertical flow nodes.
+   ========================================================================== */
+
+#experience.infographic-journey-section,
+.infographic-journey-section {
   position: relative;
   background-color: #FAF8F5;
   background-image:
@@ -7001,8 +7020,8 @@ nav.floating-nav.scrolled {
   padding: clamp(5rem, 7vw, 7.5rem) 0 clamp(4.5rem, 6vw, 6.5rem);
 }
 
-.lj-editorial-container {
-  max-width: 1140px;
+.ij-editorial-container {
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 3.5vw, 2.5rem);
   position: relative;
@@ -7011,47 +7030,42 @@ nav.floating-nav.scrolled {
 }
 
 /* --------------------------------------------------------------------------
-   EDITORIAL HEADER (Clean, Artistic Rounded Display Typography)
+   EDITORIAL HEADER
    -------------------------------------------------------------------------- */
-.lj-editorial-header {
+.ij-header-block {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: clamp(3.5rem, 5.5vw, 5rem);
+  margin-bottom: clamp(3.5rem, 5vw, 4.8rem);
   position: relative;
 }
 
-/* Refined Centered Pill Badge "My Growth Story" */
-.lj-header-pill {
+.ij-header-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.42rem 1.6rem;
+  gap: 0.45rem;
+  padding: 0.42rem 1.4rem;
   background: linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%);
   color: #9A3412;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 750;
   border-radius: 9999px;
   box-shadow: 0 4px 14px rgba(249, 115, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   letter-spacing: 0.01em;
 }
 
-/* Header Title Wrap */
-.lj-header-title-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-top: 0.25rem;
+.ij-badge-spark {
+  color: #EA580C;
+  font-size: 0.95rem;
 }
 
-/* Rounded Display Typeface (Lilita One) for Main Heading */
-.lj-editorial-title {
+.ij-main-title {
   font-family: 'Lilita One', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: clamp(2.9rem, 5.8vw, 4.5rem);
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
   font-weight: 400;
   line-height: 1.12;
   letter-spacing: 0.015em;
@@ -7063,12 +7077,7 @@ nav.floating-nav.scrolled {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
-.lj-title-dark {
-  color: #18181B;
-  letter-spacing: 0.01em;
-}
-
-.lj-title-orange {
+.ij-title-orange {
   color: #FF6B2C;
   position: relative;
   display: inline-block;
@@ -7076,7 +7085,7 @@ nav.floating-nav.scrolled {
   text-shadow: 0 2px 10px rgba(255, 107, 44, 0.18);
 }
 
-.lj-title-curve {
+.ij-title-accent-curve {
   position: absolute;
   left: 50%;
   bottom: -13px;
@@ -7087,441 +7096,514 @@ nav.floating-nav.scrolled {
   filter: drop-shadow(0 2px 4px rgba(255, 107, 44, 0.25));
 }
 
-.lj-editorial-subtitle {
+.ij-subtitle-text {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: clamp(1.02rem, 1.45vw, 1.15rem);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
   font-weight: 450;
   color: #52525B;
   margin-top: 1.35rem;
   margin-bottom: 0;
   letter-spacing: -0.01em;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.lj-rocket-icon,
-.lj-heart-icon {
-  font-size: 1.25rem;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-}
-
-.lj-subtitle-emojis {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.lj-rocket-icon {
-  animation: ljRocketFloat 3s ease-in-out infinite alternate;
-}
-
-@keyframes ljRocketFloat {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-4px) rotate(6deg); }
 }
 
 /* --------------------------------------------------------------------------
-   CENTRAL TIMELINE & CONTINUOUS VERTICAL SPINE
+   INFOGRAPHIC TIMELINE FLOW & CARDS
    -------------------------------------------------------------------------- */
-.lj-editorial-timeline {
-  position: relative;
+.ij-timeline-track-flow {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0 0 0;
-}
-
-/* Continuous Central Vertical Spine */
-.lj-central-spine {
-  position: absolute;
-  top: 30px;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3.5px;
-  background: #FF7A30;
-  border-radius: 9999px;
-  z-index: 1;
-  pointer-events: none;
-  box-shadow: 0 0 10px rgba(255, 107, 44, 0.35);
-}
-
-/* Interstice Connector Node Between Rows */
-.lj-connector-interstice {
-  position: relative;
-  width: 100%;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-
-.lj-bead-marker {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFA066 0%, #FF6B2C 60%, #C2410C 100%);
-  border: 3.5px solid #FAF8F5;
-  box-shadow: 0 2px 10px rgba(234, 88, 12, 0.5), 0 0 0 1.5px rgba(255, 107, 44, 0.5);
-  display: block;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.lj-milestone-unit:hover + .lj-connector-interstice .lj-bead-marker,
-.lj-milestone-unit:hover .lj-bead-marker {
-  transform: scale(1.25);
-  box-shadow: 0 4px 16px rgba(255, 107, 44, 0.65), 0 0 0 2px #FF6B2C;
-}
-
-/* Direct Connector Stem into Final Closing Panel (Clean, Natural Border Meeting) */
-.lj-closing-connector-stem {
-  position: relative;
-  width: 100%;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  margin-top: -6px;
-}
-
-.lj-closing-connector-stem .lj-stem-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3.5px;
-  background: #FF7A30;
-  z-index: 1;
-  box-shadow: 0 0 10px rgba(255, 107, 44, 0.35);
-}
-
-.lj-closing-connector-stem .lj-bead-marker {
-  position: relative;
-  z-index: 3;
-}
-
-/* --------------------------------------------------------------------------
-   MILESTONE UNITS & ESSENTIAL OVERLAP COMPOSITION
-   -------------------------------------------------------------------------- */
-.lj-milestone-unit {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  z-index: 2;
-}
-
-.lj-milestone-combo {
-  display: flex;
   align-items: center;
   position: relative;
   width: 100%;
-  max-width: 880px;
 }
 
-/* ROW 1 & 3: Circle on LEFT, Card on RIGHT */
-.lj-unit-left-circle .lj-milestone-combo {
-  flex-direction: row;
-  justify-content: center;
-}
-
-.lj-unit-left-circle .lj-illustration-circle {
-  width: 270px;
-  height: 270px;
-  flex-shrink: 0;
-  z-index: 4;
-  margin-right: -75px; /* THE CRITICAL OVERLAP */
+.ij-step-container {
   position: relative;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.lj-unit-left-circle .lj-content-card {
-  flex: 1;
-  max-width: 660px;
+/* Unified central column alignment with vertical scroll entrance */
+.ij-step-odd,
+.ij-step-even {
+  transform: none;
+}
+.ij-step-odd.reveal,
+.ij-step-even.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ij-step-odd.reveal.visible,
+.ij-step-even.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Step Card Base */
+.ij-step-card {
+  position: relative;
+  width: 100%;
+  min-height: 168px;
   background: #FFFFFF;
-  border: 2px solid #FF8C42;
-  border-radius: 26px;
-  padding: 2.2rem 2.8rem 2.2rem 100px; /* Generous padding to clear the 75px overlap */
+  border-radius: 20px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.03);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: clamp(22px, 3vw, 28px) clamp(28px, 4vw, 38px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
   z-index: 2;
-  position: relative;
-  box-shadow: 
-    0 12px 32px -4px rgba(249, 115, 22, 0.08),
-    0 4px 12px -2px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* ROW 2 & 4: Card on LEFT, Circle on RIGHT */
-.lj-unit-right-circle .lj-milestone-combo {
-  flex-direction: row;
-  justify-content: center;
-}
-
-.lj-unit-right-circle .lj-content-card {
-  flex: 1;
-  max-width: 660px;
-  background: #FFFFFF;
-  border: 2px solid #FF8C42;
-  border-radius: 26px;
-  padding: 2.2rem 100px 2.2rem 2.8rem; /* Generous padding to clear the 75px overlap */
-  z-index: 2;
-  position: relative;
-  margin-right: -75px; /* THE CRITICAL OVERLAP */
-  box-shadow: 
-    0 12px 32px -4px rgba(249, 115, 22, 0.08),
-    0 4px 12px -2px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.lj-unit-right-circle .lj-illustration-circle {
-  width: 270px;
-  height: 270px;
-  flex-shrink: 0;
-  z-index: 4;
-  position: relative;
-}
-
-/* Interactive Card & Circle Hover Effects */
-.lj-milestone-combo:hover .lj-content-card {
+.ij-step-card:hover {
   transform: translateY(-3px);
-  border-color: #FF6B2C;
-  box-shadow: 
-    0 20px 42px -6px rgba(249, 115, 22, 0.16),
-    0 6px 16px -2px rgba(0, 0, 0, 0.05);
+  border-color: rgba(var(--step-rgb), 0.45);
+  box-shadow: 0 18px 40px -4px rgba(15, 23, 42, 0.1),
+              0 6px 18px rgba(var(--step-rgb), 0.12);
 }
 
-.lj-milestone-combo:hover .lj-illustration-circle {
-  transform: translateY(-4px) scale(1.02);
-}
-
-/* --------------------------------------------------------------------------
-   LARGE 270PX ILLUSTRATION CIRCLES (Clean, No Random Decorative Marks)
-   -------------------------------------------------------------------------- */
-.lj-illustration-circle {
-  position: relative;
-  border-radius: 50%;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-  user-select: none;
-}
-
-.lj-disc-svg {
+/* Open Frame SVG Track Layer */
+.ij-card-track-svg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  pointer-events: none;
   overflow: visible;
-  filter: drop-shadow(0 14px 28px rgba(234, 88, 12, 0.28));
+  z-index: 5;
+}
+
+.ij-path-dark-solid {
+  stroke: #1E293B;
+  stroke-width: 2.2px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ij-arrow-marker {
+  stroke: #1E293B;
+  stroke-width: 2.4px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ij-path-dark-dotted {
+  stroke: #1E293B;
+  stroke-width: 2.2px;
+  stroke-dasharray: 4.5 4.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ij-path-accent {
+  stroke: var(--step-accent);
+  stroke-width: 3.2px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 7px rgba(var(--step-rgb), 0.45));
+}
+
+/* Circular Connection Pin Node */
+.ij-track-pin {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2.2px solid #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: none;
+}
+
+.ij-step-odd .ij-track-pin {
+  right: -6.5px;
+}
+
+.ij-step-even .ij-track-pin {
+  left: -6.5px;
+}
+
+.ij-pin-dot {
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: var(--step-accent);
+}
+
+.ij-step-card:hover .ij-track-pin {
+  transform: translateY(-50%) scale(1.18);
+  box-shadow: 0 0 0 3px rgba(var(--step-rgb), 0.25);
 }
 
 /* --------------------------------------------------------------------------
-   CONTENT CARDS TYPOGRAPHY & PILLS
+   ANGULAR FOLDED RIBBON BADGES (STEP 01 to STEP 05)
    -------------------------------------------------------------------------- */
-.lj-card-pill {
+.ij-ribbon-badge {
+  position: absolute;
+  top: -14px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.35rem 1.15rem;
-  background: linear-gradient(135deg, #FF8C42 0%, #FF6B2C 100%);
+  gap: 10px;
+  padding: 8px 24px 8px 20px;
+  background: var(--step-accent);
   color: #FFFFFF;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  margin-bottom: 0.85rem;
-  letter-spacing: 0.01em;
-  box-shadow: 0 3px 10px rgba(255, 107, 44, 0.28);
+  z-index: 10;
+  box-shadow: 0 6px 16px -2px rgba(var(--step-rgb), 0.45), 0 3px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.lj-card-title {
-  font-family: 'Lilita One', 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: clamp(1.48rem, 2.1vw, 1.85rem);
-  font-weight: 400;
-  color: #18181B;
-  margin: 0 0 0.7rem 0;
-  line-height: 1.25;
-  letter-spacing: 0.01em;
+.ij-ribbon-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  opacity: 0.95;
+  text-transform: uppercase;
+  color: #FFFFFF;
 }
 
-.lj-card-desc {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: clamp(0.95rem, 1.15vw, 1.02rem);
-  font-weight: 450;
-  line-height: 1.65;
-  color: #52525B;
-  margin: 0;
+.ij-ribbon-num {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
-.lj-card-desc strong {
-  color: #18181B;
-  font-weight: 700;
+/* Left Ribbon Badge: subtle -1.5deg geometric tilt, crisp angled cut on the right */
+.ij-ribbon-left {
+  left: -10px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
+
+.ij-ribbon-left .ij-ribbon-fold-shadow {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid var(--step-dark);
+  border-left: 10px solid transparent;
+}
+
+/* Right Ribbon Badge: subtle 1.5deg geometric tilt, crisp angled cut on the left */
+.ij-ribbon-right {
+  right: -10px;
+  clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%);
+  transform: rotate(1.5deg);
+  transform-origin: right center;
+}
+
+.ij-ribbon-right .ij-ribbon-fold-shadow {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid var(--step-dark);
+  border-right: 10px solid transparent;
+}
+
+.ij-step-card:hover .ij-ribbon-left {
+  transform: rotate(-1.5deg) scale(1.03);
+}
+
+.ij-step-card:hover .ij-ribbon-right {
+  transform: rotate(1.5deg) scale(1.03);
 }
 
 /* --------------------------------------------------------------------------
-   BOTTOM CLOSING SECTION (Direct Clean Timeline Connection & Unified Flight Path)
+   STEP CARD CONTENT & TEXT HIERARCHY
    -------------------------------------------------------------------------- */
-.lj-closing-wrapper {
-  margin-top: 0;
-  padding-top: 0;
+.ij-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+/* Alternating offsets so text doesn't clash with ribbons */
+.ij-step-odd .ij-step-card {
+  padding-left: clamp(48px, 6vw, 76px);
+  padding-right: clamp(24px, 3.5vw, 36px);
+}
+
+.ij-step-even .ij-step-card {
+  padding-left: clamp(24px, 3.5vw, 36px);
+  padding-right: clamp(48px, 6vw, 76px);
+}
+
+.ij-card-header-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.ij-step-heading {
+  font-family: 'Lilita One', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.45rem);
+  color: #0F172A;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.25;
+}
+
+.ij-header-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ij-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--step-accent);
+  opacity: 0.9;
+}
+
+.ij-step-narrative {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(0.88rem, 1.2vw, 0.94rem);
+  line-height: 1.55;
+  color: #475569;
+  margin: 0 0 8px 0;
+  max-width: 560px;
+}
+
+.ij-tech-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #64748B;
+  letter-spacing: 0.01em;
+  margin-top: 2px;
+}
+
+.ij-sep {
+  color: #CBD5E1;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   BOLD VECTOR ILLUSTRATION ICONS & BEAUTIFUL STEP HOVER INTERACTION
+   -------------------------------------------------------------------------- */
+.ij-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  width: 100%;
+  flex-shrink: 0;
   z-index: 3;
 }
 
-.lj-airplane-flight {
-  position: relative;
-  width: 190px;
-  height: 135px;
-  margin-right: 1.5rem;
-  flex-shrink: 0;
+.ij-icon-right {
+  margin-left: 20px;
 }
 
-.lj-flight-path-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+.ij-icon-left {
+  margin-right: 20px;
 }
 
-.lj-closing-card {
-  background-color: #FFFFFF;
-  border: 1.5px solid #FF8C42;
-  border-radius: 22px;
-  padding: 1.6rem 2.6rem 1.8rem;
-  text-align: center;
+.ij-icon-disc {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid rgba(var(--step-rgb), 0.25);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 10px 28px -4px rgba(249, 115, 22, 0.08);
-  position: relative;
-  z-index: 3;
-}
-
-.lj-closing-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.38rem 1.25rem;
-  background: linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%);
-  color: #9A3412;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  margin-bottom: 0.85rem;
-  letter-spacing: -0.01em;
-}
-
-.lj-closing-text {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 1.08rem;
-  font-weight: 600;
-  font-style: italic;
-  color: #27272A;
-  margin: 0;
-  line-height: 1.45;
-}
-
-.lj-closing-curve {
-  margin-top: 0.5rem;
-  display: block;
-}
-
-.lj-right-flourish {
-  position: relative;
-  width: 170px;
-  height: 100px;
-  margin-left: 1.5rem;
-  opacity: 0.85;
+  justify-content: center;
+  color: var(--step-accent);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              color 0.25s ease;
   flex-shrink: 0;
 }
 
-.lj-right-flourish-svg {
+.ij-icon-disc svg {
+  display: block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 0.25s ease;
+}
+
+/* Hover over ANY part of a step card -> Prominent accent highlight on that icon */
+.ij-step-card:hover .ij-icon-disc {
+  transform: scale(1.12);
+  background: rgba(var(--step-rgb), 0.1);
+  border-color: var(--step-accent);
+  color: var(--step-accent);
+  box-shadow: 0 8px 24px -2px rgba(var(--step-rgb), 0.38),
+              0 0 0 3px rgba(var(--step-rgb), 0.14);
+}
+
+.ij-step-card:hover .ij-icon-disc svg {
+  transform: scale(1.06);
+  stroke-width: 2.5px;
+}
+
+/* --------------------------------------------------------------------------
+   VERTICAL STEP CONNECTORS (Down Spines between Steps)
+   -------------------------------------------------------------------------- */
+.ij-connector-node {
+  position: relative;
+  height: 38px;
   width: 100%;
-  height: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+.ij-connector-right {
+  justify-content: flex-end;
+  padding-right: 14px;
+}
+
+.ij-connector-left {
+  justify-content: flex-start;
+  padding-left: 14px;
+}
+
+.ij-connector-svg {
+  display: block;
+  width: 20px;
+  height: 38px;
   overflow: visible;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
    RESPONSIVE DESIGN (Tablets & Mobile)
    -------------------------------------------------------------------------- */
-@media (max-width: 860px) {
-  .lj-central-spine {
-    left: 36px;
-    transform: none;
+@media (max-width: 880px) {
+  .ij-step-odd,
+  .ij-step-even,
+  .ij-step-odd.reveal,
+  .ij-step-even.reveal,
+  .ij-step-odd.reveal.visible,
+  .ij-step-even.reveal.visible {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .ij-step-card {
+    min-height: auto;
+    padding: 38px 20px 22px !important;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
-  .lj-connector-interstice {
-    justify-content: flex-start;
-    padding-left: 25px;
-    height: 40px;
+  .ij-step-odd .ij-step-card,
+  .ij-step-even .ij-step-card {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 
-  .lj-closing-connector-stem {
-    justify-content: flex-start;
-    padding-left: 25px;
-    height: 50px;
+  .ij-ribbon-left {
+    left: -6px;
+    top: -12px;
+    padding: 6px 18px 6px 14px;
   }
 
-  .lj-closing-connector-stem .lj-stem-line {
-    left: 36px;
-    transform: none;
+  .ij-ribbon-right {
+    right: -6px;
+    top: -12px;
+    padding: 6px 14px 6px 18px;
   }
 
-  .lj-milestone-combo {
-    flex-direction: column !important;
-    align-items: center !important;
-    max-width: 100% !important;
+  .ij-ribbon-tag {
+    font-size: 0.65rem;
   }
 
-  .lj-unit-left-circle .lj-illustration-circle,
-  .lj-unit-right-circle .lj-illustration-circle {
-    width: 220px;
-    height: 220px;
-    margin: 0 0 -45px 0 !important;
-    z-index: 4;
+  .ij-ribbon-num {
+    font-size: 1.05rem;
   }
 
-  .lj-unit-left-circle .lj-content-card,
-  .lj-unit-right-circle .lj-content-card {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 60px 1.5rem 1.8rem !important;
-    margin: 0 !important;
-    box-sizing: border-box;
-    text-align: center;
+  .ij-icon-disc {
+    width: 46px;
+    height: 46px;
   }
 
-  .lj-closing-wrapper {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-left: 20px;
+  .ij-icon-disc svg {
+    width: 26px;
+    height: 26px;
   }
 
-  .lj-airplane-flight {
-    margin-right: 0;
+  .ij-icon-left {
+    margin-right: 12px;
   }
 
-  .lj-right-flourish {
-    display: none;
+  .ij-icon-right {
+    margin-left: 12px;
+  }
+
+  .ij-connector-right {
+    padding-right: 14px;
+  }
+
+  .ij-connector-left {
+    padding-left: 14px;
+  }
+
+  .ij-step-odd .ij-track-pin {
+    right: -4px;
+  }
+
+  .ij-step-even .ij-track-pin {
+    left: -4px;
   }
 }
 
 @media (max-width: 480px) {
-  .lj-editorial-title {
-    font-size: 2.4rem;
+  .ij-main-title {
+    font-size: 2.3rem;
+  }
+
+  .ij-step-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ij-icon-wrapper {
+    margin: 8px 0 0 0 !important;
   }
 }
-
-
 /* ==========================================================================
    CREATIVE HOBBIES & PINTEREST SCRAPBOOK SECTION
    Aesthetic Physical Mood Board • Polaroids • Washi Tape • Handwritten Notes
@@ -25010,40 +25092,58 @@ video.cip-story-video {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.2rem 2rem;
+  gap: 2.5rem 2.2rem;
   align-items: stretch;
 }
 
-/* Individual Card Styling */
+/* Individual Card Styling with Subtle Floating Lift */
 .testimonial-card-item {
   position: relative;
   display: flex;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .testimonial-card-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
 }
 
 .testimonial-card-item:hover .bubble-vector-shape {
-  filter: drop-shadow(0 14px 26px rgba(243, 107, 33, 0.25));
+  filter: drop-shadow(0 18px 34px rgba(23, 23, 23, 0.18));
 }
 
-/* Four Clearly Differentiated Orange Tones (NO Yellow) */
+.testimonial-card-item:hover .bubble-stroke-path {
+  stroke-width: 3.2px;
+}
+
+.testimonial-card-item:hover .bubble-halftone-pattern {
+  opacity: 0.95;
+  transform: scale(1.04);
+}
+
+/* Four Clearly Differentiated Colors in Exact Order:
+   CARD 01: ORANGE (#FF9B45)
+   CARD 02: YELLOW (#FFD34E)
+   CARD 03: GREEN (#83CFA0)
+   CARD 04: SKY BLUE (#75C9F5)
+   Consistent Dark Outline: #171717 */
+.card-theme-orange,
 .card-theme-golden-orange {
-  --bubble-bg: #FFA048; /* Warm golden orange */
+  --bubble-bg: #FF9B45; /* Warm vibrant orange */
 }
 
+.card-theme-yellow,
 .card-theme-vibrant-orange {
-  --bubble-bg: #FA5538; /* Rich vibrant orange */
+  --bubble-bg: #FFD34E; /* Warm rich yellow */
 }
 
+.card-theme-green,
 .card-theme-amber-orange {
-  --bubble-bg: #FEB668; /* Soft amber orange */
+  --bubble-bg: #83CFA0; /* Fresh vibrant green */
 }
 
+.card-theme-sky-blue,
 .card-theme-burnt-orange {
-  --bubble-bg: #D44211; /* Deep burnt orange */
+  --bubble-bg: #75C9F5; /* Beautiful sky blue */
 }
 
 .testimonial-bubble-wrap {
@@ -25053,24 +25153,26 @@ video.cip-story-video {
   flex-direction: column;
 }
 
-/* Subtle Halftone Pattern Behind Corners */
+/* Subtle Halftone Pattern Matching Each Card Color Behind Corners */
 .bubble-halftone-pattern {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 115px;
+  height: 115px;
   pointer-events: none;
   z-index: 0;
   overflow: visible;
+  opacity: 0.72;
+  transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
 .halftone-pos-bottom-left {
-  bottom: -15px;
-  left: -15px;
+  bottom: -16px;
+  left: -16px;
 }
 
 .halftone-pos-bottom-right {
-  bottom: -15px;
-  right: -15px;
+  bottom: -16px;
+  right: -16px;
 }
 
 /* Speech Bubble SVG Container */
@@ -25091,27 +25193,29 @@ video.cip-story-video {
   z-index: 1;
   pointer-events: none;
   overflow: visible;
-  filter: drop-shadow(0 6px 16px rgba(23, 23, 23, 0.08));
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 10px 24px rgba(23, 23, 23, 0.12));
+  transition: filter 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bubble-stroke-path {
   fill: var(--bubble-bg);
   stroke: #171717;
-  stroke-width: 2.5px;
+  stroke-width: 2.8px;
   stroke-linejoin: round;
   stroke-linecap: round;
+  transition: stroke-width 0.28s ease;
 }
 
 /* Bold Opening Quotation Mark */
 .bubble-quote-mark-badge {
   position: absolute;
-  top: -12px;
-  left: 22px;
+  top: -14px;
+  left: 24px;
   z-index: 4;
   width: 44px;
   height: 34px;
   pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(23, 23, 23, 0.1));
 }
 
 .bubble-quote-svg {
@@ -25120,93 +25224,67 @@ video.cip-story-video {
   fill: #171717;
 }
 
-/* Card Content Box - Equal Internal Padding & Zero Overlaps */
+/* Card Content Box - Natural, High Visibility Testimonial Typography */
 .bubble-content-box {
   position: relative;
   z-index: 2;
-  padding: 1.65rem 1.65rem 2.45rem 1.65rem;
+  padding: 2.1rem 2rem 2.8rem 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1;
   box-sizing: border-box;
 }
 
-.bubble-theme-header {
-  margin-bottom: 0.45rem;
-  padding-left: 2.4rem; /* Safe clearance for top-left quote mark */
-}
-
-.bubble-theme-tag {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(23, 23, 23, 0.78);
-}
-
-.bubble-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: #171717;
-  margin: 0.15rem 0 0.55rem;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-}
-
 .bubble-quote-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.92rem;
-  font-weight: 450;
-  line-height: 1.58;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.02rem, 1.32vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.68;
   color: #171717;
   margin: 0;
-  flex: 1;
+  letter-spacing: -0.01em;
 }
 
 /* Responsive Rules */
 @media (max-width: 840px) {
   .testimonials-grid {
     grid-template-columns: 1fr;
-    gap: 2.2rem;
-    max-width: 480px;
+    gap: 2.4rem;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .bubble-content-box {
+    padding: 1.85rem 1.75rem 2.6rem;
   }
 }
 
 @media (max-width: 540px) {
   .testimonials-speech-section {
-    padding: 3.25rem 0;
+    padding: 3.5rem 0;
   }
 
   .bubble-content-box {
-    padding: 1.5rem 1.3rem 2.25rem;
+    padding: 1.65rem 1.45rem 2.45rem;
   }
 
   .bubble-quote-mark-badge {
-    left: 16px;
+    left: 18px;
+    top: -12px;
     width: 38px;
     height: 30px;
   }
 
-  .bubble-theme-header {
-    padding-left: 2rem;
-  }
-
-  .bubble-title {
-    font-size: 1.05rem;
-  }
-
   .bubble-quote-body {
-    font-size: 0.88rem;
-    line-height: 1.55;
+    font-size: 0.96rem;
+    line-height: 1.6;
   }
 
   .bubble-halftone-pattern {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
 }
 
