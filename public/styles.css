@@ -7484,7 +7484,7 @@ nav.floating-nav.scrolled {
   max-width: 820px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   z-index: 4;
   box-sizing: border-box;
 }
@@ -17151,97 +17151,97 @@ nav.floating-nav.scrolled {
 
 /* Card 01: Frontend Development — Coral 3D Border & Glow */
 .skills-card-3d.card-frontend {
-  border: 1.5px solid rgba(250, 85, 56, 0.42);
-  border-top-color: rgba(255, 140, 115, 0.68);
-  border-left-color: rgba(255, 140, 115, 0.58);
-  border-right-color: rgba(220, 50, 25, 0.46);
-  border-bottom-color: rgba(200, 40, 18, 0.56);
+  border: 2.5px solid rgba(250, 85, 56, 0.78);
+  border-top-color: rgba(255, 125, 100, 0.95);
+  border-left-color: rgba(255, 110, 85, 0.88);
+  border-right-color: rgba(225, 55, 30, 0.85);
+  border-bottom-color: rgba(205, 45, 20, 0.92);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(250, 85, 56, 0.18),
-    0 24px 50px -12px rgba(250, 85, 56, 0.12),
+    0 4px 10px rgba(16, 28, 53, 0.04),
+    0 14px 32px -6px rgba(16, 28, 53, 0.08),
+    0 0 24px -2px rgba(250, 85, 56, 0.28),
+    0 24px 50px -12px rgba(250, 85, 56, 0.16),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(250, 85, 56, 0.12),
-    inset 0 -2px 4px rgba(250, 85, 56, 0.06);
+    inset 0 0 0 1px rgba(250, 85, 56, 0.20),
+    inset 0 -2px 4px rgba(250, 85, 56, 0.08);
 }
 
 .skills-card-3d.card-frontend:hover {
   transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(250, 85, 56, 0.75);
-  border-top-color: rgba(255, 160, 140, 0.95);
-  border-left-color: rgba(255, 150, 130, 0.85);
+  border-color: rgba(250, 85, 56, 0.95);
+  border-top-color: #FFA590;
+  border-left-color: #FF8D75;
   box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 18px 38px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(250, 85, 56, 0.32),
-    0 28px 60px -10px rgba(250, 85, 56, 0.22),
+    0 8px 16px rgba(16, 28, 53, 0.06),
+    0 20px 42px -6px rgba(16, 28, 53, 0.1),
+    0 0 32px -2px rgba(250, 85, 56, 0.42),
+    0 28px 60px -10px rgba(250, 85, 56, 0.26),
     inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(250, 85, 56, 0.22);
+    inset 0 0 0 1px rgba(250, 85, 56, 0.3);
 }
 
 /* Card 02: AI Tools — Purple 3D Border & Glow */
 .skills-card-3d.card-aitools,
 .skills-card-3d.card-aitools.is-elevated {
-  border: 1.5px solid rgba(139, 92, 246, 0.44);
-  border-top-color: rgba(192, 132, 252, 0.72);
-  border-left-color: rgba(192, 132, 252, 0.62);
-  border-right-color: rgba(124, 58, 237, 0.48);
-  border-bottom-color: rgba(109, 40, 217, 0.58);
+  border: 2.5px solid rgba(139, 92, 246, 0.78);
+  border-top-color: rgba(192, 132, 252, 0.95);
+  border-left-color: rgba(168, 85, 247, 0.88);
+  border-right-color: rgba(124, 58, 237, 0.85);
+  border-bottom-color: rgba(109, 40, 217, 0.92);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(139, 92, 246, 0.18),
-    0 24px 50px -12px rgba(139, 92, 246, 0.12),
+    0 4px 10px rgba(16, 28, 53, 0.04),
+    0 14px 32px -6px rgba(16, 28, 53, 0.08),
+    0 0 24px -2px rgba(139, 92, 246, 0.28),
+    0 24px 50px -12px rgba(139, 92, 246, 0.16),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(139, 92, 246, 0.12),
-    inset 0 -2px 4px rgba(139, 92, 246, 0.06);
+    inset 0 0 0 1px rgba(139, 92, 246, 0.20),
+    inset 0 -2px 4px rgba(139, 92, 246, 0.08);
 }
 
 .skills-card-3d.card-aitools:hover,
 .skills-card-3d.card-aitools.is-elevated:hover {
   transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(139, 92, 246, 0.78);
-  border-top-color: rgba(216, 180, 254, 0.95);
-  border-left-color: rgba(192, 132, 252, 0.88);
+  border-color: rgba(139, 92, 246, 0.95);
+  border-top-color: #D8B4FE;
+  border-left-color: #C084FC;
   box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 18px 38px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(139, 92, 246, 0.32),
-    0 28px 60px -10px rgba(139, 92, 246, 0.22),
+    0 8px 16px rgba(16, 28, 53, 0.06),
+    0 20px 42px -6px rgba(16, 28, 53, 0.1),
+    0 0 32px -2px rgba(139, 92, 246, 0.42),
+    0 28px 60px -10px rgba(139, 92, 246, 0.26),
     inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(139, 92, 246, 0.24);
+    inset 0 0 0 1px rgba(139, 92, 246, 0.3);
 }
 
 /* Card 03: Prompt Engineering — Teal 3D Border & Glow */
 .skills-card-3d.card-prompt {
-  border: 1.5px solid rgba(13, 148, 136, 0.44);
-  border-top-color: rgba(45, 212, 191, 0.72);
-  border-left-color: rgba(45, 212, 191, 0.62);
-  border-right-color: rgba(15, 118, 110, 0.48);
-  border-bottom-color: rgba(17, 94, 89, 0.58);
+  border: 2.5px solid rgba(13, 148, 136, 0.78);
+  border-top-color: rgba(45, 212, 191, 0.95);
+  border-left-color: rgba(20, 184, 166, 0.88);
+  border-right-color: rgba(15, 118, 110, 0.85);
+  border-bottom-color: rgba(17, 94, 89, 0.92);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03),
-    0 12px 28px -6px rgba(16, 28, 53, 0.06),
-    0 0 20px -3px rgba(13, 148, 136, 0.18),
-    0 24px 50px -12px rgba(13, 148, 136, 0.12),
+    0 4px 10px rgba(16, 28, 53, 0.04),
+    0 14px 32px -6px rgba(16, 28, 53, 0.08),
+    0 0 24px -2px rgba(13, 148, 136, 0.28),
+    0 24px 50px -12px rgba(13, 148, 136, 0.16),
     inset 0 1.5px 0.5px #FFFFFF,
-    inset 0 0 0 1px rgba(13, 148, 136, 0.12),
-    inset 0 -2px 4px rgba(13, 148, 136, 0.06);
+    inset 0 0 0 1px rgba(13, 148, 136, 0.20),
+    inset 0 -2px 4px rgba(13, 148, 136, 0.08);
 }
 
 .skills-card-3d.card-prompt:hover {
   transform: translateY(-6px) perspective(1000px) rotateX(1deg);
-  border-color: rgba(13, 148, 136, 0.78);
-  border-top-color: rgba(94, 234, 212, 0.95);
-  border-left-color: rgba(45, 212, 191, 0.88);
+  border-color: rgba(13, 148, 136, 0.95);
+  border-top-color: #5EEAD4;
+  border-left-color: #2DD4BF;
   box-shadow: 
-    0 6px 12px rgba(16, 28, 53, 0.04),
-    0 18px 38px -6px rgba(16, 28, 53, 0.08),
-    0 0 28px -2px rgba(13, 148, 136, 0.32),
-    0 28px 60px -10px rgba(13, 148, 136, 0.22),
+    0 8px 16px rgba(16, 28, 53, 0.06),
+    0 20px 42px -6px rgba(16, 28, 53, 0.1),
+    0 0 32px -2px rgba(13, 148, 136, 0.42),
+    0 28px 60px -10px rgba(13, 148, 136, 0.26),
     inset 0 2px 1px #FFFFFF,
-    inset 0 0 0 1px rgba(13, 148, 136, 0.24);
+    inset 0 0 0 1px rgba(13, 148, 136, 0.3);
 }
 
 .skills-card-3d:focus-visible {
@@ -17730,17 +17730,17 @@ nav.floating-nav.scrolled {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 20px;
-  border: 1.5px solid rgba(139, 92, 246, 0.35);
-  border-top-color: rgba(192, 132, 252, 0.58);
-  border-left-color: rgba(192, 132, 252, 0.48);
-  border-right-color: rgba(124, 58, 237, 0.38);
-  border-bottom-color: rgba(109, 40, 217, 0.45);
+  border: 2.2px solid rgba(139, 92, 246, 0.65);
+  border-top-color: rgba(192, 132, 252, 0.88);
+  border-left-color: rgba(168, 85, 247, 0.78);
+  border-right-color: rgba(124, 58, 237, 0.75);
+  border-bottom-color: rgba(109, 40, 217, 0.82);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03), 
-    0 12px 28px -6px rgba(16, 28, 53, 0.05), 
-    0 0 16px -2px rgba(139, 92, 246, 0.12), 
+    0 4px 10px rgba(16, 28, 53, 0.04), 
+    0 14px 32px -6px rgba(16, 28, 53, 0.06), 
+    0 0 20px -2px rgba(139, 92, 246, 0.22), 
     inset 0 1.5px 0.5px #FFFFFF, 
-    inset 0 0 0 1px rgba(139, 92, 246, 0.08);
+    inset 0 0 0 1px rgba(139, 92, 246, 0.14);
   padding: 0.85rem 1.4rem;
   display: flex;
   align-items: center;
@@ -17750,11 +17750,11 @@ nav.floating-nav.scrolled {
 
 .shelf-tools-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(139, 92, 246, 0.65);
-  border-top-color: rgba(216, 180, 254, 0.88);
+  border-color: rgba(139, 92, 246, 0.88);
+  border-top-color: rgba(216, 180, 254, 0.98);
   box-shadow: 
-    0 6px 16px rgba(16, 28, 53, 0.06), 
-    0 0 24px rgba(139, 92, 246, 0.22), 
+    0 8px 20px rgba(16, 28, 53, 0.08), 
+    0 0 28px rgba(139, 92, 246, 0.32), 
     inset 0 1.5px 0.5px #FFFFFF;
 }
 
@@ -17860,17 +17860,17 @@ nav.floating-nav.scrolled {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 20px;
-  border: 1.5px solid rgba(139, 92, 246, 0.38);
-  border-top-color: rgba(192, 132, 252, 0.62);
-  border-left-color: rgba(192, 132, 252, 0.52);
-  border-right-color: rgba(124, 58, 237, 0.42);
-  border-bottom-color: rgba(109, 40, 217, 0.50);
+  border: 2.2px solid rgba(139, 92, 246, 0.68);
+  border-top-color: rgba(192, 132, 252, 0.90);
+  border-left-color: rgba(168, 85, 247, 0.80);
+  border-right-color: rgba(124, 58, 237, 0.78);
+  border-bottom-color: rgba(109, 40, 217, 0.85);
   box-shadow: 
-    0 3px 6px rgba(16, 28, 53, 0.03), 
-    0 12px 28px -6px rgba(16, 28, 53, 0.05), 
-    0 0 16px -2px rgba(139, 92, 246, 0.14), 
+    0 4px 10px rgba(16, 28, 53, 0.04), 
+    0 14px 32px -6px rgba(16, 28, 53, 0.06), 
+    0 0 20px -2px rgba(139, 92, 246, 0.24), 
     inset 0 1.5px 0.5px #FFFFFF, 
-    inset 0 0 0 1px rgba(139, 92, 246, 0.08);
+    inset 0 0 0 1px rgba(139, 92, 246, 0.15);
   padding: 0.85rem 1.4rem;
   display: flex;
   align-items: center;
@@ -17881,11 +17881,11 @@ nav.floating-nav.scrolled {
 
 .shelf-mindset-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(139, 92, 246, 0.68);
-  border-top-color: rgba(216, 180, 254, 0.90);
+  border-color: rgba(139, 92, 246, 0.92);
+  border-top-color: rgba(216, 180, 254, 0.98);
   box-shadow: 
-    0 6px 16px rgba(16, 28, 53, 0.06), 
-    0 0 26px rgba(139, 92, 246, 0.25), 
+    0 8px 20px rgba(16, 28, 53, 0.08), 
+    0 0 30px rgba(139, 92, 246, 0.34), 
     inset 0 1.5px 0.5px #FFFFFF;
 }
 
