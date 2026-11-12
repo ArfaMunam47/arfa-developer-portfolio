@@ -130,8 +130,17 @@ function setupNavigation() {
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileDrawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        mobileDrawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
     });
   }
 }
@@ -877,6 +886,24 @@ function setupWorkInMotionIntro() {
     });
   }
 
+  // Link service row hover/focus to matching workspace highlight
+  const serviceRows = hero.querySelectorAll('.feature-row-item[data-service-accent]');
+  serviceRows.forEach((row) => {
+    const accent = row.getAttribute('data-service-accent');
+    const activate = () => {
+      if (accent) hero.setAttribute('data-active-service', accent);
+    };
+    const deactivate = () => {
+      if (hero.getAttribute('data-active-service') === accent) {
+        hero.removeAttribute('data-active-service');
+      }
+    };
+    row.addEventListener('mouseenter', activate);
+    row.addEventListener('mouseleave', deactivate);
+    row.addEventListener('focus', activate);
+    row.addEventListener('blur', deactivate);
+  });
+
   // Check reduced motion preference
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
@@ -1104,6 +1131,7 @@ function setupProjectsShowcase() {
 
     // Synchronize Top Tabs, Counter, and Progress Indicators
     if (activeIndex !== lastActiveIndex) {
+      const shouldScrollTab = lastActiveIndex !== -1;
       lastActiveIndex = activeIndex;
 
       // Update Dynamic Counter (e.g. 01 / 06)
@@ -1116,8 +1144,12 @@ function setupProjectsShowcase() {
         const isActive = (idx === activeIndex);
         tab.classList.toggle('active', isActive);
         tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        if (isActive && window.innerWidth <= 900) {
-          tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        if (isActive && shouldScrollTab && window.innerWidth <= 900) {
+          const selectorBar = tab.parentElement;
+          if (selectorBar) {
+            const targetLeft = tab.offsetLeft - (selectorBar.clientWidth / 2) + (tab.offsetWidth / 2);
+            selectorBar.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+          }
         }
       });
 
@@ -2096,7 +2128,7 @@ function setupCertificatesGallery() {
 
   function updateHangingWire() {
     if (!wireRig || !wireSvg || !wireMain) return;
-    if (window.innerWidth <= 768) return;
+    if (window.innerWidth <= 820) return;
 
     const rigRect = wireRig.getBoundingClientRect();
     if (rigRect.width <= 0) return;
@@ -2107,22 +2139,33 @@ function setupCertificatesGallery() {
     const w = Math.round(rigRect.width);
     const h = 40;
 
-    // Center clip rect to precisely anchor the wire passage behind the upper portion of the wooden clamp
-    const c2 = clips[1].getBoundingClientRect();
-    const wireY = Math.round(c2.top + 10 - rigRect.top);
-    const yEdge = Math.max(8, wireY - 4); // Subtle, natural 4px symmetrical sag across span
+    // Measure spring saddle position (~10.5px down inside each 29px clip)
+    const cLeft = clips[0].getBoundingClientRect();
+    const cMid = clips[1].getBoundingClientRect();
+    const cRight = clips[2].getBoundingClientRect();
 
-    // Single continuous, smooth, symmetrical downward curve from left boundary to right boundary
-    const pathD = `M 0,${yEdge} Q ${Math.round(w / 2)},${wireY} ${w},${yEdge}`;
+    const yMid = (cMid.top + 10.5) - rigRect.top;
+    const ySide = (((cLeft.top + 10.5) - rigRect.top) + ((cRight.top + 10.5) - rigRect.top)) / 2;
+    const xSide = ((cLeft.left + cLeft.width / 2) - rigRect.left);
+    const u = Math.max(0.08, Math.min(0.45, xSide / w));
+    const k = 4 * u * (1 - u);
+
+    // Solve quadratic Bezier so Y(0.5) == yMid and Y(u) == ySide
+    let yEdge = k < 0.98 ? (ySide - k * yMid) / (1 - k) : yMid - 4;
+    yEdge = Math.max(4, Math.min(yMid, yEdge));
+    const yCtrl = (2 * yMid - yEdge).toFixed(1);
+    const yEdgeStr = yEdge.toFixed(1);
+
+    const pathD = `M 0,${yEdgeStr} Q ${Math.round(w / 2)},${yCtrl} ${w},${yEdgeStr}`;
 
     wireSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
     wireMain.setAttribute('d', pathD);
 
     if (wireShadow) {
-      wireShadow.setAttribute('d', `M 0,${yEdge + 1} Q ${Math.round(w / 2)},${wireY + 1} ${w},${yEdge + 1}`);
+      wireShadow.setAttribute('d', `M 0,${(yEdge + 1.2).toFixed(1)} Q ${Math.round(w / 2)},${(parseFloat(yCtrl) + 1.2).toFixed(1)} ${w},${(yEdge + 1.2).toFixed(1)}`);
     }
     if (wireHighlight) {
-      wireHighlight.setAttribute('d', `M 0,${yEdge - 0.5} Q ${Math.round(w / 2)},${wireY - 0.5} ${w},${yEdge - 0.5}`);
+      wireHighlight.setAttribute('d', `M 0,${(yEdge - 0.5).toFixed(1)} Q ${Math.round(w / 2)},${(parseFloat(yCtrl) - 0.5).toFixed(1)} ${w},${(yEdge - 0.5).toFixed(1)}`);
     }
   }
 
@@ -3154,10 +3197,18 @@ function setupSkeuomorphicServices() {
   const deviceIcons = document.querySelectorAll('#services .serv-device-icon');
   const statNodes = document.querySelectorAll('#services .serv-stat-node');
 
-  // Subtle 3D perspective tilt on service cards
+  // Subtle cursor-aware lighting and elevation on service cards
   serviceCards.forEach(card => {
+    const panel = card.querySelector('.serv-geom-panel');
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
+      const rect = (panel || card).getBoundingClientRect();
+      if (card.classList.contains('serv-geom-card') && panel) {
+        const px = e.clientX - rect.left;
+        const py = e.clientY - rect.top;
+        panel.style.setProperty('--mx', `${px.toFixed(1)}px`);
+        panel.style.setProperty('--my', `${py.toFixed(1)}px`);
+        return;
+      }
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
       const rotX = (y / (rect.height / 2)) * -2.2;
@@ -3167,6 +3218,10 @@ function setupSkeuomorphicServices() {
 
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
+      if (panel) {
+        panel.style.removeProperty('--mx');
+        panel.style.removeProperty('--my');
+      }
     });
   });
 
@@ -3517,263 +3572,254 @@ function setupLearningEcosystem() {
 
 /**
  * =========================================================================
- * 23. MY LEARNING JOURNEY — 3D WINDING TURQUOISE ROAD & FLOATING PLATFORMS
- * Interactive Platforms with 3D tilt, tactile click, keyboard accessibility,
- * and seamless connection between the 8 milestones along the road.
+ * 23. MY CREATIVE EVOLUTION — FROM CURIOSITY TO CREATION
+ * Continuous flowing SVG roadmap connecting 5 distinct milestones:
+ * 01 The Foundation -> 02 The Frontend Explorer -> 03 The Creative Builder
+ * -> 04 Exploring AI (Active) -> 05 What's Next? (Future Horizon)
  * =========================================================================
  */
 function setupLearningJourneyStory() {
   const section = document.getElementById('experience');
   if (!section) return;
 
-  const stage = document.getElementById('lj-timeline-stage');
-  if (!stage) {
-    const units = Array.from(section.querySelectorAll('.lj-milestone-unit, .lj-milestone-row'));
-    units.forEach((unit) => {
-      const circle = unit.querySelector('.lj-illustration-circle, .lj-glossy-disc');
-      const card = unit.querySelector('.lj-content-card');
-      const interstice = unit.nextElementSibling;
-      const bead = interstice ? interstice.querySelector('.lj-bead-marker, .lj-node-bead') : null;
+  const stage = document.getElementById('ce-roadmap-stage');
+  const svg = document.getElementById('ce-roadmap-svg');
+  const trackPath = document.getElementById('ce-path-track');
+  const completedPath = document.getElementById('ce-path-completed');
+  const futurePath = document.getElementById('ce-path-future');
+  if (!stage || !svg || !trackPath || !completedPath || !futurePath) return;
 
-      const handleEnter = () => {
-        unit.classList.add('is-milestone-hovered');
-        if (bead) bead.style.transform = 'scale(1.3)';
-      };
-      const handleLeave = () => {
-        unit.classList.remove('is-milestone-hovered');
-        if (bead) bead.style.transform = '';
-      };
-      if (circle) {
-        circle.addEventListener('mouseenter', handleEnter);
-        circle.addEventListener('mouseleave', handleLeave);
-      }
-      if (card) {
-        card.addEventListener('mouseenter', handleEnter);
-        card.addEventListener('mouseleave', handleLeave);
-      }
-    });
-    return;
+  const milestones = Array.from(section.querySelectorAll('.ce-milestone'));
+  const chapterBtns = Array.from(section.querySelectorAll('.ce-chapter-btn'));
+  if (milestones.length < 2) return;
+
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let completedLength = 0;
+  let cachedPoints = [];
+  let isUserHovering = false;
+  let scrollRafId = null;
+
+  function buildCurveSegment(p1, p2) {
+    const dy = p2.y - p1.y;
+    const c1y = p1.y + dy * 0.52;
+    const c2y = p2.y - dy * 0.52;
+    return `C ${p1.x.toFixed(1)} ${c1y.toFixed(1)}, ${p2.x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
   }
-  const rows = Array.from(section.querySelectorAll('.learning-journey-step'));
-  const mainRibbon = document.getElementById('lj-main-serpentine-path');
-  const shadowRibbon = document.getElementById('lj-shadow-serpentine-path');
-  const baseRibbon = document.getElementById('lj-base-serpentine-path');
-  const highlightRibbon = document.getElementById('lj-highlight-serpentine-path');
-  const dashRibbon = document.getElementById('lj-dash-serpentine-path');
-  const waypointsGroup = document.getElementById('lj-waypoints-group');
-  const svg = stage ? stage.querySelector('.learning-journey-track-svg') : null;
 
-  // 1. Dynamic Serpentine Path Alignment (Terminates strictly at Milestone 08)
-  function alignRibbonPath() {
-    if (!stage || !mainRibbon) return;
+  function setActiveStep(stepStr, markFocused) {
+    chapterBtns.forEach((btn) => {
+      const isMatch = btn.dataset.targetStep === String(stepStr);
+      btn.classList.toggle('is-active', isMatch);
+      btn.setAttribute('aria-current', isMatch ? 'step' : 'false');
+    });
+
+    if (markFocused) {
+      milestones.forEach((ms) => {
+        ms.classList.toggle('is-focused', ms.dataset.step === String(stepStr));
+      });
+    }
+  }
+
+  function updateScrollProgress() {
+    scrollRafId = null;
+    if (!cachedPoints.length) return;
+
     const stageRect = stage.getBoundingClientRect();
-    if (stageRect.width === 0 || stageRect.height === 0) return;
 
-    const width = Math.round(stageRect.width);
-
-    // Calculate height strictly from the last milestone row
-    const lastRow = rows[rows.length - 1];
-    let timelineHeight = Math.round(stageRect.height);
-    if (lastRow) {
-      const lastRect = lastRow.getBoundingClientRect();
-      timelineHeight = Math.max(100, Math.round(lastRect.bottom - stageRect.top));
+    // 1. Animate completed trajectory path (01 -> 04) smoothly with scroll
+    if (completedLength > 0) {
+      if (prefersReducedMotion) {
+        completedPath.style.strokeDashoffset = '0';
+      } else {
+        const startPt = cachedPoints[0];
+        const activeIdx = Math.min(3, cachedPoints.length - 1);
+        const endPt = cachedPoints[activeIdx];
+        const startViewportY = stageRect.top + startPt.y;
+        const endViewportY = stageRect.top + endPt.y;
+        const span = Math.max(120, endViewportY - startViewportY);
+        const anchorY = window.innerHeight * 0.66;
+        const rawProgress = (anchorY - startViewportY) / span;
+        const clamped = stageRect.top < window.innerHeight
+          ? Math.max(0.08, Math.min(1, rawProgress))
+          : 0;
+        completedPath.style.strokeDashoffset = String((completedLength * (1 - clamped)).toFixed(2));
+      }
     }
 
-    if (svg) {
-      svg.setAttribute('viewBox', `0 0 ${width} ${timelineHeight}`);
-      svg.style.height = `${timelineHeight}px`;
-    }
+    // 2. Sync active chapter jump indicator to milestone closest to reading center
+    if (!isUserHovering) {
+      const readingCenter = window.innerHeight * 0.45;
+      let closestStep = milestones[0].dataset.step || '1';
+      let minDist = Infinity;
 
-    const isMobile = window.innerWidth < 768;
-
-    if (isMobile) {
-      // Clean vertical metro line connecting badges on mobile (ends at milestone 08)
-      const points = [];
-      rows.forEach((row) => {
-        const icon = row.querySelector('.learning-journey-icon-badge');
-        if (icon) {
-          const r = icon.getBoundingClientRect();
-          points.push({
-            x: Math.round(r.left + r.width / 2 - stageRect.left),
-            y: Math.round(r.top + r.height / 2 - stageRect.top)
-          });
+      milestones.forEach((ms) => {
+        const rect = ms.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - readingCenter);
+        if (dist < minDist) {
+          minDist = dist;
+          closestStep = ms.dataset.step || closestStep;
         }
       });
 
-      if (points.length >= 2) {
-        let d = `M ${points[0].x} ${points[0].y}`;
-        for (let i = 1; i < points.length; i++) {
-          d += ` L ${points[i].x} ${points[i].y}`;
-        }
-        mainRibbon.setAttribute('d', d);
-        if (shadowRibbon) shadowRibbon.setAttribute('d', d);
-        if (baseRibbon) baseRibbon.setAttribute('d', d);
-        if (highlightRibbon) highlightRibbon.setAttribute('d', d);
-        if (dashRibbon) dashRibbon.setAttribute('d', d);
-      }
-      return;
+      setActiveStep(closestStep, false);
+    }
+  }
+
+  function scheduleScrollUpdate() {
+    if (scrollRafId !== null) return;
+    scrollRafId = window.requestAnimationFrame(updateScrollProgress);
+  }
+
+  function computeRoadmapPaths() {
+    const stageRect = stage.getBoundingClientRect();
+    if (stageRect.width === 0 || stageRect.height === 0) return;
+
+    const w = Math.round(stageRect.width);
+    const h = Math.round(stageRect.height);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+    const points = [];
+    milestones.forEach((ms) => {
+      const anchor = ms.querySelector('.ce-node-anchor');
+      if (!anchor) return;
+      const r = anchor.getBoundingClientRect();
+      points.push({
+        x: r.left + r.width / 2 - stageRect.left,
+        y: r.top + r.height / 2 - stageRect.top
+      });
+    });
+
+    if (points.length < 2) return;
+    cachedPoints = points;
+
+    // Continuous background track: 01 -> 05
+    let fullD = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      fullD += ` ${buildCurveSegment(points[i], points[i + 1])}`;
+    }
+    trackPath.setAttribute('d', fullD);
+
+    // Solid completed & active trajectory: 01 -> 04
+    const activeIndex = Math.min(3, points.length - 1);
+    let completedD = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+    for (let i = 0; i < activeIndex; i++) {
+      completedD += ` ${buildCurveSegment(points[i], points[i + 1])}`;
+    }
+    completedPath.setAttribute('d', completedD);
+
+    try {
+      completedLength = completedPath.getTotalLength();
+    } catch (_e) {
+      completedLength = 0;
+    }
+    if (completedLength > 0) {
+      completedPath.style.strokeDasharray = `${completedLength.toFixed(2)} ${completedLength.toFixed(2)}`;
     }
 
-    // Desktop & Tablet: Mathematical Smooth Serpentine S-Curve
-    const stepData = [];
-    rows.forEach((row) => {
-      const card = row.querySelector('.learning-journey-card-pill');
-      const badge = row.querySelector('.learning-journey-icon-badge');
-      if (card && badge) {
-        const cRect = card.getBoundingClientRect();
-        const bRect = badge.getBoundingClientRect();
-        const isOdd = row.classList.contains('step-odd');
-        stepData.push({
-          centerY: Math.round(cRect.top + cRect.height / 2 - stageRect.top),
-          cardLeft: Math.round(cRect.left - stageRect.left),
-          cardRight: Math.round(cRect.right - stageRect.left),
-          badgeCenterX: Math.round(bRect.left + bRect.width / 2 - stageRect.left),
-          isOdd: isOdd
+    // Future learning horizon dashed curve: 04 -> 05
+    if (points.length >= 5) {
+      const futureD = `M ${points[3].x.toFixed(1)} ${points[3].y.toFixed(1)} ${buildCurveSegment(points[3], points[4])}`;
+      futurePath.setAttribute('d', futureD);
+    } else {
+      futurePath.setAttribute('d', '');
+    }
+
+    updateScrollProgress();
+  }
+
+  // Interactive Chapter Jump Navigation
+  chapterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const step = btn.dataset.targetStep;
+      const target = section.querySelector(`.ce-milestone[data-step="${step}"]`);
+      setActiveStep(step, true);
+      if (target) {
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'center'
+        });
+      }
+    });
+  });
+
+  // Milestone hover / focus interactions
+  milestones.forEach((ms) => {
+    const step = ms.dataset.step || '1';
+
+    ms.addEventListener('mouseenter', () => {
+      isUserHovering = true;
+      setActiveStep(step, true);
+    });
+
+    ms.addEventListener('mouseleave', () => {
+      isUserHovering = false;
+      ms.classList.remove('is-focused');
+      scheduleScrollUpdate();
+    });
+
+    ms.addEventListener('focus', () => {
+      setActiveStep(step, true);
+    });
+
+    ms.addEventListener('blur', () => {
+      ms.classList.remove('is-focused');
+    });
+
+    ms.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveStep(step, true);
+        ms.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'center'
         });
       }
     });
 
-    if (stepData.length >= 2) {
-      let d = `M ${stepData[0].badgeCenterX} ${stepData[0].centerY}`;
-      const bendColors = ['#8B5CF6', '#EC4899', '#F97316', '#F59E0B', '#10B981', '#3B82F6', '#9333EA'];
-      const bendPoints = [];
+    ms.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'transform') {
+        computeRoadmapPaths();
+      }
+    });
+  });
 
-      // Connect sequentially from Step 01 to Step 08
-      for (let i = 0; i < stepData.length - 1; i++) {
-        const curr = stepData[i];
-        const next = stepData[i + 1];
-
-        if (curr.isOdd) {
-          // Odd card (left): line across through the card to right edge
-          d += ` L ${curr.cardRight} ${curr.centerY}`;
-
-          // Curve into next even card's badge on the right
-          const outerRight = Math.min(width - 16, Math.max(curr.cardRight, next.badgeCenterX) + 52);
-          d += ` C ${outerRight} ${curr.centerY}, ${outerRight} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
-          bendPoints.push({ x: outerRight, y: Math.round((curr.centerY + next.centerY) / 2), color: bendColors[i] || '#8B5CF6' });
-        } else {
-          // Even card (right): line across through the card to left edge
-          d += ` L ${curr.cardLeft} ${curr.centerY}`;
-
-          // Curve into next odd card's badge on the left
-          const outerLeft = Math.max(16, Math.min(curr.cardLeft, next.badgeCenterX) - 52);
-          d += ` C ${outerLeft} ${curr.centerY}, ${outerLeft} ${next.centerY}, ${next.badgeCenterX} ${next.centerY}`;
-          bendPoints.push({ x: outerLeft, y: Math.round((curr.centerY + next.centerY) / 2), color: bendColors[i] || '#8B5CF6' });
+  // Ensure reveal classes become visible reliably
+  if ('IntersectionObserver' in window) {
+    const revealTargets = section.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          requestAnimationFrame(computeRoadmapPaths);
+          revealObs.unobserve(entry.target);
         }
-      }
-
-      // STRICT TERMINATION: The path ends at Milestone 08.
-      // Absolutely no extra curve, line, or continuation extends below Milestone 08.
-      mainRibbon.setAttribute('d', d);
-      if (shadowRibbon) shadowRibbon.setAttribute('d', d);
-      if (baseRibbon) baseRibbon.setAttribute('d', d);
-      if (highlightRibbon) highlightRibbon.setAttribute('d', d);
-      if (dashRibbon) dashRibbon.setAttribute('d', d);
-
-      // Update waypoint markers dynamically
-      if (waypointsGroup && bendPoints.length) {
-        waypointsGroup.innerHTML = '';
-        bendPoints.forEach((pt) => {
-          const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-          g.setAttribute('class', 'lj-waypoint-marker');
-          g.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
-          g.innerHTML = `
-            <circle r="14" fill="${pt.color}" fill-opacity="0.22"/>
-            <circle r="8" fill="#FFFFFF" stroke="${pt.color}" stroke-width="3"/>
-            <circle r="3" fill="${pt.color}"/>
-          `;
-          waypointsGroup.appendChild(g);
-        });
-      }
-    }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    revealTargets.forEach((el) => revealObs.observe(el));
+  } else {
+    section.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
   }
 
-  // Set up ResizeObserver and Window Listeners for guaranteed real-time responsiveness
-  if (window.ResizeObserver && stage) {
+  // Responsive path recalculation listeners
+  if (window.ResizeObserver) {
     const ro = new ResizeObserver(() => {
-      requestAnimationFrame(alignRibbonPath);
+      requestAnimationFrame(computeRoadmapPaths);
     });
     ro.observe(stage);
   }
 
-  window.addEventListener('resize', () => {
-    requestAnimationFrame(alignRibbonPath);
-  }, { passive: true });
-
-  // Initial alignments
-  requestAnimationFrame(alignRibbonPath);
-  setTimeout(alignRibbonPath, 150);
-  setTimeout(alignRibbonPath, 600);
-
-  // 2. Interactive Step Event Listeners
-  rows.forEach((row) => {
-    const icon = row.querySelector('.learning-journey-icon-badge, .lj-circular-3d-icon');
-    const pill = row.querySelector('.learning-journey-card-pill');
-    if (!icon) return;
-
-    const activate = () => {
-      rows.forEach(r => {
-        r.classList.remove('is-step-active');
-        r.classList.remove('is-row-active');
-      });
-      row.classList.add('is-step-active');
-      row.classList.add('is-row-active');
-    };
-
-    const deactivate = () => {
-      row.classList.remove('is-step-active');
-      row.classList.remove('is-row-active');
-    };
-
-    icon.addEventListener('mouseenter', activate);
-    icon.addEventListener('mouseleave', deactivate);
-    if (pill) {
-      pill.addEventListener('mouseenter', activate);
-      pill.addEventListener('mouseleave', deactivate);
-    }
-
-    icon.addEventListener('click', () => {
-      activate();
-      row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-
-    icon.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        activate();
-      }
-    });
-  });
-
-  // 3. Scroll Reveal for Ribbon Drawing
-  if ('IntersectionObserver' in window && mainRibbon) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mainRibbon.style.strokeDashoffset = '0';
-          alignRibbonPath();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    observer.observe(section);
-  }
-
-  // Run alignment on load, fonts ready, and resize
-  alignRibbonPath();
-  window.addEventListener('load', alignRibbonPath);
+  window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
+  window.addEventListener('resize', () => requestAnimationFrame(computeRoadmapPaths), { passive: true });
+  window.addEventListener('load', computeRoadmapPaths);
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(alignRibbonPath);
+    document.fonts.ready.then(computeRoadmapPaths);
   }
 
-  let resizeTimer = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(alignRibbonPath, 80);
-  });
-  setTimeout(alignRibbonPath, 150);
-  setTimeout(alignRibbonPath, 450);
-  setTimeout(alignRibbonPath, 1000);
+  computeRoadmapPaths();
+  requestAnimationFrame(computeRoadmapPaths);
+  setTimeout(computeRoadmapPaths, 250);
+  setTimeout(computeRoadmapPaths, 800);
 }
 
 /**
