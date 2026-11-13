@@ -193,9 +193,13 @@ function setupCertificateModal() {
   function openModal(item) {
     const imgEl = item.querySelector('.cert-hanging-img');
     const titleEl = item.querySelector('.cert-hanging-title');
+    const cardEl = item.querySelector('.hanging-cert-card');
     const src = imgEl ? (imgEl.currentSrc || imgEl.getAttribute('src')) : '';
     const alt = imgEl ? imgEl.getAttribute('alt') : 'Certificate';
-    const title = titleEl ? titleEl.textContent : 'Verified Certificate';
+    const title = (titleEl && titleEl.textContent.trim())
+      || (cardEl && cardEl.getAttribute('aria-label'))
+      || alt
+      || 'Verified Certificate';
 
     contentArea.innerHTML = `
       <div class="cert-modal-preview-stage">
@@ -232,7 +236,13 @@ function setupCertificateModal() {
     item.setAttribute('tabindex', '0');
     item.setAttribute('role', 'button');
     const titleEl = item.querySelector('.cert-hanging-title');
-    item.setAttribute('aria-label', titleEl ? `View ${titleEl.textContent}` : 'View Certificate');
+    const cardEl = item.querySelector('.hanging-cert-card');
+    const imgEl = item.querySelector('.cert-hanging-img');
+    const certLabel = (titleEl && titleEl.textContent.trim())
+      || (cardEl && cardEl.getAttribute('aria-label'))
+      || (imgEl && imgEl.getAttribute('alt'))
+      || 'Certificate';
+    item.setAttribute('aria-label', `View ${certLabel}`);
     item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -539,11 +549,11 @@ function setupContactForm() {
 
     const name = form.elements['name']?.value.trim();
     const email = form.elements['email']?.value.trim();
-    const subject = form.elements['subject']?.value.trim() || 'Portfolio Contact';
+    const subject = form.elements['subject']?.value.trim();
     const message = form.elements['message']?.value.trim();
 
-    if (!name || !email || !message) {
-      showMessage('Please fill in your name, email, and message.', 'error');
+    if (!name || !email || !subject || !message) {
+      showMessage('Please complete your name, email, enquiry type, and message.', 'error');
       return;
     }
 
@@ -554,24 +564,34 @@ function setupContactForm() {
       return;
     }
 
-    // Feedback state
+    const defaultBtnHtml = `
+      <span>Let's Start a Conversation</span>
+      <span class="conn-submit-arrow" aria-hidden="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </span>
+    `;
+
+    // Loading state
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Sending...</span>`;
+    submitBtn.innerHTML = `<span>Preparing your message...</span>`;
 
     setTimeout(() => {
       // Create mailto link as reliable direct email dispatch
       const mailtoUrl = `mailto:arfamunam01@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`)}`;
       
-      showMessage(`Thank you, ${name}! Your message has been prepared. If your email client didn't open automatically, feel free to email directly at arfamunam01@gmail.com.`, 'success');
+      showMessage(`Thank you, ${name}. Your email app is opening with your drafted note — or reach out directly at arfamunam01@gmail.com.`, 'success');
 
       form.reset();
       if (charCurr) charCurr.textContent = '0';
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Send message</span><span class="conn-submit-arrow" aria-hidden="true">↗</span>`;
+      submitBtn.innerHTML = defaultBtnHtml;
 
       // Trigger mail client safely
       window.location.href = mailtoUrl;
-    }, 600);
+    }, 500);
   });
 
   function showMessage(text, type) {
@@ -2119,58 +2139,66 @@ function setupCertificatesGallery() {
     });
   });
 
-  // Dynamic Subtle Wire Alignment behind centered orange tape strips
+  // Dynamic Catenary Wire Alignment behind matte orange washi tape strips
   const wireRig = document.getElementById('cert-wire-rig');
   const wireSvg = document.getElementById('cert-wire-svg');
   const wireMain = document.getElementById('cert-wire-main');
   const wireShadow = document.getElementById('cert-wire-shadow');
   const wireHighlight = document.getElementById('cert-wire-highlight');
+  const cardsGrid = section.querySelector('.cert-hanging-cards-grid');
 
   function updateHangingWire() {
-    if (!wireRig || !wireSvg || !wireMain) return;
+    if (!wireRig || !wireSvg || !wireMain || !cardsGrid) return;
     if (window.innerWidth <= 820) return;
 
-    const rigRect = wireRig.getBoundingClientRect();
-    if (rigRect.width <= 0) return;
+    const rigWidth = Math.round(wireRig.clientWidth || wireRig.getBoundingClientRect().width);
+    if (rigWidth <= 0) return;
 
-    const clips = section.querySelectorAll('.cert-hanging-clip');
-    if (clips.length < 3) return;
+    const tapes = section.querySelectorAll('.cert-washi-tape');
+    if (tapes.length < 3 || items.length < 3) return;
 
-    const w = Math.round(rigRect.width);
-    const h = 40;
+    const h = 52;
+    const gridOffsetTop = cardsGrid.offsetTop;
+    const gridOffsetLeft = cardsGrid.offsetLeft;
+    const rigOffsetTop = wireRig.offsetTop;
 
-    // Measure spring saddle position (~10.5px down inside each 29px clip)
-    const cLeft = clips[0].getBoundingClientRect();
-    const cMid = clips[1].getBoundingClientRect();
-    const cRight = clips[2].getBoundingClientRect();
+    // Use CSS layout offsetTop so entrance translateY animations never skew resting wire coords
+    // Wire crosses horizontally inside the tape at ~11px below tape top (-13px + 11px = -2px relative to item top)
+    const getTapeWireY = (item, tape) => (gridOffsetTop + item.offsetTop + tape.offsetTop + 11) - rigOffsetTop;
 
-    const yMid = (cMid.top + 10.5) - rigRect.top;
-    const ySide = (((cLeft.top + 10.5) - rigRect.top) + ((cRight.top + 10.5) - rigRect.top)) / 2;
-    const xSide = ((cLeft.left + cLeft.width / 2) - rigRect.left);
-    const u = Math.max(0.08, Math.min(0.45, xSide / w));
+    const yLeft = getTapeWireY(items[0], tapes[0]);
+    const yMid = getTapeWireY(items[1], tapes[1]);
+    const yRight = getTapeWireY(items[2], tapes[2]);
+    const ySide = (yLeft + yRight) / 2;
+
+    const xSide = gridOffsetLeft + items[0].offsetLeft + (items[0].offsetWidth / 2);
+    const u = Math.max(0.08, Math.min(0.45, xSide / rigWidth));
     const k = 4 * u * (1 - u);
 
     // Solve quadratic Bezier so Y(0.5) == yMid and Y(u) == ySide
-    let yEdge = k < 0.98 ? (ySide - k * yMid) / (1 - k) : yMid - 4;
-    yEdge = Math.max(4, Math.min(yMid, yEdge));
+    let yEdge = k < 0.98 ? (ySide - k * yMid) / (1 - k) : yMid - 8;
+    yEdge = Math.max(2, Math.min(yMid - 4, yEdge));
     const yCtrl = (2 * yMid - yEdge).toFixed(1);
     const yEdgeStr = yEdge.toFixed(1);
 
-    const pathD = `M 0,${yEdgeStr} Q ${Math.round(w / 2)},${yCtrl} ${w},${yEdgeStr}`;
+    const pathD = `M 0,${yEdgeStr} Q ${Math.round(rigWidth / 2)},${yCtrl} ${rigWidth},${yEdgeStr}`;
 
-    wireSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    wireSvg.setAttribute('viewBox', `0 0 ${rigWidth} ${h}`);
     wireMain.setAttribute('d', pathD);
 
     if (wireShadow) {
-      wireShadow.setAttribute('d', `M 0,${(yEdge + 1.2).toFixed(1)} Q ${Math.round(w / 2)},${(parseFloat(yCtrl) + 1.2).toFixed(1)} ${w},${(yEdge + 1.2).toFixed(1)}`);
+      wireShadow.setAttribute('d', `M 0,${(yEdge + 1.3).toFixed(1)} Q ${Math.round(rigWidth / 2)},${(parseFloat(yCtrl) + 1.3).toFixed(1)} ${rigWidth},${(yEdge + 1.3).toFixed(1)}`);
     }
     if (wireHighlight) {
-      wireHighlight.setAttribute('d', `M 0,${(yEdge - 0.5).toFixed(1)} Q ${Math.round(w / 2)},${(parseFloat(yCtrl) - 0.5).toFixed(1)} ${w},${(yEdge - 0.5).toFixed(1)}`);
+      wireHighlight.setAttribute('d', `M 0,${(yEdge - 0.45).toFixed(1)} Q ${Math.round(rigWidth / 2)},${(parseFloat(yCtrl) - 0.45).toFixed(1)} ${rigWidth},${(yEdge - 0.45).toFixed(1)}`);
     }
   }
 
-  // Update on initial render and window resize
-  setTimeout(updateHangingWire, 120);
+  // Update on initial render, fonts ready, and window resize
+  setTimeout(updateHangingWire, 90);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => window.requestAnimationFrame(updateHangingWire));
+  }
   window.addEventListener('resize', () => {
     window.requestAnimationFrame(updateHangingWire);
   }, { passive: true });
@@ -2592,8 +2620,8 @@ function setupProjectFullPageExperience() {
         { val: "< 650ms", lbl: "Global Page Hydration", color: "#2DD4BF" },
         { val: "100%", lbl: "Cross-Device Parity", color: "#F59E0B" }
       ],
-      liveUrl: "https://github.com/ArfaMunam47/icapital-wealth",
-      ghUrl: "https://github.com/ArfaMunam47/icapital-wealth",
+      liveUrl: "https://github.com/ArfaMunam47/icapital",
+      ghUrl: "https://github.com/ArfaMunam47/icapital",
       image: "icapital.png",
       stageSourceId: "stage-icapital"
     },
@@ -2672,8 +2700,8 @@ function setupProjectFullPageExperience() {
         { val: "100/100", lbl: "Lighthouse Performance", color: "#2DD4BF" },
         { val: "0ms", lbl: "Layout Shift (CLS)", color: "#A78BFA" }
       ],
-      liveUrl: "https://github.com/ArfaMunam47/Velora-Store",
-      ghUrl: "https://github.com/ArfaMunam47/Velora-Store",
+      liveUrl: "https://github.com/ArfaMunam47/veloura-store",
+      ghUrl: "https://github.com/ArfaMunam47/veloura-store",
       image: "veloraa.png",
       stageSourceId: "stage-velora"
     }
@@ -3584,9 +3612,15 @@ function setupLearningJourneyStory() {
 
   const stage = document.getElementById('ce-roadmap-stage');
   const svg = document.getElementById('ce-roadmap-svg');
+  const shadowPath = document.getElementById('ce-path-shadow');
+  const extrusionPath = document.getElementById('ce-path-extrusion');
+  const surfacePath = document.getElementById('ce-path-surface');
+  const highlightPath = document.getElementById('ce-path-highlight');
+  const futureBedPath = document.getElementById('ce-path-future-bed');
   const trackPath = document.getElementById('ce-path-track');
   const completedPath = document.getElementById('ce-path-completed');
   const futurePath = document.getElementById('ce-path-future');
+  const nodeDockGlow = document.getElementById('ce-node-dock-glow');
   if (!stage || !svg || !trackPath || !completedPath || !futurePath) return;
 
   const milestones = Array.from(section.querySelectorAll('.ce-milestone'));
@@ -3599,11 +3633,37 @@ function setupLearningJourneyStory() {
   let isUserHovering = false;
   let scrollRafId = null;
 
+  const stepGlowColors = {
+    '1': 'rgba(245, 158, 11, 0.38)',
+    '2': 'rgba(236, 72, 153, 0.36)',
+    '3': 'rgba(139, 92, 246, 0.36)',
+    '4': 'rgba(6, 182, 212, 0.44)',
+    '5': 'rgba(16, 185, 129, 0.38)'
+  };
+
   function buildCurveSegment(p1, p2) {
     const dy = p2.y - p1.y;
     const c1y = p1.y + dy * 0.52;
     const c2y = p2.y - dy * 0.52;
     return `C ${p1.x.toFixed(1)} ${c1y.toFixed(1)}, ${p2.x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+  }
+
+  function updateNodeDockGlow(stepStr, show) {
+    if (!nodeDockGlow) return;
+    if (!show || !cachedPoints.length) {
+      nodeDockGlow.classList.remove('is-visible');
+      return;
+    }
+    const idx = Math.max(0, Math.min(cachedPoints.length - 1, Number(stepStr) - 1));
+    const pt = cachedPoints[idx];
+    if (!pt) {
+      nodeDockGlow.classList.remove('is-visible');
+      return;
+    }
+    nodeDockGlow.setAttribute('cx', pt.x.toFixed(1));
+    nodeDockGlow.setAttribute('cy', pt.y.toFixed(1));
+    nodeDockGlow.style.fill = stepGlowColors[String(stepStr)] || stepGlowColors['4'];
+    nodeDockGlow.classList.add('is-visible');
   }
 
   function setActiveStep(stepStr, markFocused) {
@@ -3617,6 +3677,7 @@ function setupLearningJourneyStory() {
       milestones.forEach((ms) => {
         ms.classList.toggle('is-focused', ms.dataset.step === String(stepStr));
       });
+      updateNodeDockGlow(stepStr, true);
     }
   }
 
@@ -3693,19 +3754,24 @@ function setupLearningJourneyStory() {
     if (points.length < 2) return;
     cachedPoints = points;
 
-    // Continuous background track: 01 -> 05
+    // Continuous full 01 -> 05 curve for ambient shadow
     let fullD = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
     for (let i = 0; i < points.length - 1; i++) {
       fullD += ` ${buildCurveSegment(points[i], points[i + 1])}`;
     }
-    trackPath.setAttribute('d', fullD);
 
-    // Solid completed & active trajectory: 01 -> 04
+    // Solid dimensional 3D pathway body: 01 -> 04
     const activeIndex = Math.min(3, points.length - 1);
     let completedD = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
     for (let i = 0; i < activeIndex; i++) {
       completedD += ` ${buildCurveSegment(points[i], points[i + 1])}`;
     }
+
+    if (shadowPath) shadowPath.setAttribute('d', fullD);
+    if (extrusionPath) extrusionPath.setAttribute('d', completedD);
+    if (surfacePath) surfacePath.setAttribute('d', completedD);
+    if (highlightPath) highlightPath.setAttribute('d', completedD);
+    trackPath.setAttribute('d', completedD);
     completedPath.setAttribute('d', completedD);
 
     try {
@@ -3717,11 +3783,13 @@ function setupLearningJourneyStory() {
       completedPath.style.strokeDasharray = `${completedLength.toFixed(2)} ${completedLength.toFixed(2)}`;
     }
 
-    // Future learning horizon dashed curve: 04 -> 05
+    // Future learning horizon open pathway + dashed trajectory: 04 -> 05
     if (points.length >= 5) {
       const futureD = `M ${points[3].x.toFixed(1)} ${points[3].y.toFixed(1)} ${buildCurveSegment(points[3], points[4])}`;
+      if (futureBedPath) futureBedPath.setAttribute('d', futureD);
       futurePath.setAttribute('d', futureD);
     } else {
+      if (futureBedPath) futureBedPath.setAttribute('d', '');
       futurePath.setAttribute('d', '');
     }
 
@@ -3755,6 +3823,7 @@ function setupLearningJourneyStory() {
     ms.addEventListener('mouseleave', () => {
       isUserHovering = false;
       ms.classList.remove('is-focused');
+      updateNodeDockGlow(step, false);
       scheduleScrollUpdate();
     });
 
@@ -3764,6 +3833,7 @@ function setupLearningJourneyStory() {
 
     ms.addEventListener('blur', () => {
       ms.classList.remove('is-focused');
+      updateNodeDockGlow(step, false);
     });
 
     ms.addEventListener('keydown', (e) => {
