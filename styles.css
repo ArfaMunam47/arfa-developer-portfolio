@@ -200,71 +200,197 @@ button {
 }
 
 /* ==========================================================================
-   MINIMAL PREMIUM BESPOKE CURSOR
-   Clean, fluid precision dot with subtle trailing follower ring.
-   Hidden on touch devices, small screens, and prefers-reduced-motion.
+   SIGNATURE EDITORIAL CUSTOM CURSOR
+   Portfolio Palette: Warm Cream (#FFF7EC), Deep Navy (#101C35),
+                      Vibrant Orange (#FA5538), Pink (#F45FA0), Purple (#8C7CF6)
+   Desktop fine-pointer only. Hidden on touch, < 992px, and reduced motion.
    ========================================================================== */
 .cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
   border-radius: 50%;
-  background-color: #101C35;
+  background: radial-gradient(circle at 34% 30%, #FFD6C9 0%, #FA5538 48%, #E04422 100%);
+  border: 1px solid rgba(255, 247, 236, 0.92);
+  box-shadow:
+    0 0 10px rgba(250, 85, 56, 0.48),
+    0 1px 3px rgba(16, 28, 53, 0.22);
   pointer-events: none;
-  z-index: 99999;
-  transform: translate3d(-100px, -100px, 0);
-  margin: -3px 0 0 -3px;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 1000001;
+  transform: translate3d(-100px, -100px, 0) scale(1);
   opacity: 0;
-  transition: opacity 0.2s ease, transform 0.08s ease, background-color 0.2s ease, width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
+  transition:
+    opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+  will-change: transform, opacity;
 }
 
 .cursor-follower {
   position: fixed;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
   border-radius: 50%;
-  border: 1.2px solid rgba(16, 28, 53, 0.25);
-  background: radial-gradient(circle, rgba(250, 85, 56, 0.03) 0%, transparent 80%);
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.04) 0%, rgba(140, 124, 246, 0.025) 68%, transparent 100%);
+  box-shadow:
+    0 0 0 1px rgba(16, 28, 53, 0.08),
+    0 0 16px rgba(250, 85, 56, 0.14),
+    0 0 24px rgba(140, 124, 246, 0.09);
   pointer-events: none;
-  z-index: 99998;
-  transform: translate3d(-100px, -100px, 0);
-  margin: -13px 0 0 -13px;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 1000000;
+  transform: translate3d(-100px, -100px, 0) scale(1);
   opacity: 0;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  box-shadow: 0 0 10px rgba(16, 28, 53, 0.06);
-  transition: opacity 0.2s ease, width 0.24s cubic-bezier(0.16, 1, 0.3, 1), height 0.24s cubic-bezier(0.16, 1, 0.3, 1), margin 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
+  transition:
+    opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.26s ease,
+    box-shadow 0.26s ease;
+  will-change: transform, opacity;
 }
 
-/* Keep flare hidden so cursor stays strictly minimal and professional */
+/* Crisp multi-tone portfolio gradient ring (Orange -> Pink -> Purple) */
+.cursor-follower::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(250, 85, 56, 0.85) 0%, rgba(244, 95, 160, 0.72) 52%, rgba(140, 124, 246, 0.78) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.76;
+  transition: opacity 0.24s ease, padding 0.24s ease, background 0.24s ease;
+  pointer-events: none;
+}
+
+/* Ultra-subtle click ripple halo (hidden when idle, brief subtle pulse on click) */
 .cursor-flare {
-  display: none !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(250, 85, 56, 0.55);
+  background: radial-gradient(circle, rgba(255, 247, 236, 0.25) 0%, rgba(244, 95, 160, 0.12) 55%, transparent 100%);
+  box-shadow: 0 0 14px rgba(250, 85, 56, 0.22);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 999999;
+  transform: translate3d(-100px, -100px, 0) scale(0.5);
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-/* Hover state over interactive elements (buttons, links) */
-.cursor-follower.cursor-hover {
+.cursor-flare.is-spark-pulse {
+  animation: cursorClickSpark 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cursorClickSpark {
+  0% {
+    opacity: 0.72;
+    transform: translate3d(var(--spark-x, -100px), var(--spark-y, -100px), 0) scale(0.55);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--spark-x, -100px), var(--spark-y, -100px), 0) scale(2.05);
+  }
+}
+
+/* Interactive State 1: Buttons (elevated orange glow + expanded outer ring + clear orange dot) */
+.cursor-follower.cursor-btn {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.1) 0%, rgba(244, 95, 160, 0.04) 70%, transparent 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 247, 236, 0.32),
+    0 0 22px rgba(250, 85, 56, 0.28),
+    0 0 32px rgba(244, 95, 160, 0.14);
+}
+
+.cursor-follower.cursor-btn::before {
+  padding: 1.8px;
+  opacity: 0.98;
+  background: linear-gradient(135deg, #FA5538 0%, #F45FA0 55%, #8C7CF6 100%);
+}
+
+.cursor-dot.cursor-btn {
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  box-shadow:
+    0 0 12px rgba(250, 85, 56, 0.72),
+    0 0 0 1.5px rgba(255, 247, 236, 0.95);
+}
+
+/* Interactive State 2: Links & Navigation Items */
+.cursor-follower.cursor-link {
   width: 40px;
   height: 40px;
   margin: -20px 0 0 -20px;
-  border-color: rgba(250, 85, 56, 0.65);
-  background: radial-gradient(circle, rgba(250, 85, 56, 0.07) 0%, transparent 80%);
-  box-shadow: 0 0 14px rgba(250, 85, 56, 0.16);
+  background: radial-gradient(circle, rgba(244, 95, 160, 0.08) 0%, rgba(250, 85, 56, 0.03) 72%, transparent 100%);
+  box-shadow:
+    0 0 18px rgba(244, 95, 160, 0.22),
+    0 0 26px rgba(250, 85, 56, 0.14);
 }
 
-.cursor-dot.cursor-hover {
+.cursor-follower.cursor-link::before {
+  padding: 1.6px;
+  opacity: 0.92;
+  background: linear-gradient(135deg, #FA5538 0%, #F45FA0 65%, #8C7CF6 100%);
+}
+
+.cursor-dot.cursor-link {
   width: 8px;
   height: 8px;
   margin: -4px 0 0 -4px;
-  background-color: #FA5538;
+  box-shadow:
+    0 0 11px rgba(250, 85, 56, 0.62),
+    0 0 0 1.2px rgba(255, 247, 236, 0.95);
+}
+
+/* Interactive State 3: Cards & Creative Tiles */
+.cursor-follower.cursor-card {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  background: radial-gradient(circle, rgba(140, 124, 246, 0.07) 0%, rgba(250, 85, 56, 0.04) 68%, transparent 100%);
+  box-shadow:
+    0 0 20px rgba(140, 124, 246, 0.18),
+    0 0 28px rgba(250, 85, 56, 0.14);
+}
+
+.cursor-follower.cursor-card::before {
+  padding: 1.5px;
+  opacity: 0.88;
+  background: linear-gradient(135deg, #FA5538 0%, #F45FA0 45%, #8C7CF6 100%);
+}
+
+.cursor-dot.cursor-card {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
 }
 
 /* Specialized interactive state when hovering over the hero portrait */
@@ -272,27 +398,38 @@ button {
   width: 48px;
   height: 48px;
   margin: -24px 0 0 -24px;
-  border-color: #FA5538;
-  border-width: 1.5px;
-  background: radial-gradient(circle, rgba(250, 85, 56, 0.1) 0%, rgba(6, 182, 212, 0.05) 70%, transparent 100%);
-  box-shadow: 0 0 18px rgba(250, 85, 56, 0.25);
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.1) 0%, rgba(244, 95, 160, 0.06) 68%, transparent 100%);
+  box-shadow:
+    0 0 20px rgba(250, 85, 56, 0.25),
+    0 0 30px rgba(244, 95, 160, 0.15);
+}
+
+.cursor-follower.cursor-portrait-hover::before {
+  padding: 1.7px;
+  opacity: 0.95;
 }
 
 .cursor-dot.cursor-portrait-hover {
-  background-color: #FA5538;
-  box-shadow: 0 0 8px rgba(250, 85, 56, 0.7);
-  transform: scale(1.15);
+  box-shadow:
+    0 0 12px rgba(250, 85, 56, 0.78),
+    0 0 0 1.5px rgba(255, 247, 236, 0.95);
 }
 
+/* Tactile Press Feedback */
 .cursor-follower.cursor-press {
-  transform: scale(0.85);
-  border-color: #FA5538;
-  background: rgba(250, 85, 56, 0.18);
+  background: radial-gradient(circle, rgba(250, 85, 56, 0.16) 0%, rgba(244, 95, 160, 0.08) 70%, transparent 100%);
+  box-shadow: 0 0 18px rgba(250, 85, 56, 0.34);
 }
 
-.cursor-dot.cursor-press {
-  transform: scale(0.7);
-  background-color: #FA5538;
+.cursor-follower.cursor-press::before {
+  opacity: 1;
+}
+
+/* Clean Yield over editable inputs, active text selection, and excluded project showcase */
+.cursor-dot.cursor-hidden-state,
+.cursor-follower.cursor-hidden-state,
+.cursor-flare.cursor-hidden-state {
+  opacity: 0 !important;
 }
 
 @media (pointer: coarse), (max-width: 991px), (prefers-reduced-motion: reduce) {
@@ -6580,8 +6717,8 @@ nav.floating-nav.scrolled {
 /* Editorial Section Header */
 #certifications .cert-section-header {
   text-align: center;
-  max-width: 660px;
-  margin: 0 auto clamp(2.6rem, 4.8vw, 3.8rem);
+  max-width: 680px;
+  margin: 0 auto clamp(2.8rem, 5vw, 4rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6591,10 +6728,10 @@ nav.floating-nav.scrolled {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #C85A3B;
-  margin: 0 0 0.95rem;
+  color: #D95334;
+  margin: 0 0 0.85rem;
 }
 
 #certifications .cert-section-heading {
@@ -6602,39 +6739,43 @@ nav.floating-nav.scrolled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.06em;
+  gap: 0.04em;
   text-align: center;
 }
 
 #certifications .cert-heading-lead {
   display: block;
-  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
-  font-weight: 700;
-  letter-spacing: -0.028em;
-  line-height: 1.12;
-  color: #161824;
+  font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.25rem, 4.2vw, 3.35rem);
+  font-weight: 800;
+  letter-spacing: -0.032em;
+  line-height: 1.06;
+  color: #101C35;
 }
 
 #certifications .cert-heading-italic {
   display: block;
-  font-family: 'Playfair Display', 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(2.15rem, 4.0vw, 3.25rem);
-  letter-spacing: -0.015em;
-  line-height: 1.16;
-  color: #C95B3C;
+  font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4.2vw, 3.35rem);
+  letter-spacing: -0.032em;
+  line-height: 1.08;
+  padding-bottom: 0.06em;
+  background: linear-gradient(135deg, #FA5538 0%, #EA580C 38%, #DB2777 78%, #8C7CF6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #certifications .cert-section-subhead {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(0.95rem, 1.3vw, 1.02rem);
+  font-size: clamp(0.95rem, 1.25vw, 1.04rem);
   font-weight: 500;
-  color: rgba(22, 24, 36, 0.62);
+  color: rgba(16, 28, 53, 0.64);
   line-height: 1.65;
   max-width: 500px;
-  margin: 1rem auto 0;
+  margin: 0.95rem auto 0;
 }
 
 /* ==========================================================================
@@ -6646,20 +6787,20 @@ nav.floating-nav.scrolled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 16px;
-  padding-bottom: 26px;
+  padding-top: 26px;
+  padding-bottom: 30px;
   overflow: visible;
 }
 
 /* Continuous Suspended Wire Rig across exhibition width */
 #certifications .cert-hanging-wire-rig {
   position: absolute;
-  top: 10px;
+  top: 6px;
   left: 0;
   right: 0;
   width: 100%;
-  height: 52px;
-  z-index: 2; /* Behind certificates (z:5) and behind orange washi tape (z:10) */
+  height: 58px;
+  z-index: 3; /* Threads cleanly through clip hooks (z:12) behind front clasp */
   pointer-events: none;
   overflow: visible;
 }
@@ -6674,21 +6815,21 @@ nav.floating-nav.scrolled {
 /* Understated, delicate muted slate steel hanging wire with soft wall shadow */
 #certifications .wire-shadow-stroke {
   fill: none;
-  stroke: rgba(18, 22, 32, 0.08);
-  stroke-width: 1.6px;
+  stroke: rgba(18, 22, 32, 0.09);
+  stroke-width: 1.7px;
   filter: blur(0.9px);
 }
 
 #certifications .wire-main-stroke {
   fill: none;
-  stroke: rgba(74, 83, 98, 0.78);
-  stroke-width: 1.15px;
+  stroke: rgba(74, 83, 98, 0.82);
+  stroke-width: 1.2px;
   stroke-linecap: round;
 }
 
 #certifications .wire-highlight-stroke {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.65);
+  stroke: rgba(255, 255, 255, 0.68);
   stroke-width: 0.45px;
   stroke-linecap: round;
 }
@@ -6696,8 +6837,8 @@ nav.floating-nav.scrolled {
 /* ==========================================================================
    CARDS GRID & NATURAL CATENARY EXHIBITION ALIGNMENT
    - Identical natural certificate aspect ratio (1649 / 1275)
-   - Center certificate hangs slightly lower following gentle downward wire sag
-   - One-time staggered entrance reveal; NO continuous swaying animations
+   - Certificates hang physically below the wire suspended by miniature clips
+   - Hinged transform-origin sits directly on the wire hook anchor
    ========================================================================== */
 #certifications .cert-hanging-cards-grid {
   display: flex;
@@ -6722,25 +6863,25 @@ nav.floating-nav.scrolled {
   align-items: center;
   cursor: pointer;
   outline: none;
-  transform-origin: 50% -2px;
+  transform-origin: 50% -23px; /* Exact wire hook pivot coordinate */
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+              transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Natural staggered static resting positions along the wire curve */
+/* Natural staggered static resting positions suspended along the wire curve */
 #certifications .cert-item-1 {
-  margin-top: 16px;
-  transform: rotate(-0.95deg);
+  margin-top: 28px;
+  transform: rotate(-1.15deg);
 }
 
 #certifications .cert-item-2 {
-  margin-top: 22px;
-  transform: rotate(0.38deg);
+  margin-top: 34px;
+  transform: rotate(0.45deg);
 }
 
 #certifications .cert-item-3 {
-  margin-top: 16px;
-  transform: rotate(0.88deg);
+  margin-top: 28px;
+  transform: rotate(1.05deg);
 }
 
 /* One-time subtle viewport entrance (stays still once settled) */
@@ -6754,17 +6895,17 @@ nav.floating-nav.scrolled {
 }
 
 #certifications .cert-hanging-cards-grid.reveal .cert-item-1 {
-  transform: translateY(16px) rotate(-0.95deg);
+  transform: translateY(16px) rotate(-1.15deg);
   transition-delay: 0ms;
 }
 
 #certifications .cert-hanging-cards-grid.reveal .cert-item-2 {
-  transform: translateY(18px) rotate(0.38deg);
+  transform: translateY(18px) rotate(0.45deg);
   transition-delay: 110ms;
 }
 
 #certifications .cert-hanging-cards-grid.reveal .cert-item-3 {
-  transform: translateY(16px) rotate(0.88deg);
+  transform: translateY(16px) rotate(1.05deg);
   transition-delay: 220ms;
 }
 
@@ -6773,74 +6914,74 @@ nav.floating-nav.scrolled {
 }
 
 #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-1 {
-  transform: translateY(0) rotate(-0.95deg);
+  transform: translateY(0) rotate(-1.15deg);
 }
 
 #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-2 {
-  transform: translateY(0) rotate(0.38deg);
+  transform: translateY(0) rotate(0.45deg);
 }
 
 #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-3 {
-  transform: translateY(0) rotate(0.88deg);
+  transform: translateY(0) rotate(1.05deg);
+}
+
+/* Realistic hinged pendulum response on hover: wire hook stays seated on wire */
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-1:hover,
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-1:focus-visible {
+  transform: translateY(0) rotate(-0.35deg) scale(1.015);
+}
+
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-2:hover,
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-2:focus-visible {
+  transform: translateY(0) rotate(-0.35deg) scale(1.015);
+}
+
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-3:hover,
+#certifications .cert-hanging-cards-grid.reveal.visible .cert-item-3:focus-visible {
+  transform: translateY(0) rotate(0.25deg) scale(1.015);
 }
 
 /* ==========================================================================
-   MATTE TORN-EDGE ORANGE WASHI TAPE ATTACHMENTS
-   - Placed at top-center overlapping BOTH hanging wire & blank top paper edge
+   REALISTIC MINIATURE GALLERY HANGING CLIPS
+   - Top wire hook clasps the steel wire (~23px above card top edge)
+   - Brushed warm brass bulldog clip jaw clamps top blank white paper margin
    - Leaves 100% of Coursera ribbon, Google G mark, titles & text unobstructed
-   - Slight handmade angle & width variations across the 3 certificates
    ========================================================================== */
-#certifications .cert-washi-tape {
+#certifications .cert-hanging-clip {
   position: absolute;
-  top: -13px;
+  top: -32px;
   left: 50%;
-  height: 24px;
-  z-index: 10; /* In front of wire (z:2) and certificate edge (z:5) */
+  width: 32px;
+  height: 46px;
+  z-index: 12; /* Seated over wire (z:3) and paper edge (z:5) */
   pointer-events: none;
-  filter: drop-shadow(0 1.5px 2px rgba(28, 16, 10, 0.14));
-  transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.36s ease;
+  filter: drop-shadow(0 3px 4px rgba(20, 16, 12, 0.18));
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.42s ease;
 }
 
-#certifications .cert-washi-1 {
-  width: 52px;
-  transform: translateX(-50%) rotate(-2.3deg);
+#certifications .cert-clip-1 {
+  transform: translateX(-50%) rotate(-0.8deg);
 }
 
-#certifications .cert-washi-2 {
-  width: 54px;
-  transform: translateX(-48%) rotate(1.7deg);
+#certifications .cert-clip-2 {
+  transform: translateX(-50%) rotate(0.5deg);
 }
 
-#certifications .cert-washi-3 {
-  width: 51px;
-  transform: translateX(-52%) rotate(-1.5deg);
+#certifications .cert-clip-3 {
+  transform: translateX(-50%) rotate(0.7deg);
 }
 
-#certifications .cert-washi-svg {
+#certifications .cert-clip-svg {
   width: 100%;
   height: 100%;
   display: block;
   overflow: visible;
 }
 
-/* Delicate contact shadow along lower edge where tape meets the paper stock */
-#certifications .cert-washi-tape::after {
-  content: '';
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: 0;
-  height: 3px;
-  background: linear-gradient(180deg, rgba(24, 16, 12, 0.12), transparent);
-  filter: blur(0.6px);
-  pointer-events: none;
-}
-
 /* ==========================================================================
-   PHYSICAL CERTIFICATE PAPER PRINTS (NO HEAVY OUTER FRAMES OR RAINBOW BORDERS)
-   - Crisp ivory/white document print directly suspended in the exhibition
-   - Ultra-subtle paper edge line & realistic soft wall elevation shadow
+   SUSPENDED PHYSICAL CERTIFICATE PAPER PRINTS
+   - Multi-layered floating wall shadow conveying real physical suspension off the wall
    ========================================================================== */
 #certifications .hanging-cert-card {
   width: 100%;
@@ -6851,27 +6992,24 @@ nav.floating-nav.scrolled {
   border-radius: 2px;
   padding: 0;
   background: #FFFFFF;
-  border: 1px solid rgba(28, 22, 16, 0.085);
-  transform-origin: 50% 2px; /* Anchored directly under washi tape seam */
+  border: 1px solid rgba(28, 22, 16, 0.09);
+  transform-origin: 50% 0%;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.92),
-    0 1px 2px rgba(20, 18, 28, 0.06),
-    0 8px 20px -4px rgba(20, 18, 28, 0.10),
-    0 22px 42px -12px rgba(20, 18, 28, 0.08);
-  transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.36s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, box-shadow;
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    0 2px 4px rgba(18, 20, 32, 0.06),
+    0 12px 26px -4px rgba(18, 20, 32, 0.13),
+    0 28px 50px -12px rgba(18, 20, 32, 0.11);
+  transition: box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: box-shadow;
 }
 
-/* Clean hover elevation & focus ring: tape tracks gently, wire remains calm */
 #certifications .hanging-cert-item:hover .hanging-cert-card,
 #certifications .hanging-cert-item:focus-visible .hanging-cert-card {
-  transform: translateY(-3px) scale(1.018);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
-    0 2px 6px rgba(20, 18, 28, 0.07),
-    0 16px 34px -6px rgba(20, 18, 28, 0.16),
-    0 30px 54px -12px rgba(20, 18, 28, 0.10);
+    0 4px 8px rgba(18, 20, 32, 0.08),
+    0 20px 38px -6px rgba(18, 20, 32, 0.17),
+    0 38px 64px -14px rgba(18, 20, 32, 0.14);
 }
 
 #certifications .hanging-cert-item:focus-visible .hanging-cert-card {
@@ -6879,19 +7017,9 @@ nav.floating-nav.scrolled {
   outline-offset: 4px;
 }
 
-#certifications .hanging-cert-item:hover .cert-washi-1,
-#certifications .hanging-cert-item:focus-visible .cert-washi-1 {
-  transform: translateX(-50%) translateY(-2px) rotate(-2.3deg);
-}
-
-#certifications .hanging-cert-item:hover .cert-washi-2,
-#certifications .hanging-cert-item:focus-visible .cert-washi-2 {
-  transform: translateX(-48%) translateY(-2px) rotate(1.7deg);
-}
-
-#certifications .hanging-cert-item:hover .cert-washi-3,
-#certifications .hanging-cert-item:focus-visible .cert-washi-3 {
-  transform: translateX(-52%) translateY(-2px) rotate(-1.5deg);
+#certifications .hanging-cert-item:hover .cert-hanging-clip,
+#certifications .hanging-cert-item:focus-visible .cert-hanging-clip {
+  filter: drop-shadow(0 5px 6px rgba(20, 16, 12, 0.22));
 }
 
 #certifications .cert-print-frame {
@@ -6918,7 +7046,7 @@ nav.floating-nav.scrolled {
 
 /* ==========================================================================
    RESPONSIVE DESIGN: Tablet and Mobile Viewports (< 1024px)
-   Preserves exhibition wire + orange washi tape + natural certificate prints
+   Preserves exhibition wire + miniature gallery clips + natural hanging prints
    ========================================================================== */
 @media (max-width: 1023px) {
   #certifications .cert-hanging-cards-grid {
@@ -6935,16 +7063,16 @@ nav.floating-nav.scrolled {
 
 @media (max-width: 820px) {
   #certifications .cert-hanging-gallery {
-    padding-top: 12px;
-    padding-bottom: 18px;
+    padding-top: 22px;
+    padding-bottom: 22px;
   }
 
   #certifications .cert-hanging-cards-grid {
     flex-direction: column;
     align-items: center;
-    gap: 2.6rem;
+    gap: 3.1rem;
     max-width: 420px;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   /* Hide single horizontal rig in stacked mode; each item gets its own full-bleed row wire */
@@ -6959,39 +7087,39 @@ nav.floating-nav.scrolled {
     width: 100%;
     max-width: 365px;
     min-width: 0;
-    margin-top: 14px;
+    margin-top: 24px;
   }
 
   #certifications .cert-item-1,
   #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-1 {
-    transform: rotate(-0.65deg);
+    transform: rotate(-0.8deg);
   }
   #certifications .cert-item-2,
   #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-2 {
-    transform: rotate(0.45deg);
+    transform: rotate(0.5deg);
   }
   #certifications .cert-item-3,
   #certifications .cert-hanging-cards-grid.reveal.visible .cert-item-3 {
-    transform: rotate(-0.55deg);
+    transform: rotate(-0.65deg);
   }
 
-  /* Subtle continuous row wire passing behind each tape strip on mobile */
+  /* Subtle continuous row wire passing right through each clip's top hook on mobile */
   #certifications .hanging-cert-item::before {
     content: '';
     position: absolute;
-    top: -3px;
+    top: -23px;
     left: -14vw;
     right: -14vw;
     height: 1.2px;
-    background: linear-gradient(90deg, transparent 0%, rgba(74, 83, 98, 0.55) 18%, rgba(74, 83, 98, 0.78) 50%, rgba(74, 83, 98, 0.55) 82%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(74, 83, 98, 0.55) 18%, rgba(74, 83, 98, 0.80) 50%, rgba(74, 83, 98, 0.55) 82%, transparent 100%);
     box-shadow: 0 1px 1.5px rgba(18, 22, 32, 0.08);
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
   }
 
-  #certifications .cert-washi-tape {
-    top: -13px;
-    z-index: 10;
+  #certifications .cert-hanging-clip {
+    top: -32px;
+    z-index: 12;
   }
 
   .btn-close-modal {
@@ -7013,15 +7141,15 @@ nav.floating-nav.scrolled {
   #certifications .hanging-cert-item:hover,
   #certifications .cert-hanging-cards-grid.reveal .hanging-cert-item,
   #certifications .hanging-cert-card,
-  #certifications .cert-washi-tape {
+  #certifications .cert-hanging-clip {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
   }
 
-  #certifications .cert-hanging-cards-grid.reveal .cert-item-1 { transform: rotate(-0.95deg) !important; }
-  #certifications .cert-hanging-cards-grid.reveal .cert-item-2 { transform: rotate(0.38deg) !important; }
-  #certifications .cert-hanging-cards-grid.reveal .cert-item-3 { transform: rotate(0.88deg) !important; }
+  #certifications .cert-hanging-cards-grid.reveal .cert-item-1 { transform: rotate(-1.15deg) !important; }
+  #certifications .cert-hanging-cards-grid.reveal .cert-item-2 { transform: rotate(0.45deg) !important; }
+  #certifications .cert-hanging-cards-grid.reveal .cert-item-3 { transform: rotate(1.05deg) !important; }
 }
 
 @media (max-width: 480px) {
@@ -7032,9 +7160,10 @@ nav.floating-nav.scrolled {
     max-width: 336px;
   }
 
-  #certifications .cert-washi-1 { width: 48px; }
-  #certifications .cert-washi-2 { width: 50px; }
-  #certifications .cert-washi-3 { width: 47px; }
+  #certifications .cert-hanging-clip {
+    width: 30px;
+    height: 43px;
+  }
 }
 
 /* ==========================================================================
@@ -9502,92 +9631,111 @@ nav.floating-nav.scrolled {
    CONTACT SECTION ("Have an Idea? Let's Build Something Useful.")
    ========================================================================== */
 /* ==========================================================================
-   LET'S CONNECT — THE CREATIVE CONNECTION STUDIO
+   LET'S CONNECT — MODERN-VINTAGE CREATIVE CONNECTION STUDIO
    Preserves exact portfolio background (#FFF7EC via body var(--canvas))
-   Left Side: Creative Introduction + Headphones Stage + Direct Channels
-   Right Side: Organised Warm-Tinted Studio Contact Form
+   3-Column Desktop Layout: Left Intro | Center Hanging Handset | Right Form
+   Bottom: 3 Circular Icon Links (LinkedIn, GitHub, Email) + Coiled Orange Cord
    ========================================================================== */
 
 #contact.connect-scene-section,
 .connect-scene-section {
+  --ct-pad-top: clamp(3.6rem, 5vw, 4.75rem);
+  --ct-pad-bottom: clamp(3.5rem, 5.2vw, 4.9rem);
   position: relative;
   background: transparent;
-  padding: clamp(4.5rem, 6.5vw, 6.5rem) 0 clamp(4.5rem, 6.5vw, 6.25rem);
+  padding: var(--ct-pad-top) 0 var(--ct-pad-bottom);
   border-top: 1px solid rgba(16, 28, 53, 0.06);
   box-sizing: border-box;
   width: 100%;
-  overflow-x: clip;
+  overflow: hidden;
 }
 
 #contact .conn-editorial-container {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(1.1rem, 3.5vw, 2.5rem);
+  padding: 0 clamp(1.15rem, 3.5vw, 2.5rem);
   box-sizing: border-box;
 }
 
 #contact .conn-editorial-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-  gap: clamp(2.4rem, 4.8vw, 4.6rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.04fr) minmax(156px, 0.46fr) minmax(0, 1.12fr);
+  gap: clamp(1rem, 2.2vw, 2.15rem);
+  align-items: start;
   width: 100%;
 }
 
 /* Reveal entrance scoped gently */
 #contact .conn-col-left.reveal,
-#contact .conn-col-right.reveal {
+#contact .conn-col-center.reveal,
+#contact .conn-col-right.reveal,
+#contact .ct-other-ways.reveal {
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+#contact .conn-col-center.reveal {
+  transition-delay: 60ms;
+}
+
 #contact .conn-col-right.reveal {
-  transition-delay: 90ms;
+  transition-delay: 110ms;
+}
+
+#contact .ct-other-ways.reveal {
+  transition-delay: 150ms;
 }
 
 /* ==========================================================================
-   LEFT COLUMN: Intro + Headphones Showcase + Direct Connection Links
+   COLUMN 1 (LEFT): Editorial Introduction + Handwritten Note & Bridge Accents
    ========================================================================== */
 #contact .conn-col-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-top: clamp(0.85rem, 2.4vw, 2rem);
   width: 100%;
   min-width: 0;
 }
 
-/* A. Creative Introduction */
 #contact .conn-intro-block {
   width: 100%;
-  max-width: 485px;
+  max-width: 430px;
 }
 
 #contact .conn-eyebrow-text {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #D45132;
-  margin: 0 0 0.75rem;
+  color: #DF5234;
+  margin: 0 0 0.8rem;
 }
 
 #contact .conn-studio-heading {
-  margin: 0 0 0.9rem;
+  margin: 0 0 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.06em;
-  text-wrap: balance;
+  gap: 0.02em;
 }
 
 #contact .conn-heading-bold {
   display: block;
   font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(2.1rem, 3.5vw, 2.95rem);
+  font-size: clamp(2.85rem, 4.9vw, 4.1rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
   color: #101C35;
+}
+
+#contact .conn-heading-italic-wrap {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
 }
 
 #contact .conn-heading-italic {
@@ -9595,306 +9743,221 @@ nav.floating-nav.scrolled {
   font-family: 'Playfair Display', 'Fraunces', Georgia, serif;
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(2.15rem, 3.65vw, 3.05rem);
+  font-size: clamp(3.05rem, 5.25vw, 4.35rem);
   letter-spacing: -0.015em;
-  line-height: 1.15;
+  line-height: 1.05;
   color: #DF5234;
+}
+
+#contact .conn-heading-swash {
+  display: block;
+  width: min(176px, 56%);
+  height: auto;
+  margin-top: 0.14rem;
+  margin-left: 0.15rem;
+  pointer-events: none;
 }
 
 #contact .conn-intro-paragraph {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(0.95rem, 1.1vw, 1rem);
+  font-size: clamp(0.96rem, 1.08vw, 1.04rem);
   line-height: 1.65;
   color: rgba(16, 28, 53, 0.72);
-  max-width: 455px;
+  max-width: 390px;
   margin: 0;
 }
 
-/* B. Refined 3D Headphone Visual Centerpiece */
-#contact .conn-headphone-stage {
-  position: relative;
+#contact .conn-intro-strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: #101C35;
+}
+
+/* Handwritten-style script message + hand-drawn looping arrow + minimal bridge strokes */
+#contact .conn-handwritten-cue {
+  margin-top: clamp(1.55rem, 3.2vw, 2.65rem);
   width: 100%;
-  max-width: 390px;
-  min-height: 235px;
-  margin: 1.35rem 0 1.45rem;
+  max-width: 395px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding-left: 0.2rem;
+  user-select: none;
+}
+
+#contact .conn-cue-header {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+#contact .conn-script-note {
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.36rem, 1.7vw, 1.62rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #DF5234;
+  transform: rotate(-3deg);
+  display: flex;
+  flex-direction: column;
+}
+
+#contact .conn-mini-spark {
+  width: 18px;
+  height: 18px;
+  margin-top: -0.25rem;
+  flex-shrink: 0;
+}
+
+#contact .conn-cue-arrows-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.35rem;
+}
+
+#contact .conn-cue-arrow {
+  width: clamp(138px, 13.5vw, 178px);
+  height: auto;
+  margin-left: 0.6rem;
+  display: block;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+#contact .conn-bridge-strokes {
+  width: 64px;
+  height: auto;
+  display: block;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   COLUMN 2 (CENTER): Coiled Spring Wire + HD Vintage Black Telephone Receiver
+   ========================================================================== */
+#contact .conn-col-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: calc(-1 * var(--ct-pad-top));
+  min-width: 0;
+  z-index: 3;
+}
+
+#contact .ct-phone-stage {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0;
-}
-
-/* Soft coral + lavender local lighting aura matching #FFF7EC background */
-#contact .conn-headphone-halo {
-  position: absolute;
-  width: 260px;
-  height: 215px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 46% 45%,
-    rgba(250, 120, 82, 0.16) 0%,
-    rgba(244, 95, 160, 0.11) 36%,
-    rgba(140, 124, 246, 0.10) 60%,
-    transparent 76%
-  );
-  filter: blur(16px);
-  pointer-events: none;
-  z-index: 0;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
-}
-
-/* Restrained sound-wave decorative arcs */
-#contact .conn-soundwave-arcs {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  max-width: 350px;
-  margin: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.72;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+  max-width: 210px;
 }
 
-#contact .conn-headphone-figure {
+#contact .ct-phone-sway {
   position: relative;
   z-index: 2;
-  width: min(248px, 66vw);
-  animation: connHeadphoneFloat 6.4s ease-in-out infinite alternate;
+  width: clamp(122px, 10.2vw, 136px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 54.5% 0%;
+  animation: ctGentleSway 6.5s ease-in-out infinite alternate;
   will-change: transform;
 }
 
-#contact .conn-headphone-img {
+#contact .ct-cord-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  margin-bottom: -4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#contact .ct-handset-frame {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+#contact .ct-handset-img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
+  user-select: none;
   filter:
-    drop-shadow(0 16px 24px rgba(16, 28, 53, 0.14))
-    drop-shadow(0 4px 10px rgba(231, 115, 86, 0.14));
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.5s ease;
+    drop-shadow(0 18px 22px rgba(16, 28, 53, 0.22))
+    drop-shadow(0 5px 10px rgba(16, 28, 53, 0.12));
+  transition: filter 0.35s ease;
 }
 
-#contact .conn-headphone-shadow {
-  position: relative;
-  z-index: 1;
-  width: 152px;
-  height: 18px;
-  margin-top: 2px;
+#contact .ct-phone-stage:hover .ct-handset-img {
+  filter:
+    drop-shadow(0 22px 28px rgba(16, 28, 53, 0.25))
+    drop-shadow(0 8px 14px rgba(223, 82, 52, 0.10));
+}
+
+/* Radiating hand-drawn orange sound-effect strokes outside BOTH circular speakers */
+#contact .ct-sound-rays-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 3;
+}
+
+#contact .ct-rays-upper {
+  transform-origin: 0px 342px;
+  animation: ctSpeakerPulse 4.2s ease-in-out infinite;
+}
+
+#contact .ct-rays-lower {
+  transform-origin: 0px 1152px;
+  animation: ctSpeakerPulse 4.2s ease-in-out 1.4s infinite;
+}
+
+@keyframes ctSpeakerPulse {
+  0%, 100% { opacity: 0.48; transform: scale(0.95); }
+  50%      { opacity: 0.96; transform: scale(1.03); }
+}
+
+#contact .ct-handset-shadow {
+  width: 92px;
+  height: 13px;
+  margin-top: 6px;
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
     rgba(16, 28, 53, 0.16) 0%,
-    rgba(223, 82, 52, 0.08) 48%,
-    transparent 76%
+    rgba(16, 28, 53, 0.05) 55%,
+    transparent 78%
   );
   filter: blur(4px);
   pointer-events: none;
-  animation: connHeadphoneShadowPulse 6.4s ease-in-out infinite alternate;
+  animation: ctShadowDrift 6.5s ease-in-out infinite alternate;
 }
 
-#contact .conn-headphone-stage:hover .conn-headphone-halo {
-  transform: scale(1.07);
-  opacity: 0.95;
+@keyframes ctGentleSway {
+  0%   { transform: rotate(-0.85deg); }
+  100% { transform: rotate(0.95deg); }
 }
 
-#contact .conn-headphone-stage:hover .conn-soundwave-arcs {
-  opacity: 1;
-  transform: scale(1.03);
-}
-
-#contact .conn-headphone-stage:hover .conn-headphone-img {
-  transform: scale(1.03) translateY(-3px);
-  filter:
-    drop-shadow(0 20px 30px rgba(16, 28, 53, 0.17))
-    drop-shadow(0 6px 16px rgba(244, 95, 160, 0.16));
-}
-
-@keyframes connHeadphoneFloat {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
-}
-
-@keyframes connHeadphoneShadowPulse {
-  0%   { transform: scale(1); opacity: 0.95; }
-  100% { transform: scale(0.92); opacity: 0.72; }
-}
-
-/* C. Direct Connection Area */
-#contact .conn-direct-block {
-  width: 100%;
-  max-width: 475px;
-  padding-top: 1.1rem;
-  border-top: 1px solid rgba(16, 28, 53, 0.09);
-}
-
-#contact .conn-direct-heading {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #101C35;
-  margin: 0 0 0.35rem;
-}
-
-#contact .conn-direct-subcopy {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(16, 28, 53, 0.66);
-  margin: 0 0 0.9rem;
-}
-
-#contact .conn-channels-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  width: 100%;
-}
-
-#contact .conn-platforms-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  width: 100%;
-}
-
-#contact .conn-channel-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  min-height: 44px;
-  padding: 0.5rem 0.92rem;
-  border-radius: 13px;
-  background: rgba(255, 252, 248, 0.88);
-  border: 1px solid rgba(16, 28, 53, 0.10);
-  color: #101C35;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.87rem;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(16, 28, 53, 0.03);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s ease,
-              background-color 0.2s ease,
-              box-shadow 0.2s ease,
-              color 0.2s ease;
-}
-
-#contact .conn-channel-chip.is-email {
-  width: 100%;
-  justify-content: flex-start;
-  padding: 0.58rem 0.95rem;
-  border-color: rgba(244, 85, 52, 0.24);
-  background: rgba(255, 249, 244, 0.96);
-}
-
-#contact .conn-channel-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-#contact .icon-email {
-  background: rgba(244, 85, 52, 0.12);
-  color: #DF5234;
-}
-
-#contact .icon-linkedin {
-  background: rgba(37, 99, 235, 0.10);
-  color: #2563EB;
-}
-
-#contact .icon-github {
-  background: rgba(16, 28, 53, 0.08);
-  color: #101C35;
-}
-
-#contact .icon-resume {
-  background: rgba(245, 158, 11, 0.14);
-  color: #C25918;
-}
-
-#contact .conn-channel-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.55rem;
-  min-width: 0;
-  flex: 1;
-}
-
-#contact .conn-channel-label {
-  font-weight: 700;
-  color: #101C35;
-  white-space: nowrap;
-}
-
-#contact .conn-channel-chip.is-email .conn-channel-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #DF5234;
-}
-
-#contact .conn-channel-detail {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #101C35;
-  overflow-wrap: anywhere;
-}
-
-#contact .conn-channel-ext {
-  color: rgba(16, 28, 53, 0.45);
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-#contact .conn-channel-chip:hover,
-#contact .conn-channel-chip:focus-visible {
-  transform: translateY(-2px);
-  background: #FFFFFF;
-  box-shadow: 0 8px 18px -6px rgba(16, 28, 53, 0.11);
-  outline: none;
-}
-
-#contact .conn-channel-chip:focus-visible {
-  box-shadow: 0 0 0 3px rgba(244, 85, 52, 0.22);
-}
-
-#contact .conn-channel-chip.is-email:hover {
-  border-color: #FA5538;
-}
-
-#contact .conn-channel-chip.is-email:hover .conn-channel-ext {
-  color: #FA5538;
-  transform: translate(2px, -2px);
-}
-
-#contact .conn-channel-chip.is-linkedin:hover {
-  border-color: rgba(37, 99, 235, 0.35);
-}
-
-#contact .conn-channel-chip.is-github:hover {
-  border-color: rgba(16, 28, 53, 0.32);
-}
-
-#contact .conn-channel-chip.is-resume:hover {
-  border-color: rgba(244, 85, 52, 0.38);
+@keyframes ctShadowDrift {
+  0%   { transform: translateX(4px) scale(0.96); opacity: 0.88; }
+  100% { transform: translateX(-4px) scale(1); opacity: 1; }
 }
 
 /* ==========================================================================
-   RIGHT COLUMN: Refined Organised Contact Form Panel
+   COLUMN 3 (RIGHT): Softly Outlined Cream Contact Form Container
    ========================================================================== */
 #contact .conn-col-right {
   position: relative;
@@ -9905,12 +9968,13 @@ nav.floating-nav.scrolled {
 }
 
 #contact .conn-form-panel {
+  position: relative;
   background: #FDF0E4;
-  border: 1px solid rgba(224, 112, 82, 0.20);
+  border: 1px solid rgba(224, 112, 82, 0.22);
   border-radius: 24px;
-  padding: clamp(1.6rem, 3vw, 2.35rem);
+  padding: clamp(1.55rem, 2.7vw, 2.15rem) clamp(1.5rem, 2.6vw, 2.1rem) clamp(2.4rem, 3.2vw, 2.85rem);
   box-shadow:
-    0 14px 36px -10px rgba(180, 88, 56, 0.10),
+    0 16px 36px -12px rgba(166, 86, 56, 0.10),
     0 2px 6px rgba(16, 28, 53, 0.03);
   width: 100%;
   box-sizing: border-box;
@@ -9920,31 +9984,31 @@ nav.floating-nav.scrolled {
   display: flex;
   align-items: flex-start;
   gap: 0.9rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.35rem;
 }
 
 #contact .conn-panel-icon-circle {
   width: 42px;
   height: 42px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #FA5538 0%, #EC4879 100%);
+  border-radius: 50%;
+  background: #FA5538;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: 0.15rem;
-  box-shadow: 0 6px 14px -3px rgba(250, 85, 56, 0.32);
+  margin-top: 0.1rem;
+  box-shadow: 0 6px 14px -3px rgba(250, 85, 56, 0.34);
 }
 
 #contact .conn-panel-title-group {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
 }
 
 #contact .conn-panel-heading {
   font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.3rem, 1.9vw, 1.56rem);
+  font-size: clamp(1.22rem, 1.75vw, 1.44rem);
   font-weight: 800;
   color: #101C35;
   letter-spacing: -0.02em;
@@ -9954,7 +10018,7 @@ nav.floating-nav.scrolled {
 
 #contact .conn-panel-subcopy {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   line-height: 1.5;
   color: rgba(16, 28, 53, 0.66);
   margin: 0;
@@ -9963,7 +10027,7 @@ nav.floating-nav.scrolled {
 #contact .conn-panel-form {
   display: flex;
   flex-direction: column;
-  gap: 1.05rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -9978,6 +10042,7 @@ nav.floating-nav.scrolled {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
 }
 
 #contact .conn-label-row {
@@ -9985,7 +10050,7 @@ nav.floating-nav.scrolled {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.42rem;
+  margin-bottom: 0.4rem;
 }
 
 #contact .conn-label-row .conn-field-label {
@@ -9995,11 +10060,11 @@ nav.floating-nav.scrolled {
 #contact .conn-field-label {
   display: inline-block;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.79rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  color: #1E293B;
-  margin-bottom: 0.42rem;
+  color: #101C35;
+  margin-bottom: 0.4rem;
 }
 
 #contact .conn-req {
@@ -10015,7 +10080,7 @@ nav.floating-nav.scrolled {
 
 #contact .conn-field-icon {
   position: absolute;
-  left: 0.92rem;
+  left: 0.9rem;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -10026,13 +10091,13 @@ nav.floating-nav.scrolled {
 
 #contact .conn-input-ctrl {
   width: 100%;
-  height: 46px;
-  padding: 0 0.95rem 0 2.65rem;
+  height: 45px;
+  padding: 0 0.9rem 0 2.55rem;
   background: #FFFBF6;
-  border: 1px solid rgba(16, 28, 53, 0.14);
+  border: 1px solid rgba(16, 28, 53, 0.13);
   border-radius: 12px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.91rem;
   color: #101C35;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   outline: none;
@@ -10059,7 +10124,7 @@ nav.floating-nav.scrolled {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
-  padding-right: 2.4rem;
+  padding-right: 2.3rem;
 }
 
 #contact .conn-select-ctrl:invalid {
@@ -10068,7 +10133,7 @@ nav.floating-nav.scrolled {
 
 #contact .conn-select-chevron {
   position: absolute;
-  right: 0.95rem;
+  right: 0.9rem;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -10081,9 +10146,9 @@ nav.floating-nav.scrolled {
   position: relative;
   width: 100%;
   background: #FFFBF6;
-  border: 1px solid rgba(16, 28, 53, 0.14);
+  border: 1px solid rgba(16, 28, 53, 0.13);
   border-radius: 12px;
-  padding: 0.8rem 0.95rem 0.75rem 2.65rem;
+  padding: 0.78rem 0.9rem 0.75rem 2.55rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-sizing: border-box;
 }
@@ -10096,8 +10161,8 @@ nav.floating-nav.scrolled {
 
 #contact .conn-textarea-icon {
   position: absolute;
-  left: 0.92rem;
-  top: 0.9rem;
+  left: 0.9rem;
+  top: 0.88rem;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -10110,10 +10175,10 @@ nav.floating-nav.scrolled {
   border: none;
   background: transparent;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.91rem;
   color: #101C35;
   resize: vertical;
-  min-height: 98px;
+  min-height: 92px;
   outline: none;
   padding: 0;
   margin: 0;
@@ -10128,12 +10193,12 @@ nav.floating-nav.scrolled {
 #contact .conn-char-counter {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-variant-numeric: tabular-nums;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: rgba(16, 28, 53, 0.48);
 }
 
-/* Submit CTA Button */
+/* Navy Submit CTA Button + Small Orange Paper-Plane Icon */
 #contact .conn-submit-wrapper {
   position: relative;
   width: 100%;
@@ -10147,49 +10212,53 @@ nav.floating-nav.scrolled {
   height: 50px;
   padding: 0 1.4rem;
   border-radius: 14px;
-  background: linear-gradient(135deg, #FA5538 0%, #EE5D36 100%);
+  background: #101C35;
   color: #FFFFFF;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.97rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  border: none;
+  border: 1px solid rgba(16, 28, 53, 0.9);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.6rem;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.22s ease,
               box-shadow 0.22s ease,
               opacity 0.2s ease;
-  box-shadow: 0 8px 20px -4px rgba(250, 85, 56, 0.34);
+  box-shadow: 0 10px 22px -6px rgba(16, 28, 53, 0.28);
 }
 
 #contact .conn-submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #F04628 0%, #DF4B24 100%);
-  box-shadow: 0 12px 26px -4px rgba(250, 85, 56, 0.42);
+  background: #18294A;
+  box-shadow: 0 14px 26px -6px rgba(16, 28, 53, 0.34);
+}
+
+#contact .conn-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 #contact .conn-submit-btn:focus-visible {
-  outline: 2px solid #101C35;
+  outline: 2px solid #FA5538;
   outline-offset: 3px;
 }
 
 #contact .conn-submit-btn:disabled {
-  opacity: 0.72;
+  opacity: 0.74;
   cursor: wait;
 }
 
-#contact .conn-submit-arrow {
+#contact .conn-submit-plane {
   display: inline-flex;
   align-items: center;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#contact .conn-submit-btn:hover:not(:disabled) .conn-submit-arrow {
-  transform: translateX(3px);
+#contact .conn-submit-btn:hover:not(:disabled) .conn-submit-plane {
+  transform: translate(2px, -2px);
 }
 
 /* Status message */
@@ -10216,98 +10285,276 @@ nav.floating-nav.scrolled {
   padding: 0.8rem 1rem;
 }
 
+/* Handwritten reply timing note bottom-right of form */
+#contact .conn-reply-note {
+  position: absolute;
+  right: 1.45rem;
+  bottom: 0.65rem;
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.08;
+  text-align: right;
+  color: rgba(16, 28, 53, 0.56);
+  transform: rotate(-3deg);
+  pointer-events: none;
+  user-select: none;
+}
+
+#contact .conn-reply-highlight {
+  color: #DF5234;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   BOTTOM ROW: "Other ways to connect" — EXACTLY 3 Circular Icon Buttons
+   ========================================================================== */
+#contact .ct-other-ways {
+  margin: clamp(2.2rem, 3.8vw, 3.25rem) auto 0;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#contact .ct-ways-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+#contact .ct-ways-rule {
+  flex: 1;
+  max-width: 135px;
+  height: 1px;
+  background: rgba(16, 28, 53, 0.12);
+}
+
+#contact .ct-ways-heading {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(16, 28, 53, 0.68);
+  white-space: nowrap;
+}
+
+#contact .ct-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 3.8vw, 2.75rem);
+  flex-wrap: nowrap;
+}
+
+#contact .ct-social-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #101C35;
+  min-width: 56px;
+}
+
+#contact .ct-social-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #FDF4EA;
+  border: 1px solid rgba(16, 28, 53, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #101C35;
+  box-shadow: 0 6px 14px -6px rgba(16, 28, 53, 0.10);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.22s ease,
+              border-color 0.22s ease,
+              box-shadow 0.22s ease,
+              color 0.22s ease;
+}
+
+#contact .ct-social-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(16, 28, 53, 0.72);
+  transition: color 0.2s ease;
+}
+
+#contact .ct-social-item:hover .ct-social-circle,
+#contact .ct-social-item:focus-visible .ct-social-circle {
+  transform: translateY(-3px);
+  background: #FFFFFF;
+  border-color: rgba(250, 85, 56, 0.45);
+  color: #DF5234;
+  box-shadow: 0 12px 22px -8px rgba(223, 82, 52, 0.22);
+}
+
+#contact .ct-social-item.is-linkedin:hover .ct-social-circle,
+#contact .ct-social-item.is-linkedin:focus-visible .ct-social-circle {
+  color: #2563EB;
+  border-color: rgba(37, 99, 235, 0.42);
+  box-shadow: 0 12px 22px -8px rgba(37, 99, 235, 0.20);
+}
+
+#contact .ct-social-item:hover .ct-social-label,
+#contact .ct-social-item:focus-visible .ct-social-label {
+  color: #101C35;
+}
+
+#contact .ct-social-item:focus-visible {
+  outline: none;
+}
+
+#contact .ct-social-item:focus-visible .ct-social-circle {
+  outline: 2px solid #FA5538;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   BOTTOM DECORATIVE COILED ORANGE TELEPHONE WIRE
+   ========================================================================== */
+#contact .ct-bottom-wire-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: clamp(1.5rem, 2.6vw, 2.25rem);
+  pointer-events: none;
+  line-height: 0;
+}
+
+#contact .ct-bottom-wire-svg {
+  width: 100%;
+  height: 54px;
+  display: block;
+}
+
 /* ==========================================================================
    RESPONSIVE ADJUSTMENTS (#contact ONLY)
    ========================================================================== */
-@media (max-width: 1023px) and (min-width: 901px) {
+@media (max-width: 1060px) and (min-width: 901px) {
   #contact .conn-editorial-grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 2.1rem;
-    align-items: start;
+    grid-template-columns: minmax(0, 0.98fr) minmax(136px, 0.46fr) minmax(0, 1.14fr);
+    gap: 1rem;
   }
 
-  #contact .conn-headphone-stage {
-    min-height: 205px;
-    margin: 1.1rem 0 1.2rem;
+  #contact .ct-phone-sway {
+    width: 118px;
   }
 
-  #contact .conn-headphone-figure {
-    width: 215px;
+  #contact .conn-bridge-strokes {
+    display: none;
   }
 }
 
 @media (max-width: 900px) {
   #contact .conn-editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 2.35rem;
+    grid-template-columns: minmax(0, 1.12fr) minmax(108px, 0.56fr);
+    gap: 1.9rem 0.9rem;
+    align-items: start;
   }
 
   #contact .conn-col-left {
-    align-items: center;
-    text-align: center;
+    grid-column: 1;
+    padding-top: 0.25rem;
   }
 
-  #contact .conn-intro-paragraph {
-    margin-left: auto;
-    margin-right: auto;
+  #contact .conn-col-center {
+    grid-column: 2;
+    justify-self: center;
   }
 
-  #contact .conn-headphone-stage {
-    margin: 1.15rem auto 1.25rem;
-    min-height: 205px;
+  #contact .ct-phone-sway {
+    width: min(114px, 26vw);
   }
 
-  #contact .conn-headphone-figure {
-    width: min(225px, 60vw);
+  #contact .conn-bridge-strokes {
+    display: none;
   }
 
-  #contact .conn-direct-block {
-    max-width: 520px;
-    margin: 0 auto;
-    text-align: left;
+  #contact .conn-col-right {
+    grid-column: 1 / -1;
   }
 
-  #contact .conn-platforms-row {
-    justify-content: flex-start;
+  #contact .conn-handwritten-cue {
+    margin-top: 1.35rem;
   }
 
   #contact .conn-form-row-duo {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.95rem;
   }
 
   #contact .conn-form-panel {
-    padding: 1.55rem 1.25rem;
+    padding: 1.5rem 1.25rem 2.5rem;
     border-radius: 22px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
   #contact .conn-editorial-container {
     padding: 0 1rem;
   }
 
-  #contact .conn-platforms-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.45rem;
+  #contact .conn-editorial-grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(88px, 0.55fr);
+    gap: 1.6rem 0.5rem;
   }
 
-  #contact .conn-platforms-row .conn-channel-chip {
-    justify-content: center;
-    padding: 0.45rem 0.5rem;
-    gap: 0.4rem;
-    font-size: 0.81rem;
+  #contact .conn-heading-bold {
+    font-size: clamp(2.15rem, 9.2vw, 2.75rem);
   }
 
-  #contact .conn-platforms-row .conn-channel-icon {
-    width: 26px;
-    height: 26px;
+  #contact .conn-heading-italic {
+    font-size: clamp(2.3rem, 9.6vw, 2.9rem);
+  }
+
+  #contact .conn-handwritten-cue {
+    margin-top: 1rem;
+  }
+
+  #contact .conn-script-note {
+    font-size: 1.18rem;
+  }
+
+  #contact .conn-cue-arrow {
+    width: 108px;
+    margin-left: 0.25rem;
+  }
+
+  #contact .ct-phone-sway {
+    width: min(92px, 24vw);
   }
 
   #contact .conn-form-panel {
-    padding: 1.3rem 1rem;
+    padding: 1.35rem 1.05rem 2.45rem;
     border-radius: 20px;
+  }
+
+  #contact .conn-reply-note {
+    right: 1.1rem;
+    bottom: 0.6rem;
+    font-size: 0.96rem;
+  }
+
+  #contact .ct-social-row {
+    gap: 1.5rem;
+  }
+
+  #contact .ct-social-circle {
+    width: 48px;
+    height: 48px;
+  }
+
+  #contact .ct-bottom-wire-svg {
+    height: 44px;
   }
 
   /* Prevent mobile iOS Safari zoom on input focus */
@@ -10319,15 +10566,17 @@ nav.floating-nav.scrolled {
 
 @media (prefers-reduced-motion: reduce) {
   #contact .conn-col-left.reveal,
+  #contact .conn-col-center.reveal,
   #contact .conn-col-right.reveal,
-  #contact .conn-headphone-figure,
-  #contact .conn-headphone-shadow,
-  #contact .conn-headphone-halo,
-  #contact .conn-soundwave-arcs,
-  #contact .conn-headphone-img,
-  #contact .conn-channel-chip,
+  #contact .ct-other-ways.reveal,
+  #contact .ct-phone-sway,
+  #contact .ct-handset-shadow,
+  #contact .ct-handset-img,
+  #contact .ct-rays-upper,
+  #contact .ct-rays-lower,
+  #contact .ct-social-circle,
   #contact .conn-submit-btn,
-  #contact .conn-submit-arrow {
+  #contact .conn-submit-plane {
     animation: none !important;
     transition: none !important;
   }
@@ -26833,11 +27082,6 @@ video.cip-story-video {
 
   .gh-content-col {
     min-width: 0;
-  }
-
-  /* Contact (#contact) tablet alignment preserved cleanly in 2-col layout */
-  #contact .conn-direct-block {
-    max-width: 100%;
   }
 
   /* Footer Touch Targets (< 1024px) */

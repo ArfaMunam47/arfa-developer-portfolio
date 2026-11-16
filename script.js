@@ -526,7 +526,8 @@ function setupScrollReveal() {
 }
 
 /**
- * Functional contact form with validation, submission feedback, character counter, and email draft trigger
+ * Functional contact form with validation, backend email delivery to arfamunam01@gmail.com,
+ * character counter, and clean "Your message has been sent!" confirmation feedback.
  */
 function setupContactForm() {
   const form = document.getElementById('contact-form');
@@ -544,7 +545,52 @@ function setupContactForm() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  const defaultBtnHtml = `
+    <span class="conn-submit-plane" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </span>
+    <span>Send Message</span>
+  `;
+
+  async function sendViaStaticRelay(payload) {
+    const res = await fetch('https://formsubmit.co/ajax/arfamunam01@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        _replyto: payload.email,
+        project_type: payload.subject,
+        _subject: `Portfolio Message: ${payload.subject} — from ${payload.name}`,
+        message: payload.message,
+        _template: 'table',
+        _captcha: 'false',
+      }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && (data.success === true || data.success === 'true')) {
+      return { ok: true, message: 'Your message has been sent!' };
+    }
+    if (typeof data.message === 'string' && data.message.toLowerCase().includes('activation')) {
+      return {
+        ok: false,
+        message: 'One-time email activation required: please check arfamunam01@gmail.com and click the activation link once, then resend.',
+      };
+    }
+    return {
+      ok: false,
+      message: data.message || 'Unable to send your message right now. Please try again or email arfamunam01@gmail.com directly.',
+    };
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = form.elements['name']?.value.trim();
@@ -564,34 +610,54 @@ function setupContactForm() {
       return;
     }
 
-    const defaultBtnHtml = `
-      <span>Let's Start a Conversation</span>
-      <span class="conn-submit-arrow" aria-hidden="true">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"/>
-          <polyline points="12 5 19 12 12 19"/>
-        </svg>
-      </span>
-    `;
-
-    // Loading state
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Preparing your message...</span>`;
+    submitBtn.innerHTML = `<span>Sending message...</span>`;
 
-    setTimeout(() => {
-      // Create mailto link as reliable direct email dispatch
-      const mailtoUrl = `mailto:arfamunam01@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`)}`;
-      
-      showMessage(`Thank you, ${name}. Your email app is opening with your drafted note — or reach out directly at arfamunam01@gmail.com.`, 'success');
+    const payload = { name, email, subject, message };
 
-      form.reset();
-      if (charCurr) charCurr.textContent = '0';
+    try {
+      let result = null;
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const contentType = response.headers.get('content-type') || '';
+        if (response.status === 404 || response.status === 405 || !contentType.includes('application/json')) {
+          result = await sendViaStaticRelay(payload);
+        } else {
+          const data = await response.json().catch(() => ({}));
+          result = {
+            ok: Boolean(response.ok && data.ok),
+            message: data.message || (response.ok ? 'Your message has been sent!' : 'Unable to send your message right now.'),
+          };
+        }
+      } catch (_apiErr) {
+        result = await sendViaStaticRelay(payload);
+      }
+
+      if (result && result.ok) {
+        showMessage(`Your message has been sent! Thank you, ${name} — I will get back to you soon.`, 'success');
+        form.reset();
+        if (charCurr) charCurr.textContent = '0';
+      } else {
+        showMessage(
+          (result && result.message) || 'Unable to send your message right now. Please try again or email arfamunam01@gmail.com directly.',
+          'error'
+        );
+      }
+    } catch (_err) {
+      showMessage('Network error while sending your message. Please check your connection and try again.', 'error');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = defaultBtnHtml;
-
-      // Trigger mail client safely
-      window.location.href = mailtoUrl;
-    }, 500);
+    }
   });
 
   function showMessage(text, type) {
@@ -641,108 +707,291 @@ function setupBackToTop() {
  */
 
 /**
- * Bespoke Precision Cursor — 2026 Fluid Luminous Orbital Edition
- * Coordinates precision dot, responsive magnetic follower, and ambient trailing flare.
+ * Signature Global Custom Cursor — Editorial Precision Edition
+ * Zero-lag inner orange dot + smooth lerp gradient trailing ring + subtle click ripple.
+ * Yields cleanly to native I-beam text inputs, text selection, and the project showcase.
  */
 function setupBespokeCursor() {
   const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-follower');
   const flare = document.getElementById('cursor-flare');
 
-  // Guard against touch devices and users preferring reduced motion
   if (!dot || !ring) return;
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (isTouchDevice || prefersReducedMotion || window.innerWidth < 992) {
-    dot.style.display = 'none';
-    ring.style.display = 'none';
-    if (flare) flare.style.display = 'none';
-    return;
-  }
+  const coarseQuery = window.matchMedia('(pointer: coarse)');
+  const noHoverQuery = window.matchMedia('(any-hover: none)');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const isDisabledViewport = () =>
+    coarseQuery.matches ||
+    noHoverQuery.matches ||
+    motionQuery.matches ||
+    window.innerWidth < 992;
+
+  // Areas where custom cursor cleanly yields to native or dedicated showcase interactions
+  const EXCLUDED_SELECTOR = '#projects-showcase-gallery, #welcome-video-intro, #creative-intro-cover, .outro-cinema-stage';
+  const TEXT_INPUT_SELECTOR = 'input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="submit"]):not([type="button"]):not([type="reset"]), textarea, select, option, [contenteditable="true"], [role="textbox"]';
+  const PORTRAIT_SELECTOR = '#hero-portrait-cutout-frame';
+  const BUTTON_SELECTOR = 'button, [role="button"], input[type="submit"], input[type="button"], input[type="reset"], .btn-hero-primary, .btn-hero-secondary, .btn-hero-outline, .btn-nav-cta, .btn-nav-resume, .connect-submit-btn, .contact-submit-btn, .explore-tab-pill, .mockup-tab-pill, .showcase-tab-btn, .progress-indicator-pill';
+  const LINK_SELECTOR = 'a, .nav-link, .f-nav-link, .nav-brand, .social-circle-link, .glass-social-orb, .footer-social-link, .services-contact-link, .gallery-bridge-link, .gh-profile-link';
+  const CARD_SELECTOR = '.project-card, .certificate-card, .cert-hanging-card, .metric-card-pill, .service-box, .feature-row-item, .clay-tile, .skills-card-3d, .pipeline-node, .dev-path-node, .sc-secondary-card, .ap-card, .testimonial-card, .gh-stat-card, .gh-repo-card, .serv-item, .mini-skill-chip, .prompt-skill-pill, .console-feature-cell, .bottom-bar-center-node, .f3d-item, .hero-role-pill, .sc-indicator-step, .sc-tech-chip';
+
+  const STATE_CLASSES = ['cursor-btn', 'cursor-link', 'cursor-card', 'cursor-portrait-hover'];
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let ringX = mouseX;
   let ringY = mouseY;
-  let flareX = mouseX;
-  let flareY = mouseY;
   let isVisible = false;
+  let isTouchMode = false;
+  let isPressed = false;
+  let isSelectingText = false;
+  let activeState = 'default';
+  let lastTarget = null;
+  let rafId = null;
 
-  window.addEventListener('mousemove', (e) => {
+  function syncVisibilityState() {
+    const disabled = isDisabledViewport() || isTouchMode;
+    const hideAll = disabled || !isVisible;
+    const hiddenByYield = activeState === 'excluded' || activeState === 'text-input' || isSelectingText;
+
+    if (disabled) {
+      dot.style.display = 'none';
+      ring.style.display = 'none';
+      if (flare) flare.style.display = 'none';
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      return;
+    }
+
+    dot.style.display = '';
+    ring.style.display = '';
+    if (flare) flare.style.display = '';
+
+    dot.style.opacity = hideAll ? '0' : '1';
+    ring.style.opacity = hideAll ? '0' : '1';
+
+    dot.classList.toggle('cursor-hidden-state', hiddenByYield);
+    ring.classList.toggle('cursor-hidden-state', hiddenByYield);
+    if (flare) flare.classList.toggle('cursor-hidden-state', hiddenByYield);
+  }
+
+  function applyCursorTransforms() {
+    const dotScale = isPressed ? 0.78 : (activeState === 'portrait' ? 1.15 : 1);
+    const ringScale = isPressed ? 0.84 : 1;
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(${dotScale})`;
+    ring.style.transform = `translate3d(${ringX.toFixed(2)}px, ${ringY.toFixed(2)}px, 0) scale(${ringScale})`;
+  }
+
+  function renderCursorPhysics() {
+    if (isDisabledViewport() || isTouchMode || !isVisible) {
+      rafId = null;
+      return;
+    }
+
+    const dx = mouseX - ringX;
+    const dy = mouseY - ringY;
+    const settled = Math.abs(dx) < 0.08 && Math.abs(dy) < 0.08;
+
+    if (settled) {
+      ringX = mouseX;
+      ringY = mouseY;
+    } else {
+      ringX += dx * 0.19;
+      ringY += dy * 0.19;
+    }
+
+    const ringScale = isPressed ? 0.84 : 1;
+    ring.style.transform = `translate3d(${ringX.toFixed(2)}px, ${ringY.toFixed(2)}px, 0) scale(${ringScale})`;
+
+    if (!settled) {
+      rafId = requestAnimationFrame(renderCursorPhysics);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function ensureLoop() {
+    if (!rafId && !isDisabledViewport() && !isTouchMode && isVisible) {
+      rafId = requestAnimationFrame(renderCursorPhysics);
+    }
+  }
+
+  function resolveTargetState(target) {
+    if (!target || typeof target.closest !== 'function') return 'default';
+    if (target.closest(EXCLUDED_SELECTOR)) return 'excluded';
+    if (target.closest(TEXT_INPUT_SELECTOR)) return 'text-input';
+    if (target.closest(PORTRAIT_SELECTOR)) return 'portrait';
+    if (target.closest(BUTTON_SELECTOR)) return 'btn';
+    if (target.closest(LINK_SELECTOR)) return 'link';
+    if (target.closest(CARD_SELECTOR)) return 'card';
+    return 'default';
+  }
+
+  function setHoverState(nextState) {
+    if (nextState === activeState) return;
+    activeState = nextState;
+
+    STATE_CLASSES.forEach((cls) => {
+      dot.classList.remove(cls);
+      ring.classList.remove(cls);
+    });
+
+    if (nextState === 'btn') {
+      dot.classList.add('cursor-btn');
+      ring.classList.add('cursor-btn');
+    } else if (nextState === 'link') {
+      dot.classList.add('cursor-link');
+      ring.classList.add('cursor-link');
+    } else if (nextState === 'card') {
+      dot.classList.add('cursor-card');
+      ring.classList.add('cursor-card');
+    } else if (nextState === 'portrait') {
+      dot.classList.add('cursor-portrait-hover');
+      ring.classList.add('cursor-portrait-hover');
+    }
+
+    syncVisibilityState();
+  }
+
+  function handlePointerMove(e) {
+    if (e.pointerType && e.pointerType !== 'mouse') {
+      isTouchMode = true;
+      syncVisibilityState();
+      return;
+    }
+
+    if (isDisabledViewport()) {
+      syncVisibilityState();
+      return;
+    }
+
+    isTouchMode = false;
     mouseX = e.clientX;
     mouseY = e.clientY;
 
     if (!isVisible) {
+      ringX = mouseX;
+      ringY = mouseY;
       isVisible = true;
-      dot.style.opacity = '1';
-      ring.style.opacity = '1';
-      if (flare) flare.style.opacity = '1';
     }
 
-    // Direct translate for precision dot
-    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    if (e.target !== lastTarget) {
+      lastTarget = e.target;
+      setHoverState(resolveTargetState(lastTarget));
+    }
+
+    syncVisibilityState();
+    applyCursorTransforms();
+    ensureLoop();
+  }
+
+  function triggerClickPulse() {
+    if (!flare || isDisabledViewport() || isTouchMode || !isVisible) return;
+    if (activeState === 'excluded' || activeState === 'text-input' || isSelectingText) return;
+    flare.style.setProperty('--spark-x', `${mouseX}px`);
+    flare.style.setProperty('--spark-y', `${mouseY}px`);
+    flare.classList.remove('is-spark-pulse');
+    void flare.offsetWidth;
+    flare.classList.add('is-spark-pulse');
+  }
+
+  // Primary pointer tracking
+  if ('PointerEvent' in window) {
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerdown', (e) => {
+      if (e.pointerType && e.pointerType !== 'mouse') {
+        isTouchMode = true;
+        syncVisibilityState();
+        return;
+      }
+      if (e.button !== 0 || isDisabledViewport()) return;
+      isPressed = true;
+      ring.classList.add('cursor-press');
+      dot.classList.add('cursor-press');
+      applyCursorTransforms();
+      triggerClickPulse();
+    }, { passive: true });
+    window.addEventListener('pointerup', () => {
+      if (!isPressed) return;
+      isPressed = false;
+      ring.classList.remove('cursor-press');
+      dot.classList.remove('cursor-press');
+      applyCursorTransforms();
+    }, { passive: true });
+  } else {
+    window.addEventListener('mousemove', handlePointerMove, { passive: true });
+    window.addEventListener('mousedown', (e) => {
+      if (e.button !== 0 || isDisabledViewport()) return;
+      isPressed = true;
+      ring.classList.add('cursor-press');
+      dot.classList.add('cursor-press');
+      applyCursorTransforms();
+      triggerClickPulse();
+    }, { passive: true });
+    window.addEventListener('mouseup', () => {
+      if (!isPressed) return;
+      isPressed = false;
+      ring.classList.remove('cursor-press');
+      dot.classList.remove('cursor-press');
+      applyCursorTransforms();
+    }, { passive: true });
+  }
+
+  // Yield smoothly during active non-collapsed text selection so copy/paste stays crisp
+  document.addEventListener('selectionchange', () => {
+    const sel = window.getSelection ? window.getSelection() : null;
+    const nextSelecting = Boolean(sel && !sel.isCollapsed && sel.toString().trim().length > 0 && isPressed);
+    if (nextSelecting !== isSelectingText) {
+      isSelectingText = nextSelecting;
+      syncVisibilityState();
+    }
+  });
+
+  // Reset selection fade on pointer up
+  window.addEventListener('pointerup', () => {
+    if (isSelectingText) {
+      isSelectingText = false;
+      syncVisibilityState();
+    }
   }, { passive: true });
 
-  window.addEventListener('mouseleave', () => {
+  // Hide gracefully when leaving window, losing focus, or switching tabs
+  const hideCursor = () => {
     isVisible = false;
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-    if (flare) flare.style.opacity = '0';
-  });
-
-  window.addEventListener('mouseenter', () => {
-    isVisible = true;
-    dot.style.opacity = '1';
-    ring.style.opacity = '1';
-    if (flare) flare.style.opacity = '1';
-  });
-
-  // Smooth trailing physics for ring and ambient light flare
-  function renderCursorPhysics() {
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-
-    if (flare) {
-      flareX += (mouseX - flareX) * 0.08;
-      flareY += (mouseY - flareY) * 0.08;
-      flare.style.transform = `translate3d(${flareX}px, ${flareY}px, 0)`;
-    }
-
-    requestAnimationFrame(renderCursorPhysics);
-  }
-  requestAnimationFrame(renderCursorPhysics);
-
-  // Tactile press response
-  window.addEventListener('mousedown', () => {
-    ring.classList.add('cursor-press');
-    dot.classList.add('cursor-press');
-  });
-
-  window.addEventListener('mouseup', () => {
+    isPressed = false;
+    isSelectingText = false;
+    lastTarget = null;
     ring.classList.remove('cursor-press');
     dot.classList.remove('cursor-press');
+    syncVisibilityState();
+  };
+
+  document.addEventListener('mouseleave', hideCursor);
+  window.addEventListener('blur', hideCursor);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) hideCursor();
   });
 
-  // Hover target enhancement with fluid scale and tactile trigger
-  const interactiveSelector = 'a, button, input, textarea, [role="button"], .clay-tile, .pipeline-node, .prompt-skill-pill, .skill-platform, .project-card, .certificate-card, .metric-card-pill, .service-box, .mockup-tab-pill, .explore-tab-pill, .f-nav-link, .glass-social-orb, .console-feature-cell, .bottom-bar-center-node, .f3d-item, .hero-role-pill, .dev-path-node, .sc-secondary-card, .sc-indicator-step, .sc-tech-chip';
-
-  document.addEventListener('mouseover', (e) => {
-    const target = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
-    if (target) {
-      ring.classList.add('cursor-hover');
-      dot.classList.add('cursor-hover');
-    }
+  // Disable cleanly on touch interactions or responsive breakpoints
+  window.addEventListener('touchstart', () => {
+    isTouchMode = true;
+    hideCursor();
   }, { passive: true });
 
-  document.addEventListener('mouseout', (e) => {
-    const target = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
-    if (target) {
-      ring.classList.remove('cursor-hover');
-      dot.classList.remove('cursor-hover');
-    }
+  window.addEventListener('resize', () => {
+    syncVisibilityState();
   }, { passive: true });
+
+  [coarseQuery, noHoverQuery, motionQuery].forEach((mq) => {
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', syncVisibilityState);
+    }
+  });
+
+  syncVisibilityState();
 }
 
 /**
@@ -2139,7 +2388,7 @@ function setupCertificatesGallery() {
     });
   });
 
-  // Dynamic Catenary Wire Alignment behind matte orange washi tape strips
+  // Dynamic Catenary Wire Alignment threading cleanly through all 3 hanging clip hooks
   const wireRig = document.getElementById('cert-wire-rig');
   const wireSvg = document.getElementById('cert-wire-svg');
   const wireMain = document.getElementById('cert-wire-main');
@@ -2154,21 +2403,20 @@ function setupCertificatesGallery() {
     const rigWidth = Math.round(wireRig.clientWidth || wireRig.getBoundingClientRect().width);
     if (rigWidth <= 0) return;
 
-    const tapes = section.querySelectorAll('.cert-washi-tape');
-    if (tapes.length < 3 || items.length < 3) return;
+    const clips = section.querySelectorAll('.cert-hanging-clip');
+    if (clips.length < 3 || items.length < 3) return;
 
-    const h = 52;
+    const h = 58;
     const gridOffsetTop = cardsGrid.offsetTop;
     const gridOffsetLeft = cardsGrid.offsetLeft;
     const rigOffsetTop = wireRig.offsetTop;
 
-    // Use CSS layout offsetTop so entrance translateY animations never skew resting wire coords
-    // Wire crosses horizontally inside the tape at ~11px below tape top (-13px + 11px = -2px relative to item top)
-    const getTapeWireY = (item, tape) => (gridOffsetTop + item.offsetTop + tape.offsetTop + 11) - rigOffsetTop;
+    // Wire threads directly through the top hook saddle of each clip (~8.5px below clip top)
+    const getClipWireY = (item, clip) => (gridOffsetTop + item.offsetTop + clip.offsetTop + 8.5) - rigOffsetTop;
 
-    const yLeft = getTapeWireY(items[0], tapes[0]);
-    const yMid = getTapeWireY(items[1], tapes[1]);
-    const yRight = getTapeWireY(items[2], tapes[2]);
+    const yLeft = getClipWireY(items[0], clips[0]);
+    const yMid = getClipWireY(items[1], clips[1]);
+    const yRight = getClipWireY(items[2], clips[2]);
     const ySide = (yLeft + yRight) / 2;
 
     const xSide = gridOffsetLeft + items[0].offsetLeft + (items[0].offsetWidth / 2);

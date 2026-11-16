@@ -2842,13 +2842,13 @@
       
       <!-- Continuous Suspended Wire Rig across exhibition width -->
       <div class="cert-hanging-wire-rig" id="cert-wire-rig" aria-hidden="true">
-        <svg class="cert-fullwidth-wire-svg" id="cert-wire-svg" viewBox="0 0 1400 52" preserveAspectRatio="none">
+        <svg class="cert-fullwidth-wire-svg" id="cert-wire-svg" viewBox="0 0 1400 58" preserveAspectRatio="none">
           <!-- Subtle wall ambient shadow below the wire -->
-          <path id="cert-wire-shadow" d="M 0,14 Q 700,32 1400,14" class="wire-shadow-stroke" />
+          <path id="cert-wire-shadow" d="M 0,14 Q 700,34 1400,14" class="wire-shadow-stroke" />
           <!-- Delicate physical exhibition wire -->
-          <path id="cert-wire-main" d="M 0,13 Q 700,31 1400,13" class="wire-main-stroke" />
+          <path id="cert-wire-main" d="M 0,13 Q 700,33 1400,13" class="wire-main-stroke" />
           <!-- Faint metallic top edge sheen -->
-          <path id="cert-wire-highlight" d="M 0,12.5 Q 700,30.5 1400,12.5" class="wire-highlight-stroke" />
+          <path id="cert-wire-highlight" d="M 0,12.5 Q 700,32.5 1400,12.5" class="wire-highlight-stroke" />
         </svg>
       </div>
 
@@ -2857,30 +2857,54 @@
         
         <!-- CERTIFICATE 01: Left Certificate Print -->
         <div class="hanging-cert-item cert-item-1" data-cert="1">
-          <!-- Matte Torn-Edge Orange Washi Tape: Left Variation -->
-          <div class="cert-washi-tape cert-washi-1" aria-hidden="true">
-            <svg class="cert-washi-svg" viewBox="0 0 56 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Realistic Miniature Metallic Gallery Clip: Left Variation -->
+          <div class="cert-hanging-clip cert-clip-1" aria-hidden="true">
+            <svg class="cert-clip-svg" viewBox="0 0 36 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="washiTone1" x1="0" y1="2" x2="54" y2="24" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#F5855A" stop-opacity="0.91"/>
-                  <stop offset="48%" stop-color="#EE7247" stop-opacity="0.93"/>
-                  <stop offset="100%" stop-color="#E6663B" stop-opacity="0.90"/>
+                <linearGradient id="clipJawBrass1" x1="7" y1="28" x2="29" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#E7C996"/>
+                  <stop offset="32%" stop-color="#C89B58"/>
+                  <stop offset="68%" stop-color="#9A6D33"/>
+                  <stop offset="100%" stop-color="#764F20"/>
                 </linearGradient>
-                <linearGradient id="washiSheen1" x1="0" y1="0" x2="0" y2="26" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
-                  <stop offset="42%" stop-color="#FFFFFF" stop-opacity="0.03"/>
-                  <stop offset="70%" stop-color="#000000" stop-opacity="0.04"/>
-                  <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+                <linearGradient id="clipJawSheen1" x1="18" y1="27" x2="18" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFF5DF" stop-opacity="0.7"/>
+                  <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+                  <stop offset="82%" stop-color="#1A1008" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#0F0904" stop-opacity="0.38"/>
+                </linearGradient>
+                <linearGradient id="clipBarrel1" x1="9" y1="26" x2="27" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#755022"/>
+                  <stop offset="30%" stop-color="#DFBC82"/>
+                  <stop offset="55%" stop-color="#F7E4BD"/>
+                  <stop offset="80%" stop-color="#AE7D3F"/>
+                  <stop offset="100%" stop-color="#69451A"/>
                 </linearGradient>
               </defs>
-              <!-- Wire crease highlight inside tape where wire runs horizontally behind -->
-              <path d="M2.2 2.4 L18 2.1 L35 2.5 L53.4 2.1 L52.1 5.6 L53.8 8.7 L51.9 12.1 L53.6 15.8 L52.2 19.2 L53.5 23.4 L37 23.8 L19 23.3 L2.6 23.8 L3.9 19.6 L1.8 16.2 L3.7 12.4 L1.9 8.8 L3.6 5.3 Z" fill="url(#washiTone1)"/>
-              <path d="M2.2 2.4 L18 2.1 L35 2.5 L53.4 2.1 L52.1 5.6 L53.8 8.7 L51.9 12.1 L53.6 15.8 L52.2 19.2 L53.5 23.4 L37 23.8 L19 23.3 L2.6 23.8 L3.9 19.6 L1.8 16.2 L3.7 12.4 L1.9 8.8 L3.6 5.3 Z" fill="url(#washiSheen1)"/>
-              <!-- Faint wire impression ridge across upper tape -->
-              <path d="M3.2 11.4 Q28 11.9 52.8 11.3" stroke="rgba(130, 44, 18, 0.20)" stroke-width="1.05" stroke-linecap="round"/>
-              <path d="M3.2 10.6 Q28 11.1 52.8 10.5" stroke="rgba(255, 240, 230, 0.36)" stroke-width="0.6" stroke-linecap="round"/>
-              <!-- Subtle washi paper fibers -->
-              <path d="M10 6.5 L21 6.2 M32 18.2 L45 18.5 M14 19.5 L24 19.1" stroke="rgba(255, 247, 236, 0.24)" stroke-width="0.55" stroke-linecap="round"/>
+              <!-- Soft shadow cast by jaw onto top white certificate paper -->
+              <path d="M8.5 42.5 C12 45 24 45 27.5 42.5 L28 45.2 C24 47.4 12 47.4 8 45.2 Z" fill="rgba(16, 20, 32, 0.20)"/>
+              <!-- Top S-hook / clasp seated over hanging wire at y = 9 -->
+              <path d="M18 15.5 L18 11.2 C18 7.5 21.8 6.4 22.3 9.2 C22.5 10.6 21.4 11.5 20 11.6" stroke="#475569" stroke-width="1.9" stroke-linecap="round"/>
+              <path d="M13.6 9.3 C13.6 5.2 22.4 5.2 22.4 9.3" stroke="#334155" stroke-width="2.1" stroke-linecap="round"/>
+              <path d="M14.3 8.1 C15.4 6.1 20.5 6.0 21.6 7.9" stroke="#E2E8F0" stroke-width="0.75" stroke-linecap="round"/>
+              <!-- Brass collar connecting hook to spring wire arms -->
+              <rect x="15.2" y="13.5" width="5.6" height="4.2" rx="1.6" fill="url(#clipBarrel1)" stroke="#5E3E17" stroke-width="0.6"/>
+              <!-- Twin sculpted steel spring wire pinch handles -->
+              <path d="M16.2 17.5 C12.4 20.4 11.8 23.8 13.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M19.8 17.5 C23.6 20.4 24.2 23.8 22.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M16.0 18.2 C13.1 20.6 12.6 23.4 13.8 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M20.0 18.2 C22.9 20.6 23.4 23.4 22.2 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <!-- Back jaw subtle edge behind paper shoulder -->
+              <path d="M10 27.5 L26 27.5 L27 33.5 L9 33.5 Z" fill="#5D3E19"/>
+              <!-- Cylindrical spring hinge barrel -->
+              <rect x="8.8" y="25.8" width="18.4" height="4.4" rx="2.2" fill="url(#clipBarrel1)" stroke="#5B3B15" stroke-width="0.65"/>
+              <!-- Main front brushed-brass clamping jaw gripping top paper edge -->
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawBrass1)" stroke="#68451B" stroke-width="0.7"/>
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawSheen1)"/>
+              <!-- Precision hinge rivet & tactile grip ridges -->
+              <circle cx="18" cy="34.2" r="1.45" fill="#704B1E" stroke="#F7E4BD" stroke-width="0.55"/>
+              <line x1="10.2" y1="39.2" x2="25.8" y2="39.2" stroke="rgba(90, 56, 18, 0.45)" stroke-width="0.8" stroke-linecap="round"/>
+              <line x1="9.8" y1="41.2" x2="26.2" y2="41.2" stroke="rgba(255, 244, 214, 0.45)" stroke-width="0.7" stroke-linecap="round"/>
             </svg>
           </div>
 
@@ -2898,27 +2922,46 @@
 
         <!-- CERTIFICATE 02: Center Certificate Print -->
         <div class="hanging-cert-item cert-item-2" data-cert="2">
-          <!-- Matte Torn-Edge Orange Washi Tape: Center Variation -->
-          <div class="cert-washi-tape cert-washi-2" aria-hidden="true">
-            <svg class="cert-washi-svg" viewBox="0 0 58 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Realistic Miniature Metallic Gallery Clip: Center Variation -->
+          <div class="cert-hanging-clip cert-clip-2" aria-hidden="true">
+            <svg class="cert-clip-svg" viewBox="0 0 36 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="washiTone2" x1="0" y1="3" x2="56" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#F27E52" stop-opacity="0.92"/>
-                  <stop offset="52%" stop-color="#EB6C40" stop-opacity="0.94"/>
-                  <stop offset="100%" stop-color="#F4865C" stop-opacity="0.91"/>
+                <linearGradient id="clipJawBrass2" x1="7" y1="28" x2="29" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#EACFA0"/>
+                  <stop offset="34%" stop-color="#CA9D5B"/>
+                  <stop offset="70%" stop-color="#9B6E34"/>
+                  <stop offset="100%" stop-color="#744D1E"/>
                 </linearGradient>
-                <linearGradient id="washiSheen2" x1="0" y1="0" x2="0" y2="26" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>
-                  <stop offset="46%" stop-color="#FFFFFF" stop-opacity="0.02"/>
-                  <stop offset="72%" stop-color="#000000" stop-opacity="0.045"/>
-                  <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+                <linearGradient id="clipJawSheen2" x1="18" y1="27" x2="18" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFF5DF" stop-opacity="0.72"/>
+                  <stop offset="36%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+                  <stop offset="82%" stop-color="#1A1008" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#0F0904" stop-opacity="0.38"/>
+                </linearGradient>
+                <linearGradient id="clipBarrel2" x1="9" y1="26" x2="27" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#744F21"/>
+                  <stop offset="30%" stop-color="#E2BF86"/>
+                  <stop offset="55%" stop-color="#F8E7C3"/>
+                  <stop offset="80%" stop-color="#B08041"/>
+                  <stop offset="100%" stop-color="#684419"/>
                 </linearGradient>
               </defs>
-              <path d="M1.8 2.2 L21 2.6 L40 2.0 L56.0 2.5 L54.4 6.1 L56.4 9.5 L54.5 13.0 L56.1 16.5 L54.2 19.9 L55.8 23.6 L38 23.2 L18 23.8 L2.1 23.4 L3.5 19.4 L1.7 15.6 L3.6 11.9 L1.9 8.2 L3.4 4.9 Z" fill="url(#washiTone2)"/>
-              <path d="M1.8 2.2 L21 2.6 L40 2.0 L56.0 2.5 L54.4 6.1 L56.4 9.5 L54.5 13.0 L56.1 16.5 L54.2 19.9 L55.8 23.6 L38 23.2 L18 23.8 L2.1 23.4 L3.5 19.4 L1.7 15.6 L3.6 11.9 L1.9 8.2 L3.4 4.9 Z" fill="url(#washiSheen2)"/>
-              <path d="M3.0 11.3 Q29 11.8 54.8 11.3" stroke="rgba(130, 44, 18, 0.21)" stroke-width="1.05" stroke-linecap="round"/>
-              <path d="M3.0 10.5 Q29 11.0 54.8 10.5" stroke="rgba(255, 240, 230, 0.36)" stroke-width="0.6" stroke-linecap="round"/>
-              <path d="M12 5.9 L26 6.2 M36 18.8 L49 18.4 M8 17.6 L18 17.9" stroke="rgba(255, 247, 236, 0.24)" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M8.5 42.5 C12 45 24 45 27.5 42.5 L28 45.2 C24 47.4 12 47.4 8 45.2 Z" fill="rgba(16, 20, 32, 0.20)"/>
+              <path d="M18 15.5 L18 11.2 C18 7.5 21.8 6.4 22.3 9.2 C22.5 10.6 21.4 11.5 20 11.6" stroke="#475569" stroke-width="1.9" stroke-linecap="round"/>
+              <path d="M13.6 9.3 C13.6 5.2 22.4 5.2 22.4 9.3" stroke="#334155" stroke-width="2.1" stroke-linecap="round"/>
+              <path d="M14.3 8.1 C15.4 6.1 20.5 6.0 21.6 7.9" stroke="#E2E8F0" stroke-width="0.75" stroke-linecap="round"/>
+              <rect x="15.2" y="13.5" width="5.6" height="4.2" rx="1.6" fill="url(#clipBarrel2)" stroke="#5E3E17" stroke-width="0.6"/>
+              <path d="M16.2 17.5 C12.4 20.4 11.8 23.8 13.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M19.8 17.5 C23.6 20.4 24.2 23.8 22.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M16.0 18.2 C13.1 20.6 12.6 23.4 13.8 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M20.0 18.2 C22.9 20.6 23.4 23.4 22.2 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M10 27.5 L26 27.5 L27 33.5 L9 33.5 Z" fill="#5D3E19"/>
+              <rect x="8.8" y="25.8" width="18.4" height="4.4" rx="2.2" fill="url(#clipBarrel2)" stroke="#5B3B15" stroke-width="0.65"/>
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawBrass2)" stroke="#68451B" stroke-width="0.7"/>
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawSheen2)"/>
+              <circle cx="18" cy="34.2" r="1.45" fill="#704B1E" stroke="#F7E4BD" stroke-width="0.55"/>
+              <line x1="10.2" y1="39.2" x2="25.8" y2="39.2" stroke="rgba(90, 56, 18, 0.45)" stroke-width="0.8" stroke-linecap="round"/>
+              <line x1="9.8" y1="41.2" x2="26.2" y2="41.2" stroke="rgba(255, 244, 214, 0.45)" stroke-width="0.7" stroke-linecap="round"/>
             </svg>
           </div>
 
@@ -2936,27 +2979,46 @@
 
         <!-- CERTIFICATE 03: Right Certificate Print -->
         <div class="hanging-cert-item cert-item-3" data-cert="3">
-          <!-- Matte Torn-Edge Orange Washi Tape: Right Variation -->
-          <div class="cert-washi-tape cert-washi-3" aria-hidden="true">
-            <svg class="cert-washi-svg" viewBox="0 0 55 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Realistic Miniature Metallic Gallery Clip: Right Variation -->
+          <div class="cert-hanging-clip cert-clip-3" aria-hidden="true">
+            <svg class="cert-clip-svg" viewBox="0 0 36 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="washiTone3" x1="0" y1="1" x2="54" y2="25" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#EB6B3F" stop-opacity="0.90"/>
-                  <stop offset="50%" stop-color="#F37E53" stop-opacity="0.93"/>
-                  <stop offset="100%" stop-color="#EC7045" stop-opacity="0.91"/>
+                <linearGradient id="clipJawBrass3" x1="7" y1="28" x2="29" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#E5C691"/>
+                  <stop offset="32%" stop-color="#C59855"/>
+                  <stop offset="68%" stop-color="#986B31"/>
+                  <stop offset="100%" stop-color="#734D1E"/>
                 </linearGradient>
-                <linearGradient id="washiSheen3" x1="0" y1="0" x2="0" y2="26" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
-                  <stop offset="44%" stop-color="#FFFFFF" stop-opacity="0.02"/>
-                  <stop offset="72%" stop-color="#000000" stop-opacity="0.04"/>
-                  <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.07"/>
+                <linearGradient id="clipJawSheen3" x1="18" y1="27" x2="18" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFF5DF" stop-opacity="0.70"/>
+                  <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+                  <stop offset="82%" stop-color="#1A1008" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#0F0904" stop-opacity="0.38"/>
+                </linearGradient>
+                <linearGradient id="clipBarrel3" x1="9" y1="26" x2="27" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#724D20"/>
+                  <stop offset="30%" stop-color="#DDB97E"/>
+                  <stop offset="55%" stop-color="#F6E2BA"/>
+                  <stop offset="80%" stop-color="#AC7B3D"/>
+                  <stop offset="100%" stop-color="#674319"/>
                 </linearGradient>
               </defs>
-              <path d="M2.0 2.5 L19 2.0 L36 2.6 L52.9 2.2 L51.4 5.9 L53.2 9.4 L51.3 12.8 L53.0 16.4 L51.5 20.0 L52.8 23.5 L34 23.9 L16 23.3 L2.3 23.7 L3.8 19.7 L1.9 15.8 L3.7 12.1 L1.8 8.5 L3.5 5.1 Z" fill="url(#washiTone3)"/>
-              <path d="M2.0 2.5 L19 2.0 L36 2.6 L52.9 2.2 L51.4 5.9 L53.2 9.4 L51.3 12.8 L53.0 16.4 L51.5 20.0 L52.8 23.5 L34 23.9 L16 23.3 L2.3 23.7 L3.8 19.7 L1.9 15.8 L3.7 12.1 L1.8 8.5 L3.5 5.1 Z" fill="url(#washiSheen3)"/>
-              <path d="M3.0 11.4 Q27 11.9 51.8 11.3" stroke="rgba(130, 44, 18, 0.20)" stroke-width="1.05" stroke-linecap="round"/>
-              <path d="M3.0 10.6 Q27 11.1 51.8 10.5" stroke="rgba(255, 240, 230, 0.36)" stroke-width="0.6" stroke-linecap="round"/>
-              <path d="M11 6.7 L23 6.3 M31 18.6 L44 18.9 M15 19.3 L25 19.0" stroke="rgba(255, 247, 236, 0.24)" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M8.5 42.5 C12 45 24 45 27.5 42.5 L28 45.2 C24 47.4 12 47.4 8 45.2 Z" fill="rgba(16, 20, 32, 0.20)"/>
+              <path d="M18 15.5 L18 11.2 C18 7.5 21.8 6.4 22.3 9.2 C22.5 10.6 21.4 11.5 20 11.6" stroke="#475569" stroke-width="1.9" stroke-linecap="round"/>
+              <path d="M13.6 9.3 C13.6 5.2 22.4 5.2 22.4 9.3" stroke="#334155" stroke-width="2.1" stroke-linecap="round"/>
+              <path d="M14.3 8.1 C15.4 6.1 20.5 6.0 21.6 7.9" stroke="#E2E8F0" stroke-width="0.75" stroke-linecap="round"/>
+              <rect x="15.2" y="13.5" width="5.6" height="4.2" rx="1.6" fill="url(#clipBarrel3)" stroke="#5E3E17" stroke-width="0.6"/>
+              <path d="M16.2 17.5 C12.4 20.4 11.8 23.8 13.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M19.8 17.5 C23.6 20.4 24.2 23.8 22.5 27.2" stroke="#334155" stroke-width="1.65" stroke-linecap="round"/>
+              <path d="M16.0 18.2 C13.1 20.6 12.6 23.4 13.8 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M20.0 18.2 C22.9 20.6 23.4 23.4 22.2 26.2" stroke="#CBD5E1" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M10 27.5 L26 27.5 L27 33.5 L9 33.5 Z" fill="#5D3E19"/>
+              <rect x="8.8" y="25.8" width="18.4" height="4.4" rx="2.2" fill="url(#clipBarrel3)" stroke="#5B3B15" stroke-width="0.65"/>
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawBrass3)" stroke="#68451B" stroke-width="0.7"/>
+              <path d="M9.6 29.4 L26.4 29.4 L28.2 41.8 C28.4 42.9 27.5 43.6 26.3 43.6 L9.7 43.6 C8.5 43.6 7.6 42.9 7.8 41.8 Z" fill="url(#clipJawSheen3)"/>
+              <circle cx="18" cy="34.2" r="1.45" fill="#704B1E" stroke="#F7E4BD" stroke-width="0.55"/>
+              <line x1="10.2" y1="39.2" x2="25.8" y2="39.2" stroke="rgba(90, 56, 18, 0.45)" stroke-width="0.8" stroke-linecap="round"/>
+              <line x1="9.8" y1="41.2" x2="26.2" y2="41.2" stroke="rgba(255, 244, 214, 0.45)" stroke-width="0.7" stroke-linecap="round"/>
             </svg>
           </div>
 
@@ -3887,159 +3949,256 @@
        LET'S TALK / GET IN TOUCH (Featuring Animated Mascot & Creative Bento)
        ======================================================================= -->
   <!-- =======================================================================
-       LET'S CONNECT — THE CREATIVE CONNECTION STUDIO
-       Expressive Left Composition (Intro, 3D Headphones Centerpiece, Direct Links)
-       Organised Right Studio Form — Exact Existing Canvas (#FFF7EC) Preserved
+       LET'S CONNECT — MODERN-VINTAGE CREATIVE CONNECTION STUDIO
+       3-Column Desktop Composition on Exact Portfolio Canvas (#FFF7EC)
+       Left: Editorial Intro & Handwritten Note | Center: Hanging Vintage Handset
+       Right: Warm Cream Contact Form | Bottom: 3 Circular Links + Coiled Wire
        ======================================================================= -->
   <section id="contact" class="connect-scene-section" aria-label="Let's Connect and Collaborate">
     <div class="container conn-editorial-container">
+
+      <!-- Main 3-Column Studio Composition -->
       <div class="conn-editorial-grid">
 
         <!-- ===============================================================
-             LEFT COLUMN: Creative Introduction + Headphones Stage + Direct Links
+             COLUMN 1 (LEFT): Expressive Editorial Introduction
              =============================================================== -->
         <div class="conn-col-left reveal">
-
-          <!-- A. Creative Introduction -->
           <div class="conn-intro-block">
             <p class="conn-eyebrow-text">LET'S CREATE SOMETHING</p>
             <h2 class="conn-studio-heading">
-              <span class="conn-heading-bold">Got an idea?</span>
-              <span class="conn-heading-italic">Let's make it happen.</span>
+              <span class="conn-heading-bold">Let's</span>
+              <span class="conn-heading-italic-wrap">
+                <span class="conn-heading-italic">Connect.</span>
+                <!-- Delicate hand-drawn studio underline swash -->
+                <svg class="conn-heading-swash" viewBox="0 0 185 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M 4 10 C 52 3, 128 2, 181 8"
+                    stroke="#DF5234"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-opacity="0.58"
+                  />
+                </svg>
+              </span>
             </h2>
             <p class="conn-intro-paragraph">
-              Have a project in mind, an interesting idea, or simply want to say hello? I'd love to hear from you.
+              Have a project in mind, an idea to bring to life, or just want to say hello?
+              <strong class="conn-intro-strong">I'd love to hear from you.</strong>
             </p>
           </div>
 
-          <!-- B. Refined 3D Headphone Visual Centerpiece -->
-          <div class="conn-headphone-stage">
-            <div class="conn-headphone-halo" aria-hidden="true"></div>
-            <svg class="conn-soundwave-arcs" viewBox="0 0 360 240" fill="none" aria-hidden="true">
-              <path class="conn-wave wave-outer-l" d="M 58 64 C 34 94, 34 146, 58 176" stroke="rgba(250, 85, 56, 0.24)" stroke-width="1.35" stroke-linecap="round" stroke-dasharray="4 5"/>
-              <path class="conn-wave wave-inner-l" d="M 76 80 C 58 102, 58 138, 76 160" stroke="rgba(140, 124, 246, 0.28)" stroke-width="1.45" stroke-linecap="round"/>
-              <path class="conn-wave wave-outer-r" d="M 302 64 C 326 94, 326 146, 302 176" stroke="rgba(244, 95, 160, 0.24)" stroke-width="1.35" stroke-linecap="round" stroke-dasharray="4 5"/>
-              <path class="conn-wave wave-inner-r" d="M 284 80 C 302 102, 302 138, 284 160" stroke="rgba(250, 85, 56, 0.26)" stroke-width="1.45" stroke-linecap="round"/>
-            </svg>
-            <div class="conn-headphone-figure">
-              <img
-                src="headphones_3d_centerpiece.png"
-                alt="Iridescent coral and warm ivory studio headphones representing Arfa's creative frontend studio"
-                class="conn-headphone-img"
-                loading="lazy"
-                decoding="async"
-                onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='src/assets/images/headphones_3d_centerpiece.png';}"
-              />
+          <!-- Handwritten studio note + expressive hand-drawn curved arrow + minimal bridge strokes -->
+          <div class="conn-handwritten-cue" aria-hidden="true">
+            <div class="conn-cue-header">
+              <p class="conn-script-note">
+                <span>Drop a message</span>
+                <span>Let's build something amazing!</span>
+              </p>
+              <!-- Minimal 4-point hand-drawn sparkle accent -->
+              <svg class="conn-mini-spark" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3 L13.4 9.6 L20 11 L13.4 12.4 L12 19 L10.6 12.4 L4 11 L10.6 9.6 Z" stroke="#DF5234" stroke-width="1.35" stroke-linejoin="round" stroke-opacity="0.72"/>
+              </svg>
             </div>
-            <div class="conn-headphone-shadow" aria-hidden="true"></div>
+
+            <div class="conn-cue-arrows-row">
+              <!-- Hand-drawn looping curved ink arrow -->
+              <svg class="conn-cue-arrow" viewBox="0 0 190 76" fill="none">
+                <path
+                  d="M 10 14 C 14 48, 52 62, 92 48 C 118 39, 122 20, 103 20 C 86 20, 86 44, 118 48 C 142 51, 165 40, 180 24"
+                  stroke="#DF5234"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M 168 22 L 182 22 L 178 36"
+                  stroke="#DF5234"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <!-- Minimal connecting hand-drawn orange dashes bridging toward receiver -->
+              <svg class="conn-bridge-strokes" viewBox="0 0 68 38" fill="none">
+                <path d="M 6 24 C 20 18, 36 16, 50 18" stroke="#E86240" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="6 7" stroke-opacity="0.65"/>
+                <path d="M 22 31 C 33 28, 46 27, 58 29" stroke="#E86240" stroke-width="1.35" stroke-linecap="round" stroke-opacity="0.45"/>
+              </svg>
+            </div>
           </div>
-
-          <!-- C. Direct Connection Area -->
-          <div class="conn-direct-block">
-            <h3 class="conn-direct-heading">PREFER A DIRECT CONVERSATION?</h3>
-            <p class="conn-direct-subcopy">
-              Feel free to reach out through email or connect with me on my professional platforms.
-            </p>
-
-            <div class="conn-channels-stack" role="list">
-              <!-- Highlighted Direct Email Channel -->
-              <a
-                href="mailto:arfamunam01@gmail.com"
-                class="conn-channel-chip is-email"
-                role="listitem"
-                aria-label="Send direct email to arfamunam01@gmail.com"
-              >
-                <span class="conn-channel-icon icon-email" aria-hidden="true">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                </span>
-                <span class="conn-channel-meta">
-                  <span class="conn-channel-label">Email</span>
-                  <span class="conn-channel-detail">arfamunam01@gmail.com</span>
-                </span>
-                <span class="conn-channel-ext" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/>
-                    <polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
-              </a>
-
-              <!-- Compact Professional Platform Links -->
-              <div class="conn-platforms-row">
-                <a
-                  href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="conn-channel-chip is-linkedin"
-                  role="listitem"
-                  aria-label="Connect on LinkedIn"
-                >
-                  <span class="conn-channel-icon icon-linkedin" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                  </span>
-                  <span class="conn-channel-label">LinkedIn</span>
-                </a>
-
-                <a
-                  href="https://github.com/ArfaMunam47"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="conn-channel-chip is-github"
-                  role="listitem"
-                  aria-label="GitHub Profile"
-                >
-                  <span class="conn-channel-icon icon-github" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                  </span>
-                  <span class="conn-channel-label">GitHub</span>
-                </a>
-
-                <a
-                  href="Arfa-Munam-Resume.pdf"
-                  download="Arfa-Munam-Resume.pdf"
-                  class="conn-channel-chip is-resume js-resume-link"
-                  role="listitem"
-                  aria-label="Download Arfa Munam Resume PDF"
-                >
-                  <span class="conn-channel-icon icon-resume" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14 2 14 8 20 8"/>
-                      <line x1="12" y1="18" x2="12" y2="12"/>
-                      <polyline points="9 15 12 18 15 15"/>
-                    </svg>
-                  </span>
-                  <span class="conn-channel-label">Resume</span>
-                </a>
-              </div>
-            </div>
-          </div><!-- /.conn-direct-block -->
-
         </div><!-- /.conn-col-left -->
 
         <!-- ===============================================================
-             RIGHT COLUMN: Refined Studio Contact Form
+             COLUMN 2 (CENTER): Coiled Spring Wire + HD Vintage Receiver + Speaker Sound Rays
+             =============================================================== -->
+        <div class="conn-col-center reveal">
+          <div class="ct-phone-stage">
+
+            <!-- Hanging Spiral Spring Cord + Orange Adhesive Tape + Glossy Bakelite Handset -->
+            <div class="ct-phone-sway">
+
+              <!-- Old-fashioned coiled spring telephone cord (347px viewBox locks x=189 to handset boot stub) -->
+              <svg class="ct-cord-svg" viewBox="0 0 347 300" fill="none" aria-hidden="true">
+                <!-- Soft ambient wall drop shadow behind cord -->
+                <path
+                  d="M 183 -20 L 189 60
+                     M 160 75 C 160 83, 218 79, 218 87
+                     M 160 95 C 160 103, 218 99, 218 107
+                     M 160 115 C 160 123, 218 119, 218 127
+                     M 160 135 C 160 143, 218 139, 218 147
+                     M 160 155 C 160 163, 218 159, 218 167
+                     M 160 175 C 160 183, 218 179, 218 187
+                     M 160 195 C 160 203, 218 199, 218 207
+                     M 160 215 C 160 223, 218 219, 218 227
+                     M 160 235 C 160 243, 218 239, 218 247
+                     M 189 258 L 189 306"
+                  stroke="rgba(16, 28, 53, 0.14)"
+                  stroke-width="18"
+                  stroke-linecap="round"
+                  transform="translate(7, 4)"
+                />
+
+                <!-- Top lead entering cleanly from top edge of section -->
+                <path
+                  d="M 182 -24 C 183 8, 187 38, 189 58 C 190 65, 218 61, 218 67"
+                  stroke="#161619"
+                  stroke-width="17"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M 179 -24 C 180 8, 184 38, 186 58"
+                  stroke="rgba(255, 255, 255, 0.22)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                />
+
+                <!-- PASS 1 (BACK): Recessed rear half-turns of the spiral spring cord -->
+                <g stroke="#0C0C0E" stroke-width="13.5" stroke-linecap="round">
+                  <path d="M 218 67 C 218 60, 160 68, 160 75"/>
+                  <path d="M 218 87 C 218 80, 160 88, 160 95"/>
+                  <path d="M 218 107 C 218 100, 160 108, 160 115"/>
+                  <path d="M 218 127 C 218 120, 160 128, 160 135"/>
+                  <path d="M 218 147 C 218 140, 160 148, 160 155"/>
+                  <path d="M 218 167 C 218 160, 160 168, 160 175"/>
+                  <path d="M 218 187 C 218 180, 160 188, 160 195"/>
+                  <path d="M 218 207 C 218 200, 160 208, 160 215"/>
+                  <path d="M 218 227 C 218 220, 160 228, 160 235"/>
+                  <path d="M 218 247 C 218 253, 189 253, 189 262"/>
+                </g>
+
+                <!-- PASS 2 (FRONT): Forward overlapping turns of the spiral spring cord -->
+                <g stroke="#1D1D21" stroke-width="14" stroke-linecap="round">
+                  <path d="M 160 75 C 160 83, 218 79, 218 87"/>
+                  <path d="M 160 95 C 160 103, 218 99, 218 107"/>
+                  <path d="M 160 115 C 160 123, 218 119, 218 127"/>
+                  <path d="M 160 135 C 160 143, 218 139, 218 147"/>
+                  <path d="M 160 155 C 160 163, 218 159, 218 167"/>
+                  <path d="M 160 175 C 160 183, 218 179, 218 187"/>
+                  <path d="M 160 195 C 160 203, 218 199, 218 207"/>
+                  <path d="M 160 215 C 160 223, 218 219, 218 227"/>
+                  <path d="M 160 235 C 160 243, 218 239, 218 247"/>
+                </g>
+
+                <!-- PASS 2B: Subtle dark vinyl contour + crisp studio specular edge along front coils -->
+                <g stroke="#34343B" stroke-width="6.2" stroke-linecap="round">
+                  <path d="M 162 75 C 162 82, 216 79, 216 86"/>
+                  <path d="M 162 95 C 162 102, 216 99, 216 106"/>
+                  <path d="M 162 115 C 162 122, 216 119, 216 126"/>
+                  <path d="M 162 135 C 162 142, 216 139, 216 146"/>
+                  <path d="M 162 155 C 162 162, 216 159, 216 166"/>
+                  <path d="M 162 175 C 162 182, 216 179, 216 186"/>
+                  <path d="M 162 195 C 162 202, 216 199, 216 206"/>
+                  <path d="M 162 215 C 162 222, 216 219, 216 226"/>
+                  <path d="M 162 235 C 162 242, 216 239, 216 246"/>
+                </g>
+                <g stroke="rgba(255, 255, 255, 0.30)" stroke-width="2" stroke-linecap="round">
+                  <path d="M 166 74 C 176 79, 204 79, 213 84"/>
+                  <path d="M 166 94 C 176 99, 204 99, 213 104"/>
+                  <path d="M 166 114 C 176 119, 204 119, 213 124"/>
+                  <path d="M 166 134 C 176 139, 204 139, 213 144"/>
+                  <path d="M 166 154 C 176 159, 204 159, 213 164"/>
+                  <path d="M 166 174 C 176 179, 204 179, 213 184"/>
+                  <path d="M 166 194 C 176 199, 204 199, 213 204"/>
+                  <path d="M 166 214 C 176 219, 204 219, 213 224"/>
+                  <path d="M 166 234 C 176 239, 204 239, 213 244"/>
+                </g>
+
+                <!-- Bottom vertical cord lead docking flush onto boot stub (x=189, width=25px) -->
+                <path
+                  d="M 189 258 L 189 306"
+                  stroke="#161618"
+                  stroke-width="24"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M 184 260 L 184 304"
+                  stroke="rgba(255, 255, 255, 0.25)"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                />
+
+                <!-- Small physical orange adhesive tape wrapped neatly around upper wire -->
+                <g transform="translate(185, 28) rotate(-12)">
+                  <rect x="-32" y="-12" width="64" height="24" rx="2" fill="rgba(16, 28, 53, 0.16)" transform="translate(2, 3)"/>
+                  <path
+                    d="M -31 -11 L 30 -10 C 32 -4, 31 5, 32 11 L -30 12 C -32 5, -30 -4, -31 -11 Z"
+                    fill="#F2623D"
+                  />
+                  <path d="M -29 -8 L 28 -7.5" stroke="rgba(255, 244, 236, 0.45)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M -28 9 L 29 8.5" stroke="rgba(165, 42, 18, 0.30)" stroke-width="1.6" stroke-linecap="round"/>
+                </g>
+              </svg>
+
+              <!-- High-Res Transparent Bakelite Handset + Radiating Speaker Sound Rays -->
+              <div class="ct-handset-frame">
+                <img
+                  src="vintage_telephone_handset.png"
+                  alt="High-resolution vintage black Bakelite telephone handset hanging vertically on a coiled spring cord"
+                  class="ct-handset-img"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='src/assets/images/vintage_telephone_handset.png';}"
+                />
+
+                <!-- Delicate hand-drawn orange sound-effect radiating strokes OUTSIDE both circular speakers -->
+                <svg class="ct-sound-rays-svg" viewBox="0 0 347 1312" fill="none" aria-hidden="true">
+                  <!-- Upper Speaker Radiating Rays (outside x < -12 around y=240..435) -->
+                  <g class="ct-rays-upper">
+                    <path d="M -18 286 C -30 278, -42 271, -52 263" stroke="#E86240" stroke-width="3.6" stroke-linecap="round"/>
+                    <path d="M -24 342 C -39 341, -52 340, -66 339" stroke="#E86240" stroke-width="3.8" stroke-linecap="round"/>
+                    <path d="M -18 398 C -31 406, -42 414, -53 423" stroke="#E86240" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M -46 310 C -54 328, -54 352, -46 372" stroke="#E86240" stroke-width="2.9" stroke-linecap="round" stroke-opacity="0.72"/>
+                  </g>
+
+                  <!-- Lower Speaker Radiating Rays (outside x < -10 around y=1050..1245) -->
+                  <g class="ct-rays-lower">
+                    <path d="M -14 1094 C -27 1086, -39 1079, -50 1072" stroke="#E86240" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M -20 1152 C -35 1152, -49 1151, -63 1151" stroke="#E86240" stroke-width="3.8" stroke-linecap="round"/>
+                    <path d="M -14 1210 C -27 1218, -38 1226, -49 1235" stroke="#E86240" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M -43 1122 C -51 1141, -51 1164, -43 1183" stroke="#E86240" stroke-width="2.9" stroke-linecap="round" stroke-opacity="0.72"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div class="ct-handset-shadow" aria-hidden="true"></div>
+          </div>
+        </div><!-- /.conn-col-center -->
+
+        <!-- ===============================================================
+             COLUMN 3 (RIGHT): Soft Cream Contact Form Container
              =============================================================== -->
         <div class="conn-col-right reveal">
-
           <div class="conn-form-panel" id="conn-form-card">
             <div class="conn-panel-header">
               <div class="conn-panel-icon-circle" aria-hidden="true">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
               </div>
               <div class="conn-panel-title-group">
-                <h3 class="conn-panel-heading">Tell me about your idea.</h3>
-                <p class="conn-panel-subcopy">Share a little about what you're planning. I'd love to hear about it.</p>
+                <h3 class="conn-panel-heading">Send me a message</h3>
+                <p class="conn-panel-subcopy">Fill out the form below and I'll get back to you as soon as possible.</p>
               </div>
             </div>
 
@@ -4052,7 +4211,7 @@
                   <label for="form-name" class="conn-field-label">Your Name <span class="conn-req" aria-hidden="true">*</span></label>
                   <div class="conn-input-shell">
                     <span class="conn-field-icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                       </svg>
@@ -4062,7 +4221,7 @@
                       id="form-name"
                       name="name"
                       class="conn-input-ctrl"
-                      placeholder="Alex Rivera"
+                      placeholder="Arfa Munam"
                       autocomplete="name"
                       required
                     />
@@ -4073,7 +4232,7 @@
                   <label for="form-email" class="conn-field-label">Email Address <span class="conn-req" aria-hidden="true">*</span></label>
                   <div class="conn-input-shell">
                     <span class="conn-field-icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                       </svg>
@@ -4091,12 +4250,12 @@
                 </div>
               </div><!-- /.conn-form-row-duo -->
 
-              <!-- Project or Enquiry Type -->
+              <!-- Project / Enquiry Type -->
               <div class="conn-field-box">
-                <label for="form-subject" class="conn-field-label">Project or Enquiry Type <span class="conn-req" aria-hidden="true">*</span></label>
+                <label for="form-subject" class="conn-field-label">Project / Enquiry Type <span class="conn-req" aria-hidden="true">*</span></label>
                 <div class="conn-input-shell select-shell">
                   <span class="conn-field-icon" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
                       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                     </svg>
@@ -4110,7 +4269,7 @@
                     <option value="Other">Other</option>
                   </select>
                   <span class="conn-select-chevron" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="6 9 12 15 18 9"/>
                     </svg>
                   </span>
@@ -4125,7 +4284,7 @@
                 </div>
                 <div class="conn-textarea-shell">
                   <span class="conn-field-icon conn-textarea-icon" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
                   </span>
@@ -4135,34 +4294,113 @@
                     class="conn-textarea-ctrl"
                     rows="4"
                     maxlength="500"
-                    placeholder="Tell me about what you're building, your timeline, or simply say hello..."
+                    placeholder="Tell me about your idea, timeline, or just say hello..."
                     required
                   ></textarea>
                 </div>
               </div>
 
-              <!-- Submit CTA Button -->
+              <!-- Navy Submit CTA Button with Orange Paper-Plane Icon -->
               <div class="conn-submit-wrapper">
                 <button type="submit" class="conn-submit-btn" id="submit-btn">
-                  <span>Let's Start a Conversation</span>
-                  <span class="conn-submit-arrow" aria-hidden="true">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"/>
-                      <polyline points="12 5 19 12 12 19"/>
+                  <span class="conn-submit-plane" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FA5538" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                     </svg>
                   </span>
+                  <span>Send Message</span>
                 </button>
               </div>
 
               <!-- Form Status Output -->
               <div id="form-msg" role="status" aria-live="polite" class="conn-form-status-box"></div>
             </form>
-          </div><!-- /.conn-form-panel -->
 
+            <!-- Subtle bottom-right handwritten reply note -->
+            <p class="conn-reply-note" aria-hidden="true">
+              I usually reply<br>
+              within <span class="conn-reply-highlight">24 hours</span> &#9825;
+            </p>
+          </div><!-- /.conn-form-panel -->
         </div><!-- /.conn-col-right -->
 
       </div><!-- /.conn-editorial-grid -->
+
+      <!-- ===============================================================
+           BOTTOM ROW: Other ways to connect (EXACTLY 3 Circular Icon Buttons)
+           =============================================================== -->
+      <div class="ct-other-ways reveal">
+        <div class="ct-ways-heading-row">
+          <span class="ct-ways-rule" aria-hidden="true"></span>
+          <h3 class="ct-ways-heading">Other ways to connect</h3>
+          <span class="ct-ways-rule" aria-hidden="true"></span>
+        </div>
+
+        <div class="ct-social-row" role="list">
+          <a
+            href="https://www.linkedin.com/in/arfa-munam-a823573a1?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ct-social-item is-linkedin"
+            role="listitem"
+            aria-label="Connect on LinkedIn"
+          >
+            <span class="ct-social-circle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </span>
+            <span class="ct-social-label">LinkedIn</span>
+          </a>
+
+          <a
+            href="https://github.com/ArfaMunam47"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ct-social-item is-github"
+            role="listitem"
+            aria-label="GitHub Profile"
+          >
+            <span class="ct-social-circle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </span>
+            <span class="ct-social-label">GitHub</span>
+          </a>
+
+          <a
+            href="mailto:arfamunam01@gmail.com"
+            class="ct-social-item is-email"
+            role="listitem"
+            aria-label="Send direct email to arfamunam01@gmail.com"
+          >
+            <span class="ct-social-circle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </span>
+            <span class="ct-social-label">Email</span>
+          </a>
+        </div>
+      </div><!-- /.ct-other-ways -->
+
     </div><!-- /.container -->
+
+    <!-- Bottom Decorative Coiled Orange Telephone Wire (Zero overlap) -->
+    <div class="ct-bottom-wire-wrap" aria-hidden="true">
+      <svg class="ct-bottom-wire-svg" viewBox="0 0 1440 76" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path
+          d="M -20 46 C 110 47, 250 48, 355 42 C 392 39, 405 18, 386 14 C 367 10, 356 29, 374 44 C 396 62, 434 57, 452 35 C 464 20, 446 11, 432 20 C 418 29, 422 50, 454 52 C 565 55, 785 45, 935 48 C 974 49, 991 29, 974 21 C 958 14, 947 31, 962 45 C 981 62, 1028 55, 1150 48 C 1265 42, 1365 46, 1460 44"
+          stroke="#E86240"
+          stroke-width="1.95"
+          stroke-opacity="0.68"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
   </section>
 
   <!-- =======================================================================
