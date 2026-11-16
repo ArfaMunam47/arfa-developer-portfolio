@@ -2635,7 +2635,9 @@ function setupLetsTalkSection() {
 function setupHeroPhotoUpload() {
   const heroImg = document.getElementById('profile-placeholder-img');
   if (heroImg) {
-    heroImg.src = 'port.png';
+    if (!heroImg.getAttribute('src')) {
+      heroImg.src = 'port.png';
+    }
     heroImg.onerror = function() {
       this.onerror = null;
       this.src = 'portrait-cutout.png';
